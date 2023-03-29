@@ -4,11 +4,10 @@
  * Homepage Template
  * 
  * @author KJ Roelke
- * @since 1.0
+ * @since  1.0
  */
 
 $content = new ContentSectionComponents();
-// $hero_fields = get_field('hero');
 
 get_header(); ?>
 <main class="site-content">
@@ -56,9 +55,9 @@ get_header(); ?>
     </aside>
     <section class="job-opportunities py-5">
         <div class="container">
-            <?php
-            extract(get_field('section_4'));
-            $content->two_col_text_and_media($headline, $text_content, $button['button_text'], $button['button_link'], true, array('image_src' => $photo)); ?></div>
+            <?php extract(get_field('section_4')); ?>
+            <?php $content->two_col_text_and_media($headline, $text_content, $button['button_text'], $button['button_link'], true, array('image_src' => $photo)); ?>
+        </div>
     </section>
     <section class="find-your-place py-5 position-relative bg-dark text-white">
         <div class="section-bg-img container-fluid w-100 h-100 position-absolute"></div>
