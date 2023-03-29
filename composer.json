@@ -1,0 +1,19 @@
+{
+    "name": "choctaw-nation/labor-day",
+    "description": "a custom wp theme for Choctaw Nation's labor day site",
+    "type": "project",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://connect.advancedcustomfields.com"
+        }
+    ],
+    "require": {
+        "wpengine/advanced-custom-fields-pro": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

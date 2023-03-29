@@ -1,8 +1,7 @@
 # Wordpress - ignore core, configuration, examples, uploads and logs.
 # https://github.com/github/gitignore/blob/main/WordPress.gitignore
 
-/node_modules
-.DS_Store
+
 
 # Core
 #
@@ -23,16 +22,19 @@
 # Configuration
 wp-config.php
 local-xdebuginfo.php
-
-# Example themes
-/wp-content/themes/twenty*/
-
+/node_modules
+.DS_Store
+.env
+.env*
+auth.json
+/vendor
 
 
 # WP-Content
 /wp-content/uploads/
 /wp-content/upgrade/
 /wp-content/plugins
+/wp-content/themes/twenty*/
 
 
 # Log files
@@ -40,10 +42,3 @@ local-xdebuginfo.php
 
 # htaccess
 /.htaccess
-
-
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-# /wp-content/themes
