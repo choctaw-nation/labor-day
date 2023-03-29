@@ -1,0 +1,8 @@
+// Include parts of Bootstrap
+@use './vendors/bs-custom';
+
+@use './base/reset';
+
+@use './components/header';
+@use './components/footer';
+@use './components/buttons';

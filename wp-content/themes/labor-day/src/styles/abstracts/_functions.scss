@@ -1,0 +1,8 @@
+@use 'sass:list';
+@function transition($properties) {
+	$new-list: ();
+	@each $property in $properties {
+		$new-list: list.append($new-list, #{$property} 0.3s ease, comma);
+	}
+	@return $new-list;
+}

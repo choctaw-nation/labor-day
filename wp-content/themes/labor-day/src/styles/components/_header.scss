@@ -1,0 +1,33 @@
+@use '../abstracts/functions' as fn;
+@use './buttons';
+
+.navbar {
+	a {
+		transition: fn.transition(color);
+		text-decoration: none;
+		&:not(:has(h1)) {
+			text-transform: uppercase;
+		}
+	}
+	&__menu {
+		list-style: none;
+		padding: unset;
+		.menu-item {
+			padding: 10px;
+			margin: 0 10px;
+			display: inline-block;
+			border-bottom: 1px solid transparent;
+			transition: fn.transition(border-color);
+			a {
+				color: var(--bs-primary);
+			}
+			&:hover {
+				border-color: var(--bs-primary);
+				cursor: pointer;
+			}
+			&.cta {
+				@extend .btn__primary--fill;
+			}
+		}
+	}
+}
