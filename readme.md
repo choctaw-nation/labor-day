@@ -21,6 +21,10 @@ Nav
     -   Personal Itinerary bit
     -   Map (/map)
 
+## List of Pages to Build:
+
+-   front-page.php
+
 ### Features List
 
 -   Applications for vendors
