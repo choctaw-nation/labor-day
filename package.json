@@ -13,6 +13,6 @@
     "bootstrap": "^5.2.3"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^25.3.0"
+    "@wordpress/scripts": "^26.1.0"
   }
 }
