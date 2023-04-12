@@ -1,10 +1,11 @@
 @use '../abstracts/functions' as fn;
-
-.btn {
+@use '../abstracts/variables' as v;
+%btn {
 	border: 2px solid transparent;
 	padding: 0.5rem 0.875rem;
 	display: inline-block;
 	transform: translateY(0);
+	text-transform: uppercase;
 	transition: fn.transition(
 		(background-color, border-color, transform, box-shadow, color)
 	);
@@ -12,27 +13,66 @@
 		box-shadow: 2px 4px 8px rgba(black, 0.35);
 		transform: translateY(-4px);
 	}
-	&__primary {
-		&--fill {
-			@extend .btn;
-			background-color: var(--bs-primary);
+}
+
+.btn {
+	@extend %btn;
+	&__fill {
+		@extend .btn;
+		color: white;
+		a {
 			color: white;
-			a {
-				color: white;
-			}
+		}
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: transparent;
+		}
+		&--primary {
+			@extend .btn__fill;
+			background-color: v.$color-primary;
 			&:hover,
 			&:active,
 			&:focus {
-				background-color: transparent;
-				border-color: var(--bs-primary);
-				color: var(--bs-primary);
+				border-color: v.$color-primary;
+				color: v.$color-primary;
 				a {
-					color: var(--bs-primary);
+					color: v.$color-primary;
 				}
 			}
+		}
+		&--secondary {
+			@extend .btn__fill;
+			background-color: v.$color-secondary;
+			&:hover,
+			&:active,
+			&:focus {
+				border-color: v.$color-secondary;
+				color: v.$color-secondary;
+				a {
+					color: v.$color-secondary;
+				}
+			}
+		}
+	}
+	&__outline {
+		@extend .btn;
+		background-color: white;
+		&--primary {
+			@extend .btn__outline;
+			border-color: v.$color-primary--light;
+			color: v.$color-primary--light;
+		}
+		&--secondary {
+			@extend .btn__outline;
+			border-color: v.$color-secondary;
+			color: v.$color-secondary;
 		}
 	}
 }
 a.btn {
 	text-decoration: none;
+}
+button {
+	@extend .btn__fill--primary !optional;
 }

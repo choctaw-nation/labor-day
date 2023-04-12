@@ -1,5 +1,5 @@
 import './styles/main.scss';
-import './js/bsImports';
+// import './js/bsImports';
 
 function init() {
 	console.log('hello');

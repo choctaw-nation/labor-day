@@ -7,5 +7,8 @@
  * @since 1.0
  */
 
+require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
+require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
 require_once get_template_directory() . '/inc/theme-functions.php';
 require_once get_template_directory() . '/inc/component-classes/class-content-sections.php';
+require_once get_template_directory() . '/inc/utilities.php';

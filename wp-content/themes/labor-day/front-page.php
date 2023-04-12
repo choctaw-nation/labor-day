@@ -8,145 +8,100 @@
  */
 
 $content = new ContentSectionComponents();
+global $lorem;
+enqueue_page_style('frontPage');
 
 get_header(); ?>
 <main class="site-content">
-    <?php $content->hero_section($post->ID); ?>
-    <section class="about py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <?php
-                    extract(get_field('section_2'));
-                    $args = array(
-                        'subheadline_element' => 'p',
-                        'subheadline_content' => $subheadline,
-                        'subheadline_class' => 'subheadline text-content',
-                    );
-                    $content->headline($headline, true, $args); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <ul class="job-categories">
-                        <li class="job-categories__category">Job 1</li>
-                        <li class="job-categories__category">Job 2</li>
-                        <li class="job-categories__category">Job 3</li>
-                        <li class="job-categories__category">Job 4</li>
-                        <li class="job-categories__category">Job 5</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <aside class="jobs-callout py-5">
-        <div class="container">
-            <div class="row">
-                <h2 class="headline">New and Now Jobs</h2>
-            </div>
-            <div class="row">
-                <div class="col-4">Job #1</div>
-                <div class="col-4">Job #2</div>
-                <div class="col-4">
-                    Job #3
-                </div>
-            </div>
-        </div>
-    </aside>
-    <section class="job-opportunities py-5">
-        <div class="container">
-            <?php extract(get_field('section_4')); ?>
-            <?php $content->two_col_text_and_media($headline, $text_content, $button['button_text'], $button['button_link'], true, array('image_src' => $photo)); ?>
-        </div>
-    </section>
-    <section class="find-your-place py-5 position-relative bg-dark text-white">
-        <div class="section-bg-img container-fluid w-100 h-100 position-absolute"></div>
-        <div class="container">
-            <?php
-            extract(get_field('section_5'));
-            $content->two_col_text_and_media($headline, $text_content, $button['button_text'], $button['button_link'], true, array('reverse' => true)); ?>
-        </div>
-    </section>
-    <section class="stories py-5">
-        <div class="container">
-            <div class="row">
-                <?php $content->headline("Associate Stories"); ?>
-            </div>
-            <div class="row">
-                <div class="col-4">Job #1</div>
-                <div class="col-4">Job #2</div>
-                <div class="col-4">
-                    Job #3
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2"><?php $content->cta_button(text: "See More Stories", link: '#') ?></div>
-            </div>
-        </div>
-    </section>
-    <section class="image-grid py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>Image</p>
-                </div>
-                <div class="col-2">
-                    <p>image</p>
-                </div>
-            </div>
-        </div>
-    </section>
+	<?php $background_image_url = get_field('hero')['background_image']; ?>
+	<section class='w-100' style="background-image:url('<?php echo $background_image_url; ?>');" id='hero'>
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<span class="headline">September 1 &ndash; 3, 2023</span>
+					<span class="subheadline">[Countdown]</span>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php get_template_part('template-parts/aside', 'subscribe'); ?>
+	<section id="about-the-festival">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<figure class='great-seal'>
+						<?php global $GREAT_SEAL_SVG;
+						echo $GREAT_SEAL_SVG; ?>
+					</figure>
+				</div>
+				<div class="col-lg-8">
+					<p>The Choctaw people have gathered on the grounds of the Choctaw Capitol for many years during the Labor Day weekend to celebrate family, fellowship together and to
+						honor Choctaw traditions. Enjoy cultural events like stickball games and the princess contest, concerts, arts and crafts, a free 5k run and much more! As in Labor
+						Days past, the weekend schedule is packed full of events to accommodate those who enjoy sporting events, traditional events like gourd dancing, princess pageants, or
+						just family time on the grounds. Join us Sunday for Church services and stay for the all-day Chahta gospel singing. Our Labor Day weekend will be a great experience
+						for everyone as we fellowship together and honor our Choctaw traditions.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php get_template_part('template-parts/aside', 'text-callout', array('color' => 'secondary')); ?>
+	<section id="events">
+		<div class="container">
+			<div class="row">
+				<h2>Special Guest Neal Mccoy</h2>
+				<div class="big-feature">
+				</div>
+			</div>
+
+			<div class="row">
+				<h3>Entertainment</h3>
+				<div class="col">Slider</div>
+				<div class="col"><a href="/schedule" class="btn__fill--primary">See Full Schedule</a></div>
+			</div>
+		</div>
+	</section>
+	<section id="vendors" class='bg-color-primary'>
+		<div class="container">
+			<div class="row">
+				<h2 class="text-white">
+					Register Now
+				</h2>
+			</div>
+			<div class="row">
+				<div class="col">SLIDER</div>
+			</div>
+			<div class="row">
+				<div class="col"><a href="/registrations" class="btn__fill--primary">See All Registrations</a></div>
+			</div>
+		</div>
+	</section>
+	<section id="map">
+		<div class="container">
+			<?php
+			$args = array(
+				'headline' => 'Map',
+				'content' => $lorem,
+				'cta_text' => "View Map",
+				'cta_link' => '/map'
+			); ?>
+			<?php $content->two_col_text_and_media($args); ?>
+		</div>
+	</section>
+	<section id="facebook">
+		<div class="container">
+			<?php
+			$args = array(
+				'headline' => 'Labor Day Festival on Facebook',
+				'content' => $lorem,
+				'cta_text' => "Follow On Facebook",
+				'cta_external' => true,
+				'cta_link' => 'https://facebook.com',
+				'reverse' => true,
+			); ?>
+			<?php $content->two_col_text_and_media($args); ?>
+		</div>
+	</section>
+
 </main>
 <?php get_footer(); ?>

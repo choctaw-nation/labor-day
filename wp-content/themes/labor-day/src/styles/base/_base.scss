@@ -1,0 +1,12 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+section {
+	padding: 6.5rem 0;
+}
+.col {
+	@include m.displayFlex(column, center, center);
+}
+.bg-color-primary {
+	background-color: v.$color-primary;
+	color: white;
+}

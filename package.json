@@ -10,9 +10,10 @@
   "author": "Choctaw Nation of Oklahoma",
   "license": "ISC",
   "dependencies": {
+    "@wordpress/scripts": "^26.1.0",
     "bootstrap": "^5.2.3"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^26.1.0"
+    "bundle-analyzer": "^0.0.6"
   }
 }

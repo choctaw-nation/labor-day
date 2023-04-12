@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as v;
+#hero {
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	.overlay {
+		background-color: rgba(black, 0.35);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.container {
+		position: relative;
+	}
+	.col {
+		height: 60vh;
+	}
+	.headline,
+	.subheadline {
+		color: white;
+		font-size: 4em;
+	}
+}
+.great-seal {
+	width: 100%;
+	margin: 0;
+	svg {
+		aspect-ratio: 1;
+		width: 100%;
+	}
+}
+#vendors {
+	a.btn__fill--primary {
+		background-color: v.$color-primary--dark;
+	}
+}

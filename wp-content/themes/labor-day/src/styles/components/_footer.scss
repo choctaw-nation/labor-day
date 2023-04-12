@@ -1,5 +1,22 @@
+@use '../abstracts/variables' as v;
+#copyright {
+	background-color: #333;
+}
+
+.footer-callout {
+	&__image {
+	}
+	&__text {
+		align-items: flex-start;
+	}
+}
+
 .footer {
+	background-color: v.$color-primary--dark;
 	.logo {
 		color: white;
+		span {
+			display: none;
+		}
 	}
 }

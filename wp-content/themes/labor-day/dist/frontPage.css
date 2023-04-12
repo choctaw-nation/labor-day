@@ -1,0 +1,48 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./wp-content/themes/labor-day/src/styles/pages/front-page.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+/* //////////
+// COLORS
+/////////// */
+/* ////////////
+// TYPOGRAPHY
+///////////// */
+#hero {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+#hero .overlay {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#hero .container {
+  position: relative;
+}
+#hero .col {
+  height: 60vh;
+}
+#hero .headline,
+#hero .subheadline {
+  color: white;
+  font-size: 4em;
+}
+
+.great-seal {
+  width: 100%;
+  margin: 0;
+}
+.great-seal svg {
+  aspect-ratio: 1;
+  width: 100%;
+}
+
+#vendors a.btn__fill--primary {
+  background-color: #50551d;
+}
+
+/*# sourceMappingURL=frontPage.css.map*/

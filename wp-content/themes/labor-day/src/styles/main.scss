@@ -2,7 +2,11 @@
 @use './vendors/bs-custom';
 
 @use './base/reset';
+@use './base/typography';
+@use './base/base';
 
 @use './components/header';
 @use './components/footer';
 @use './components/buttons';
+@use './components/subscribe';
+@use './components/text-callout';

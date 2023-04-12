@@ -1,0 +1,46 @@
+@use '../abstracts/variables' as v;
+
+$overlay-opacity: 0.55;
+.text-callout {
+	position: relative;
+	padding: 6rem 0;
+	&--primary {
+		@extend .text-callout;
+		background-color: v.$color-primary--light;
+	}
+	&--secondary {
+		@extend .text-callout;
+		background-color: v.$color-secondary;
+	}
+	&__content {
+		position: relative;
+		color: white;
+	}
+}
+.bg {
+	background-position: 50% 60%;
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: $overlay-opacity;
+}
+
+.overlay {
+	mix-blend-mode: multiply;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	&--primary {
+		@extend .overlay;
+		background-color: rgba(v.$color-primary--light, $overlay-opacity);
+	}
+	&--secondary {
+		@extend .overlay;
+		background-color: rgba(v.$color-secondary, $overlay-opacity);
+	}
+}
