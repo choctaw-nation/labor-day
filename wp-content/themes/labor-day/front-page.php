@@ -9,8 +9,7 @@
 
 $content = new ContentSectionComponents();
 global $lorem;
-enqueue_page_style('frontPage');
-
+enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
 get_header(); ?>
 <main class="site-content">
 	<?php $background_image_url = get_field('hero')['background_image']; ?>
@@ -20,7 +19,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="col">
 					<span class="headline">September 1 &ndash; 3, 2023</span>
-					<span class="subheadline">[Countdown]</span>
+					<div class="countdown" id='countdown'>[Countdown]</div>
 				</div>
 			</div>
 		</div>
@@ -72,7 +71,7 @@ get_header(); ?>
 				<div class="col">SLIDER</div>
 			</div>
 			<div class="row">
-				<div class="col"><a href="/registrations" class="btn__fill--primary">See All Registrations</a></div>
+				<div class="col"><a href="/registrations" class="btn__fill--secondary">See All Registrations</a></div>
 			</div>
 		</div>
 	</section>

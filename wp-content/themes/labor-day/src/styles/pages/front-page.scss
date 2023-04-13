@@ -1,26 +1,17 @@
 @use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
 #hero {
-	position: relative;
-	background-position: center;
-	background-size: cover;
-	.overlay {
-		background-color: rgba(black, 0.35);
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-	}
+	display: flex;
 	.container {
 		position: relative;
+		align-self: center;
 	}
-	.col {
-		height: 60vh;
-	}
-	.headline,
-	.subheadline {
+	.headline {
 		color: white;
 		font-size: 4em;
+
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
 	}
 }
 .great-seal {
@@ -34,5 +25,37 @@
 #vendors {
 	a.btn__fill--primary {
 		background-color: v.$color-primary--dark;
+	}
+}
+
+.countdown {
+	color: white;
+	border-top: 5px solid white;
+	width: 100%;
+	text-align: center;
+	a {
+		font-size: 1.2em;
+		margin-top: 2rem;
+	}
+	.label {
+		font-size: 3rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+	&__container {
+		font-size: 3.5em;
+		@include m.displayFlex(row, space-evenly);
+	}
+	&__days {
+		@include m.displayFlex(column, flex-start, center);
+	}
+	&__hours {
+		@extend .countdown__days;
+	}
+	&__minutes {
+		@extend .countdown__days;
+	}
+	&__seconds {
+		@extend .countdown__days;
 	}
 }

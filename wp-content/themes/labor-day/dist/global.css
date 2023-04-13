@@ -9414,6 +9414,21 @@ figure {
   color: white;
 }
 
+#hero {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  height: 60vh;
+}
+#hero .overlay {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .btn, .btn__outline, .btn__outline--secondary, .btn__outline--primary, .btn__fill, .btn__fill--secondary, .btn__fill--primary, .navbar__menu .menu-item.cta, button {
   border: 2px solid transparent;
   padding: 1rem 1.375rem;
@@ -9436,7 +9451,7 @@ figure {
   color: white;
 }
 .btn__fill:hover, .btn__fill--secondary:hover, .btn__fill--primary:hover, .navbar__menu .menu-item.cta:hover, button:hover, .btn__fill:active, .btn__fill--secondary:active, .btn__fill--primary:active, .navbar__menu .menu-item.cta:active, button:active, .btn__fill:focus, .btn__fill--secondary:focus, .btn__fill--primary:focus, .navbar__menu .menu-item.cta:focus, button:focus {
-  background-color: transparent;
+  background-color: white;
 }
 .btn__fill--primary, .navbar__menu .menu-item.cta, button {
   background-color: #7d8034;
@@ -9461,13 +9476,25 @@ figure {
 .btn__outline, .btn__outline--secondary, .btn__outline--primary {
   background-color: white;
 }
+.btn__outline:hover, .btn__outline--secondary:hover, .btn__outline--primary:hover, .btn__outline:active, .btn__outline--secondary:active, .btn__outline--primary:active, .btn__outline:focus, .btn__outline--secondary:focus, .btn__outline--primary:focus {
+  color: white;
+}
+.btn__outline:hover a, .btn__outline--secondary:hover a, .btn__outline--primary:hover a, .btn__outline:active a, .btn__outline--secondary:active a, .btn__outline--primary:active a, .btn__outline:focus a, .btn__outline--secondary:focus a, .btn__outline--primary:focus a {
+  color: white;
+}
 .btn__outline--primary {
-  border-color: #b0b700;
-  color: #b0b700;
+  border-color: #7d8034;
+  color: #7d8034;
+}
+.btn__outline--primary:hover, .btn__outline--primary:active, .btn__outline--primary:focus {
+  background-color: #7d8034;
 }
 .btn__outline--secondary {
   border-color: #f09416;
   color: #f09416;
+}
+.btn__outline--secondary:hover, .btn__outline--secondary:active, .btn__outline--secondary:focus {
+  background-color: #f09416;
 }
 
 a.btn, a.btn__fill, a.btn__fill--primary, .navbar__menu a.menu-item.cta, a.btn__fill--secondary, a.btn__outline, a.btn__outline--primary, a.btn__outline--secondary {

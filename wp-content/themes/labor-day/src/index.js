@@ -1,7 +1,2 @@
 import './styles/main.scss';
-// import './js/bsImports';
-
-function init() {
-	console.log('hello');
-}
-init();
+import './js/front-page/App';

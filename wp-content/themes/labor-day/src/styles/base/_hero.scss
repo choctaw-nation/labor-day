@@ -1,0 +1,14 @@
+#hero {
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	height: 60vh;
+	.overlay {
+		background-color: rgba(black, 0.35);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

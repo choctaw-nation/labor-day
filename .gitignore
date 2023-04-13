@@ -33,7 +33,7 @@ auth.json
 # WP-Content
 /wp-content/uploads/
 /wp-content/upgrade/
-/wp-content/plugins
+/wp-content/plugins/
 /wp-content/mu-plugins/*
 !/wp-content/mu-plugins/initial-acf-fields.php
 

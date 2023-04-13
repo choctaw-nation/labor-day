@@ -26,7 +26,7 @@ function enqueue_page_script(string $id, array $deps = array()) {
     wp_enqueue_script($id, $src, $deps, false, true);
 }
 /**
- * @param object $deps expects 2 arrays ("styles" and "scripts") with appropriate dependencies. 
+ * @param {array} $deps expects 2 arrays ("styles" and "scripts") with appropriate dependencies. 
  */
 function enqueue_page_assets(string $id, array $deps) {
     if (empty($deps['styles'])) {

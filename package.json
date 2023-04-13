@@ -2,7 +2,7 @@
   "name": "cno-labor-day",
   "version": "1.0.0",
   "description": "Custom WP theme for CNO labor day site",
-  "main": "wp-content/themes/labor-day/src/js/index.js",
+  "main": "wp-content/themes/labor-day/src/index.js",
   "scripts": {
     "start": "wp-scripts start",
     "build": "wp-scripts build"
@@ -11,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@wordpress/scripts": "^26.1.0",
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "react-countdown": "^2.3.5"
   },
   "devDependencies": {
-    "bundle-analyzer": "^0.0.6"
+    "webpack-bundle-analyzer": "^4.8.0"
   }
 }
