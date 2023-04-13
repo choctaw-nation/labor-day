@@ -16,48 +16,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 console.log('hi there from frontpage.js');
-function CountdownTimer() {
-  function handleRender(_ref) {
-    let {
-      days,
-      hours,
-      minutes,
-      seconds,
-      completed
-    } = _ref;
-    if (!completed) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "countdown__container"
-      }, days === 0 ? '' : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "countdown__days"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, days), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-        className: "label"
-      }, "Days")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "countdown__hours"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hours), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-        className: "label"
-      }, "Hours")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "countdown__minutes"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, minutes), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-        className: "label"
-      }, "Minutes")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "countdown__seconds"
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, seconds), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-        className: "label"
-      }, "Seconds")));
-    } else {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-        className: "btn__fill--secondary",
-        href: "/schedule"
-      }, "View Schedule");
+(function () {
+  if (window.location.pathname === '/') {
+    function CountdownTimer() {
+      function handleRender(_ref) {
+        let {
+          days,
+          hours,
+          minutes,
+          seconds,
+          completed
+        } = _ref;
+        if (!completed) {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            className: "countdown__container"
+          }, days === 0 ? '' : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            className: "countdown__days"
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, days), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+            className: "label"
+          }, "Days")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            className: "countdown__hours"
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, hours), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+            className: "label"
+          }, "Hours")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            className: "countdown__minutes"
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, minutes), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+            className: "label"
+          }, "Minutes")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+            className: "countdown__seconds"
+          }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, seconds), ' ', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+            className: "label"
+          }, "Seconds")));
+        } else {
+          return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+            className: "btn__fill--secondary",
+            href: "/schedule"
+          }, "View Schedule");
+        }
+      }
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        date: new Date('September 1, 2023'),
+        renderer: handleRender
+      });
     }
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(document.getElementById('countdown')).render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CountdownTimer, null));
+  } else {
+    return;
   }
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_countdown__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    date: new Date('September 1, 2023'),
-    renderer: handleRender
-  });
-}
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(document.getElementById('countdown')).render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(CountdownTimer, null));
+})();
 
 /***/ }),
 
