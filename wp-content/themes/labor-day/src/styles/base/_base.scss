@@ -3,6 +3,9 @@
 section {
 	padding: 6.5rem 0;
 }
+figure {
+	margin-bottom: 0;
+}
 .col {
 	@include m.displayFlex(column, center, center);
 }

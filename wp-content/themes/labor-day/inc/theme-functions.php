@@ -52,9 +52,9 @@ function enqueue_cno_scripts() {
     wp_enqueue_script('cno-script', get_template_directory_uri() . '/dist/global.js', array(), $modified_scripts, true);
     wp_localize_script('cno-script', 'cnoSiteData', array('rootUrl' => home_url()));
 
-    if (!is_admin_bar_showing()) {
-        remove_wordpress_styles(array('classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles'));
-    }
+    // if (!is_admin_bar_showing()) {
+    remove_wordpress_styles(array('classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles'));
+    // }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_cno_scripts');

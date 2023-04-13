@@ -10,9 +10,12 @@ global $SITE_LOGO;
 $current_year = date("Y");
 ?>
 <aside class="footer-callout">
+    <div class="footer-callout__bg"></div>
     <div class="container">
         <div class="row">
-            <div class="col footer-callout__image">Image</div>
+            <div class="col footer-callout__image">
+                <figure><img src="<?php echo get_theme_file_uri('/images/historic-capitol.jpg'); ?>" alt="" srcset=""></figure>
+            </div>
             <div class="col footer-callout__text">
                 <div class="h4 headline">Choctaw Nation Capitol Grounds</div>
                 <div class="subheadline">Council House Rd</div>
@@ -32,7 +35,8 @@ $current_year = date("Y");
                             <?php echo bloginfo('name') ?>
                         </span>
                     </figure>
-                </a></div>
+                </a>
+            </div>
             <div class="col">Nav</div>
             <div class="col">Socials</div>
         </div>
