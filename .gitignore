@@ -34,7 +34,7 @@ auth.json
 /wp-content/uploads/
 /wp-content/upgrade/
 /wp-content/plugins/*
-!/wp-content/plugins/cno-map
+!/wp-content/plugins/cno-*
 /wp-content/mu-plugins/*
 !/wp-content/mu-plugins/initial-acf-fields.php
 

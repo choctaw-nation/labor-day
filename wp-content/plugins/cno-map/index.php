@@ -6,8 +6,13 @@
  * Version: 1.0
  * Author: Choctaw Nation of Oklahoma
  * Author URI: https://choctawnation.com
+ * * Requires at least: 6.0
+ * Requires PHP: 8.0
+ * Text Domain: cno
  */
-
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 function cno_enqueue_plugin_scripts() {
 	wp_enqueue_script('map-script', plugin_dir_url(__FILE__) . 'dist/App.js', false, true);
 	wp_enqueue_style('map-style', plugin_dir_url(__FILE__) . 'dist/App.css');
