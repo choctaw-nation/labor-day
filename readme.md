@@ -41,6 +41,32 @@ Nav
 -   State of the Nation (video) Addresses
     -   Gallery of past, present, future videos
 
+## Events Feature
+
+-   Search ability by category or title
+-   Share Feature&mdash;only shareable if there's extra data
+-   Maybe second post type for 'service hours' (e.g. General Store hours)?
+-   Maybe third post type for 'vendor hours' (e.g. [Food Vendor Here] hours)?
+
+### User-specific itinerary ("Plan your day")
+
+-   Scoped to Session Cookies or Local Storage
+-   Warning if conflicting events
+-   Export to calendar (ical or google cal)
+-   Page to view calendar ('my-schedule')
+-   react big calendar?
+-   Think mobile first
+
+## Entertainment
+
+-   CPT
+-   1 location: Ampitheatre
+
+## Past Years (CPT)
+
+-   Archive & Single
+-   Singles are mostly media galleries
+
 ### Qs to A
 
 Where do Vendor / Event Sign ups go? Are they just email forms? How does talkback work?
