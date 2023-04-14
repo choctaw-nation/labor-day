@@ -50,11 +50,24 @@ get_header(); ?>
 			<div class="row">
 				<h2>Special Guest Neal Mccoy</h2>
 				<div class="big-feature">
+					<?php $feature = get_page_by_title('neal mccoy', OBJECT, 'entertainment'); ?>
+					<figure class="big-feature__image"><?php echo get_the_post_thumbnail($feature); ?></figure>
+					<div class="big-feature__excerpt">
+						<?php if (!empty(get_field('description', $feature->ID))) {
+							echo get_field('description', $feature->ID);
+						}; ?>
+					</div>
 				</div>
 			</div>
 			<div class="row">
 				<h3>All Entertainment</h3>
-				<?php get_template_part('template-parts/content', 'slider', array('query_args' => array('post_type' => 'entertainment', 'post_status' => 'publish', 'posts_per_page' => 4))); ?>
+				<?php get_template_part('template-parts/content', 'slider', array(
+					'query_args' => array(
+						'post_type' => 'entertainment',
+						'post_status' => 'publish',
+						'posts_per_page' => 6,
+					)
+				)); ?>
 			</div>
 			<div class="row">
 				<div class="col">
@@ -66,15 +79,25 @@ get_header(); ?>
 	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
 			<div class="row">
-				<h2 class="text-white">
+				<h2 class="headline text-white">
 					Register Now
 				</h2>
 			</div>
 			<div class="row">
-				<div class="col">SLIDER</div>
+				<?php get_template_part('template-parts/content', 'slider', array(
+					'query_args' => array(
+						'post_type' => 'page',
+						'post_status' => 'publish',
+						'post_parent' => get_page_by_title('Registrations')->ID,
+						'posts_per_page' => -1,
+					),
+					'id' => 'registration'
+				)); ?>
 			</div>
 			<div class="row">
-				<div class="col"><a href="/registrations" class="btn__fill--secondary">See All Registrations</a></div>
+				<div class="col">
+					<a href="/registrations" class="btn__fill--secondary">See All Registrations</a>
+				</div>
 			</div>
 		</div>
 	</section>

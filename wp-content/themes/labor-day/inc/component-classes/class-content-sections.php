@@ -162,7 +162,7 @@ class ContentSectionComponents {
             'cta_class' => 'cta__btn btn__fill--primary mt-5 align-self-start',
             'media_type' => 'photo',
             'reverse'    => false,
-            'image_src'  => null,
+            'image_src'  => get_theme_file_uri('/images/placeholder.jpg'),
         );
 
         $options = array_merge($default, $options);
@@ -170,12 +170,13 @@ class ContentSectionComponents {
         extract($options);
 
 
-        $container_start = $reverse ? '<div class="row flex-row-reverse">' : '<div class="row">';
+        $container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
         $div_end = '</div>';
-        $col_start = '<div class="col-lg-6">';
+        $col_start_1 = '<div class="col-lg-6 two-col__image">';
+        $col_start_2 = '<div class="col-lg-6 two-col__content">';
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__image'><img src={$image_src} /></figure>";
+            $col_1_content = "<figure class='two-col__image--container'><img src={$image_src} /></figure>";
         } else if ($media_type === 'video') {
             $col_1_content = "<figure class='two-col__video'>Video!</figure>";
         }
@@ -197,8 +198,8 @@ class ContentSectionComponents {
         }
         $markup = "
         {$container_start}
-            {$col_start}{$col_1_content}{$div_end}
-            {$col_start}{$col_2_content}{$div_end}
+            {$col_start_1}{$col_1_content}{$div_end}
+            {$col_start_2}{$col_2_content}{$div_end}
         {$div_end}";
 
         if ($echo) {

@@ -15,11 +15,13 @@ figure {
 	position: relative;
 	margin-top: 3rem;
 	margin-bottom: 3rem;
+	height: auto;
 }
 
 .col {
 	@include m.displayFlex(column);
 	position: relative;
+	height: auto;
 }
 .bg-color-primary {
 	background-color: v.$color-primary;

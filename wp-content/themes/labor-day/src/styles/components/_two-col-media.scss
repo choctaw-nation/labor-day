@@ -1,0 +1,13 @@
+.two-col {
+	&__image {
+		&--container {
+			img {
+				height: 100%;
+				width: 100%;
+				object-fit: contain;
+			}
+		}
+	}
+	&__content {
+	}
+}

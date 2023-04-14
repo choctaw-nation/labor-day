@@ -7,7 +7,9 @@ console.log('hi there from frontpage.js');
 
 // console.log(entertainmentSlider);
 const entertainmentSlider = document.getElementById('entertainment-slider');
+const registrationSlider = document.getElementById('registration-slider');
 newSlider(entertainmentSlider);
+newSlider(registrationSlider);
 
 function CountdownTimer() {
 	function handleRender({ days, hours, minutes, seconds, completed }) {
