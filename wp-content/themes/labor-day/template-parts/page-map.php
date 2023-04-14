@@ -4,4 +4,7 @@
  * Page: Map
  * Powered by Plugin
  */
-echo do_shortcode('[cno_show_react_map]');
+?>
+<h2>hi.</h2>
+<?php echo do_shortcode('[cno_show_react_map]');
+?>
