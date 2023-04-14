@@ -45,18 +45,21 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part('template-parts/aside', 'text-callout', array('color' => 'secondary')); ?>
-	<section id="events">
+	<section id="entertainment">
 		<div class="container">
 			<div class="row">
 				<h2>Special Guest Neal Mccoy</h2>
 				<div class="big-feature">
 				</div>
 			</div>
-
 			<div class="row">
-				<h3>Entertainment</h3>
-				<div class="col">Slider</div>
-				<div class="col"><a href="/schedule" class="btn__fill--primary">See Full Schedule</a></div>
+				<h3>All Entertainment</h3>
+				<?php get_template_part('template-parts/content', 'slider', array('query_args' => array('post_type' => 'entertainment', 'post_status' => 'publish', 'posts_per_page' => 4))); ?>
+			</div>
+			<div class="row">
+				<div class="col">
+					<a href="/schedule" class="btn__fill--primary">See Full Schedule</a>
+				</div>
 			</div>
 		</div>
 	</section>

@@ -8,10 +8,13 @@
 	}
 	.headline {
 		color: white;
-		font-size: 4em;
-
 		padding-bottom: 1rem;
 		margin-bottom: 1rem;
+		font-size: 4em;
+		text-align: center;
+		@include m.media-breakpoint-down(lg) {
+			font-size: 3em;
+		}
 	}
 }
 .great-seal {
@@ -34,8 +37,11 @@
 	width: 100%;
 	text-align: center;
 	a {
-		font-size: 1.2em;
 		margin-top: 2rem;
+		font-size: 1.2em;
+		@include m.media-breakpoint-down(lg) {
+			font-size: 1em;
+		}
 	}
 	.label {
 		font-size: 3rem;
@@ -44,6 +50,9 @@
 	}
 	&__container {
 		font-size: 3.5em;
+		@include m.media-breakpoint-down(lg) {
+			font-size: 2em;
+		}
 		@include m.displayFlex(row, space-evenly);
 	}
 	&__days {

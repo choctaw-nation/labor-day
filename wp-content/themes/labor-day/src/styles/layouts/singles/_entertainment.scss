@@ -1,0 +1,11 @@
+.featured-image {
+	max-height: 60rem;
+	img {
+		height: 100%;
+		object-fit: contain;
+		width: 100%;
+	}
+}
+.meta {
+	font-size: 1.2em;
+}

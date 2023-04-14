@@ -17,8 +17,10 @@ get_header();
 	</section>
 	<div class="container py-5">
 		<h1 class="headline mt-5"><?php the_title(); ?></h1>
+		<span
+			  class="subheadline mb-5"><?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?></span>
 		<?php
-		$default_output = "<div>";
+		$default_output = "<div class='mt-5'>";
 		$default_output .= get_the_content();
 		$default_output .= "</div>";
 		switch ($post->post_name) {

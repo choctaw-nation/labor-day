@@ -1,3 +1,7 @@
+<?php
+$phone_number = '888777';
+$message = 'LABORDAY'
+?>
 <aside class="subscribe">
 	<div class="container">
 		<div class="row">
@@ -10,7 +14,8 @@
 				<input type="email" name="email" id="email" placeholder="Email Address" />
 				<button type="submit">Sign Up</button>
 			</div>
-			<div class="cta__text col-lg-6"><a href="" class="btn__fill--secondary">Text <strong>LABORDAY</strong> to <strong>888777</strong></a></div>
+			<div class="cta__text col-lg-6"><a href="<?php echo "sms:{$phone_number}?&body={$message}"; ?>" class="btn__fill--secondary">Text <strong>LABORDAY</strong> to
+					<strong>888777</strong></a></div>
 		</div>
 	</div>
 </aside>

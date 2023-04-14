@@ -1,4 +1,5 @@
 @use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
 #copyright {
 	background-color: #333;
 }
@@ -12,15 +13,29 @@
 		}
 	}
 }
+.desktop-footer {
+	@include m.media-breakpoint-down(lg) {
+		display: none;
+	}
+}
 
 .footer-callout {
 	position: relative;
 	font-size: 1.2em;
+	margin-top: 3.5rem;
+	margin-bottom: 3.5rem;
+	@include m.media-breakpoint-down(lg) {
+		padding: 3.5rem 1rem;
+		margin: 0;
+	}
 	.container {
 		position: relative;
 	}
 	.row {
 		gap: 4rem;
+		.col {
+			justify-content: center;
+		}
 	}
 	&__bg {
 		background-color: v.$color-tertiary;
@@ -29,17 +44,27 @@
 		bottom: 20%;
 		left: 0;
 		right: 0;
+		@include m.media-breakpoint-down(lg) {
+			top: 0;
+			bottom: 0;
+		}
 	}
 
 	&__image {
+		max-height: 50rem;
+		aspect-ratio: 805 / 537;
+		figure {
+			height: 100%;
+			width: 100%;
+		}
 		img {
 			aspect-ratio: 805 / 537;
-			height: 50rem;
+			height: 100%;
 			object-fit: contain;
 		}
 	}
 	&__text {
-		align-items: flex-start;
+		// align-items: flex-start;
 		color: v.$color-primary--dark;
 		.subheadline:nth-child(3) {
 			margin-bottom: 4rem;

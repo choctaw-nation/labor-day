@@ -5,7 +5,6 @@
 	background-color: v.$color-primary;
 	&__headline {
 		color: white;
-		font-family: v.$font-body;
 		text-transform: uppercase;
 		font-weight: 400;
 	}
@@ -15,14 +14,20 @@
 	justify-content: center;
 	margin: 3rem 0;
 	> div {
-		padding: 0 2rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 		flex: 1 1 50%;
+		@include m.media-breakpoint-down(lg) {
+			padding: 0;
+		}
 	}
 	&__email {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 2rem;
 		border-right: 1px solid white;
-		padding: 4rem 0;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
 		* {
 			box-shadow: none;
 			border-width: 0;
@@ -31,6 +36,9 @@
 		}
 		input {
 			flex: 1 1 70%;
+			@include m.media-breakpoint-down(lg) {
+				flex: unset;
+			}
 			&:focus-visible {
 				border: none;
 				outline: v.$color-primary--light solid 2px;
@@ -38,6 +46,9 @@
 		}
 		button {
 			flex: 1 1 10%;
+			@include m.media-breakpoint-down(lg) {
+				flex: unset;
+			}
 			background-color: v.$color-primary--light;
 			&:hover {
 				border-color: v.$color-primary--light;
@@ -48,10 +59,13 @@
 	}
 	&__text {
 		justify-self: flex-end;
-		display: flex;
+		@include m.displayFlex(row, flex-start, center);
 		a {
 			text-align: center;
 			font-size: 1.35em;
+			@include m.media-breakpoint-down(lg) {
+				font-size: 1em;
+			}
 			&:hover {
 				color: v.$color-secondary;
 				background-color: white;

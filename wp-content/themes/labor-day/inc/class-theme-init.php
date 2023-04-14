@@ -44,9 +44,9 @@ class CNO_THEME {
 
 	function register_cno_menus() {
 		register_nav_menus(array(
-			'primary_menu' => __('Primary Menu', 'cno_careers'),
-			'mobile_menu' => __('Mobile Menu', 'cno_careers'),
-			'footer_menu'  => __('Footer Menu', 'cno_careers'),
+			'primary_menu' => __('Primary Menu', 'cno'),
+			'mobile_menu' => __('Mobile Menu', 'cno'),
+			'footer_menu'  => __('Footer Menu', 'cno'),
 		));
 	}
 	public function alter_post_types() {

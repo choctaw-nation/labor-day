@@ -31,3 +31,20 @@ function enqueue_page_assets(string $id, array $deps) {
         enqueue_page_script($id);
     } else enqueue_page_script($id, $deps['scripts']);
 }
+
+/**
+ * Take the pretty day (Friday, Saturday, Sunday) and returns the date
+ * 
+ * @param string $day Long, capitalized day
+ * @return string Date as long month, single number (e.g. "September 1");
+ */
+function cno_get_the_date(string $day): string {
+    if ('Friday' === $day) {
+        $date = 'September 1';
+    } elseif ('Saturday' === $day) {
+        $date = 'September 2';
+    } else {
+        $date = 'September 3';
+    }
+    return $date;
+}

@@ -2,12 +2,24 @@
 @use '../abstracts/variables' as v;
 section {
 	padding: 6.5rem 0;
+	position: relative;
 }
 figure {
 	margin-bottom: 0;
 }
+.container {
+	position: relative;
+}
+
+.row {
+	position: relative;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+}
+
 .col {
-	@include m.displayFlex(column, center, center);
+	@include m.displayFlex(column);
+	position: relative;
 }
 .bg-color-primary {
 	background-color: v.$color-primary;

@@ -31,14 +31,16 @@ wp_head();
 					</h1>
 				</figure>
 			</a>
-			<?php wp_nav_menu(
-				array(
-					'theme-location' => 'primary_menu',
-					'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
-					'container' => 'nav',
-					'container_class' => 'navbar d-flex align-items-center',
-				)
-			);
-			?>
+			<div class="desktop-nav">
+				<?php wp_nav_menu(
+					array(
+						'theme_location' => 'primary_menu',
+						'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
+						'container' => 'nav',
+						'container_class' => 'navbar d-flex align-items-center',
+					)
+				);
+				?>
+			</div>
 		</div>
 	</header>

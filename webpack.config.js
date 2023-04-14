@@ -21,7 +21,7 @@ const appNames = ['front-page'];
  * For SCSS files (no leading `_`)
  * Array of strings modeled after scss names (e.g. 'we-are-choctaw')
  *  */
-const styleSheets = ['front-page']; // for scss only
+const styleSheets = []; // for scss only
 
 module.exports = {
 	...defaultConfig,

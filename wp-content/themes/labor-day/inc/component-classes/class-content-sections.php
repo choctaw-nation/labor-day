@@ -172,7 +172,7 @@ class ContentSectionComponents {
 
         $container_start = $reverse ? '<div class="row flex-row-reverse">' : '<div class="row">';
         $div_end = '</div>';
-        $col_start = '<div class="col-6">';
+        $col_start = '<div class="col-lg-6">';
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
             $col_1_content = "<figure class='two-col__image'><img src={$image_src} /></figure>";

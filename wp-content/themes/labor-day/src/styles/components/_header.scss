@@ -1,5 +1,6 @@
 @use '../abstracts/functions' as fn;
 @use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
 @use './buttons';
 
 #site-header {
@@ -45,5 +46,10 @@
 				@extend .btn__fill--primary;
 			}
 		}
+	}
+}
+.desktop-nav {
+	@include m.media-breakpoint-down(lg) {
+		display: none;
 	}
 }

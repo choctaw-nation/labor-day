@@ -9,9 +9,24 @@
 
 if (function_exists('acf_add_local_field_group')) :
 
+	/** 
+	 * Global Page Options
+	 * Field: Section 1 (Hero) Fields
+	 * name: 'hero'
+	 * Subfields?: true
+	 * Subfields_List: array(
+	 *   'subheadline' 			=> Subheadline,
+	 *   'has_background_image' => boolean,	
+	 *   'background_image' 	=> url,
+	 *   'has_cta'				=> boolean,
+	 * 	 'cta_link'				=> url,
+	 * 	 'cta_text'				=> button text
+	 * )
+	 * Show In Rest?: False
+	 */
 	acf_add_local_field_group(array(
 		'key' => 'group_6423001144e71',
-		'title' => 'Page Options',
+		'title' => 'Global Page Options',
 		'fields' => array(
 			array(
 				'key' => 'field_63e674b076c37',
@@ -30,26 +45,6 @@ if (function_exists('acf_add_local_field_group')) :
 				'layout' => 'block',
 				'sub_fields' => array(
 					array(
-						'key' => 'field_63e674d176c38',
-						'label' => 'Headline',
-						'name' => 'headline',
-						'aria-label' => '',
-						'type' => 'text',
-						'instructions' => '',
-						'required' => 0,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'default_value' => '',
-						'maxlength' => '',
-						'placeholder' => '',
-						'prepend' => '',
-						'append' => '',
-					),
-					array(
 						'key' => 'field_63e674db76c39',
 						'label' => 'Subheadline',
 						'name' => 'subheadline',
@@ -63,7 +58,7 @@ if (function_exists('acf_add_local_field_group')) :
 							'class' => '',
 							'id' => '',
 						),
-						'default_value' => '',
+						'default_value' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
 						'maxlength' => '',
 						'placeholder' => '',
 						'prepend' => '',
@@ -84,7 +79,7 @@ if (function_exists('acf_add_local_field_group')) :
 							'id' => '',
 						),
 						'message' => 'Check to add background image',
-						'default_value' => 1,
+						'default_value' => 0,
 						'ui' => 0,
 						'ui_on_text' => '',
 						'ui_off_text' => '',
@@ -216,161 +211,6 @@ if (function_exists('acf_add_local_field_group')) :
 		'active' => true,
 		'description' => '',
 		'show_in_rest' => 0,
-	));
-
-	acf_add_local_field_group(array(
-		'key' => 'group_62052ee1ab439',
-		'title' => 'Event Details',
-		'fields' => array(
-			array(
-				'key' => 'field_62052f0a05c21',
-				'label' => 'Brief Description',
-				'name' => 'excerpt',
-				'aria-label' => '',
-				'type' => 'textarea',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'placeholder' => '',
-				'maxlength' => 400,
-				'rows' => '',
-				'new_lines' => '',
-			),
-			array(
-				'key' => 'field_62052ee1adfb3',
-				'label' => 'Event Description',
-				'name' => 'event_description',
-				'aria-label' => '',
-				'type' => 'wysiwyg',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => 0,
-				'delay' => 0,
-			),
-			array(
-				'key' => 'field_62052ee1adfd5',
-				'label' => 'Start Date',
-				'name' => 'start_date',
-				'aria-label' => '',
-				'type' => 'date_picker',
-				'instructions' => '',
-				'required' => 1,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '50',
-					'class' => '',
-					'id' => '',
-				),
-				'display_format' => 'l, M. j, Y',
-				'return_format' => 'Ymd',
-				'first_day' => 0,
-			),
-			array(
-				'key' => 'field_62052fe605c24',
-				'label' => 'Start Time',
-				'name' => 'start_time',
-				'aria-label' => '',
-				'type' => 'time_picker',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '50',
-					'class' => '',
-					'id' => '',
-				),
-				'display_format' => 'g:ia',
-				'return_format' => 'H:i:s',
-			),
-			array(
-				'key' => 'field_62052fd105c23',
-				'label' => 'End Date',
-				'name' => 'end_date',
-				'aria-label' => '',
-				'type' => 'date_picker',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '50',
-					'class' => '',
-					'id' => '',
-				),
-				'display_format' => 'l, M. j, Y',
-				'return_format' => 'Ymd',
-				'first_day' => 0,
-			),
-			array(
-				'key' => 'field_6205301505c25',
-				'label' => 'End Time',
-				'name' => 'end_time',
-				'aria-label' => '',
-				'type' => 'time_picker',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '50',
-					'class' => '',
-					'id' => '',
-				),
-				'display_format' => 'g:ia',
-				'return_format' => 'H:i:s',
-			),
-			array(
-				'key' => 'field_62052ee1adfe1',
-				'label' => 'Additional Information',
-				'name' => 'additional_information',
-				'aria-label' => '',
-				'type' => 'wysiwyg',
-				'instructions' => '',
-				'required' => 0,
-				'conditional_logic' => 0,
-				'wrapper' => array(
-					'width' => '',
-					'class' => '',
-					'id' => '',
-				),
-				'default_value' => '',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => 0,
-				'delay' => 0,
-			),
-		),
-		'location' => array(
-			array(
-				array(
-					'param' => 'post_type',
-					'operator' => '==',
-					'value' => 'events',
-				),
-			),
-		),
-		'menu_order' => 0,
-		'position' => 'normal',
-		'style' => 'default',
-		'label_placement' => 'top',
-		'instruction_placement' => 'label',
-		'hide_on_screen' => '',
-		'active' => true,
-		'description' => '',
-		'show_in_rest' => 1,
 	));
 
 endif;
