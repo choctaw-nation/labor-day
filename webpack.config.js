@@ -30,6 +30,7 @@ module.exports = {
 			const entries = {
 				global: `.${THEME_DIR}/src/index.js`,
 				registrations: `.${THEME_DIR}/src/js/registrations.js`,
+				history: `.${THEME_DIR}/src/js/history.js`,
 			};
 			if (appNames.length > 0) {
 				appNames.forEach((appName) => {

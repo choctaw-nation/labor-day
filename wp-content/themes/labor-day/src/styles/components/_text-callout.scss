@@ -15,10 +15,16 @@ $overlay-opacity: 0.55;
 	&__content {
 		position: relative;
 		color: white;
+		figure {
+			align-self: center;
+			svg {
+				width: 100%;
+			}
+		}
 	}
 }
 .bg {
-	background-position: 50% 60%;
+	background-position: center 70%;
 	background-size: cover;
 	position: absolute;
 	top: 0;

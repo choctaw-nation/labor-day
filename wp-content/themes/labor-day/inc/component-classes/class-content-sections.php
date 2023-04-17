@@ -179,7 +179,7 @@ class ContentSectionComponents {
         $col_start_2 = "<div class='col-lg-{$split[1]} two-col__content'>";
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__media--container'>{$image_src}</figure>";
+            $col_1_content = "<figure class='two-col__media--container'><img src='{$image_src}' class='two-col__media--image' /></figure>";
         } else if ($media_type === 'video') {
             $col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
         }
