@@ -172,13 +172,13 @@ class ContentSectionComponents {
 
         $container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
         $div_end = '</div>';
-        $col_start_1 = '<div class="col-lg-6 two-col__image">';
+        $col_start_1 = '<div class="col-lg-6 two-col__media">';
         $col_start_2 = '<div class="col-lg-6 two-col__content">';
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__image--container'><img src={$image_src} /></figure>";
+            $col_1_content = "<figure class='two-col__media--container'><img src={$image_src} /></figure>";
         } else if ($media_type === 'video') {
-            $col_1_content = "<figure class='two-col__video'>Video!</figure>";
+            $col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
         }
         $headline_args = array(
             "subheadline_content"   => $content,

@@ -27,3 +27,8 @@ figure {
 	background-color: v.$color-primary;
 	color: white;
 }
+
+.hide {
+	display: none !important;
+	visibility: hidden !important;
+}

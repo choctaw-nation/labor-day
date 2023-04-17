@@ -38,8 +38,7 @@ $current_year = date("Y");
 				</a>
 			</div>
 			<div class="col">
-				<div class="desktop-footer">
-					<?php wp_nav_menu(
+				<?php wp_nav_menu(
 						array(
 							'theme_location' => 'footer_menu',
 							'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
@@ -48,7 +47,6 @@ $current_year = date("Y");
 						)
 					);
 					?>
-				</div>
 			</div>
 			<div class="col">Socials</div>
 		</div>

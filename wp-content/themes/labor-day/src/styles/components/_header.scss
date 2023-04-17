@@ -18,9 +18,9 @@
 	}
 }
 .navbar {
+	align-items: center;
 	a {
 		transition: fn.transition(color);
-
 		text-decoration: none;
 		&:not(:has(h1)) {
 			text-transform: uppercase;
@@ -29,28 +29,45 @@
 	&__menu {
 		list-style: none;
 		padding: unset;
-		.menu-item {
-			padding: 10px;
-			margin: 0 10px;
-			display: inline-block;
-			border-bottom: 1px solid transparent;
-			transition: fn.transition(border-color);
-			a {
-				color: white;
-			}
-			&:hover {
-				border-color: v.$color-primary;
-				cursor: pointer;
-			}
-			&.cta {
-				@extend .btn__fill--primary;
-			}
-		}
 	}
 }
-.desktop-nav {
-	@include m.displayFlex(column, center);
-	@include m.media-breakpoint-down(lg) {
-		display: none;
+.menu-item {
+	padding: 10px;
+	margin: 0 10px;
+	display: inline-block;
+	border-bottom: 2px solid transparent;
+	transition: fn.transition(border-color);
+	a {
+		color: white;
+	}
+	&:hover {
+		border-color: white;
+		cursor: pointer;
+		a {
+			color: white;
+		}
+	}
+	&.cta {
+		@extend .btn__fill--primary;
+	}
+}
+.mobile-navbar {
+	@extend .navbar;
+}
+.offcanvas {
+	padding-top: 2rem;
+	background-color: v.$color-secondary;
+	&__header {
+		@include m.displayFlex(row, flex-start, center);
+		padding: 2rem 1rem;
+		.btn-close {
+			margin-left: auto;
+			color: white;
+		}
+	}
+	&__title {
+		font-size: 1.35em;
+		text-transform: uppercase;
+		color: white;
 	}
 }
