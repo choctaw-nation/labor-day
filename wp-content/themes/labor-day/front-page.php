@@ -25,7 +25,7 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part('template-parts/aside', 'subscribe'); ?>
-	<section id="about-the-festival">
+	<section id="about-the-festival" class="fadeIn">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4">
@@ -76,7 +76,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<section id="vendors" class='bg-color-primary'>
+	<section id="vendors" class='bg-color-primary fadeIn'>
 		<div class="container">
 			<div class="row">
 				<h2 class="headline text-white">
@@ -101,7 +101,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<section id="map">
+	<section id="map" class="fadeIn">
 		<div class="container">
 			<?php
 			$args = array(
@@ -113,7 +113,7 @@ get_header(); ?>
 			<?php $content->two_col_text_and_media($args); ?>
 		</div>
 	</section>
-	<section id="facebook">
+	<section id="facebook" class="fadeIn">
 		<div class="container">
 			<?php
 			$args = array(
@@ -127,6 +127,5 @@ get_header(); ?>
 			<?php $content->two_col_text_and_media($args); ?>
 		</div>
 	</section>
-
 </main>
 <?php get_footer(); ?>

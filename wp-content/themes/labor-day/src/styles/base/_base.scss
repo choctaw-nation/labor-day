@@ -1,5 +1,6 @@
 @use '../abstracts/mixins' as m;
 @use '../abstracts/variables' as v;
+@use '../abstracts/functions' as fn;
 section {
 	padding: 6.5rem 0;
 	position: relative;
@@ -31,4 +32,17 @@ figure {
 .hide {
 	display: none !important;
 	visibility: hidden !important;
+}
+
+.fade {
+	@include m.fadeIn;
+}
+.fadeIn {
+	transition: fn.transition((opacity, transform), (1s ease));
+	opacity: 1;
+	transform: translateY(0);
+	&--hide {
+		opacity: 0;
+		transform: translateY(4rem);
+	}
 }

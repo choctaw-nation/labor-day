@@ -1,13 +1,9 @@
 @use 'sass:list';
 @use './variables' as v;
-@function transition($properties) {
+@function transition($properties, $speed: v.$transition--standard) {
 	$new-list: ();
 	@each $property in $properties {
-		$new-list: list.append(
-			$new-list,
-			#{$property} v.$transition--standard,
-			comma
-		);
+		$new-list: list.append($new-list, #{$property} $speed, comma);
 	}
 	@return $new-list;
 }
