@@ -5,6 +5,8 @@
  * 
  */
 wp_head();
+global $post;
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@ wp_head();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>
-		<?php echo get_bloginfo('name') . " | " . get_bloginfo('description'); ?>
+		<?php echo $post->post_title . " | " .  get_bloginfo('name'); ?>
 	</title>
 </head>
 
@@ -32,6 +34,17 @@ wp_head();
 				</figure>
 			</a>
 			<div class="desktop-nav">
+				<?php wp_nav_menu(
+					array(
+						'theme_location' => 'primary_menu',
+						'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
+						'container' => 'nav',
+						'container_class' => 'navbar d-flex align-items-center',
+					)
+				);
+				?>
+			</div>
+			<div class="mobile-nav">
 				<?php wp_nav_menu(
 					array(
 						'theme_location' => 'primary_menu',

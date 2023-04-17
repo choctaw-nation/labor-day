@@ -4,7 +4,6 @@
 @use './base/reset';
 @use './base/typography';
 @use './base/base';
-@use './base/hero';
 
 @use './components/header';
 @use './components/footer';
@@ -15,3 +14,4 @@
 @use './components/two-col-media';
 
 @use './layouts/single';
+@use './layouts/hero';

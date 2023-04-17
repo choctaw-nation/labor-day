@@ -1,25 +1,6 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
-#hero {
-	display: flex;
-	.container {
-		position: relative;
-		align-self: center;
-	}
-	.col {
-		align-items: center;
-	}
-	.headline {
-		color: white;
-		padding-bottom: 1rem;
-		margin-bottom: 1rem;
-		font-size: 4em;
-		text-align: center;
-		@include m.media-breakpoint-down(lg) {
-			font-size: 3em;
-		}
-	}
-}
+
 .great-seal {
 	width: 100%;
 	margin: 0;

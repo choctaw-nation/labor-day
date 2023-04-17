@@ -1,0 +1,48 @@
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+%hero {
+	display: flex;
+	position: relative;
+	background-position: center;
+	background-size: cover;
+	height: 60vh;
+	.overlay {
+		background-color: rgba(black, 0.35);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.container {
+		position: relative;
+		align-self: center;
+	}
+	.col {
+		align-items: center;
+	}
+	.headline {
+		color: white;
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		font-size: 4em;
+		text-align: center;
+		@include m.media-breakpoint-down(lg) {
+			font-size: 3em;
+		}
+	}
+}
+#hero {
+	@extend %hero;
+}
+
+#vendor-application-hero {
+	@extend %hero;
+
+	min-height: 40rem;
+	height: auto;
+	max-height: 60vh;
+	.headline {
+		color: v.$color-primary;
+	}
+}

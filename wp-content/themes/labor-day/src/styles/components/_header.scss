@@ -49,6 +49,7 @@
 	}
 }
 .desktop-nav {
+	@include m.displayFlex(column, center);
 	@include m.media-breakpoint-down(lg) {
 		display: none;
 	}
