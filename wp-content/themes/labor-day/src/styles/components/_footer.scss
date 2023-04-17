@@ -12,6 +12,19 @@
 			display: none;
 		}
 	}
+	.row {
+		@include m.media-breakpoint-down(md) {
+			@include m.displayFlex(column);
+		}
+	}
+	.navbar {
+		&__menu {
+			@include m.media-breakpoint-down(md) {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+		}
+	}
 }
 .desktop-footer {
 	@include m.media-breakpoint-down(lg) {

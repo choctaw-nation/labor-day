@@ -4,9 +4,15 @@
 section {
 	padding: 6.5rem 0;
 	position: relative;
+	@include m.media-breakpoint-down(md) {
+		padding: 3.5rem 0;
+	}
 }
 figure {
 	margin-bottom: 0;
+	@include m.media-breakpoint-down(md) {
+		margin-bottom: 2rem;
+	}
 }
 .container {
 	position: relative;

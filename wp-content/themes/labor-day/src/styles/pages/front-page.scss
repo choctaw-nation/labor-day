@@ -1,28 +1,6 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
 
-.great-seal {
-	width: 100%;
-	margin: 0;
-	svg {
-		aspect-ratio: 1;
-		width: 100%;
-	}
-}
-
-#entertainment {
-	.row:nth-child(3) .col {
-		align-items: center;
-	}
-}
-
-#vendors {
-	@extend #entertainment;
-	a.btn__fill--primary {
-		background-color: v.$color-primary--dark;
-	}
-}
-
 .countdown {
 	color: white;
 	border-top: 5px solid white;
@@ -42,10 +20,14 @@
 	}
 	&__container {
 		font-size: 3.5em;
+		@include m.displayFlex(row, space-evenly);
 		@include m.media-breakpoint-down(lg) {
 			font-size: 2em;
 		}
-		@include m.displayFlex(row, space-evenly);
+		@include m.media-breakpoint-down(md) {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, 15rem);
+		}
 	}
 	&__days {
 		@include m.displayFlex(column, flex-start, center);
@@ -60,6 +42,33 @@
 		@extend .countdown__days;
 	}
 }
+
+.great-seal {
+	width: 100%;
+	margin: 0;
+	@include m.media-breakpoint-down(md) {
+		width: 75%;
+		margin: 0 auto;
+	}
+	svg {
+		aspect-ratio: 1;
+		width: 100%;
+	}
+}
+
+#entertainment {
+	.row:nth-child(3) .col {
+		align-items: center;
+	}
+}
+
+#vendors {
+	@extend #entertainment;
+	a.btn__fill--primary {
+		background-color: v.$color-primary--dark;
+	}
+}
+
 .big-feature {
 	height: fit-content;
 	&__image {

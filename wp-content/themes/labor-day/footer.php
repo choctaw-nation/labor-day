@@ -39,14 +39,14 @@ $current_year = date("Y");
 			</div>
 			<div class="col">
 				<?php wp_nav_menu(
-						array(
-							'theme_location' => 'footer_menu',
-							'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
-							'container' => 'nav',
-							'container_class' => 'navbar d-flex align-items-center',
-						)
-					);
-					?>
+					array(
+						'theme_location' => 'footer_menu',
+						'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
+						'container' => 'nav',
+						'container_class' => 'navbar',
+					)
+				);
+				?>
 			</div>
 			<div class="col">Socials</div>
 		</div>
