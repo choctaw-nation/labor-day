@@ -152,17 +152,20 @@ class ContentSectionComponents {
      */
     public function two_col_text_and_media(array $options, bool $echo = true) {
         $default = array(
-            'headline'   => '',
-            'content'    => '',
-            'content_wrapper' => 'p',
-            'content_class' => 'text-content mb-5',
-            'cta_text'   => null,
-            'cta_link'   => null,
-            'cta_external' => false,
-            'cta_class' => 'cta__btn btn__fill--primary mt-5 align-self-start',
-            'media_type' => 'photo',
-            'reverse'    => false,
-            'image_src'  => get_theme_file_uri('/images/placeholder.jpg'),
+            'split'             => [6, 6],
+            'headline'          => '',
+            'headline_element'  => 'h2',
+            'headline_class'    => 'headline',
+            'content'           => '',
+            'content_wrapper'   => 'p',
+            'content_class'     => 'text-content mb-5',
+            'cta_text'          => null,
+            'cta_link'          => null,
+            'cta_external'      => false,
+            'cta_class'         => 'cta__btn btn__fill--primary mt-5 align-self-start',
+            'media_type'        => 'photo',
+            'reverse'           => false,
+            'image_src'         => get_theme_file_uri('/images/placeholder.jpg'),
         );
 
         $options = array_merge($default, $options);
@@ -172,15 +175,17 @@ class ContentSectionComponents {
 
         $container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
         $div_end = '</div>';
-        $col_start_1 = '<div class="col-lg-6 two-col__media">';
-        $col_start_2 = '<div class="col-lg-6 two-col__content">';
+        $col_start_1 = "<div class='col-lg-{$split[0]} two-col__media'>";
+        $col_start_2 = "<div class='col-lg-{$split[1]} two-col__content'>";
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__media--container'><img src={$image_src} /></figure>";
+            $col_1_content = "<figure class='two-col__media--container'>{$image_src}</figure>";
         } else if ($media_type === 'video') {
             $col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
         }
         $headline_args = array(
+            "headline_element"      => $headline_element,
+            'headline_class'        => $headline_class,
             "subheadline_content"   => $content,
             "subheadline_element"   => $content_wrapper,
             "subheadline_class"     => $content_class
