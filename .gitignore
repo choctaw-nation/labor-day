@@ -24,6 +24,7 @@ wp-config.php
 local-xdebuginfo.php
 /node_modules
 .DS_Store
+_wpeprivate
 .env
 .env*
 .wpe-*
