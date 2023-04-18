@@ -16,6 +16,4 @@ if (!defined('ABSPATH')) {
 }
 include plugin_dir_path(__FILE__) . '/php/functions.php';
 
-
-
 $cno_events_plugin = new CNOEventsPlugin();

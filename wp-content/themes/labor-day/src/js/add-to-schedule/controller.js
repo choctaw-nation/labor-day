@@ -6,6 +6,7 @@ class Controller {
 	constructor(model, view) {
 		this.model = model;
 		this.view = view;
+		console.log('hello from schedule-handler');
 		if (0 < this.view.buttons.length) {
 			this.view.clickHandler(this.model.addToSchedule);
 		}

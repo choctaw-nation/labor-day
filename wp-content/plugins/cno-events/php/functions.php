@@ -8,13 +8,20 @@ class CNOEventsPlugin {
 	}
 	function include_templates($template) {
 		if (get_post_type() == 'events' && is_single()) {
-			$template = dirname(__FILE__, 2) . '/templates/single-events.php';
+			$template = locate_template(array('templates/single-events.php'), false, false);
+			if (!$template) {
+				$template = dirname(__FILE__, 2) . '/templates/single-events.php';
+			}
 		}
 		if (get_post_type() == 'events' && is_archive()) {
-			$template = dirname(__FILE__, 2) . '/templates/archive-events.php';
+			$template = locate_template(array('templates/archive-events.php'), false, false);
+			if (!$template) {
+				$template = dirname(__FILE__, 2) . '/templates/archive-events.php';
+			}
 		}
 		return $template;
 	}
+
 	function register_event_custom_post_type($args = array()) {
 		$post_type_labels = array(
 			'name' 				 => 'Events',

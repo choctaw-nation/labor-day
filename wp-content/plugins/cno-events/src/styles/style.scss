@@ -1,0 +1,29 @@
+@use './abstracts/mixins' as m;
+@use './abstracts/variables' as v;
+@use './base/reset';
+@use './base/base';
+
+.cno-event {
+	:where(.event-image) {
+		max-width: 80rem;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+		}
+	}
+	.event-meta {
+		:where(&) {
+			background-color: v.$color-tertiary;
+			padding: 2rem;
+			font-size: 1.35em;
+		}
+		&__day {
+		}
+		&__start-time {
+		}
+
+		.about {
+		}
+	}
+}
