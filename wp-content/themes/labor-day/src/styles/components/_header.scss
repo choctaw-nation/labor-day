@@ -2,6 +2,8 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
 @use './buttons';
+@use './header/hamburger';
+@use './header/offcanvas';
 
 #site-header {
 	background-color: v.$color-primary--dark;
@@ -11,7 +13,6 @@
 	svg {
 		aspect-ratio: 1;
 		height: 15rem;
-		// width: auto;
 	}
 	h1 {
 		display: none;
@@ -30,44 +31,28 @@
 		list-style: none;
 		padding: unset;
 	}
-}
-.menu-item {
-	padding: 10px;
-	margin: 0 10px;
-	display: inline-block;
-	border-bottom: 2px solid transparent;
-	transition: fn.transition(border-color);
-	a {
-		color: white;
-	}
-	&:hover {
-		border-color: white;
-		cursor: pointer;
-		a {
+	&__menu-item {
+		padding: 10px;
+		margin: 0 10px;
+		display: inline-block;
+		border-bottom: 2px solid transparent;
+		transition: fn.transition(border-color);
+		&--link {
 			color: white;
 		}
-	}
-	&.cta {
-		@extend .btn__fill--primary;
+		&:hover {
+			border-color: white;
+			cursor: pointer;
+			a {
+				color: white;
+			}
+		}
+		&.cta {
+			@extend .btn__fill--primary;
+		}
 	}
 }
+
 .mobile-navbar {
 	@extend .navbar;
-}
-.offcanvas {
-	padding-top: 2rem;
-	background-color: v.$color-secondary;
-	&__header {
-		@include m.displayFlex(row, flex-start, center);
-		padding: 2rem 1rem;
-		.btn-close {
-			margin-left: auto;
-			color: white;
-		}
-	}
-	&__title {
-		font-size: 1.35em;
-		text-transform: uppercase;
-		color: white;
-	}
 }

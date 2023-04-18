@@ -1,0 +1,19 @@
+@use '../../abstracts/mixins' as m;
+@use '../../abstracts/variables' as v;
+.offcanvas {
+	padding-top: 2rem;
+	background-color: v.$color-secondary;
+	&__header {
+		@include m.displayFlex(row, flex-start, center);
+		padding: 2rem 1rem;
+		.btn-close {
+			margin-left: auto;
+			color: white;
+		}
+	}
+	&__title {
+		font-size: 1.35em;
+		text-transform: uppercase;
+		color: white;
+	}
+}

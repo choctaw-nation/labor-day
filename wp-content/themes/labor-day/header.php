@@ -35,10 +35,11 @@ global $post;
 			</a>
 			<?php wp_nav_menu(
 				array(
-					'theme_location' => 'primary_menu',
-					'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
-					'container' => 'nav',
+					'theme_location'  => 'primary_menu',
+					'menu_class' 	  => 'navbar__menu p-0 m-0 d-inline-flex',
+					'container' 	  => 'nav',
 					'container_class' => 'navbar d-none d-lg-flex align-items-center',
+					'walker'		  => new CNO_Nav_Walker()
 				)
 			);
 			?>
