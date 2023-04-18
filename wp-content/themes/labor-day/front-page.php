@@ -13,7 +13,7 @@ enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
 get_header(); ?>
 <main class="site-content">
 	<?php $background_image_url = get_field('hero')['background_image']; ?>
-	<section class='w-100' style="background-image:url('<?php echo $background_image_url; ?>');" id='hero'>
+	<section class='w-100 hero--image' style="background-image:url('<?php echo $background_image_url; ?>');" id='hero'>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">

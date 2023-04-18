@@ -13,14 +13,20 @@ get_header();
 ?>
 <main class="site-content">
 	<?php $background_image_url = get_field('hero')['background_image']; ?>
-	<section class='w-100' style="background-image:url('<?php echo $background_image_url; ?>');" id='hero'>
-	</section>
-	<section>
-		<div class="container py-5">
-			<h1 class="headline mt-5"><?php the_title(); ?></h1>
+	<?php if ($background_image_url) : ?>
+		<section class='w-100 hero--image' id='hero' style="background-image:url('<?php echo $background_image_url; ?>')"></section>
+		<div class="container my-5 py-5">
+			<?php the_title("<h1 class='headline'>", "</h1>"); ?>
 			<span class="subheadline mb-5"><?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?></span>
 		</div>
-	</section>
+	<?php else : ?>
+		<section class='w-100 hero--color' id='hero' style='background-color:var(--color-tertiary);'>
+			<div class="container">
+				<?php the_title("<h1 class='headline'>", "</h1>"); ?>
+				<span class="subheadline mb-5 text-center"><?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?></span>
+			</div>
+		</section>
+	<?php endif; ?>
 	<?php
 	$default_output = "<div class='mt-5'>";
 	$default_output .= get_the_content();
@@ -40,6 +46,9 @@ get_header();
 			break;
 		case 'contact':
 			get_template_part('template-parts/page', 'contact');
+			break;
+		case 'my-schedule':
+			get_template_part('template-parts/page', 'my-schedule');
 			break;
 		default:
 			echo $default_output;

@@ -23,12 +23,13 @@ $query = new WP_Query($query_args);
 					<div class="slider__image"><?php the_post_thumbnail(); ?></div>
 					<?php the_title("<h4 class='slider__info'>", "</h4>"); ?>
 					<?php if ('entertainment' === $slider_name) :
+
 								extract(get_field('info'));
 								$date = cno_get_the_date($day);
 								echo "<div class='slider__meta'>{$day}, $start_time, <a href='#'>Ampitheatre</a></div>";
 							?>
 					<div class="slider__buttons">
-						<a href="#" class="btn__fill--primary">Add to Schedule</a>
+						<a href="#" class="btn__fill--primary" data-add-to-schedule='true'>Add to Schedule</a>
 						<a href="<?php the_permalink(); ?>" class="btn__outline--primary">See More</a>
 					</div>
 					<?php elseif ('registration' === $slider_name) : ?>
