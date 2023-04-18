@@ -40,9 +40,6 @@ figure {
 	visibility: hidden !important;
 }
 
-.fade {
-	@include m.fadeIn;
-}
 .fadeIn {
 	transition: fn.transition((opacity, transform), (1s ease));
 	opacity: 1;

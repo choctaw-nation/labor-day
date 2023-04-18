@@ -38,12 +38,14 @@
 		border-bottom: 2px solid transparent;
 		transition: fn.transition(border-color);
 		&--link {
-			color: white;
+			&:not(.sub-menu a) {
+				color: white;
+			}
 		}
 		&:hover {
 			border-color: white;
 			cursor: pointer;
-			a {
+			&:not(.sub-menu a) {
 				color: white;
 			}
 		}
@@ -55,4 +57,30 @@
 
 .mobile-navbar {
 	@extend .navbar;
+	&__menu {
+		flex: 1 1 100%;
+	}
+}
+
+.sub-menu {
+	background-color: v.$color-tertiary;
+	margin: 0;
+	&__menu-item {
+		margin: 0;
+		padding: 1rem;
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: v.$color-primary--dark;
+			border: none;
+			.sub-menu__menu-item--link {
+				color: v.$color-tertiary;
+				background-color: none;
+			}
+		}
+		&--link {
+			color: v.$color-primary--dark;
+			font-size: 1.8rem;
+		}
+	}
 }

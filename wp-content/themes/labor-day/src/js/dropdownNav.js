@@ -1,24 +1,18 @@
-export const handleDropdownNav = new DropdownNav();
+const nav = document.querySelector('.navbar');
+const dropdownElementList = nav.querySelectorAll('.dropdown-toggle');
 
-class DropdownNav {
-	submenus = [];
-	constructor() {
-		console.log('ready to work');
-		this.submenus = document.querySelectorAll('.sub-menu');
-		// this.hideSubmenus();
-		// this.handleMenuHover();
-	}
-	hideSubmenus() {
-		this.submenus.forEach((submenu) => submenu.classList.add('hide'));
-	}
-	handleMenuHover() {
-		const nav = document.getElementById('menu-main-menu');
-		nav.addEventListener('mouseover', this.showSubmenu);
-	}
-	showSubmenu({ target }) {
-		const submenu = target
-			.closest('.menu-item-has-children')
-			.querySelector('.sub-menu');
-		submenu.classList.toggle('hide');
-	}
+function toggleShow({ target }) {
+	let expanded = target.getAttribute('aria-expanded');
+	target.classList.toggle('show');
+	target.setAttribute('aria-expanded', true === expanded ? 'false' : 'true');
+	const submenu = target
+		.closest('.menu-item-has-children')
+		.querySelector('.dropdown-menu');
+	console.log(submenu);
+	submenu.classList.toggle('show');
+	submenu.setAttribute('data-bs-popper', 'static');
 }
+dropdownElementList.forEach((el) => {
+	if (el.closest('.mobile-navbar')) return;
+	el.addEventListener('mouseover', toggleShow);
+});
