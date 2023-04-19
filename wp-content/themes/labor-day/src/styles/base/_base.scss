@@ -9,7 +9,6 @@ section {
 	}
 }
 figure {
-	margin-bottom: 0;
 	@include m.media-breakpoint-down(md) {
 		margin-bottom: 2rem;
 	}

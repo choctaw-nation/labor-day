@@ -1,0 +1,54 @@
+@use '../abstracts/variables' as v;
+
+.cno-events-wrapper {
+	:where(section) {
+		padding: 65px 0;
+	}
+	:where(.hero) {
+		height: fit-content;
+		background-color: v.$color-tertiary;
+	}
+	:where(.cno-events) {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, max(300px));
+		gap: 20px;
+	}
+	:where(.about) {
+		margin-top: 10px;
+	}
+	.cno-event-search {
+		:where(&) {
+			background-color: v.$color-primary;
+		}
+		&__title {
+			color: white;
+		}
+		&__search-bar {
+			width: 100%;
+			border-radius: 10px;
+			padding: 10px;
+			border: none;
+			&:focus-visible {
+				outline-color: v.$color-secondary;
+			}
+		}
+	}
+	.cno-event-search-filters {
+		margin-top: 3rem;
+		&__title {
+			color: white;
+		}
+		&__container {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, max(120px));
+			justify-content: center;
+			gap: 20px;
+		}
+		&__filter {
+			font-size: 1.35em;
+			label {
+				color: white;
+			}
+		}
+	}
+}

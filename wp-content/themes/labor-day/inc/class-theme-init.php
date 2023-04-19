@@ -18,6 +18,8 @@ class CNO_THEME {
 		$this->disable_discussion();
 		add_action('init', array($this, 'alter_post_types'));
 	}
+
+
 	/**
 	 * Adds scripts with the appropriate dependencies
 	 */

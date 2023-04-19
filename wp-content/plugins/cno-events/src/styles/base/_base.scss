@@ -2,12 +2,12 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/functions' as fn;
 
-:where(.cno-event) {
-	display: grid;
-	font-size: 1em;
-	width: 88%;
-	max-width: 140rem;
-	margin: 0 auto;
+.cno-events-container {
+	:is(&) {
+		width: 88%;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
 }
 .hide {
 	display: none !important;

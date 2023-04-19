@@ -1,0 +1,9 @@
+.cno-events-wrapper {
+	.hero {
+		height: auto;
+	}
+}
+.cno-events {
+	grid-template-columns: repeat(auto-fill, max(32rem));
+	align-items: stretch;
+}

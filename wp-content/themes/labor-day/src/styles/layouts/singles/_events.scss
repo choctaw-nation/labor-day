@@ -1,0 +1,22 @@
+.cno-event {
+	&__about {
+		font-size: 1.35em;
+	}
+	.cno-event-meta {
+		position: relative;
+		margin-bottom: 2rem;
+	}
+	.sidebar {
+		position: sticky;
+		top: 5%;
+		display: flex;
+		flex-direction: column;
+		grid-column-start: 2;
+		grid-column-end: 3;
+		&__buttons {
+			a {
+				align-self: flex-start;
+			}
+		}
+	}
+}

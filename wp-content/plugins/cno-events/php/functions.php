@@ -5,6 +5,9 @@ class CNOEventsPlugin {
 		add_action('init', array($this, 'register_event_custom_post_type'));
 		include plugin_dir_path(__FILE__) . '/acf-fields.php';
 		add_filter('template_include', array($this, 'include_templates'));
+		if (!is_admin()) {
+			add_action('wp_enqueue_scripts', array($this, 'enqueue_event_styles'));
+		}
 	}
 	function include_templates($template) {
 		if (get_post_type() == 'events' && is_single()) {
@@ -60,5 +63,8 @@ class CNOEventsPlugin {
 			);
 		}
 		register_post_type('events', $args);
+	}
+	function enqueue_event_styles() {
+		wp_enqueue_style('cno-events-global', plugin_dir_url('cno-events/build/style-index.css') . 'style-index.css', array(), '1.0');
 	}
 }

@@ -32,32 +32,36 @@ enqueue_page_assets('history', array());
 <section class="fadeIn" id="capitol">
 	<div class="container">
 		<?php extract(get_field('capitol')); ?>
-		<?php $content->two_col_text_and_media(array(
+		<?php $args = array(
 			'headline'	=> $headline,
 			'content'	=> $subheadline,
-			'source_url' => $image
-		)); ?>
+			'reverse'	=> true
+		);
+		if (isset($image['url'])) $args['image_src'] = $image['url']; ?>
+		<?php $content->two_col_text_and_media($args); ?>
 	</div>
 </section>
 <section class="fadeIn" id="history">
 	<div class="container">
 		<?php extract(get_field('history')); ?>
-		<?php $content->two_col_text_and_media(array(
+		<?php $args = array(
 			'headline'	=> $headline,
 			'content'	=> $subheadline,
-			'source_url' => $image,
-			'reverse'	=> true
-		)); ?>
+		);
+		if (isset($image['url'])) $args['image_src'] = $image['url']; ?>
+		<?php $content->two_col_text_and_media($args); ?>
 	</div>
 </section>
 <section class="fadeIn" id="traditions">
 	<div class="container">
 		<?php extract(get_field('traditions')); ?>
-		<?php $content->two_col_text_and_media(array(
+		<?php $args = array(
 			'headline'	=> $headline,
 			'content'	=> $subheadline,
-			'source_url' => $image
-		)); ?>
+			'reverse'	=> true,
+		);
+		if (isset($image['url'])) $args['image_src'] = $image['url']; ?>
+		<?php $content->two_col_text_and_media($args); ?>
 	</div>
 </section>
 <aside class="fadeIn" id="video"></aside>
