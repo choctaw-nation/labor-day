@@ -18,7 +18,7 @@
 			<strong>Start Time:</strong> <?php echo $start_time; ?>
 		</div>
 		<?php if (isset($end_time)) {
-			echo '<div class="event-meta__start-time">';
+			echo '<div class="event-meta__end-time">';
 			echo "<strong>End Time:</strong> " . $end_time;
 			echo '</div>';
 		}  ?>
@@ -28,7 +28,7 @@
 		<?php echo $event_description; ?>
 	</div>
 	<div class="cno-event__buttons">
-		<a href="#" class="btn__fill--primary" data-add-to-schedule='true'>Add to Schedule</a>
+		<a href="#" class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to Schedule</a>
 		<a href="<?php the_permalink() ?>" class="btn__outline--primary">Learn More</a>
 		<div class="cno-event-schedule-confirmation"></div>
 	</div>

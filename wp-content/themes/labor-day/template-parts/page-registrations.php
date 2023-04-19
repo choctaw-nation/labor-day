@@ -16,7 +16,7 @@ $args = array(
 );
 
 $query = new WP_Query($args);
-enqueue_page_assets('registrations', array());
+cno_enqueue_page_assets('registrations', array());
 $content = new ContentSectionComponents();
 ?>
 <section class="registrations">

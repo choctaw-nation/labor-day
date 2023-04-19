@@ -18,7 +18,7 @@ function display_gallery() {
 	echo $markup;
 }
 $content = new ContentSectionComponents();
-enqueue_page_assets('history', array());
+cno_enqueue_page_assets('history', array());
 
 ?>
 <aside class="gallery">

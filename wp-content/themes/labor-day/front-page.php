@@ -9,7 +9,7 @@
 
 $content = new ContentSectionComponents();
 global $lorem;
-enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
+cno_enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
 get_header(); ?>
 <main class="site-content">
 	<?php $background_image_url = get_field('hero')['background_image']; ?>
