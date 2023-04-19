@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
+@forward '../components/header';
 #copyright {
 	background-color: #333;
 }
@@ -16,12 +17,22 @@
 		@include m.media-breakpoint-down(md) {
 			@include m.displayFlex(column);
 		}
+		.col {
+			justify-content: center;
+		}
 	}
+
 	.navbar {
 		&__menu {
 			@include m.media-breakpoint-down(md) {
 				flex-direction: column;
 				align-items: flex-start;
+			}
+		}
+		.menu-item {
+			margin: 0 1rem;
+			a {
+				color: white;
 			}
 		}
 	}

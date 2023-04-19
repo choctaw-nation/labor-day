@@ -7,26 +7,37 @@ export class Model {
 		} else return data;
 	}
 	addToSchedule({ target }) {
-		if ('false' === target.dataset.addToSchedule) {
-			console.error("This button doesn't control scheduling!");
-			return;
-		}
-		let schedule = JSON.parse(localStorage.getItem('schedule'));
-		if (!schedule) {
-			schedule = [];
-		}
-		try {
-			this.#getEventData(
-				Number(target.dataset.id),
-				target.dataset.postType,
-			).then((res) => {
-				schedule.push(res);
-				localStorage.setItem('schedule', JSON.stringify(schedule));
-			});
-		} catch (err) {
-			console.error(err);
-		}
+		return new Promise((resolve, reject) => {
+			if ('false' === target.dataset.addToSchedule) {
+				reject(new Error("This button doesn't control scheduling!"));
+			}
+			let schedule = JSON.parse(localStorage.getItem('schedule'));
+			if (!schedule) {
+				schedule = [];
+			}
+			try {
+				this.#getEventData(
+					Number(target.dataset.id),
+					target.dataset.postType,
+				).then((res) => {
+					const check = schedule.filter((item) => item.id === res.id);
+					if (check.length === 0) {
+						schedule.push(res);
+						localStorage.setItem(
+							'schedule',
+							JSON.stringify(schedule),
+						);
+						resolve('success');
+					} else if (check) {
+						resolve('info');
+					}
+				});
+			} catch (err) {
+				reject(err);
+			}
+		});
 	}
+
 	#getEventData = async (id, route) => {
 		try {
 			const response = await fetch(
@@ -37,6 +48,7 @@ export class Model {
 				acf: { info },
 			} = data;
 			const event = {
+				id: id,
 				link: data.link,
 				title: data.title.rendered,
 				description: data.acf.description,
@@ -44,7 +56,6 @@ export class Model {
 				start_time: info.start_time,
 				end_time: info.end_time,
 			};
-			console.log(event);
 			return event;
 		} catch (err) {
 			throw new Error(err);

@@ -16,13 +16,6 @@
 		padding: 2rem;
 	}
 	.two-col {
-		&__media {
-			img {
-				$size: 100%;
-				height: $size;
-				width: $size;
-			}
-		}
 		&__content {
 			@include m.displayFlex(column);
 			&--subheadline {

@@ -28,7 +28,7 @@
 		<?php echo $event_description; ?>
 	</div>
 	<div class="cno-event__buttons">
-		<a href="#" class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to Schedule</a>
+		<button class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to Schedule</button>
 		<a href="<?php the_permalink() ?>" class="btn__outline--primary">Learn More</a>
 		<div class="cno-event-schedule-confirmation"></div>
 	</div>
