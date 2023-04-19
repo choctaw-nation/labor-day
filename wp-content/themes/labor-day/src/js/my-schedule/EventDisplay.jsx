@@ -24,13 +24,10 @@ export default function EventDisplay({ schedule }) {
 		({ title, link, start_time, day, end_time, description }) => {
 			return (
 				<div className="event-info">
+					<h3 className="event-info__title">{title}</h3>
 					<div className="event-info__meta">
-						<span className="event-info__meta--day">
-							When: {`${day}, ${getTheDate(day)}`}
-						</span>
 						<span className="event-info__meta--start">
-							Start Time:
-							{`${getTheTime(start_time)}`}
+							Start Time: {`${getTheTime(start_time)}`}
 						</span>
 						{end_time && (
 							<span className="event-info__meta--end">
@@ -39,8 +36,9 @@ export default function EventDisplay({ schedule }) {
 							</span>
 						)}
 					</div>
-					<h3 className="event-info__title">{title}</h3>
-					<p className="text-content">{description}</p>
+					<p className="event-info__description ext-content">
+						{description}
+					</p>
 					<a href={link} className="btn__outline--primary">
 						View Event
 					</a>

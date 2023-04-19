@@ -1,0 +1,34 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+%day-container {
+	@include m.displayFlex(column);
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: v.$color-tertiary;
+	margin-bottom: 3rem;
+}
+.my-schedule {
+	max-width: 80rem;
+	margin: 3rem auto;
+	@include m.displayFlex(column, space-evenly, center);
+	&__friday {
+		@extend %day-container;
+	}
+	&__saturday {
+		@extend %day-container;
+	}
+	&__sunday {
+		@extend %day-container;
+	}
+}
+.event-info {
+	margin: 2rem auto 0 auto;
+	width: 88%;
+	&__meta {
+		@include m.displayFlex(column);
+		font-weight: 700;
+	}
+	&__description {
+		margin-top: 2rem;
+	}
+}

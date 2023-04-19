@@ -1,3 +1,4 @@
+import '../../styles/pages/my-schedule.scss';
 import { createRoot } from '@wordpress/element';
 import EventDisplay from './EventDisplay';
 
@@ -17,23 +18,23 @@ function App() {
 	return (
 		<div className="my-schedule">
 			{friday.length > 0 && (
-				<>
+				<div className="my-schedule__friday">
 					<h2 className="day-label">Friday</h2>
 					<EventDisplay schedule={friday} />
-				</>
+				</div>
 			)}
 
 			{saturday.length > 0 && (
-				<>
+				<div className="my-schedule__saturday">
 					<h2 className="day-label">Saturday</h2>
 					<EventDisplay schedule={saturday} />
-				</>
+				</div>
 			)}
 			{sunday.length > 0 && (
-				<>
+				<div className="my-schedule__sunday">
 					<h2 className="day-label">Sunday</h2>
 					<EventDisplay schedule={sunday} />
-				</>
+				</div>
 			)}
 		</div>
 	);
