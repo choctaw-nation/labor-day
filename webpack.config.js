@@ -15,7 +15,7 @@ function snakeToCamel(str) {
  * For JSX folders (located `~/src/js/folder-name/App.jsx)`)
  * Array of strings modeled after folder names (e.g. 'about-choctaw')
  * */
-const appNames = ['front-page'];
+const appNames = ['front-page', 'my-schedule'];
 
 /**
  * For SCSS files (no leading `_`)
