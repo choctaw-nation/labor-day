@@ -3,8 +3,10 @@ import { createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
 import React, { useState, useEffect } from '@wordpress/element';
 import { LaborDayEvent, SortedEventsObject } from '../types';
+import LoadingSpinner from '../spinner';
 
 function App() {
+	const [isLoading, setIsLoading] = useState(true);
 	const [events, setEvents] = useState<SortedEventsObject>({
 		friday: [],
 		saturday: [],
@@ -31,8 +33,10 @@ function App() {
 	useEffect(() => {
 		const sortedEvents = getLocalStorageData();
 		setEvents(sortedEvents);
+		setIsLoading(false);
 	}, []);
 	function removeEvent(id: number, day: string) {
+		setIsLoading(true);
 		const daySelector: string = day.toLowerCase();
 		const filteredEvents = events[daySelector].filter(
 			(event: LaborDayEvent) => {
@@ -41,6 +45,7 @@ function App() {
 		);
 		const updatedEvents = { ...events, [daySelector]: filteredEvents };
 		setEvents(updatedEvents);
+		setIsLoading(false);
 	}
 	useEffect(() => {
 		localStorage.setItem('schedule', JSON.stringify(events));
@@ -50,6 +55,9 @@ function App() {
 		events.friday.length === 0 &&
 		events.saturday.length === 0 &&
 		events.sunday.length === 0;
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	if (emptyEvents) {
 		return <p>Seems like you haven't added any events yet.</p>;
 	}

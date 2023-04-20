@@ -16,6 +16,7 @@
     "swiper": "^9.2.2"
   },
   "devDependencies": {
+    "@loadingio/css-spinner": "^2.0.2",
     "webpack-bundle-analyzer": "^4.8.0"
   }
 }

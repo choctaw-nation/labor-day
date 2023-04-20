@@ -2,7 +2,12 @@ import { useState, useEffect } from '@wordpress/element';
 import CountdownContainer from './CountdownContainer';
 
 export default function CountdownTimer() {
-	const [remainingTime, setRemainingTime] = useState({});
+	const [remainingTime, setRemainingTime] = useState({
+		days: '-',
+		hours: '-',
+		minutes: '-',
+		seconds: '-',
+	});
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {

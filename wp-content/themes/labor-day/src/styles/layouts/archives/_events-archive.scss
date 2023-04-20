@@ -4,6 +4,8 @@
 	}
 }
 .cno-events {
-	grid-template-columns: repeat(auto-fill, max(32rem));
+	grid-template-columns: repeat(auto-fit, max(40rem));
 	align-items: stretch;
+	justify-content: center;
+	gap: 3rem;
 }

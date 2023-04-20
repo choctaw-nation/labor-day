@@ -19,7 +19,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="col">
 					<span class="headline">September 1 &ndash; 3, 2023</span>
-					<div class="countdown" id='countdown'>[Countdown]</div>
+					<div class="countdown" id='countdown'></div>
 				</div>
 			</div>
 		</div>
@@ -48,24 +48,25 @@ get_header(); ?>
 	<section id="entertainment">
 		<div class="container">
 			<div class="row">
-				<h2>Special Guest Neal Mccoy</h2>
-				<div class="big-feature">
-					<?php $feature = get_page_by_title('neal mccoy', OBJECT, 'entertainment'); ?>
-					<figure class="big-feature__image"><?php echo get_the_post_thumbnail($feature); ?></figure>
-					<div class="big-feature__excerpt">
-						<?php if (!empty(get_field('description', $feature->ID))) {
-							echo get_field('description', $feature->ID);
-						}; ?>
-					</div>
-				</div>
+				<h2>Featured Events</h2>
+				<div class="col-lg-6"><span class="headline">Feature #1</span></div>
+				<div class="col-lg-6"><span class="headline">Feature #2</span></div>
 			</div>
 			<div class="row">
 				<h3>All Entertainment</h3>
 				<?php get_template_part('template-parts/content', 'slider', array(
-					'query_args' => array(
-						'post_type' => 'entertainment',
-						'post_status' => 'publish',
-						'posts_per_page' => 6,
+					'id'				   => 'entertainment',
+					'query_args' 		   => array(
+						'post_type' 	   => 'events',
+						'post_status' 	   => 'publish',
+						'posts_per_page'   => 6,
+						'tax_query'		   => array(
+							array(
+								'taxonomy' => 'event_type',
+								'field'	   => 'slug',
+								'terms'	   => 'entertainment'
+							)
+						)
 					)
 				)); ?>
 			</div>
