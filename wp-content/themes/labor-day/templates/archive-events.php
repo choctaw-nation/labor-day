@@ -34,7 +34,6 @@ $taxonomies = get_object_taxonomies('events', 'objects');
 								foreach ($term as $t) {
 									echo '<div class="cno-event-search-filters__filter">';
 									echo "<input type='checkbox' name='{$t->slug}' id='{$t->slug}' />";
-									// echo "<input type='checkbox' name='{$t["slug"]}' id='{$t["slug"]}' />";
 									echo "<label for='{$t->slug}'>{$t->name}</label>";
 								}
 							};
