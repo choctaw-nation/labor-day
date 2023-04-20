@@ -15,7 +15,7 @@ function snakeToCamel(str) {
  * For JSX folders (located `~/src/js/folder-name/App.jsx)`)
  * Array of strings modeled after folder names (e.g. 'about-choctaw')
  * */
-const appNames = ['front-page', 'my-schedule'];
+const appNames = ['front-page'];
 
 /**
  * For SCSS files (no leading `_`)
@@ -31,6 +31,7 @@ module.exports = {
 				global: `.${THEME_DIR}/src/index.js`,
 				registrations: `.${THEME_DIR}/src/js/registrations.js`,
 				history: `.${THEME_DIR}/src/js/history.js`,
+				mySchedule: `.${THEME_DIR}/src/js/my-schedule/App.tsx`,
 			};
 			if (appNames.length > 0) {
 				appNames.forEach((appName) => {
