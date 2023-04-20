@@ -2,7 +2,7 @@ import '../../styles/pages/my-schedule.scss';
 import { createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
 import React, { useState, useEffect } from '@wordpress/element';
-import { LaborDayEvent, SortedEventsObject } from './types';
+import { LaborDayEvent, SortedEventsObject } from '../types';
 
 function App() {
 	const [events, setEvents] = useState<SortedEventsObject>({
@@ -20,9 +20,10 @@ function App() {
 		};
 		const days: Array<string> = ['friday', 'saturday', 'sunday'];
 		days.forEach((day) => {
-			const dailyEvents = jsonEvents[day].filter(
-				(ev: LaborDayEvent) => ev.day.toLowerCase() == day,
-			);
+			const dailyEvents = jsonEvents[day].filter((ev: LaborDayEvent) => {
+				console.log(ev);
+				return ev.day.toLowerCase() == day;
+			});
 			dailyEvents.forEach((ev) => sortedEvents[day].push(ev));
 		});
 		return sortedEvents;

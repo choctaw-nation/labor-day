@@ -229,7 +229,10 @@ function App() {
     };
     const days = ['friday', 'saturday', 'sunday'];
     days.forEach(day => {
-      const dailyEvents = jsonEvents[day].filter(ev => ev.day.toLowerCase() == day);
+      const dailyEvents = jsonEvents[day].filter(ev => {
+        console.log(ev);
+        return ev.day.toLowerCase() == day;
+      });
       dailyEvents.forEach(ev => sortedEvents[day].push(ev));
     });
     return sortedEvents;
