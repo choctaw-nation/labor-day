@@ -1,1 +1,101 @@
-:root{--transition--standard:0.3s ease;--color-primary:#7d8034;--color-primary--dark:#50551d;--color-primary--light:#b0b700;--color-secondary:#f09416;--color-tertiary:#efe6d9;--color-black:#000;--color-white:#fff;--font-headings:gill-sans-nova,sans-serif;--font-body:gill-sans-nova,sans-serif;--font-serif:adobe-garamond-pro,serif}.my-schedule__friday,.my-schedule__saturday,.my-schedule__sunday{align-items:flex-start;border-radius:1rem;display:flex;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;margin-bottom:3rem;padding:1rem}.my-schedule__event-meta--end,.my-schedule__event-meta--start{align-items:flex-start;padding:1rem}.my-schedule,.my-schedule__event-meta--end,.my-schedule__event-meta--start{display:flex;flex-direction:column;flex-wrap:wrap;justify-content:space-evenly}.my-schedule{align-items:center;margin:3rem auto;max-width:80rem}.my-schedule__event{background-color:#efe6d9;border:2px solid #50551d;border-radius:1rem;display:grid;gap:5px;grid-template-columns:1fr 2fr;margin:2rem auto 0;padding:2rem;width:88%}.my-schedule__event-meta{align-items:flex-start;display:flex;flex-direction:column;flex-wrap:wrap;font-size:1em;grid-row:2/3;justify-content:flex-start}.my-schedule__event-meta--label{font-size:1.4em}.my-schedule__event-meta--info{font-size:1.6em;font-weight:700}.my-schedule__event-details{border-left:2px dashed gray;grid-column:2/3;grid-row:2/3;padding-left:1rem}.my-schedule__event-details--description{margin-bottom:2rem}.my-schedule__event-details a{margin-top:auto}.my-schedule__remove-event{background-color:#fff;border-color:#f09416;color:#f09416;grid-column:2/3;grid-row:1/2;margin-left:auto}
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./wp-content/themes/labor-day/src/styles/pages/my-schedule.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/* //////////
+// COLORS
+/////////// */
+/* ////////////
+// TYPOGRAPHY
+///////////// */
+:root {
+  --transition--standard: 0.3s ease;
+  --color-primary: #7d8034;
+  --color-primary--dark: #50551d;
+  --color-primary--light: #b0b700;
+  --color-secondary: #f09416;
+  --color-tertiary: #efe6d9;
+  --color-black: black;
+  --color-white: white;
+  --font-headings: gill-sans-nova, sans-serif;
+  --font-body: gill-sans-nova, sans-serif;
+  --font-serif: adobe-garamond-pro, serif;
+}
+
+.my-schedule__sunday, .my-schedule__saturday, .my-schedule__friday {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+}
+
+.my-schedule__event-meta--end, .my-schedule__event-meta--start {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.my-schedule {
+  max-width: 80rem;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.my-schedule__event {
+  background-color: #efe6d9;
+  margin: 2rem auto 0 auto;
+  width: 88%;
+  border: 2px solid #50551d;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 2fr;
+}
+.my-schedule__event-meta {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  grid-row: 2/3;
+  font-size: 1em;
+}
+.my-schedule__event-meta--label {
+  font-size: 1.4em;
+}
+.my-schedule__event-meta--info {
+  font-size: 1.6em;
+  font-weight: 700;
+}
+.my-schedule__event-details {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  border-left: 2px dashed grey;
+  padding-left: 1rem;
+}
+.my-schedule__event-details--description {
+  margin-bottom: 2rem;
+}
+.my-schedule__event-details a {
+  margin-top: auto;
+}
+.my-schedule__remove-event {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  margin-left: auto;
+  border-color: #f09416;
+  background-color: white;
+  color: #f09416;
+}
+
+/*# sourceMappingURL=mySchedule.css.map*/

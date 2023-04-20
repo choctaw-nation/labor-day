@@ -1,1 +1,36 @@
-.registration-form-list{list-style:none}.registration-form-list__item:not(:last-child){margin-bottom:3rem}.registration-form{align-items:stretch;display:flex;flex-direction:row;flex-wrap:wrap;font-size:1.6rem;justify-content:center}.registration-form>*{padding:2rem}.registration-form .two-col__content{align-items:flex-start;display:flex;flex-direction:column;flex-wrap:wrap;justify-content:flex-start}.registration-form .two-col__content--subheadline{margin-bottom:2rem}.registration-form__button{margin-top:auto}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./wp-content/themes/labor-day/src/styles/pages/registrations.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+.registration-form-list {
+  list-style: none;
+}
+.registration-form-list__item:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.registration-form {
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+.registration-form > * {
+  padding: 2rem;
+}
+.registration-form .two-col__content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.registration-form .two-col__content--subheadline {
+  margin-bottom: 2rem;
+}
+.registration-form__button {
+  margin-top: auto;
+}
+
+/*# sourceMappingURL=registrations.css.map*/
