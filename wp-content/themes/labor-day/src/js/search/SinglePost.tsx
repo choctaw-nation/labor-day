@@ -1,8 +1,11 @@
-export default function SinglePost({
-	data: {
-		location,
+import React from '@wordpress/element';
+import { PrettyEventData } from './types';
+
+export default function SinglePost({ data }: { data: PrettyEventData }) {
+	const {
+		locations,
 		eventId,
-		slug,
+		link,
 		title,
 		event_info,
 		altText,
@@ -10,8 +13,7 @@ export default function SinglePost({
 		size,
 		sizes,
 		type,
-	},
-}) {
+	} = data;
 	return (
 		<article className="cno-event">
 			<figure className="cno-event__image">
@@ -22,7 +24,7 @@ export default function SinglePost({
 					className="attachment-large size-large wp-post-image"
 					alt={altText}
 					decoding="async"
-					srcset={srcSet}
+					srcSet={srcSet}
 					sizes={sizes}
 				/>
 			</figure>
@@ -34,8 +36,8 @@ export default function SinglePost({
 				</div>
 				<div className="event-meta__location">
 					<strong>Where:</strong>{' '}
-					<a href={location[0].link} rel="tag">
-						{location[0].name}
+					<a href={locations[0].link} rel="tag">
+						{locations[0].name}
 					</a>
 				</div>
 				<div className="event-meta__start-time">
@@ -62,7 +64,7 @@ export default function SinglePost({
 					data-id={eventId}>
 					Add to Schedule
 				</button>
-				<a href={`/events/${slug}/`} className="btn__outline--primary">
+				<a href={link} className="btn__outline--primary">
 					Learn More
 				</a>
 				<div className="cno-event-schedule-confirmation"></div>
