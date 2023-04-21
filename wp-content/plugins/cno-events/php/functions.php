@@ -44,22 +44,25 @@ class CNOEventsPlugin {
 		);
 		if (empty($args)) {
 			$args = array(
-				'labels' 			  => $post_type_labels,
-				'hierarchical' 		  => false,
-				'description' 		  => 'Events',
-				'supports'		 	  => array('title', 'thumbnail', 'revisions'),
-				'show_ui' 			  => true,
-				'show_in_rest' 		  => true,
-				'show_in_menu' 		  => true,
-				'menu_position' 	  => 25,
-				'menu_icon'			  => 'dashicons-calendar-alt',
-				'show_in_nav_menus'   => true,
-				'publicly_queryable'  => true,
-				'exclude_from_search' => false,
-				'query_var' 		  => true,
-				'can_export' 		  => true,
-				'public' 			  => true,
-				'has_archive' 		  => true,
+				'labels' 			    => $post_type_labels,
+				'hierarchical' 		    => false,
+				'description' 		    => 'Events',
+				'supports'		 	    => array('title', 'thumbnail', 'revisions'),
+				'show_ui' 			    => true,
+				'show_in_rest' 		    => true,
+				'show_in_menu' 		    => true,
+				'menu_position' 	    => 25,
+				'menu_icon'			    => 'dashicons-calendar-alt',
+				'show_in_nav_menus'     => true,
+				'publicly_queryable'    => true,
+				'exclude_from_search'   => false,
+				'query_var' 		    => true,
+				'can_export' 		    => true,
+				'public' 			    => true,
+				'has_archive' 		    => true,
+				'show_in_graphql'	    => true,
+				'graphql_single_name'   => 'event',
+				'graphql_plural_name'	=> 'events',
 			);
 		}
 		register_post_type('events', $args);
@@ -68,7 +71,7 @@ class CNOEventsPlugin {
 		wp_enqueue_style('cno-events-global', plugin_dir_url('cno-events/build/style-index.css') . 'style-index.css', array(), '1.0');
 		if ('events' == get_post_type() & is_archive()) {
 			wp_enqueue_script('cno-event-scripts', plugin_dir_url('cno-events/build/index.js') . 'index.js', in_footer: true);
-			wp_localize_script('cno-event-scripts', 'cnoEventData', array('postsPerPage' => get_query_var('posts_per_page')));
+			wp_localize_script('cno-event-scripts', 'cnoEventData', array('rootUrl' => home_url(), 'postsPerPage' => get_query_var('posts_per_page')));
 		}
 	}
 }

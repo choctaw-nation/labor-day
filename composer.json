@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "wpengine/advanced-custom-fields-pro": "*"
+        "wpengine/advanced-custom-fields-pro": "*",
+        "wp-graphql/wp-graphql-acf": "^0.6.1"
     },
     "config": {
         "allow-plugins": {

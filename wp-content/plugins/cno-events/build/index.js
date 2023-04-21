@@ -10,10 +10,250 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ "./src/styles/style.scss");
-/* harmony import */ var _js_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/search */ "./src/js/search.js");
+/* harmony import */ var _js_modules_Controller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/modules/Controller */ "./src/js/modules/Controller.js");
 
 
-(0,_js_search__WEBPACK_IMPORTED_MODULE_1__["default"])();
+const search = new _js_modules_Controller__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
+/***/ }),
+
+/***/ "./src/js/modules/Controller.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/Controller.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Search; }
+/* harmony export */ });
+/* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Model */ "./src/js/modules/Model.js");
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./View */ "./src/js/modules/View.js");
+
+
+class Search {
+  showFilters = false;
+  constructor() {
+    this.init();
+  }
+  init() {
+    const filterToggle = document.getElementById('toggle-filters');
+    if (!filterToggle) return;
+    filterToggle.addEventListener('click', () => {
+      setShowFilters();
+      showFilters = !showFilters;
+      updateButtonText(filterToggle, showFilters);
+    });
+    _Model__WEBPACK_IMPORTED_MODULE_0__["default"].getPosts().then(res => _View__WEBPACK_IMPORTED_MODULE_1__["default"].showResults(res));
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/modules/Model.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/Model.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../search */ "./src/js/search.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (new class Model {
+  getPosts = async function () {
+    const variables = {
+      first: Number(_search__WEBPACK_IMPORTED_MODULE_0__.POSTS_PER_PAGE),
+      after: '',
+      include: ['LARGE'],
+      size: 'LARGE'
+    };
+    const query = `query NewQuery($first: Int!, $after: String, $include: [MediaItemSizeEnum]!, $size: MediaItemSizeEnum!){
+		events(after: $after, first: $first) {
+    		edges {
+				node {
+					eventId
+					title(format: RENDERED)
+					slug
+					event_info {
+						description
+						info {
+							day
+							endTime
+							startTime
+						}
+					}
+					featuredImage {
+						node {
+							altText
+							srcSet(size: $size)
+							sizes(size:$size)
+							mediaDetails {
+								sizes(include: $include) {
+									height
+									width
+									sourceUrl
+								}
+							}
+						}
+					}
+					eventLocations {
+						nodes {
+							link
+							name
+						}
+					}
+					eventTypes {
+						nodes {
+							link
+							name
+						}
+					}
+				}
+			}
+			pageInfo {
+				hasNextPage
+				endCursor
+			}
+  	}}`;
+    const firstRequest = {
+      query: query,
+      variables: variables
+    };
+    const response = await fetch(`${_search__WEBPACK_IMPORTED_MODULE_0__.graphQL}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(firstRequest)
+    });
+    const {
+      data
+    } = await response.json();
+    return data;
+  };
+}());
+
+/***/ }),
+
+/***/ "./src/js/modules/View.js":
+/*!********************************!*\
+  !*** ./src/js/modules/View.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (new class View {
+  constructor() {}
+  /** Updates the visibility of the filters */
+  setShowFilters() {
+    const filtersContainer = document.querySelector('.cno-event-search-filters');
+    filtersContainer.classList.toggle('hide');
+  }
+  /**
+   *
+   * @param {HTMLElement} button the toggle
+   * @param {boolean} showFilters the filters' visibility (aka state)
+   */
+  updateButtonText(button, showFilters) {
+    button.innerText = true === showFilters ? 'Hide Filters' : 'Show Filters';
+  }
+  theMarkup(data) {
+    const {
+      location,
+      eventId,
+      slug,
+      title,
+      event_info,
+      altText,
+      srcSet,
+      size,
+      sizes,
+      type
+    } = data;
+    return `
+	<article class="cno-event">
+		<figure class="cno-event__image">
+			<img width="${size.width}" height="${size.height}" src="" class="attachment-large size-large wp-post-image" alt="${altText}" decoding="async" srcset="${srcSet}" sizes="${sizes}">	</figure>
+		<h2>${title}</h2>
+		<aside class="event-meta">
+			<div class="event-meta__day">
+					<strong>When: </strong>${event_info.info.day}, September 1
+			</div>
+			<div class="event-meta__location">
+				<strong>Where:</strong> <a href="${location[0].link}" rel="tag">${location[0].name}</a>
+			</div>
+			<div class="event-meta__start-time">
+				<strong>Start Time:</strong> ${event_info.info.startTime}
+			</div>
+			${event_info.info.endTime ? `<div class="event-meta__end-time"><strong>End Time:</strong> ${event_info.info.endTime}</div>` : ''}
+			<div class="event-meta__type">
+				<strong>Event Type:</strong> <a href="${type[0].link}" rel="tag">${type[0].name}</a>
+			</div>
+		</aside>
+		<div class="about">${event_info.description}</div>
+		<div class="cno-event__buttons">
+			<button class="btn__fill--primary" data-add-to-schedule="true" data-id="${eventId}">Add to Schedule</button>
+			<a href="/events/${slug}/" class="btn__outline--primary">Learn More</a>
+			<div class="cno-event-schedule-confirmation"></div>
+		</div>
+	</article>
+`;
+  }
+  destructureData(data) {
+    const {
+      eventLocations: {
+        nodes: location
+      }
+    } = data;
+    const {
+      eventTypes: {
+        nodes: type
+      }
+    } = data;
+    const {
+      eventId,
+      slug,
+      title
+    } = data;
+    const {
+      event_info
+    } = data;
+    const {
+      featuredImage: {
+        node: {
+          altText,
+          srcSet,
+          mediaDetails,
+          sizes
+        }
+      }
+    } = data;
+    const size = mediaDetails.sizes[0];
+    return {
+      location,
+      type,
+      sizes,
+      eventId,
+      slug,
+      title,
+      event_info,
+      altText,
+      srcSet,
+      size
+    };
+  }
+  showResults(data) {
+    console.log(data);
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
+    data.events.edges.forEach(_ref => {
+      let {
+        node
+      } = _ref;
+      resultsContainer.insertAdjacentHTML('beforeend', this.theMarkup(this.destructureData(node)));
+    });
+  }
+}());
 
 /***/ }),
 
@@ -25,53 +265,16 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ Search; }
+/* harmony export */   "POSTS_PER_PAGE": function() { return /* binding */ POSTS_PER_PAGE; },
+/* harmony export */   "graphQL": function() { return /* binding */ graphQL; },
+/* harmony export */   "rootUrl": function() { return /* binding */ rootUrl; }
 /* harmony export */ });
 // import React, { useState, useEffect } from '@wordpress/element';
-const POSTS_PER_PAGE = cnoEventData.postsPerPage;
-
-/**
- * =========
- * MODEL
- * =========
- */
-
-/**
- * =========
- * VIEW
- * =========
- */
-
-/** Updates the visibility of the filters */
-function setShowFilters() {
-  const filtersContainer = document.querySelector('.cno-event-search-filters');
-  filtersContainer.classList.toggle('hide');
-}
-/**
- *
- * @param {HTMLElement} button the toggle
- * @param {boolean} showFilters the filters' visibility (aka state)
- */
-function updateButtonText(button, showFilters) {
-  button.innerText = true === showFilters ? 'Hide Filters' : 'Show Filters';
-}
-/**
- * ===========
- * CONTROLLER
- * =========
- */
-
-function Search() {
-  let showFilters = false;
-  console.log('hello from search.js');
-  const filterToggle = document.getElementById('toggle-filters');
-  if (!filterToggle) return;
-  filterToggle.addEventListener('click', () => {
-    setShowFilters();
-    showFilters = !showFilters;
-    updateButtonText(filterToggle, showFilters);
-  });
-}
+const {
+  postsPerPage: POSTS_PER_PAGE,
+  rootUrl
+} = cnoEventData;
+const graphQL = `${rootUrl}/graphql`;
 
 /***/ }),
 
