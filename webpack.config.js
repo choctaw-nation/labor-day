@@ -32,6 +32,7 @@ module.exports = {
 				registrations: `.${THEME_DIR}/src/js/registrations.js`,
 				history: `.${THEME_DIR}/src/js/history.js`,
 				mySchedule: `.${THEME_DIR}/src/js/my-schedule/App.tsx`,
+				search: `.${THEME_DIR}/src/js/search/App.tsx`,
 			};
 			if (appNames.length > 0) {
 				appNames.forEach((appName) => {

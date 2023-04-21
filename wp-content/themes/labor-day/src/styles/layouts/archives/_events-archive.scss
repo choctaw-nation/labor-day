@@ -1,7 +1,10 @@
+:is(.post-type-archive-events) .hero {
+	height: auto;
+}
 .cno-events-wrapper {
-	.hero {
-		height: auto;
-	}
+	// width: 88%;
+	// max-width: 1400px;
+	margin: 0 auto;
 }
 .cno-events {
 	display: grid;

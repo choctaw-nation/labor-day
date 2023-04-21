@@ -97,29 +97,6 @@ class CNO_THEME {
 			'graphql_plural_name' => 'event_locations',
 		));
 	}
-	function enable_taxonomies_in_wp_graphql($args, $taxonomy) {
-		$taxonomies = array(
-			array(
-				'slug'   => 'event_type',
-				'single' => 'Event Type',
-				'plural' => 'Event Type'
-			),
-			array(
-				'slug'   => 'event_location',
-				'single' => 'Location',
-				'plural' => 'Locations'
-			),
-		);
-		foreach ($taxonomies as $tax) {
-			if ($tax['slug'] === $taxonomy) {
-				$args['show_in_graphql'] = true;
-				$args['graphql_single_name'] = $tax['single'];
-				$args['graphql_plural_name'] = $tax['plural'];
-			}
-		}
-		return $args;
-	}
-
 
 
 	/**
@@ -132,8 +109,8 @@ class CNO_THEME {
 
 
 		wp_enqueue_style('main', get_template_directory_uri() . '/dist/global.css', array(), $modified_styles);
-		wp_enqueue_script('cno-script', get_template_directory_uri() . '/dist/global.js', array(), $modified_scripts, true);
-		wp_localize_script('cno-script', 'cnoSiteData', array('rootUrl' => home_url()));
+		wp_enqueue_script('main', get_template_directory_uri() . '/dist/global.js', array(), $modified_scripts, in_footer: true);
+		wp_localize_script('main', 'cnoSiteData', array('rootUrl' => home_url(), 'postsPerPage' => get_query_var('posts_per_page')));
 
 		// if (!is_admin_bar_showing()) {
 		$this->remove_wordpress_styles(array('classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles'));

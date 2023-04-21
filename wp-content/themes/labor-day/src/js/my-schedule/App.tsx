@@ -1,7 +1,6 @@
 import '../../styles/pages/my-schedule.scss';
-import { createRoot } from '@wordpress/element';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
-import React, { useState, useEffect } from '@wordpress/element';
 import { LaborDayEvent, SortedEventsObject } from '../types';
 import LoadingSpinner from '../spinner';
 
