@@ -3,7 +3,7 @@
 /**
  * The display for Events inside of a loop.
  */
-global $post;
+// global $post;
 
 ?>
 <article class="cno-event">

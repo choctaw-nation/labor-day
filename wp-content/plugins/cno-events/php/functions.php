@@ -67,7 +67,8 @@ class CNOEventsPlugin {
 	function enqueue_event_styles() {
 		wp_enqueue_style('cno-events-global', plugin_dir_url('cno-events/build/style-index.css') . 'style-index.css', array(), '1.0');
 		if ('events' == get_post_type() & is_archive()) {
-			wp_enqueue_script('cno-event-scripts', plugin_dir_url('cno-events/build/index.js') . 'index.js');
+			wp_enqueue_script('cno-event-scripts', plugin_dir_url('cno-events/build/index.js') . 'index.js', in_footer: true);
+			wp_localize_script('cno-event-scripts', 'cnoEventData', array('postsPerPage' => get_query_var('posts_per_page')));
 		}
 	}
 }
