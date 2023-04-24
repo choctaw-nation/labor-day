@@ -5,11 +5,12 @@
 	// width: 88%;
 	// max-width: 1400px;
 	margin: 0 auto;
-}
-.cno-events {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, max(40rem));
-	align-items: stretch;
-	justify-content: center;
-	gap: 3rem;
+
+	.cno-events {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, max(40rem));
+		align-items: stretch;
+		justify-content: center;
+		gap: 2rem;
+	}
 }

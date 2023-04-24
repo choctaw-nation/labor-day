@@ -14,6 +14,7 @@ export default function SinglePost({ data }: { data: PrettyEventData }) {
 		sizes,
 		type,
 	} = data;
+
 	return (
 		<article className="cno-event">
 			<figure className="cno-event__image">

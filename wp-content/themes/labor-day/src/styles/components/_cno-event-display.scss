@@ -21,5 +21,9 @@
 	}
 	&__buttons {
 		margin-top: auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, max(18rem));
+		justify-items: flex-start;
+		gap: 1rem;
 	}
 }

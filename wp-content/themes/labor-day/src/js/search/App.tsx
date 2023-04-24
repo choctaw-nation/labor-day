@@ -3,7 +3,7 @@ import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './SearchBar';
 import ResultsContainer from './ResultsContainer';
-import { EventFilter, EventPost } from './types';
+import { EventFilter, EventFilters, EventPost } from './types';
 declare const cnoSiteData: {
 	rootUrl: string;
 	postsPerPage: string;
@@ -11,28 +11,35 @@ declare const cnoSiteData: {
 
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
 export const graphQL = `${rootUrl}/graphql`;
-// export const { rootUrl } = cnoSiteData;
-// export const POSTS_PER_PAGE = 10;
 
 function App() {
 	const [isLoading, setisLoading] = useState(true);
 	const [posts, setPosts] = useState<Array<EventPost>>([]);
-	const [filters, setFilters] = useState<Array<EventFilter>>();
-	const [checkedFilters, setCheckedFilters] = useState([]);
+	const [filters, setFilters] = useState<Array<EventFilters>>([]);
 	useEffect(() => {
 		Model.getPosts().then(
 			({ eventLocations, eventTypes, events, pageInfo }) => {
 				setPosts(events.nodes);
-				const filtersArr: EventFilter[] = [
-					...eventTypes.nodes,
-					...eventLocations.nodes,
+				const filtersArr: EventFilters[] = [
+					{
+						type: {
+							name: 'Event Types',
+							filters: [...eventTypes.nodes],
+						},
+					},
+					{
+						type: {
+							name: 'Locations',
+							filters: [...eventLocations.nodes],
+						},
+					},
 				];
 				setFilters(filtersArr);
 				setisLoading(false);
 			},
 		);
 	}, []);
-
+	const [checkedFilters, setCheckedFilters] = useState([]);
 	if (isLoading) {
 		return <LoadingSpinner />;
 	} else
@@ -40,12 +47,14 @@ function App() {
 			<div className="cno-search">
 				<SearchBar
 					filters={filters}
-					setFilters={setFilters}
 					checkedFilters={checkedFilters}
 					setCheckedFilters={setCheckedFilters}
 				/>
 				<div className="container">
-					<ResultsContainer posts={posts} />
+					<ResultsContainer
+						posts={posts}
+						checkedFilters={checkedFilters}
+					/>
 				</div>
 			</div>
 		);

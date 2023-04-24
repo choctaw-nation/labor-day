@@ -31,12 +31,37 @@ function destructureData(data: EventPost): PrettyEventData {
 	};
 	return destructuredData;
 }
-export default function ResultsContainer({ posts }: { posts: EventPost[] }) {
+export default function ResultsContainer({
+	posts,
+	checkedFilters,
+}: {
+	posts: EventPost[];
+}) {
 	return (
 		<section className="cno-events">
-			{posts.map((post) => (
-				<SinglePost data={destructureData(post)} />
-			))}
+			{posts.map((post) => {
+				if (checkedFilters.length === 0) {
+					return <SinglePost data={destructureData(post)} />;
+				} else if (checkedFilters.length === 1) {
+					if (
+						checkedFilters.includes(
+							post.eventLocations.nodes[0].name,
+						) ||
+						checkedFilters.includes(post.eventTypes.nodes[0].name)
+					) {
+						return <SinglePost data={destructureData(post)} />;
+					}
+				} else {
+					if (
+						checkedFilters.includes(
+							post.eventLocations.nodes[0].name,
+						) &&
+						checkedFilters.includes(post.eventTypes.nodes[0].name)
+					) {
+						return <SinglePost data={destructureData(post)} />;
+					}
+				}
+			})}
 		</section>
 	);
 }
