@@ -3240,21 +3240,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./wp-content/themes/labor-day/src/js/add-to-schedule/view.ts");
 
 
+
+/**
+ * Controller class that handles user interaction and data flow between the Model and View.
+ */
 class Controller {
-  debug = false;
+  /**
+   * Determines whether or not the controller is in debug mode.
+   */
+  debug = true;
+
+  /**
+   * The Model instance used by the controller.
+   */
+
+  /**
+   * The View instance used by the controller.
+   */
+
+  /**
+   * Creates a new Controller instance.
+   *
+   * @param {Model} model - The Model instance used by the controller.
+   * @param {View} view - The View instance used by the controller.
+   */
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    if (0 < this.view.buttons.length) {
+
+    // Register click event listeners for buttons in the view
+    if (this.view.buttons.length > 0) {
       this.view.clickHandler(this.model.addToSchedule.bind(this.model));
     }
-    if (this.debug) this.#debugMethod();
+
+    // Run a debug method if debug mode is enabled
+    if (this.debug) {
+      this.#debugMethod();
+    }
   }
+
+  /**
+   * A private method used for debugging.
+   * Logs a message and the buttons from the view to the console.
+   *
+   * @private
+   */
   #debugMethod() {
     console.log('hello from schedule-handler');
     console.log(this.view.buttons);
   }
 }
+
+// Export an instance of the Controller with default configuration
 const ScheduleManager = new Controller(new _model__WEBPACK_IMPORTED_MODULE_0__.Model(), new _view__WEBPACK_IMPORTED_MODULE_1__.View());
 
 /***/ }),
@@ -3270,9 +3307,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Model": function() { return /* binding */ Model; }
 /* harmony export */ });
-/** Set in the Global scope with PHP and the Wordpress `localize_script` method */
-
+/**
+ * @typedef {Object} SiteData
+ * @property {string} rootUrl - The root URL of the site
+ */
+/**
+ * Set in the Global scope with PHP and the Wordpress `localize_script` method
+ */
 class Model {
+  /**
+   * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
+   * @returns {SortedEventsObject} The user's saved schedule
+   */
   getSchedule() {
     const data = localStorage.getItem('schedule');
     const jsonData = data ? JSON.parse(data) : null;
@@ -3285,18 +3331,26 @@ class Model {
       return initialState;
     } else return jsonData;
   }
+
+  /**
+   * Adds an event to the user's schedule.
+   * @param {Object} param - The event's target element
+   * @param {HTMLElement} param.target - The event's target element
+   * @returns {Promise<string>} A promise that resolves with either "success" or "info"
+   * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+   */
   addToSchedule(_ref) {
     let {
       target
     } = _ref;
     return new Promise((resolve, reject) => {
       try {
-        this.#checkTargetElement(target);
+        this.checkTargetElement(target);
         const id = Number(target.dataset.id);
         const route = target.dataset.postType;
         const schedule = this.getSchedule();
         try {
-          this.#getEventData(id, route).then(res => {
+          this.getEventData(id, route).then(res => {
             const dayProp = res.day.toLowerCase();
             const check = schedule[dayProp].filter(item => item.id === res.id);
             if (check.length === 0) {
@@ -3315,7 +3369,13 @@ class Model {
       }
     });
   }
-  #checkTargetElement(target) {
+
+  /**
+   * Checks if the target element is valid for scheduling.
+   * @param {HTMLElement} target - The event's target element
+   * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+   */
+  checkTargetElement(target) {
     if (!target) {
       throw new Error('No target element provided');
     }
@@ -3326,7 +3386,15 @@ class Model {
       throw new Error(`id or route is undefined! \n id: ${target.dataset.id} \n route: ${target.dataset.postType} `);
     }
   }
-  #getEventData = async (id, route) => {
+
+  /**
+   * Retrieves event data from the API.
+   * @param {number} id - The ID of the event
+   * @param {string} route - The type of the event
+   * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
+   * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
+   */
+  getEventData = async (id, route) => {
     try {
       const response = await fetch(`${cnoSiteData.rootUrl}/wp-json/wp/v2/${route}/${id}?_fields=acf,title,link`);
       const data = await response.json();
@@ -3364,11 +3432,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "View": function() { return /* binding */ View; }
 /* harmony export */ });
+/**
+ * View class to manage the display of the UI components
+ */
 class View {
+  /**
+   * List of HTMLButtonElement objects
+   * @type {NodeListOf<HTMLButtonElement>}
+   */
+
+  /**
+   * Current page URL
+   * @type {string}
+   */
+
+  /**
+   * Constructs a new View object
+   */
   constructor() {
     this.currentPage = location.href;
     this.buttons = document.querySelectorAll('[data-add-to-schedule]');
   }
+
+  /**
+   * Adds click event listener to buttons and handles click events
+   * @param {function} method - A function that returns a Promise with a response string
+   * @returns {void}
+   */
   clickHandler(method) {
     if (this.buttons.length === 0) {
       return;
@@ -3380,7 +3470,9 @@ class View {
           target
         } = ev;
         const confirmationContainer = target?.closest('.cno-event__buttons')?.querySelector('.cno-event-schedule-confirmation');
-        if (!confirmationContainer) return;
+        if (!confirmationContainer) {
+          return;
+        }
         method(ev).then(response => {
           confirmationContainer.innerHTML = `<div class='alert alert-${response}' role='alert'>${this.getResponseMessage(response)}</div>`;
           setTimeout(() => {
@@ -3392,6 +3484,12 @@ class View {
       });
     });
   }
+
+  /**
+   * Returns a response message based on the response string
+   * @param {string} response - A string representing the response
+   * @returns {string} A response message based on the response string
+   */
   getResponseMessage(response) {
     if ('success' === response) {
       return `Added to your schedule!`;

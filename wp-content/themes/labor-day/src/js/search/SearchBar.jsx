@@ -2,7 +2,6 @@ import React, { useState } from '@wordpress/element';
 import SearchFilters from './SearchFilters';
 export default function SearchBar({
 	filters,
-	setFilters,
 	checkedFilters,
 	setCheckedFilters,
 }) {

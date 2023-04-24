@@ -39,9 +39,13 @@ function App() {
 			},
 		);
 	}, []);
-	const [checkedFilters, setCheckedFilters] = useState([]);
+	const [checkedFilters, setCheckedFilters] = useState<string[]>([]);
 	if (isLoading) {
-		return <LoadingSpinner />;
+		return (
+			<div className="container">
+				<LoadingSpinner />
+			</div>
+		);
 	} else
 		return (
 			<div className="cno-search">

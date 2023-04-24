@@ -61,7 +61,9 @@ function App() {
   }, []);
   const [checkedFilters, setCheckedFilters] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   if (isLoading) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
   } else return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "cno-search"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_SearchBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -303,7 +305,6 @@ __webpack_require__.r(__webpack_exports__);
 function SearchBar(_ref) {
   let {
     filters,
-    setFilters,
     checkedFilters,
     setCheckedFilters
   } = _ref;

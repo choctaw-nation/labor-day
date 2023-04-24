@@ -1,11 +1,20 @@
 import { LaborDayEvent, SortedEventsObject } from '../types';
 
-/** Set in the Global scope with PHP and the Wordpress `localize_script` method */
-declare const cnoSiteData: {
-	rootUrl: string;
-};
+/**
+ * @typedef {Object} SiteData
+ * @property {string} rootUrl - The root URL of the site
+ */
+
+/**
+ * Set in the Global scope with PHP and the Wordpress `localize_script` method
+ */
+declare const cnoSiteData: { rootUrl: string };
 
 export class Model {
+	/**
+	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
+	 * @returns {SortedEventsObject} The user's saved schedule
+	 */
 	getSchedule(): SortedEventsObject {
 		const data: string | null = localStorage.getItem('schedule');
 		const jsonData: SortedEventsObject = data ? JSON.parse(data) : null;
@@ -19,15 +28,22 @@ export class Model {
 		} else return jsonData;
 	}
 
+	/**
+	 * Adds an event to the user's schedule.
+	 * @param {Object} param - The event's target element
+	 * @param {HTMLElement} param.target - The event's target element
+	 * @returns {Promise<string>} A promise that resolves with either "success" or "info"
+	 * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+	 */
 	addToSchedule({ target }: { target: HTMLElement }): Promise<string> {
 		return new Promise((resolve, reject) => {
 			try {
-				this.#checkTargetElement(target);
+				this.checkTargetElement(target);
 				const id: number = Number(target.dataset.id!);
 				const route = target.dataset.postType!;
 				const schedule = this.getSchedule();
 				try {
-					this.#getEventData(id, route).then((res) => {
+					this.getEventData(id, route).then((res) => {
 						const dayProp = res.day.toLowerCase();
 						const check = schedule[dayProp].filter(
 							(item: LaborDayEvent) => item.id === res.id,
@@ -51,7 +67,13 @@ export class Model {
 			}
 		});
 	}
-	#checkTargetElement(target: HTMLElement) {
+
+	/**
+	 * Checks if the target element is valid for scheduling.
+	 * @param {HTMLElement} target - The event's target element
+	 * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+	 */
+	private checkTargetElement(target: HTMLElement) {
 		if (!target) {
 			throw new Error('No target element provided');
 		}
@@ -68,7 +90,14 @@ export class Model {
 		}
 	}
 
-	#getEventData = async (
+	/**
+	 * Retrieves event data from the API.
+	 * @param {number} id - The ID of the event
+	 * @param {string} route - The type of the event
+	 * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
+	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
+	 */
+	private getEventData = async (
 		id: number,
 		route: string,
 	): Promise<LaborDayEvent> => {

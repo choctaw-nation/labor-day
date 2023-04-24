@@ -36,6 +36,7 @@ export default function ResultsContainer({
 	checkedFilters,
 }: {
 	posts: EventPost[];
+	checkedFilters: string[];
 }) {
 	return (
 		<section className="cno-events">
