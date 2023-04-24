@@ -1,9 +1,8 @@
+@use '../../abstracts/mixins' as m;
 :is(.post-type-archive-events) .hero {
 	height: auto;
 }
 .cno-events-wrapper {
-	// width: 88%;
-	// max-width: 1400px;
 	margin: 0 auto;
 
 	.cno-events {
@@ -12,5 +11,19 @@
 		align-items: stretch;
 		justify-content: center;
 		gap: 2rem;
+		@include m.media-breakpoint-down(md) {
+			@include m.displayFlex(column);
+		}
+	}
+}
+.cno-search {
+	@include m.media-breakpoint-down(md) {
+		.event-meta {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 10px;
+			justify-items: flex-start;
+			align-items: stretch;
+		}
 	}
 }

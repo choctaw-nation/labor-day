@@ -42,8 +42,9 @@ get_header();
 					echo '</div>';
 				}  ?>
 			</aside>
-			<div class="sidebar__buttons">
-				<a href="#" class="btn__fill--secondary" data-add-to-schedule='true'>Add to Schedule</a>
+			<div class="sidebar__buttons cno-event__buttons">
+				<button class="btn__fill--secondary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to
+					Schedule</button>
 				<div class="sidebar__confirmation cno-event-schedule-confirmation"></div>
 			</div>
 		</div>

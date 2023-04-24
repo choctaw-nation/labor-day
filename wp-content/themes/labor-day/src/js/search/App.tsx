@@ -3,7 +3,9 @@ import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './SearchBar';
 import ResultsContainer from './ResultsContainer';
-import { EventFilter, EventFilters, EventPost } from './types';
+import { EventFilters, EventPost } from './types';
+import { Controller } from '../add-to-schedule/controller';
+
 declare const cnoSiteData: {
 	rootUrl: string;
 	postsPerPage: string;
@@ -36,6 +38,7 @@ function App() {
 				];
 				setFilters(filtersArr);
 				setisLoading(false);
+				const scheduleManager = new Controller();
 			},
 		);
 	}, []);

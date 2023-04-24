@@ -10672,7 +10672,6 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
 @media (max-width: 991.98px) {
   .footer-callout {
     padding: 3.5rem 1rem;
-    margin: 0;
   }
 }
 .footer-callout .container {
@@ -11023,6 +11022,25 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
   align-items: stretch;
   justify-content: center;
   gap: 2rem;
+}
+@media (max-width: 767.98px) {
+  .cno-events-wrapper .cno-events {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .cno-search .event-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-items: flex-start;
+    align-items: stretch;
+  }
 }
 
 .hero--color, .hero--image, .hero {

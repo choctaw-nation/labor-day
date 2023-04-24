@@ -10,7 +10,7 @@ import { LaborDayEvent, SortedEventsObject } from '../types';
  */
 declare const cnoSiteData: { rootUrl: string };
 
-export class Model {
+export default new (class Model {
 	/**
 	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
 	 * @returns {SortedEventsObject} The user's saved schedule
@@ -123,4 +123,4 @@ export class Model {
 			throw new Error(err);
 		}
 	};
-}
+})();

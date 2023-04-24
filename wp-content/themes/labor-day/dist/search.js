@@ -2,6 +2,256 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./wp-content/themes/labor-day/src/js/add-to-schedule/controller.ts":
+/*!**************************************************************************!*\
+  !*** ./wp-content/themes/labor-day/src/js/add-to-schedule/controller.ts ***!
+  \**************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Controller": function() { return /* binding */ Controller; },
+/* harmony export */   "ScheduleManager": function() { return /* binding */ ScheduleManager; }
+/* harmony export */ });
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./model */ "./wp-content/themes/labor-day/src/js/add-to-schedule/model.ts");
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view */ "./wp-content/themes/labor-day/src/js/add-to-schedule/view.ts");
+
+
+
+/**
+ * Controller class that handles user interaction and data flow between the Model and View.
+ */
+class Controller {
+  /**
+   * Determines whether or not the controller is in debug mode.
+   */
+  debug = true;
+  constructor() {
+    // Register click event listeners for buttons in the view
+    if (_view__WEBPACK_IMPORTED_MODULE_1__["default"].buttons.length > 0) {
+      _view__WEBPACK_IMPORTED_MODULE_1__["default"].clickHandler(_model__WEBPACK_IMPORTED_MODULE_0__["default"].addToSchedule.bind(_model__WEBPACK_IMPORTED_MODULE_0__["default"]));
+    }
+
+    // Run a debug method if debug mode is enabled
+    if (this.debug) {
+      this.#debugMethod();
+    }
+  }
+
+  /**
+   * A private method used for debugging.
+   * Logs a message and the buttons from the view to the console.
+   *
+   * @private
+   */
+  #debugMethod() {
+    console.log('hello from schedule-handler');
+    console.log(_view__WEBPACK_IMPORTED_MODULE_1__["default"].buttons);
+  }
+}
+
+// Export an instance of the Controller with default configuration
+const ScheduleManager = new Controller();
+
+/***/ }),
+
+/***/ "./wp-content/themes/labor-day/src/js/add-to-schedule/model.ts":
+/*!*********************************************************************!*\
+  !*** ./wp-content/themes/labor-day/src/js/add-to-schedule/model.ts ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @typedef {Object} SiteData
+ * @property {string} rootUrl - The root URL of the site
+ */
+/**
+ * Set in the Global scope with PHP and the Wordpress `localize_script` method
+ */
+/* harmony default export */ __webpack_exports__["default"] = (new class Model {
+  /**
+   * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
+   * @returns {SortedEventsObject} The user's saved schedule
+   */
+  getSchedule() {
+    const data = localStorage.getItem('schedule');
+    const jsonData = data ? JSON.parse(data) : null;
+    if (null === jsonData) {
+      const initialState = {
+        friday: [],
+        saturday: [],
+        sunday: []
+      };
+      return initialState;
+    } else return jsonData;
+  }
+
+  /**
+   * Adds an event to the user's schedule.
+   * @param {Object} param - The event's target element
+   * @param {HTMLElement} param.target - The event's target element
+   * @returns {Promise<string>} A promise that resolves with either "success" or "info"
+   * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+   */
+  addToSchedule(_ref) {
+    let {
+      target
+    } = _ref;
+    return new Promise((resolve, reject) => {
+      try {
+        this.checkTargetElement(target);
+        const id = Number(target.dataset.id);
+        const route = target.dataset.postType;
+        const schedule = this.getSchedule();
+        try {
+          this.getEventData(id, route).then(res => {
+            const dayProp = res.day.toLowerCase();
+            const check = schedule[dayProp].filter(item => item.id === res.id);
+            if (check.length === 0) {
+              schedule[dayProp].push(res);
+              localStorage.setItem('schedule', JSON.stringify(schedule));
+              resolve('success');
+            } else if (check) {
+              resolve('info');
+            }
+          });
+        } catch (err) {
+          reject(err);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  }
+
+  /**
+   * Checks if the target element is valid for scheduling.
+   * @param {HTMLElement} target - The event's target element
+   * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
+   */
+  checkTargetElement(target) {
+    if (!target) {
+      throw new Error('No target element provided');
+    }
+    if ('false' === target.dataset.addToSchedule) {
+      throw new Error("This button doesn't control scheduling!");
+    }
+    if (undefined === target.dataset.id || undefined === target.dataset.postType) {
+      throw new Error(`id or route is undefined! \n id: ${target.dataset.id} \n route: ${target.dataset.postType} `);
+    }
+  }
+
+  /**
+   * Retrieves event data from the API.
+   * @param {number} id - The ID of the event
+   * @param {string} route - The type of the event
+   * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
+   * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
+   */
+  getEventData = async (id, route) => {
+    try {
+      const response = await fetch(`${cnoSiteData.rootUrl}/wp-json/wp/v2/${route}/${id}?_fields=acf,title,link`);
+      const data = await response.json();
+      const {
+        acf: {
+          info
+        }
+      } = data;
+      const event = {
+        id: id,
+        link: data.link,
+        title: data.title.rendered,
+        description: data.acf.description,
+        day: info.day,
+        start_time: info.start_time,
+        end_time: info.end_time
+      };
+      return event;
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+}());
+
+/***/ }),
+
+/***/ "./wp-content/themes/labor-day/src/js/add-to-schedule/view.ts":
+/*!********************************************************************!*\
+  !*** ./wp-content/themes/labor-day/src/js/add-to-schedule/view.ts ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/**
+ * View class to manage the display of the UI components
+ */
+/* harmony default export */ __webpack_exports__["default"] = (new class View {
+  /**
+   * List of HTMLButtonElement objects
+   */
+
+  /**
+   * Current page URL
+   */
+
+  /**
+   * Constructs a new View object
+   */
+  constructor() {
+    this.currentPage = location.href;
+    this.buttons = document.querySelectorAll('[data-add-to-schedule]');
+  }
+
+  /**
+   * Adds click event listener to buttons and handles click events
+   * @param {function} method - A function that returns a Promise with a response string
+   * @returns {void}
+   */
+  clickHandler(method) {
+    if (this.buttons.length === 0) {
+      return;
+    }
+    this.buttons.forEach(button => {
+      button.addEventListener('click', ev => {
+        ev.preventDefault();
+        const {
+          target
+        } = ev;
+        const confirmationContainer = target?.closest('.cno-event__buttons')?.querySelector('.cno-event-schedule-confirmation');
+        if (!confirmationContainer) {
+          return;
+        }
+        method(ev).then(response => {
+          confirmationContainer.innerHTML = `<div class='alert alert-${response}' role='alert'>${this.getResponseMessage(response)}</div>`;
+          setTimeout(() => {
+            confirmationContainer.innerHTML = '';
+          }, 7000);
+        }).catch(err => {
+          console.error(err);
+        });
+      });
+    });
+  }
+
+  /**
+   * Returns a response message based on the response string
+   * @param {string} response - A string representing the response
+   * @returns {string} A response message based on the response string
+   */
+  getResponseMessage(response) {
+    if ('success' === response) {
+      return `Added to your schedule!`;
+    }
+    if ('info' === response) {
+      return `This is already in your schedule.`;
+    }
+    return '';
+  }
+}());
+
+/***/ }),
+
 /***/ "./wp-content/themes/labor-day/src/js/search/App.tsx":
 /*!***********************************************************!*\
   !*** ./wp-content/themes/labor-day/src/js/search/App.tsx ***!
@@ -20,6 +270,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Model */ "./wp-content/themes/labor-day/src/js/search/Model.js");
 /* harmony import */ var _SearchBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SearchBar */ "./wp-content/themes/labor-day/src/js/search/SearchBar.jsx");
 /* harmony import */ var _ResultsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ResultsContainer */ "./wp-content/themes/labor-day/src/js/search/ResultsContainer.tsx");
+/* harmony import */ var _add_to_schedule_controller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../add-to-schedule/controller */ "./wp-content/themes/labor-day/src/js/add-to-schedule/controller.ts");
+
 
 
 
@@ -57,6 +309,7 @@ function App() {
       }];
       setFilters(filtersArr);
       setisLoading(false);
+      const scheduleManager = new _add_to_schedule_controller__WEBPACK_IMPORTED_MODULE_5__.Controller();
     });
   }, []);
   const [checkedFilters, setCheckedFilters] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);

@@ -3234,6 +3234,7 @@ function withinMaxClamp(min, value, max) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Controller": function() { return /* binding */ Controller; },
 /* harmony export */   "ScheduleManager": function() { return /* binding */ ScheduleManager; }
 /* harmony export */ });
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./model */ "./wp-content/themes/labor-day/src/js/add-to-schedule/model.ts");
@@ -3249,28 +3250,10 @@ class Controller {
    * Determines whether or not the controller is in debug mode.
    */
   debug = true;
-
-  /**
-   * The Model instance used by the controller.
-   */
-
-  /**
-   * The View instance used by the controller.
-   */
-
-  /**
-   * Creates a new Controller instance.
-   *
-   * @param {Model} model - The Model instance used by the controller.
-   * @param {View} view - The View instance used by the controller.
-   */
-  constructor(model, view) {
-    this.model = model;
-    this.view = view;
-
+  constructor() {
     // Register click event listeners for buttons in the view
-    if (this.view.buttons.length > 0) {
-      this.view.clickHandler(this.model.addToSchedule.bind(this.model));
+    if (_view__WEBPACK_IMPORTED_MODULE_1__["default"].buttons.length > 0) {
+      _view__WEBPACK_IMPORTED_MODULE_1__["default"].clickHandler(_model__WEBPACK_IMPORTED_MODULE_0__["default"].addToSchedule.bind(_model__WEBPACK_IMPORTED_MODULE_0__["default"]));
     }
 
     // Run a debug method if debug mode is enabled
@@ -3287,12 +3270,12 @@ class Controller {
    */
   #debugMethod() {
     console.log('hello from schedule-handler');
-    console.log(this.view.buttons);
+    console.log(_view__WEBPACK_IMPORTED_MODULE_1__["default"].buttons);
   }
 }
 
 // Export an instance of the Controller with default configuration
-const ScheduleManager = new Controller(new _model__WEBPACK_IMPORTED_MODULE_0__.Model(), new _view__WEBPACK_IMPORTED_MODULE_1__.View());
+const ScheduleManager = new Controller();
 
 /***/ }),
 
@@ -3304,9 +3287,6 @@ const ScheduleManager = new Controller(new _model__WEBPACK_IMPORTED_MODULE_0__.M
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Model": function() { return /* binding */ Model; }
-/* harmony export */ });
 /**
  * @typedef {Object} SiteData
  * @property {string} rootUrl - The root URL of the site
@@ -3314,7 +3294,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Set in the Global scope with PHP and the Wordpress `localize_script` method
  */
-class Model {
+/* harmony default export */ __webpack_exports__["default"] = (new class Model {
   /**
    * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
    * @returns {SortedEventsObject} The user's saved schedule
@@ -3417,7 +3397,7 @@ class Model {
       throw new Error(err);
     }
   };
-}
+}());
 
 /***/ }),
 
@@ -3429,21 +3409,16 @@ class Model {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "View": function() { return /* binding */ View; }
-/* harmony export */ });
 /**
  * View class to manage the display of the UI components
  */
-class View {
+/* harmony default export */ __webpack_exports__["default"] = (new class View {
   /**
    * List of HTMLButtonElement objects
-   * @type {NodeListOf<HTMLButtonElement>}
    */
 
   /**
    * Current page URL
-   * @type {string}
    */
 
   /**
@@ -3499,7 +3474,7 @@ class View {
     }
     return '';
   }
-}
+}());
 
 /***/ }),
 

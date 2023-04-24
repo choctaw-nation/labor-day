@@ -1,18 +1,16 @@
 /**
  * View class to manage the display of the UI components
  */
-export class View {
+export default new (class View {
 	/**
 	 * List of HTMLButtonElement objects
-	 * @type {NodeListOf<HTMLButtonElement>}
 	 */
-	buttons;
+	buttons: NodeListOf<HTMLButtonElement>;
 
 	/**
 	 * Current page URL
-	 * @type {string}
 	 */
-	currentPage;
+	currentPage: string;
 
 	/**
 	 * Constructs a new View object
@@ -29,7 +27,7 @@ export class View {
 	 * @param {function} method - A function that returns a Promise with a response string
 	 * @returns {void}
 	 */
-	clickHandler(method) {
+	clickHandler(method: Function): void {
 		if (this.buttons.length === 0) {
 			return;
 		}
@@ -48,7 +46,7 @@ export class View {
 				}
 
 				method(ev)
-					.then((response) => {
+					.then((response: string) => {
 						confirmationContainer.innerHTML = `<div class='alert alert-${response}' role='alert'>${this.getResponseMessage(
 							response,
 						)}</div>`;
@@ -56,7 +54,7 @@ export class View {
 							confirmationContainer.innerHTML = '';
 						}, 7000);
 					})
-					.catch((err) => {
+					.catch((err: any) => {
 						console.error(err);
 					});
 			});
@@ -68,7 +66,7 @@ export class View {
 	 * @param {string} response - A string representing the response
 	 * @returns {string} A response message based on the response string
 	 */
-	getResponseMessage(response) {
+	getResponseMessage(response: string): string {
 		if ('success' === response) {
 			return `Added to your schedule!`;
 		}
@@ -77,4 +75,4 @@ export class View {
 		}
 		return '';
 	}
-}
+})();
