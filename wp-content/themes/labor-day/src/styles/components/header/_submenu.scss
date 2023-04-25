@@ -1,2 +1,18 @@
 @use '../../abstracts/mixins' as m;
 @use '../../abstracts/variables' as v;
+
+.sub-menu {
+	.current-menu-item {
+		background-color: v.$color-secondary;
+		a {
+			color: white;
+		}
+	}
+	li {
+		transition: background-color v.$transition--standard;
+	}
+	a {
+		font-size: 1.8rem;
+		transition: color v.$transition--standard;
+	}
+}

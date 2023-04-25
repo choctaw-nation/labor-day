@@ -14,7 +14,7 @@ $current_year = date("Y");
 	<div class="container">
 		<div class="row">
 			<div class="col footer-callout__image">
-				<figure><img src="<?php echo get_theme_file_uri('/images/historic-capitol.jpg'); ?>" alt="" srcset=""></figure>
+				<figure><img src="<?php echo get_field('footer_image', 'options')['sizes']['large']; ?>" alt="" srcset=""></figure>
 			</div>
 			<div class="col footer-callout__text">
 				<div class="h4 headline">Choctaw Nation Capitol Grounds</div>
@@ -37,21 +37,40 @@ $current_year = date("Y");
 					</figure>
 				</a>
 			</div>
-			<div class="col">
+			<div class="col footer-navbar__container">
 				<?php wp_nav_menu(
 					array(
-						'theme_location' => 'footer_menu',
-						'menu_class' => 'navbar__menu p-0 m-0 d-inline-flex',
+						'theme_location' => 'footer_menu-1',
+						'menu_class' => 'footer-navbar__menu',
 						'container' => 'nav',
-						'container_class' => 'navbar',
+						'container_class' => 'footer-navbar',
+					)
+				);
+				?>
+				<?php wp_nav_menu(
+					array(
+						'theme_location' => 'footer_menu-2',
+						'menu_class' => 'footer-navbar__menu',
+						'container' => 'nav',
+						'container_class' => 'footer-navbar',
 					)
 				);
 				?>
 			</div>
-			<div class="col">Socials</div>
+			<div class="col socials">
+				<?php extract(get_field('socials', 'options')); ?>
+				<a href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
+					<?php global $FACEBOOK_LOGO; ?>
+					<?php echo $FACEBOOK_LOGO; ?>
+				</a>
+				<a href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
+					<?php global $INSTAGRAM_LOGO; ?>
+					<?php echo $INSTAGRAM_LOGO; ?>
+				</a>
+			</div>
 		</div>
 	</div>
-	<div id="copyright" class="py-5 text-center">
+	<div id=" copyright" class="py-5 text-center">
 		<?php echo "&copy;&nbsp; {$current_year} Choctaw Nation of Oklahoma. All Rights Reserved."; ?>
 	</div>
 </footer>

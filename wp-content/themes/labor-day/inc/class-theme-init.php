@@ -123,11 +123,12 @@ class CNO_THEME {
 		foreach ($handles as $handle) wp_dequeue_style($handle);
 	}
 
-	function register_cno_menus() {
+	public function register_cno_menus() {
 		register_nav_menus(array(
 			'primary_menu' => __('Primary Menu', 'cno'),
 			'mobile_menu' => __('Mobile Menu', 'cno'),
-			'footer_menu'  => __('Footer Menu', 'cno'),
+			'footer_menu-1'  => __('Footer Menu 1', 'cno'),
+			'footer_menu-2'  => __('Footer Menu 2', 'cno'),
 		));
 	}
 	public function alter_post_types() {

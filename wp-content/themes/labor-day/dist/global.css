@@ -10547,6 +10547,20 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
   color: white;
 }
 
+.sub-menu .current-menu-item {
+  background-color: #f09416;
+}
+.sub-menu .current-menu-item a {
+  color: white;
+}
+.sub-menu li {
+  transition: background-color 0.3s ease;
+}
+.sub-menu a {
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+}
+
 #site-header {
   background-color: #50551d;
 }
@@ -10624,7 +10638,10 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
 }
 
 .footer {
+  position: relative;
+  display: block;
   background-color: #50551d;
+  padding: 1rem;
 }
 .footer .logo {
   color: white;
@@ -10637,24 +10654,60 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: flex-start;
   }
-}
-.footer .row .col {
-  justify-content: center;
-}
-@media (max-width: 767.98px) {
-  .footer .navbar__menu {
-    flex-direction: column;
-    align-items: flex-start;
+  .footer .row .col {
+    margin-bottom: 2rem;
   }
 }
-.footer .navbar .menu-item {
+
+.footer-navbar {
+  font-size: 1.6rem;
+}
+.footer-navbar__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 205px);
+  gap: 1rem;
+  align-content: center;
+}
+.footer-navbar__menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.footer-navbar .menu-item {
+  font-size: 1.2em;
+  line-height: 1.35em;
   margin: 0 1rem;
 }
-.footer .navbar .menu-item a {
+.footer-navbar .menu-item a {
   color: white;
+}
+.footer-navbar .menu-item:hover a {
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.socials .social-icon {
+  display: inline-block;
+  margin: 0 5px;
+}
+.socials .social-icon svg {
+  fill: white;
+  aspect-ratio: 1;
+  width: 3.5rem;
 }
 
 @media (max-width: 991.98px) {

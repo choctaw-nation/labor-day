@@ -4,6 +4,7 @@
 @use './buttons';
 @use './header/hamburger';
 @use './header/offcanvas';
+@use './header/submenu';
 
 #site-header {
 	background-color: v.$color-primary--dark;

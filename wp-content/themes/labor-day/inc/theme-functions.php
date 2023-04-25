@@ -6,8 +6,46 @@
  * @since 1.0
  * 
  */
+add_action('acf/init', 'cno_acf_options_page');
+function cno_acf_options_page() {
+    if (function_exists('acf_add_options_page')) {
+        acf_add_options_page(array(
+            'page_title'  => __('Theme General Settings'),
+            'menu_title'  => __('Theme Settings'),
+            'menu_slug'   => 'theme-general-settings',
+            'capability'  => 'edit_posts',
+            'redirect'    => false,
+        ));
+        acf_add_options_sub_page(array(
+            'page_title'    => 'Hours of Operations',
+            'menu_title'    => 'Operational Hours',
+            'parent_slug'   => 'theme-general-settings',
+        ));
 
+        acf_add_options_sub_page(array(
+            'page_title'    => 'Theme Footer Settings',
+            'menu_title'    => 'Footer Settings',
+            'parent_slug'   => 'theme-general-settings',
+        ));
+    }
+}
 
+/**
+ * Take the pretty day (Friday, Saturday, Sunday) and returns the date
+ * 
+ * @param string $day Long, capitalized day
+ * @return string Date as long month, single number (e.g. "September 1");
+ */
+function cno_get_the_date(string $day): string {
+    if ('Friday' === $day) {
+        $date = 'September 1';
+    } elseif ('Saturday' === $day) {
+        $date = 'September 2';
+    } else {
+        $date = 'September 3';
+    }
+    return $date;
+}
 /**
  * Enqueues the page style.
  *
@@ -71,22 +109,4 @@ function cno_enqueue_page_assets(string $id, array $deps = array()) {
 
     cno_enqueue_page_style($id, $deps['styles']);
     cno_enqueue_page_script($id, $deps['scripts']);
-}
-
-
-/**
- * Take the pretty day (Friday, Saturday, Sunday) and returns the date
- * 
- * @param string $day Long, capitalized day
- * @return string Date as long month, single number (e.g. "September 1");
- */
-function cno_get_the_date(string $day): string {
-    if ('Friday' === $day) {
-        $date = 'September 1';
-    } elseif ('Saturday' === $day) {
-        $date = 'September 2';
-    } else {
-        $date = 'September 3';
-    }
-    return $date;
 }
