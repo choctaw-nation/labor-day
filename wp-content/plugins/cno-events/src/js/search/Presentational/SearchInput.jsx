@@ -1,4 +1,4 @@
-export default function SearchInput({ search, handleSearchInput }) {
+export default function SearchInput( { search, handleSearchInput } ) {
 	return (
 		<input
 			type="text"
@@ -6,8 +6,8 @@ export default function SearchInput({ search, handleSearchInput }) {
 			id="search"
 			placeholder="Find an Event"
 			className="cno-event-search__search-bar"
-			value={search}
-			onChange={handleSearchInput}
+			value={ search }
+			onChange={ handleSearchInput }
 		/>
 	);
 }

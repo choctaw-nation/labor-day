@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Labor Day Theme">
+  <description>WordPress Coding Standards</description>
+  <rule ref="WordPress"/>
+  <exclude-pattern>/vendor/</exclude-pattern>
+  <exclude-pattern>/wp-content/plugins/*</exclude-pattern>
+  <exclude-pattern>/wp-admin/*</exclude-pattern>
+  <exclude-pattern>/wp-includes/*</exclude-pattern>
+</ruleset>

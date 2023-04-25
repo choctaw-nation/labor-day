@@ -1,7 +1,7 @@
 export interface SortedEventsObject {
-	friday: Array<LaborDayEvent>;
-	saturday: Array<LaborDayEvent>;
-	sunday: Array<LaborDayEvent>;
+	friday: Array< LaborDayEvent >;
+	saturday: Array< LaborDayEvent >;
+	sunday: Array< LaborDayEvent >;
 }
 export interface LaborDayEvent {
 	id: number;

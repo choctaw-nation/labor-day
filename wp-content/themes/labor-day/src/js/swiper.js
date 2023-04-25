@@ -4,7 +4,7 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 
 const defaultArgs = {
-	modules: [Navigation, Pagination],
+	modules: [ Navigation, Pagination ],
 	direction: 'horizontal',
 	loop: false,
 
@@ -27,11 +27,11 @@ const defaultArgs = {
  * @param {HTMLElement} el the element to create a slider on
  * @returns swiper instance
  */
-export function newSlider(el, args = {}) {
-	if (window.innerWidth < 767) {
+export function newSlider( el, args = {} ) {
+	if ( window.innerWidth < 767 ) {
 		defaultArgs.slidesPerView = 1;
 	}
-	const newArgs = Object.assign({}, defaultArgs, args);
-	const swiper = new Swiper(el, newArgs);
+	const newArgs = Object.assign( {}, defaultArgs, args );
+	const swiper = new Swiper( el, newArgs );
 	return swiper;
 }

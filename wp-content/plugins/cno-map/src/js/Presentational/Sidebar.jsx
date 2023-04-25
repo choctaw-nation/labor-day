@@ -6,7 +6,7 @@ import {
 } from '../components/Utilities';
 import { SearchFilters } from './SearchFilters';
 
-export function Sidebar({
+export function Sidebar( {
 	reduceMotion,
 	setReduceMotion,
 	isLoading,
@@ -14,45 +14,48 @@ export function Sidebar({
 	businessListings,
 	atBottom,
 	setAtBottom,
-}) {
-	const [filters, setFilters] = useState({ categories: [], option: 'Both' });
-	function handleCategoryChange(filterName) {
+} ) {
+	const [ filters, setFilters ] = useState( {
+		categories: [],
+		option: 'Both',
+	} );
+	function handleCategoryChange( filterName ) {
 		const { categories } = filters;
-		if (categories.includes(filterName)) {
-			setFilters((prev) => {
+		if ( categories.includes( filterName ) ) {
+			setFilters( ( prev ) => {
 				return {
 					...prev,
 					categories: categories.filter(
-						(name) => name !== filterName,
+						( name ) => name !== filterName
 					),
 				};
-			});
+			} );
 		} else {
-			setFilters((prev) => {
+			setFilters( ( prev ) => {
 				return {
 					...prev,
-					categories: [...prev.categories, filterName],
+					categories: [ ...prev.categories, filterName ],
 				};
-			});
+			} );
 		}
 	}
 
-	const [option, setOption] = useState('Both');
+	const [ option, setOption ] = useState( 'Both' );
 	return (
 		<div className="sidebar">
 			<Logo />
 			<ReduceMotionToggle
-				reduceMotion={reduceMotion}
-				setReduceMotion={setReduceMotion}
+				reduceMotion={ reduceMotion }
+				setReduceMotion={ setReduceMotion }
 			/>
 			<SearchFilters
-				filters={filters}
-				setFilters={setFilters}
-				handleCategoryChange={handleCategoryChange}
-				option={option}
-				setOption={setOption}
+				filters={ filters }
+				setFilters={ setFilters }
+				handleCategoryChange={ handleCategoryChange }
+				option={ option }
+				setOption={ setOption }
 			/>
-			{isLoading && <LoadingMesssage />}
+			{ isLoading && <LoadingMesssage /> }
 		</div>
 	);
 }

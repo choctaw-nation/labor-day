@@ -1,27 +1,27 @@
 import { POSTS_PER_PAGE, graphQL } from '../search/Utilities';
 
-export default new (class Model {
-	async makeRequest(request) {
+export default new ( class Model {
+	async makeRequest( request ) {
 		try {
-			const response = await fetch(`${graphQL}`, {
+			const response = await fetch( `${ graphQL }`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(request),
-			});
+				body: JSON.stringify( request ),
+			} );
 			const { data } = await response.json();
 			return data;
-		} catch (error) {
-			console.error('makeRequest error:', error);
+		} catch ( error ) {
+			console.error( 'makeRequest error:', error );
 			throw error;
 		}
 	}
 	async getPosts() {
 		const variables = {
-			first: Number(POSTS_PER_PAGE),
+			first: Number( POSTS_PER_PAGE ),
 			after: '',
-			include: ['LARGE'],
+			include: [ 'LARGE' ],
 			size: 'LARGE',
 		};
 		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
@@ -94,10 +94,10 @@ export default new (class Model {
 			variables: variables,
 		};
 		try {
-			const data = await this.makeRequest(request);
+			const data = await this.makeRequest( request );
 			return data;
-		} catch (err) {
-			console.error(err);
+		} catch ( err ) {
+			console.error( err );
 		}
 	}
-})();
+} )();

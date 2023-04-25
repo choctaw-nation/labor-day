@@ -1,21 +1,21 @@
 import React, { useState } from '@wordpress/element';
 import SearchFilters from './SearchFilters';
 import SearchInput from './SearchInput';
-export default function SearchBar({
+export default function SearchBar( {
 	filters,
 	checkedFilters,
 	setCheckedFilters,
 	handleSearchInput,
 	search,
-}) {
-	const [showFilters, setShowFilters] = useState(false);
+} ) {
+	const [ showFilters, setShowFilters ] = useState( false );
 	return (
 		<section className="cno-event-search">
 			<div className="container">
 				<h2 className="cno-event-search__title">Search Events</h2>
 				<SearchInput
-					search={search}
-					handleSearchInput={handleSearchInput}
+					search={ search }
+					handleSearchInput={ handleSearchInput }
 				/>
 				<div className="cno-event-search__filters">
 					<div className="cno-event-search__filters--header">
@@ -24,19 +24,20 @@ export default function SearchBar({
 						</h3>
 						<button
 							className="btn__outline--secondary"
-							onClick={() => {
-								setShowFilters(!showFilters);
-							}}>
-							{showFilters ? 'Hide Filters' : 'Show Filters'}
+							onClick={ () => {
+								setShowFilters( ! showFilters );
+							} }
+						>
+							{ showFilters ? 'Hide Filters' : 'Show Filters' }
 						</button>
 					</div>
-					{showFilters && (
+					{ showFilters && (
 						<SearchFilters
-							filters={filters}
-							checkedFilters={checkedFilters}
-							setCheckedFilters={setCheckedFilters}
+							filters={ filters }
+							checkedFilters={ checkedFilters }
+							setCheckedFilters={ setCheckedFilters }
 						/>
-					)}
+					) }
 				</div>
 			</div>
 		</section>

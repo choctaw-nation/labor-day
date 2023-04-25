@@ -1,25 +1,25 @@
 import svg from 'bundle-text:../../../public/great-seal-2.svg';
-export async function getData(url, queryParams = '') {
-	if (queryParams.length > 0) {
+export async function getData( url, queryParams = '' ) {
+	if ( queryParams.length > 0 ) {
 		url += queryParams;
 	}
 	try {
-		const response = await fetch(url);
+		const response = await fetch( url );
 		const data = await response.json();
 		return data;
-	} catch (err) {
-		throw new Error(err);
+	} catch ( err ) {
+		throw new Error( err );
 	}
 }
-export function ReduceMotionToggle({ reduceMotion, setReduceMotion }) {
+export function ReduceMotionToggle( { reduceMotion, setReduceMotion } ) {
 	return (
 		<div className="motion-toggle">
 			Reduce Motion:
 			<label className="switch">
 				<input
 					type="checkbox"
-					checked={reduceMotion}
-					onChange={() => setReduceMotion(!reduceMotion)}
+					checked={ reduceMotion }
+					onChange={ () => setReduceMotion( ! reduceMotion ) }
 				/>
 				<span className="slider round"></span>
 			</label>
@@ -31,7 +31,7 @@ export function Logo() {
 		<a
 			href="/"
 			className="logo"
-			dangerouslySetInnerHTML={{ __html: svg }}
+			dangerouslySetInnerHTML={ { __html: svg } }
 		/>
 	);
 }

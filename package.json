@@ -5,7 +5,16 @@
   "main": "wp-content/themes/labor-day/src/index.js",
   "scripts": {
     "start": "wp-scripts start",
-    "build": "wp-scripts build"
+    "build": "wp-scripts build",
+    "format": "wp-scripts format ./wp-content/themes/labor-day/src/*",
+    "lint:style": "wp-scripts lint-style ./wp-content/themes/labor-day/src/**/*.scss",
+    "lint:js": "wp-scripts lint-js",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js"
   },
   "author": "Choctaw Nation of Oklahoma",
   "license": "ISC",

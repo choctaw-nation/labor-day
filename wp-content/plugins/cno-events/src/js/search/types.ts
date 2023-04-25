@@ -42,7 +42,7 @@ export type EventPost = {
 						name: string;
 						width: string;
 						sourceUrl: string;
-					},
+					}
 				];
 			};
 			srcSet: string;

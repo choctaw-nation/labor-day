@@ -4,7 +4,7 @@ declare const cnoSiteData: {
 	postsPerPage: string;
 };
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-export const graphQL = `${rootUrl}/graphql`;
+export const graphQL = `${ rootUrl }/graphql`;
 
 export const fuzzySearchKeys = {
 	keys: [
@@ -15,7 +15,7 @@ export const fuzzySearchKeys = {
 		{ name: 'locations.name', weight: 0.8 },
 	],
 };
-export function destructureData(data: EventPost): PrettyEventData {
+export function destructureData( data: EventPost ): PrettyEventData {
 	const {
 		eventLocations: { nodes: locations },
 	} = data;
@@ -29,7 +29,7 @@ export function destructureData(data: EventPost): PrettyEventData {
 			node: { altText, srcSet, mediaDetails, sizes },
 		},
 	} = data;
-	const size = mediaDetails.sizes[0];
+	const size = mediaDetails.sizes[ 0 ];
 	const destructuredData = {
 		locations,
 		type,
