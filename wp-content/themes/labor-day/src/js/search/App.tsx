@@ -1,56 +1,12 @@
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';
-import SearchBar from './SearchBar';
-import ResultsContainer from './ResultsContainer';
-import { EventFilters, EventPost, PrettyEventData } from './types';
+import SearchBar from './Components/SearchBar';
+import ResultsContainer from './Presentational/ResultsContainer';
+import { EventFilters, EventPost } from './types';
 import Fuse from 'fuse.js';
+import { destructureData, fuzzySearchKeys } from './Utilities';
 
-declare const cnoSiteData: {
-	rootUrl: string;
-	postsPerPage: string;
-};
-
-export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-export const graphQL = `${rootUrl}/graphql`;
-const fuzzySearchKeys = {
-	keys: [
-		{ name: 'title', weight: 1 },
-		{ name: 'event_info.description', weight: 0.5 },
-		{ name: 'event_info.info.day', weight: 0.03 },
-		{ name: 'type.name', weight: 0.8 },
-		{ name: 'locations.name', weight: 0.8 },
-	],
-};
-function destructureData(data: EventPost): PrettyEventData {
-	const {
-		eventLocations: { nodes: locations },
-	} = data;
-	const {
-		eventTypes: { nodes: type },
-	} = data;
-	const { eventId, link, title } = data;
-	const { event_info } = data;
-	const {
-		featuredImage: {
-			node: { altText, srcSet, mediaDetails, sizes },
-		},
-	} = data;
-	const size = mediaDetails.sizes[0];
-	const destructuredData = {
-		locations,
-		type,
-		sizes,
-		eventId,
-		link,
-		title,
-		event_info,
-		altText,
-		srcSet,
-		size,
-	};
-	return destructuredData;
-}
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<Array<EventPost>>([]);
@@ -94,9 +50,7 @@ function App() {
 			const fuse = new Fuse(posts, {
 				...fuzzySearchKeys,
 			});
-			console.log(`Search Terms: ${search}`);
 			const results = fuse.search(search);
-			console.log(results);
 			setPosts(results.map((result) => result.item));
 			setIsLoading(false);
 		}, 500);

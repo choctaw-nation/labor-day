@@ -50,9 +50,9 @@ function App() {
 			const fuse = new Fuse(posts, {
 				...fuzzySearchKeys,
 			});
-			console.log(`Search Terms: ${search}`);
+			// console.log(`Search Terms: ${search}`);
 			const results = fuse.search(search);
-			console.log(results);
+			// console.log(results);
 			setPosts(results.map((result) => result.item));
 			setIsLoading(false);
 		}, 500);

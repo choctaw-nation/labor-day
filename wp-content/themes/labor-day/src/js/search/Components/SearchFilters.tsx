@@ -1,5 +1,5 @@
 import React from '@wordpress/element';
-import { EventFilter } from './types';
+import { EventFilter } from '../types';
 
 export default function SearchFilters({
 	filters,
@@ -7,7 +7,6 @@ export default function SearchFilters({
 	setCheckedFilters,
 }) {
 	function handleClick(x, { target }) {
-		// console.log(x, target);
 		if (!target.id) return;
 		if (checkedFilters.includes(target.id)) {
 			setCheckedFilters(

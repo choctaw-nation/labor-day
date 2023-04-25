@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from '@wordpress/element';
-import { PrettyEventData } from './types';
-import Model from '../add-to-schedule/model';
+import React from '@wordpress/element';
+import { PrettyEventData } from '../types';
+import CNOButtons from '../Components/CNOButtons';
 
 export default function SinglePost({ data }: { data: PrettyEventData }) {
 	const {
@@ -15,31 +15,7 @@ export default function SinglePost({ data }: { data: PrettyEventData }) {
 		sizes,
 		type,
 	} = data;
-	const [responseMessage, setResponseMessage] = useState('');
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			setResponseMessage('');
-		}, 7000);
-		return () => clearTimeout(timeoutId);
-	}, [responseMessage]);
-	function addToSchedule(ev: Event) {
-		Model.addToSchedule(ev)
-			.then((response: string) => {
-				let message = '';
-				if ('success' === response) {
-					message = `Added to your schedule!`;
-				}
-				if ('info' === response) {
-					message = `This is already in your schedule.`;
-				}
-				setResponseMessage(`<div class="alert alert-${response}" role="alert">
-					${message}
-				</div>`);
-			})
-			.catch((err: any) => {
-				console.error(err);
-			});
-	}
+
 	return (
 		<article className="cno-event">
 			<figure className="cno-event__image">
@@ -85,21 +61,7 @@ export default function SinglePost({ data }: { data: PrettyEventData }) {
 				</div>
 			</aside>
 			<div className="about">{event_info.description}</div>
-			<div className="cno-event__buttons">
-				<button
-					className="btn__fill--primary"
-					data-add-to-schedule="true"
-					data-id={eventId}
-					onClick={addToSchedule}>
-					Add to Schedule
-				</button>
-				<a href={link} className="btn__outline--primary">
-					Learn More
-				</a>
-				<div
-					className="cno-event-schedule-confirmation"
-					dangerouslySetInnerHTML={{ __html: responseMessage }}></div>
-			</div>
+			<CNOButtons eventId={eventId} link={link} />
 		</article>
 	);
 }

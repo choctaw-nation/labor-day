@@ -1,4 +1,4 @@
-import { POSTS_PER_PAGE, graphQL } from '../search/App';
+import { POSTS_PER_PAGE, graphQL } from '../search/Utilities';
 
 export default new (class Model {
 	async makeRequest(request) {

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from '@wordpress/element';
+import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
-// import Model from '../add-to-schedule/model';
 
 export default function SinglePost({ data }: { data: PrettyEventData }) {
 	const {
 		locations,
-		eventId,
-		link,
+		// eventId,
+		// link,
 		title,
 		event_info,
 		altText,
@@ -15,13 +14,6 @@ export default function SinglePost({ data }: { data: PrettyEventData }) {
 		sizes,
 		type,
 	} = data;
-	const [responseMessage, setResponseMessage] = useState('');
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			setResponseMessage('');
-		}, 7000);
-		return () => clearTimeout(timeoutId);
-	}, [responseMessage]);
 
 	return (
 		<article className="cno-event">
@@ -68,11 +60,6 @@ export default function SinglePost({ data }: { data: PrettyEventData }) {
 				</div>
 			</aside>
 			<div className="about">{event_info.description}</div>
-			<div className="cno-event__buttons">
-				<a href={link} className="btn__outline--primary">
-					Learn More
-				</a>
-			</div>
 		</article>
 	);
 }

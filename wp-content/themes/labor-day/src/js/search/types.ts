@@ -58,7 +58,7 @@ export type EventPost = {
 };
 /** The Formatted Event Post Type Data */
 export type PrettyEventData = {
-	locations: EventLocation[];
+	locations?: EventLocation[];
 	type: EventType[];
 	sizes: string;
 	eventId: number;

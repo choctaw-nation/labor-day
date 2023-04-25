@@ -1,12 +1,12 @@
 import React from '@wordpress/element';
 import SinglePost from './SinglePost';
-import { EventPost, PrettyEventData } from './types';
+import { PrettyEventData } from '../types';
 
 export default function ResultsContainer({
 	posts,
 	checkedFilters,
 }: {
-	posts: EventPost[];
+	posts: PrettyEventData[];
 	checkedFilters: string[];
 }) {
 	return (
@@ -14,25 +14,26 @@ export default function ResultsContainer({
 			{posts.map((post) => {
 				if (checkedFilters.length === 0) {
 					return <SinglePost data={post} />;
-				} else if (checkedFilters.length === 1) {
+				} else if (
+					[checkedFilters, post.locations, post.type].every(
+						(el) => el.length > 0,
+					)
+				) {
 					if (
-						checkedFilters.includes(
-							post.eventLocations.nodes[0].name,
-						) ||
-						checkedFilters.includes(post.eventTypes.nodes[0].name)
+						checkedFilters.includes(post.locations?.[0]?.name) ||
+						checkedFilters.includes(post.type[0]?.name)
 					) {
 						return <SinglePost data={post} />;
 					}
 				} else {
 					if (
-						checkedFilters.includes(
-							post.eventLocations.nodes[0].name,
-						) &&
-						checkedFilters.includes(post.eventTypes.nodes[0].name)
+						checkedFilters.includes(post.locations?.[0]?.name) &&
+						checkedFilters.includes(post.type[0]?.name)
 					) {
 						return <SinglePost data={post} />;
 					}
 				}
+				return null;
 			})}
 		</section>
 	);

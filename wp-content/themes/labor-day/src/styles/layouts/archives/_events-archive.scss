@@ -26,6 +26,9 @@
 			align-items: stretch;
 		}
 	}
+	.container {
+		min-height: 50vh;
+	}
 }
 .cno-event-search {
 	&__search-bar {
