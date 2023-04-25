@@ -27,3 +27,11 @@
 		}
 	}
 }
+.cno-event-search {
+	&__search-bar {
+		width: auto;
+		border: 2px solid black;
+		// border-radius: 1rem;
+		margin-bottom: 2rem;
+	}
+}

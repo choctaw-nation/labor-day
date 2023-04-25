@@ -1,6 +1,6 @@
 import React from '@wordpress/element';
 import SinglePost from './SinglePost';
-import { EventPost, PrettyEventData } from './types';
+import { EventPost } from '../types';
 
 export default function ResultsContainer({
 	posts,

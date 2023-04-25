@@ -8,7 +8,7 @@ export class Controller {
 	/**
 	 * Determines whether or not the controller is in debug mode.
 	 */
-	debug = true;
+	debug = false;
 
 	constructor() {
 		// Register click event listeners for buttons in the view

@@ -3249,7 +3249,7 @@ class Controller {
   /**
    * Determines whether or not the controller is in debug mode.
    */
-  debug = true;
+  debug = false;
   constructor() {
     // Register click event listeners for buttons in the view
     if (_view__WEBPACK_IMPORTED_MODULE_1__["default"].buttons.length > 0) {
@@ -3327,10 +3327,9 @@ __webpack_require__.r(__webpack_exports__);
       try {
         this.checkTargetElement(target);
         const id = Number(target.dataset.id);
-        const route = target.dataset.postType;
         const schedule = this.getSchedule();
         try {
-          this.getEventData(id, route).then(res => {
+          this.getEventData(id).then(res => {
             const dayProp = res.day.toLowerCase();
             const check = schedule[dayProp].filter(item => item.id === res.id);
             if (check.length === 0) {
@@ -3362,8 +3361,8 @@ __webpack_require__.r(__webpack_exports__);
     if ('false' === target.dataset.addToSchedule) {
       throw new Error("This button doesn't control scheduling!");
     }
-    if (undefined === target.dataset.id || undefined === target.dataset.postType) {
-      throw new Error(`id or route is undefined! \n id: ${target.dataset.id} \n route: ${target.dataset.postType} `);
+    if (undefined === target.dataset.id) {
+      throw new Error(`id or route is undefined! \n id: ${target.dataset.id} `);
     }
   }
 
@@ -3374,9 +3373,9 @@ __webpack_require__.r(__webpack_exports__);
    * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
    * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
    */
-  getEventData = async (id, route) => {
+  getEventData = async id => {
     try {
-      const response = await fetch(`${cnoSiteData.rootUrl}/wp-json/wp/v2/${route}/${id}?_fields=acf,title,link`);
+      const response = await fetch(`${cnoSiteData.rootUrl}/wp-json/wp/v2/events/${id}?_fields=acf,title,link`);
       const data = await response.json();
       const {
         acf: {

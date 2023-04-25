@@ -11029,20 +11029,6 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
   gap: 1rem;
 }
 
-.featured-image {
-  max-height: 60rem;
-}
-.featured-image img {
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  width: 100%;
-}
-
-.meta {
-  font-size: 1.2em;
-}
-
 .cno-event__about {
   font-size: 1.35em;
 }
@@ -11094,6 +11080,12 @@ a.btn, a.btn__fill, a.btn__fill--primary, a.navbar__menu-item.cta, a.btn__fill--
     justify-items: flex-start;
     align-items: stretch;
   }
+}
+
+.cno-event-search__search-bar {
+  width: auto;
+  border: 2px solid black;
+  margin-bottom: 2rem;
 }
 
 .hero--color, .hero--image, .hero {

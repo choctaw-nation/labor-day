@@ -40,10 +40,9 @@ export default new (class Model {
 			try {
 				this.checkTargetElement(target);
 				const id: number = Number(target.dataset.id!);
-				const route = target.dataset.postType!;
 				const schedule = this.getSchedule();
 				try {
-					this.getEventData(id, route).then((res) => {
+					this.getEventData(id).then((res) => {
 						const dayProp = res.day.toLowerCase();
 						const check = schedule[dayProp].filter(
 							(item: LaborDayEvent) => item.id === res.id,
@@ -80,12 +79,9 @@ export default new (class Model {
 		if ('false' === target.dataset.addToSchedule) {
 			throw new Error("This button doesn't control scheduling!");
 		}
-		if (
-			undefined === target.dataset.id ||
-			undefined === target.dataset.postType
-		) {
+		if (undefined === target.dataset.id) {
 			throw new Error(
-				`id or route is undefined! \n id: ${target.dataset.id} \n route: ${target.dataset.postType} `,
+				`id or route is undefined! \n id: ${target.dataset.id} `,
 			);
 		}
 	}
@@ -97,13 +93,10 @@ export default new (class Model {
 	 * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
 	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
 	 */
-	private getEventData = async (
-		id: number,
-		route: string,
-	): Promise<LaborDayEvent> => {
+	private getEventData = async (id: number): Promise<LaborDayEvent> => {
 		try {
 			const response = await fetch(
-				`${cnoSiteData.rootUrl}/wp-json/wp/v2/${route}/${id}?_fields=acf,title,link`,
+				`${cnoSiteData.rootUrl}/wp-json/wp/v2/events/${id}?_fields=acf,title,link`,
 			);
 			const data = await response.json();
 			const {
