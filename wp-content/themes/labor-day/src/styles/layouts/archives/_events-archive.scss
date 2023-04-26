@@ -1,40 +1,42 @@
-@use '../../abstracts/mixins' as m;
+@use "../../abstracts/mixins" as m;
 :is(.post-type-archive-events) .hero {
 	height: auto;
 }
-.cno-events-wrapper {
-	margin: 0 auto;
-
-	.cno-events {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, max(40rem));
-		align-items: stretch;
-		justify-content: center;
-		gap: 2rem;
-		@include m.media-breakpoint-down(md) {
-			@include m.displayFlex(column);
-		}
-	}
-}
-.cno-search {
-	@include m.media-breakpoint-down(md) {
-		.event-meta {
+:where(.archive) {
+	.cno-events-wrapper {
+		margin: 0 auto;
+		.cno-events {
 			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 10px;
-			justify-items: flex-start;
+			grid-template-columns: repeat(auto-fit, max(40rem));
 			align-items: stretch;
+			justify-content: center;
+			gap: 2rem;
+			@include m.media-breakpoint-down(md) {
+				@include m.displayFlex(column);
+			}
 		}
 	}
-	.container {
-		min-height: 50vh;
+	.cno-search {
+		@include m.media-breakpoint-down(md) {
+			.event-meta {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
+				justify-items: flex-start;
+				align-items: stretch;
+			}
+		}
+		:where(&) > .container {
+			min-height: 50vh;
+		}
 	}
-}
-.cno-event-search {
-	&__search-bar {
-		width: auto;
-		border: 2px solid black;
-		// border-radius: 1rem;
-		margin-bottom: 2rem;
+	.cno-event-search {
+		height: fit-content;
+		&__search-bar {
+			width: auto;
+			border: 2px solid black;
+			// border-radius: 1rem;
+			margin-bottom: 2rem;
+		}
 	}
 }

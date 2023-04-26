@@ -1,21 +1,41 @@
-.cno-event {
-	&__about {
-		font-size: 1.35em;
-	}
-	.cno-event-meta {
-		position: relative;
-		margin-bottom: 2rem;
-	}
-	.sidebar {
-		position: sticky;
-		top: 5%;
-		display: flex;
-		flex-direction: column;
-		grid-column-start: 2;
-		grid-column-end: 3;
-		&__buttons {
-			a {
-				align-self: flex-start;
+@use "../../abstracts/mixins" as m;
+:where(.single) {
+	.cno-event {
+		@include m.media-breakpoint-up(lg) {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 2rem;
+			max-width: 140rem;
+			width: 88%;
+			margin: 0 auto;
+		}
+		&__image {
+			max-height: 60rem;
+			img {
+				height: 100%;
+				object-fit: contain;
+				width: 100%;
+			}
+		}
+		&__about {
+			font-size: 1.35em;
+		}
+		.cno-event-meta {
+			position: relative;
+			margin-bottom: 2rem;
+		}
+		.sidebar {
+			@include m.media-breakpoint-up(lg) {
+				position: sticky;
+				top: 5%;
+				grid-column-start: 2;
+				grid-column-end: 3;
+			}
+			@include m.displayFlex(column, flex-start, stretch);
+			&__buttons {
+				a {
+					align-self: flex-start;
+				}
 			}
 		}
 	}

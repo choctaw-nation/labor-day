@@ -1,8 +1,8 @@
-import React from '@wordpress/element';
-import { PrettyEventData } from '../types';
-import CNOButtons from '../Components/CNOButtons';
+import React from "@wordpress/element";
+import { PrettyEventData } from "../types";
+import CNOButtons from "../Components/CNOButtons";
 
-export default function SinglePost( { data }: { data: PrettyEventData } ) {
+export default function SinglePost({ data }: { data: PrettyEventData }) {
 	const {
 		locations,
 		eventId,
@@ -15,53 +15,69 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 		sizes,
 		type,
 	} = data;
-
+	function setDate(day: string): string {
+		let date: string = "";
+		switch (day) {
+			case "Friday":
+				date = "September 1";
+				return date;
+			case "Saturday":
+				date = "September 2";
+				return date;
+			case "Sunday":
+				date = "September 3";
+				return date;
+			default:
+				date = "";
+				return date;
+		}
+	}
 	return (
 		<article className="cno-event">
 			<figure className="cno-event__image">
 				<img
-					width={ size.width }
-					height={ size.height }
+					width={size.width}
+					height={size.height}
 					src=""
 					className="attachment-large size-large wp-post-image"
-					alt={ altText }
+					alt={altText}
 					decoding="async"
-					srcSet={ srcSet }
-					sizes={ sizes }
+					srcSet={srcSet}
+					sizes={sizes}
 				/>
 			</figure>
-			<h2>{ title }</h2>
+			<h2>{title}</h2>
 			<aside className="event-meta">
 				<div className="event-meta__day">
 					<strong>When: </strong>
-					{ event_info.info.day }, September 1
+					{event_info.info.day}, {setDate(event_info.info.day)}
 				</div>
-				{ locations.length > 0 && (
+				{locations && locations.length > 0 && (
 					<div className="event-meta__location">
-						<strong>Where:</strong>{ ' ' }
-						<a href={ locations[ 0 ].link } rel="tag">
-							{ locations[ 0 ].name }
+						<strong>Where:</strong>{" "}
+						<a href={locations![0].link} rel="tag">
+							{locations![0].name}
 						</a>
 					</div>
-				) }
+				)}
 				<div className="event-meta__start-time">
 					<strong>Start Time:</strong>
-					{ ' ' + event_info.info.startTime }
+					{" " + event_info.info.startTime}
 				</div>
-				{ event_info.info.endTime && (
+				{event_info.info.endTime && (
 					<div className="event-meta__end-time">
-						<strong>End Time:</strong> { event_info.info.endTime }
+						<strong>End Time:</strong> {event_info.info.endTime}
 					</div>
-				) }
+				)}
 				<div className="event-meta__type">
-					<strong>Event Type:</strong>{ ' ' }
+					<strong>Event Type:</strong>{" "}
 					<a href="${type[0].link}" rel="tag">
-						{ type[ 0 ].name }
+						{type[0].name}
 					</a>
 				</div>
 			</aside>
-			<div className="about">{ event_info.description }</div>
-			<CNOButtons eventId={ eventId } link={ link } />
+			<div className="about">{event_info.description}</div>
+			<CNOButtons eventId={eventId} link={link} />
 		</article>
 	);
 }
