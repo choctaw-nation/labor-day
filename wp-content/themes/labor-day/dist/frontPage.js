@@ -2,42 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./wp-content/themes/labor-day/src/js/fadeOnScroll.js":
-/*!************************************************************!*\
-  !*** ./wp-content/themes/labor-day/src/js/fadeOnScroll.js ***!
-  \************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ fadeIn; }
-/* harmony export */ });
-const sectionObserver = new IntersectionObserver(reveal, {
-  root: null,
-  threshold: 0.15
-});
-function reveal(entries, observer) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove('fadeIn--hide');
-  observer.unobserve(entry.target);
-}
-
-/**
- * 1. Select elements
- * 2. ForEach section, observe section
- */
-function fadeIn(selector) {
-  const elements = document.querySelectorAll(selector);
-  elements.forEach(el => {
-    sectionObserver.observe(el);
-    el.classList.add('fadeIn');
-    el.classList.add('fadeIn--hide');
-  });
-}
-
-/***/ }),
-
 /***/ "./wp-content/themes/labor-day/src/js/front-page/Countdown.jsx":
 /*!*********************************************************************!*\
   !*** ./wp-content/themes/labor-day/src/js/front-page/Countdown.jsx ***!
@@ -10759,25 +10723,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_pages_front_page_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../styles/pages/front-page.scss */ "./wp-content/themes/labor-day/src/styles/pages/front-page.scss");
 /* harmony import */ var _Countdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Countdown */ "./wp-content/themes/labor-day/src/js/front-page/Countdown.jsx");
 /* harmony import */ var _swiper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../swiper */ "./wp-content/themes/labor-day/src/js/swiper.js");
-/* harmony import */ var _fadeOnScroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../fadeOnScroll */ "./wp-content/themes/labor-day/src/js/fadeOnScroll.js");
 
 
 
 
 
-
-console.log('hi there from frontpage.js');
-(0,_fadeOnScroll__WEBPACK_IMPORTED_MODULE_4__["default"])('.fadeIn');
 (function initSlider() {
-  const entertainmentSlider = document.getElementById('entertainment-slider');
-  const registrationSlider = document.getElementById('registration-slider');
+  const entertainmentSlider = document.getElementById("entertainment-slider");
+  const registrationSlider = document.getElementById("registration-slider");
   (0,_swiper__WEBPACK_IMPORTED_MODULE_3__.newSlider)(entertainmentSlider);
   (0,_swiper__WEBPACK_IMPORTED_MODULE_3__.newSlider)(registrationSlider);
 })();
 function App() {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Countdown__WEBPACK_IMPORTED_MODULE_2__["default"], null);
 }
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(document.getElementById('countdown')).render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null));
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(document.getElementById("countdown")).render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null));
 }();
 /******/ })()
 ;

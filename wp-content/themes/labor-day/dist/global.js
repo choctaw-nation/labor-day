@@ -3504,6 +3504,43 @@ dropdownElementList.forEach(el => {
 
 /***/ }),
 
+/***/ "./wp-content/themes/labor-day/src/js/fadeOnScroll.js":
+/*!************************************************************!*\
+  !*** ./wp-content/themes/labor-day/src/js/fadeOnScroll.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ fadeIn; }
+/* harmony export */ });
+const sectionObserver = new IntersectionObserver(reveal, {
+  root: null,
+  threshold: 0.15
+});
+function reveal(entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('fadeIn--hide');
+  observer.unobserve(entry.target);
+}
+
+/**
+ * 1. Select elements
+ * 2. ForEach section, observe section
+ */
+function fadeIn(selector) {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(el => {
+    sectionObserver.observe(el);
+    el.classList.add('fadeIn');
+    el.classList.add('fadeIn--hide');
+  });
+}
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.esm.js":
 /*!*********************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.esm.js ***!
@@ -8828,10 +8865,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_add_to_schedule_controller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/add-to-schedule/controller */ "./wp-content/themes/labor-day/src/js/add-to-schedule/controller.ts");
 /* harmony import */ var _js_dropdownNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/dropdownNav */ "./wp-content/themes/labor-day/src/js/dropdownNav.js");
 /* harmony import */ var _js_dropdownNav__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_dropdownNav__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _js_fadeOnScroll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/fadeOnScroll */ "./wp-content/themes/labor-day/src/js/fadeOnScroll.js");
 
 
 
 
+
+(0,_js_fadeOnScroll__WEBPACK_IMPORTED_MODULE_4__["default"])(".fadeIn");
 }();
 /******/ })()
 ;

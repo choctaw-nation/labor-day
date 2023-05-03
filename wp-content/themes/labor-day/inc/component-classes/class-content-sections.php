@@ -83,18 +83,20 @@ class ContentSections extends ContentComponents {
      */
     public function two_col_text_and_media(array $options, bool $echo = true) {
         $default = array(
-            'headline'           => '',
-            'headline_element'   => '',
-            'content'            => '',
-            'content_wrapper'    => 'div',
-            'content_class'      => 'text-content mb-5',
-            'cta_text'           => null,
-            'cta_link'           => null,
-            'cta_external'       => false,
-            'cta_class'          => 'btn__primary--fill',
-            'media_type'         => 'photo',
-            'reverse'            => false,
-            'image_src'          => null,
+            'split'             => [6, 6],
+            'headline'          => '',
+            'headline_element'  => 'h2',
+            'headline_class'    => 'headline',
+            'content'           => '',
+            'content_wrapper'   => 'p',
+            'content_class'     => 'text-content mb-5',
+            'cta_text'          => null,
+            'cta_link'          => null,
+            'cta_external'      => false,
+            'cta_class'         => 'cta__btn btn__fill--primary mt-5 align-self-start',
+            'media_type'        => 'photo',
+            'reverse'           => false,
+            'image_src'         => get_theme_file_uri('/images/placeholder.jpg'),
         );
 
         $options = array_merge($default, $options);
@@ -102,26 +104,24 @@ class ContentSections extends ContentComponents {
         extract($options);
 
 
-        $container_start = $reverse ? '<div class="two-col row flex-row-reverse">' : '<div class="two-col row">';
+        $container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
         $div_end = '</div>';
-        $col_1_start = '<div class="two-col__col-1 col-lg-6">';
-        $col_2_start = '<div class="two-col__col-2 col-lg-6">';
+        $col_start_1 = "<div class='col-lg-{$split[0]} two-col__media'>";
+        $col_start_2 = "<div class='col-lg-{$split[1]} two-col__content'>";
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__image'><img src={$image_src} /></figure>";
+            $col_1_content = "<figure class='two-col__media--container'><img src='{$image_src}' class='two-col__media--image' /></figure>";
         } else if ($media_type === 'video') {
-            $col_1_content = "<figure class='two-col__video'>Video!</figure>";
+            $col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
         }
         $headline_args = array(
+            "headline_element"      => $headline_element,
+            'headline_class'        => $headline_class,
             "subheadline_content"   => $content,
             "subheadline_element"   => $content_wrapper,
-            "subheadline_class"     => $content_class,
+            "subheadline_class"     => $content_class
         );
-        if (!empty($headline_element)) {
-            $headline_args['headline_element'] = $headline_element;
-        }
         $col_2_content = $this->headline($headline, false, $headline_args);
-
         if (!empty($cta_text)) {
             $btn_options = array(
                 'text' => $cta_text,
@@ -133,8 +133,8 @@ class ContentSections extends ContentComponents {
         }
         $markup = "
         {$container_start}
-            {$col_1_start}{$col_1_content}{$div_end}
-            {$col_2_start}{$col_2_content}{$div_end}
+            {$col_start_1}{$col_1_content}{$div_end}
+            {$col_start_2}{$col_2_content}{$div_end}
         {$div_end}";
 
         if ($echo) {

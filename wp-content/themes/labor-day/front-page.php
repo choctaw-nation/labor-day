@@ -8,7 +8,6 @@
  */
 
 $content = new ContentSections();
-global $lorem;
 cno_enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
 get_header(); ?>
 <main class="site-content">
@@ -34,11 +33,7 @@ get_header(); ?>
 					</figure>
 				</div>
 				<div class="col-lg-8">
-					<p>The Choctaw people have gathered on the grounds of the Choctaw Capitol for many years during the Labor Day weekend to celebrate family, fellowship together and to
-						honor Choctaw traditions. Enjoy cultural events like stickball games and the princess contest, concerts, arts and crafts, a free 5k run and much more! As in Labor
-						Days past, the weekend schedule is packed full of events to accommodate those who enjoy sporting events, traditional events like gourd dancing, princess pageants, or
-						just family time on the grounds. Join us Sunday for Church services and stay for the all-day Chahta gospel singing. Our Labor Day weekend will be a great experience
-						for everyone as we fellowship together and honor our Choctaw traditions.</p>
+					<p><?php echo get_field('section_2')['about']; ?></p>
 				</div>
 			</div>
 		</div>
@@ -106,7 +101,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline' => 'Map',
-				'content' => $lorem,
+				'content' => lorem,
 				'cta_text' => "View Map",
 				'cta_link' => '/map'
 			); ?>
@@ -118,7 +113,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline' => 'Labor Day Festival on Facebook',
-				'content' => $lorem,
+				'content' => lorem,
 				'cta_text' => "Follow On Facebook",
 				'cta_external' => true,
 				'cta_link' => 'https://facebook.com',

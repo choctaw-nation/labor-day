@@ -18,8 +18,7 @@ extract($args);
 			<div class="col text-callout__content">
 				<?php if ('history' === $post->post_name) : ?>
 					<figure>
-						<?php global $NATION_VALUES_SVG; ?>
-						<?php echo $NATION_VALUES_SVG; ?>
+						<?php echo NATION_VALUES_SVG; ?>
 					</figure>
 				<?php else : ?>
 					<div class='text-content'>Some HTML should be dynamically injected here.</h2>
