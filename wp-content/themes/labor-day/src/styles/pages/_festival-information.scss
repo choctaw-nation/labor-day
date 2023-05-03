@@ -2,13 +2,10 @@
 @use "../abstracts/variables" as v;
 
 .section-header {
-
 	@include m.displayFlex(column, flex-start, stretch);
 
 	&__banner-image {
-		// width: 100%;
 		max-height: 60rem;
-		// position: relative;
 		@include m.fitMedia;
 	}
 
@@ -18,7 +15,6 @@
 }
 
 .faq {
-
 	@include m.displayFlex(column, flex-start, stretch);
 	border-top: 2px solid v.$color-primary;
 	margin: 1rem auto;
@@ -41,7 +37,6 @@
 }
 
 #general-rules {
-
 	ol {
 		line-height: 1.4;
 	}
