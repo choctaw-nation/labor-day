@@ -1,4 +1,4 @@
-@forward './bs_breakpoints';
+@forward "./bs_breakpoints";
 @mixin displayFlex(
 	$direction: row,
 	$main: flex-start,
@@ -24,5 +24,18 @@
 		100% {
 			opacity: 1;
 		}
+	}
+}
+
+@mixin dropShadow($color: black) {
+	box-shadow: 2px 4px 8px rgba($color, 0.35);
+}
+
+@mixin fitMedia($selector: img, $fit: contain, $position: center) {
+	#{$selector} {
+		width: 100%;
+		height: 100%;
+		object-fit: $fit;
+		object-position: $position;
 	}
 }

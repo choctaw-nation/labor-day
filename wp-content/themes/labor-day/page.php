@@ -52,6 +52,9 @@ get_header();
 		case 'festival-information':
 			get_template_part('template-parts/page', 'festival-information');
 			break;
+		case 'volunteers':
+			get_template_part('template-parts/page', 'volunteers');
+			break;
 		default:
 			echo $default_output;
 	} ?>

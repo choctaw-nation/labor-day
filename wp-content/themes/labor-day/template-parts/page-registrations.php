@@ -16,7 +16,7 @@ $args = array(
 );
 
 $query = new WP_Query($args);
-cno_enqueue_page_assets('registrations', array());
+
 $content = new ContentSections();
 ?>
 <section class="registrations">
@@ -24,7 +24,7 @@ $content = new ContentSections();
 		<?php if ($query->have_posts()) : ?>
 			<ul class="registration-form-list">
 				<?php while ($query->have_posts()) : $query->the_post(); ?>
-					<li class="registration-form-list__item">
+					<li class="registration-form-list__item fadeIn">
 						<article class="registration-form">
 							<?php $content->two_col_text_and_media(array(
 								'split'				=> [4, 8],
