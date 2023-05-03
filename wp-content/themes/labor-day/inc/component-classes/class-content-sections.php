@@ -5,88 +5,22 @@
  * 
  * @param bool $acf class-wide control to use acf fields or standard Wordpress field lookups (e.g. `get_field` vs `get_the_excerpt`). If true, excerpt will be set with `get_field('archive_content',$id)`. Defaults `true`
  * 
+ * @method two_col_text_and_media
+ * @method hero_section
+ * @method vertical_card
+ * 
  * @author KJ Roelke
  * @version 1.0.0
+ * 
  */
 
 
-class ContentSectionComponents {
-    private bool $acf = true;
-    function __construct(bool $acf = true) {
-        $this->acf = $acf;
+class ContentSections extends ContentComponents {
+
+    function __construct() {
+        parent::__construct();
     }
 
-    private function print_error(string $message, bool $return = true) {
-        if ($return) {
-            return "<span class='d-block' style='padding:4em;background-color:darkred;color:white;'>Error: {$message}</span>";
-        } else print_r("<span class='d-block' style='padding:4em;background-color:darkred;color:white;'>Error: {$message}</span>", $return);
-    }
-
-    /**
-     * A headline element that has lots of optional parameters in the $args array.
-     * 
-     * @param array $args Pass optional customizations
-     * 
-     * ```php
-     * $args = array(
-     * 'headline_element'        => ?string default "h2",
-     * 'headline_class'          => ?string default "headline",
-     * 'subheadline_element'     => ?string default 'span');
-     * 'subheadline_class'       => ?string default 'subheadline');
-     * 'subheadline_content'     => ?string the subheadline content,
-     * ```
-     */
-    public function headline(string $headline, bool $echo = true, array ...$args) {
-        $default = array(
-            'headline_element'       => 'h2',
-            'headline_class'         => 'headline',
-            'subheadline_element'    => 'span',
-            'subheadline_class'      => 'subheadline',
-        );
-
-        $options = array_merge($default, ...$args);
-        extract($options);
-
-        $markup = "<{$headline_element} class='{$headline_class}'>{$headline}</{$headline_element}>";
-        if (!empty($subheadline_content)) $markup .= "<{$subheadline_element} class='{$subheadline_class}'>{$subheadline_content}</{$subheadline_element}>";
-        if ($echo) {
-            echo $markup;
-        } else return $markup;
-    }
-
-    /**
-     *  Generates an `<a>` or `<button>` based on whether or not a $link is passed. Recommended use with named parameters for simple configuration.
-     * 
-     * @param array $options {
-     * 
-     *      @var string $text         The button text
-     *      @var string $link         The button href
-     *      @var string $html_class   btn classes
-     *      @var bool $is_external    Is the link external?
-     * }
-     * @param bool $echo Whether to echo or return the markup (default: true)
-     */
-    public function cta_button(array $options, bool $echo = true) {
-        $default = array(
-            'text'          => 'Learn More',
-            'link'          => '',
-            'html_class'    => 'btn__fill--primary',
-            'is_external'   => false,
-        );
-        $options = array_merge($default, $options);
-
-        extract($options);
-
-        if (empty($link)) {
-            $markup = "<button class='{$html_class}'>{$text}</button>";
-        } else {
-            $markup = ($is_external) ? "<a href='{$link}' target='_blank' rel='noopener noreferrer' class='{$html_class}'>{$text}</a>" : "<a href='{$link}' class='{$html_class}'>{$text}</a>";
-        }
-
-        if ($echo) {
-            echo $markup;
-        } else return $markup;
-    }
 
     /**
      * Gets the Hero `<section>` with class 'hero'. Optional Background Image or color.
@@ -100,7 +34,6 @@ class ContentSectionComponents {
      * 'subheadline' => ?string,
      * 'has_cta' => bool,
      * 'cta_link' => ?string the url
-     * 'cta_text' => string
      * );
      * ```
      */
@@ -111,7 +44,7 @@ class ContentSectionComponents {
             $hero = get_field('hero', $post_id);
             extract($hero);
         }
-        $markupStart = $has_background_image ? "<section class='hero w-100 py-5 style='background-image:url('{$background_image}')>" : "<section class='hero w-100 py-5' style='background-color:var(--bs-secondary);'>";
+        $markupStart = $has_background_image ? "<section class='hero w-100 py-5' style=\"background-image:url('{$background_image}')\">" : "<section class='hero w-100 py-5' style='background-color:var(--bs-secondary);'>";
         $markupStart .= "
         <div class='container'>
             <div class='row my-5'>
@@ -121,8 +54,6 @@ class ContentSectionComponents {
         if ($has_cta) $markupInner .= $this->cta_button(array('text' => $cta_text, 'link' => $cta_link, 'html_class' => 'hero__btn btn__primary--fill mt-5'), false,);
         $markupEnd = "</div></div></div></section>";
         $markup = "{$markupStart}{$markupInner}{$markupEnd}";
-
-
         if ($echo) {
             echo $markup;
         } else return $markup;
@@ -152,20 +83,18 @@ class ContentSectionComponents {
      */
     public function two_col_text_and_media(array $options, bool $echo = true) {
         $default = array(
-            'split'             => [6, 6],
-            'headline'          => '',
-            'headline_element'  => 'h2',
-            'headline_class'    => 'headline',
-            'content'           => '',
-            'content_wrapper'   => 'p',
-            'content_class'     => 'text-content mb-5',
-            'cta_text'          => null,
-            'cta_link'          => null,
-            'cta_external'      => false,
-            'cta_class'         => 'cta__btn btn__fill--primary mt-5 align-self-start',
-            'media_type'        => 'photo',
-            'reverse'           => false,
-            'image_src'         => get_theme_file_uri('/images/placeholder.jpg'),
+            'headline'           => '',
+            'headline_element'   => '',
+            'content'            => '',
+            'content_wrapper'    => 'div',
+            'content_class'      => 'text-content mb-5',
+            'cta_text'           => null,
+            'cta_link'           => null,
+            'cta_external'       => false,
+            'cta_class'          => 'btn__primary--fill',
+            'media_type'         => 'photo',
+            'reverse'            => false,
+            'image_src'          => null,
         );
 
         $options = array_merge($default, $options);
@@ -173,23 +102,24 @@ class ContentSectionComponents {
         extract($options);
 
 
-        $container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
+        $container_start = $reverse ? '<div class="two-col row flex-row-reverse">' : '<div class="two-col row">';
         $div_end = '</div>';
-        $col_start_1 = "<div class='col-lg-{$split[0]} two-col__media'>";
-        $col_start_2 = "<div class='col-lg-{$split[1]} two-col__content'>";
+        $col_1_start = '<div class="two-col__col-1 col-lg-6">';
+        $col_2_start = '<div class="two-col__col-2 col-lg-6">';
         $col_1_content = '';
         if ($media_type === 'photo' && $image_src) {
-            $col_1_content = "<figure class='two-col__media--container'><img src='{$image_src}' class='two-col__media--image' /></figure>";
+            $col_1_content = "<figure class='two-col__image'><img src={$image_src} /></figure>";
         } else if ($media_type === 'video') {
-            $col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
+            $col_1_content = "<figure class='two-col__video'>Video!</figure>";
         }
         $headline_args = array(
-            "headline_element"      => $headline_element,
-            'headline_class'        => $headline_class,
             "subheadline_content"   => $content,
             "subheadline_element"   => $content_wrapper,
-            "subheadline_class"     => $content_class
+            "subheadline_class"     => $content_class,
         );
+        if (!empty($headline_element)) {
+            $headline_args['headline_element'] = $headline_element;
+        }
         $col_2_content = $this->headline($headline, false, $headline_args);
 
         if (!empty($cta_text)) {
@@ -203,8 +133,8 @@ class ContentSectionComponents {
         }
         $markup = "
         {$container_start}
-            {$col_start_1}{$col_1_content}{$div_end}
-            {$col_start_2}{$col_2_content}{$div_end}
+            {$col_1_start}{$col_1_content}{$div_end}
+            {$col_2_start}{$col_2_content}{$div_end}
         {$div_end}";
 
         if ($echo) {
@@ -225,39 +155,24 @@ class ContentSectionComponents {
      * 'subheadline_content'     => ?string the subheadline content,
      * ```
      */
-    public function vertical_card(string $image_src, string $headline, string $excerpt, bool $echo = true, array ...$args) {
+    public function vertical_card(array $args = array(), bool $echo = true,) {
+        $default = array(
+            'image_src' => null,
+            'headline'  => '',
+            'headline_element' => 'h2',
+            'subheadline' => ''
+        );
         $headline_args = array(
             'headline_class'         => 'vertical-card__title',
-            'subheadline_element'    => 'p',
+            'subheadline_element'    => 'div',
             'subheadline_class'      => 'vertical-card__excerpt',
-            'subheadline_content'    => $excerpt,
         );
 
-        $options = array_merge($headline_args, ...$args);
+        $options = array_merge($default, $headline_args, $args);
         extract($options);
         $card_image = "<figure class='vertical-card__image'><img src={$image_src} /></figure>";
         $card_text_content = "<div class='vertical-card__content'>{$this->headline($headline, false,$options)}</div>";
         $markup = "<div class='vertical-card'>{$card_image}{$card_text_content}</div>";
-        if ($echo) {
-            echo $markup;
-        } else return $markup;
-    }
-
-    /**
-     * Renders a ul/ol of list items
-     * 
-     * @param array $list_items         an array of strings to become the `<li>`s
-     * @param string $item_class        a string to set list item htmlClass
-     * @param string $list_type         `ul` | `ol`
-     * @param bool $echo                `echo` or `return` the markup
-     * 
-     */
-    public function bulleted_list(array $list_items, string $item_class = '', string $list_type = 'ul', bool $echo = true) {
-        $markup = "<{$list_type}>";
-        foreach ($list_items as $item) {
-            $markup .= empty($item_class) ? "<li>{$item}</li>" : "<li class='{$item_class}'>{$item}</li>";
-        }
-        $markup .= "</{$list_type}>";
         if ($echo) {
             echo $markup;
         } else return $markup;

@@ -17,7 +17,7 @@ function display_gallery() {
 	$markup .= "</div></div>";
 	echo $markup;
 }
-$content = new ContentSectionComponents();
+$content = new ContentSections();
 cno_enqueue_page_assets('history', array());
 
 ?>

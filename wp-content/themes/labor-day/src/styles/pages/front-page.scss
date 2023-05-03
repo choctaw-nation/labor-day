@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 
 .countdown {
 	color: white;
@@ -31,15 +31,19 @@
 	}
 	&__days {
 		@include m.displayFlex(column, flex-start, center);
+		animation-delay: 1.2s;
 	}
 	&__hours {
 		@extend .countdown__days;
+		animation-delay: 1.4s;
 	}
 	&__minutes {
 		@extend .countdown__days;
+		animation-delay: 1.6s;
 	}
 	&__seconds {
 		@extend .countdown__days;
+		animation-delay: 1.8s;
 	}
 }
 

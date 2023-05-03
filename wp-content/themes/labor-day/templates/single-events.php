@@ -8,20 +8,7 @@
 
 get_header();
 ?>
-<?php
 
-/** 
- * Single Event Template
- * 
- */
-
-
-// add_action('wp_enqueue_scripts', function () {
-// 	wp_enqueue_style('cno-events-single', plugin_dir_url('/cno-events/build/single.css') . 'single.css', array('cno-events-global'));
-// });
-get_header();
-
-?>
 
 <div class="container">
 	<article class="cno-event py-5">

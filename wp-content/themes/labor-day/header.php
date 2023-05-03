@@ -24,8 +24,7 @@ wp_head();
 		<div class="navbar container py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url(site_url()) ?>" class="logo" aria-label="to Home Page">
 				<figure class="logo-image d-inline-block">
-					<?php global $SITE_LOGO;
-					echo $SITE_LOGO; ?>
+					<?php echo SITE_LOGO; ?>
 					<h1>
 						<?php echo bloginfo('name'); ?>
 					</h1>

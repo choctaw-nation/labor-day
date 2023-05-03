@@ -4,10 +4,9 @@
  * Text callout
  * 
  */
-// var_dump($args);
+
 
 global $post;
-// var_dump($post);
 extract($args);
 ?>
 <aside class="<?php echo "text-callout--{$color}"; ?>">

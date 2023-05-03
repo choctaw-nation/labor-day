@@ -1,11 +1,11 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 %hero {
 	display: flex;
 	position: relative;
 	background-position: center;
 	background-size: cover;
-	height: 60vh;
+	height: 60rem;
 	.overlay {
 		background-color: rgba(black, 0.35);
 		position: absolute;

@@ -7,7 +7,7 @@
  * @since  1.0
  */
 
-$content = new ContentSectionComponents();
+$content = new ContentSections();
 global $lorem;
 cno_enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
 get_header(); ?>
@@ -17,9 +17,9 @@ get_header(); ?>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col">
-					<span class="headline">September 1 &ndash; 3, 2023</span>
-					<div class="countdown" id='countdown'></div>
+				<div class="col animate__animated animate__fadeInRight">
+					<span class="headline animate__animated animate__fadeInUp animate__delay-1s d-block">September 1 &ndash; 3, 2023</span>
+					<div class="countdown " id='countdown'></div>
 				</div>
 			</div>
 		</div>
@@ -30,8 +30,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="col-lg-4">
 					<figure class='great-seal'>
-						<?php global $GREAT_SEAL_SVG;
-						echo $GREAT_SEAL_SVG; ?>
+						<?php echo GREAT_SEAL_SVG; ?>
 					</figure>
 				</div>
 				<div class="col-lg-8">

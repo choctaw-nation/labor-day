@@ -1,0 +1,1 @@
+{"version":3,"file":"history.css","mappings":";;;AAEE;EAEC,WADO;EAEP,YAFO;AAAV,C","sources":["webpack://cno-labor-day/./wp-content/themes/labor-day/src/styles/pages/history.scss"],"sourcesContent":[".gallery {\n\t&__item {\n\t\t&--image {\n\t\t\t$size: 100%;\n\t\t\twidth: $size;\n\t\t\theight: $size;\n\t\t}\n\t}\n}\n"],"names":[],"sourceRoot":""}

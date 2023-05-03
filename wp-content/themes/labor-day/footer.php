@@ -6,7 +6,7 @@
  * @since 1.0
  * 
  */
-global $SITE_LOGO;
+
 $current_year = date("Y");
 ?>
 <aside class="footer-callout">
@@ -30,7 +30,7 @@ $current_year = date("Y");
 		<div class="row">
 			<div class="col"><a href="<?php esc_url(site_url()) ?>" class="logo">
 					<figure class="logo-image d-inline-block">
-						<?php echo $SITE_LOGO; ?>
+						<?php echo SITE_LOGO; ?>
 						<span aria-label="to Home Page">
 							<?php echo bloginfo('name') ?>
 						</span>
@@ -60,12 +60,10 @@ $current_year = date("Y");
 			<div class="col socials">
 				<?php extract(get_field('socials', 'options')); ?>
 				<a href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<?php global $FACEBOOK_LOGO; ?>
-					<?php echo $FACEBOOK_LOGO; ?>
+					<?php echo FACEBOOK_LOGO; ?>
 				</a>
 				<a href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<?php global $INSTAGRAM_LOGO; ?>
-					<?php echo $INSTAGRAM_LOGO; ?>
+					<?php echo INSTAGRAM_LOGO; ?>
 				</a>
 			</div>
 		</div>

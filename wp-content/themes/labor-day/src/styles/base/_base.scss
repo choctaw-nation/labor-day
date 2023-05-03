@@ -1,6 +1,6 @@
-@use '../abstracts/mixins' as m;
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as fn;
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as fn;
 section {
 	padding: 6.5rem 0;
 	position: relative;
@@ -47,4 +47,25 @@ figure {
 		opacity: 0;
 		transform: translateY(4rem);
 	}
+}
+@media (print), (prefers-reduced-motion: reduce) {
+	.fadeIn--hide {
+		transform: none;
+	}
+}
+:root {
+	--transition--standard: #{v.$transition--standard};
+	--color-primary: #{v.$color-primary};
+	--color-primary--dark: #{v.$color-primary--dark};
+	--color-primary--light: #{v.$color-primary--light};
+
+	--color-secondary: #{v.$color-secondary};
+	--color-tertiary: #{v.$color-tertiary};
+
+	--color-black: black;
+	--color-white: white;
+
+	--font-headings: #{v.$font-headings};
+	--font-body: #{v.$font-body};
+	--font-serif: #{v.$font-serif};
 }

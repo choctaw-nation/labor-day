@@ -14,12 +14,22 @@
 
 class CNO_THEME {
 	function __construct() {
+		$this->load_required_files();
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_cno_scripts'));
 		add_action('after_setup_theme', array($this, 'register_cno_menus'));
 		add_theme_support('post-thumbnails');
 		$this->disable_discussion();
 		add_action('init', array($this, 'alter_post_types'));
 		add_action('init', array($this, 'register_taxonomies'));
+	}
+	private function load_required_files() {
+		require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
+		require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
+		require_once get_template_directory() . '/inc/component-classes/class-content-components.php';
+		require_once get_template_directory() . '/inc/component-classes/class-content-sections.php';
+		require_once get_template_directory() . '/inc/class-cno-nav-walker.php';
+		require_once get_template_directory() . '/inc/theme-functions.php';
+		require_once get_template_directory() . '/inc/utilities.php';
 	}
 	function register_taxonomies() {
 		if (!post_type_exists('events')) return;

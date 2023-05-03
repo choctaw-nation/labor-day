@@ -11,7 +11,7 @@
 extract($args);
 $slider_name = $id;
 $query = new WP_Query($query_args);
-// var_dump($query);
+
 ?>
 <div class="slider">
 	<div class="swiper">
