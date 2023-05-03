@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Page Template
- * 
- * @author KJ Roelke
- * @since  1.0
- */
+ * Generic Page Template
+ *
+ * @package ChoctawNation
+ * */
 
 $content = new ContentSections();
 get_header();
@@ -16,13 +14,17 @@ get_header();
 		<section class='w-100 hero--image' id='hero' style="background-image:url('<?php echo $background_image_url; ?>')"></section>
 		<div class="container my-5 py-5">
 			<?php the_title("<h1 class='headline'>", "</h1>"); ?>
-			<span class="subheadline mb-5"><?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?></span>
+			<span class="subheadline mb-5">
+				<?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?>
+			</span>
 		</div>
 	<?php else : ?>
 		<section class='w-100 hero--color' id='hero' style='background-color:var(--color-tertiary);'>
 			<div class="container text-center">
 				<?php the_title("<h1 class='headline'>", "</h1>"); ?>
-				<span class="subheadline mb-5"><?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?></span>
+				<span class="subheadline mb-5">
+					<?php echo empty(get_field('hero')['subheadline']) ? acf_get_field('hero')['sub_fields'][0]['default_value'] : get_field('hero')['subheadline']; ?>
+				</span>
 			</div>
 		</section>
 	<?php endif; ?>
@@ -60,4 +62,4 @@ get_header();
 	} ?>
 
 </main>
-<?php get_footer(); ?>
+<?php get_footer();

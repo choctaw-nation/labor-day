@@ -1,8 +1,10 @@
 <?php
-
 /**
  * Single Display
+ *
+ * @package ChoctawNation
  */
+
 get_header();
 ?>
 <article <?php post_class(); ?>>
@@ -11,7 +13,7 @@ get_header();
 			<?php get_template_part('template-parts/single', get_post_type()); ?>
 		<?php else : ?>
 			<?php the_title("<h1>", "</h1>"); ?>
-			<p>This page has no content.</p>
+		<p>This page has no content.</p>
 		<?php endif; ?>
 	</div>
 </article>

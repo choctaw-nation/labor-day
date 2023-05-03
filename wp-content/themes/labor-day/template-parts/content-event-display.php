@@ -1,12 +1,14 @@
 <?php
-
 /**
  * The display for Events inside of a loop.
+ *
+ * @package ChoctawNation
  */
+
 ?>
 <article class="cno-event">
 	<figure class="cno-event__image">
-		<?php the_post_thumbnail('large') ?>
+		<?php the_post_thumbnail('large'); ?>
 	</figure>
 	<h2><?php the_title(); ?></h2>
 	<aside class="event-meta">

@@ -1,12 +1,10 @@
 <?php
-
 /**
  * Text callout
- * 
+ *
+ * @package ChoctawNation
  */
 
-
-global $post;
 extract($args);
 ?>
 <aside class="<?php echo "text-callout--{$color}"; ?>">
@@ -26,6 +24,4 @@ extract($args);
 				<?php endif; ?>
 			</div>
 		</div>
-
-
 </aside>

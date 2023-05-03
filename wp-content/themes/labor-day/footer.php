@@ -1,7 +1,9 @@
 <?php
 /**
  * Basic Footer Template
+ *
  * @since 1.0
+ * @package ChocatwNation
  */
 
 $current_year = date("Y");
@@ -42,8 +44,7 @@ $current_year = date("Y");
 						'container' => 'nav',
 						'container_class' => 'footer-navbar',
 					)
-				);
-				?>
+				);?>
 				<?php wp_nav_menu(
 					array(
 						'theme_location' => 'footer_menu-2',
@@ -51,8 +52,7 @@ $current_year = date("Y");
 						'container' => 'nav',
 						'container_class' => 'footer-navbar',
 					)
-				);
-				?>
+				);?>
 			</div>
 			<div class="col socials">
 				<?php extract(get_field('socials', 'options')); ?>

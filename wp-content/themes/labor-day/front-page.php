@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Homepage Template
  * 
@@ -8,7 +7,7 @@
  */
 
 $content = new ContentSections();
-cno_enqueue_page_assets('frontPage', array('scripts' => array('wp-element')));
+cno_enqueue_page_assets('frontPage');
 get_header(); ?>
 <main class="site-content">
 	<?php $background_image_url = get_field('hero')['background_image']; ?>

@@ -23,8 +23,6 @@
 		}
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^2.3",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"squizlabs/php_codesniffer": "*"
+		"wp-coding-standards/wpcs": "^2.3"
 	}
 }

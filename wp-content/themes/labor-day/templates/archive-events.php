@@ -1,7 +1,8 @@
 <?php
-
 /**
  * The Events Archive (Plugin Override)
+ *
+ * @package ChoctawNation
  */
 
 $taxonomies = get_object_taxonomies('events', 'objects');
@@ -26,24 +27,25 @@ get_header();
 					<button class="btn__outline--secondary" id="toggle-filters">Show Filters</button>
 				</div>
 				<div class="cno-event-search-filters hide">
-					<?php foreach ($taxonomies as $taxonomy) {
-							echo '<div class="cno-event-search-filters__container">';
-							echo "<h4 class='cno-event-search-filters__title'>{$taxonomy->label}</h4>";
-							$terms_array = array();
-							$terms_array[] = get_terms(array(
-								'taxonomy' => $taxonomy->name,
-								'hide_empty' => true,
-							));
-							foreach ($terms_array as $term) {
-								foreach ($term as $t) {
-									echo '<div class="cno-event-search-filters__filter">';
-									echo "<input type='checkbox' name='{$t->slug}' id='{$t->slug}' />";
-									echo "<label for='{$t->slug}'>{$t->name}</label>";
-									echo "</div>";
-								}
-							};
-							echo '</div>';
-						}; ?>
+					<?php 
+					foreach ($taxonomies as $taxonomy) {
+						echo '<div class="cno-event-search-filters__container">';
+						echo "<h4 class='cno-event-search-filters__title'{$taxonomy->label}</h4>";
+						$terms_array = array();
+						$terms_array[] = get_terms(array(
+							'taxonomy' => $taxonomy->name,
+							'hide_empty' => true,
+						));
+						foreach ($terms_array as $term) {
+							foreach ($term as $t) {
+								echo '<div class="cno-event-search-filters__filter">';
+								echo "<input type='checkbox' name='{$t->slug}' id='{$t->slug}' />";
+								echo "<label for='{$t->slug}'>{$t->name}</label>";
+								echo "</div>";
+							}
+						};
+						echo '</div>';
+					}; ?>
 				</div>
 			</div>
 		</div>
@@ -51,7 +53,7 @@ get_header();
 	<div class="container">
 		<section class="cno-events" id="results">
 			<?php while (have_posts()) : the_post(); ?>
-			<?php get_template_part('template-parts/content', 'event-display'); ?>
+				<?php get_template_part('template-parts/content', 'event-display'); ?>
 			<?php endwhile; ?>
 		</section>
 	</div>

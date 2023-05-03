@@ -1,13 +1,15 @@
 <?php
-
 /**
  * Slider Container
  * uses swiper.js
- * 
+ *
  * $args expects:
  * 'query_args' => array(...WP Query Args),
- * 'id'		=> ''
+ * 'id'         => ''
+ *
+ * @package ChoctawNation
  */
+
 extract($args);
 $slider_name = $id;
 $query = new WP_Query($query_args);

@@ -1,14 +1,12 @@
 <?php
-
-/** 
+/**
  * Single Event Template (Overrides Plugin Template)
- * 
+ *
+ * @package ChoctawNation
  */
-
 
 get_header();
 ?>
-
 
 <div class="container">
 	<article class="cno-event py-5">

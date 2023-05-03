@@ -1,9 +1,9 @@
 <?php
-
 /**
  * Template Name: Registrations Page
- * 
  * Handles the output of Registration Pages
+ *
+ * @package ChoctawNation
  */
 
 $background_image_url = get_field('hero')['background_image'];
@@ -29,4 +29,5 @@ get_header();
 		<?php echo do_shortcode($form); ?>
 	</section>
 </main>
-<?php get_footer(); ?>
+<?php get_footer();
+

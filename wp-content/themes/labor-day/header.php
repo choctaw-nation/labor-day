@@ -1,9 +1,10 @@
 <?php
-
 /**
  * Basic Header Template
- * 
+ *
+ * @package ChoctawNation
  */
+
 wp_head();
 ?>
 
@@ -33,13 +34,12 @@ wp_head();
 			<?php wp_nav_menu(
 				array(
 					'theme_location'  => 'primary_menu',
-					'menu_class' 	  => 'navbar__menu p-0 m-0 d-inline-flex',
-					'container' 	  => 'nav',
+					'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
+					'container'       => 'nav',
 					'container_class' => 'navbar d-none d-lg-flex align-items-center',
-					'walker'		  => new CNO_Nav_Walker()
+					'walker'          => new CNO_Nav_Walker()
 				)
-			);
-			?>
+			);?>
 			<?php get_template_part('template-parts/nav', 'mobile-menu'); ?>
 		</div>
 	</header>

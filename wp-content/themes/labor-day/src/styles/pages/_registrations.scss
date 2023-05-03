@@ -4,7 +4,6 @@
 	list-style: none;
 
 	&__item {
-
 		&:not(:last-child) {
 			margin-bottom: 3rem;
 		}
@@ -21,9 +20,7 @@
 	}
 
 	.two-col {
-
 		&__content {
-
 			@include m.displayFlex(column);
 
 			&--subheadline {
