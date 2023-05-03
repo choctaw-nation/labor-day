@@ -8,6 +8,10 @@
 			"url": "https://connect.advancedcustomfields.com"
 		}
 	],
+	"scripts": {
+		"lint:php": "./vendor/bin/phpcs ./wp-content/themes/labor-day/*.php --standard=WordPress --extensions=php",
+		"fix:php": "./vendor/bin/phpcbf ./wp-content/themes/labor-day/*.php --standard=WordPress --extensions=php"
+	},
 	"require": {
 		"wpengine/advanced-custom-fields-pro": "*",
 		"wp-graphql/wp-graphql-acf": "^0.6.1"

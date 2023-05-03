@@ -1,10 +1,7 @@
 <?php
-
 /**
  * Basic Footer Template
- * 
  * @since 1.0
- * 
  */
 
 $current_year = date("Y");
@@ -72,7 +69,7 @@ $current_year = date("Y");
 		<?php echo "&copy;&nbsp; {$current_year} Choctaw Nation of Oklahoma. All Rights Reserved."; ?>
 	</div>
 </footer>
-<? wp_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 
 </html>
