@@ -1,8 +1,10 @@
-@use '../abstracts/mixins' as m;
+@use "../abstracts/mixins" as m;
 
 .registration-form-list {
 	list-style: none;
+
 	&__item {
+
 		&:not(:last-child) {
 			margin-bottom: 3rem;
 		}
@@ -11,18 +13,25 @@
 
 .registration-form {
 	font-size: 1.6rem;
+
 	@include m.displayFlex(row, center, stretch);
+
 	> * {
 		padding: 2rem;
 	}
+
 	.two-col {
+
 		&__content {
+
 			@include m.displayFlex(column);
+
 			&--subheadline {
 				margin-bottom: 2rem;
 			}
 		}
 	}
+
 	&__button {
 		margin-top: auto;
 	}

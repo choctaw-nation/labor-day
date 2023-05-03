@@ -8,9 +8,9 @@
 	font-weight: 500;
 	transform: translateY(0);
 	text-transform: uppercase;
-	transition: fn.transition(
-		(background-color, border-color, transform, box-shadow, color)
-	);
+	transition:
+ fn.transition((background-color, border-color, transform, box-shadow, color));
+
 	&:hover {
 		box-shadow: 2px 4px 8px rgba(black, 0.35);
 		transform: translateY(-4px);
@@ -18,70 +18,93 @@
 }
 
 .btn {
+
 	@extend %btn;
+
 	&__fill {
+
 		@extend .btn;
 		color: white;
+
 		a {
 			color: white;
 		}
+
 		&:hover,
 		&:active,
 		&:focus {
 			background-color: white;
 		}
+
 		&--primary {
+
 			@extend .btn__fill;
 			background-color: v.$color-primary;
+
 			&:hover,
 			&:active,
 			&:focus {
 				border-color: v.$color-primary;
 				color: v.$color-primary;
+
 				a {
 					color: v.$color-primary;
 				}
 			}
 		}
+
 		&--secondary {
+
 			@extend .btn__fill;
 			background-color: v.$color-secondary;
+
 			&:hover,
 			&:active,
 			&:focus {
 				border-color: v.$color-secondary;
 				color: v.$color-secondary;
+
 				a {
 					color: v.$color-secondary;
 				}
 			}
 		}
 	}
+
 	&__outline {
+
 		@extend .btn;
 		background-color: white;
+
 		&:hover,
 		&:active,
 		&:focus {
 			color: white;
+
 			a {
 				color: white;
 			}
 		}
+
 		&--primary {
+
 			@extend .btn__outline;
 			border-color: v.$color-primary;
 			color: v.$color-primary;
+
 			&:hover,
 			&:active,
 			&:focus {
 				background-color: v.$color-primary;
 			}
 		}
+
 		&--secondary {
+
 			@extend .btn__outline;
 			border-color: v.$color-secondary;
 			color: v.$color-secondary;
+
 			&:hover,
 			&:active,
 			&:focus {
@@ -91,9 +114,12 @@
 		}
 	}
 }
+
 a.btn {
 	text-decoration: none;
 }
+
 button {
+
 	@extend .btn__fill--primary !optional;
 }

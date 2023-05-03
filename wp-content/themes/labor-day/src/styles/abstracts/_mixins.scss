@@ -1,4 +1,5 @@
 @forward "./bs_breakpoints";
+
 @mixin displayFlex(
 	$direction: row,
 	$main: flex-start,
@@ -18,9 +19,11 @@
 	animation-fill-mode: forwards;
 
 	@keyframes fadeInAnimation {
+
 		0% {
 			opacity: 0;
 		}
+
 		100% {
 			opacity: 1;
 		}

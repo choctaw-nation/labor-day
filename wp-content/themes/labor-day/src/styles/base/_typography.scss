@@ -5,28 +5,39 @@
 	font-family: v.$font-body;
 	color: v.$color-black;
 }
+
 body {
+
 	@extend %body-text;
 }
+
 a {
 	text-decoration: none;
 	color: v.$color-primary;
+
 	&:hover {
 		color: v.$color-primary--light;
 	}
 }
+
 p {
 	font-size: 1.35em;
+
 	@extend %body-text;
 }
+
 .text-content {
 	font-size: 1.35em;
+
 	@extend %body-text;
 }
+
 li {
-	font-size: 1.35em;
+	font-size: 2.1rem;
+
 	@extend %body-text;
 }
+
 .small,
 small {
 	font-family: v.$font-body;
@@ -35,14 +46,17 @@ small {
 %heading {
 	font-family: v.$font-headings;
 	font-weight: 600;
-	color: v.$color-primary--dark;
+	color: v.$color-primary;
 	display: block;
 }
+
 h1,
 .h1 {
+
 	@extend %heading;
 	font-size: 4em;
 	text-transform: uppercase;
+
 	@include m.media-breakpoint-down(lg) {
 		font-size: 3em;
 	}
@@ -50,8 +64,10 @@ h1,
 
 h2,
 .h2 {
+
 	@extend %heading;
 	font-size: 3em;
+
 	@include m.media-breakpoint-down(lg) {
 		font-size: 2.4em;
 	}
@@ -60,8 +76,10 @@ h2,
 
 h3,
 .h3 {
+
 	@extend %heading;
 	font-size: 2.4em;
+
 	@include m.media-breakpoint-down(lg) {
 		font-size: 2em;
 	}
@@ -70,8 +88,10 @@ h3,
 
 h4,
 .h4 {
+
 	@extend %heading;
 	font-size: 1.75em;
+
 	@include m.media-breakpoint-down(lg) {
 		font-size: 1.5em;
 	}
@@ -81,20 +101,26 @@ h5,
 .h5,
 h6,
 .h6 {
+
 	@extend %heading;
 }
+
 .headline {
+
 	@extend %heading;
 }
 %subheadline {
 	font-family: v.$font-headings;
 	font-weight: 400;
 	font-size: 1.35em;
+
 	@include m.media-breakpoint-down(lg) {
 		font-size: 1.2em;
 	}
 	display: inline-block;
 }
+
 .subheadline {
+
 	@extend %subheadline;
 }

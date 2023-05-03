@@ -7,7 +7,7 @@
 $content = new ContentSections();
 ?>
 <section id="faqs">
-	<div class="container">
+	<div class="container gx-5">
 		<?php extract(get_field('faqs')); ?>
 		<header class="section-header">
 			<figure class="section-header__banner-image">
@@ -21,8 +21,10 @@ $content = new ContentSections();
 			</span>
 		</header>
 		<?php foreach ($faq as $field) {
-			echo $field['question'];
-			echo $field['answer'];
+			echo "<div class='faq'>";
+			echo "<span class='faq__question headline'>{$field['question']}</span>";
+			echo "<span class='faq__answer subheadline'>{$field['answer']}</span>";
+			echo "</div>";
 		} ?>
 	</div>
 </section>
@@ -40,9 +42,9 @@ $content = new ContentSections();
 		</header>
 		<ol>
 			<?php foreach ($rules as $rule) {
-			echo "<li>{$rule['rule']}</li>";
-		}
-		?>
+				echo "<li>{$rule['rule']}</li>";
+			}
+			?>
 		</ol>
 	</div>
 </section>

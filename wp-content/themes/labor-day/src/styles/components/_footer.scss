@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 // @forward '../components/header';
 #copyright {
 	background-color: #333;
@@ -10,21 +10,28 @@
 	display: block;
 	background-color: v.$color-primary--dark;
 	padding: 1rem;
+
 	.logo {
 		color: white;
+
 		span {
 			display: none;
 		}
 	}
+
 	.row {
+
 		@include m.media-breakpoint-down(md) {
+
 			@include m.displayFlex(column, space-evenly);
+
 			.col {
 				margin-bottom: 2rem;
 			}
 		}
 	}
 }
+
 .footer-navbar {
 	font-size: 1.6rem;
 
@@ -34,20 +41,26 @@
 		gap: 1rem;
 		align-content: center;
 	}
+
 	&__menu {
 		margin: 0;
 		padding: 0;
 		list-style: none;
+
 		@include m.displayFlex(column);
 	}
+
 	.menu-item {
 		font-size: 1.2em;
 		line-height: 1.35em;
 		margin: 0 1rem;
+
 		a {
 			color: white;
 		}
+
 		&:hover {
+
 			a {
 				text-decoration: underline;
 			}
@@ -56,10 +69,13 @@
 }
 
 .socials {
+
 	@include m.displayFlex(row, space-evenly, center);
+
 	.social-icon {
 		display: inline-block;
 		margin: 0 5px;
+
 		svg {
 			fill: white;
 			aspect-ratio: 1;
@@ -67,7 +83,9 @@
 		}
 	}
 }
+
 .desktop-footer {
+
 	@include m.media-breakpoint-down(lg) {
 		display: none;
 	}
@@ -78,18 +96,23 @@
 	font-size: 1.2em;
 	margin-top: 3.5rem;
 	margin-bottom: 3.5rem;
+
 	@include m.media-breakpoint-down(lg) {
 		padding: 3.5rem 1rem;
 	}
+
 	.container {
 		position: relative;
 	}
+
 	.row {
 		gap: 4rem;
+
 		.col {
 			justify-content: center;
 		}
 	}
+
 	&__bg {
 		background-color: v.$color-tertiary;
 		position: absolute;
@@ -97,6 +120,7 @@
 		bottom: 20%;
 		left: 0;
 		right: 0;
+
 		@include m.media-breakpoint-down(lg) {
 			top: 0;
 			bottom: 0;
@@ -106,18 +130,22 @@
 	&__image {
 		max-height: 50rem;
 		aspect-ratio: 805 / 537;
+
 		figure {
 			height: 100%;
 			width: 100%;
 		}
+
 		img {
 			aspect-ratio: 805 / 537;
 			height: 100%;
 			object-fit: contain;
 		}
 	}
+
 	&__text {
 		color: v.$color-primary--dark;
+
 		.subheadline:nth-child(3) {
 			margin-bottom: 4rem;
 		}

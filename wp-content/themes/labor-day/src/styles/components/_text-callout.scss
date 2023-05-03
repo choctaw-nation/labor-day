@@ -1,28 +1,37 @@
-@use '../abstracts/variables' as v;
+@use "../abstracts/variables" as v;
 
 $overlay-opacity: 0.55;
+
 .text-callout {
 	position: relative;
 	padding: 6rem 0;
+
 	&--primary {
+
 		@extend .text-callout;
 		background-color: v.$color-primary--light;
 	}
+
 	&--secondary {
+
 		@extend .text-callout;
 		background-color: v.$color-secondary;
 	}
+
 	&__content {
 		position: relative;
 		color: white;
+
 		figure {
 			align-self: center;
+
 			svg {
 				width: 100%;
 			}
 		}
 	}
 }
+
 .bg {
 	background-position: center 70%;
 	background-size: cover;
@@ -41,11 +50,15 @@ $overlay-opacity: 0.55;
 	left: 0;
 	right: 0;
 	bottom: 0;
+
 	&--primary {
+
 		@extend .overlay;
 		background-color: rgba(v.$color-primary--light, $overlay-opacity);
 	}
+
 	&--secondary {
+
 		@extend .overlay;
 		background-color: rgba(v.$color-secondary, $overlay-opacity);
 	}

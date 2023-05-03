@@ -1,18 +1,23 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/variables" as v;
 @use "../abstracts/functions" as fn;
+
 section {
 	padding: 6.5rem 0;
 	position: relative;
+
 	@include m.media-breakpoint-down(md) {
 		padding: 3.5rem 0;
 	}
 }
+
 figure {
+
 	@include m.media-breakpoint-down(md) {
 		margin-bottom: 2rem;
 	}
 }
+
 .container {
 	position: relative;
 }
@@ -25,10 +30,12 @@ figure {
 }
 
 .col {
+
 	@include m.displayFlex(column);
 	position: relative;
 	height: auto;
 }
+
 .bg-color-primary {
 	background-color: v.$color-primary;
 	color: white;
@@ -43,16 +50,20 @@ figure {
 	transition: fn.transition((opacity, transform), (1s ease));
 	opacity: 1;
 	transform: translateY(0);
+
 	&--hide {
 		opacity: 0;
 		transform: translateY(4rem);
 	}
 }
+
 @media (print), (prefers-reduced-motion: reduce) {
+
 	.fadeIn--hide {
 		transform: none;
 	}
 }
+
 :root {
 	--transition--standard: #{v.$transition--standard};
 	--color-primary: #{v.$color-primary};
