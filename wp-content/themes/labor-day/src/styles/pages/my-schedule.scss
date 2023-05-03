@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 %day-container {
 	@include m.displayFlex(column);
 	padding: 1rem;
@@ -68,6 +68,9 @@
 		}
 		&--description {
 			margin-bottom: 2rem;
+			@include m.media-breakpoint-down(md) {
+				font-size: 1.6rem;
+			}
 		}
 		a {
 			margin-top: auto;
@@ -81,5 +84,10 @@
 		border-color: v.$color-secondary;
 		background-color: white;
 		color: v.$color-secondary;
+	}
+	&__buttons {
+		button {
+			margin-left: 1rem;
+		}
 	}
 }

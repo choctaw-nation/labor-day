@@ -1,32 +1,35 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 @import url(https://use.typekit.net/jky5sek.css);
-
-body {
-	color: v.$color-black;
+%body-text {
 	font-family: v.$font-body;
-
-	a {
-		text-decoration: none;
-		color: v.$color-primary;
-		&:hover {
-			color: v.$color-primary--light;
-		}
+	color: v.$color-black;
+}
+body {
+	@extend %body-text;
+}
+a {
+	text-decoration: none;
+	color: v.$color-primary;
+	&:hover {
+		color: v.$color-primary--light;
 	}
-	.text-content {
-		font-family: v.$font-body;
-		font-size: 1.35em;
-	}
-	p {
-		@extend .text-content;
-	}
-	li {
-		@extend .text-content;
-	}
-	.small,
-	small {
-		font-family: v.$font-body;
-	}
+}
+p {
+	font-size: 1.35em;
+	@extend %body-text;
+}
+.text-content {
+	font-size: 1.35em;
+	@extend %body-text;
+}
+li {
+	font-size: 1.35em;
+	@extend %body-text;
+}
+.small,
+small {
+	font-family: v.$font-body;
 }
 
 %heading {

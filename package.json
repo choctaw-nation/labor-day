@@ -21,6 +21,7 @@
   "dependencies": {
     "@wordpress/scripts": "^26.2.0",
     "bootstrap": "^5.2.3",
+    "date-fns": "^2.30.0",
     "fuse.js": "^6.6.2",
     "swiper": "^9.2.2"
   },
