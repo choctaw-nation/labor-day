@@ -13,7 +13,7 @@ function display_gallery() {
 		$markup .= "<figure class='col-lg-{$bs_col} gallery__item'><img class='gallery__item--image' src='{$item}' /></figure>";
 	}
 	$markup .= '</div></div>';
-	echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo $markup;
 }
 $content = new Content_Sections();
 ?>

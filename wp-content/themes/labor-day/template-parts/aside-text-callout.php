@@ -1,8 +1,6 @@
 <?php
 /**
  * Text callout
- *
- * @package ChoctawNation
  */
 
 extract( $args );

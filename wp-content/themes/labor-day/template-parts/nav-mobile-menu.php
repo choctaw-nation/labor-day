@@ -1,8 +1,6 @@
 <?php
 /**
  * Mobile Menu (hamburger + menu)
- *
- * @package ChoctawNation
  */
 
 ?>

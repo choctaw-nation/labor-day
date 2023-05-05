@@ -3,7 +3,7 @@
  * Page: Festival Information
  */
 
- $content = new Content_Sections();
+$content = new Content_Sections();
 ?>
 <section id="parking" class="fadeIn">
 	<?php extract( get_field( 'section_3' ) ); ?>

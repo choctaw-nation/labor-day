@@ -6,8 +6,6 @@
  * $args expects:
  * 'query_args' => array(...WP Query Args),
  * 'id'         => ''
- *
- * @package ChoctawNation
  */
 
 extract( $args );
@@ -33,7 +31,7 @@ $query       = new WP_Query( $query_args );
 					<div class="slider__image">
 						<?php the_post_thumbnail(); ?>
 					</div>
-						<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
+					<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
 					<div class="slider__buttons">
 						<a href="<?php the_permalink(); ?>" class="btn__fill--secondary">Register Now</a>
 					</div>
@@ -44,7 +42,7 @@ $query       = new WP_Query( $query_args );
 			<div class="swiper-pagination"></div>
 			<div class="swiper-button-prev"></div>
 			<div class="swiper-button-next"></div>
-				<?php
+			<?php
 			endif;
 			wp_reset_postdata();
 			?>

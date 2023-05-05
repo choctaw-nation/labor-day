@@ -6,7 +6,7 @@
  * @since  1.0
  */
 
-$content = new ContentSections();
+$content = new Content_Sections();
 cno_enqueue_page_assets( 'frontPage' );
 get_header(); ?>
 <main class="site-content">

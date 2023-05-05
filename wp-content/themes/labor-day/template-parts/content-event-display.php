@@ -1,8 +1,6 @@
 <?php
 /**
  * The display for Events inside of a loop.
- *
- * @package ChoctawNation
  */
 
 ?>

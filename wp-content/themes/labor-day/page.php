@@ -3,7 +3,7 @@
  * Generic Page Template
  */
 
-$content = new ContentSections();
+$content = new Content_Sections();
 get_header();
 ?>
 <main class="site-content">
@@ -53,7 +53,6 @@ get_header();
 			get_template_part( 'template-parts/page', 'volunteers' );
 			break;
 		default:
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo "<div class='mt-5'>" . get_the_content() . '</div>';
 
 	}
