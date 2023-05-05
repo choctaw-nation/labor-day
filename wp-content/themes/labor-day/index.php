@@ -1,7 +1,5 @@
 <?php
 /** The Index.php
- *
- * @package ChoctawNation
  */
 
 get_header();
@@ -11,4 +9,5 @@ get_header();
 	<div><?php the_content(); ?></div>
 </article>
 
-<?php get_footer();
+<?php
+get_footer();
