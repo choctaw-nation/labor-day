@@ -24,7 +24,7 @@
 				'menu_class'      => 'mobile-navbar__menu p-0 m-0 d-inline-flex flex-column',
 				'container'       => 'nav',
 				'container_class' => 'mobile-navbar d-flex align-items-center',
-				'walker'          => new CNO_Nav_Walker()
+				'walker'          => new CNO_Nav_Walker(),
 			)
 		);
 		?>

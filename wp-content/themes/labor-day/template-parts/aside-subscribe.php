@@ -1,12 +1,10 @@
 <?php
 /**
  * The Aside to Subscribe to updates
- *
- * @package ChoctawNation
  */
 
 $phone_number = '888777';
-$message = 'LABORDAY'
+$message      = 'LABORDAY'
 ?>
 <aside class="subscribe">
 	<div class="container">
