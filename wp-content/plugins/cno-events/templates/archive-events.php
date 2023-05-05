@@ -1,11 +1,8 @@
 <?php
-
 /**
  * The Events Archive
  */
-// add_action('wp_enqueue_scripts', function () {
-// 	wp_enqueue_style('cno-events-archive', plugin_dir_url('cno-events/build/archive.css') . 'archive.css', array('cno-events-global'));
-// });
+
 get_header();
 ?>
 <section class="hero">
@@ -14,7 +11,7 @@ get_header();
 	</div>
 </section>
 <div class="cno-events-wrapper" id="app">
-	<?php if (have_posts()) : ?>
+	<?php if ( have_posts() ) : ?>
 	<section class="cno-event-search">
 		<div class="cno-events-container">
 			<h2 class="cno-event-search__title">Search Events</h2>
@@ -52,25 +49,30 @@ get_header();
 	</section>
 	<div class=" cno-events-container">
 		<section class="cno-events">
-			<?php while (have_posts()) : the_post(); ?>
+			<?php
+			while ( have_posts() ) :
+				the_post();
+				?>
 			<article class="cno-event">
 				<h2><?php the_title(); ?></h2>
 				<aside class="event-meta">
-					<?php extract(get_field('info')); ?>
+					<?php extract( get_field( 'info' ) ); ?>
 					<div class="event-meta__day">
-						<strong>When: </strong><?php echo $day . ", " . cno_get_the_date($day); ?>
+						<strong>When: </strong><?php echo $day . ', ' . cno_get_the_date( $day ); ?>
 					</div>
 					<div class="event-meta__start-time">
 						<strong>Start Time:</strong> <?php echo $start_time; ?>
 					</div>
-					<?php if (isset($end_time)) {
+					<?php
+					if ( isset( $end_time ) ) {
 								echo '<div class="event-meta__start-time">';
-								echo "<strong>End Time:</strong> " . $end_time;
+								echo '<strong>End Time:</strong> ' . $end_time;
 								echo '</div>';
-							}  ?>
+					}
+					?>
 				</aside>
 				<div class="about">
-					<?php $event_description = get_field('description'); ?>
+					<?php $event_description = get_field( 'description' ); ?>
 					<?php echo $event_description; ?>
 				</div>
 			</article>
@@ -82,4 +84,5 @@ get_header();
 	<?php endif; ?>
 </div>
 
-<?php get_footer();
+<?php
+get_footer();

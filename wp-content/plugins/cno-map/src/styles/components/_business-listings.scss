@@ -1,69 +1,69 @@
-@use '../abstracts' as v;
+@use "../abstracts" as v;
 .businesses {
-  list-style: none;
-  height: 77vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 0;
-  }
+	list-style: none;
+	height: 77vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	&::-webkit-scrollbar {
+		width: 0;
+	}
 }
 
 .business {
-  background-color: v.$color-dark--2;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 1.5rem 2.25rem;
-  margin-bottom: 1.75rem;
-  &--physical {
-    border-left: 5px solid v.$color-brand--2;
-  }
-  &--remote {
-    border-left: 5px solid v.$color-brand--1;
-  }
-  &__title {
-    font-size: 2rem;
-    font-weight: 600;
-  }
-  &__meta {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    font-style: italic;
-  }
+	background-color: v.$color-dark--2;
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: stretch;
+	padding: 1.5rem 2.25rem;
+	margin-bottom: 1.75rem;
+	&--physical {
+		border-left: 5px solid v.$color-brand--2;
+	}
+	&--remote {
+		border-left: 5px solid v.$color-brand--1;
+	}
+	&__title {
+		font-size: 2rem;
+		font-weight: 600;
+	}
+	&__meta {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+		font-style: italic;
+	}
 
-  &__details {
-    font-size: 1.6rem;
-    ul {
-      margin-left: 2rem;
-    }
-    h5 {
-      font-size: 1.02em;
-    }
-  }
-  &--online {
-    font-style: italic;
-    margin-top: 2rem;
-  }
+	&__details {
+		font-size: 1.6rem;
+		ul {
+			margin-left: 2rem;
+		}
+		h5 {
+			font-size: 1.02em;
+		}
+	}
+	&--online {
+		font-style: italic;
+		margin-top: 2rem;
+	}
 
-  &__icon {
-    font-size: 1.8rem;
-    margin-right: 0.2rem;
-    height: 0.28rem;
-  }
+	&__icon {
+		font-size: 1.8rem;
+		margin-right: 0.2rem;
+		height: 0.28rem;
+	}
 
-  &__value {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
-  }
+	&__value {
+		font-size: 1.5rem;
+		margin-right: 0.5rem;
+	}
 
-  &__unit {
-    font-size: 1.1rem;
-    color: v.$color-light--1;
-    text-transform: uppercase;
-    font-weight: 800;
-  }
+	&__unit {
+		font-size: 1.1rem;
+		color: v.$color-light--1;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
 }

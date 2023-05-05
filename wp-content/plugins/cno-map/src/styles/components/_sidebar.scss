@@ -1,7 +1,7 @@
-@use '../abstracts' as v;
-@forward './business-listings';
-@forward './toggle';
-@forward './filters';
+@use "../abstracts" as v;
+@forward "./business-listings";
+@forward "./toggle";
+@forward "./filters";
 
 .sidebar {
 	flex-basis: 50rem;
