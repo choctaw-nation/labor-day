@@ -7,13 +7,11 @@ $overlay-opacity: 0.55;
 	padding: 6rem 0;
 
 	&--primary {
-
 		@extend .text-callout;
 		background-color: v.$color-primary--light;
 	}
 
 	&--secondary {
-
 		@extend .text-callout;
 		background-color: v.$color-secondary;
 	}
@@ -52,13 +50,11 @@ $overlay-opacity: 0.55;
 	bottom: 0;
 
 	&--primary {
-
 		@extend .overlay;
 		background-color: rgba(v.$color-primary--light, $overlay-opacity);
 	}
 
 	&--secondary {
-
 		@extend .overlay;
 		background-color: rgba(v.$color-secondary, $overlay-opacity);
 	}

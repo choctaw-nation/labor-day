@@ -20,9 +20,7 @@
 	}
 
 	.row {
-
 		@include m.media-breakpoint-down(md) {
-
 			@include m.displayFlex(column, space-evenly);
 
 			.col {
@@ -60,7 +58,6 @@
 		}
 
 		&:hover {
-
 			a {
 				text-decoration: underline;
 			}
@@ -69,7 +66,6 @@
 }
 
 .socials {
-
 	@include m.displayFlex(row, space-evenly, center);
 
 	.social-icon {
@@ -85,7 +81,6 @@
 }
 
 .desktop-footer {
-
 	@include m.media-breakpoint-down(lg) {
 		display: none;
 	}

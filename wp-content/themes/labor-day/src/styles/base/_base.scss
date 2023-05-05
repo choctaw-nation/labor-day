@@ -12,7 +12,6 @@ section {
 }
 
 figure {
-
 	@include m.media-breakpoint-down(md) {
 		margin-bottom: 2rem;
 	}
@@ -30,7 +29,6 @@ figure {
 }
 
 .col {
-
 	@include m.displayFlex(column);
 	position: relative;
 	height: auto;
@@ -58,7 +56,6 @@ figure {
 }
 
 @media (print), (prefers-reduced-motion: reduce) {
-
 	.fadeIn--hide {
 		transform: none;
 	}

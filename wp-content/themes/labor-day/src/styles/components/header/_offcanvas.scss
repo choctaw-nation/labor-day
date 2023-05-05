@@ -1,5 +1,5 @@
-@use '../../abstracts/mixins' as m;
-@use '../../abstracts/variables' as v;
+@use "../../abstracts/mixins" as m;
+@use "../../abstracts/variables" as v;
 .offcanvas {
 	padding-top: 2rem;
 	background-color: v.$color-secondary;

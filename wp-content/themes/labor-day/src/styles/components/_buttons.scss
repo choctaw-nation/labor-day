@@ -8,8 +8,9 @@
 	font-weight: 500;
 	transform: translateY(0);
 	text-transform: uppercase;
-	transition:
- fn.transition((background-color, border-color, transform, box-shadow, color));
+	transition: fn.transition(
+		(background-color, border-color, transform, box-shadow, color)
+	);
 
 	&:hover {
 		box-shadow: 2px 4px 8px rgba(black, 0.35);
@@ -18,11 +19,9 @@
 }
 
 .btn {
-
 	@extend %btn;
 
 	&__fill {
-
 		@extend .btn;
 		color: white;
 
@@ -37,7 +36,6 @@
 		}
 
 		&--primary {
-
 			@extend .btn__fill;
 			background-color: v.$color-primary;
 
@@ -54,7 +52,6 @@
 		}
 
 		&--secondary {
-
 			@extend .btn__fill;
 			background-color: v.$color-secondary;
 
@@ -72,7 +69,6 @@
 	}
 
 	&__outline {
-
 		@extend .btn;
 		background-color: white;
 
@@ -87,7 +83,6 @@
 		}
 
 		&--primary {
-
 			@extend .btn__outline;
 			border-color: v.$color-primary;
 			color: v.$color-primary;
@@ -100,7 +95,6 @@
 		}
 
 		&--secondary {
-
 			@extend .btn__outline;
 			border-color: v.$color-secondary;
 			color: v.$color-secondary;
@@ -120,6 +114,5 @@ a.btn {
 }
 
 button {
-
 	@extend .btn__fill--primary !optional;
 }

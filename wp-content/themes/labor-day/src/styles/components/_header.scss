@@ -48,7 +48,6 @@
 		transition: fn.transition(border-color);
 
 		&--link {
-
 			&:not(.sub-menu a) {
 				color: white;
 			}
@@ -64,14 +63,12 @@
 		}
 
 		&.cta {
-
 			@extend .btn__fill--primary;
 		}
 	}
 }
 
 .mobile-navbar {
-
 	@extend .navbar;
 
 	&__menu {

@@ -1,14 +1,12 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 %day-container {
-
 	@include m.displayFlex(column);
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-bottom: 3rem;
 }
 %meta-display {
-
 	@include m.displayFlex(column, space-evenly, center);
 	padding: 1rem;
 }
@@ -36,13 +34,11 @@
 	}
 
 	&__event-meta {
-
 		@include m.displayFlex(column, center, stretch);
 		grid-row: 1 / 3;
 		font-size: 1em;
 
 		@include m.media-breakpoint-down(md) {
-
 			@include m.displayFlex(row, space-evenly, center);
 			grid-row: 2 / 3;
 			grid-column: 1 / 3;
@@ -58,12 +54,10 @@
 		}
 
 		&--start {
-
 			@extend %meta-display;
 		}
 
 		&--end {
-
 			@extend %meta-display;
 			margin-top: 3rem;
 
@@ -110,7 +104,6 @@
 	}
 
 	&__buttons {
-
 		button {
 			margin-left: 1rem;
 		}

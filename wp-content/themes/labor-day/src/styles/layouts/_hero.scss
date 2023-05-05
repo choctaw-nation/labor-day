@@ -39,16 +39,13 @@
 }
 
 .hero {
-
 	@extend %hero;
 
 	&--image {
-
 		@extend %hero;
 	}
 
 	&--color {
-
 		@extend %hero;
 		min-height: 40rem;
 		height: auto;

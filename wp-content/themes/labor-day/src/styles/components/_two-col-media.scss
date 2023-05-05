@@ -1,19 +1,15 @@
 @use "../abstracts/mixins" as m;
 %col-styles {
-
 	@include m.displayFlex(column);
 }
 
 .two-col {
-
 	@include m.displayFlex(row, center);
 
 	&__media {
-
 		@extend %col-styles;
 
 		&--container {
-
 			img {
 				height: 100%;
 				width: 100%;
@@ -23,7 +19,6 @@
 	}
 
 	&__content {
-
 		@extend %col-styles;
 	}
 }
