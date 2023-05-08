@@ -1,4 +1,6 @@
 @forward "./bs_breakpoints";
+@use "./variables" as v;
+@use "./functions" as fn;
 
 @mixin displayFlex(
 	$direction: row,
@@ -39,5 +41,20 @@
 		height: 100%;
 		object-fit: $fit;
 		object-position: $position;
+	}
+}
+
+@mixin anchorHoverState($height: 3px, $width: 50%, $color: v.$color-primary) {
+	&:after {
+		background-color: $color;
+		bottom: -0.5rem;
+		content: "";
+		height: $height;
+		left: 0;
+		position: absolute;
+		transform: scaleX(0);
+		transform-origin: 0 0;
+		transition: fn.transition(transform);
+		width: $width;
 	}
 }

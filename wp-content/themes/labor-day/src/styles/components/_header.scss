@@ -29,10 +29,7 @@
 	a {
 		transition: fn.transition(color);
 		text-decoration: none;
-
-		&:not(:has(h1)) {
-			text-transform: uppercase;
-		}
+		text-transform: uppercase;
 	}
 
 	&__menu {
@@ -47,19 +44,21 @@
 		border-bottom: 2px solid transparent;
 		transition: fn.transition(border-color);
 
-		&--link {
+		&:hover {
+			cursor: pointer;
+			a::after {
+				transform: scaleX(1);
+			}
 			&:not(.sub-menu a) {
 				color: white;
 			}
 		}
-
-		&:hover {
-			border-color: white;
-			cursor: pointer;
-
+		&--link {
+			position: relative;
 			&:not(.sub-menu a) {
 				color: white;
 			}
+			@include m.anchorHoverState($color: white);
 		}
 
 		&.cta {

@@ -5,7 +5,9 @@
 
 get_header();
 ?>
-
+<aside class="breadcrumbs">
+	<a class='breadcrumb' href="/events">Back to All Events</a>
+</aside>
 <div class="container">
 	<article class="cno-event py-5">
 		<div class="cno-event__image"><?php the_post_thumbnail(); ?></div>
