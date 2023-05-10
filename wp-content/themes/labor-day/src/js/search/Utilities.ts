@@ -24,23 +24,28 @@ export function destructureData( data: EventPost ): PrettyEventData {
 	} = data;
 	const { eventId, link, title } = data;
 	const { event_info } = data;
-	const {
-		featuredImage: {
-			node: { altText, srcSet, mediaDetails, sizes },
-		},
-	} = data;
-	const size = mediaDetails.sizes[ 0 ];
 	const destructuredData = {
 		locations,
 		type,
-		sizes,
 		eventId,
 		link,
 		title,
 		event_info,
-		altText,
-		srcSet,
-		size,
+		featuredImage: null,
 	};
+	if ( data.featuredImage ) {
+		const {
+			featuredImage: {
+				node: { altText, srcSet, mediaDetails, sizes },
+			},
+		} = data;
+		const size = mediaDetails.sizes[ 0 ];
+		destructuredData.featuredImage = {
+			sizes,
+			altText,
+			srcSet,
+			size,
+		};
+	}
 	return destructuredData;
 }

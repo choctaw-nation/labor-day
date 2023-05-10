@@ -60,11 +60,13 @@ export type EventPost = {
 export type PrettyEventData = {
 	locations?: EventLocation[];
 	type: EventType[];
-	sizes: string;
 	eventId: number;
 	link: string;
 	title: string;
 	event_info: EventInfo;
+	featuredImage: null | featuredImage;
+};
+type featuredImage = {
 	altText: string;
 	srcSet: string;
 	size: {
@@ -73,4 +75,5 @@ export type PrettyEventData = {
 		width: string;
 		sourceUrl: string;
 	};
+	sizes: string;
 };

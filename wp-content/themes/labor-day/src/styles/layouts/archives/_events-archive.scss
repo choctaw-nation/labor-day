@@ -2,7 +2,7 @@
 :is(.post-type-archive-events) .hero {
 	height: auto;
 }
-:where(.archive) {
+:is(.archive) {
 	.cno-events-wrapper {
 		margin: 0 auto;
 		.cno-events {
@@ -15,7 +15,25 @@
 				@include m.displayFlex(column);
 			}
 		}
+		.cno-event-search-filters {
+			&__container {
+				@include m.displayFlex(column, flex-start, stretch);
+				// flex-wrap: nowrap;
+			}
+			&__filter-container {
+				display: inline-grid;
+				grid-template-columns: repeat(auto-fit, max(24rem));
+				gap: 1rem;
+				place-content: start;
+				place-items: start;
+				height: fit-content;
+			}
+			&__filter {
+				grid-row: unset;
+			}
+		}
 	}
+
 	.cno-search {
 		@include m.media-breakpoint-down(md) {
 			.event-meta {

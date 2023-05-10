@@ -1,20 +1,13 @@
 import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
 import CNOButtons from '../Components/CNOButtons';
+import FeaturedImage from './FeaturedImage';
 
 export default function SinglePost( { data }: { data: PrettyEventData } ) {
-	const {
-		locations,
-		eventId,
-		link,
-		title,
-		event_info,
-		altText,
-		srcSet,
-		size,
-		sizes,
-		type,
-	} = data;
+	const { locations, eventId, link, title, event_info, featuredImage, type } =
+		data;
+	if ( ! featuredImage ) {
+	}
 	function setDate( day: string ): string {
 		let date: string = '';
 		switch ( day ) {
@@ -34,18 +27,9 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 	}
 	return (
 		<article className="cno-event">
-			<figure className="cno-event__image">
-				<img
-					width={ size.width }
-					height={ size.height }
-					src=""
-					className="attachment-large size-large wp-post-image"
-					alt={ altText }
-					decoding="async"
-					srcSet={ srcSet }
-					sizes={ sizes }
-				/>
-			</figure>
+			{ featuredImage && (
+				<FeaturedImage featuredImage={ featuredImage } />
+			) }
 			<h2>{ title }</h2>
 			<aside className="event-meta">
 				<div className="event-meta__day">

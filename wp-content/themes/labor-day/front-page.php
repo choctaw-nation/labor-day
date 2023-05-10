@@ -71,7 +71,7 @@ get_header(); ?>
 			</div>
 			<div class="row">
 				<div class="col">
-					<a href="/schedule" class="btn__fill--primary">See Full Schedule</a>
+					<a href="/events" class="btn__fill--primary">See Full Schedule</a>
 				</div>
 			</div>
 		</div>

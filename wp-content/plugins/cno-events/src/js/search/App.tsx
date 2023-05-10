@@ -3,7 +3,7 @@ import LoadingSpinner from '../spinner';
 import Fuse from 'fuse.js';
 import { fuzzySearchKeys } from './fuse-config';
 import { EventPost, EventFilters } from './types';
-import Model from './DataHandler';
+import { getPosts, destructureData } from './DataHandler';
 import SearchBar from './Presentational/SearchBar';
 import ResultsContainer from './Presentational/ResultsContainer';
 
@@ -14,16 +14,14 @@ function App() {
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
 		if ( search === '' ) {
-			Model.getPosts().then(
-				( { eventLocations, eventTypes, events } ) => {
-					setPosts(
-						events.nodes.map( ( node ) => {
-							return Model.destructureData( node );
-						} )
-					);
-					setIsLoading( false );
-				}
-			);
+			getPosts().then( ( { eventLocations, eventTypes, events } ) => {
+				setPosts(
+					events.nodes.map( ( node ) => {
+						return destructureData( node );
+					} )
+				);
+				setIsLoading( false );
+			} );
 		}
 	}, [ search ] );
 
@@ -37,9 +35,7 @@ function App() {
 			const fuse = new Fuse( posts, {
 				...fuzzySearchKeys,
 			} );
-			// console.log(`Search Terms: ${search}`);
 			const results = fuse.search( search );
-			// console.log(results);
 			setPosts( results.map( ( result ) => result.item ) );
 			setIsLoading( false );
 		}, 500 );

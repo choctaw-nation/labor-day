@@ -13,12 +13,13 @@ function App() {
 	const [ filters, setFilters ] = useState< Array< EventFilters > >( [] );
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
-		if ( search === '' ) {
+		if ( '' === search ) {
 			Model.getPosts().then(
 				( { eventLocations, eventTypes, events } ) => {
 					setPosts(
 						events.nodes.map( ( node ) => {
-							return destructureData( node );
+							const data = destructureData( node );
+							return data;
 						} )
 					);
 					const filtersArr: EventFilters[] = [

@@ -1,31 +1,30 @@
 import { EventPost, PrettyEventData } from './types';
-// import { POSTS_PER_PAGE, graphQL } from './App';
+import { POSTS_PER_PAGE, graphQL } from './App';
 
-export default new ( class Model {
-	async makeRequest( request ) {
-		try {
-			const response = await fetch( `${ graphQL }`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify( request ),
-			} );
-			const { data } = await response.json();
-			return data;
-		} catch ( error ) {
-			console.error( 'makeRequest error:', error );
-			throw error;
-		}
+async function makeRequest( request ) {
+	try {
+		const response = await fetch( `${ graphQL }`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify( request ),
+		} );
+		const { data } = await response.json();
+		return data;
+	} catch ( error ) {
+		console.error( 'makeRequest error:', error );
+		throw error;
 	}
-	async getPosts() {
-		const variables = {
-			first: Number( POSTS_PER_PAGE ),
-			after: '',
-			include: [ 'LARGE' ],
-			size: 'LARGE',
-		};
-		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
+}
+export async function getPosts() {
+	const variables = {
+		first: Number( POSTS_PER_PAGE ),
+		after: '',
+		include: [ 'LARGE' ],
+		size: 'LARGE',
+	};
+	const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
   events(after: $after, first: $first) {
     pageInfo {
       hasNextPage
@@ -90,44 +89,43 @@ export default new ( class Model {
   }
 }`;
 
-		const request = {
-			query: query,
-			variables: variables,
-		};
-		try {
-			const data = await this.makeRequest( request );
-			return data;
-		} catch ( err ) {
-			console.error( err );
-		}
+	const request = {
+		query: query,
+		variables: variables,
+	};
+	try {
+		const data = await makeRequest( request );
+		return data;
+	} catch ( err ) {
+		console.error( err );
 	}
-	destructureData( data: EventPost ): PrettyEventData {
-		const {
-			eventLocations: { nodes: locations },
-		} = data;
-		const {
-			eventTypes: { nodes: type },
-		} = data;
-		const { eventId, link, title } = data;
-		const { event_info } = data;
-		const {
-			featuredImage: {
-				node: { altText, srcSet, mediaDetails, sizes },
-			},
-		} = data;
-		const size = mediaDetails.sizes[ 0 ];
-		const destructuredData = {
-			locations,
-			type,
-			sizes,
-			eventId,
-			link,
-			title,
-			event_info,
-			altText,
-			srcSet,
-			size,
-		};
-		return destructuredData;
-	}
-} )();
+}
+export function destructureData( data: EventPost ): PrettyEventData {
+	const {
+		eventLocations: { nodes: locations },
+	} = data;
+	const {
+		eventTypes: { nodes: type },
+	} = data;
+	const { eventId, link, title } = data;
+	const { event_info } = data;
+	const {
+		featuredImage: {
+			node: { altText, srcSet, mediaDetails, sizes },
+		},
+	} = data;
+	const size = mediaDetails.sizes[ 0 ];
+	const destructuredData = {
+		locations,
+		type,
+		sizes,
+		eventId,
+		link,
+		title,
+		event_info,
+		altText,
+		srcSet,
+		size,
+	};
+	return destructuredData;
+}
