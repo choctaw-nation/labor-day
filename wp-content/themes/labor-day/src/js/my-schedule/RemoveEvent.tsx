@@ -2,7 +2,7 @@ import React from '@wordpress/element';
 export default function RemoveEventButton( { removeEvent, id, day } ) {
 	return (
 		<button
-			className="my-schedule__remove-event"
+			className="my-schedule__remove-event col"
 			onClick={ () => {
 				removeEvent( id, day );
 			} }

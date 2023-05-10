@@ -12,10 +12,17 @@ function App() {
 		saturday: [],
 		sunday: [],
 	} );
+	const emptyEvents =
+		events.friday.length === 0 &&
+		events.saturday.length === 0 &&
+		events.sunday.length === 0;
 	useEffect( () => {
-		const sortedEvents = getLocalStorageData();
-
-		setEvents( getTimeSortedEvents( sortedEvents ) );
+		try {
+			const sortedEvents = getLocalStorageData();
+			setEvents( getTimeSortedEvents( sortedEvents ) );
+		} catch ( err ) {
+			console.error( err );
+		}
 		setIsLoading( false );
 	}, [] );
 	function removeEvent( id: number, day: string ) {
@@ -34,10 +41,6 @@ function App() {
 		localStorage.setItem( 'schedule', JSON.stringify( events ) );
 	}, [ events ] );
 
-	const emptyEvents =
-		events.friday.length === 0 &&
-		events.saturday.length === 0 &&
-		events.sunday.length === 0;
 	if ( isLoading ) {
 		return <LoadingSpinner />;
 	}
@@ -45,38 +48,9 @@ function App() {
 		return <p>Seems like you haven't added any events yet.</p>;
 	}
 	return (
-		<>
-			{ events.friday.length > 0 && (
-				<div className="my-schedule__container">
-					<h2 className="my-schedule__day-label">Friday</h2>
-					<EventsDisplay
-						schedule={ events.friday }
-						day={ 'Friday' }
-						removeEvent={ removeEvent }
-					/>
-				</div>
-			) }
-			{ events.saturday.length > 0 && (
-				<div className="my-schedule__container">
-					<h2 className="my-schedule__day-label">Saturday</h2>
-					<EventsDisplay
-						schedule={ events.saturday }
-						day={ 'Saturday' }
-						removeEvent={ removeEvent }
-					/>
-				</div>
-			) }
-			{ events.sunday.length > 0 && (
-				<div className="my-schedule__container">
-					<h2 className="my-schedule__day-label">Sunday</h2>
-					<EventsDisplay
-						schedule={ events.sunday }
-						day={ 'Sunday' }
-						removeEvent={ removeEvent }
-					/>
-				</div>
-			) }
-		</>
+		<div className="container">
+			<EventsDisplay schedule={ events } removeEvent={ removeEvent } />
+		</div>
 	);
 }
 const root = document.getElementById( 'app' );

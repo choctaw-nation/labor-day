@@ -1,6 +1,15 @@
 import type { LaborDayEvent } from '../types';
 import { format } from 'date-fns';
-
+export function getTheDay( day: string ): string | undefined {
+	switch ( day ) {
+		case 'Friday':
+			return '1';
+		case 'Saturday':
+			return '2';
+		case 'Sunday':
+			return '3';
+	}
+}
 export function getTheTime( t: string ): string {
 	const time = new Date( `2023-09-01T${ t }` ).toLocaleTimeString( [], {
 		hour: 'numeric',
