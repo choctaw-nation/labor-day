@@ -12,7 +12,11 @@ get_header();
 
 <section class="hero">
 	<div class="container">
-		<h1>The Events</h1>
+		<h1>Schedule</h1>
+		<span class="subheadline mb-5">
+			<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
+		</span>
+		<a href="/my-schedule" class="btn__fill--secondary">View Your Schedule</a>
 	</div>
 </section>
 <div class="cno-events-wrapper" id="app">

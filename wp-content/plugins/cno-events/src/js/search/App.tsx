@@ -21,21 +21,6 @@ function App() {
 							return Model.destructureData( node );
 						} )
 					);
-					// const filtersArr: EventFilters[] = [
-					// 	{
-					// 		type: {
-					// 			name: 'Event Types',
-					// 			filters: [...eventTypes.nodes],
-					// 		},
-					// 	},
-					// 	{
-					// 		type: {
-					// 			name: 'Locations',
-					// 			filters: [...eventLocations.nodes],
-					// 		},
-					// 	},
-					// ];
-					// setFilters(filtersArr);
 					setIsLoading( false );
 				}
 			);

@@ -1,8 +1,9 @@
 import '../../styles/pages/my-schedule.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
-import { LaborDayEvent, SortedEventsObject } from '../types';
+import { SortedEventsObject, LaborDayEvent } from '../types';
 import LoadingSpinner from '../spinner';
+import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
 
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
@@ -11,30 +12,10 @@ function App() {
 		saturday: [],
 		sunday: [],
 	} );
-	function getLocalStorageData(): SortedEventsObject {
-		const data = localStorage.getItem( 'schedule' );
-		const jsonEvents: Array< LaborDayEvent > = data
-			? JSON.parse( data )
-			: [];
-		const sortedEvents: SortedEventsObject = {
-			friday: [],
-			saturday: [],
-			sunday: [],
-		};
-		const days: Array< string > = [ 'friday', 'saturday', 'sunday' ];
-		days.forEach( ( day ) => {
-			const dailyEvents = jsonEvents[ day ].filter(
-				( ev: LaborDayEvent ) => {
-					return ev.day.toLowerCase() == day;
-				}
-			);
-			dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
-		} );
-		return sortedEvents;
-	}
 	useEffect( () => {
 		const sortedEvents = getLocalStorageData();
-		setEvents( sortedEvents );
+
+		setEvents( getTimeSortedEvents( sortedEvents ) );
 		setIsLoading( false );
 	}, [] );
 	function removeEvent( id: number, day: string ) {

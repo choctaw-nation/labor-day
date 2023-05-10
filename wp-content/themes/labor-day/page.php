@@ -31,9 +31,6 @@ get_header();
 		case 'registrations':
 			get_template_part( 'template-parts/page', 'registrations' );
 			break;
-		case 'schedule':
-			get_template_part( 'template-parts/page', 'schedule' );
-			break;
 		case 'map':
 			get_template_part( 'template-parts/page', 'map' );
 			break;
