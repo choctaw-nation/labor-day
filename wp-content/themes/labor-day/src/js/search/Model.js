@@ -13,8 +13,7 @@ export default new ( class Model {
 			const { data } = await response.json();
 			return data;
 		} catch ( error ) {
-			console.error( 'makeRequest error:', error );
-			throw error;
+			throw new Error( `makeRequest error: ${ error }` );
 		}
 	}
 	async getPosts() {
