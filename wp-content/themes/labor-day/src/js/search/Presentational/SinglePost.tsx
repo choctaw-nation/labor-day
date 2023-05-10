@@ -31,7 +31,9 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 				<FeaturedImage featuredImage={ featuredImage } />
 			) }
 			<h2>{ title }</h2>
-			<aside className="event-meta">
+			<aside
+				className={ `event-meta event-meta--${ event_info.info.day.toLowerCase() }` }
+			>
 				<div className="event-meta__day">
 					<strong>When: </strong>
 					{ event_info.info.day }, { setDate( event_info.info.day ) }

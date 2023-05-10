@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
 
 .cno-event {
 	display: flex;
@@ -27,5 +28,17 @@
 		grid-template-columns: repeat(auto-fill, max(18rem));
 		justify-items: flex-start;
 		gap: 1rem;
+	}
+}
+
+.event-meta {
+	&--friday {
+		background-color: v.$color-primary;
+	}
+	&--saturday {
+		background-color: v.$color-secondary;
+	}
+	&--sunday {
+		background-color: v.$color-primary--light;
 	}
 }
