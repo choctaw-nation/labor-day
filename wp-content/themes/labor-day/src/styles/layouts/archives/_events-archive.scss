@@ -6,14 +6,7 @@
 	.cno-events-wrapper {
 		margin: 0 auto;
 		.cno-events {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, max(40rem));
-			align-items: stretch;
-			justify-content: center;
-			gap: 2rem;
-			@include m.media-breakpoint-down(md) {
-				@include m.displayFlex(column);
-			}
+			@include m.displayFlex(column);
 		}
 		.cno-event-search-filters {
 			&__container {

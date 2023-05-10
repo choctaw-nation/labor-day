@@ -2,24 +2,80 @@
 @use "../abstracts/variables" as v;
 
 .cno-event {
-	display: flex;
-	flex-direction: column;
-
-	&__image {
-		height: 40rem;
-		width: 100%;
-		@include m.fitMedia(img, $fit: cover);
-		@include m.media-breakpoint-down(md) {
-			max-width: 32rem;
+	&__time {
+		color: white;
+		font-weight: 700;
+		line-height: 1.2;
+		text-align: center;
+		@include m.displayFlex(column, center, stretch);
+		&--date {
+			@include m.displayFlex(column, $cross: center);
+		}
+		&--month {
+			font-size: 2em;
+		}
+		&--day {
+			font-size: 3em;
+		}
+		&--day-of-week {
+			font-size: 1em;
+		}
+		&--time {
+			border-top: 1px solid white;
+			margin-top: 1rem;
+			padding-top: 1rem;
+		}
+		&--friday {
+			background-color: v.$color-primary;
+		}
+		&--saturday {
+			background-color: v.$color-secondary;
+		}
+		&--sunday {
+			background-color: v.$color-primary--light;
 		}
 	}
-
-	.event-meta {
-		margin-bottom: 1rem;
+	&__image {
+		@include m.fitMedia(img, $fit: cover);
 	}
+	&__info {
+		&--title {
+			color: v.$color-grey;
+			font-family: v.$font-pill-gothic;
+		}
+		&--description {
+			margin-bottom: 2rem;
+		}
+	}
+	&__meta {
+		@include m.displayFlex($cross: center);
+		& > * {
+			@include m.displayFlex($cross: center);
+		}
+		&--icon {
+			$size: 3rem;
+			width: $size;
+			height: $size;
+		}
+		&--location {
+			position: relative;
+			color: v.$color-secondary;
 
-	.about {
-		margin-bottom: 2rem;
+			svg path {
+				fill: v.$color-secondary;
+				transition: fill v.$transition--standard;
+			}
+			&:hover {
+				svg path {
+					fill: v.$color-primary--light;
+				}
+			}
+		}
+		&--link {
+			transition: color v.$transition--standard;
+			color: inherit;
+			display: inline-block;
+		}
 	}
 
 	&__buttons {
@@ -28,17 +84,5 @@
 		grid-template-columns: repeat(auto-fill, max(18rem));
 		justify-items: flex-start;
 		gap: 1rem;
-	}
-}
-
-.event-meta {
-	&--friday {
-		background-color: v.$color-primary;
-	}
-	&--saturday {
-		background-color: v.$color-secondary;
-	}
-	&--sunday {
-		background-color: v.$color-primary--light;
 	}
 }
