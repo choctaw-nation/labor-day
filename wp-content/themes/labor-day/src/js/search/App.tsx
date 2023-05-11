@@ -9,8 +9,8 @@ import { destructureData, fuzzySearchKeys } from './Utilities';
 
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
-	const [ posts, setPosts ] = useState< Array< EventPost > >( [] );
-	const [ filters, setFilters ] = useState< Array< EventFilters > >( [] );
+	const [ posts, setPosts ] = useState< EventPost[] >( [] );
+	const [ filters, setFilters ] = useState< EventFilters[] >( [] );
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
 		if ( '' === search ) {

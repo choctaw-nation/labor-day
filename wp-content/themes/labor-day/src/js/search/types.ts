@@ -26,7 +26,7 @@ export type EventFilters = {
 	};
 };
 
-/** The Structure of an Event Post Type */
+/** The raw structure of an event post type */
 export type EventPost = {
 	eventLocations: {
 		nodes: EventLocation[];
@@ -57,7 +57,7 @@ export type EventPost = {
 	};
 };
 /** The Formatted Event Post Type Data */
-export type PrettyEventData = {
+export interface PrettyEventData {
 	locations?: EventLocation[];
 	type: EventType[];
 	eventId: number;
@@ -65,7 +65,7 @@ export type PrettyEventData = {
 	title: string;
 	event_info: EventInfo;
 	featuredImage?: featuredImage;
-};
+}
 export type featuredImage = {
 	altText: string;
 	srcSet: string;
