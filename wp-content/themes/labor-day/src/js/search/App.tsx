@@ -14,6 +14,7 @@ function App() {
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
 		if ( '' === search ) {
+			console.log( Model.getPosts );
 			const data = Model.getPosts()
 				.then( ( data ) => {
 					console.log( data );
