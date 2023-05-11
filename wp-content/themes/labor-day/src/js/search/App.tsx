@@ -17,12 +17,10 @@ function App() {
 			try {
 				Model.getPosts().then(
 					( { eventLocations, eventTypes, events } ) => {
-						console.log( events );
 						setPosts(
-							events.nodes.map( ( node ) => {
-								const data = destructureData( node );
-								return data;
-							} )
+							events.nodes.map( ( node ) =>
+								destructureData( node )
+							)
 						);
 						const filtersArr: EventFilters[] = [
 							{
@@ -38,7 +36,6 @@ function App() {
 								},
 							},
 						];
-
 						setFilters( filtersArr );
 						setIsLoading( false );
 					}

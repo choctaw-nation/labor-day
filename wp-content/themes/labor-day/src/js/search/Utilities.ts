@@ -31,21 +31,11 @@ export function destructureData( data: EventPost ): PrettyEventData {
 		link,
 		title,
 		event_info,
-		featuredImage: null,
 	};
-	if ( data.featuredImage ) {
-		const {
-			featuredImage: {
-				node: { altText, srcSet, mediaDetails, sizes },
-			},
-		} = data;
-		const size = mediaDetails.sizes[ 0 ];
-		destructuredData.featuredImage = {
-			sizes,
-			altText,
-			srcSet,
-			size,
-		};
-	}
+
+	destructuredData.featuredImage = data.featuredImage
+		? data.featuredImage.node
+		: null;
+
 	return destructuredData;
 }

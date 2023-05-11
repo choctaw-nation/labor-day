@@ -1,4 +1,4 @@
-import type { LaborDayEvent } from '../types';
+import { PrettyEventData } from '../search/types';
 import { format } from 'date-fns';
 export function getTheDay( day: string ): string | undefined {
 	switch ( day ) {
@@ -10,21 +10,14 @@ export function getTheDay( day: string ): string | undefined {
 			return '3';
 	}
 }
-export function getTheTime( t: string ): string {
-	const time = new Date( `2023-09-01T${ t }` ).toLocaleTimeString( [], {
-		hour: 'numeric',
-		minute: '2-digit',
-		hour12: true,
-	} );
-	return time;
-}
+
 function formatICalDateTime( date: Date ): string {
 	const dateString = format( date, "yyyyMMdd'T'HHmmss" );
 	return `${ dateString }`;
 }
-export function downloadICSFile( event: LaborDayEvent ) {
+export function downloadICSFile( event: PrettyEventData ) {
 	let start_date = '';
-	switch ( event.day ) {
+	switch ( event.event_info.info.day ) {
 		case 'Friday':
 			start_date = 'September 1, 2023';
 			break;
@@ -38,18 +31,18 @@ export function downloadICSFile( event: LaborDayEvent ) {
 			throw new Error( 'Could not set date!' );
 	}
 	const startDateTime = formatICalDateTime(
-		new Date( `${ start_date } ${ event.start_time }` )
+		new Date( `${ start_date } ${ event.event_info.info.startTime }` )
 	);
 
 	let endDateTime = '';
-	if ( event.end_time ) {
+	if ( event.event_info.info.endTime ) {
 		endDateTime = formatICalDateTime(
-			new Date( `${ start_date } ${ event.end_time }` )
+			new Date( `${ start_date } ${ event.event_info.info.endTime }` )
 		);
 	} else {
 		const defaultDuration = 60 * 60 * 1000; // 1 hour
 		const startTime = new Date(
-			`${ start_date } ${ event.start_time }`
+			`${ start_date } ${ event.event_info.info.startTime }`
 		).getTime();
 		endDateTime = formatICalDateTime(
 			new Date( startTime + defaultDuration )
@@ -62,7 +55,7 @@ BEGIN:VEVENT
 DTSTART:${ startDateTime }
 DTEND:${ endDateTime }
 SUMMARY:${ event.title }
-DESCRIPTION:${ event.description }
+DESCRIPTION:${ event.event_info.description }
 LOCATION:${ event.link }
 END:VEVENT
 END:VCALENDAR`;

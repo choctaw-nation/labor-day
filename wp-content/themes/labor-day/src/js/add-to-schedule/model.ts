@@ -1,4 +1,5 @@
-import { LaborDayEvent, SortedEventsObject } from '../types';
+import { PrettyEventData } from '../search/types';
+import { SortedEventsObject } from '../types';
 
 /**
  * @typedef {Object} SiteData
@@ -43,9 +44,10 @@ export default new ( class Model {
 				const schedule = this.getSchedule();
 				try {
 					this.getEventData( id ).then( ( res ) => {
-						const dayProp = res.day.toLowerCase();
+						const dayProp = res.event_info.info.day.toLowerCase();
 						const check = schedule[ dayProp ].filter(
-							( item: LaborDayEvent ) => item.id === res.id
+							( item: PrettyEventData ) =>
+								item.eventId === res.eventId
 						);
 						if ( check.length === 0 ) {
 							schedule[ dayProp ].push( res );
@@ -93,27 +95,93 @@ export default new ( class Model {
 	 * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
 	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
 	 */
-	private getEventData = async ( id: number ): Promise< LaborDayEvent > => {
+	private getEventData = async ( id: number ): Promise< PrettyEventData > => {
 		try {
-			const response = await fetch(
-				`${ cnoSiteData.rootUrl }/wp-json/wp/v2/events/${ id }?_fields=acf,title,link`
-			);
+			const response = await fetch( `${ cnoSiteData.rootUrl }/graphql/`, {
+				method: 'POST',
+				body: JSON.stringify( this.queryString( id ) ),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			} );
 			const data = await response.json();
 			const {
-				acf: { info },
+				data: {
+					events: { nodes },
+				},
 			} = data;
-			const event: LaborDayEvent = {
-				id: id,
-				link: data.link,
-				title: data.title.rendered,
-				description: data.acf.description,
-				day: info.day,
-				start_time: info.start_time,
-				end_time: info.end_time,
+
+			const event: PrettyEventData = {
+				eventId: nodes[ 0 ].eventId,
+				link: nodes[ 0 ].link,
+				title: nodes[ 0 ].title,
+				event_info: {
+					description: nodes[ 0 ].event_info.description,
+					info: {
+						day: nodes[ 0 ].event_info.info.day,
+						startTime: nodes[ 0 ].event_info.info.startTime,
+						endTime: nodes[ 0 ].event_info.info.endTime,
+					},
+				},
+				locations: nodes[ 0 ].eventLocations.nodes[ 0 ],
+				type: nodes[ 0 ].eventTypes.nodes[ 0 ],
 			};
+			event.featuredImage = nodes[ 0 ].featuredImage;
+			console.log( event );
 			return event;
 		} catch ( err ) {
 			throw new Error( err );
 		}
 	};
+	private queryString( id: number ): object {
+		const query = {
+			query: `query Events {
+  events(where: {id: ${ id }}) {
+    nodes {
+      eventId
+      title(format: RENDERED)
+      link
+      event_info {
+        info {
+          day
+          endTime
+          startTime
+        }
+        description
+      }
+      eventLocations {
+        nodes {
+          name
+          uri
+          event_locationId
+        }
+      }
+      eventTypes {
+        nodes {
+          name
+          uri
+          event_typeId
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          mediaDetails {
+            sizes(include: [LARGE]) {
+              height
+              name
+              width
+              sourceUrl
+            }
+          }
+          srcSet(size: LARGE)
+		  sizes(size: LARGE)
+        }
+      }
+    }
+  }
+}`,
+		};
+		return query;
+	}
 } )();

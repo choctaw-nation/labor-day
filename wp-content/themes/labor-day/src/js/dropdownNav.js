@@ -11,7 +11,6 @@ function toggleShow( { target } ) {
 	const submenu = target
 		.closest( '.menu-item-has-children' )
 		.querySelector( '.dropdown-menu' );
-	console.log( submenu );
 	submenu.classList.toggle( 'show' );
 	submenu.setAttribute( 'data-bs-popper', 'static' );
 }

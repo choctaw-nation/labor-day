@@ -1,4 +1,5 @@
-import type { SortedEventsObject, LaborDayEvent } from '../types';
+import { PrettyEventData } from '../search/types';
+import type { SortedEventsObject } from '../types';
 
 function getEvents() {
 	const data = localStorage.getItem( 'schedule' );
@@ -12,7 +13,7 @@ function getEvents() {
 export function getLocalStorageData(): SortedEventsObject {
 	try {
 		const data = getEvents();
-		const jsonEvents: Array< LaborDayEvent > = data
+		const jsonEvents: Array< PrettyEventData > = data
 			? JSON.parse( data )
 			: [];
 		const sortedEvents: SortedEventsObject = {
@@ -23,8 +24,8 @@ export function getLocalStorageData(): SortedEventsObject {
 		const days: Array< string > = [ 'friday', 'saturday', 'sunday' ];
 		days.forEach( ( day ) => {
 			const dailyEvents = jsonEvents[ day ].filter(
-				( ev: LaborDayEvent ) => {
-					return ev.day.toLowerCase() == day;
+				( ev: PrettyEventData ) => {
+					return ev.event_info.info.day.toLowerCase() == day;
 				}
 			);
 			dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
@@ -46,10 +47,10 @@ export function getTimeSortedEvents(
 	 * @param {LaborDayEvent} a the first event
 	 * @param {LaborDayEvent} b the event to compare it against.
 	 */
-	function eventSorter( a: LaborDayEvent, b: LaborDayEvent ): number {
+	function eventSorter( a: PrettyEventData, b: PrettyEventData ): number {
 		return (
-			new Date( '1970/01/01 ' + a.start_time ) -
-			new Date( '1970/01/01 ' + b.start_time )
+			new Date( '1970/01/01 ' + a.event_info.info.startTime ) -
+			new Date( '1970/01/01 ' + b.event_info.info.startTime )
 		);
 	}
 	for ( const day in sortedEvents ) {

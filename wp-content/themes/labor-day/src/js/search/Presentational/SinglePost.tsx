@@ -4,29 +4,11 @@ import CNOButtons from '../Components/CNOButtons';
 import FeaturedImage from './FeaturedImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { getTheDay } from '../../my-schedule/calendarFunctions';
 
 export default function SinglePost( { data }: { data: PrettyEventData } ) {
 	const { locations, eventId, link, title, event_info, featuredImage, type } =
 		data;
-	if ( ! featuredImage ) {
-	}
-	function setDate( day: string ): string {
-		let date: string = '';
-		switch ( day ) {
-			case 'Friday':
-				date = '1';
-				return date;
-			case 'Saturday':
-				date = '2';
-				return date;
-			case 'Sunday':
-				date = '3';
-				return date;
-			default:
-				date = '';
-				return date;
-		}
-	}
 	return (
 		<article className="cno-event row">
 			<aside
@@ -35,7 +17,7 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 				<div className="cno-event__time--date">
 					<span className="cno-event__time--month">SEP</span>
 					<span className="cno-event__time--day">
-						{ setDate( event_info.info.day ) }
+						{ getTheDay( event_info.info.day ) }
 					</span>
 					<span className="cno-event__time--day-of-week">
 						{ event_info.info.day.toUpperCase() }
@@ -46,7 +28,7 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 				</div>
 			</aside>
 			{ featuredImage && (
-				<div className="cno-event__time col-lg-3">
+				<div className="cno-event__image col-lg-3">
 					<FeaturedImage featuredImage={ featuredImage } />
 				</div>
 			) }
@@ -60,7 +42,7 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 								className="cno-event__meta--icon"
 							/>
 							<a
-								href={ locations![ 0 ].link }
+								href={ locations![ 0 ].uri }
 								className="cno-event__meta--link"
 								rel="tag"
 							>
@@ -69,9 +51,12 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 						</div>
 					) }
 				</div>
-				<div className="cno-event__info--description">
-					{ event_info.description }
-				</div>
+				<div
+					className="cno-event__info--description"
+					dangerouslySetInnerHTML={ {
+						__html: event_info.description,
+					} }
+				/>
 				<CNOButtons eventId={ eventId } link={ link } />
 			</div>
 		</article>

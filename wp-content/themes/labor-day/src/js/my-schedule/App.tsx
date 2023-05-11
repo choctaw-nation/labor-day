@@ -1,9 +1,10 @@
 import '../../styles/pages/my-schedule.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
-import { SortedEventsObject, LaborDayEvent } from '../types';
+import { SortedEventsObject } from '../types';
 import LoadingSpinner from '../spinner';
 import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
+import { PrettyEventData } from '../search/types';
 
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
@@ -29,8 +30,8 @@ function App() {
 		setIsLoading( true );
 		const daySelector: string = day.toLowerCase();
 		const filteredEvents = events[ daySelector ].filter(
-			( event: LaborDayEvent ) => {
-				return event.id !== id;
+			( event: PrettyEventData ) => {
+				return event.eventId !== id;
 			}
 		);
 		const updatedEvents = { ...events, [ daySelector ]: filteredEvents };
@@ -42,10 +43,18 @@ function App() {
 	}, [ events ] );
 
 	if ( isLoading ) {
-		return <LoadingSpinner />;
+		return (
+			<div className="container">
+				<LoadingSpinner />
+			</div>
+		);
 	}
 	if ( emptyEvents ) {
-		return <p>Seems like you haven't added any events yet.</p>;
+		return (
+			<div className="container">
+				<p>Seems like you haven't added any events yet.</p>
+			</div>
+		);
 	}
 	return (
 		<div className="container">

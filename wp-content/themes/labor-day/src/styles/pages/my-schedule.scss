@@ -6,44 +6,31 @@
 		min-height: 30vh;
 	}
 }
-.event {
-	&__time {
-		background-color: v.$color-primary;
-		color: white;
-		padding: 10px;
-		text-align: center;
-		font-weight: 700;
-		text-transform: uppercase;
-		&--date {
-			@include m.displayFlex(column, flex-start, stretch);
+.cno-event {
+	&__location {
+		color: v.$color-secondary;
+		transition: color v.$transition--standard;
+		@include m.displayFlex($cross: center);
+		path {
+			fill: v.$color-secondary;
+			transition: fill v.$transition--standard;
 		}
-		&--month {
-			font-size: 20px;
+		&:hover {
+			path {
+				fill: v.$color-primary--light;
+			}
 		}
-		&--day {
-			font-size: 50px;
+		&--icon {
+			$size: 3rem;
+			width: $size;
+			height: $size;
 		}
-		&--day-of-week {
-			font-size: 15px;
-		}
-		&--time {
-			border-top: 1px solid white;
-			margin-top: 10px;
-			padding-top: 10px;
+		&--text {
+			font-size: 1.8rem;
+			margin-left: 0.5rem;
 		}
 	}
-	&__image {
-		@include m.displayFlex(column, center, center);
-		background-color: lightgray;
-		aspect-ratio: 16 / 9;
-		.fa-image {
-			display: block;
-		}
-	}
-	&__info {
-		@include m.displayFlex(column, flex-start, stretch);
-	}
-	&__meta {
+	&__buttons {
 		@include m.displayFlex;
 	}
 }
