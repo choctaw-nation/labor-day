@@ -29,24 +29,26 @@ export default function SearchFilters( {
 						<h4 className="cno-event-search-filters__title">
 							{ name }
 						</h4>
-						{ filters.map( ( filter: EventFilter ) => {
-							return (
-								<div className="cno-event-search-filters__filter">
-									<input
-										type="checkbox"
-										name={ filter.link }
-										id={ filter.name }
-										checked={ checkedFilters.includes(
-											filter.name
-										) }
-										onChange={ () => {} }
-									/>
-									<label htmlFor={ filter.name }>
-										{ filter.name }
-									</label>
-								</div>
-							);
-						} ) }
+						<div className="cno-event-search-filters__filter-container">
+							{ filters.map( ( filter: EventFilter ) => {
+								return (
+									<div className="cno-event-search-filters__filter">
+										<input
+											type="checkbox"
+											name={ filter.link }
+											id={ filter.name }
+											checked={ checkedFilters.includes(
+												filter.name
+											) }
+											onChange={ () => {} }
+										/>
+										<label htmlFor={ filter.name }>
+											{ filter.name }
+										</label>
+									</div>
+								);
+							} ) }
+						</div>
 					</div>
 				);
 			} ) }

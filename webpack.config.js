@@ -50,7 +50,10 @@ module.exports = {
 			}
 			return entries;
 		},
-
+		resolve: {
+			...defaultConfig.resolve,
+			extensions: [ '.js', '.jsx', '.ts', '.tsx' ],
+		},
 		output: {
 			path: __dirname + `${ THEME_DIR }/dist`,
 			filename: `[name].js`,

@@ -1,12 +1,12 @@
 interface Filter {
-	link: string;
+	uri: string;
 	name: string;
 }
 type EventInfo = {
 	description: string;
 	info: {
 		day: string;
-		endTime: string;
+		endTime?: string;
 		startTime: string;
 	};
 };
@@ -60,17 +60,22 @@ export type EventPost = {
 export type PrettyEventData = {
 	locations?: EventLocation[];
 	type: EventType[];
-	sizes: string;
 	eventId: number;
 	link: string;
 	title: string;
 	event_info: EventInfo;
+	featuredImage?: featuredImage;
+};
+export type featuredImage = {
 	altText: string;
 	srcSet: string;
-	size: {
-		height: string;
-		name: string;
-		width: string;
-		sourceUrl: string;
+	mediaDetails: {
+		sizes: sizes[];
 	};
+	sizes: string;
+};
+type sizes = {
+	height: string;
+	width: string;
+	sourceUrl: string;
 };

@@ -1,83 +1,64 @@
 import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
 import CNOButtons from '../Components/CNOButtons';
+import FeaturedImage from './FeaturedImage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { getTheDay } from '../../my-schedule/calendarFunctions';
 
 export default function SinglePost( { data }: { data: PrettyEventData } ) {
-	const {
-		locations,
-		eventId,
-		link,
-		title,
-		event_info,
-		altText,
-		srcSet,
-		size,
-		sizes,
-		type,
-	} = data;
-	function setDate( day: string ): string {
-		let date: string = '';
-		switch ( day ) {
-			case 'Friday':
-				date = 'September 1';
-				return date;
-			case 'Saturday':
-				date = 'September 2';
-				return date;
-			case 'Sunday':
-				date = 'September 3';
-				return date;
-			default:
-				date = '';
-				return date;
-		}
-	}
+	const { locations, eventId, link, title, event_info, featuredImage, type } =
+		data;
 	return (
-		<article className="cno-event">
-			<figure className="cno-event__image">
-				<img
-					width={ size.width }
-					height={ size.height }
-					src=""
-					className="attachment-large size-large wp-post-image"
-					alt={ altText }
-					decoding="async"
-					srcSet={ srcSet }
-					sizes={ sizes }
-				/>
-			</figure>
-			<h2>{ title }</h2>
-			<aside className="event-meta">
-				<div className="event-meta__day">
-					<strong>When: </strong>
-					{ event_info.info.day }, { setDate( event_info.info.day ) }
+		<article className="cno-event row">
+			<aside
+				className={ `cno-event__time col-lg-1 cno-event__time--${ event_info.info.day.toLowerCase() }` }
+			>
+				<div className="cno-event__time--date">
+					<span className="cno-event__time--month">SEP</span>
+					<span className="cno-event__time--day">
+						{ getTheDay( event_info.info.day ) }
+					</span>
+					<span className="cno-event__time--day-of-week">
+						{ event_info.info.day.toUpperCase() }
+					</span>
 				</div>
-				{ locations && locations.length > 0 && (
-					<div className="event-meta__location">
-						<strong>Where:</strong>{ ' ' }
-						<a href={ locations![ 0 ].link } rel="tag">
-							{ locations![ 0 ].name }
-						</a>
-					</div>
-				) }
-				<div className="event-meta__start-time">
-					<strong>Start Time:</strong>
-					{ ' ' + event_info.info.startTime }
-				</div>
-				{ event_info.info.endTime && (
-					<div className="event-meta__end-time">
-						<strong>End Time:</strong> { event_info.info.endTime }
-					</div>
-				) }
-				<div className="event-meta__type">
-					<strong>Event Type:</strong>{ ' ' }
-					<a href="${type[0].link}" rel="tag">
-						{ type[ 0 ].name }
-					</a>
+				<div className="cno-event__time--time">
+					{ event_info.info.startTime }
 				</div>
 			</aside>
-			<div className="about">{ event_info.description }</div>
-			<CNOButtons eventId={ eventId } link={ link } />
+			{ featuredImage && (
+				<div className="cno-event__image col-lg-3">
+					<FeaturedImage featuredImage={ featuredImage } />
+				</div>
+			) }
+			<div className="cno-event__info col-lg-8">
+				<h2 className="cno-event__info--title headline">{ title }</h2>
+				<div className="cno-event__meta">
+					{ locations && locations.length > 0 && (
+						<div className="cno-event__meta--location">
+							<FontAwesomeIcon
+								icon={ faLocationDot }
+								className="cno-event__meta--icon"
+							/>
+							<a
+								href={ locations![ 0 ].uri }
+								className="cno-event__meta--link"
+								rel="tag"
+							>
+								{ locations![ 0 ].name }
+							</a>
+						</div>
+					) }
+				</div>
+				<div
+					className="cno-event__info--description"
+					dangerouslySetInnerHTML={ {
+						__html: event_info.description,
+					} }
+				/>
+				<CNOButtons eventId={ eventId } link={ link } />
+			</div>
 		</article>
 	);
 }

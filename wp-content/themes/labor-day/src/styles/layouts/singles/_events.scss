@@ -1,5 +1,6 @@
 @use "../../abstracts/mixins" as m;
-:where(.single) {
+@use "../../abstracts/variables" as v;
+:where(.single-events) {
 	.cno-event {
 		@include m.media-breakpoint-up(lg) {
 			display: grid;
@@ -16,23 +17,37 @@
 		&__about {
 			font-size: 1.35em;
 		}
+
 		.cno-event-meta {
-			position: relative;
-			margin-bottom: 2rem;
-		}
-		.sidebar {
+			background-color: unset;
 			@include m.media-breakpoint-up(lg) {
-				position: sticky;
 				top: 5%;
-				grid-column-start: 2;
-				grid-column-end: 3;
+				position: sticky;
 			}
-			@include m.displayFlex(column, flex-start, stretch);
-			&__buttons {
-				a {
-					align-self: flex-start;
-				}
+			&__container {
+				margin-bottom: 2rem;
+				padding: 2rem;
+				background-color: v.$color-tertiary;
 			}
+		}
+	}
+	.sidebar {
+		position: relative;
+		height: 100%;
+		@include m.media-breakpoint-up(lg) {
+			grid-column: 2 / 3;
+			grid-row: 1 / span 3;
+		}
+		@include m.displayFlex(column, flex-start, stretch);
+		&__buttons {
+			font-size: 1.4rem;
+			@include m.displayFlex;
+			a {
+				align-self: flex-start;
+			}
+		}
+		&__confirmation {
+			order: 3;
 		}
 	}
 }

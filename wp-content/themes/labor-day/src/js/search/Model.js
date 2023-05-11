@@ -13,8 +13,7 @@ export default new ( class Model {
 			const { data } = await response.json();
 			return data;
 		} catch ( error ) {
-			console.error( 'makeRequest error:', error );
-			throw error;
+			throw new Error( `makeRequest error: ${ error }` );
 		}
 	}
 	async getPosts() {
@@ -34,7 +33,7 @@ export default new ( class Model {
       eventLocations {
         nodes {
           name
-          link
+          uri
           event_locationId
         }
       }
@@ -52,7 +51,6 @@ export default new ( class Model {
           mediaDetails {
             sizes(include: $include) {
               height
-              name
               width
               sourceUrl
             }
@@ -68,7 +66,7 @@ export default new ( class Model {
         nodes {
           event_typeId
           name
-          link
+          uri
         }
       }
     }
@@ -77,13 +75,13 @@ export default new ( class Model {
     nodes {
       event_typeId
       name
-	  link
+	  uri
     }
   }
   eventLocations {
     nodes {
       name
-      link
+      uri
       event_locationId
     }
   }

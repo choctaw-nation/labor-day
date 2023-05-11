@@ -1,6 +1,6 @@
 import React from '@wordpress/element';
 import SinglePost from './SinglePost';
-import { PrettyEventData } from '../types';
+import { EventPost, PrettyEventData } from '../types';
 
 export default function ResultsContainer( {
 	posts,
@@ -11,7 +11,7 @@ export default function ResultsContainer( {
 } ) {
 	return (
 		<section className="cno-events">
-			{ posts.map( ( post ) => {
+			{ posts.map( ( post: PrettyEventData ) => {
 				if ( checkedFilters.length === 0 ) {
 					return <SinglePost data={ post } />;
 				} else if (
