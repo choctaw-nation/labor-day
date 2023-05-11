@@ -11,6 +11,8 @@ export default new ( class Model {
 				body: JSON.stringify( request ),
 			} );
 			const { data } = await response.json();
+			console.log( 'from makeRequest(): \n' );
+			console.log( data );
 			return data;
 		} catch ( error ) {
 			throw new Error( `makeRequest error: ${ error }` );
@@ -93,6 +95,8 @@ export default new ( class Model {
 		};
 		try {
 			const data = await this.makeRequest( request );
+			console.log( `from getPosts(): \n` );
+			console.log( data );
 			return data;
 		} catch ( err ) {
 			console.error( err );
