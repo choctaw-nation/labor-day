@@ -14,10 +14,8 @@ function App() {
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
 		if ( '' === search ) {
-			console.log( Model.getPosts );
 			const data = Model.getPosts()
 				.then( ( data ) => {
-					console.log( data );
 					const { eventLocations, eventTypes, events } = data;
 					setPosts(
 						events.nodes.map( ( node ) => destructureData( node ) )

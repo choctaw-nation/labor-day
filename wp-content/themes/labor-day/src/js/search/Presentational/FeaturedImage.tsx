@@ -6,9 +6,9 @@ export default function FeaturedImage( {
 	featuredImage: featuredImage;
 } ) {
 	const { altText, srcSet, mediaDetails, sizes } = featuredImage;
-	// console.log( featuredImage );
+
 	return (
-		<figure className="cno-event__image">
+		<figure>
 			<img
 				width={ mediaDetails.sizes[ 0 ].width }
 				height={ mediaDetails.sizes[ 0 ].height }
