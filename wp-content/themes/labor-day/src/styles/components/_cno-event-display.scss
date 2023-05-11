@@ -2,13 +2,13 @@
 @use "../abstracts/variables" as v;
 
 .cno-event {
+	max-height: 30rem;
 	&__time {
 		color: white;
 		font-weight: 700;
 		line-height: 1.2;
 		text-align: center;
 		@include m.displayFlex(column, center, stretch);
-		max-height: 30rem;
 		&--date {
 			@include m.displayFlex(column, $cross: center);
 		}
