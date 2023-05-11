@@ -14,35 +14,29 @@ function App() {
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
 		if ( '' === search ) {
-			try {
-				Model.getPosts().then(
-					( { eventLocations, eventTypes, events } ) => {
-						setPosts(
-							events.nodes.map( ( node ) =>
-								destructureData( node )
-							)
-						);
-						const filtersArr: EventFilters[] = [
-							{
-								type: {
-									name: 'Event Types',
-									filters: [ ...eventTypes.nodes ],
-								},
+			Model.getPosts()
+				.then( ( { eventLocations, eventTypes, events } ) => {
+					setPosts(
+						events.nodes.map( ( node ) => destructureData( node ) )
+					);
+					const filtersArr: EventFilters[] = [
+						{
+							type: {
+								name: 'Event Types',
+								filters: [ ...eventTypes.nodes ],
 							},
-							{
-								type: {
-									name: 'Locations',
-									filters: [ ...eventLocations.nodes ],
-								},
+						},
+						{
+							type: {
+								name: 'Locations',
+								filters: [ ...eventLocations.nodes ],
 							},
-						];
-						setFilters( filtersArr );
-						setIsLoading( false );
-					}
-				);
-			} catch ( err ) {
-				console.error( err );
-			}
+						},
+					];
+					setFilters( filtersArr );
+					setIsLoading( false );
+				} )
+				.catch( ( err ) => console.error( err ) );
 		}
 	}, [ search ] );
 
