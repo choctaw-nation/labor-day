@@ -31,6 +31,7 @@ module.exports = {
 				global: `.${ THEME_DIR }/src/index.js`,
 				mySchedule: `.${ THEME_DIR }/src/js/my-schedule/App.tsx`,
 				search: `.${ THEME_DIR }/src/js/search/App.tsx`,
+				map: `.${ THEME_DIR }/src/js/map/map.js`,
 			};
 			if ( appNames.length > 0 ) {
 				appNames.forEach( ( appName ) => {
