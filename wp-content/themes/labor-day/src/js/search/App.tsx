@@ -3,13 +3,34 @@ import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
 import ResultsContainer from './Presentational/ResultsContainer';
-import { EventFilters, EventPost } from './types';
+import { EventFilters, EventPost, PrettyEventData } from './types';
 import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys } from './Utilities';
-
+import { Modal } from 'bootstrap';
+import { SortedEventsObject } from '../types';
+import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
+	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
+	const sortedEvents: SortedEventsObject = {
+		friday: [],
+		saturday: [],
+		sunday: [],
+	};
+	days.forEach( ( day ) => {
+		const dailyEvents = events.filter( ( ev: PrettyEventData ) => {
+			return ev.event_info.info.day.toLowerCase() == day;
+		} );
+		dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
+	} );
+	return sortedEvents;
+}
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
-	const [ posts, setPosts ] = useState< EventPost[] >( [] );
+	const [ posts, setPosts ] = useState< SortedEventsObject >( {
+		friday: [],
+		saturday: [],
+		sunday: [],
+	} );
 	const [ filters, setFilters ] = useState< EventFilters[] >( [] );
 	const [ search, setSearch ] = useState( '' );
 	useEffect( () => {
@@ -17,9 +38,13 @@ function App() {
 			const data = Model.getPosts()
 				.then( ( data ) => {
 					const { eventLocations, eventTypes, events } = data;
-					setPosts(
-						events.nodes.map( ( node ) => destructureData( node ) )
+					const prettyEvents: PrettyEventData[] = events.nodes.map(
+						( node ) => destructureData( node )
 					);
+					const sortedEvents = getTimeSortedEvents(
+						sortEvents( prettyEvents )
+					);
+					setPosts( sortedEvents );
 					const filtersArr: EventFilters[] = [
 						{
 							type: {

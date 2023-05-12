@@ -17,8 +17,10 @@ get_header();
 			<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
 		</span>
 		<a href="/my-schedule" class="btn__fill--secondary">View Your Schedule</a>
+		<button class='btn__outline--secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
 	</div>
 </section>
+<?php get_template_part( 'template-parts/content', 'hours-modal' ); ?>
 <div class="cno-events-wrapper" id="app">
 	<?php if ( have_posts() ) : ?>
 	<section class="cno-event-search">

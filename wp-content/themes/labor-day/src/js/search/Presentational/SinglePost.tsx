@@ -34,7 +34,14 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 			) }
 			<div className="cno-event__info col-lg-8">
 				<h2 className="cno-event__info--title headline">{ title }</h2>
-				<div className="cno-event__meta">
+				<div
+					className="cno-event__info--description"
+					dangerouslySetInnerHTML={ {
+						__html: event_info.description,
+					} }
+				/>
+
+				<div className="cno-event__buttons">
 					{ locations && locations.length > 0 && (
 						<div className="cno-event__meta--location">
 							<FontAwesomeIcon
@@ -50,14 +57,8 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 							</a>
 						</div>
 					) }
+					<CNOButtons eventId={ eventId } link={ link } />
 				</div>
-				<div
-					className="cno-event__info--description"
-					dangerouslySetInnerHTML={ {
-						__html: event_info.description,
-					} }
-				/>
-				<CNOButtons eventId={ eventId } link={ link } />
 			</div>
 		</article>
 	);

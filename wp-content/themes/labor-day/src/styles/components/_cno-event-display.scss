@@ -3,6 +3,7 @@
 
 .cno-event {
 	max-height: 30rem;
+	margin: 0;
 	&__time {
 		color: white;
 		font-weight: 700;
@@ -50,15 +51,15 @@
 	}
 	&__meta {
 		@include m.displayFlex($cross: center);
-		& > * {
-			@include m.displayFlex($cross: center);
-		}
+
 		&--icon {
 			$size: 3rem;
 			width: $size;
 			height: $size;
 		}
+
 		&--location {
+			@include m.displayFlex($cross: center);
 			position: relative;
 			color: v.$color-secondary;
 
@@ -72,6 +73,7 @@
 				}
 			}
 		}
+
 		&--link {
 			transition: color v.$transition--standard;
 			color: inherit;
@@ -81,11 +83,13 @@
 
 	&__buttons {
 		margin-top: auto;
-		@include m.displayFlex;
+		@include m.displayFlex($cross: center);
 		gap: 1rem;
+
 		& > * {
 			flex: 0 1 auto;
 		}
+
 		&--location {
 			color: v.$color-secondary;
 			transition: color v.$transition--standard;

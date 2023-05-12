@@ -13,15 +13,13 @@ function getEvents() {
 export function getLocalStorageData(): SortedEventsObject {
 	try {
 		const data = getEvents();
-		const jsonEvents: Array< PrettyEventData > = data
-			? JSON.parse( data )
-			: [];
+		const jsonEvents: PrettyEventData[] = data ? JSON.parse( data ) : [];
 		const sortedEvents: SortedEventsObject = {
 			friday: [],
 			saturday: [],
 			sunday: [],
 		};
-		const days: Array< string > = [ 'friday', 'saturday', 'sunday' ];
+		const days: string[] = [ 'friday', 'saturday', 'sunday' ];
 		days.forEach( ( day ) => {
 			const dailyEvents = jsonEvents[ day ].filter(
 				( ev: PrettyEventData ) => {
