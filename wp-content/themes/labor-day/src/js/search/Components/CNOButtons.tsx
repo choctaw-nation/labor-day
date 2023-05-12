@@ -28,7 +28,7 @@ export default function CNOButtons( { eventId, link } ) {
 			} );
 	}
 	return (
-		<div className="cno-event__buttons">
+		<>
 			<button
 				className="btn__fill--primary"
 				data-add-to-schedule="true"
@@ -44,6 +44,6 @@ export default function CNOButtons( { eventId, link } ) {
 				className="cno-event-schedule-confirmation"
 				dangerouslySetInnerHTML={ { __html: responseMessage } }
 			/>
-		</div>
+		</>
 	);
 }

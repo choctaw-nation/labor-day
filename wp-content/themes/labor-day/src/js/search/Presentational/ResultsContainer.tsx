@@ -1,17 +1,19 @@
 import React from '@wordpress/element';
 import SinglePost from './SinglePost';
-import { EventPost, PrettyEventData } from '../types';
+import { PrettyEventData } from '../types';
+import { SortedEventsObject } from '../../types';
 
 export default function ResultsContainer( {
 	posts,
 	checkedFilters,
 }: {
-	posts: PrettyEventData[];
+	posts: SortedEventsObject;
 	checkedFilters: string[];
 } ) {
+	const merged: PrettyEventData[] = Object.values( posts ).flat();
 	return (
 		<section className="cno-events">
-			{ posts.map( ( post: PrettyEventData ) => {
+			{ merged.map( ( post: PrettyEventData ) => {
 				if ( checkedFilters.length === 0 ) {
 					return <SinglePost data={ post } />;
 				} else if (

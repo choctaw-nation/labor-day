@@ -10,7 +10,7 @@ function reveal( entries, observer ) {
 }
 
 /**
- * 1. Select elements
+ * 1. Select elements wih `querySelectorAll`
  * 2. ForEach section, observe section
  */
 export default function fadeIn( selector ) {

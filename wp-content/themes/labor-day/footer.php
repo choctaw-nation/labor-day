@@ -1,22 +1,15 @@
-<?php
-/**
- * Basic Footer Template
- */
-
-
-?>
 <aside class="footer-callout">
 	<div class="footer-callout__bg"></div>
 	<div class="container">
-		<div class="row">
-			<div class="col footer-callout__image">
-				<figure><img src="<?php echo get_field( 'footer_image', 'options' )['sizes']['large']; ?>" alt="" srcset=""></figure>
-			</div>
-			<div class="col footer-callout__text">
+		<div class="row justify-content-center align-items-center">
+			<figure class="footer-callout__image col-lg-6 col-sm-12">
+				<img src="<?php echo get_field( 'footer_image', 'options' )['sizes']['large']; ?>" alt="" srcset="">
+			</figure>
+			<div class="footer-callout__text col-sm-12 col-lg-6 d-flex flex-column">
 				<div class="h4 headline">Choctaw Nation Capitol Grounds</div>
 				<div class="subheadline">Council House Rd</div>
 				<div class="subheadline">Tushkahoma, OK 74574</div>
-				<a href="#" class="btn__fill--primary">Get Directions</a>
+				<a href="#" class="btn__fill--primary d-block align-self-start">Get Directions</a>
 			</div>
 		</div>
 	</div>

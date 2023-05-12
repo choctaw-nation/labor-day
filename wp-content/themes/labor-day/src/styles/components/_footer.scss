@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-// @forward '../components/header';
+
 #copyright {
 	background-color: #333;
 }
@@ -96,18 +96,6 @@
 		padding: 3.5rem 1rem;
 	}
 
-	.container {
-		position: relative;
-	}
-
-	.row {
-		gap: 4rem;
-
-		.col {
-			justify-content: center;
-		}
-	}
-
 	&__bg {
 		background-color: v.$color-tertiary;
 		position: absolute;
@@ -125,17 +113,7 @@
 	&__image {
 		max-height: 50rem;
 		aspect-ratio: 805 / 537;
-
-		figure {
-			height: 100%;
-			width: 100%;
-		}
-
-		img {
-			aspect-ratio: 805 / 537;
-			height: 100%;
-			object-fit: contain;
-		}
+		@include m.fitMedia;
 	}
 
 	&__text {

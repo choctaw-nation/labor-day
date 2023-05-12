@@ -8,14 +8,18 @@
 	position: relative;
 	height: fit-content;
 
+	.swiper-wrapper {
+		align-items: stretch;
+	}
+
+	.swiper-slide {
+		height: unset;
+		@include m.displayFlex(column);
+	}
+
 	&__image {
 		height: 40rem;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+		@include m.fitMedia($fit: cover);
 	}
 
 	&__meta {
@@ -76,6 +80,26 @@
 
 #entertainment-slider {
 	@include swiperStyles(v.$color-primary);
+
+	.cno-event {
+		height: 100%;
+		max-height: unset;
+		@include m.displayFlex(column);
+
+		&__image {
+			@include m.media-breakpoint-down(lg) {
+				order: unset;
+			}
+		}
+
+		.about {
+			margin-bottom: 1rem;
+		}
+
+		&__buttons {
+			margin-top: auto;
+		}
+	}
 }
 
 #registration-slider {
