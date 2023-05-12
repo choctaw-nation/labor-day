@@ -111,10 +111,11 @@ get_header(); ?>
 		<div class="container">
 			<?php
 			$args = array(
-				'headline' => 'Map',
-				'content'  => lorem,
-				'cta_text' => 'View Map',
-				'cta_link' => '/map',
+				'headline'  => 'Map',
+				'content'   => lorem,
+				'cta_text'  => 'View Map',
+				'cta_link'  => '/map',
+				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
 			);
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
