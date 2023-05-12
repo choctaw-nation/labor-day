@@ -1,5 +1,7 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+@use "../components/slider";
+@use "../components/subscribe";
 
 .countdown {
 	color: white;

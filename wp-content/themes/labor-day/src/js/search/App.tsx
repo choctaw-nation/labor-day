@@ -9,6 +9,7 @@ import { destructureData, fuzzySearchKeys } from './Utilities';
 import { Modal } from 'bootstrap';
 import { SortedEventsObject } from '../types';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+import fadeIn from '../fadeOnScroll';
 function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
 	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
 	const sortedEvents: SortedEventsObject = {
@@ -83,6 +84,9 @@ function App() {
 		return () => clearTimeout( timeout );
 	}, [ search ] );
 	const [ checkedFilters, setCheckedFilters ] = useState< string[] >( [] );
+	useEffect( () => {
+		fadeIn( '.fadeIn' );
+	}, [] );
 	return (
 		<div className="cno-search">
 			<SearchBar

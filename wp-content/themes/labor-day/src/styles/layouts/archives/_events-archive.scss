@@ -8,6 +8,9 @@
 		.cno-events {
 			@include m.displayFlex(column);
 			gap: 4rem;
+			@include m.media-breakpoint-down(lg) {
+				gap: 8rem;
+			}
 		}
 		.cno-event-search-filters {
 			&__container {

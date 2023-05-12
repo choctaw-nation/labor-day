@@ -10,7 +10,7 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 	const { locations, eventId, link, title, event_info, featuredImage, type } =
 		data;
 	return (
-		<article className="cno-event row">
+		<article className="cno-event row animate__animated animate__fadeIn">
 			<aside
 				className={ `cno-event__time col-lg-1 cno-event__time--${ event_info.info.day.toLowerCase() }` }
 			>
