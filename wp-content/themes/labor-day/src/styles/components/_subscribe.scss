@@ -9,28 +9,19 @@
 		color: white;
 		text-transform: uppercase;
 		font-weight: 400;
+		text-align: center;
 	}
 }
 
 .cta {
 	justify-content: center;
+	align-items: stretch;
 	margin: 3rem 0;
 
-	> div {
-		padding-left: 2rem;
-		padding-right: 2rem;
-		flex: 1 1 50%;
-
-		@include m.media-breakpoint-down(lg) {
-			padding: 0;
-		}
-	}
-
 	&__email {
-		display: flex;
-		flex-wrap: wrap;
+		@include m.displayFlex($main: flex-end, $cross: stretch);
+		flex: 1 0 auto;
 		gap: 2rem;
-		border-right: 1px solid white;
 		padding-top: 2rem;
 		padding-bottom: 2rem;
 
@@ -39,14 +30,12 @@
 			border-width: 0;
 			font-family: v.$font-body;
 			font-size: 1.35em;
+			display: inline-block;
 		}
 
 		input {
-			flex: 1 1 70%;
-
-			@include m.media-breakpoint-down(lg) {
-				flex: unset;
-			}
+			flex: 1 1 auto;
+			padding-left: 1rem;
 
 			&:focus-visible {
 				border: none;
@@ -55,8 +44,6 @@
 		}
 
 		button {
-			flex: 1 1 10%;
-
 			@include m.media-breakpoint-down(lg) {
 				flex: unset;
 			}
@@ -71,16 +58,29 @@
 	}
 
 	&__text {
-		justify-self: flex-end;
+		@include m.displayFlex(column, center);
+		border-left: 2px solid white;
+		margin-left: 5px;
+		padding-left: 1.5rem;
+		flex-grow: 0;
 
-		@include m.displayFlex(row, flex-start, center);
+		@include m.media-breakpoint-down(lg) {
+			margin-left: 0;
+			padding-left: 0;
+			margin-top: 2rem;
+			border-left: none;
+		}
 
 		a {
 			text-align: center;
 			font-size: 1.35em;
 
 			@include m.media-breakpoint-down(lg) {
+				align-self: flex-end;
 				font-size: 1em;
+				&:before {
+					content: "OR ";
+				}
 			}
 
 			&:hover {
