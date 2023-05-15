@@ -1,7 +1,7 @@
 import '../../styles/pages/my-schedule.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import EventsDisplay from './EventDisplay';
-import { SortedEventsObject } from '../types';
+import { SortedEventsObject } from '../search/types';
 import LoadingSpinner from '../spinner';
 import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
 import { PrettyEventData } from '../search/types';
@@ -57,7 +57,7 @@ function App() {
 		);
 	}
 	return (
-		<div className="container">
+		<div className="container cno-events">
 			<EventsDisplay schedule={ events } removeEvent={ removeEvent } />
 		</div>
 	);
