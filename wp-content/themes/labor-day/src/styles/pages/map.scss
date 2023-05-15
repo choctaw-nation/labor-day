@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as v;
+.map-container {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 1rem;
+	position: relative;
+}
+.map {
+	position: relative;
+	$size: 100%;
+	height: $size;
+
+	svg {
+		position: sticky;
+		top: 5%;
+		display: block;
+		width: $size;
+		// height: 100%;
+	}
+}
+
+.legend {
+	border: 2px solid v.$color-primary;
+	border-radius: 1rem;
+
+	.headline {
+		margin-top: 1rem;
+	}
+}
+
+.map-toggles {
+	&__container {
+		padding: 1rem;
+	}
+
+	&__layer-toggle {
+		cursor: pointer;
+
+		input {
+			cursor: pointer;
+		}
+	}
+
+	&__area-toggles {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: 1fr 1fr;
+	}
+}
