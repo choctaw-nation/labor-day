@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from '@wordpress/element';
 import Model from '../../add-to-schedule/model';
 
-export default function CNOButtons( { eventId, link } ) {
+export default function CNOButtons( { eventId, link, canReadMore } ) {
 	const [ responseMessage, setResponseMessage ] = useState( '' );
 	useEffect( () => {
 		const timeoutId = setTimeout( () => {
@@ -37,9 +37,11 @@ export default function CNOButtons( { eventId, link } ) {
 			>
 				Add to Schedule
 			</button>
-			<a href={ link } className="btn__outline--primary">
-				Learn More
-			</a>
+			{ canReadMore && (
+				<a href={ link } className="btn__outline--primary">
+					Learn More
+				</a>
+			) }
 			<div
 				className="cno-event-schedule-confirmation"
 				dangerouslySetInnerHTML={ { __html: responseMessage } }

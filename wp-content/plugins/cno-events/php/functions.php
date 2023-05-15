@@ -46,7 +46,7 @@ class CNOEventsPlugin {
 				'labels'              => $post_type_labels,
 				'hierarchical'        => false,
 				'description'         => 'Events',
-				'supports'            => array( 'title', 'thumbnail', 'revisions' ),
+				'supports'            => array( 'title', 'thumbnail', 'revisions', 'excerpt' ),
 				'show_ui'             => true,
 				'show_in_rest'        => true,
 				'show_in_menu'        => true,

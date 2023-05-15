@@ -4,7 +4,7 @@
 .cno-event {
 	margin: 0;
 	@include m.media-breakpoint-up(lg) {
-		max-height: 30rem;
+		height: fit-content;
 	}
 
 	&__time {
