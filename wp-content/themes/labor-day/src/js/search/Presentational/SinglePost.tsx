@@ -1,35 +1,18 @@
 import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
-import CNOButtons from '../Components/CNOButtons';
 import FeaturedImage from './FeaturedImage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { getTheDay } from '../../my-schedule/calendarFunctions';
+import { createExcerpt } from '../Utilities';
 
-type ExcerptObject = {
-	excerpt: string;
-	readMore: boolean;
-};
-function createExcerpt( str: string ): ExcerptObject {
-	const index = str.indexOf( '</p>' );
-	const remainingContent = str.substring( index + 4 );
-	if ( remainingContent.length > 1 ) {
-		return {
-			excerpt: str.substring( 0, index ) + '...</p>',
-			readMore: remainingContent.length > 1,
-		};
-	} else {
-		return {
-			excerpt: str.substring( 0, index + 4 ),
-			readMore: remainingContent.length > 1,
-		};
-	}
-}
-
-export default function SinglePost( { data }: { data: PrettyEventData } ) {
-	const { locations, eventId, link, title, event_info, featuredImage, type } =
-		data;
-	console.log( createExcerpt( event_info.description ) );
+export default function SinglePost( {
+	data,
+	children,
+}: {
+	data: PrettyEventData;
+} ) {
+	const { locations, title, event_info, featuredImage } = data;
 
 	return (
 		<article className="cno-event row animate__animated animate__fadeIn">
@@ -79,13 +62,7 @@ export default function SinglePost( { data }: { data: PrettyEventData } ) {
 							</a>
 						</div>
 					) }
-					<CNOButtons
-						eventId={ eventId }
-						link={ link }
-						canReadMore={
-							createExcerpt( event_info.description ).readMore
-						}
-					/>
+					{ children }
 				</div>
 			</div>
 		</article>

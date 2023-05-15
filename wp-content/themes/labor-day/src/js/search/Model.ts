@@ -1,4 +1,4 @@
-import { POSTS_PER_PAGE, graphQL } from '../search/Utilities';
+import { POSTS_PER_PAGE, graphQL } from './Utilities';
 
 export default new ( class Model {
 	async makeRequest( request ) {
@@ -16,6 +16,7 @@ export default new ( class Model {
 			throw new Error( `makeRequest error: ${ error }` );
 		}
 	}
+	/** Sends a GraphQL Query and returns the posts in a promise */
 	async getPosts() {
 		const variables = {
 			first: Number( POSTS_PER_PAGE ),
