@@ -47,9 +47,8 @@ export default new ( class View {
 
 				method( ev )
 					.then( ( response: string ) => {
-						confirmationContainer.innerHTML = `<div class='alert alert-${ response }' role='alert'>${ this.getResponseMessage(
-							response
-						) }</div>`;
+						confirmationContainer.innerHTML =
+							this.getResponseMessage( response );
 						setTimeout( () => {
 							confirmationContainer.innerHTML = '';
 						}, 7000 );
@@ -67,12 +66,14 @@ export default new ( class View {
 	 * @returns {string} A response message based on the response string
 	 */
 	getResponseMessage( response: string ): string {
+		let message = '';
 		if ( 'success' === response ) {
-			return `Added to your schedule!`;
-		}
-		if ( 'info' === response ) {
-			return `This is already in your schedule.`;
-		}
-		return '';
+			message = `Added to your schedule!`;
+		} else if ( 'info' === response ) {
+			message = `This event is already in your schedule.`;
+		} else message = '';
+		return `<div class="alert alert-${ response }" role="alert">
+		<span>${ message }</span>&nbsp;<a href="/my-schedule" style="color:inherit;text-decoration:underline;font-weight:700;">View Your Schedule</a>
+	</div>`;
 	}
 } )();

@@ -1,5 +1,6 @@
-import { PrettyEventData } from '../search/types';
-import { SortedEventsObject } from '../types';
+import { destructureData } from '../search/Utilities';
+import { EventPost, PrettyEventData } from '../search/types';
+import { SortedEventsObject } from '../search/types';
 
 /**
  * @typedef {Object} SiteData
@@ -109,25 +110,8 @@ export default new ( class Model {
 				data: {
 					events: { nodes },
 				},
-			} = data;
-
-			const event: PrettyEventData = {
-				eventId: nodes[ 0 ].eventId,
-				link: nodes[ 0 ].link,
-				title: nodes[ 0 ].title,
-				event_info: {
-					description: nodes[ 0 ].event_info.description,
-					info: {
-						day: nodes[ 0 ].event_info.info.day,
-						startTime: nodes[ 0 ].event_info.info.startTime,
-						endTime: nodes[ 0 ].event_info.info.endTime,
-					},
-				},
-				locations: nodes[ 0 ].eventLocations.nodes[ 0 ],
-				type: nodes[ 0 ].eventTypes.nodes[ 0 ],
-			};
-			event.featuredImage = nodes[ 0 ].featuredImage;
-			console.log( event );
+			}: { data: { events: { nodes: EventPost[] } } } = data;
+			const event = destructureData( nodes[ 0 ] );
 			return event;
 		} catch ( err ) {
 			throw new Error( err );

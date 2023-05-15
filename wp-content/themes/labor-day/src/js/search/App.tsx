@@ -3,28 +3,18 @@ import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
 import ResultsContainer from './Presentational/ResultsContainer';
-import { EventFilters, EventPost, PrettyEventData } from './types';
+import {
+	EventFilters,
+	EventPost,
+	PrettyEventData,
+	SortedEventsObject,
+} from './types';
 import Fuse from 'fuse.js';
-import { destructureData, fuzzySearchKeys } from './Utilities';
+import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
 import { Modal } from 'bootstrap';
-import { SortedEventsObject } from '../types';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 import fadeIn from '../fadeOnScroll';
-function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
-	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
-	const sortedEvents: SortedEventsObject = {
-		friday: [],
-		saturday: [],
-		sunday: [],
-	};
-	days.forEach( ( day ) => {
-		const dailyEvents = events.filter( ( ev: PrettyEventData ) => {
-			return ev.event_info.info.day.toLowerCase() == day;
-		} );
-		dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
-	} );
-	return sortedEvents;
-}
+
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ posts, setPosts ] = useState< SortedEventsObject >( {
@@ -40,7 +30,7 @@ function App() {
 				.then( ( data ) => {
 					const { eventLocations, eventTypes, events } = data;
 					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						( node ) => destructureData( node )
+						( node: EventPost ) => destructureData( node )
 					);
 					const sortedEvents = getTimeSortedEvents(
 						sortEvents( prettyEvents )

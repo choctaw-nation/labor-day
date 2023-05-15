@@ -10,6 +10,7 @@ type EventInfo = {
 		startTime: string;
 	};
 };
+
 export interface EventType extends Filter {
 	event_typeId: number;
 }
@@ -64,7 +65,7 @@ export interface PrettyEventData {
 	link: string;
 	title: string;
 	event_info: EventInfo;
-	featuredImage?: featuredImage;
+	featuredImage?: featuredImage | null;
 }
 export type featuredImage = {
 	altText: string;
@@ -79,3 +80,14 @@ type sizes = {
 	width: string;
 	sourceUrl: string;
 };
+
+export type ExcerptObject = {
+	excerpt: string;
+	readMore: boolean;
+};
+
+export interface SortedEventsObject {
+	friday: Array< PrettyEventData >;
+	saturday: Array< PrettyEventData >;
+	sunday: Array< PrettyEventData >;
+}

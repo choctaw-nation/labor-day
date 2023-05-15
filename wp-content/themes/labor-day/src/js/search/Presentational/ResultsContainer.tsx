@@ -2,6 +2,8 @@ import React from '@wordpress/element';
 import SinglePost from './SinglePost';
 import { PrettyEventData } from '../types';
 import { SortedEventsObject } from '../../types';
+import CNOButtons from '../Components/CNOButtons';
+import { createExcerpt } from '../Utilities';
 
 export default function ResultsContainer( {
 	posts,
@@ -15,7 +17,18 @@ export default function ResultsContainer( {
 		<section className="cno-events">
 			{ merged.map( ( post: PrettyEventData ) => {
 				if ( checkedFilters.length === 0 ) {
-					return <SinglePost data={ post } />;
+					return (
+						<SinglePost data={ post } key={ post.eventId }>
+							<CNOButtons
+								eventId={ post.eventId }
+								link={ post.link }
+								canReadMore={
+									createExcerpt( post.event_info.description )
+										.readMore
+								}
+							/>
+						</SinglePost>
+					);
 				} else if (
 					[ checkedFilters, post.locations, post.type ].every(
 						( el ) => el.length > 0
@@ -27,7 +40,19 @@ export default function ResultsContainer( {
 						) ||
 						checkedFilters.includes( post.type[ 0 ]?.name )
 					) {
-						return <SinglePost data={ post } />;
+						return (
+							<SinglePost data={ post } key={ post.eventId }>
+								<CNOButtons
+									eventId={ post.eventId }
+									link={ post.link }
+									canReadMore={
+										createExcerpt(
+											post.event_info.description
+										).readMore
+									}
+								/>
+							</SinglePost>
+						);
 					}
 				} else {
 					if (
@@ -36,7 +61,19 @@ export default function ResultsContainer( {
 						) &&
 						checkedFilters.includes( post.type[ 0 ]?.name )
 					) {
-						return <SinglePost data={ post } />;
+						return (
+							<SinglePost data={ post } key={ post.eventId }>
+								<CNOButtons
+									eventId={ post.eventId }
+									link={ post.link }
+									canReadMore={
+										createExcerpt(
+											post.event_info.description
+										).readMore
+									}
+								/>
+							</SinglePost>
+						);
 					}
 				}
 				return null;

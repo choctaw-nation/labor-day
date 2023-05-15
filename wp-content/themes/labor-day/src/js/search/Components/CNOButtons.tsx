@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from '@wordpress/element';
 import Model from '../../add-to-schedule/model';
+import View from '../../add-to-schedule/view';
 
-export default function CNOButtons( { eventId, link, canReadMore } ) {
+export default function CNOButtons( {
+	eventId,
+	link,
+	canReadMore,
+} ): JSX.Element {
 	const [ responseMessage, setResponseMessage ] = useState( '' );
 	useEffect( () => {
 		const timeoutId = setTimeout( () => {
@@ -12,16 +17,7 @@ export default function CNOButtons( { eventId, link, canReadMore } ) {
 	function addToSchedule( ev: Event ) {
 		Model.addToSchedule( ev )
 			.then( ( response: string ) => {
-				let message = '';
-				if ( 'success' === response ) {
-					message = `Added to your schedule!`;
-				}
-				if ( 'info' === response ) {
-					message = `This is already in your schedule.`;
-				}
-				setResponseMessage( `<div class="alert alert-${ response }" role="alert">
-					${ message }
-				</div>` );
+				setResponseMessage( View.getResponseMessage( response ) );
 			} )
 			.catch( ( err: any ) => {
 				console.error( err );

@@ -1,11 +1,10 @@
 import React from '@wordpress/element';
-import { SortedEventsObject } from '../types';
+import { SortedEventsObject } from '../search/types';
 import RemoveEventButton from './RemoveEvent';
-import { downloadICSFile, getTheDay } from './calendarFunctions';
-import FeaturedImage from '../search/Presentational/FeaturedImage';
+import { downloadICSFile } from './calendarFunctions';
 import { PrettyEventData } from '../search/types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import SinglePost from '../search/Presentational/SinglePost';
+import { createExcerpt } from '../search/Utilities';
 
 export default function EventsDisplay( {
 	schedule,
@@ -24,74 +23,33 @@ export default function EventsDisplay( {
 			eventId,
 			event_info: {
 				description,
-				info: { day, startTime },
+				info: { day },
 			},
 			link,
-			title,
 		} = event;
 		return (
-			<div className="cno-event row" key={ eventId }>
-				<div
-					className={ `cno-event__time cno-event__time--${ day.toLowerCase() } col-lg-1` }
-				>
-					<div className="cno-event__time--date">
-						<span className="cno-event__time--month">SEP</span>
-						<span className="cno-event__time--day">{ `${ getTheDay(
-							day
-						) }` }</span>
-						<span className="cno-event__time--day-of-week">
-							{ day }
-						</span>
-						<span className="cno-event__time--time">
-							{ startTime }
-						</span>
-					</div>
-				</div>
-				{ event.featuredImage && (
-					<div className="cno-event__image col-lg-3">
-						<FeaturedImage
-							featuredImage={ event.featuredImage.node }
-						/>
-					</div>
-				) }
-				<div className="cno-event__info col-lg-8">
-					<h3 className="cno-event__info--title">{ title }</h3>
-					<a
-						className="cno-event__location"
-						href={ event.locations.uri }
-					>
-						<FontAwesomeIcon
-							icon={ faLocationDot }
-							className="cno-event__location--icon"
-						/>
-						<span className="cno-event__location--text">
-							{ event.locations.name }
-						</span>
-					</a>
-					<div
-						className="cno-event__info--description"
-						dangerouslySetInnerHTML={ { __html: description } }
-					/>
-					<div className="cno-event__buttons">
+			<SinglePost data={ event } key={ eventId }>
+				<div className="cno-event__buttons">
+					{ createExcerpt( description ).readMore && (
 						<a href={ link } className="btn__outline--primary ">
 							View Event
 						</a>
-						<button
-							className="btn__outline--secondary "
-							onClick={ () => {
-								handleClick( eventId );
-							} }
-						>
-							Export to Calendar
-						</button>
-						<RemoveEventButton
-							removeEvent={ removeEvent }
-							id={ eventId }
-							day={ day }
-						/>
-					</div>
+					) }
+					<button
+						className="btn__outline--secondary "
+						onClick={ () => {
+							handleClick( eventId );
+						} }
+					>
+						Export to Calendar
+					</button>
+					<RemoveEventButton
+						removeEvent={ removeEvent }
+						id={ eventId }
+						day={ day }
+					/>
 				</div>
-			</div>
+			</SinglePost>
 		);
 	} );
 }
