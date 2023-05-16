@@ -5,6 +5,27 @@
  * @since 1.0
  */
 
+/** Trim the Event Description.
+ *
+ * @param string $event_description the string to trim
+ * @param bool   $echo echo/return toggle
+ */
+function cno_trim_event_description( string $event_description, bool $echo = true ) {
+	$string            = '';
+	$closing_p_tag_pos = strpos( $event_description, '</p>' );
+	if ( false !== $closing_p_tag_pos ) {
+		$trimmed_string = substr( $event_description, 0, $closing_p_tag_pos + 4 );
+		$string         = substr( $trimmed_string, 0, 240 ) . '...';
+	} else {
+		$string = $event_description;
+	}
+	if ( $echo ) {
+		echo $string;
+	} else {
+		return $string;
+	}
+}
+
 add_action( 'acf/init', 'cno_acf_options_page' );
 /** Add Options Page */
 function cno_acf_options_page() {

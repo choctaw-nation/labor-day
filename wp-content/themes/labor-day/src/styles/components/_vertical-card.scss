@@ -1,0 +1,7 @@
+@use "../abstracts/mixins" as m;
+.vertical-card {
+	@include m.displayFlex(column);
+	&__image {
+		@include m.fitMedia;
+	}
+}

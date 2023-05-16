@@ -88,6 +88,14 @@
 			align-items: center;
 		}
 	}
+	.featured-event {
+		&__headline {
+			color: v.$color-primary--dark;
+		}
+		&__title {
+			color: v.$color-grey;
+		}
+	}
 }
 
 #vendors {

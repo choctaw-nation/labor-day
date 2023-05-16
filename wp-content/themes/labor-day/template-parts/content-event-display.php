@@ -9,7 +9,7 @@
 		<?php the_post_thumbnail( 'large' ); ?>
 	</figure>
 	<h2><?php the_title(); ?></h2>
-	<aside class="event-meta">
+	<aside class="event-meta mb-3">
 		<?php extract( get_field( 'info' ) ); ?>
 		<div class="event-meta__day">
 			<strong>When: </strong><?php echo $day . ', ' . cno_get_the_date( $day ); ?>
@@ -30,11 +30,16 @@
 		<?php echo get_the_term_list( $post->ID, taxonomy: 'event_type', before: '<div class="event-meta__type"><strong>Event Type:</strong> ', after: '</div>' ); ?>
 	</aside>
 	<div class="about">
-		<?php $event_description = get_field( 'description' ); ?>
-		<?php echo $event_description; ?>
+		<?php
+		if ( has_excerpt() ) {
+			the_excerpt();
+		} else {
+			cno_trim_event_description( get_field( 'description' ) );
+		}
+		?>
 	</div>
 	<div class="cno-event__buttons">
-		<button class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to Schedule</button>
+		<button class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>">Add to Schedule</button>
 		<a href="<?php the_permalink(); ?>" class="btn__outline--primary">Learn More</a>
 		<div class="cno-event-schedule-confirmation"></div>
 	</div>
