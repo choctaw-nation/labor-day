@@ -123,7 +123,8 @@ class CNO_THEME {
 		$modified_styles  = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.css' ) );
 		$modified_scripts = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.js' ) );
 
-		wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/global.css', array(), $modified_styles );
+		wp_enqueue_style( 'vendors', get_template_directory_uri() . '/dist/vendors.css', array(), $modified_styles );
+		wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/global.css', array( 'vendors' ), $modified_styles );
 		wp_enqueue_script( 'main', get_template_directory_uri() . '/dist/global.js', array(), $modified_scripts, in_footer: true );
 		wp_localize_script(
 			'main',
