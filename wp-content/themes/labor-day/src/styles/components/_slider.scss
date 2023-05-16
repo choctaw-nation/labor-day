@@ -87,6 +87,8 @@
 		@include m.displayFlex(column);
 
 		&__image {
+			aspect-ratio: 1;
+			height: 42rem;
 			@include m.media-breakpoint-down(lg) {
 				order: unset;
 			}

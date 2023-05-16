@@ -41,9 +41,33 @@ get_header(); ?>
 	<section id="entertainment">
 		<div class="container">
 			<div class="row">
-				<h2>Featured Events</h2>
-				<div class="col-lg-6"><span class="headline">Feature #1</span></div>
-				<div class="col-lg-6"><span class="headline">Feature #2</span></div>
+				<h2 class="featured-event__headline">Special Entertainment</h2>
+				<div class="row">
+					<h3 class="featured-event__headline">Friday</h3>
+					<?php
+					get_template_part(
+						'template-parts/content',
+						'featured-events',
+						array(
+							'first'  => 50,
+							'second' => 174,
+						)
+					);
+					?>
+				</div>
+				<div class="row">
+					<h3 class="featured-event__headline">Saturday</h3>
+					<?php
+					get_template_part(
+						'template-parts/content',
+						'featured-events',
+						array(
+							'first'  => 50,
+							'second' => 174,
+						)
+					);
+					?>
+				</div>
 			</div>
 			<div class="row">
 				<h3>All Entertainment</h3>

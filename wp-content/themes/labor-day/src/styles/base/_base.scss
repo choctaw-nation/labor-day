@@ -2,6 +2,10 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/functions" as fn;
 
+::selection {
+	color: white;
+	background-color: v.$color-primary--dark;
+}
 section {
 	padding: 6.5rem 0;
 	position: relative;
