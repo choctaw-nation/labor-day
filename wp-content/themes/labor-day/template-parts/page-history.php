@@ -24,7 +24,6 @@ $content = new Content_Sections();
 		</div>
 	</div>
 </aside>
-<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'primary' ) ); ?>
 <section class="fadeIn" id="capitol">
 	<div class="container">
 		<?php extract( get_field( 'capitol' ) ); ?>
@@ -72,4 +71,5 @@ $content = new Content_Sections();
 		<?php $content->two_col_text_and_media( $args ); ?>
 	</div>
 </section>
+<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'primary' ) ); ?>
 <aside class="fadeIn" id="video"></aside>

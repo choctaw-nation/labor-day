@@ -18,7 +18,9 @@ extract( $args );
 					<?php echo NATION_VALUES_SVG; ?>
 				</figure>
 				<?php else : ?>
-				<div class='text-content'>Some HTML should be dynamically injected here.</h2>
+				<div class='text-content'>
+					<span class="quote">“The festival gives us an opportunity to fellowship, share stories and come together as a tribe.”</span>
+					<span class="quote--attribution">&mdash; Chief Gary Batton</span>
 				</div>
 				<?php endif; ?>
 			</div>

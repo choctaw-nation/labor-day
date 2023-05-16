@@ -11,13 +11,14 @@
 @use "./components/header";
 @use "./components/footer";
 @use "./components/buttons";
-// @use "./components/subscribe";
-@use "./components/text-callout";
-// @use "./components/slider";
 @use "./components/two-col-media";
 @use "./components/vertical-card";
 @use "./components/cno-event-display";
 @use "./components/breadcrumbs";
+// Front Page Components
+// @use "./components/subscribe";
+// @use "./components/text-callout";
+// @use "./components/slider";
 
 // Layouts (relatively small files)
 @use "./layouts/single";
