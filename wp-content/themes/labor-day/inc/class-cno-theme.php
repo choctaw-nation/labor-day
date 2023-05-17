@@ -21,6 +21,7 @@ class CNO_THEME {
 		require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
 		require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
 		require_once get_template_directory() . '/inc/acf-fields.php';
+		require_once get_template_directory() . '/inc/operational-hours/class-operational-hours.php';
 		require_once get_template_directory() . '/inc/component-classes/class-content-components.php';
 		require_once get_template_directory() . '/inc/component-classes/class-content-sections.php';
 		require_once get_template_directory() . '/inc/class-cno-nav-walker.php';

@@ -1,3 +1,4 @@
+import '../../styles/components/_hours-modal.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';

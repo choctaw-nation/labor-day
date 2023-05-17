@@ -12,12 +12,12 @@
 @use "./components/cno-event-display";
 @use "./components/breadcrumbs";
 @use "./components/weather-alert";
+// @use "./components/hours-modal";
 
 // Front Page Components
 // @use "./components/subscribe";
 // @use "./components/text-callout";
 // @use "./components/slider";
-
 
 // Layouts (relatively small files)
 @use "./layouts/single";
