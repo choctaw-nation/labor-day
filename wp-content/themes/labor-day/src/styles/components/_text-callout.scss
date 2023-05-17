@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 
 $overlay-opacity: 0.55;
 
@@ -25,6 +26,22 @@ $overlay-opacity: 0.55;
 
 			svg {
 				width: 100%;
+			}
+		}
+		.text-content {
+			@include m.displayFlex(column, $cross: center);
+			color: white;
+		}
+		.quote {
+			width: 70%;
+			font-weight: 400;
+			font-size: 1.5em;
+
+			&--attribution {
+				font-weight: 400;
+				font-size: 1.35em;
+				margin-top: 2rem;
+				margin-left: auto;
 			}
 		}
 	}
