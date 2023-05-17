@@ -9,18 +9,17 @@ declare const cnoSiteData: {
 	postsPerPage: string;
 };
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-export const graphQL = `${ rootUrl }/graphql`;
+export const graphQL = `${rootUrl}/graphql`;
 
 export const fuzzySearchKeys = {
 	keys: [
-		{ name: 'title', weight: 1 },
-		{ name: 'event_info.description', weight: 0.5 },
-		{ name: 'event_info.info.day', weight: 0.03 },
-		{ name: 'type.name', weight: 0.8 },
-		{ name: 'locations.name', weight: 0.8 },
+		{ name: 'title', weight: 4 },
+		{ name: 'event_info.description', weight: 2 },
+		{ name: 'type.name', weight: 1 },
+		{ name: 'locations.name', weight: 1 },
 	],
 };
-export function destructureData( data: EventPost ): PrettyEventData {
+export function destructureData(data: EventPost): PrettyEventData {
 	const {
 		eventLocations: { nodes: locations },
 	} = data;
@@ -44,34 +43,34 @@ export function destructureData( data: EventPost ): PrettyEventData {
 	return destructuredData;
 }
 
-export function createExcerpt( str: string ): ExcerptObject {
-	const index = str.indexOf( '</p>' );
-	const remainingContent = str.substring( index + 4 );
-	if ( remainingContent.length > 1 ) {
+export function createExcerpt(str: string): ExcerptObject {
+	const index = str.indexOf('</p>');
+	const remainingContent = str.substring(index + 4);
+	if (remainingContent.length > 1) {
 		return {
-			excerpt: str.substring( 0, index ) + '...</p>',
+			excerpt: str.substring(0, index) + '...</p>',
 			readMore: remainingContent.length > 1,
 		};
 	} else {
 		return {
-			excerpt: str.substring( 0, index + 4 ),
+			excerpt: str.substring(0, index + 4),
 			readMore: remainingContent.length > 1,
 		};
 	}
 }
 
-export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
-	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
+export function sortEvents(events: PrettyEventData[]): SortedEventsObject {
+	const days: string[] = ['friday', 'saturday', 'sunday'];
 	const sortedEvents: SortedEventsObject = {
 		friday: [],
 		saturday: [],
 		sunday: [],
 	};
-	days.forEach( ( day ) => {
-		const dailyEvents = events.filter( ( ev: PrettyEventData ) => {
+	days.forEach((day) => {
+		const dailyEvents = events.filter((ev: PrettyEventData) => {
 			return ev.event_info.info.day.toLowerCase() == day;
-		} );
-		dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
-	} );
+		});
+		dailyEvents.forEach((ev) => sortedEvents[day].push(ev));
+	});
 	return sortedEvents;
 }

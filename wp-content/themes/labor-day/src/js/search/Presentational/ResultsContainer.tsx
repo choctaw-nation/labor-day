@@ -9,14 +9,26 @@ export default function ResultsContainer({
 	posts,
 	checkedFilters,
 }: {
-	posts: SortedEventsObject;
+	posts: SortedEventsObject | PrettyEventData[];
 	checkedFilters: string[];
 }) {
-	const merged: PrettyEventData[] = Object.values(posts).flat();
+	let merged: PrettyEventData[] = [];
+	if (!Array.isArray(posts)) {
+		merged = Object.values(posts).flat();
+	} else merged = posts;
 	return (
 		<section className="cno-events">
 			{merged.map((post: PrettyEventData) => {
-				if (checkedFilters.length === 0) {
+				const matchesFilters =
+					post.locations?.some((location) =>
+						checkedFilters.includes(location.name)
+					) ||
+					post.type?.some((type) =>
+						checkedFilters.includes(type.name)
+					) ||
+					checkedFilters.includes(post.event_info.info.day);
+
+				if (0 === checkedFilters.length || matchesFilters) {
 					return (
 						<SinglePost data={post} key={post.eventId}>
 							<CNOButtons
@@ -29,48 +41,6 @@ export default function ResultsContainer({
 							/>
 						</SinglePost>
 					);
-				} else if (
-					[checkedFilters, post.locations, post.type].every(
-						(el) => el.length > 0
-					)
-				) {
-					if (
-						checkedFilters.includes(post.locations?.[0]?.name) ||
-						checkedFilters.includes(post.type[0]?.name)
-					) {
-						return (
-							<SinglePost data={post} key={post.eventId}>
-								<CNOButtons
-									eventId={post.eventId}
-									link={post.link}
-									canReadMore={
-										createExcerpt(
-											post.event_info.description
-										).readMore
-									}
-								/>
-							</SinglePost>
-						);
-					}
-				} else {
-					if (
-						checkedFilters.includes(post.locations?.[0]?.name) &&
-						checkedFilters.includes(post.type[0]?.name)
-					) {
-						return (
-							<SinglePost data={post} key={post.eventId}>
-								<CNOButtons
-									eventId={post.eventId}
-									link={post.link}
-									canReadMore={
-										createExcerpt(
-											post.event_info.description
-										).readMore
-									}
-								/>
-							</SinglePost>
-						);
-					}
 				}
 				return null;
 			})}

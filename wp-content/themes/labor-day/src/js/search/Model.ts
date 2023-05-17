@@ -1,29 +1,39 @@
 import { POSTS_PER_PAGE, graphQL } from './Utilities';
+import { makeRequestResponse, queryVars } from './types/promises';
 
-export default new ( class Model {
-	async makeRequest( request ) {
+export default new (class Model {
+	async makeRequest(request: {
+		query: string;
+		variables: {
+			first: number;
+			after?: string;
+		};
+	}): Promise<makeRequestResponse> {
 		try {
-			const response = await fetch( `${ graphQL }`, {
+			const response = await fetch(`${graphQL}`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify( request ),
-			} );
+				body: JSON.stringify(request),
+			});
 			const { data } = await response.json();
 			return data;
-		} catch ( error ) {
-			throw new Error( `makeRequest error: ${ error }` );
+		} catch (error) {
+			throw new Error(`makeRequest error: ${error}`);
 		}
 	}
-	/** Sends a GraphQL Query and returns the posts in a promise */
-	async getPosts() {
-		const variables = {
-			first: Number( POSTS_PER_PAGE ),
-			after: '',
-			include: [ 'LARGE' ],
-			size: 'LARGE',
+	/** Sends a GraphQL Query and returns the posts in a promise
+	 * @param {queryVars | undefined} vars the graphQL variables
+	 */
+	async getPosts(
+		after: string = ''
+	): Promise<makeRequestResponse | undefined> {
+		const variables: queryVars = {
+			first: Number(POSTS_PER_PAGE),
+			after: after ?? '',
 		};
+		console.log(variables);
 		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
   events(after: $after, first: $first) {
     pageInfo {
@@ -93,10 +103,11 @@ export default new ( class Model {
 			variables: variables,
 		};
 		try {
-			const data = await this.makeRequest( request );
+			const data = await this.makeRequest(request);
 			return data;
-		} catch ( err ) {
-			console.error( err );
+		} catch (err) {
+			console.error(err);
 		}
+		return undefined;
 	}
-} )();
+})();
