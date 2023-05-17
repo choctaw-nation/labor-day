@@ -7,9 +7,7 @@ get_header();
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
-	<aside class="breadcrumbs">
-		<a class='breadcrumb' href="/events">Back to All Events</a>
-	</aside>
+	<?php get_template_part( 'template-parts/aside', 'breadcrumb' ); ?>
 	<article class="cno-event py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<div class="cno-event__image"><?php the_post_thumbnail(); ?></div>
