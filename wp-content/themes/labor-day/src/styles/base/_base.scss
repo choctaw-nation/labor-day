@@ -2,6 +2,9 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/functions" as fn;
 
+body {
+	position: relative;
+}
 ::selection {
 	color: white;
 	background-color: v.$color-primary--dark;

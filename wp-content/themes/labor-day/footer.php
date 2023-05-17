@@ -1,3 +1,15 @@
+<?php
+/**
+ * The Theme Footer
+ */
+
+$has_weather_alert = get_field( 'enable_weather_alert', 'option' );
+?>
+<?php
+if ( $has_weather_alert ) {
+	get_template_part( 'template-parts/aside', 'weather-alert' );
+}
+?>
 <aside class="footer-callout">
 	<div class="footer-callout__bg"></div>
 	<div class="container">

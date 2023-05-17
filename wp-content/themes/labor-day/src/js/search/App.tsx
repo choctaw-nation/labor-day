@@ -10,94 +10,94 @@ import {
 	SortedEventsObject,
 } from './types';
 import Fuse from 'fuse.js';
-import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
 import { Modal } from 'bootstrap';
+import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 import fadeIn from '../fadeOnScroll';
 
 function App() {
-	const [ isLoading, setIsLoading ] = useState( true );
-	const [ posts, setPosts ] = useState< SortedEventsObject >( {
+	const [isLoading, setIsLoading] = useState(true);
+	const [posts, setPosts] = useState<SortedEventsObject>({
 		friday: [],
 		saturday: [],
 		sunday: [],
-	} );
-	const [ filters, setFilters ] = useState< EventFilters[] >( [] );
-	const [ search, setSearch ] = useState( '' );
-	useEffect( () => {
-		if ( '' === search ) {
+	});
+	const [filters, setFilters] = useState<EventFilters[]>([]);
+	const [search, setSearch] = useState('');
+	useEffect(() => {
+		if ('' === search) {
 			const data = Model.getPosts()
-				.then( ( data ) => {
+				.then((data) => {
 					const { eventLocations, eventTypes, events } = data;
 					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						( node: EventPost ) => destructureData( node )
+						(node: EventPost) => destructureData(node)
 					);
 					const sortedEvents = getTimeSortedEvents(
-						sortEvents( prettyEvents )
+						sortEvents(prettyEvents)
 					);
-					setPosts( sortedEvents );
+					setPosts(sortedEvents);
 					const filtersArr: EventFilters[] = [
 						{
 							type: {
 								name: 'Event Types',
-								filters: [ ...eventTypes.nodes ],
+								filters: [...eventTypes.nodes],
 							},
 						},
 						{
 							type: {
 								name: 'Locations',
-								filters: [ ...eventLocations.nodes ],
+								filters: [...eventLocations.nodes],
 							},
 						},
 					];
-					setFilters( filtersArr );
-					setIsLoading( false );
-				} )
-				.catch( ( err ) => console.error( err ) );
+					setFilters(filtersArr);
+					setIsLoading(false);
+				})
+				.catch((err) => console.error(err));
 		}
-	}, [ search ] );
+	}, [search]);
 
-	function handleSearchInput( { target } ) {
-		setSearch( target.value );
+	function handleSearchInput({ target }) {
+		setSearch(target.value);
 	}
-	useEffect( () => {
-		if ( '' === search ) return;
-		setIsLoading( true );
-		const timeout = setTimeout( () => {
-			const fuse = new Fuse( posts, {
+	useEffect(() => {
+		if ('' === search) return;
+		setIsLoading(true);
+		const timeout = setTimeout(() => {
+			const fuse = new Fuse(posts, {
 				...fuzzySearchKeys,
-			} );
-			const results = fuse.search( search );
-			setPosts( results.map( ( result ) => result.item ) );
-			setIsLoading( false );
-		}, 500 );
-		return () => clearTimeout( timeout );
-	}, [ search ] );
-	const [ checkedFilters, setCheckedFilters ] = useState< string[] >( [] );
-	useEffect( () => {
-		fadeIn( '.fadeIn' );
-	}, [] );
+			});
+			const results = fuse.search(search);
+			setPosts(results.map((result) => result.item));
+			setIsLoading(false);
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, [search]);
+	const [checkedFilters, setCheckedFilters] = useState<string[]>([]);
+	useEffect(() => {
+		fadeIn('.fadeIn');
+	}, []);
 	return (
 		<div className="cno-search">
 			<SearchBar
-				filters={ filters }
-				search={ search }
-				checkedFilters={ checkedFilters }
-				setCheckedFilters={ setCheckedFilters }
-				handleSearchInput={ handleSearchInput }
+				filters={filters}
+				search={search}
+				checkedFilters={checkedFilters}
+				setCheckedFilters={setCheckedFilters}
+				handleSearchInput={handleSearchInput}
 			/>
 			<div className="container">
-				{ ! isLoading ? (
+				{!isLoading ? (
 					<ResultsContainer
-						posts={ posts }
-						checkedFilters={ checkedFilters }
+						posts={posts}
+						checkedFilters={checkedFilters}
 					/>
 				) : (
 					<LoadingSpinner />
-				) }
+				)}
 			</div>
 		</div>
 	);
 }
-const root = document.getElementById( 'app' );
-if ( root ) createRoot( root ).render( <App /> );
+const root = document.getElementById('app');
+if (root) createRoot(root).render(<App />);
