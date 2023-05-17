@@ -1,6 +1,6 @@
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config.js');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const THEME_NAME = 'labor-day';
@@ -53,18 +53,18 @@ module.exports = {
 			filename: `[name].js`,
 		},
 	},
-	// plugins: [
-	// 	...defaultConfig.plugins,
-	// 	new BundleAnalyzerPlugin({
-	// 		analyzerMode: 'static',
-	// 		reportFilename: path.join(
-	// 			__dirname,
-	// 			'bundle-analyzer',
-	// 			'report.html'
-	// 		),
-	// 		openAnalyzer: false,
-	// 	}),
-	// ],
+	plugins: [
+		...defaultConfig.plugins,
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'static',
+			reportFilename: path.join(
+				__dirname,
+				'bundle-analyzer',
+				'report.html'
+			),
+			openAnalyzer: false,
+		}),
+	],
 	optimization: {
 		...defaultConfig.optimization,
 		minimize: true, // Enable code minification
