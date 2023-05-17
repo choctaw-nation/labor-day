@@ -1,6 +1,7 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const path = require('path');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const path = require('path');
 const defaultConfig = require('@wordpress/scripts/config/webpack.config.js');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const THEME_NAME = 'labor-day';
 const THEME_DIR = `/wp-content/themes/${THEME_NAME}`;
@@ -11,16 +12,7 @@ function snakeToCamel(str) {
 	);
 }
 
-/**
- * For JSX folders (located `~/src/js/folder-name/App.jsx)`)
- * Array of strings modeled after folder names (e.g. 'about-choctaw')
- * */
 const appNames = ['front-page'];
-
-/**
- * For SCSS files (no leading `_`)
- * Array of strings modeled after scss names (e.g. 'we-are-choctaw')
- *  */
 const styleSheets = []; // for scss only
 
 module.exports = {
@@ -61,16 +53,32 @@ module.exports = {
 			filename: `[name].js`,
 		},
 	},
-	plugins: [
-		...defaultConfig.plugins,
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'static',
-			reportFilename: path.join(
-				__dirname,
-				'bundle-analyzer',
-				'report.html'
-			),
-			openAnalyzer: false,
-		}),
-	],
+	// plugins: [
+	// 	...defaultConfig.plugins,
+	// 	new BundleAnalyzerPlugin({
+	// 		analyzerMode: 'static',
+	// 		reportFilename: path.join(
+	// 			__dirname,
+	// 			'bundle-analyzer',
+	// 			'report.html'
+	// 		),
+	// 		openAnalyzer: false,
+	// 	}),
+	// ],
+	optimization: {
+		...defaultConfig.optimization,
+		minimize: true, // Enable code minification
+		minimizer: [
+			new TerserPlugin({
+				parallel: true,
+				extractComments: true,
+				terserOptions: {
+					...defaultConfig.optimization.minimizer[0].options
+						.terserOptions,
+					keep_fnames: false, // Remove unused function names
+					keep_classnames: false, // Remove unused class names
+				},
+			}),
+		],
+	},
 };
