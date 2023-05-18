@@ -33,7 +33,6 @@ export default new (class Model {
 			first: Number(POSTS_PER_PAGE),
 			after: after ?? '',
 		};
-		console.log(variables);
 		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
   events(after: $after, first: $first) {
     pageInfo {

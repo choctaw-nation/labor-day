@@ -47,7 +47,7 @@
 			align-items: stretch;
 		}
 	}
-	:where(&) > .container {
+	:where(&) > .container:not(.load-more-container) {
 		min-height: 50vh;
 	}
 }
