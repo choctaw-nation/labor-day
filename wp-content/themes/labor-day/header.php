@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Basic Header Template
  */
@@ -16,6 +16,7 @@ wp_head();
 	<title>
 		<?php echo $post->post_title . " | " .  get_bloginfo( 'name' ); ?>
 	</title>
+	<link rel="manifest" href="/manifest.json">
 </head>
 
 <body <?php body_class() ?>>
