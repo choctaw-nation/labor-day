@@ -86,9 +86,12 @@
 		@include m.displayFlex($cross: center);
 
 		&--icon {
-			$size: 3rem;
-			width: $size;
-			height: $size;
+			svg {
+				$size: 3rem;
+				width: $size;
+				height: $size;
+				fill: v.$color-secondary;
+			}
 		}
 
 		&--location {

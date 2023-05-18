@@ -1,8 +1,6 @@
 import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
 import FeaturedImage from './FeaturedImage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { getTheDay } from '../../my-schedule/calendarFunctions';
 import { createExcerpt } from '../Utilities';
 
@@ -50,10 +48,10 @@ export default function SinglePost({
 				<div className="cno-event__buttons">
 					{locations && locations.length > 0 && (
 						<div className="cno-event__meta--location">
-							<FontAwesomeIcon
-								icon={faLocationDot}
-								className="cno-event__meta--icon"
-							/>
+							<div className="cno-event__meta--icon">
+								<i className="fa-solid fa-location-dot" />
+							</div>
+
 							<a
 								href={locations![0].uri}
 								className="cno-event__meta--link"

@@ -6,7 +6,7 @@
  */
 
 $taxonomies = get_object_taxonomies( 'events', 'objects' );
-cno_enqueue_page_assets( 'search' );
+cno_enqueue_page_assets( 'search', array( 'scripts' => array( 'fontawesome' ) ) );
 get_header();
 ?>
 <section class="hero">
@@ -64,7 +64,7 @@ get_header();
 			while ( have_posts() ) :
 				the_post();
 				?>
-			<?php get_template_part( 'template-parts/content', 'event-display' ); ?>
+				<?php get_template_part( 'template-parts/content', 'event-display' ); ?>
 			<?php endwhile; ?>
 		</section>
 	</div>

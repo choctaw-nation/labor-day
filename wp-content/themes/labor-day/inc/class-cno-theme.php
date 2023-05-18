@@ -137,6 +137,8 @@ class CNO_THEME {
 			)
 		);
 
+		wp_register_script( 'fontawesome', get_template_directory_uri() . '/dist/fontawesome.js', in_footer:true );
+
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
 
 	}

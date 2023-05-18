@@ -21,6 +21,7 @@ module.exports = {
 		entry: function () {
 			const entries = {
 				global: `.${THEME_DIR}/src/index.js`,
+				fontawesome: `.${THEME_DIR}/src/js/vendors/fontawesome.js`,
 				vendors: `.${THEME_DIR}/src/styles/vendors/vendors.scss`,
 				mySchedule: `.${THEME_DIR}/src/js/my-schedule/App.tsx`,
 				search: `.${THEME_DIR}/src/js/search/App.tsx`,

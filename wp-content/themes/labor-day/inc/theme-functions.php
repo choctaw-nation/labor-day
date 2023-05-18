@@ -101,7 +101,7 @@ function cno_enqueue_page_script( string $id, array $deps = array( 'main' ) ) {
 
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_merge( $asset['dependencies'], array( 'main' ) );
+		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'main' ) );
 		wp_enqueue_script(
 			$id,
 			get_stylesheet_directory_uri() . "/dist/{$id}.js",
