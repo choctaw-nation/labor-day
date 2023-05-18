@@ -1,7 +1,4 @@
-interface Filter {
-	uri: string;
-	name: string;
-}
+import { EventType, EventLocation } from './types/eventFilters';
 type EventInfo = {
 	description: string;
 	info: {
@@ -10,23 +7,6 @@ type EventInfo = {
 		startTime: string;
 	};
 };
-
-export interface EventType extends Filter {
-	event_typeId: number;
-}
-
-export interface EventLocation extends Filter {
-	event_locationId: number;
-}
-
-export type EventFilter = EventType | EventLocation;
-export type EventFilters = {
-	type: {
-		name: string;
-		filters: EventType[];
-	};
-};
-
 /** The raw structure of an event post type */
 export type EventPost = {
 	eventLocations: {
@@ -87,7 +67,7 @@ export type ExcerptObject = {
 };
 
 export interface SortedEventsObject {
-	friday: Array< PrettyEventData >;
-	saturday: Array< PrettyEventData >;
-	sunday: Array< PrettyEventData >;
+	friday: PrettyEventData[];
+	saturday: PrettyEventData[];
+	sunday: PrettyEventData[];
 }
