@@ -7,10 +7,8 @@ import ResultsContainer from './Presentational/ResultsContainer';
 import { EventPost, PrettyEventData, SortedEventsObject } from './types';
 import { EventFilters } from './types/eventFilters';
 import Fuse from 'fuse.js';
-import { Modal } from 'bootstrap';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
-import fadeIn from '../fadeOnScroll';
 import Intersector from './Components/Intersector';
 
 function App() {

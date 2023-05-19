@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from '@wordpress/element';
-export default function Intersector({ isVisible, setIsVisible }) {
+export default function Intersector({ setIsVisible }) {
 	const targetRef = useRef(null);
 
 	useEffect(() => {

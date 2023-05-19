@@ -1,1 +1,1 @@
-import { Offcanvas } from 'bootstrap';
+import { Offcanvas, Modal } from 'bootstrap';
