@@ -13,6 +13,7 @@
 	@extend %cno-events;
 }
 .archive {
+	position: relative;
 	.cno-events-wrapper {
 		margin: 0 auto;
 		.cno-events {

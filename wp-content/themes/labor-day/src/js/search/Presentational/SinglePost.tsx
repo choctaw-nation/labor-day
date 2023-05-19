@@ -7,9 +7,11 @@ import { createExcerpt } from '../Utilities';
 export default function SinglePost({
 	data,
 	children,
+	setShowShareModal,
 }: {
 	data: PrettyEventData;
 	children?: JSX.Element;
+	setShowShareModal: Function;
 }) {
 	const { locations, title, event_info, featuredImage } = data;
 
@@ -62,10 +64,15 @@ export default function SinglePost({
 						</div>
 					)}
 					<div className="cno-event__meta--share">
-						<a href="#">
+						<button
+							onClick={(ev) => {
+								ev.preventDefault();
+								setShowShareModal(true);
+							}}
+						>
 							<i className="fa-solid fa-share" />
 							&nbsp;Share
-						</a>
+						</button>
 					</div>
 					{children}
 				</div>

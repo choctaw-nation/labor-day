@@ -12,12 +12,12 @@ export class Controller {
 
 	constructor() {
 		// Register click event listeners for buttons in the view
-		if ( View.buttons.length > 0 ) {
-			View.clickHandler( Model.addToSchedule.bind( Model ) );
+		if (View.buttons.length > 0) {
+			View.clickHandler(Model.addToSchedule.bind(Model));
 		}
 
 		// Run a debug method if debug mode is enabled
-		if ( this.debug ) {
+		if (this.debug) {
 			this.#debugMethod();
 		}
 	}
@@ -29,8 +29,8 @@ export class Controller {
 	 * @private
 	 */
 	#debugMethod() {
-		console.log( 'hello from schedule-handler' );
-		console.log( View.buttons );
+		console.log('hello from schedule-handler');
+		console.log(View.buttons);
 	}
 }
 

@@ -1,4 +1,10 @@
 import { EventType, EventLocation } from './types/eventFilters';
+
+/**
+ * Set in the Global scope with PHP and the Wordpress `localize_script` method
+ */
+declare const cnoSiteData: { rootUrl: string };
+
 type EventInfo = {
 	description: string;
 	info: {
