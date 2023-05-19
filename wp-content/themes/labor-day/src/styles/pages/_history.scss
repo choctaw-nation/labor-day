@@ -1,9 +1,10 @@
+@use "../abstracts/mixins" as m;
 .gallery {
 	&__item {
-		&--image {
-			$size: 100%;
-			width: $size;
-			height: $size;
-		}
+		max-height: 30rem;
+		@include m.fitMedia;
+	}
+	.row {
+		align-items: flex-start;
 	}
 }

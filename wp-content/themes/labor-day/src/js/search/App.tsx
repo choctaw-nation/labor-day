@@ -16,11 +16,9 @@ import Intersector from './Components/Intersector';
 function App() {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>({
-		friday: [],
-		saturday: [],
-		sunday: [],
-	});
+	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>(
+		[]
+	);
 	const [filters, setFilters] = useState<EventFilters[]>([]);
 	const [search, setSearch] = useState('');
 	const [cursor, setCursor] = useState<string | undefined>(undefined);
@@ -63,8 +61,12 @@ function App() {
 		]);
 	}
 
-	/** Initial Load */
+	function handleSearchInput({ target }) {
+		setSearch(target.value);
+	}
+	/** Handle Search Bar */
 	useEffect(() => {
+		setIsLoading(true);
 		if ('' === search) {
 			Model.getPosts()
 				.then((data) => {
@@ -73,41 +75,29 @@ function App() {
 					setIsLoading(false);
 				})
 				.catch((err) => console.error(err));
-		}
-	}, []);
-
-	function handleSearchInput({ target }) {
-		setSearch(target.value);
-	}
-	useEffect(() => {
-		if ('' === search) {
-			setIsLoading(true);
-			Model.getPosts().then((data) => {
-				if (undefined === data) return;
-				doFirstSearch(data);
+		} else {
+			const timeout = setTimeout(() => {
+				const searchOptions = {
+					...fuzzySearchKeys,
+					minMatchCharLength: 3,
+					includeScore: true,
+					threshold: 0.3,
+				};
+				const fuse = new Fuse(
+					Object.values(posts).flat(),
+					searchOptions
+				);
+				const results = fuse.search(search);
+				setPosts(results.map((result) => result.item));
 				setIsLoading(false);
-			});
+			}, 350);
+			return () => clearTimeout(timeout);
 		}
-		setIsLoading(true);
-		const timeout = setTimeout(() => {
-			const searchOptions = {
-				...fuzzySearchKeys,
-				minMatchCharLength: 3,
-				includeScore: true,
-				threshold: 0.3,
-			};
-			const fuse = new Fuse(Object.values(posts).flat(), searchOptions);
-			const results = fuse.search(search);
-			setPosts(results.map((result) => result.item));
-			setIsLoading(false);
-		}, 350);
-		return () => clearTimeout(timeout);
 	}, [search]);
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
 		if (cursor && isVisible) {
-			// setIsLoading(true);
 			Model.getPosts(cursor)
 				.then((data) => {
 					if (undefined === data) return;
@@ -125,7 +115,6 @@ function App() {
 					setPosts((prev) => {
 						return [...prev, ...Object.values(sortedEvents).flat()];
 					});
-					// setIsLoading(false);
 					setIsVisible(false);
 				})
 				.catch((err) => console.error(err));
@@ -133,9 +122,6 @@ function App() {
 	}, [isVisible]);
 
 	const [checkedFilters, setCheckedFilters] = useState<string[]>([]);
-	useEffect(() => {
-		// console.log(isVisible);
-	}, [isVisible]);
 	return (
 		<div className="cno-search">
 			<SearchBar

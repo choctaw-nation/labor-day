@@ -20,6 +20,7 @@ $overlay-opacity: 0.55;
 	&__content {
 		position: relative;
 		color: white;
+		z-index: 4;
 
 		figure {
 			align-self: center;
@@ -50,12 +51,16 @@ $overlay-opacity: 0.55;
 .bg {
 	background-position: center 70%;
 	background-size: cover;
+	// z-index: -1;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	opacity: $overlay-opacity;
+	@include m.media-breakpoint-down(md) {
+		top: -80%;
+	}
 }
 
 .overlay {
