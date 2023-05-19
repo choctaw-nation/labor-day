@@ -36,7 +36,9 @@ extract( get_field( 'info' ) );
 						Schedule
 					</button>
 					<div class="sidebar__confirmation cno-event-schedule-confirmation"></div>
-					<button class="btn__outline--secondary">Share</button>
+					<button type="button" class="btn__outline--secondary" data-bs-toggle="modal" data-bs-target="#shareEventModal">
+						Share
+					</button>
 				</div>
 			</aside>
 		</div>
@@ -46,4 +48,5 @@ extract( get_field( 'info' ) );
 	</article>
 </div>
 <?php
+get_template_part( 'template-parts/modal', 'share-event' );
 get_footer();

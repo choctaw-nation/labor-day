@@ -17,9 +17,6 @@ $init_theme = new CNO_THEME();
 
 /** Register Service Worker for PWA Capability */
 function register_service_worker() {
-	// phpcs:ignore
-	wp_register_script( 'service-worker', '/service-worker.js' );
-	wp_enqueue_script( 'service-worker' );
+	wp_enqueue_script( 'service-worker', '/service-worker.js', array(), '1.0', false );
 }
 add_action( 'wp_enqueue_scripts', 'register_service_worker' );
-

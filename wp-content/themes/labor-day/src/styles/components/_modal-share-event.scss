@@ -1,0 +1,47 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as fn;
+%location {
+	border: 2px solid v.$color-grey;
+	border-radius: unset;
+	background-image: none;
+	color: v.$color-grey;
+	margin-top: 0;
+	transition: fn.transition((background-image, color, transform, border));
+	svg {
+		color: v.$color-grey;
+		transition: color v.$transition--standard;
+	}
+	&:hover {
+		border: none;
+		background-image: linear-gradient(
+			to right,
+			v.$color-primary,
+			v.$color-primary--dark
+		);
+		color: white;
+		svg {
+			color: white;
+		}
+	}
+}
+.share-locations {
+	list-style: none;
+	li {
+		margin-top: 1rem;
+	}
+	&__location {
+		&--facebook {
+			@extend %location;
+		}
+		&--text {
+			@extend %location;
+		}
+		&--email {
+			@extend %location;
+		}
+	}
+}
+#shareEventModal .modal-body {
+	height: 40rem;
+}

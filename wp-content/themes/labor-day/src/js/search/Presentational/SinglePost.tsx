@@ -61,6 +61,12 @@ export default function SinglePost({
 							</a>
 						</div>
 					)}
+					<div className="cno-event__meta--share">
+						<a href="#">
+							<i className="fa-solid fa-share" />
+							&nbsp;Share
+						</a>
+					</div>
 					{children}
 				</div>
 			</div>
