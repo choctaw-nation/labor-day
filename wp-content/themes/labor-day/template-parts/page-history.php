@@ -8,22 +8,16 @@ function display_gallery() {
 	$gallery = get_field( 'gallery' );
 	$bs_col  = 12 / count( $gallery );
 
-	$markup = '<div class="container"><div class="row">';
-	foreach ( $gallery as $item ) {
-		$markup .= "<figure class='col-lg-{$bs_col} gallery__item'><img class='gallery__item--image' src='{$item}' /></figure>";
+	$markup = '<div class="container"><div class="row m-0">';
+	for ( $i = 0; $i < count( $gallery );$i++ ) {
+		$markup .= "<figure class='col-lg-{$bs_col} gallery__item animate__animated animate__fadeInRight animate__delay-{$i}s'><img class='gallery__item--image' src='{$gallery[$i]}' /></figure>";
 	}
 	$markup .= '</div></div>';
 	echo $markup;
 }
 $content = new Content_Sections();
 ?>
-<aside class="gallery">
-	<div class="container">
-		<div class="row">
-			<?php display_gallery(); ?>
-		</div>
-	</div>
-</aside>
+<aside class="gallery"><?php display_gallery(); ?></aside>
 <section class="fadeIn" id="capitol">
 	<div class="container">
 		<?php extract( get_field( 'capitol' ) ); ?>

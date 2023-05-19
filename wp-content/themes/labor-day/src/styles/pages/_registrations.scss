@@ -20,9 +20,13 @@
 	}
 
 	.two-col {
+		&__media {
+			&--container {
+				max-height: 30rem;
+			}
+		}
 		&__content {
 			@include m.displayFlex(column);
-
 			&--subheadline {
 				margin-bottom: 2rem;
 			}

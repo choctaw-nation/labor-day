@@ -36,6 +36,14 @@
 			}
 		}
 	}
+	.cno-event {
+		&__image {
+			@include m.fitMedia($fit: cover);
+			@include m.media-breakpoint-down(lg) {
+				max-height: 30rem;
+			}
+		}
+	}
 }
 .cno-search {
 	@include m.media-breakpoint-down(md) {

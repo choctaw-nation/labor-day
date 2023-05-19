@@ -19,7 +19,11 @@
 
 	&__image {
 		height: 40rem;
+		aspect-ratio: 1;
 		@include m.fitMedia($fit: cover);
+		@include m.media-breakpoint-down(xl) {
+			max-height: 30rem;
+		}
 	}
 
 	&__meta {
@@ -91,6 +95,7 @@
 			height: 42rem;
 			@include m.media-breakpoint-down(lg) {
 				order: unset;
+				max-height: 30rem;
 			}
 		}
 
