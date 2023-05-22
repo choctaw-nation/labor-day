@@ -59,10 +59,10 @@ if ( $has_weather_alert ) {
 			<div class="col socials">
 				<?php extract(get_field('socials', 'options')); ?>
 				<a href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<?php echo FACEBOOK_LOGO; ?>
+					<i class='fa-brands fa-facebook'></i>
 				</a>
 				<a href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<?php echo INSTAGRAM_LOGO; ?>
+					<i class='fa-brands fa-instagram'></i>
 				</a>
 			</div>
 		</div>

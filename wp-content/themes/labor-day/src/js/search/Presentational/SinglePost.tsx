@@ -7,11 +7,15 @@ import { createExcerpt } from '../Utilities';
 export default function SinglePost({
 	data,
 	children,
+	setShowShareModal,
+	setShareEventObject,
 }: {
 	data: PrettyEventData;
 	children?: JSX.Element;
+	setShowShareModal: Function;
+	setShareEventObject: Function;
 }) {
-	const { locations, title, event_info, featuredImage } = data;
+	const { locations, title, event_info, featuredImage, link } = data;
 
 	return (
 		<article className="cno-event row animate__animated animate__fadeIn">
@@ -61,6 +65,20 @@ export default function SinglePost({
 							</a>
 						</div>
 					)}
+					<a
+						className="cno-event__meta--share"
+						onClick={(ev) => {
+							ev.preventDefault();
+							setShowShareModal(true);
+							setShareEventObject({
+								title: title,
+								link: link,
+							});
+						}}
+					>
+						<i className="fa-solid fa-share" />
+						&nbsp;Share
+					</a>
 					{children}
 				</div>
 			</div>

@@ -3,6 +3,7 @@
 
 .cno-event {
 	margin: 0;
+	max-height: 40rem;
 	@include m.media-breakpoint-up(lg) {
 		height: fit-content;
 	}
@@ -114,6 +115,15 @@
 			transition: color v.$transition--standard;
 			color: inherit;
 			display: inline-block;
+		}
+
+		&--share {
+			cursor: pointer;
+			color: v.$color-grey;
+
+			&:hover {
+				color: v.$color-grey;
+			}
 		}
 	}
 

@@ -17,14 +17,15 @@ if ('serviceWorker' in navigator) {
 const distFileRoot = '/wp-content/themes/labor-day/dist';
 // Cache the app shell files
 const appShellFiles = [
-	`${distFileRoot}/vendors.css`,
+	`${distFileRoot}/vendors/vendors.css`,
 	`${distFileRoot}/global.css`,
 	`${distFileRoot}/map.css`,
 	`${distFileRoot}/frontPage.css`,
 	`${distFileRoot}/mySchedule.css`,
 	`${distFileRoot}/search.css`,
 	`${distFileRoot}/fontawesome.js`,
-	`${distFileRoot}/vendors.js`,
+	`${distFileRoot}/vendors/bootstrap.js`,
+	`${distFileRoot}/vendors/fontawesome.js`,
 	`${distFileRoot}/global.js`,
 	`${distFileRoot}/map.js`,
 	`${distFileRoot}/frontPage.js`,

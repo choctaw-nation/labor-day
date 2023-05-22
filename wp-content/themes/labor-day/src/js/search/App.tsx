@@ -10,8 +10,14 @@ import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 import Intersector from './Components/Intersector';
+import ShareModal from './Presentational/ShareModal';
 
 function App() {
+	const [showShareModal, setShowShareModal] = useState(false);
+	const [shareEventObject, setShareEventObject] = useState({
+		title: '',
+		link: '',
+	});
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>(
@@ -134,12 +140,14 @@ function App() {
 					<ResultsContainer
 						posts={posts}
 						checkedFilters={checkedFilters}
+						setShowShareModal={setShowShareModal}
+						setShareEventObject={setShareEventObject}
 					/>
 				) : (
 					<LoadingSpinner />
 				)}
 			</div>
-			<Intersector isVisible={isVisible} setIsVisible={setIsVisible} />
+			<Intersector setIsVisible={setIsVisible} />
 			{isVisible && cursor ? (
 				<div className="container load-more-container">
 					<LoadingSpinner />
@@ -149,6 +157,11 @@ function App() {
 					End of Results.
 				</div>
 			)}
+			<ShareModal
+				showShareModal={showShareModal}
+				setShowShareModal={setShowShareModal}
+				shareEventObject={shareEventObject}
+			/>
 		</div>
 	);
 }

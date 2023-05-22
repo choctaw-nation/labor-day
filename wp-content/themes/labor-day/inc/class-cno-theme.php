@@ -128,7 +128,8 @@ class CNO_THEME {
 		wp_enqueue_style( 'vendors', get_template_directory_uri() . '/dist/vendors/vendors.css', array(), $modified_styles );
 		wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/global.css', array( 'vendors' ), $modified_styles );
 		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/dist/vendors/bootstrap.js', array(), $modified_scripts, true );
-		wp_enqueue_script( 'main', get_template_directory_uri() . '/dist/global.js', array( 'bootstrap' ), $modified_scripts, in_footer: true );
+		wp_enqueue_script( 'fontawesome', get_template_directory_uri() . '/dist/vendors/fontawesome.js', in_footer:true );
+		wp_enqueue_script( 'main', get_template_directory_uri() . '/dist/global.js', array( 'bootstrap', 'fontawesome' ), $modified_scripts, in_footer: true );
 		wp_localize_script(
 			'main',
 			'cnoSiteData',
@@ -137,8 +138,6 @@ class CNO_THEME {
 				'postsPerPage' => get_query_var( 'posts_per_page' ),
 			)
 		);
-
-		wp_register_script( 'fontawesome', get_template_directory_uri() . '/dist/vendors/fontawesome.js', in_footer:true );
 
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
 

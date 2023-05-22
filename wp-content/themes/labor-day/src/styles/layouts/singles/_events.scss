@@ -1,5 +1,6 @@
 @use "../../abstracts/mixins" as m;
 @use "../../abstracts/variables" as v;
+@use "../../components/modal-share-event";
 :where(.single-events) {
 	.cno-event {
 		position: relative;
