@@ -9,10 +9,12 @@ export default function ResultsContainer({
 	posts,
 	checkedFilters,
 	setShowShareModal,
+	setShareEventObject,
 }: {
 	posts: SortedEventsObject | PrettyEventData[];
 	checkedFilters: string[];
 	setShowShareModal: Function;
+	setShareEventObject: Function;
 }) {
 	let merged: PrettyEventData[] = [];
 	if (!Array.isArray(posts)) {
@@ -33,6 +35,7 @@ export default function ResultsContainer({
 				if (0 === checkedFilters.length || matchesFilters) {
 					return (
 						<SinglePost
+							setShareEventObject={setShareEventObject}
 							data={post}
 							setShowShareModal={setShowShareModal}
 							key={post.eventId}

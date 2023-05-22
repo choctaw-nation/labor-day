@@ -4,7 +4,8 @@
  * @since 0.10.0
  */
 
-$shareable_url = home_url();
+$shareable_url = get_the_permalink();
+// var_dump($post);
 ?>
 <div class="modal fade" id="shareEventModal" tabindex="-1" aria-labelledby="shareEventModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -16,18 +17,25 @@ $shareable_url = home_url();
 			<div class="modal-body">
 				<ul class="share-locations">
 					<li>
-						<a href="<?php echo 'https://www.facebook.com/sharer/sharer.php?url=' . $shareable_url; ?>" title="Share on Facebook" target="_blank"
-						   class="share-locations__location--facebook btn btn-facebook">
-							<i class="fa-brands fa-facebook"></i> Share on Facebook</a>
+						<a href=<?php echo "https://www.facebook.com/sharer/sharer.php?url={$shareable_url}" ?> title="Share on Facebook" target="_blank"
+						   class="share-locations__location--facebook btn__outline--secondary">
+							<i class="fa-brands fa-facebook"></i> Share on
+							Facebook
+						</a>
 					</li>
 					<li>
-						<a href="<?php echo 'https://twitter.com/intent/tweet?text=Twitter%20Text&url=' . $shareable_url; ?>" target="_blank"
-						   class="share-locations__location--text btn btn-twitter">
-							<i class="fa-solid fa-comment"></i> Share via SMS</a>
+						<a href=<?php echo "sms:?&body=Halito%20(Hello)! I'm going to {$post->post_title} and I thought you'd like to check it out, too! Learn more at {$shareable_url}"; ?>
+						   target="_blank" class="share-locations__location--text btn__outline--secondary">
+							<i class="fa-solid fa-comment"></i> Share via
+							SMS
+						</a>
 					</li>
 					<li>
-						<a href="mailto:?subject=Check out this event!" title="Share via Email" class="share-locations__location--email btn btn-email"><i
-							   class="fa-solid fa-envelope-open-text"></i> Share via Email</a>
+						<a href=<?php echo "mailto:?subject=Check out this event!&body=Halito%20(Hello)! I'm going to {$post->post_title} and I thought you'd like to check it out, too! Learn
+						   more at {$shareable_url}.";?> title="Share via Email" class="share-locations__location--email btn__outline--secondary">
+							<i class="fa-solid fa-envelope-open-text"></i>
+							Share via Email
+						</a>
 					</li>
 				</ul>
 			</div>

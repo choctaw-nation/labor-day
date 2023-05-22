@@ -115,6 +115,15 @@
 			color: inherit;
 			display: inline-block;
 		}
+
+		&--share {
+			cursor: pointer;
+			color: v.$color-grey;
+
+			&:hover {
+				color: v.$color-grey;
+			}
+		}
 	}
 
 	&__buttons {

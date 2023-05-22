@@ -14,6 +14,10 @@ import ShareModal from './Presentational/ShareModal';
 
 function App() {
 	const [showShareModal, setShowShareModal] = useState(false);
+	const [shareEventObject, setShareEventObject] = useState({
+		title: '',
+		link: '',
+	});
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>(
@@ -137,6 +141,7 @@ function App() {
 						posts={posts}
 						checkedFilters={checkedFilters}
 						setShowShareModal={setShowShareModal}
+						setShareEventObject={setShareEventObject}
 					/>
 				) : (
 					<LoadingSpinner />
@@ -155,6 +160,7 @@ function App() {
 			<ShareModal
 				showShareModal={showShareModal}
 				setShowShareModal={setShowShareModal}
+				shareEventObject={shareEventObject}
 			/>
 		</div>
 	);
