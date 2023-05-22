@@ -59,7 +59,7 @@
 
 	&__image {
 		@include m.fitMedia(img, $fit: cover);
-
+		max-height: 40rem;
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 1;
