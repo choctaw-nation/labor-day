@@ -17,6 +17,7 @@
 /license.txt
 /readme.html
 /wp-*.php
+!/wp-config-sample.php
 /xmlrpc.php
 
 # Configuration
