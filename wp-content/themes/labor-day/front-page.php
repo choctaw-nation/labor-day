@@ -153,7 +153,7 @@ get_header(); ?>
 				'content'      => lorem,
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
-				'cta_link'     => 'https://facebook.com',
+				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
 				'reverse'      => true,
 			);
 			?>

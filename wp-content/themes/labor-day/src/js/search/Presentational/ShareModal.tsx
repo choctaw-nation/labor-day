@@ -32,7 +32,7 @@ export default function ShareModal({
 				<ul className="share-locations">
 					<li>
 						<a
-							href={`https://www.facebook.com/sharer/sharer.php?url=${url}`}
+							href={`https://www.facebook.com/dialog/share?app_id=3353870511533012&display=popup&href=${shareEventObject.link}&redirect_uri=${cnoSiteData.rootUrl}/events`}
 							title="Share on Facebook"
 							target="_blank"
 							className="share-locations__location--facebook btn__outline--secondary"

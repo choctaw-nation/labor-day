@@ -5,7 +5,9 @@
  */
 
 $shareable_url = get_the_permalink();
-// var_dump($post);
+$redirect_url = home_url() . '/events';
+$FACEBOOK_APP_ID = FACEBOOK_APP_ID;
+
 ?>
 <div class="modal fade" id="shareEventModal" tabindex="-1" aria-labelledby="shareEventModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -17,8 +19,8 @@ $shareable_url = get_the_permalink();
 			<div class="modal-body">
 				<ul class="share-locations">
 					<li>
-						<a href=<?php echo "https://www.facebook.com/sharer/sharer.php?url={$shareable_url}" ?> title="Share on Facebook" target="_blank"
-						   class="share-locations__location--facebook btn__outline--secondary">
+						<a href=<?php echo "https://www.facebook.com/dialog/share?app_id={$FACEBOOK_APP_ID}&display=popup&href={$shareable_url}&redirect_uri={$redirect_url}" ?>
+						   title="Share on Facebook" target="_blank" class="share-locations__location--facebook btn__outline--secondary">
 							<i class="fa-brands fa-facebook"></i> Share on
 							Facebook
 						</a>
