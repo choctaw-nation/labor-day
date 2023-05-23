@@ -100,10 +100,18 @@
 	}
 	.featured-event {
 		&__headline {
-			color: v.$color-primary--dark;
+			color: v.$color-secondary;
 		}
 		&__title {
+			color: v.$color-primary;
+		}
+		&__start-time {
+			font-size: 2.4rem;
+			font-weight: 700;
 			color: v.$color-grey;
+			&:hover {
+				color: v.$color-grey;
+			}
 		}
 	}
 }

@@ -17,24 +17,28 @@ $query       = new WP_Query( $query_args );
 	<div class="swiper">
 		<div class="swiper-container" id="<?php echo $id . '-slider'; ?>">
 			<?php if ( $query->have_posts() ) : ?>
-			<div class="swiper-wrapper">
-				<?php
-				while ( $query->have_posts() ) :
-					$query->the_post();
-					?>
-				<div class="swiper-slide">
+			<div class="container">
+				<div class="swiper-wrapper">
 					<?php
-					if ( 'entertainment' === $slider_name ) :
-						get_template_part( 'template-parts/content', 'event-display' );
+					while ( $query->have_posts() ) :
+						$query->the_post();
 						?>
-					<?php elseif ( 'registration' === $slider_name ) : ?>
-					<div class="slider__image">
-						<?php the_post_thumbnail(); ?>
+					<div class="swiper-slide">
+						<?php
+						if ( 'entertainment' === $slider_name ) :
+							get_template_part( 'template-parts/content', 'event-display' );
+							?>
+						<?php elseif ( 'registration' === $slider_name ) : ?>
+						<a href="<?php the_permalink(); ?>">
+							<div class="slider__image">
+								<?php the_post_thumbnail(); ?>
+							</div>
+							<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
+						</a>
+						<?php endif; ?>
 					</div>
-					<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
-					<?php endif; ?>
+					<?php endwhile; ?>
 				</div>
-				<?php endwhile; ?>
 			</div>
 			<div class="swiper-pagination"></div>
 			<div class="swiper-button-prev"></div>
