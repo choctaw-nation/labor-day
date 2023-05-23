@@ -4,12 +4,12 @@
 	display: block;
 	padding: 4rem 2rem;
 	.breadcrumb {
-		color: v.$color-grey;
+		color: v.$color-secondary;
 		font-size: 2rem;
 		font-weight: 700;
 		transition: color v.$transition--standard;
 		position: relative;
-		@include m.anchorHoverState($color: v.$color-grey, $width: 100%);
+		@include m.anchorHoverState($color: v.$color-secondary, $width: 100%);
 		&:hover {
 			&:after {
 				transform: scaleX(1);

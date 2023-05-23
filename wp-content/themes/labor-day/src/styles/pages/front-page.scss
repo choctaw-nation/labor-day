@@ -110,10 +110,6 @@
 
 #vendors {
 	@extend #entertainment;
-
-	a.btn__fill--primary {
-		background-color: v.$color-primary--dark;
-	}
 }
 
 .big-feature {

@@ -51,22 +51,16 @@ export default function SinglePost({
 
 				<div className="cno-event__buttons">
 					{locations && locations.length > 0 && (
-						<div className="cno-event__meta--location">
-							<div className="cno-event__meta--icon">
-								<i className="fa-solid fa-location-dot" />
-							</div>
-
-							<a
-								href={locations![0].uri}
-								className="cno-event__meta--link"
-								rel="tag"
-							>
-								{locations![0].name}
-							</a>
-						</div>
+						<a
+							className="cno-event__buttons--location"
+							href={locations![0].uri}
+						>
+							<i className="fa-solid fa-location-dot" />{' '}
+							{locations![0].name}
+						</a>
 					)}
-					<a
-						className="cno-event__meta--share"
+					<div
+						className="cno-event__buttons--share"
 						onClick={(ev) => {
 							ev.preventDefault();
 							setShowShareModal(true);
@@ -78,7 +72,7 @@ export default function SinglePost({
 					>
 						<i className="fa-solid fa-share" />
 						&nbsp;Share
-					</a>
+					</div>
 					{children}
 				</div>
 			</div>

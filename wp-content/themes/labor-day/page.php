@@ -6,7 +6,7 @@
 $content = new Content_Sections();
 get_header();
 ?>
-<main class="site-content">
+<main class="site-content <?php echo strtolower( $post->post_title ); ?>">
 	<?php $background_image_url = get_field( 'hero' )['background_image']; ?>
 	<?php if ( $background_image_url ) : ?>
 	<section class='w-100 hero--image' id='hero' style="background-image:url('<?php echo esc_url( $background_image_url ); ?>')"></section>

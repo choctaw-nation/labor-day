@@ -19,7 +19,7 @@
 			order: unset;
 			padding: 0 1rem;
 			max-height: 60rem;
-			@include m.fitMedia($fit: cover);
+			@include m.fitMedia($fit: contain);
 		}
 	}
 

@@ -13,6 +13,12 @@
 
 	.logo {
 		color: white;
+		display: block;
+
+		&-image {
+			@include m.fitMedia(svg);
+			height: 20rem;
+		}
 
 		span {
 			display: none;
@@ -66,11 +72,15 @@
 }
 
 .socials {
-	@include m.displayFlex(row, space-evenly, center);
+	@include m.displayFlex(row, $cross: center);
 
 	.social-icon {
 		display: inline-block;
 		margin: 0 5px;
+
+		&:not(:last-child) {
+			margin-right: 2rem;
+		}
 
 		svg {
 			color: white;
@@ -116,7 +126,9 @@
 	}
 
 	&__text {
-		color: v.$color-primary--dark;
+		*:not(a) {
+			color: v.$color-primary--dark;
+		}
 
 		.subheadline:nth-child(3) {
 			margin-bottom: 4rem;

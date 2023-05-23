@@ -32,9 +32,6 @@ $query       = new WP_Query( $query_args );
 						<?php the_post_thumbnail(); ?>
 					</div>
 					<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
-					<div class="slider__buttons">
-						<a href="<?php the_permalink(); ?>" class="btn__fill--secondary">Register Now</a>
-					</div>
 					<?php endif; ?>
 				</div>
 				<?php endwhile; ?>

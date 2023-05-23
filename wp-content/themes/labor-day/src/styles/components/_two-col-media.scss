@@ -1,17 +1,21 @@
 @use "../abstracts/mixins" as m;
 %col-styles {
-	@include m.displayFlex(column);
+	@include m.displayFlex(column, center);
 }
 
 .two-col {
-	@include m.displayFlex(row, center);
+	@include m.displayFlex(row, center, stretch);
 
 	&__media {
 		@extend %col-styles;
 
 		&--container {
-			@include m.fitMedia($fit: cover);
 			max-height: 50rem;
+			@include m.fitMedia($fit: cover);
+
+			img {
+				aspect-ratio: 16 / 9;
+			}
 		}
 	}
 
