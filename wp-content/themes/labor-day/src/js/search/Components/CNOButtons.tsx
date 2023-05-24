@@ -31,11 +31,11 @@ export default function CNOButtons({
 				data-id={eventId}
 				onClick={addToSchedule}
 			>
-				<i className="fa-solid fa-plus"></i> Add to Schedule
+				<i className="fa-solid fa-plus"></i>&nbsp;Add to Schedule
 			</div>
 			{canReadMore && (
 				<a href={link} className="cno-event__buttons--learn-more">
-					<i className="fa-solid fa-circle-info"></i> Learn More
+					<i className="fa-solid fa-circle-info"></i>&nbsp;Learn More
 				</a>
 			)}
 			<div

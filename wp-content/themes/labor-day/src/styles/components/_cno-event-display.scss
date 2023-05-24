@@ -58,20 +58,10 @@
 
 	&__image {
 		@include m.fitMedia(img, $fit: cover);
-		// @include m.displayFlex(column);
-		// height: 100%;
-
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 1;
 		}
-
-		// figure {
-		// 	height: 100%;
-		// }
-		// img {
-		// 	aspect-ratio: 16 / 9;
-		// }
 	}
 
 	&__info {
@@ -90,41 +80,6 @@
 			margin-bottom: 2rem;
 		}
 	}
-
-	// &__meta {
-	// 	@include m.displayFlex($cross: center);
-
-	// 	&--icon {
-	// 		svg {
-	// 			$size: 3rem;
-	// 			width: $size;
-	// 			height: $size;
-	// 			fill: v.$color-secondary;
-	// 		}
-	// 	}
-
-	// 	&--location {
-	// 		@include m.displayFlex($cross: center);
-	// 		position: relative;
-	// 		color: v.$color-secondary;
-
-	// 		svg path {
-	// 			fill: v.$color-secondary;
-	// 			transition: fill v.$transition--standard;
-	// 		}
-	// 		&:hover {
-	// 			svg path {
-	// 				fill: v.$color-primary--light;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	&--link {
-	// 		transition: color v.$transition--standard;
-	// 		color: inherit;
-	// 		display: inline-block;
-	// 	}
-	// }
 
 	&__buttons {
 		margin-top: auto;

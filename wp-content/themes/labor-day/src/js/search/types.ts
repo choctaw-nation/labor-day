@@ -9,7 +9,7 @@ type EventInfo = {
 	description: string;
 	info: {
 		day: string;
-		endTime?: string;
+		endTime: string | null;
 		startTime: string;
 	};
 };
