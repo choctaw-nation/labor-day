@@ -43,7 +43,7 @@ get_header(); ?>
 			<div class="row">
 				<h2 class="featured-event__headline">Special Entertainment</h2>
 				<div class="row">
-					<h3 class="featured-event__headline">Saturday</h3>
+					<h3 class="featured-event__headline--day-label">Saturday</h3>
 					<?php
 					get_template_part(
 						'template-parts/content',
@@ -56,7 +56,7 @@ get_header(); ?>
 					?>
 				</div>
 				<div class="row">
-					<h3 class="featured-event__headline">Sunday</h3>
+					<h3 class="featured-event__headline--day-label">Sunday</h3>
 					<?php
 					get_template_part(
 						'template-parts/content',
@@ -72,7 +72,7 @@ get_header(); ?>
 		</div>
 		<div class="container">
 			<div class="row">
-				<h3>All Entertainment</h3>
+				<h3 class="headline">Entertainment</h3>
 			</div>
 		</div>
 		<?php get_template_part( 'template-parts/slider', 'entertainment' ); ?>
@@ -92,52 +92,12 @@ get_header(); ?>
 				</h2>
 			</div>
 		</div>
-		<div class="container-fluid">
+		<?php get_template_part( 'template-parts/slider', 'registrations' ); ?>
+		<div class="container">
 			<div class="row">
-				<?php
-				$query = new WP_Query(
-					array(
-						'post_type'      => 'page',
-						'post_status'    => 'publish',
-						'post_parent'    => get_page_by_title( 'Registrations' )->ID,
-						'posts_per_page' => -1,
-					)
-				);
-				?>
-				<div class="col-1 d-flex justify-content-center">
-					<div class="swiper-button-prev"></div>
+				<div class="col d-flex-column">
+					<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
 				</div>
-				<div class="col-10">
-					<div class="swiper" id="registration-slider">
-						<div class="swiper-wrapper">
-							<?php
-							if ( $query->have_posts() ) :
-								while ( $query->have_posts() ) :
-									$query->the_post();
-									?>
-							<div class="swiper-slide">
-								<a href="<?php the_permalink(); ?>">
-									<div class="slider__image">
-										<?php the_post_thumbnail(); ?>
-									</div>
-									<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
-								</a>
-							</div>
-							<?php endwhile; ?>
-							<?php endif; ?>
-						</div>
-						<div class="swiper-pagination"></div>
-					</div>
-				</div>
-				<div class="col-1 d-flex justify-content-center">
-					<div class="swiper-button-next"></div>
-				</div>
-				<?php wp_reset_postdata(); ?>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col d-flex-column">
-				<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
 			</div>
 		</div>
 	</section>

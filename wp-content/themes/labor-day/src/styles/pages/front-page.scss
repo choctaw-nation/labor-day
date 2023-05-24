@@ -101,7 +101,11 @@
 
 	.featured-event {
 		&__headline {
-			color: v.$color-secondary;
+			color: v.$color-primary;
+
+			&--day-label {
+				color: v.$color-secondary;
+			}
 		}
 
 		&__title {

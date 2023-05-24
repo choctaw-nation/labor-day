@@ -19,7 +19,7 @@ $query = new WP_Query(
 	)
 );
 ?>
-<div class="container-fluid pb-5 position-relative">
+<div class="pb-5 position-relative">
 	<div class="row">
 		<div class="col-1 d-flex justify-content-center">
 			<div class="swiper-button-prev"></div>

@@ -12,7 +12,7 @@ $query = new WP_Query(
 	)
 );
 ?>
-<div class='container-fluid'>
+<div class="container-fluid">
 	<div class='row'>
 		<div class="col-1 d-flex justify-content-center">
 			<div class="swiper-button-prev"></div>
