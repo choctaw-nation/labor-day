@@ -1,10 +1,18 @@
 @use "../abstracts/mixins" as m;
 .gallery {
 	&__item {
-		max-height: 30rem;
-		@include m.fitMedia;
+		@include m.fitMedia($fit: cover);
+
+		&--image {
+			aspect-ratio: 16 / 9;
+		}
 	}
 	.row {
 		align-items: flex-start;
+	}
+}
+:where(.history) {
+	.headline:not(h1) {
+		text-transform: capitalize;
 	}
 }

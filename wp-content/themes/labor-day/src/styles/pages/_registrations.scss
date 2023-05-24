@@ -1,7 +1,11 @@
 @use "../abstracts/mixins" as m;
 
+.registrations {
+	padding: 0;
+}
 .registration-form-list {
 	list-style: none;
+	padding: 0;
 
 	&__item {
 		&:not(:last-child) {
@@ -12,11 +16,10 @@
 
 .registration-form {
 	font-size: 1.6rem;
-
 	@include m.displayFlex(row, center, stretch);
 
-	> * {
-		padding: 2rem;
+	&__content--headline {
+		text-transform: capitalize;
 	}
 
 	.two-col {
@@ -35,5 +38,8 @@
 
 	&__button {
 		margin-top: auto;
+		text-align: center;
+		width: 30rem;
+		padding: 1rem 0;
 	}
 }

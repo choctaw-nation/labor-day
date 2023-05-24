@@ -27,13 +27,11 @@
 
 	&__container {
 		font-size: 3.5em;
-		@include m.displayFlex(row, space-evenly);
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 15rem);
+		justify-content: space-evenly;
 		@include m.media-breakpoint-down(lg) {
 			font-size: 2em;
-		}
-		@include m.media-breakpoint-down(md) {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, 15rem);
 		}
 	}
 
@@ -50,26 +48,40 @@
 	&__minutes {
 		@extend .countdown__days;
 		animation-delay: 1.6s;
+		@include m.media-breakpoint-only(sm) {
+			grid-row: 2 / 3;
+		}
+		@media screen and (min-width: 466px) and (max-width: 576px) {
+			grid-row: 2 / 3;
+		}
 	}
 
 	&__seconds {
 		@extend .countdown__days;
 		animation-delay: 1.8s;
+		@include m.media-breakpoint-only(sm) {
+			grid-row: 2 / 3;
+		}
+		@media screen and (min-width: 466px) and (max-width: 576px) {
+			grid-row: 2 / 3;
+		}
 	}
 }
-
-.great-seal {
-	width: 100%;
-	margin: 0;
-
-	@include m.media-breakpoint-down(md) {
-		width: 75%;
-		margin: 0 auto;
+#about-the-festival {
+	.col-lg-4 {
+		@include m.displayFlex(column, $cross: center);
 	}
 
-	svg {
-		aspect-ratio: 1;
-		width: 100%;
+	.col-lg-8 {
+		@include m.displayFlex(column, $cross: center);
+	}
+}
+.great-seal {
+	width: 88%;
+	@include m.fitMedia(svg);
+	@include m.media-breakpoint-down(lg) {
+		width: 50%;
+		margin-bottom: 2rem;
 	}
 }
 
@@ -86,40 +98,68 @@
 			align-items: center;
 		}
 	}
+
 	.featured-event {
 		&__headline {
-			color: v.$color-primary--dark;
+			color: v.$color-secondary;
 		}
+
 		&__title {
-			color: v.$color-grey;
+			color: v.$color-primary;
 		}
+
+		&__start-time {
+			font-size: 2.4rem;
+			font-weight: 700;
+			color: v.$color-grey;
+			&:hover {
+				color: v.$color-grey;
+			}
+		}
+	}
+
+	.swiper {
+		&-slide {
+			height: clamp(30rem, 40rem, 50rem);
+			position: relative;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		a {
+			height: 100%;
+			@include m.displayFlex(column);
+			background-image: linear-gradient(
+				to bottom,
+				transparent 50%,
+				v.$color-primary--dark
+			);
+		}
+
+		&__slide-content {
+			margin: auto auto 2rem 1rem;
+			color: white;
+			z-index: 2;
+			font-size: 1.35em;
+
+			&--title {
+				font-weight: 700;
+			}
+		}
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		color: v.$color-primary;
+		position: relative;
 	}
 }
 
 #vendors {
-	@extend #entertainment;
-
-	a.btn__fill--primary {
-		background-color: v.$color-primary--dark;
-	}
-}
-
-.big-feature {
-	height: fit-content;
-
-	&__image {
-		width: 100%;
-		max-height: 80rem;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-		}
-	}
-
-	&__excerpt {
-		font-size: 1.35em;
-		margin-bottom: 4rem;
+	.swiper-button-prev,
+	.swiper-button-next {
+		color: white;
+		position: relative;
 	}
 }

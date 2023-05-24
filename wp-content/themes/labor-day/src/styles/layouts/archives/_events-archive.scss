@@ -5,6 +5,7 @@
 %cno-events {
 	@include m.displayFlex(column);
 	gap: 4rem;
+
 	@include m.media-breakpoint-down(lg) {
 		gap: 8rem;
 	}
@@ -14,16 +15,20 @@
 }
 .archive {
 	position: relative;
+
 	.cno-events-wrapper {
 		margin: 0 auto;
+
 		.cno-events {
 			@extend %cno-events;
 		}
+
 		.cno-event-search-filters {
 			&__container {
 				@include m.displayFlex(column, flex-start, stretch);
 				flex-wrap: nowrap;
 			}
+
 			&__filter-container {
 				display: inline-grid;
 				grid-template-columns: repeat(auto-fit, max(24rem));
@@ -32,11 +37,13 @@
 				place-items: start;
 				height: fit-content;
 			}
+
 			&__filter {
 				grid-row: unset;
 			}
 		}
 	}
+
 	.cno-event {
 		&__image {
 			@include m.fitMedia($fit: cover);
@@ -56,8 +63,9 @@
 			align-items: stretch;
 		}
 	}
+
 	:where(&) > .container:not(.load-more-container) {
-		min-height: 50vh;
+		min-height: 20rem;
 	}
 }
 .cno-event-search {
@@ -67,5 +75,12 @@
 		width: auto;
 		border: 2px solid black;
 		margin-bottom: 2rem;
+	}
+
+	.archive .cno-events-wrapper &__filters {
+		button {
+			width: fit-content;
+			font-size: 1em;
+		}
 	}
 }

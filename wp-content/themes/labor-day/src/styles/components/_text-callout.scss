@@ -1,11 +1,11 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-$overlay-opacity: 0.55;
+$overlay-opacity: 0.52;
 
 .text-callout {
 	position: relative;
-	padding: 6rem 0;
+	padding: 1rem 0;
 
 	&--primary {
 		@extend .text-callout;
@@ -24,23 +24,20 @@ $overlay-opacity: 0.55;
 
 		figure {
 			align-self: center;
-
-			svg {
-				width: 100%;
-			}
+			@include m.fitMedia(svg);
 		}
+
 		.text-content {
 			@include m.displayFlex(column, $cross: center);
 			color: white;
+			font-size: 5.6rem;
 		}
+
 		.quote {
-			width: 70%;
-			font-weight: 400;
-			font-size: 1.5em;
+			font-weight: 500;
 
 			&--attribution {
 				font-weight: 400;
-				font-size: 1.35em;
 				margin-top: 2rem;
 				margin-left: auto;
 			}
@@ -49,35 +46,23 @@ $overlay-opacity: 0.55;
 }
 
 .bg {
-	background-position: center 70%;
+	background-position: center 60%;
 	background-size: cover;
-	// z-index: -1;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	opacity: $overlay-opacity;
+	mix-blend-mode: multiply;
 	@include m.media-breakpoint-down(md) {
 		top: -80%;
 	}
 }
 
 .overlay {
-	mix-blend-mode: multiply;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-
 	&--primary {
 		@extend .overlay;
 		background-color: rgba(v.$color-primary--light, $overlay-opacity);
-	}
-
-	&--secondary {
-		@extend .overlay;
-		background-color: rgba(v.$color-secondary, $overlay-opacity);
 	}
 }

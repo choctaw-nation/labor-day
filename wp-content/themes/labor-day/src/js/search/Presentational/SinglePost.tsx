@@ -2,23 +2,31 @@ import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
 import FeaturedImage from './FeaturedImage';
 import { getTheDay } from '../../my-schedule/calendarFunctions';
-import { createExcerpt } from '../Utilities';
+import { createExcerpt, TimeHandler } from '../Utilities';
 
+const time = new TimeHandler();
 export default function SinglePost({
 	data,
 	children,
 	setShowShareModal,
 	setShareEventObject,
+	extendedClass,
 }: {
 	data: PrettyEventData;
 	children?: JSX.Element;
-	setShowShareModal: Function;
-	setShareEventObject: Function;
+	setShowShareModal?: Function;
+	setShareEventObject?: Function;
+	extendedClass?: string;
 }) {
 	const { locations, title, event_info, featuredImage, link } = data;
-
 	return (
-		<article className="cno-event row animate__animated animate__fadeIn">
+		<article
+			className={
+				extendedClass
+					? `${extendedClass} cno-event row animate__animated animate__fadeIn`
+					: 'cno-event row animate__animated animate__fadeIn'
+			}
+		>
 			<aside
 				className={`cno-event__time col-lg-1 cno-event__time--${event_info.info.day.toLowerCase()}`}
 			>
@@ -31,9 +39,12 @@ export default function SinglePost({
 						{event_info.info.day.toUpperCase()}
 					</span>
 				</div>
-				<div className="cno-event__time--time">
-					{event_info.info.startTime}
-				</div>
+				<div
+					className="cno-event__time--time"
+					dangerouslySetInnerHTML={{
+						__html: time.handleTime(event_info.info),
+					}}
+				/>
 			</aside>
 			{featuredImage && (
 				<div className="cno-event__image col-lg-3">
@@ -51,22 +62,17 @@ export default function SinglePost({
 
 				<div className="cno-event__buttons">
 					{locations && locations.length > 0 && (
-						<div className="cno-event__meta--location">
-							<div className="cno-event__meta--icon">
-								<i className="fa-solid fa-location-dot" />
-							</div>
-
-							<a
-								href={locations![0].uri}
-								className="cno-event__meta--link"
-								rel="tag"
-							>
-								{locations![0].name}
-							</a>
-						</div>
+						<a
+							className="cno-event__buttons--location"
+							href={locations![0].uri}
+						>
+							<i className="fa-solid fa-location-dot" />
+							&nbsp;
+							{locations![0].name}
+						</a>
 					)}
-					<a
-						className="cno-event__meta--share"
+					<div
+						className="cno-event__buttons--share"
 						onClick={(ev) => {
 							ev.preventDefault();
 							setShowShareModal(true);
@@ -78,7 +84,7 @@ export default function SinglePost({
 					>
 						<i className="fa-solid fa-share" />
 						&nbsp;Share
-					</a>
+					</div>
 					{children}
 				</div>
 			</div>

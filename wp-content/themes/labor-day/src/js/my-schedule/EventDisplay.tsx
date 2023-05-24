@@ -1,24 +1,23 @@
-import React from '@wordpress/element';
+import React, { useState } from '@wordpress/element';
 import { SortedEventsObject } from '../search/types';
-import RemoveEventButton from './RemoveEvent';
 import { downloadICSFile } from './calendarFunctions';
 import { PrettyEventData } from '../search/types';
 import SinglePost from '../search/Presentational/SinglePost';
 import { createExcerpt } from '../search/Utilities';
 
-export default function EventsDisplay( {
+export default function EventsDisplay({
 	schedule,
 	removeEvent,
 }: {
 	schedule: SortedEventsObject;
 	removeEvent: CallableFunction;
-} ) {
-	const events = Object.values( schedule ).flat();
-	function handleClick( id: number ) {
-		const event = events.filter( ( event ) => event.id === id );
-		downloadICSFile( event[ 0 ] );
+}) {
+	const events: PrettyEventData[] = Object.values(schedule).flat();
+	function handleClick(id: number) {
+		const event = events.filter(({ eventId }) => eventId === id);
+		downloadICSFile(event[0]);
 	}
-	return events.map( ( event: PrettyEventData ) => {
+	return events.map((event: PrettyEventData) => {
 		const {
 			eventId,
 			event_info: {
@@ -28,28 +27,31 @@ export default function EventsDisplay( {
 			link,
 		} = event;
 		return (
-			<SinglePost data={ event } key={ eventId }>
-				<div className="cno-event__buttons">
-					{ createExcerpt( description ).readMore && (
-						<a href={ link } className="btn__outline--primary ">
-							View Event
-						</a>
-					) }
-					<button
-						className="btn__outline--secondary "
-						onClick={ () => {
-							handleClick( eventId );
-						} }
-					>
-						Export to Calendar
-					</button>
-					<RemoveEventButton
-						removeEvent={ removeEvent }
-						id={ eventId }
-						day={ day }
-					/>
-				</div>
+			<SinglePost data={event} key={eventId}>
+				{createExcerpt(description).readMore && (
+					<a href={link} className="cno-event__buttons--learn-more">
+						<i className="fa-solid fa-circle-info"></i>
+						&nbsp;Learn More
+					</a>
+				)}
+				<a
+					className="cno-event__buttons--calendar"
+					onClick={() => {
+						handleClick(eventId);
+					}}
+				>
+					<i className="fa-regular fa-calendar"></i>&nbsp;Export to
+					Calendar
+				</a>
+				<a
+					className="cno-event__buttons--remove-event"
+					onClick={() => {
+						removeEvent(eventId, day);
+					}}
+				>
+					X Remove Event
+				</a>
 			</SinglePost>
 		);
-	} );
+	});
 }

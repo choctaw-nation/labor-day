@@ -1,4 +1,4 @@
-import React, { useState } from '@wordpress/element';
+import React, { useState, useEffect } from '@wordpress/element';
 import SearchFilters from './SearchFilters';
 import SearchInput from '../Presentational/SearchInput';
 
@@ -10,6 +10,11 @@ export default function SearchBar({
 	search,
 }) {
 	const [showFilters, setShowFilters] = useState(false);
+	useEffect(() => {
+		if (window.innerWidth > 767) {
+			setShowFilters(true);
+		}
+	}, []);
 	return (
 		<section className="cno-event-search">
 			<div className="container">

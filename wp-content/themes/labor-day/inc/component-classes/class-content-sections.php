@@ -103,7 +103,7 @@ class Content_Sections extends Content_Components {
 			'cta_text'         => null,
 			'cta_link'         => null,
 			'cta_external'     => false,
-			'cta_class'        => 'cta__btn btn__fill--primary mt-5 align-self-start',
+			'cta_class'        => 'cta__btn btn__fill--primary align-self-start',
 			'media_type'       => 'photo',
 			'reverse'          => false,
 			'image_src'        => get_theme_file_uri( '/images/placeholder.jpg' ),
@@ -115,8 +115,8 @@ class Content_Sections extends Content_Components {
 
 		$container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
 		$div_end         = '</div>';
-		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media'>";
-		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content'>";
+		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media gx-5'>";
+		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";
 		$col_1_content   = '';
 		if ( 'photo' === $media_type && $image_src ) {
 			$col_1_content = "<figure class='two-col__media--container'><img src='{$image_src}' class='two-col__media--image' /></figure>";

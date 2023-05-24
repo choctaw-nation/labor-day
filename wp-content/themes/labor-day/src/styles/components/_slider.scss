@@ -18,8 +18,9 @@
 	}
 
 	&__image {
-		height: 40rem;
-		aspect-ratio: 1;
+		aspect-ratio: 16 / 9;
+		max-height: 40rem;
+		width: 100%;
 		@include m.fitMedia($fit: cover);
 		@include m.media-breakpoint-down(xl) {
 			max-height: 30rem;
@@ -71,6 +72,7 @@
 
 	.swiper-button {
 		color: $color;
+		position: relative;
 
 		&-next {
 			@extend .swiper-button;
@@ -91,11 +93,13 @@
 		@include m.displayFlex(column);
 
 		&__image {
-			aspect-ratio: 1;
-			height: 42rem;
 			@include m.media-breakpoint-down(lg) {
 				order: unset;
 				max-height: 30rem;
+			}
+
+			img {
+				aspect-ratio: 16 / 9;
 			}
 		}
 

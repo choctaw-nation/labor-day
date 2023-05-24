@@ -3,9 +3,8 @@
 
 .cno-event {
 	margin: 0;
-	max-height: 40rem;
 	@include m.media-breakpoint-up(lg) {
-		height: fit-content;
+		// height: min-content;
 	}
 
 	&__time {
@@ -59,15 +58,14 @@
 
 	&__image {
 		@include m.fitMedia(img, $fit: cover);
-		max-height: 40rem;
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 1;
-			@include m.fitMedia(figure);
 		}
 	}
 
 	&__info {
+		@include m.displayFlex(column);
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 3;
@@ -83,62 +81,40 @@
 		}
 	}
 
-	&__meta {
-		@include m.displayFlex($cross: center);
+	&__buttons {
+		margin-top: auto;
+		@include m.displayFlex($cross: stretch);
+		gap: 2rem;
+		position: relative;
 
-		&--icon {
-			svg {
-				$size: 3rem;
-				width: $size;
-				height: $size;
-				fill: v.$color-secondary;
-			}
+		& > * {
+			@include m.displayFlex(row, $cross: center);
+			cursor: pointer;
+		}
+
+		& > a {
+			transition: color v.$transition--standard;
 		}
 
 		&--location {
-			@include m.displayFlex($cross: center);
-			position: relative;
 			color: v.$color-secondary;
-
-			svg path {
-				fill: v.$color-secondary;
-				transition: fill v.$transition--standard;
-			}
-			&:hover {
-				svg path {
-					fill: v.$color-primary--light;
-				}
-			}
-		}
-
-		&--link {
-			transition: color v.$transition--standard;
-			color: inherit;
-			display: inline-block;
 		}
 
 		&--share {
-			cursor: pointer;
 			color: v.$color-grey;
+		}
 
-			&:hover {
-				color: v.$color-grey;
-			}
+		&--add-to-schedule {
+			color: v.$color-primary;
+		}
+
+		.alert {
+			margin: 0;
 		}
 	}
-
-	&__buttons {
-		margin-top: auto;
-		@include m.displayFlex($cross: center);
-		gap: 1rem;
-
-		& > * {
-			flex: 0 1 auto;
-		}
-
-		&--location {
-			color: v.$color-secondary;
-			transition: color v.$transition--standard;
-		}
-	}
+}
+.cno-event-schedule-confirmation {
+	display: block;
+	min-width: 40rem;
+	min-height: 5rem;
 }

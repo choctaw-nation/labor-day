@@ -43,19 +43,6 @@ get_header(); ?>
 			<div class="row">
 				<h2 class="featured-event__headline">Special Entertainment</h2>
 				<div class="row">
-					<h3 class="featured-event__headline">Friday</h3>
-					<?php
-					get_template_part(
-						'template-parts/content',
-						'featured-events',
-						array(
-							'first'  => 50,
-							'second' => 174,
-						)
-					);
-					?>
-				</div>
-				<div class="row">
 					<h3 class="featured-event__headline">Saturday</h3>
 					<?php
 					get_template_part(
@@ -68,33 +55,30 @@ get_header(); ?>
 					);
 					?>
 				</div>
+				<div class="row">
+					<h3 class="featured-event__headline">Sunday</h3>
+					<?php
+					get_template_part(
+						'template-parts/content',
+						'featured-events',
+						array(
+							'first'  => 200,
+							'second' => 183,
+						)
+					);
+					?>
+				</div>
 			</div>
+		</div>
+		<div class="container">
 			<div class="row">
 				<h3>All Entertainment</h3>
-				<?php
-				get_template_part(
-					'template-parts/content',
-					'slider',
-					array(
-						'id'         => 'entertainment',
-						'query_args' => array(
-							'post_type'      => 'events',
-							'post_status'    => 'publish',
-							'posts_per_page' => 6,
-							'tax_query'      => array(
-								array(
-									'taxonomy' => 'event_type',
-									'field'    => 'slug',
-									'terms'    => 'entertainment',
-								),
-							),
-						),
-					)
-				);
-				?>
 			</div>
-			<div class="row">
-				<div class="col">
+		</div>
+		<?php get_template_part( 'template-parts/slider', 'entertainment' ); ?>
+		<div class="container">
+			<div class="row justify-content-center pt-5">
+				<div class="col-3 d-flex justify-content-center">
 					<a href="/events" class="btn__fill--primary">See Full Schedule</a>
 				</div>
 			</div>
@@ -107,27 +91,53 @@ get_header(); ?>
 					Register Now
 				</h2>
 			</div>
+		</div>
+		<div class="container-fluid">
 			<div class="row">
 				<?php
-				get_template_part(
-					'template-parts/content',
-					'slider',
+				$query = new WP_Query(
 					array(
-						'query_args' => array(
-							'post_type'      => 'page',
-							'post_status'    => 'publish',
-							'post_parent'    => get_page_by_title( 'Registrations' )->ID,
-							'posts_per_page' => -1,
-						),
-						'id'         => 'registration',
+						'post_type'      => 'page',
+						'post_status'    => 'publish',
+						'post_parent'    => get_page_by_title( 'Registrations' )->ID,
+						'posts_per_page' => -1,
 					)
 				);
 				?>
-			</div>
-			<div class="row">
-				<div class="col">
-					<a href="/registrations" class="btn__fill--secondary">See All Registrations</a>
+				<div class="col-1 d-flex justify-content-center">
+					<div class="swiper-button-prev"></div>
 				</div>
+				<div class="col-10">
+					<div class="swiper" id="registration-slider">
+						<div class="swiper-wrapper">
+							<?php
+							if ( $query->have_posts() ) :
+								while ( $query->have_posts() ) :
+									$query->the_post();
+									?>
+							<div class="swiper-slide">
+								<a href="<?php the_permalink(); ?>">
+									<div class="slider__image">
+										<?php the_post_thumbnail(); ?>
+									</div>
+									<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
+								</a>
+							</div>
+							<?php endwhile; ?>
+							<?php endif; ?>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="col-1 d-flex justify-content-center">
+					<div class="swiper-button-next"></div>
+				</div>
+				<?php wp_reset_postdata(); ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col d-flex-column">
+				<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
 			</div>
 		</div>
 	</section>

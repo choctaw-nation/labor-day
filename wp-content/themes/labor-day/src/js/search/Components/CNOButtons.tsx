@@ -25,17 +25,17 @@ export default function CNOButtons({
 	}
 	return (
 		<>
-			<a
-				className="btn__fill--primary"
+			<div
+				className="cno-event__buttons--add-to-schedule"
 				data-add-to-schedule="true"
 				data-id={eventId}
 				onClick={addToSchedule}
 			>
-				Add to Schedule
-			</a>
+				<i className="fa-solid fa-plus"></i>&nbsp;Add to Schedule
+			</div>
 			{canReadMore && (
-				<a href={link} className="btn__outline--primary">
-					Learn More
+				<a href={link} className="cno-event__buttons--learn-more">
+					<i className="fa-solid fa-circle-info"></i>&nbsp;Learn More
 				</a>
 			)}
 			<div

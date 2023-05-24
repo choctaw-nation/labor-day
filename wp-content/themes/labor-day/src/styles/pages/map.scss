@@ -1,43 +1,38 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 .map-container {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	gap: 1rem;
-	position: relative;
-	@include m.media-breakpoint-down(md) {
-		display: flex;
-		flex-direction: column-reverse;
-	}
 }
 .map {
 	position: relative;
 	$size: 100%;
-	height: $size;
 
 	svg {
-		position: sticky;
-		top: 5%;
-		display: block;
 		width: $size;
-		// height: 100%;
 	}
 }
 
 .legend {
-	border: 2px solid v.$color-primary;
-	border-radius: 1rem;
+	background-color: v.$color-tertiary;
 
 	.headline {
 		margin-top: 1rem;
 	}
 }
 
+%container-spacing {
+	margin-bottom: 3rem;
+}
 .map-toggles {
 	&__container {
 		padding: 1rem;
+		&--icons {
+			@extend %container-spacing;
+		}
 	}
 
+	&__areas {
+		@extend %container-spacing;
+	}
 	&__layer-toggle {
 		cursor: pointer;
 

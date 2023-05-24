@@ -6,10 +6,13 @@
 cno_enqueue_page_assets( 'map' );
 ?>
 <div class="container map-container">
+	<figure class="map">
+		<?php echo file_get_contents( get_theme_file_path( '/images/full-map-v2.svg' ) ); ?>
+	</figure>
 	<div class="legend">
 		<div class="map-toggles__container">
 			<div class="map-toggles__areas">
-				<h3 class="headline">Show / Hide Areas</h3>
+				<h3 class="headline">Areas</h3>
 				<div class="map-toggles__area-toggles">
 					<div class='map-toggles__layer-toggle' data-id="Parking">
 						<input type='checkbox' checked data-id="Parking" />&nbsp;Parking
@@ -40,7 +43,7 @@ cno_enqueue_page_assets( 'map' );
 			</div>
 			<div class="map-toggles__container--icons">
 				<div class="map-toggles__icons">
-					<h3 class="headline">Show / Hide Icons</h3>
+					<h3 class="headline">Icons</h3>
 					<div class="map-toggles__area-toggles">
 						<div class='map-toggles__layer-toggle' data-id="Icons">
 							<input type='checkbox' checked data-id="Icons" />&nbsp;All Icons
@@ -83,7 +86,7 @@ cno_enqueue_page_assets( 'map' );
 			</div>
 			<div class="map-toggles__container--locations">
 				<div class="map-toggles__locations">
-					<h3 class="headline">Show / Hide Location Labels</h3>
+					<h3 class="headline">Location Labels</h3>
 					<div class="map-toggles__area-toggles">
 						<div class='map-toggles__layer-toggle' data-id="Number_Labels">
 							<input type='checkbox' data-id="Number_Labels" checked />&nbsp;All Locations
@@ -158,7 +161,4 @@ cno_enqueue_page_assets( 'map' );
 
 
 	</div>
-	<figure class="map">
-		<?php echo file_get_contents( get_theme_file_path( '/images/full-map-v2.svg' ) ); ?>
-	</figure>
 </div>
