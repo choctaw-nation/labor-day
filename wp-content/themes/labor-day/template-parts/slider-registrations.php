@@ -15,7 +15,7 @@ $query = new WP_Query(
 <div class="container-fluid">
 	<div class='row'>
 		<div class="col-1 d-flex justify-content-center">
-			<div class="swiper-button-prev"></div>
+			<div class="registration-slider-navigation swiper-button-prev"></div>
 		</div>
 		<div class="col-10">
 			<div class="swiper" id="registration-slider">
@@ -40,7 +40,7 @@ $query = new WP_Query(
 			</div>
 		</div>
 		<div class="col-1 d-flex justify-content-center">
-			<div class="swiper-button-next"></div>
+			<div class="registration-slider-navigation swiper-button-next"></div>
 		</div>
 	</div>
 </div>

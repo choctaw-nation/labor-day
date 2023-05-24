@@ -22,7 +22,7 @@ $query = new WP_Query(
 <div class="pb-5 position-relative">
 	<div class="row">
 		<div class="col-1 d-flex justify-content-center">
-			<div class="swiper-button-prev"></div>
+			<div class="entertainment-slider-navigation swiper-button-prev"></div>
 		</div>
 		<div class="col-10">
 			<div class="swiper">
@@ -51,7 +51,7 @@ $query = new WP_Query(
 			</div>
 		</div>
 		<div class="col-1 d-flex justify-content-center">
-			<div class="swiper-button-next"></div>
+			<div class="entertainment-slider-navigation swiper-button-next"></div>
 		</div>
 	</div>
 </div>
