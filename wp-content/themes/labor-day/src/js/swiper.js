@@ -28,10 +28,10 @@ const defaultArgs = {
  * @returns swiper instance
  */
 export function newSlider(el, args = {}) {
-	if (window.innerWidth < 767) {
-		defaultArgs.slidesPerView = 1;
-	}
 	const newArgs = Object.assign({}, defaultArgs, args);
+	if (window.innerWidth < 767) {
+		newArgs.slidesPerView = 1;
+	}
 	const swiper = new Swiper(el, newArgs);
 	return swiper;
 }

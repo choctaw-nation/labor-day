@@ -6,7 +6,7 @@ import { newSlider } from '../swiper';
 (function initSlider() {
 	const entertainmentSlider = document.getElementById('entertainment-slider');
 	const registrationSlider = document.getElementById('registration-slider');
-	// newSlider( entertainmentSlider );
+	newSlider(entertainmentSlider, { slidesPerView: 4 });
 	newSlider(registrationSlider);
 })();
 

@@ -69,44 +69,30 @@ get_header(); ?>
 					?>
 				</div>
 			</div>
+		</div>
+		<div class="container">
 			<div class="row">
 				<h3>All Entertainment</h3>
-				<?php
-				get_template_part(
-					'template-parts/content',
-					'slider',
-					array(
-						'id'         => 'entertainment',
-						'query_args' => array(
-							'post_type'      => 'events',
-							'post_status'    => 'publish',
-							'posts_per_page' => 6,
-							'tax_query'      => array(
-								array(
-									'taxonomy' => 'event_type',
-									'field'    => 'slug',
-									'terms'    => 'entertainment',
-								),
-							),
-						),
-					)
-				);
-				?>
 			</div>
-			<div class="row">
-				<div class="col">
+		</div>
+		<?php get_template_part( 'template-parts/slider', 'entertainment' ); ?>
+		<div class="container">
+			<div class="row justify-content-center pt-5">
+				<div class="col-3 d-flex justify-content-center">
 					<a href="/events" class="btn__fill--primary">See Full Schedule</a>
 				</div>
 			</div>
 		</div>
 	</section>
 	<section id="vendors" class='bg-color-primary fadeIn'>
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row">
 				<h2 class="headline text-white">
 					Register Now
 				</h2>
 			</div>
+		</div>
+		<div class="container-fluid">
 			<div class="row">
 				<?php
 				$query = new WP_Query(
@@ -118,36 +104,42 @@ get_header(); ?>
 					)
 				);
 				?>
-				<div class="swiper" id="registration-slider">
-					<div class="swiper-wrapper">
-						<?php
+				<div class="col-1 d-flex justify-content-center">
+					<div class="swiper-button-prev"></div>
+				</div>
+				<div class="col-10">
+					<div class="swiper" id="registration-slider">
+						<div class="swiper-wrapper">
+							<?php
 							if ( $query->have_posts() ) :
 								while ( $query->have_posts() ) :
 									$query->the_post();
 									?>
-						<div class="swiper-slide">
-							<a href="<?php the_permalink(); ?>">
-								<div class="slider__image">
-									<?php the_post_thumbnail(); ?>
-								</div>
-								<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
-							</a>
+							<div class="swiper-slide">
+								<a href="<?php the_permalink(); ?>">
+									<div class="slider__image">
+										<?php the_post_thumbnail(); ?>
+									</div>
+									<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
+								</a>
+							</div>
+							<?php endwhile; ?>
+							<?php endif; ?>
 						</div>
-						<?php endwhile; ?>
-						<?php endif; ?>
-						<?php wp_reset_postdata(); ?>
+						<div class="swiper-pagination"></div>
 					</div>
-					<div class="swiper-pagination"></div>
-					<div class="swiper-button-prev"></div>
+				</div>
+				<div class="col-1 d-flex justify-content-center">
 					<div class="swiper-button-next"></div>
 				</div>
-
-				<div class="row">
-					<div class="col d-flex-column">
-						<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
-					</div>
-				</div>
+				<?php wp_reset_postdata(); ?>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col d-flex-column">
+				<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
+			</div>
+		</div>
 	</section>
 	<section id="map" class="fadeIn">
 		<div class="container">
