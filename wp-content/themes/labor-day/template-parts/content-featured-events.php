@@ -11,7 +11,7 @@ $card_1                        = array(
 	'headline_element' => 'h4',
 	'headline_class'   => 'featured-event__title',
 );
-$card_1['subheadline_content'] = "<span class='featured-event__start-time'>Start Time: " . get_field( 'info', $first )['start_time'] . '</span>';
+$card_1['subheadline_content'] = "<span class='featured-event__start-time'>" . get_field( 'info', $first )['start_time'] . '</span>';
 
 $card_2                        = array(
 	'image_src'        => get_the_post_thumbnail_url( $second ),
@@ -19,7 +19,7 @@ $card_2                        = array(
 	'headline_element' => 'h4',
 	'headline_class'   => 'featured-event__title',
 );
-$card_2['subheadline_content'] = "<span class='featured-event__start-time'>Start Time: " . get_field( 'info', $second )['start_time'] . '</span>';
+$card_2['subheadline_content'] = "<span class='featured-event__start-time'>" . get_field( 'info', $second )['start_time'] . '</span>';
 ?>
 <div class="col-lg-6 gx-5 mb-5">
 	<a href="<?php echo get_the_permalink( $first ); ?>">

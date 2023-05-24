@@ -1,4 +1,7 @@
 @use "../../abstracts/mixins" as m;
+@use "../../abstracts/variables" as v;
+@use "../../components/checkboxes" as c;
+@include c.checkboxColor($background-color: white);
 :is(.post-type-archive-events) .hero {
 	height: auto;
 }
@@ -40,6 +43,7 @@
 
 			&__filter {
 				grid-row: unset;
+				@include m.displayFlex($cross: center);
 			}
 		}
 	}

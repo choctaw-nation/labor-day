@@ -18,14 +18,11 @@ section {
 	}
 }
 
-figure {
-	@include m.media-breakpoint-down(md) {
-		// margin-bottom: 2rem;
-	}
-}
-
 .container {
 	position: relative;
+	@include m.media-breakpoint-down(sm) {
+		--bs-gutter-x: 4rem;
+	}
 }
 
 .row {

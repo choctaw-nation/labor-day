@@ -21,7 +21,7 @@ wp_head();
 
 <body <?php body_class() ?>>
 	<header class="d-flex" id="site-header">
-		<div class="navbar container-fluid gx-5 py-4 d-flex justify-content-between">
+		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
 				<figure class="logo-image d-inline-block">
 					<?php echo SITE_LOGO; ?>

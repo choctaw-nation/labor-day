@@ -1,7 +1,7 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-.map-container {
-}
+@use "../components/checkboxes" as c;
+
 .map {
 	position: relative;
 	$size: 100%;
@@ -35,10 +35,11 @@
 	}
 	&__layer-toggle {
 		cursor: pointer;
-
-		input {
-			cursor: pointer;
-		}
+		@include m.displayFlex($cross: center);
+		@include c.checkboxColor(
+			$background-color: v.$color-primary,
+			$color: white
+		);
 	}
 
 	&__area-toggles {

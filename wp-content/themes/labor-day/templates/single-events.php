@@ -10,7 +10,7 @@ extract( get_field( 'info' ) );
 	<?php get_template_part( 'template-parts/aside', 'breadcrumb' ); ?>
 	<article class="cno-event py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
-		<div class="cno-event__image"><?php the_post_thumbnail(); ?></div>
+		<figure class="cno-event__image"><?php the_post_thumbnail(); ?></figure>
 		<?php endif; ?>
 		<h1 class="cno-event__title headline" <?php echo ( has_post_thumbnail() ) ? '' : "style='grid-row:1/2;'"; ?>> <?php the_title(); ?></h1>
 		<div class="sidebar">
@@ -18,7 +18,7 @@ extract( get_field( 'info' ) );
 				<div class="cno-event-meta__container">
 					<?php extract( get_field( 'info' ) ); ?>
 					<div class="cno-event-meta__day">
-						<strong>When: </strong><?php echo $day . ', ' . cno_get_the_date( $day ); ?>
+						<?php echo $day . ', ' . cno_get_the_date( $day ); ?>
 					</div>
 					<div class="cno-event-meta__start-time">
 						<strong>Start Time:</strong> <?php echo $start_time; ?>

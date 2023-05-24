@@ -5,10 +5,9 @@
 @use "../components//text-callout";
 
 .countdown {
-	color: white;
-	border-top: 5px solid white;
 	width: 100%;
 	text-align: center;
+	color: white;
 
 	a {
 		margin-top: 2rem;
@@ -26,6 +25,7 @@
 	}
 
 	&__container {
+		border-top: 5px solid white;
 		font-size: 3.5em;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 15rem);
@@ -73,7 +73,7 @@
 	}
 
 	.col-lg-8 {
-		@include m.displayFlex(column, $cross: center);
+		@include m.displayFlex(column, center, center);
 	}
 }
 .great-seal {

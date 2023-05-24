@@ -31,6 +31,9 @@ $overlay-opacity: 0.52;
 			@include m.displayFlex(column, $cross: center);
 			color: white;
 			font-size: 5.6rem;
+			@include m.media-breakpoint-down(md) {
+				font-size: 3rem;
+			}
 		}
 
 		.quote {
