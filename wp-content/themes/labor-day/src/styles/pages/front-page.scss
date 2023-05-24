@@ -124,11 +124,12 @@
 
 	.swiper {
 		&-slide {
-			height: clamp(30rem, 40rem, 50rem);
+			max-height: 80rem;
 			position: relative;
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
+			aspect-ratio: 9 / 16;
 		}
 
 		a {
@@ -137,16 +138,26 @@
 			background-image: linear-gradient(
 				to bottom,
 				transparent 50%,
-				v.$color-primary--dark
+				v.$color-primary--dark 90%
 			);
+			@include m.media-breakpoint-only(md) {
+				background-image: linear-gradient(
+					to bottom,
+					transparent 20%,
+					v.$color-primary--dark 90%
+				);
+			}
 		}
 
 		&__slide-content {
-			margin: auto auto 2rem 1rem;
+			margin: auto auto 2rem 2rem;
 			color: white;
 			z-index: 2;
 			font-size: 1.35em;
 
+			@include m.media-breakpoint-only(md) {
+				margin: auto auto 1rem 1rem;
+			}
 			&--title {
 				font-weight: 700;
 			}
