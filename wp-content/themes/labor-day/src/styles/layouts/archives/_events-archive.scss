@@ -26,23 +26,26 @@
 		}
 
 		.cno-event-search-filters {
+			@include m.displayFlex($cross: center);
+
 			&__container {
-				@include m.displayFlex(column, flex-start, stretch);
-				flex-wrap: nowrap;
+				@include m.displayFlex(column);
+				margin-top: 0 !important;
+				&:not(:last-child) {
+					margin-right: 4rem;
+				}
+				// margin: 0 !important;
 			}
 
 			&__filter-container {
-				display: inline-grid;
-				grid-template-columns: repeat(auto-fit, max(24rem));
-				gap: 2rem;
-				place-content: start;
-				place-items: start;
-				height: fit-content;
+				button {
+					margin: 0;
+				}
 			}
 
 			&__filter {
-				grid-row: unset;
-				@include m.displayFlex($cross: center);
+				// grid-row: unset;
+				// @include m.displayFlex($cross: center);
 			}
 		}
 	}
