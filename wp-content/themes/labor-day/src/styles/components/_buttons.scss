@@ -1,5 +1,6 @@
 @use "../abstracts/functions" as fn;
 @use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
 %btn {
 	cursor: pointer;
 	border: 2px solid transparent;
@@ -116,4 +117,34 @@ a.btn {
 
 button {
 	@extend .btn__fill--primary !optional;
+}
+
+.schedule-button {
+	position: fixed;
+	bottom: 3%;
+	right: 3%;
+	color: v.$color-primary;
+	padding: 2rem;
+	border-radius: 1rem;
+	background-color: white;
+	z-index: 40;
+	border: 2px solid v.$color-primary;
+	transition: background-color v.$transition--standard;
+
+	&:hover {
+		background-color: v.$color-primary;
+		* {
+			color: white;
+		}
+	}
+
+	a {
+		transition: color v.$transition--standard;
+	}
+
+	svg {
+		transition: fill v.$transition--standard;
+		fill: currentColor;
+		width: 3rem;
+	}
 }
