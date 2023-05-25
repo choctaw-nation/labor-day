@@ -23,10 +23,10 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
-	<section id="about-the-festival" class="fadeIn">
-		<div class="container">
+	<section id="about-the-festival">
+		<div class=" container">
 			<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-4" data-aos="fade-right">
 					<figure class='great-seal'>
 						<?php echo GREAT_SEAL_SVG; ?>
 					</figure>
@@ -84,7 +84,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<section id="vendors" class='bg-color-primary fadeIn'>
+	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
 			<div class="row">
 				<h2 class="headline text-white">
@@ -96,12 +96,12 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex-column">
-					<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
+					<a href="/registrations" class="btn__fill--secondary align-self-center" data-aos="fade-in">See All Registrations</a>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section id="map" class="fadeIn">
+	<section id="map">
 		<div class="container">
 			<?php
 			$args = array(
@@ -115,7 +115,7 @@ get_header(); ?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
-	<section id="facebook" class="fadeIn">
+	<section id="facebook">
 		<div class="container">
 			<?php
 			$args = array(

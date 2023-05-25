@@ -72,7 +72,6 @@ class Content_Sections extends Content_Components {
 		}
 	}
 
-
 	/**
 	 * Generate two-column layout with text and media
 	 *
@@ -115,7 +114,7 @@ class Content_Sections extends Content_Components {
 
 		$container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
 		$div_end         = '</div>';
-		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media gx-5'>";
+		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media gx-5' data-aos='" . ( $reverse ? 'fade-left' : 'fade-right' ) . "'>";
 		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";
 		$col_1_content   = '';
 		if ( 'photo' === $media_type && $image_src ) {
