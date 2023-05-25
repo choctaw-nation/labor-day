@@ -3,7 +3,6 @@
  * Basic Header Template
  */
 
-wp_head();
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +13,14 @@ wp_head();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>
-		<?php echo $post->post_title . " | " .  get_bloginfo( 'name' ); ?>
+		<?php
+		$title = $post->post_title;
+		if ( is_post_type_archive() ) {
+			$title = 'Schedule';
+		} echo $title . " | " .  get_bloginfo( 'name' ); ?>
 	</title>
 	<link rel="manifest" href="/manifest.json">
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class() ?>>
