@@ -11,6 +11,11 @@ export class Controller {
 	debug = false;
 
 	constructor() {
+		const schedule = Model.getSchedule();
+		console.log(Object.values(schedule).flat().length);
+		if (0 < Object.values(schedule).flat().length) {
+			View.showScheduleButton();
+		}
 		// Register click event listeners for buttons in the view
 		if (View.buttons.length > 0) {
 			View.clickHandler(Model.addToSchedule.bind(Model));
