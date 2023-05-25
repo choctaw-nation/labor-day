@@ -25,7 +25,7 @@ $content = new Content_Sections();
 			while ( $query->have_posts() ) :
 				$query->the_post();
 				?>
-			<li class="registration-form-list__item fadeIn">
+			<li class="registration-form-list__item">
 				<article class="registration-form">
 					<?php
 					$content->two_col_text_and_media(

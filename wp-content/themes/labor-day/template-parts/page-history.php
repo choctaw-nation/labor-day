@@ -18,7 +18,7 @@ function display_gallery() {
 $content = new Content_Sections();
 ?>
 <aside class="gallery"><?php display_gallery(); ?></aside>
-<section class="fadeIn" id="capitol">
+<section id="capitol">
 	<div class="container">
 		<?php extract( get_field( 'capitol' ) ); ?>
 		<?php
@@ -34,7 +34,7 @@ $content = new Content_Sections();
 		<?php $content->two_col_text_and_media( $args ); ?>
 	</div>
 </section>
-<section class="fadeIn" id="history">
+<section id="history">
 	<div class="container">
 		<?php extract( get_field( 'history' ) ); ?>
 		<?php
@@ -49,7 +49,7 @@ $content = new Content_Sections();
 		<?php $content->two_col_text_and_media( $args ); ?>
 	</div>
 </section>
-<section class="fadeIn" id="traditions">
+<section id="traditions">
 	<div class="container">
 		<?php extract( get_field( 'traditions' ) ); ?>
 		<?php
@@ -66,4 +66,4 @@ $content = new Content_Sections();
 	</div>
 </section>
 <?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'primary' ) ); ?>
-<aside class="fadeIn" id="video"></aside>
+<aside id="video"></aside>
