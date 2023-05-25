@@ -15,7 +15,7 @@ get_header();
 		<span class="subheadline mb-5">
 			<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
 		</span>
-		<a href="/my-schedule" class="btn__fill--secondary">View Your Schedule</a>
+		<a href="/my-schedule" class="btn__fill--secondary mb-3 mb-lg-0">View Your Schedule</a>
 		<button class='btn__outline--secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
 	</div>
 </section>

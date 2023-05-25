@@ -12,7 +12,6 @@ export class Controller {
 
 	constructor() {
 		const schedule = Model.getSchedule();
-		console.log(Object.values(schedule).flat().length);
 		if (0 < Object.values(schedule).flat().length) {
 			View.showScheduleButton();
 		}
