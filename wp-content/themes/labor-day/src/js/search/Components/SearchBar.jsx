@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from '@wordpress/element';
-import SearchFilters from './SearchFilters';
+import SearchFilters from '../Presentational/SearchFilters';
 import SearchInput from '../Presentational/SearchInput';
 
 export default function SearchBar({
 	filters,
-	checkedFilters,
-	setCheckedFilters,
 	handleSearchInput,
 	search,
+	selectedFilters,
+	setSelectedFilters,
 }) {
 	const [showFilters, setShowFilters] = useState(false);
 	useEffect(() => {
@@ -15,6 +15,7 @@ export default function SearchBar({
 			setShowFilters(true);
 		}
 	}, []);
+	console.log(showFilters);
 	return (
 		<section className="cno-event-search">
 			<div className="container">
@@ -29,19 +30,46 @@ export default function SearchBar({
 							Filters
 						</h3>
 						<button
-							className="btn__outline--secondary"
+							className={
+								showFilters
+									? 'btn__outline--secondary'
+									: 'btn__fill--secondary'
+							}
 							onClick={() => {
 								setShowFilters(!showFilters);
 							}}
 						>
 							{showFilters ? 'Hide Filters' : 'Show Filters'}
 						</button>
+						{Object.values(selectedFilters).some(
+							(filter) => 'Select Option' !== filter
+						) && (
+							<button
+								className="btn__fill--secondary"
+								onClick={() => {
+									setSelectedFilters({
+										'Event Types': 'Select Option',
+										Days: 'Select Option',
+										Locations: 'Select Option',
+									});
+								}}
+							>
+								Reset Filters
+							</button>
+						)}
+						<button
+							class="btn__fill--secondary"
+							data-bs-toggle="modal"
+							data-bs-target="#hoursModal"
+						>
+							View Services / Operations Hours
+						</button>
 					</div>
 					{showFilters && (
 						<SearchFilters
 							filters={filters}
-							checkedFilters={checkedFilters}
-							setCheckedFilters={setCheckedFilters}
+							selectedFilters={selectedFilters}
+							setSelectedFilters={setSelectedFilters}
 						/>
 					)}
 				</div>

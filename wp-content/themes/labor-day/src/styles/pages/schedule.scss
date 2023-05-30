@@ -1,0 +1,56 @@
+@use "../components/schedule/search-bar";
+@use "../abstracts/mixins" as m;
+
+:is(.post-type-archive-events) .hero {
+	height: auto;
+}
+%cno-events {
+	@include m.displayFlex(column);
+	gap: 4rem;
+
+	@include m.media-breakpoint-down(lg) {
+		gap: 8rem;
+	}
+}
+.cno-events {
+	@extend %cno-events;
+}
+.archive {
+	position: relative;
+
+	.cno-events-wrapper {
+		margin: 0 auto;
+
+		.cno-events {
+			@extend %cno-events;
+		}
+
+		.cno-event-search-filters {
+			@include m.displayFlex($cross: center);
+
+			&__container {
+				@include m.displayFlex(column);
+				margin-top: 0 !important;
+
+				&:not(:last-child) {
+					margin-right: 4rem;
+				}
+			}
+
+			&__filter-container {
+				button {
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	.cno-event {
+		&__image {
+			@include m.fitMedia($fit: cover);
+			@include m.media-breakpoint-down(lg) {
+				max-height: 30rem;
+			}
+		}
+	}
+}

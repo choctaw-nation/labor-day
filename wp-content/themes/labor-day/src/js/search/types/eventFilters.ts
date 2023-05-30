@@ -22,3 +22,9 @@ export type EventFilters = {
 		filters: EventFilter[];
 	};
 };
+
+export type selectedFilterObject = {
+	'Event Types': string;
+	Days: string;
+	Locations: string;
+};
