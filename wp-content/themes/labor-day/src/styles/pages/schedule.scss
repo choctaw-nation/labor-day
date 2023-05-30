@@ -1,20 +1,11 @@
 @use "../components/schedule/search-bar";
 @use "../abstracts/mixins" as m;
+@use "../pages/my-schedule"; // Dev Note: %cno-events is defined here
 
 :is(.post-type-archive-events) .hero {
 	height: auto;
 }
-%cno-events {
-	@include m.displayFlex(column);
-	gap: 4rem;
 
-	@include m.media-breakpoint-down(lg) {
-		gap: 8rem;
-	}
-}
-.cno-events {
-	@extend %cno-events;
-}
 .archive {
 	position: relative;
 
@@ -46,6 +37,8 @@
 	}
 
 	.cno-event {
+		width: 100%;
+
 		&__image {
 			@include m.fitMedia($fit: cover);
 			@include m.media-breakpoint-down(lg) {

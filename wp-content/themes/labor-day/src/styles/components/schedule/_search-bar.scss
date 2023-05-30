@@ -51,7 +51,7 @@
 
 		.dropdown-menu.show {
 			@include m.displayFlex(column, $cross: stretch);
-			width: 100%;
+			// width: 100%;
 		}
 
 		[role="button"] {
@@ -64,6 +64,20 @@
 				background-color: v.$color-secondary;
 				color: white;
 			}
+		}
+	}
+}
+
+.cno-event-search-filters {
+	&__filter-container {
+		width: fit-content;
+
+		.dropdown {
+			width: fit-content;
+		}
+
+		.dropdown-menu {
+			width: fit-content;
 		}
 	}
 }

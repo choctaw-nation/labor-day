@@ -10,12 +10,22 @@ export default function SearchBar({
 	setSelectedFilters,
 }) {
 	const [showFilters, setShowFilters] = useState(false);
+	const [windowWidth, setWindowWidth] = useState();
+
 	useEffect(() => {
-		if (window.innerWidth > 767) {
-			setShowFilters(true);
+		function handleResize() {
+			setWindowWidth(window.innerWidth);
 		}
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
-	console.log(showFilters);
+	useEffect(() => {
+		if (windowWidth > 767) {
+			setShowFilters(true);
+		} else setShowFilters(false);
+	}, [windowWidth]);
 	return (
 		<section className="cno-event-search">
 			<div className="container">
@@ -57,13 +67,15 @@ export default function SearchBar({
 								Reset Filters
 							</button>
 						)}
-						<button
-							class="btn__fill--secondary"
-							data-bs-toggle="modal"
-							data-bs-target="#hoursModal"
-						>
-							View Services / Operations Hours
-						</button>
+						{windowWidth > 767 && (
+							<button
+								class="btn__fill--secondary"
+								data-bs-toggle="modal"
+								data-bs-target="#hoursModal"
+							>
+								View Services / Operations Hours
+							</button>
+						)}
 					</div>
 					{showFilters && (
 						<SearchFilters

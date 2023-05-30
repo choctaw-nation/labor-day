@@ -36,11 +36,14 @@ export default new (class Model {
 				try {
 					this.getEventData(id).then((res) => {
 						const dayProp = res.event_info.info.day.toLowerCase();
-						const check = schedule[dayProp].filter(
+						/** @var check whether or not an event already exists in user's schedule  */
+						const check: PrettyEventData[] | null = schedule[
+							dayProp
+						].filter(
 							(item: PrettyEventData) =>
 								item.eventId === res.eventId
 						);
-						if (check.length === 0) {
+						if (check?.length === 0) {
 							schedule[dayProp].push(res);
 							localStorage.setItem(
 								'schedule',

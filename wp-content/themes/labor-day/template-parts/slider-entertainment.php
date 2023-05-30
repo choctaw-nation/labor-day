@@ -8,7 +8,7 @@ $query = new WP_Query(
 	array(
 		'post_type'      => 'events',
 		'post_status'    => 'publish',
-		'posts_per_page' => 12,
+		'posts_per_page' => 30,
 		'tax_query'      => array(
 			array(
 				'taxonomy' => 'event_type',
@@ -18,6 +18,8 @@ $query = new WP_Query(
 		),
 	)
 );
+// Post IDs to Ignore because they are featured on front-page.
+$ignored_post_ids = array( 50, 174, 200, 183 );
 ?>
 <div class="pb-5 position-relative container-fluid">
 	<div class="row">
@@ -31,10 +33,11 @@ $query = new WP_Query(
 						<div class="swiper-container" id="entertainment-slider">
 							<div class="swiper-wrapper">
 								<?php
-						if ( $query->have_posts() ) :
-							while ( $query->have_posts() ) :
-								$query->the_post();
-								?>
+								if ( $query->have_posts() ) :
+									while ( $query->have_posts() ) :
+										$query->the_post();
+										if ( ! in_array( get_the_ID(), $ignored_post_ids ) ) :
+											?>
 								<div class="swiper-slide" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>');">
 									<a href="<?php echo get_the_permalink(); ?>">
 										<?php extract( get_field( 'info' ) ); ?>
@@ -45,6 +48,7 @@ $query = new WP_Query(
 										</div>
 									</a>
 								</div>
+								<?php endif; ?>
 								<?php endwhile; ?>
 							</div>
 							<?php endif; ?>
