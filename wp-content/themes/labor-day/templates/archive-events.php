@@ -9,6 +9,7 @@ $taxonomies = get_object_taxonomies( 'events', 'objects' );
 cno_enqueue_page_assets( 'search', array( 'scripts' => array( 'fontawesome' ) ) );
 get_header();
 ?>
+<!-- <header class="w-100 hero--image" style="background-image:url('<?php echo get_theme_file_uri( '/images/basketball.jpg' ); ?>');"></header> -->
 <section class="hero">
 	<div class="container">
 		<h1>Schedule</h1>

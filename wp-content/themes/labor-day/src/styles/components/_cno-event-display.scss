@@ -115,6 +115,6 @@
 }
 .cno-event-schedule-confirmation {
 	display: block;
-	min-width: 40rem;
+	min-width: clamp(28rem, 100%, 40rem);
 	min-height: 5rem;
 }

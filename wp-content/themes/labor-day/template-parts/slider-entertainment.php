@@ -38,7 +38,7 @@ $ignored_post_ids = array( 50, 174, 200, 183 );
 										$query->the_post();
 										if ( ! in_array( get_the_ID(), $ignored_post_ids ) ) :
 											?>
-								<div class="swiper-slide" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>');">
+								<div class="swiper-slide" style="background-image: url('<?php echo get_field( 'portrait_orientation_photo' ); ?>');">
 									<a href="<?php echo get_the_permalink(); ?>">
 										<?php extract( get_field( 'info' ) ); ?>
 										<div class="swiper__slide-content">

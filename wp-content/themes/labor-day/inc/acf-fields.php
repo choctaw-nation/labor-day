@@ -1,8 +1,42 @@
 <?php
 /** The ACF Fields */
+// if ( function_exists('acf_add_local_field_group') ):
+
+// acf_add_local_field_group(array(
+// 'key' => 'group_64766140c34ff',
+// 'title' => 'Entertainment',
+// 'fields' => array(
+
+// ),
+// 'location' => array(
+// array(
+// array(
+// 'param' => 'post_type',
+// 'operator' => '==',
+// 'value' => 'events',
+// ),
+// ),
+// ),
+// 'menu_order' => 0,
+// 'position' => 'acf_after_title',
+// 'style' => 'default',
+// 'label_placement' => 'top',
+// 'instruction_placement' => 'label',
+// 'hide_on_screen' => '',
+// 'active' => true,
+// 'description' => '',
+// 'show_in_rest' => 0,
+// 'show_in_graphql' => 0,
+// 'graphql_field_name' => 'entertainment',
+// 'map_graphql_types_from_location_rules' => 0,
+// 'graphql_types' => '',
+// ));
+
+// endif;
+
 
 if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Page: Festival Info (FAQs + Giveaways) */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_64526b8ab4c5a',
@@ -303,10 +337,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Page: History */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_643d94d6f2852',
@@ -453,7 +484,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 								'class' => '',
 								'id'    => '',
 							),
-							'return_format'     => '',
+							'return_format'     => 'array',
 							'library'           => '',
 							'min_width'         => '',
 							'min_height'        => '',
@@ -632,10 +663,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Page: Home */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_6452749d05b78',
@@ -707,10 +735,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Page: Registration Form */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_643d63aa08146',
@@ -769,14 +794,11 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Page: Staff */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_6452955626eae',
-			'title'                                 => 'Page Fields — Volunteers',
+			'title'                                 => 'Page Fields — Staff',
 			'fields'                                => array(
 				array(
 					'key'               => 'field_6452955697931',
@@ -1041,15 +1063,38 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Post Type: Entertainment & Events */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_64396c4b2757e',
 			'title'                                 => 'Post Fields — Event Info',
 			'fields'                                => array(
+				array(
+					'key'               => 'field_6476614134813',
+					'label'             => 'Portrait Orientation Photo (Featured Image should be 16:9 orientation)',
+					'name'              => 'portrait_orientation_photo',
+					'aria-label'        => '',
+					'type'              => 'image',
+					'instructions'      => '',
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'show_in_graphql'   => 1,
+					'return_format'     => 'url',
+					'library'           => 'all',
+					'min_width'         => '',
+					'min_height'        => '',
+					'min_size'          => '',
+					'max_width'         => '',
+					'max_height'        => '',
+					'max_size'          => '',
+					'mime_types'        => '',
+					'preview_size'      => 'medium',
+				),
 				array(
 					'key'               => 'field_64396c4b4370a',
 					'label'             => 'Description',
@@ -1180,6 +1225,7 @@ endif;
 
 if ( function_exists( 'acf_add_local_field_group' ) ) :
 
+	/** Theme Settings: Footer */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_6447d3fe94778',
@@ -1292,10 +1338,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Theme Settings: General */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_64639245a1e82',
@@ -1377,10 +1420,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 		)
 	);
 
-endif;
-
-if ( function_exists( 'acf_add_local_field_group' ) ) :
-
+	/** Theme Settings: Operational Hours */
 	acf_add_local_field_group(
 		array(
 			'key'                                   => 'group_6447d4956d6aa',
