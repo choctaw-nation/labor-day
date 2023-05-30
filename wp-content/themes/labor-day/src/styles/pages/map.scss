@@ -1,6 +1,7 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 @use "../components/checkboxes" as c;
+@use "../components/map/map-svg-style";
 
 .map {
 	position: relative;
