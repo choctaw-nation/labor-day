@@ -31,7 +31,7 @@ if ( $has_weather_alert ) {
 		<div class="row">
 			<div class="col"><a href="<?php echo esc_url( site_url() ); ?>" class="logo">
 					<figure class="logo-image d-inline-block">
-						<?php echo SITE_LOGO; ?>
+						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); ?>
 						<span aria-label="to Home Page">
 							<?php echo bloginfo( 'name' ); ?>
 						</span>

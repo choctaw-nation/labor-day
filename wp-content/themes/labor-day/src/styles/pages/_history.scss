@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as m;
+@use "../components/text-callout";
 .gallery {
 	&__item {
 		@include m.fitMedia($fit: cover);

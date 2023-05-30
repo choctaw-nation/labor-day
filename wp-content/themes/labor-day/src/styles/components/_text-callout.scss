@@ -2,18 +2,22 @@
 @use "../abstracts/mixins" as m;
 
 $overlay-opacity: 0.52;
-
-.text-callout {
+%text-callout {
 	position: relative;
 	padding: 1rem 0;
+}
+
+.text-callout {
+	@extend %text-callout;
 
 	&--primary {
-		@extend .text-callout;
+		@extend %text-callout;
 		background-color: v.$color-primary--light;
+		padding: 6rem 0;
 	}
 
 	&--secondary {
-		@extend .text-callout;
+		@extend %text-callout;
 		background-color: v.$color-secondary;
 	}
 

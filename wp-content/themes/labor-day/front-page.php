@@ -28,7 +28,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="col-lg-4" data-aos="fade-right">
 					<figure class='great-seal'>
-						<?php echo GREAT_SEAL_SVG; ?>
+						<?php echo file_get_contents('wp-content/themes/labor-day/images/great-seal-2.svg'); ?>
 					</figure>
 				</div>
 				<div class="col-lg-8">

@@ -33,7 +33,7 @@
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
 				<figure class="logo-image d-inline-block">
-					<?php echo SITE_LOGO; ?>
+					<?php echo file_get_contents('wp-content/themes/labor-day/images/labor-day-logo.svg'); ?>
 					<h1>
 						<?php echo bloginfo( 'name' ); ?>
 					</h1>
