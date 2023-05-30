@@ -5,7 +5,10 @@
 	position: relative;
 	background-position: center;
 	background-size: cover;
-	height: 60rem;
+	min-height: 60rem;
+	max-height: 108rem;
+	max-width: 192rem;
+	margin: 0 auto;
 
 	.overlay {
 		background-color: rgba(black, 0.35);

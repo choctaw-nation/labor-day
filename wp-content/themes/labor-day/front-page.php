@@ -77,8 +77,8 @@ get_header(); ?>
 		</div>
 		<?php get_template_part( 'template-parts/slider', 'entertainment' ); ?>
 		<div class="container">
-			<div class="row justify-content-center pt-5">
-				<div class="col-3 d-flex justify-content-center">
+			<div class="row">
+				<div class="col d-flex-column align-items-center">
 					<a href="/events" class="btn__fill--primary">See Full Schedule</a>
 				</div>
 			</div>

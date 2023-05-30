@@ -7,16 +7,36 @@ import { newSlider } from '../swiper';
 	const entertainmentSlider = document.getElementById('entertainment-slider');
 	const registrationSlider = document.getElementById('registration-slider');
 	newSlider(entertainmentSlider, {
-		slidesPerView: 4,
+		slidesPerView: 1,
 		navigation: {
 			nextEl: '.entertainment-slider-navigation.swiper-button-next',
 			prevEl: '.entertainment-slider-navigation.swiper-button-prev',
 		},
+		breakpoints: {
+			576: {
+				slidesPerView: 2,
+			},
+			767: {
+				slidesPerView: 3,
+			},
+			991: {
+				slidesPerView: 4,
+			},
+		},
 	});
 	newSlider(registrationSlider, {
+		slidesPerView: 1,
 		navigation: {
 			nextEl: '.registration-slider-navigation.swiper-button-next',
 			prevEl: '.registration-slider-navigation.swiper-button-prev',
+		},
+		breakpoints: {
+			576: {
+				slidesPerView: 2,
+			},
+			767: {
+				slidesPerView: 3,
+			},
 		},
 	});
 })();
