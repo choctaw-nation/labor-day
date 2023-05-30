@@ -1,6 +1,18 @@
+@use "../abstracts/mixins" as m;
 :where(.page-id-49) {
 	#app {
 		padding: 4rem 0;
 		min-height: 30vh;
 	}
+}
+%cno-events {
+	@include m.displayFlex(column);
+	gap: 4rem;
+
+	@include m.media-breakpoint-down(lg) {
+		gap: 8rem;
+	}
+}
+.cno-events {
+	@extend %cno-events;
 }

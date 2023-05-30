@@ -45,7 +45,7 @@ export default new (class View {
 				if (!confirmationContainer) {
 					return;
 				}
-
+				confirmationContainer.innerHTML = `<div class="alert alert-secondary" role="alert"><span>Loading...</span></div>`;
 				method(ev)
 					.then((response: string) => {
 						confirmationContainer.innerHTML =
