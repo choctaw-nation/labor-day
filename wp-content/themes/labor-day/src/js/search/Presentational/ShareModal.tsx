@@ -8,11 +8,6 @@ export default function ShareModal({
 	shareEventObject,
 }) {
 	const url = encodeURIComponent(shareEventObject.link);
-	// useEffect(() => {
-	// 	const body = document.querySelector('body');
-	// 	if (!body) return;
-	// 	body.style.overflow = `${showShareModal ? 'hidden' : 'auto'}`;
-	// }, [showShareModal]);
 	return (
 		<div
 			style={{

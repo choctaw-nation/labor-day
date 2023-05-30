@@ -15,6 +15,9 @@ export default function CNOButtons({
 		return () => clearTimeout(timeoutId);
 	}, [responseMessage]);
 	function addToSchedule(ev: Event) {
+		setResponseMessage(
+			`<div class="alert alert-secondary" role="alert"><span>Loading...</span></div>`
+		);
 		Model.addToSchedule(ev)
 			.then((response: string) => {
 				setResponseMessage(View.getResponseMessage(response));
