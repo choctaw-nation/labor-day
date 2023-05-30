@@ -1,5 +1,5 @@
-@use "../../abstracts/mixins" as m;
-@use "../../abstracts/variables" as v;
+@use "../components/schedule/search-bar";
+@use "../abstracts/mixins" as m;
 
 :is(.post-type-archive-events) .hero {
 	height: auto;
@@ -31,21 +31,16 @@
 			&__container {
 				@include m.displayFlex(column);
 				margin-top: 0 !important;
+
 				&:not(:last-child) {
 					margin-right: 4rem;
 				}
-				// margin: 0 !important;
 			}
 
 			&__filter-container {
 				button {
 					margin: 0;
 				}
-			}
-
-			&__filter {
-				// grid-row: unset;
-				// @include m.displayFlex($cross: center);
 			}
 		}
 	}
@@ -56,37 +51,6 @@
 			@include m.media-breakpoint-down(lg) {
 				max-height: 30rem;
 			}
-		}
-	}
-}
-.cno-search {
-	@include m.media-breakpoint-down(md) {
-		.event-meta {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 1rem;
-			justify-items: flex-start;
-			align-items: stretch;
-		}
-	}
-
-	:where(&) > .container:not(.load-more-container) {
-		min-height: 20rem;
-	}
-}
-.cno-event-search {
-	height: fit-content;
-
-	&__search-bar {
-		width: auto;
-		border: 2px solid black;
-		margin-bottom: 2rem;
-	}
-
-	.archive .cno-events-wrapper &__filters {
-		button {
-			width: fit-content;
-			font-size: 1em;
 		}
 	}
 }

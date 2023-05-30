@@ -1,15 +1,21 @@
-import React, { useState } from '@wordpress/element';
+import React from '@wordpress/element';
+import { EventFilters, selectedFilterObject } from '../types/eventFilters';
 
-export default function SearchFilters({ filters, setCheckedFilters }) {
-	const [selectedFilters, setSelectedFilters] = useState({});
-
-	function handleDropdownItemClick(categoryName, filterName) {
+export default function SearchFilters({
+	filters,
+	selectedFilters,
+	setSelectedFilters,
+}: {
+	filters: EventFilters[];
+	selectedFilters: selectedFilterObject;
+	setSelectedFilters: Function;
+}) {
+	function handleDropdownItemClick(categoryName: string, filterName: string) {
 		setSelectedFilters((prevSelectedFilters) => {
 			const newFilters = {
 				...prevSelectedFilters,
 				[categoryName]: filterName,
 			};
-			setCheckedFilters(Object.values(newFilters));
 			return newFilters;
 		});
 	}
@@ -28,17 +34,16 @@ export default function SearchFilters({ filters, setCheckedFilters }) {
 								aria-haspopup="true"
 								aria-expanded="false"
 							>
-								{selectedFilters[name]
-									? selectedFilters[name]
-									: 'Select an option'}
+								{selectedFilters[name]}
 							</button>
 							<div
 								className="dropdown-menu"
 								aria-labelledby={`${name}-dropdown`}
 							>
 								{filters.map((filter, i) => (
-									<button
+									<a
 										key={i}
+										role="button"
 										onClick={() =>
 											handleDropdownItemClick(
 												name,
@@ -47,22 +52,13 @@ export default function SearchFilters({ filters, setCheckedFilters }) {
 										}
 									>
 										{filter.name}
-									</button>
+									</a>
 								))}
 							</div>
 						</div>
 					</div>
 				</div>
 			))}
-			<button
-				className="btn__fill--secondary"
-				onClick={() => {
-					setCheckedFilters([]);
-					setSelectedFilters({});
-				}}
-			>
-				Reset Filters
-			</button>
 		</div>
 	);
 }

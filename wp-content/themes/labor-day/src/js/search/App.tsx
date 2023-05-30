@@ -1,5 +1,5 @@
 import '../../styles/components/_hours-modal.scss';
-import '../../styles/layouts/archives/_events-archive.scss';
+import '../../styles/pages/schedule.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';
@@ -126,21 +126,25 @@ function App() {
 		}
 	}, [isVisible]);
 
-	const [checkedFilters, setCheckedFilters] = useState<string[]>([]);
+	const [selectedFilters, setSelectedFilters] = useState({
+		'Event Types': 'Select Option',
+		Days: 'Select Option',
+		Locations: 'Select Option',
+	});
 	return (
 		<div className="cno-search">
 			<SearchBar
 				filters={filters}
 				search={search}
-				checkedFilters={checkedFilters}
-				setCheckedFilters={setCheckedFilters}
+				selectedFilters={selectedFilters}
+				setSelectedFilters={setSelectedFilters}
 				handleSearchInput={handleSearchInput}
 			/>
 			<div className="container">
 				{!isLoading ? (
 					<ResultsContainer
 						posts={posts}
-						checkedFilters={checkedFilters}
+						selectedFilters={selectedFilters}
 						setShowShareModal={setShowShareModal}
 						setShareEventObject={setShareEventObject}
 					/>
