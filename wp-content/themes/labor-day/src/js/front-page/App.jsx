@@ -42,6 +42,9 @@ import { newSlider } from '../swiper';
 	});
 
 	// Email Hot Swap
+	const subscribeButton = document.getElementById('subscribe-modal-trigger');
+	subscribeButton.addEventListener('click', () => fillEmailValues());
+
 	/** Grabs email from initial form and fills in the Gravity Form field */
 	function fillEmailValues() {
 		const modal = document.getElementById('subscribe-modal');
@@ -53,8 +56,6 @@ import { newSlider } from '../swiper';
 			preFilledEmail.value = email;
 		}
 	}
-	const subscribeButton = document.getElementById('subscribe-modal-trigger');
-	subscribeButton.addEventListener('click', () => fillEmailValues());
 })();
 
 function CountdownApp() {
