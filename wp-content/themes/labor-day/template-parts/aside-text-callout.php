@@ -15,7 +15,7 @@ extract( $args );
 			<div class="col text-callout__content">
 				<?php if ( 'history' === $post->post_name ) : ?>
 				<figure>
-					<?php echo file_get_contents('wp-content/themes/labor-day/images/faith-family-culture.svg'); ?>
+					<?php echo file_get_contents( 'wp-content/themes/labor-day/images/faith-family-culture.svg' ); ?>
 				</figure>
 				<?php else : ?>
 				<div class='text-content'>
