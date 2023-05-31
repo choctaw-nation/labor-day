@@ -22,7 +22,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
+	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
 	<?php endif; ?>
 	<section id="about-the-festival">
@@ -30,7 +30,7 @@ get_header(); ?>
 			<div class="row">
 				<div class="col-lg-4" data-aos="fade-right">
 					<figure class='great-seal'>
-						<?php echo file_get_contents('wp-content/themes/labor-day/images/great-seal-2.svg'); ?>
+						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/great-seal-2.svg' ); ?>
 					</figure>
 				</div>
 				<div class="col-lg-8">
@@ -111,7 +111,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline'  => 'Map',
-				'content'   => '',
+				'content'   => 'Use the interactive map to view the Choctaw Nation capital grounds, the Labor Day Festival amenities and locations.',
 				'cta_text'  => 'View Map',
 				'cta_link'  => '/map',
 				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
@@ -126,7 +126,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
-				'content'      => '',
+				'content'      => 'Stay up to date with all the festival news by liking our Facebook page, see activities and schedule information, keep up with announcements and view great photos during the event.',
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',

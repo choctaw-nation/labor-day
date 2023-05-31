@@ -31,6 +31,7 @@ _wpeprivate
 .wpe-*
 auth.json
 /vendor
+/.wpengine-conf
 
 
 # WP-Content
@@ -38,6 +39,8 @@ auth.json
 /wp-content/upgrade/
 /wp-content/plugins/*
 !/wp-content/plugins/cno-*
+/wp-content/cache/*
+/wp-content/advanced-cache.php
 /wp-content/mu-plugins/*
 !/wp-content/mu-plugins/initial-acf-fields.php
 
