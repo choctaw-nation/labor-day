@@ -7,14 +7,14 @@ define( 'lorem', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed d
 
 
 function cno_set_environment() {
-    $serverName = $_SERVER['SERVER_NAME'];
+    $server_name = $_SERVER['SERVER_NAME'];
     
-    if (strpos($serverName, '.local') !== false) {
-        $_ENV['DEV'] = true;
-    } elseif (strpos($serverName, 'wpengine') !== false) {
-        $_ENV['STAGE'] = true;
-    } elseif (strpos($serverName, 'choctawnation.com') !== false) {
-        $_ENV['PROD'] = true;
+    if ( false !== strpos($server_name, '.local' )) {
+        $_ENV['CNO_ENV'] = 'dev';
+    } elseif ( false !== strpos( $server_name, 'wpengine' ) ) {
+        $_ENV['CNO_ENV'] = 'stage';
+    } elseif ( false !== strpos( $server_name, 'choctawnation.com' ) ) {
+        $_ENV['CNO_ENV'] = 'prod';
     } else {
         return;
     }

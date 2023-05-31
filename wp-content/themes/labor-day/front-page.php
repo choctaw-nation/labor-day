@@ -22,7 +22,9 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
+	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
+	<?php endif; ?>
 	<section id="about-the-festival">
 		<div class=" container">
 			<div class="row">
@@ -38,6 +40,7 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) ); ?>
+	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="entertainment">
 		<div class="container">
 			<div class="row">
@@ -84,6 +87,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
 			<div class="row">
@@ -101,6 +105,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
+	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="map">
 		<div class="container">
 			<?php
@@ -115,6 +120,7 @@ get_header(); ?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
+	<?php endif; ?>
 	<section id="facebook">
 		<div class="container">
 			<?php
