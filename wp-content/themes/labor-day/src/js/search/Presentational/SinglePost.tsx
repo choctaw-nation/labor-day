@@ -28,7 +28,7 @@ export default function SinglePost({
 			}
 		>
 			<aside
-				className={`cno-event__time col-lg-1 cno-event__time--${event_info.info.day.toLowerCase()}`}
+				className={`cno-event__time col-lg-1 px-lg-0 cno-event__time--${event_info.info.day.toLowerCase()}`}
 			>
 				<div className="cno-event__time--date">
 					<span className="cno-event__time--month">SEP</span>
