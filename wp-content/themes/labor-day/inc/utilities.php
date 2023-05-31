@@ -21,4 +21,3 @@ function cno_set_environment() {
 }
 
 cno_set_environment();
-var_dump($_ENV);
