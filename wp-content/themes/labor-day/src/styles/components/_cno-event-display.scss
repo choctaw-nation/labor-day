@@ -3,11 +3,12 @@
 
 .cno-event {
 	margin: 0;
-	@include m.media-breakpoint-up(lg) {
-		// height: min-content;
-	}
+	// @include m.media-breakpoint-up(lg) {
+	// height: min-content;
+	// }
 
 	&__time {
+		height: 100%;
 		color: white;
 		font-weight: 700;
 		line-height: 1.2;

@@ -46,11 +46,7 @@ export default function SinglePost({
 					}}
 				/>
 			</aside>
-			{featuredImage && (
-				<div className="cno-event__image col-lg-3">
-					<FeaturedImage featuredImage={featuredImage} />
-				</div>
-			)}
+			{featuredImage && <FeaturedImage featuredImage={featuredImage} />}
 			<div className="cno-event__info col-lg-8">
 				<h2 className="cno-event__info--title headline">{title}</h2>
 				<div

@@ -12,12 +12,13 @@ $query = new WP_Query(
 	)
 );
 ?>
-<div class="container-fluid">
-	<div class='row'>
-		<div class="col-1 d-flex justify-content-center">
-			<div class="registration-slider-navigation swiper-button-prev"></div>
-		</div>
-		<div class="col-10">
+
+<div class='row'>
+	<div class="col-1 d-flex justify-content-center">
+		<div class="registration-slider-navigation swiper-button-prev"></div>
+	</div>
+	<div class="col-10">
+		<div class="container">
 			<div class="swiper" id="registration-slider">
 				<div class="swiper-wrapper">
 					<?php
@@ -39,10 +40,11 @@ $query = new WP_Query(
 				<div class="swiper-pagination"></div>
 			</div>
 		</div>
-		<div class="col-1 d-flex justify-content-center">
-			<div class="registration-slider-navigation swiper-button-next"></div>
-		</div>
+	</div>
+	<div class="col-1 d-flex justify-content-center">
+		<div class="registration-slider-navigation swiper-button-next"></div>
 	</div>
 </div>
+
 <?php
 wp_reset_postdata();

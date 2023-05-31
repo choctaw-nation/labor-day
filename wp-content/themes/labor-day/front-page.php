@@ -106,7 +106,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline'  => 'Map',
-				'content'   => lorem,
+				'content'   => '',
 				'cta_text'  => 'View Map',
 				'cta_link'  => '/map',
 				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
@@ -120,7 +120,7 @@ get_header(); ?>
 			<?php
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
-				'content'      => lorem,
+				'content'      => '',
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
