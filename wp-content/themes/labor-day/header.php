@@ -25,6 +25,19 @@
 		} echo $title . " | " .  get_bloginfo( 'name' ); ?>
 	</title>
 	<link rel="manifest" href="/manifest.json">
+	<?php if ('prod' === $_ENV['CNO_ENV']) : ?>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSCY06MCKK"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-FSCY06MCKK');
+	</script>
+	<?php endif;?>
 	<?php wp_head(); ?>
 </head>
 
