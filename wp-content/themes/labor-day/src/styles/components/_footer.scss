@@ -61,11 +61,12 @@
 
 		a {
 			color: white;
+			transition: color v.$transition--standard;
 		}
 
 		&:hover {
 			a {
-				text-decoration: underline;
+				color: v.$color-secondary;
 			}
 		}
 	}
@@ -84,7 +85,14 @@
 
 		svg {
 			color: white;
+			transition: color v.$transition--standard;
 			height: 3.5rem;
+		}
+
+		&:hover {
+			svg {
+				color: v.$color-secondary;
+			}
 		}
 	}
 }

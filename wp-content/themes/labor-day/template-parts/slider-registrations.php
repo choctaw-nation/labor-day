@@ -28,7 +28,7 @@ $query = new WP_Query(
 							?>
 					<div class="swiper-slide">
 						<a href="<?php the_permalink(); ?>">
-							<div class="slider__image">
+							<div class="slider__image mb-4">
 								<?php the_post_thumbnail(); ?>
 							</div>
 							<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>

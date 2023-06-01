@@ -6,7 +6,7 @@
 $hours = new Operational_Hours( get_field( 'operational_hours', 'options' ) );
 ?>
 <div class="modal fade" id="hoursModal" tabindex="-1" aria-labelledby="operationalHoursModal" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+	<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="modal-title headline h4" id="operationalHoursModal">Hours of Operations</h1>
