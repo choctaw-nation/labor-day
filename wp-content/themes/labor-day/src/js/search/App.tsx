@@ -26,14 +26,13 @@ function App() {
 	);
 	const [filters, setFilters] = useState<EventFilters[]>([]);
 	const [search, setSearch] = useState('');
-	const [cursor, setCursor] = useState<string | undefined>(undefined);
+	const [cursor, setCursor] = useState<string | undefined>('cursor');
 
 	function doFirstSearch(data) {
 		const { eventLocations, eventTypes, events } = data;
 		setCursor(
 			events.pageInfo.hasNextPage ? events.pageInfo.endCursor : undefined
 		);
-		console.log(events.pageInfo.hasNextPage);
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
 			(node: EventPost) => destructureData(node)
 		);
@@ -103,7 +102,6 @@ function App() {
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
-		console.log(`isVisible? :${isVisible}\ncursor?: ${cursor}`);
 		if (cursor && isVisible) {
 			Model.getPosts(cursor)
 				.then((data) => {
@@ -128,6 +126,9 @@ function App() {
 		}
 	}, [isVisible]);
 
+	useEffect(() => {
+		console.log(cursor);
+	}, [cursor]);
 	const [selectedFilters, setSelectedFilters] = useState({
 		'Event Types': 'Select Option',
 		Days: 'Select Option',
@@ -164,6 +165,7 @@ function App() {
 					End of Results.
 				</div>
 			)}
+
 			<ShareModal
 				showShareModal={showShareModal}
 				setShowShareModal={setShowShareModal}
