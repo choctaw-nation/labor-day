@@ -55,6 +55,7 @@
 
 	&__image {
 		@include m.fitMedia(img, $fit: cover);
+		aspect-ratio: 16 / 9;
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 1;
