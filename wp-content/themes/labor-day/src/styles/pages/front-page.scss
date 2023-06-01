@@ -2,6 +2,7 @@
 @use "../abstracts/mixins" as m;
 @use "../components/slider";
 @use "../components/subscribe";
+@use "../components/subscribe-modal";
 @use "../components//text-callout";
 
 .countdown {

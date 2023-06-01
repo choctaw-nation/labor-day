@@ -17,7 +17,6 @@ function display_gallery() {
 }
 $content = new Content_Sections();
 ?>
-<aside class="gallery"><?php display_gallery(); ?></aside>
 <section id="capitol">
 	<div class="container">
 		<?php extract( get_field( 'capitol' ) ); ?>

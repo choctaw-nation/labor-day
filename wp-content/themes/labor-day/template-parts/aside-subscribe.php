@@ -16,7 +16,7 @@ $message      = 'LABORDAY'
 		<div class="row cta">
 			<div class="cta__email col-lg-4">
 				<input type="email" name="email" id="email" placeholder="Email Address" />
-				<button type="submit">Sign Up</button>
+				<button type="button" id='subscribe-modal-trigger' data-bs-toggle="modal" data-bs-target="#subscribe-modal">Sign Up</button>
 			</div>
 			<div class="cta__text col-lg-4">
 				<a href="<?php echo "sms:{$phone_number}?&body={$message}"; ?>" class="btn__fill--secondary">Text <strong>LABORDAY</strong> to <strong>888777</strong>
@@ -25,3 +25,12 @@ $message      = 'LABORDAY'
 		</div>
 	</div>
 </aside>
+<div class="modal fade" id="subscribe-modal" tabindex="-1" aria-labelledby="subscribe-modalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-body">
+				<?php echo do_shortcode( '[gravityform id="11"]' ); ?>
+			</div>
+		</div>
+	</div>
+</div>
