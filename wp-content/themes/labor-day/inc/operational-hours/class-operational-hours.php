@@ -9,27 +9,25 @@ class Operational_Hours {
 	}
 	public function list_the_hours() {
 		echo "<ul class='hours-list'>";
-		foreach ( $this->hours as $hour ) : ?>
-<li class="hours-list__item hours-list-item">
-	<span class='hours-list-item__title h4'><?php echo $hour['title']; ?></span>&nbsp;
-	<div class="hours-list-item__time">
-		<span class='hours-list-item__time--open'><?php echo $hour['open']; ?></span>&nbsp;&ndash;&nbsp;
-		<span class='hours-list-item__time--close'><?php echo $hour['closes']; ?></span>
-	</div>
-	<span class="hours-list-item__days">
-		<?php
-					for ( $i = 0; $i < count( $hour['days'] ); $i++ ) {
-						if ( count( $hour['days'] ) - 1 > $i ) {
-							echo $hour['days'][ $i ] . ',&nbsp;';
-						} else {
-							echo $hour['days'][ $i ];
-						}
-					}
-					?>
-	</span>
-</li>
-<?php
-		endforeach;
+		foreach ( $this->hours as $hour ) {
+			echo "<li class='hours-list__item hours-list-item'>
+		<span class='hours-list-item__title h4'>{$hour["title"]}</span>
+		<div class='hours-list-item__time'>
+			<span class='hours-list-item__time--open'>{$hour["open"]}</span>&nbsp;&ndash;&nbsp;
+			<span class='hours-list-item__time--close'>{$hour["closes"]}</span>
+		</div>
+		<span class='hours-list-item__days'>
+		";
+			$days = count( $hour['days'] );
+			for ( $i = 0; $i < $days; $i++ ) {
+				if ( $days - 1 > $i ) {
+					echo $hour['days'][ $i ] . ', ';
+				} else {
+					echo $hour['days'][ $i ];
+				}
+			}
+			echo '</span></li>';
+		};
 		echo '</ul>';
 	}
 	private function compare_hours( $a, $b ) {
