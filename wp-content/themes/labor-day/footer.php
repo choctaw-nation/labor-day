@@ -68,7 +68,7 @@ if ( $has_weather_alert ) {
 		</div>
 	</div>
 	<div id=" copyright" class="py-5 text-center">
-		<?php echo "&copy;&nbsp;" . gmdate( 'Y' ) .  " Choctaw Nation of Oklahoma. All Rights Reserved."; ?>
+		<?php echo "&copy;&nbsp;" . gmdate( 'Y' ) .  " <a href='https://choctawnation.com' target='_blank' rel='noopener noreferrer' style='color:white;transition:color .3s ease;'>Choctaw Nation of Oklahoma</a>. All Rights Reserved."; ?>
 	</div>
 </footer>
 <?php wp_footer(); ?>
