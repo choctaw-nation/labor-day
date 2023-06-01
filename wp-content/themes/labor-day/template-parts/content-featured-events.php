@@ -31,5 +31,4 @@ $card_2['subheadline_content'] = "<span class='featured-event__start-time'>" . g
 	<a href="<?php echo get_the_permalink( $second ); ?>">
 		<?php $content->vertical_card( $card_2 ); ?>
 	</a>
-
 </div>

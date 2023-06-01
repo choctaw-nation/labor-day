@@ -14,7 +14,7 @@ if ( $has_weather_alert ) {
 	<div class="footer-callout__bg"></div>
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<figure class="footer-callout__image col-lg-6 col-sm-12 gx-5">
+			<figure class="footer-callout__image col-lg-6 col-sm-12 gx-5" data-aos='fade-right'>
 				<img src="<?php echo get_field( 'footer_image', 'options' )['sizes']['large']; ?>" alt="" srcset="">
 			</figure>
 			<div class="footer-callout__text col-sm-12 col-lg-6 d-flex flex-column gx-5">

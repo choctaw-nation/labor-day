@@ -88,10 +88,11 @@
 		& > * {
 			@include m.displayFlex(row, $cross: center);
 			cursor: pointer;
+			transition: color v.$transition--standard;
 		}
 
-		& > a {
-			transition: color v.$transition--standard;
+		& > div:hover {
+			color: v.$color-primary--light;
 		}
 
 		&--location {

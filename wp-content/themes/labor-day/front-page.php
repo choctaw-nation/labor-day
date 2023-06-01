@@ -100,7 +100,7 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex-column">
-					<a href="/registrations" class="btn__fill--secondary align-self-center" data-aos="fade-in">See All Registrations</a>
+					<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
 				</div>
 			</div>
 		</div>
