@@ -16,7 +16,7 @@ class CNO_THEME {
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 	}
-	// phpcs:ignore Squiz.Commenting.FunctionComment.Missing
+	// phpcs:ignore 
 	private function load_required_files() {
 		require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
 		require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
