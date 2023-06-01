@@ -61,6 +61,7 @@
 
 		a {
 			color: white;
+			transition: text-decoration v.$transition--standard;
 		}
 
 		&:hover {
@@ -84,7 +85,14 @@
 
 		svg {
 			color: white;
+			transition: color v.$transition--standard;
 			height: 3.5rem;
+		}
+
+		&:hover {
+			svg {
+				color: v.$color-tertiary;
+			}
 		}
 	}
 }
