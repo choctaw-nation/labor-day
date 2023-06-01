@@ -67,18 +67,21 @@ function CountdownApp() {
 	});
 
 	useEffect(() => {
-		const now = new Date();
 		const targetDate = new Date('September 1, 2023');
-		const timeDiff = targetDate.getTime() - now.getTime();
-		if (0 >= timeDiff) {
-			setRemainingTime({
-				days: 0,
-				hours: 0,
-				minutes: 0,
-				seconds: 0,
-			});
-		} else {
-			const intervalId = setInterval(() => {
+
+		const intervalId = setInterval(() => {
+			const now = new Date();
+			const timeDiff = targetDate.getTime() - now.getTime();
+
+			if (timeDiff <= 0) {
+				clearInterval(intervalId);
+				setRemainingTime({
+					days: 0,
+					hours: 0,
+					minutes: 0,
+					seconds: 0,
+				});
+			} else {
 				const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 				const hours = Math.floor(
 					(timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -88,14 +91,17 @@ function CountdownApp() {
 				);
 				const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 				setRemainingTime({ days, hours, minutes, seconds });
-			}, 1000);
-			return intervalId;
-		}
+			}
+		}, 1000);
+
 		return () => clearInterval(intervalId);
 	}, []);
-	if (Object.values(remainingTime).every((val) => 0 >= val)) {
-		return;
-	} else return <CountdownTimer remainingTime={remainingTime} />;
+
+	if (Object.values(remainingTime).every((val) => val <= 0)) {
+		return null;
+	} else {
+		return <CountdownTimer remainingTime={remainingTime} />;
+	}
 }
 
 createRoot(document.getElementById('countdown')).render(<CountdownApp />);
