@@ -44,16 +44,17 @@ export function destructureData(data: EventPost): PrettyEventData {
 }
 
 export function createExcerpt(str: string): ExcerptObject {
-	const index = str.indexOf('</p>');
-	const remainingContent = str.substring(index + 4);
+	if (null === str) return { excerpt: '', readMore: false };
+	const index = str.slice(3, 247);
+	const remainingContent = str.substring(248);
 	if (remainingContent.length > 1) {
 		return {
-			excerpt: str.substring(0, index) + '...</p>',
+			excerpt: str.slice(3, 247) + '...',
 			readMore: remainingContent.length > 1,
 		};
 	} else {
 		return {
-			excerpt: str.substring(0, index + 4),
+			excerpt: str.slice(3, 247),
 			readMore: remainingContent.length > 1,
 		};
 	}
