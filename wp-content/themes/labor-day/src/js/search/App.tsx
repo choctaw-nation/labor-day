@@ -33,6 +33,7 @@ function App() {
 		setCursor(
 			events.pageInfo.hasNextPage ? events.pageInfo.endCursor : undefined
 		);
+		console.log(events.pageInfo.hasNextPage);
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
 			(node: EventPost) => destructureData(node)
 		);
@@ -102,6 +103,7 @@ function App() {
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
+		console.log(`isVisible? :${isVisible}\ncursor?: ${cursor}`);
 		if (cursor && isVisible) {
 			Model.getPosts(cursor)
 				.then((data) => {
