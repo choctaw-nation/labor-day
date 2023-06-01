@@ -131,7 +131,7 @@ get_header(); ?>
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
 				'reverse'      => true,
-				'image_src'      => get_theme_file_uri( '/images/home.jpg' ),
+				'image_src'      => '/wp-content/uploads/2023/05/cultural-dancing.jpg',
 			);
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
