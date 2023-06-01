@@ -31,6 +31,11 @@
 
 			.col {
 				margin-bottom: 2rem;
+				.logo {
+					@include m.media-breakpoint-down(md) {
+						margin: 0 auto;
+					}
+				}
 			}
 		}
 	}
@@ -44,6 +49,9 @@
 		grid-template-columns: repeat(auto-fit, max(205px));
 		gap: 1rem;
 		align-content: center;
+		@include m.media-breakpoint-down(md) {
+			justify-content: center;
+		}
 	}
 
 	&__menu {
@@ -74,6 +82,10 @@
 
 .socials {
 	@include m.displayFlex(row, $cross: center);
+	@include m.media-breakpoint-down(md) {
+		@include m.displayFlex($main: center);
+		margin: 1rem auto 0 auto;
+	}
 
 	.social-icon {
 		display: inline-block;
