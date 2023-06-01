@@ -61,12 +61,12 @@
 
 		a {
 			color: white;
-			transition: text-decoration v.$transition--standard;
+			transition: color v.$transition--standard;
 		}
 
 		&:hover {
 			a {
-				text-decoration: underline;
+				color: v.$color-secondary;
 			}
 		}
 	}
@@ -91,7 +91,7 @@
 
 		&:hover {
 			svg {
-				color: v.$color-tertiary;
+				color: v.$color-secondary;
 			}
 		}
 	}
