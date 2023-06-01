@@ -2,8 +2,10 @@ import React from '@wordpress/element';
 import { PrettyEventData } from '../types';
 import FeaturedImage from './FeaturedImage';
 import { getTheDay } from '../../my-schedule/calendarFunctions';
-import { createExcerpt, TimeHandler } from '../Utilities';
-
+import { TimeHandler } from '../Utilities';
+function createExcerpt(str: string) {
+	return str.slice(0, 244);
+}
 const time = new TimeHandler();
 export default function SinglePost({
 	data,
