@@ -45,32 +45,32 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<h2 class="featured-event__headline">Special Entertainment</h2>
-				<div class="row">
-					<h3 class="featured-event__headline--day-label">Saturday</h3>
-					<?php
-					get_template_part(
-						'template-parts/content',
-						'featured-events',
-						array(
-							'first'  => 50,
-							'second' => 174,
-						)
-					);
-					?>
-				</div>
-				<div class="row">
-					<h3 class="featured-event__headline--day-label">Sunday</h3>
-					<?php
-					get_template_part(
-						'template-parts/content',
-						'featured-events',
-						array(
-							'first'  => 200,
-							'second' => 183,
-						)
-					);
-					?>
-				</div>
+			</div>
+			<div class="row">
+				<h3 class="featured-event__headline--day-label">Saturday</h3>
+				<?php
+				get_template_part(
+					'template-parts/content',
+					'featured-events',
+					array(
+						'first'  => 50,
+						'second' => 174,
+					)
+				);
+				?>
+			</div>
+			<div class="row">
+				<h3 class="featured-event__headline--day-label">Sunday</h3>
+				<?php
+				get_template_part(
+					'template-parts/content',
+					'featured-events',
+					array(
+						'first'  => 200,
+						'second' => 183,
+					)
+				);
+				?>
 			</div>
 		</div>
 		<div class="container">
