@@ -19,7 +19,7 @@ get_header();
 				<form role="search" method="get" action="<?php echo home_url(); ?>" style="font-size:1.35em">
 					<label for="s">Search For: </label>
 					<input type="text" name="s" id="s" />
-					<input type="submit" value="Search" id="searchsubmit" class="btn__fill-secondary" style="padding:8px 1rem;font-size:1.6rem" />
+					<input type="submit" value="Search" id="searchsubmit" class="btn__fill--secondary" style="padding:8px 1rem;font-size:1.6rem" />
 				</form>
 			</section><!-- .error-404 -->
 
