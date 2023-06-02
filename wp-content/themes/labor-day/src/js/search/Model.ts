@@ -10,13 +10,12 @@ export default new (class Model {
 		};
 	}): Promise<makeRequestResponse> {
 		try {
-			const response = await fetch(`${graphQL}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(request),
-			});
+			const queryParam = encodeURIComponent(request.query);
+			const variablesParam = encodeURIComponent(
+				JSON.stringify(request.variables)
+			);
+			const url = `${graphQL}?query=${queryParam}&variables=${variablesParam}`;
+			const response = await fetch(url);
 			const { data } = await response.json();
 			return data;
 		} catch (error) {
