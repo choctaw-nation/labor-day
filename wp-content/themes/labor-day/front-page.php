@@ -110,9 +110,13 @@ get_header(); ?>
 			$args = array(
 				'headline'       => 'Map',
 				'content'        => $subheadline,
-				'image_src'      => $image['sizes']['medium_large'],
-				'image_alt'      => $image['alt'],
 			);
+			?>
+			<?php
+			if ( isset($image) ) {
+				$args['image_src'] = $image['sizes']['medium_large'];
+				$args['image_alt'] = $image['alt'];
+			}
 			?>
 			<?php 
 			if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) {
@@ -134,9 +138,13 @@ get_header(); ?>
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
 				'reverse'      => true,
-				'image_src'      => $image['sizes']['medium_large'],
-				'image_alt'      => $image['alt'],
 			);
+			?>
+			<?php
+			if ( isset($image) ) {
+				$args['image_src'] = $image['sizes']['medium_large'];
+				$args['image_alt'] = $image['alt'];
+			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
