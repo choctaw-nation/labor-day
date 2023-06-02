@@ -1,6 +1,11 @@
 import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
-import React, { useState, useEffect, createRoot } from '@wordpress/element';
+import React, {
+	StrictMode,
+	useState,
+	useEffect,
+	createRoot,
+} from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
@@ -172,4 +177,9 @@ function App() {
 	);
 }
 const root = document.getElementById('app');
-if (root) createRoot(root).render(<App />);
+if (root)
+	createRoot(root).render(
+		<StrictMode>
+			<App />
+		</StrictMode>
+	);
