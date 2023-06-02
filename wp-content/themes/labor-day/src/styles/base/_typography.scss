@@ -4,6 +4,7 @@
 %body-text {
 	font-family: v.$font-body;
 	color: v.$color-black;
+	font-display: swap;
 }
 
 body {
@@ -47,6 +48,7 @@ small {
 	font-weight: 600;
 	color: v.$color-primary;
 	display: block;
+	font-display: swap;
 }
 
 h1,
@@ -106,6 +108,7 @@ h6,
 	font-family: v.$font-headings;
 	font-weight: 400;
 	font-size: 1.35em;
+	font-display: swap;
 
 	@include m.media-breakpoint-down(lg) {
 		font-size: 1.2em;
