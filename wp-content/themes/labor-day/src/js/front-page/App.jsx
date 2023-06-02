@@ -7,43 +7,49 @@ import { newSlider } from '../swiper';
 	/** Sliders */
 	const entertainmentSlider = document.getElementById('entertainment-slider');
 	const registrationSlider = document.getElementById('registration-slider');
-	newSlider(entertainmentSlider, {
-		slidesPerView: 1,
-		navigation: {
-			nextEl: '.entertainment-slider-navigation.swiper-button-next',
-			prevEl: '.entertainment-slider-navigation.swiper-button-prev',
-		},
-		breakpoints: {
-			576: {
-				slidesPerView: 2,
+	if (entertainmentSlider) {
+		newSlider(entertainmentSlider, {
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '.entertainment-slider-navigation.swiper-button-next',
+				prevEl: '.entertainment-slider-navigation.swiper-button-prev',
 			},
-			767: {
-				slidesPerView: 3,
+			breakpoints: {
+				576: {
+					slidesPerView: 2,
+				},
+				767: {
+					slidesPerView: 3,
+				},
+				991: {
+					slidesPerView: 4,
+				},
 			},
-			991: {
-				slidesPerView: 4,
+		});
+	}
+	if (registrationSlider) {
+		newSlider(registrationSlider, {
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '.registration-slider-navigation.swiper-button-next',
+				prevEl: '.registration-slider-navigation.swiper-button-prev',
 			},
-		},
-	});
-	newSlider(registrationSlider, {
-		slidesPerView: 1,
-		navigation: {
-			nextEl: '.registration-slider-navigation.swiper-button-next',
-			prevEl: '.registration-slider-navigation.swiper-button-prev',
-		},
-		breakpoints: {
-			576: {
-				slidesPerView: 2,
+			breakpoints: {
+				576: {
+					slidesPerView: 2,
+				},
+				767: {
+					slidesPerView: 3,
+				},
 			},
-			767: {
-				slidesPerView: 3,
-			},
-		},
-	});
+		});
+	}
 
 	// Email Hot Swap
 	const subscribeButton = document.getElementById('subscribe-modal-trigger');
-	subscribeButton.addEventListener('click', () => fillEmailValues());
+	if (subscribeButton) {
+		subscribeButton.addEventListener('click', () => fillEmailValues());
+	}
 
 	/** Grabs email from initial form and fills in the Gravity Form field */
 	function fillEmailValues() {
