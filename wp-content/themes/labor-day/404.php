@@ -15,13 +15,11 @@ get_header();
 			<section class="error-404 not-found">
 				<h1 class="headline mb-3">404</h1>
 				<p class="subheadline mb-4">Page not found.</p>
-
 				<p>It looks like nothing was found at this location. Try searching for what you were looking for:</p>
-				<?php //get_search_form(); ?>
-				<form role="search" method="get" action="<?php echo home_url();?>">
+				<form role="search" method="get" action="<?php echo home_url(); ?>" style="font-size:1.35em">
 					<label for="s">Search For: </label>
 					<input type="text" name="s" id="s" />
-					<input type="submit" value="Search" id="searchsubmit" />
+					<input type="submit" value="Search" id="searchsubmit" class="btn__fill-secondary" style="padding:8px 1rem;font-size:1.6rem" />
 				</form>
 			</section><!-- .error-404 -->
 
