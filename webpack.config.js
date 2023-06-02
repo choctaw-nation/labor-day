@@ -27,6 +27,7 @@ module.exports = {
 				mySchedule: `.${THEME_DIR}/src/js/my-schedule/App.tsx`,
 				search: `.${THEME_DIR}/src/js/search/App.tsx`,
 				map: `.${THEME_DIR}/src/js/map/map.js`,
+				singleEvents: `.${THEME_DIR}/src/js/add-to-schedule/App.js`,
 			};
 			if (appNames.length > 0) {
 				appNames.forEach((appName) => {

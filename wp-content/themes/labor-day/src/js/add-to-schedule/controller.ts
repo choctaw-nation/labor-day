@@ -37,6 +37,3 @@ export class Controller {
 		console.log(View.buttons);
 	}
 }
-
-// Export an instance of the Controller with default configuration
-export const ScheduleManager = new Controller();

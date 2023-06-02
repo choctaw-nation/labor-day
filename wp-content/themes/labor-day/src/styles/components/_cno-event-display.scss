@@ -1,5 +1,6 @@
 @use "../abstracts/mixins" as m;
 @use "../abstracts/variables" as v;
+@use "../abstracts/functions" as fn;
 
 .cno-event {
 	margin: 0;
@@ -84,11 +85,12 @@
 		@include m.displayFlex($cross: stretch);
 		gap: 2rem;
 		position: relative;
-
 		& > * {
 			@include m.displayFlex(row, $cross: center);
 			cursor: pointer;
-			transition: color v.$transition--standard;
+			transition: fn.transition(
+				(background-color, border-color, transform, box-shadow, color)
+			);
 		}
 
 		& > div:hover {

@@ -4,6 +4,7 @@
  */
 
 get_header();
+cno_enqueue_page_script( 'singleEvents' );
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
