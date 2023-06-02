@@ -20,7 +20,7 @@ $message      = 'LABORDAY'
 				<button type="button" id='subscribe-modal-trigger' data-bs-toggle="modal" data-bs-target="#subscribe-modal">Sign Up</button>
 			</div>
 			<?php endif; ?>
-			<div class="cta__text col-lg-4" <?php echo ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) ? "style='border-left:none;'" : ''; ?>>
+			<div class="cta__text col-lg-4" <?php echo ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) ? '' : "style='border-left:none;'"; ?>>
 				<a href="<?php echo "sms:{$phone_number}?&body={$message}"; ?>" class="btn__fill--secondary">Text <strong>LABORDAY</strong> to <strong>888777</strong>
 				</a>
 			</div>
