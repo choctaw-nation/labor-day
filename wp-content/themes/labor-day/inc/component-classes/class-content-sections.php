@@ -170,6 +170,7 @@ class Content_Sections extends Content_Components {
 	public function vertical_card( array $args = array(), bool $echo = true, ) {
 		$default       = array(
 			'image_src'           => null,
+			'image_alt'           => null,
 			'headline'            => '',
 			'headline_element'    => 'h2',
 			'subheadline_content' => '',
@@ -182,7 +183,7 @@ class Content_Sections extends Content_Components {
 
 		$options = array_merge( $default, $headline_args, $args );
 		extract( $options );
-		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} /></figure>";
+		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} alt='{$image_alt}' /></figure>";
 		$card_text_content = "<div class='vertical-card__content'>{$this->headline($headline, false, $options)}</div>";
 		$markup            = "<div class='vertical-card'>{$card_image}{$card_text_content}</div>";
 		if ( $echo ) {

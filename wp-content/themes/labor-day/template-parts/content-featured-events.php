@@ -4,9 +4,11 @@
  */
 
 extract( $args );
-$content                       = new Content_Sections();
+$content = new Content_Sections();
+
 $card_1                        = array(
 	'image_src'        => get_the_post_thumbnail_url( $first ),
+	'image_alt'        => get_post_meta( get_post_thumbnail_id( $first ), '_wp_attachment_image_alt', true ),
 	'headline'         => get_the_title( $first ),
 	'headline_element' => 'h4',
 	'headline_class'   => 'featured-event__title',
@@ -15,6 +17,7 @@ $card_1['subheadline_content'] = "<span class='featured-event__start-time'>" . g
 
 $card_2                        = array(
 	'image_src'        => get_the_post_thumbnail_url( $second ),
+	'image_alt'        => get_post_meta( get_post_thumbnail_id( $second ), '_wp_attachment_image_alt', true ),
 	'headline'         => get_the_title( $second ),
 	'headline_element' => 'h4',
 	'headline_class'   => 'featured-event__title',

@@ -15,7 +15,8 @@ if ( $has_weather_alert ) {
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
 			<figure class="footer-callout__image col-lg-6 col-sm-12 gx-5" data-aos='fade-right'>
-				<img src="<?php echo get_field( 'footer_image', 'options' )['sizes']['large']; ?>" alt="" srcset="">
+				<?php extract( get_field( 'footer_image', 'options' ) ); ?>
+				<img src="<?php echo $sizes['large']; ?>" alt="<?php echo $alt; ?>" srcset="">
 			</figure>
 			<div class="footer-callout__text col-sm-12 col-lg-6 d-flex flex-column gx-5">
 				<div class="h4 headline">Choctaw Nation Capitol Grounds</div>

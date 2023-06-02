@@ -106,10 +106,12 @@ get_header(); ?>
 	<section id="map">
 		<div class="container">
 			<?php
+			extract(get_field('map'));
 			$args = array(
-				'headline'  => 'Map',
-				'content'   => 'Use the interactive map to view the Choctaw Nation capital grounds, the Labor Day Festival amenities and locations.',
-				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
+				'headline'       => 'Map',
+				'content'        => $subheadline,
+				'image_src'      => $image['sizes']['medium_large'],
+				'image_alt'      => $image['alt'],
 			);
 			?>
 			<?php 
@@ -124,14 +126,16 @@ get_header(); ?>
 	<section id="facebook">
 		<div class="container">
 			<?php
+			extract(get_field('facebook'));
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
-				'content'      => 'Stay up to date with all the festival news by liking our Facebook page, see activities and schedule information, keep up with announcements and view great photos during the event.',
+				'content'      => $subheadline,
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
 				'reverse'      => true,
-				'image_src'      => '/wp-content/uploads/2023/05/cultural-dancing.jpg',
+				'image_src'      => $image['sizes']['medium_large'],
+				'image_alt'      => $image['alt'],
 			);
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
