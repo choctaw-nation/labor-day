@@ -3,8 +3,8 @@
 	"short_name": "Labor Day '23",
 	"start_url": "/",
 	"display": "fullscreen",
-	"background_color": "#7d8034",
-	"theme_color": "#7d8034",
+	"background_color": "#50551d",
+	"theme_color": "#50551d",
 	"icons": [
 		{
 			"src": "/pwa-icons/icon-192.png",
