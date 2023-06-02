@@ -14,11 +14,13 @@ $message      = 'LABORDAY'
 			</div>
 		</div>
 		<div class="row cta">
+			<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 			<div class="cta__email col-lg-4">
 				<input type="email" name="email" id="email" placeholder="Email Address" />
 				<button type="button" id='subscribe-modal-trigger' data-bs-toggle="modal" data-bs-target="#subscribe-modal">Sign Up</button>
 			</div>
-			<div class="cta__text col-lg-4">
+			<?php endif; ?>
+			<div class="cta__text col-lg-4" <?php echo ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) ? "style='border-left:none;" : ''; ?>>
 				<a href="<?php echo "sms:{$phone_number}?&body={$message}"; ?>" class="btn__fill--secondary">Text <strong>LABORDAY</strong> to <strong>888777</strong>
 				</a>
 			</div>

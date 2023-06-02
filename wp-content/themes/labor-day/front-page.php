@@ -22,9 +22,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
-	<?php endif; ?>
 	<section id="about-the-festival">
 		<div class=" container">
 			<div class="row">

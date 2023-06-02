@@ -15,8 +15,10 @@ class CNO_THEME {
 		$this->disable_discussion();
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
+		$this->handle_theme_image_sizes();
 	}
-	// phpcs:ignore Squiz.Commenting.FunctionComment.Missing
+
+	/** Calls in Required Files */
 	private function load_required_files() {
 		require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
 		require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
@@ -28,6 +30,45 @@ class CNO_THEME {
 		require_once get_template_directory() . '/inc/theme-functions.php';
 		require_once get_template_directory() . '/inc/utilities.php';
 	}
+
+	/** Handles Theme Sizes */
+	private function handle_theme_image_sizes() {
+		$sizes = array(
+			array(
+				'name'   => 'hero-banner',
+				'width'  => 1920,
+				'height' => 1080,
+			),
+			array(
+				'name'   => 'max-landscape',
+				'width'  => 856,
+				'height' => 481,
+			),
+			array(
+				'name'   => 'max-portrait',
+				'width'  => 421,
+				'height' => 748,
+			),
+		);
+		foreach ( $sizes as $size ) {
+			add_image_size( $size['name'], $size['width'], $size['height'] );
+		}
+		$removeable_sizes = array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048' );
+		foreach ( $removeable_sizes as $size ) {
+			remove_image_size( $size );
+		}
+
+		// phpcs:ignore
+		// function custom_image_sizes( $size_names ) {
+		// $new_sizes = array(
+		// 'homepage-thumb'   => 'Homepage Thumbmail',
+		// 'singlepost-thumb' => 'Infographic Single Post',
+		// );
+		// return array_merge( $size_names, $new_sizes );
+		// }
+		// add_filter( 'image_size_names_choose', 'custom_image_sizes' );
+	}
+
 	/** Register custom taxonomies. */
 	public function register_taxonomies() {
 		if ( ! post_type_exists( 'events' ) ) {
@@ -116,7 +157,6 @@ class CNO_THEME {
 		);
 	}
 
-
 	/**
 	 * Adds scripts with the appropriate dependencies
 	 */
@@ -165,6 +205,7 @@ class CNO_THEME {
 			)
 		);
 	}
+
 	/**
 	 * Remove post type supports.
 	 */
@@ -174,6 +215,7 @@ class CNO_THEME {
 			$this->disable_post_type_support( $post_type );
 		}
 	}
+
 	/** Remove comments, pings and trackbacks. */
 	public function disable_discussion() {
 		// Close comments on the front-end
@@ -201,6 +243,7 @@ class CNO_THEME {
 			}
 		);
 	}
+
 	/**
 	 * Disable post type supports for a post type
 	 *

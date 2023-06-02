@@ -41,7 +41,6 @@ get_header();
 			get_template_part( 'template-parts/page', 'contact' );
 			break;
 		case 'my-schedule':
-			get_template_part( 'template-parts/aside', 'breadcrumb' );
 			get_template_part( 'template-parts/page', 'my-schedule' );
 			break;
 		case 'festival-information':

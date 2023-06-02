@@ -9,10 +9,12 @@ extract( get_field( 'info' ) );
 ?>
 <div class="container">
 	<?php
-	if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) {
-		get_template_part( 'template-parts/aside', 'breadcrumb' );
-	}
-	?>
+	if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) :
+		?>
+	<div class="row">
+		<?php get_template_part( 'template-parts/aside', 'breadcrumb' ); ?>
+	</div>
+	<?php endif; ?>
 	<article class="cno-event py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<figure class="cno-event__image"><?php the_post_thumbnail(); ?></figure>
