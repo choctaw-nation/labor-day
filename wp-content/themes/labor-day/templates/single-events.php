@@ -8,7 +8,11 @@ cno_enqueue_page_script( 'singleEvents' );
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
-	<?php get_template_part( 'template-parts/aside', 'breadcrumb' ); ?>
+	<?php
+	if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) {
+		get_template_part( 'template-parts/aside', 'breadcrumb' );
+	}
+	?>
 	<article class="cno-event py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<figure class="cno-event__image"><?php the_post_thumbnail(); ?></figure>
@@ -33,9 +37,11 @@ extract( get_field( 'info' ) );
 					<?php endif; ?>
 				</div>
 				<div class="sidebar__buttons cno-event__buttons">
+					<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 					<button class="btn__fill--secondary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>" data-post-type="<?php echo $post->post_type; ?>">Add to
 						Schedule
 					</button>
+					<?php endif; ?>
 					<div class="sidebar__confirmation cno-event-schedule-confirmation"></div>
 					<button type="button" class="btn__outline--secondary" data-bs-toggle="modal" data-bs-target="#shareEventModal">
 						Share
