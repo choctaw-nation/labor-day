@@ -106,6 +106,7 @@ class Content_Sections extends Content_Components {
 			'media_type'       => 'photo',
 			'reverse'          => false,
 			'image_src'        => get_theme_file_uri( '/images/placeholder.jpg' ),
+			'image_alt'        => '',
 		);
 
 		$options = array_merge( $default, $options );
@@ -118,7 +119,7 @@ class Content_Sections extends Content_Components {
 		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";
 		$col_1_content   = '';
 		if ( 'photo' === $media_type && $image_src ) {
-			$col_1_content = "<figure class='two-col__media--container mb-md-0'><img src='{$image_src}' class='two-col__media--image' /></figure>";
+			$col_1_content = "<figure class='two-col__media--container mb-md-0'><img src='{$image_src}' alt='{$image_alt}' class='two-col__media--image' /></figure>";
 		} elseif ( 'video' === $media_type ) {
 			$col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
 		}
