@@ -6,7 +6,7 @@
 extract( $args );
 ?>
 <aside class="<?php echo "text-callout--{$color}"; ?>">
-	<div class="bg" style="background-image:url('<?php echo get_theme_file_uri( '/images/white-gradient_texture.png' ); ?>')"></div>
+	<div class="bg" style="background-image:url('<?php echo get_theme_file_uri( '/images/gradient_texture.jpg' ); ?>')"></div>
 	<?php
 	echo "<div class='overlay--{$color}'></div>";
 	?>

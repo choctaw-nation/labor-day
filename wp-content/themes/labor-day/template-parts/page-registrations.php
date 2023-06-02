@@ -8,7 +8,7 @@ $current_id = get_the_ID();
 $args = array(
 	'post_type'      => 'page',
 	'post_parent'    => $current_id,
-	'orderby'        => 'menu_order',
+	'orderby'        => 'title',
 	'order'          => 'ASC',
 	'posts_per_page' => -1,
 );

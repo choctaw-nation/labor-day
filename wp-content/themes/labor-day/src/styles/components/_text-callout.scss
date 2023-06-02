@@ -5,6 +5,7 @@ $overlay-opacity: 0.52;
 %text-callout {
 	position: relative;
 	padding: 1rem 0;
+	overflow: hidden;
 }
 
 .text-callout {
@@ -35,7 +36,7 @@ $overlay-opacity: 0.52;
 			@include m.displayFlex(column, $cross: center);
 			color: white;
 			font-size: 5.6rem;
-			@include m.media-breakpoint-down(md) {
+			@include m.media-breakpoint-down(lg) {
 				font-size: 3rem;
 			}
 		}

@@ -40,7 +40,6 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) ); ?>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="entertainment">
 		<div class="container">
 			<div class="row">
@@ -73,6 +72,7 @@ get_header(); ?>
 				?>
 			</div>
 		</div>
+		<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 		<div class="container">
 			<div class="row">
 				<h3 class="headline">Entertainment</h3>
@@ -105,22 +105,24 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="map">
 		<div class="container">
 			<?php
 			$args = array(
 				'headline'  => 'Map',
 				'content'   => 'Use the interactive map to view the Choctaw Nation capital grounds, the Labor Day Festival amenities and locations.',
-				'cta_text'  => 'View Map',
-				'cta_link'  => '/map',
 				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
 			);
+			?>
+			<?php 
+			if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) {
+				$args['cta_text'] = 'View Map';
+				$args['cta_link']  = '/map';
+			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
-	<?php endif; ?>
 	<section id="facebook">
 		<div class="container">
 			<?php
