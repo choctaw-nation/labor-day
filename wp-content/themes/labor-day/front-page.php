@@ -84,8 +84,8 @@ get_header(); ?>
 				</div>
 			</div>
 		</div>
+		<?php endif; ?>
 	</section>
-	<?php endif; ?>
 	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
 			<div class="row">

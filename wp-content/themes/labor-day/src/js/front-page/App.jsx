@@ -7,9 +7,7 @@ import { newSlider } from '../swiper';
 	/** Sliders */
 	const entertainmentSlider = document.getElementById('entertainment-slider');
 	const registrationSlider = document.getElementById('registration-slider');
-	console.log(entertainmentSlider, registrationSlider);
 	if (entertainmentSlider) {
-		console.log('registering entertainment slider');
 		newSlider(entertainmentSlider, {
 			slidesPerView: 1,
 			navigation: {
@@ -30,7 +28,6 @@ import { newSlider } from '../swiper';
 		});
 	}
 	if (registrationSlider) {
-		console.log('registering registrations slider!');
 		newSlider(registrationSlider, {
 			slidesPerView: 1,
 			navigation: {
