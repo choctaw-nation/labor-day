@@ -17,9 +17,17 @@ export default new (class Model {
 			// 	},
 			// 	body: JSON.stringify(request),
 			// });
-			const response = await fetch(
-				`${graphQL}?query=${JSON.stringify(request)}`
+			const queryParam = encodeURIComponent(request.query);
+			const variablesParam = encodeURIComponent(
+				JSON.stringify(request.variables)
 			);
+			const url = `${graphQL}?query=${queryParam}&variables=${variablesParam}`;
+
+			const response = await fetch(url);
+
+			// const response = await fetch(
+			// 	`${graphQL}?query=${JSON.stringify(request)}`
+			// );
 			const { data } = await response.json();
 			return data;
 		} catch (error) {
@@ -36,7 +44,7 @@ export default new (class Model {
 			first: Number(POSTS_PER_PAGE),
 			after: after ?? '',
 		};
-		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
+		const query = `Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
   events(after: $after, first: $first) {
     pageInfo {
       hasNextPage
