@@ -18,19 +18,19 @@ const distFileRoot = '/wp-content/themes/labor-day/dist';
 // Cache the app shell files
 const appShellFiles = [
 	`${distFileRoot}/vendors/vendors.css`,
-	`${distFileRoot}/global.css`,
-	`${distFileRoot}/map.css`,
-	`${distFileRoot}/frontPage.css`,
-	`${distFileRoot}/mySchedule.css`,
-	`${distFileRoot}/search.css`,
-	`${distFileRoot}/fontawesome.js`,
 	`${distFileRoot}/vendors/bootstrap.js`,
 	`${distFileRoot}/vendors/fontawesome.js`,
-	`${distFileRoot}/global.js`,
-	`${distFileRoot}/map.js`,
+	`${distFileRoot}/frontPage.css`,
 	`${distFileRoot}/frontPage.js`,
+	`${distFileRoot}/global.css`,
+	`${distFileRoot}/global.js`,
+	`${distFileRoot}/map.css`,
+	`${distFileRoot}/map.js`,
+	`${distFileRoot}/mySchedule.css`,
 	`${distFileRoot}/mySchedule.js`,
+	`${distFileRoot}/search.css`,
 	`${distFileRoot}/search.js`,
+	`${distFileRoot}/singleEvents.js`,
 ];
 
 // Install service worker and cache app shell files
