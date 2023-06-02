@@ -125,10 +125,6 @@ function App() {
 				.catch((err) => console.error(err));
 		}
 	}, [isVisible]);
-
-	useEffect(() => {
-		console.log(cursor);
-	}, [cursor]);
 	const [selectedFilters, setSelectedFilters] = useState({
 		'Event Types': 'Select Option',
 		Days: 'Select Option',
