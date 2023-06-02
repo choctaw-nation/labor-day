@@ -11,9 +11,9 @@ function cno_set_environment() {
 
 	if ( false !== strpos( $server_name, '.local' ) ) {
 		$_ENV['CNO_ENV'] = 'dev';
-	} elseif ( false !== strpos( $server_name, 'wpengine' ) ) {
+	} elseif ( false !== strpos( $server_name, 'stg' ) ) {
 		$_ENV['CNO_ENV'] = 'stage';
-	} elseif ( false !== strpos( $server_name, 'choctawnation.com' ) ) {
+	} elseif ( false !== strpos( $server_name, 'choctawnation.com' ) || false !== strpos( $server_name, 'prod' ) ) {
 		$_ENV['CNO_ENV'] = 'prod';
 	} else {
 		return;
