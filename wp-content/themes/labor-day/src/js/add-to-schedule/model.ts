@@ -91,13 +91,11 @@ export default new (class Model {
 	 */
 	private getEventData = async (id: number): Promise<PrettyEventData> => {
 		try {
-			const response = await fetch(`${cnoSiteData.rootUrl}/graphql/`, {
-				method: 'POST',
-				body: JSON.stringify(this.queryString(id)),
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+			const response = await fetch(
+				`${cnoSiteData.rootUrl}/graphql?query=${encodeURIComponent(
+					this.queryString(id)
+				)}`
+			);
 			const data = await response.json();
 			const {
 				data: {
@@ -110,9 +108,8 @@ export default new (class Model {
 			throw new Error(err);
 		}
 	};
-	private queryString(id: number): object {
-		const query = {
-			query: `query Events {
+	private queryString(id: number): string {
+		const query = `query Events {
   events(where: {id: ${id}}) {
     nodes {
       eventId
@@ -157,8 +154,7 @@ export default new (class Model {
       }
     }
   }
-}`,
-		};
+}`;
 		return query;
 	}
 })();
