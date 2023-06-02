@@ -3,6 +3,7 @@ import { PrettyEventData } from '../types';
 import FeaturedImage from './FeaturedImage';
 import { getTheDay } from '../../my-schedule/calendarFunctions';
 import { createExcerpt, TimeHandler } from '../Utilities';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const time = new TimeHandler();
 export default function SinglePost({
@@ -62,7 +63,7 @@ export default function SinglePost({
 							className="cno-event__buttons--location"
 							href={locations![0].uri}
 						>
-							<i className="fa-solid fa-location-dot" />
+							<FontAwesomeIcon icon={['fas', 'location-dot']} />
 							&nbsp;
 							{locations![0].name}
 						</a>
@@ -78,7 +79,7 @@ export default function SinglePost({
 							});
 						}}
 					>
-						<i className="fa-solid fa-share" />
+						<FontAwesomeIcon icon={['fas', 'share']} />
 						&nbsp;Share
 					</div>
 					{children}

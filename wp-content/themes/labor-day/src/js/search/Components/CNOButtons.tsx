@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from '@wordpress/element';
 import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function CNOButtons({
 	eventId,
@@ -12,7 +13,8 @@ export default function CNOButtons({
 			<AddToScheduleButton eventId={eventId} />
 			{canReadMore && (
 				<a href={link} className="cno-event__buttons--learn-more">
-					<i className="fa-solid fa-circle-info"></i>&nbsp;Learn More
+					<FontAwesomeIcon icon={['fas', 'circle-info']} />
+					&nbsp;Learn More
 				</a>
 			)}
 		</>
@@ -22,7 +24,7 @@ function AddToScheduleButton({ eventId }) {
 	const [responseMessage, setResponseMessage] = useState('Add to Schedule');
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
-			setResponseMessage('In Schedule');
+			setResponseMessage('View Schedule');
 		}, 7000);
 		return () => clearTimeout(timeoutId);
 	}, [responseMessage]);
@@ -36,14 +38,22 @@ function AddToScheduleButton({ eventId }) {
 				console.error(err);
 			});
 	}
-	return (
-		<div
-			className="cno-event__buttons--add-to-schedule"
-			data-add-to-schedule="true"
-			data-id={eventId}
-			onClick={addToSchedule}
-		>
-			<i className="fa-solid fa-plus"></i>&nbsp;{responseMessage}
-		</div>
-	);
+	if ('View Schedule' === responseMessage) {
+		return (
+			<div>
+				<FontAwesomeIcon icon={['far', 'calendar']} />
+				<a href="/my-schedule"> {responseMessage}</a>
+			</div>
+		);
+	} else
+		return (
+			<div
+				className="cno-event__buttons--add-to-schedule"
+				data-add-to-schedule="true"
+				data-id={eventId}
+				onClick={addToSchedule}
+			>
+				<FontAwesomeIcon icon={['fas', 'plus']} /> {responseMessage}
+			</div>
+		);
 }

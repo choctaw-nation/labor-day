@@ -76,9 +76,6 @@ export default new (class View {
 			message = `This event is already in your schedule.`;
 		} else message = '';
 		return message;
-		return `<div class="alert alert-${response}" role="alert">
-		<span>${message}</span>&nbsp;<a href="/my-schedule" style="color:inherit;text-decoration:underline;font-weight:700;">View Your Schedule</a>
-	</div>`;
 	}
 
 	showScheduleButton() {
