@@ -14,7 +14,10 @@ import { RawEventPost, PrettyEventData, SortedEventsObject } from './types';
 import { EventFilters } from './types/eventFilters';
 import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
-import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+import {
+	getLocalStorageData,
+	getTimeSortedEvents,
+} from '../my-schedule/eventFunctions';
 import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
 
@@ -35,6 +38,12 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<PrettyEventData[]>([]);
 	const [filters, setFilters] = useState<EventFilters[]>([]);
+	const [selectedFilters, setSelectedFilters] = useState({
+		'Event Types': 'Select Option',
+		Days: 'Select Option',
+		Locations: 'Select Option',
+	});
+	const [mySchedule, setMySchedule] = useState(getLocalStorageData);
 	const [search, setSearch] = useState('');
 	function handleSearchInput({ target }) {
 		setSearch(target.value);
@@ -136,11 +145,10 @@ function App() {
 		}
 	}, [isVisible]);
 
-	const [selectedFilters, setSelectedFilters] = useState({
-		'Event Types': 'Select Option',
-		Days: 'Select Option',
-		Locations: 'Select Option',
-	});
+	/** Handle Local Storage Data */
+	useEffect(() => {
+		console.log(mySchedule);
+	}, [mySchedule]);
 	return (
 		<div className="cno-search">
 			<SearchBar
