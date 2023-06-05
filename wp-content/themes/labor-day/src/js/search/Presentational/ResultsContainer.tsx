@@ -2,20 +2,19 @@ import React from '@wordpress/element';
 import SinglePost from './SinglePost';
 import { PrettyEventData } from '../types';
 import { SortedEventsObject } from '../../search/types';
-import CNOButtons from '../Components/CNOButtons';
+import { ReadMoreButton } from './CNOButtons';
+import { AddToScheduleButton } from '../Components/AddToScheduleButton';
 import { createExcerpt } from '../Utilities';
 import { selectedFilterObject } from '../types/eventFilters';
 
 export default function ResultsContainer({
 	posts,
 	selectedFilters,
-	setShowShareModal,
-	setShareEventObject,
+	triggerModal,
 }: {
 	posts: SortedEventsObject | PrettyEventData[];
 	selectedFilters: selectedFilterObject;
-	setShowShareModal: Function;
-	setShareEventObject: Function;
+	triggerModal: Function;
 }) {
 	let merged: PrettyEventData[] = [];
 	if (!Array.isArray(posts)) {
@@ -56,19 +55,17 @@ export default function ResultsContainer({
 				if (emptyFilters || postMatchesFilters(post)) {
 					return (
 						<SinglePost
-							setShareEventObject={setShareEventObject}
 							data={post}
-							setShowShareModal={setShowShareModal}
+							triggerModal={triggerModal}
 							key={post.eventId}
 						>
-							<CNOButtons
-								eventId={post.eventId}
-								link={post.link}
-								canReadMore={
-									createExcerpt(post.event_info.description)
-										.readMore
-								}
-							/>
+							<>
+								<AddToScheduleButton eventId={post.eventId} />
+								{createExcerpt(post.event_info.description)
+									.readMore && (
+									<ReadMoreButton link={post.link} />
+								)}
+							</>
 						</SinglePost>
 					);
 				}

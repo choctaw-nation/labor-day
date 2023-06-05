@@ -3,24 +3,7 @@ import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function CNOButtons({
-	eventId,
-	link,
-	canReadMore,
-}): JSX.Element {
-	return (
-		<>
-			<AddToScheduleButton eventId={eventId} />
-			{canReadMore && (
-				<a href={link} className="cno-event__buttons--learn-more">
-					<FontAwesomeIcon icon={['fas', 'circle-info']} />
-					&nbsp;Learn More
-				</a>
-			)}
-		</>
-	);
-}
-function AddToScheduleButton({ eventId }) {
+export function AddToScheduleButton({ eventId }) {
 	const [responseMessage, setResponseMessage] = useState('Add to Schedule');
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {

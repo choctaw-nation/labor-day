@@ -10,7 +10,7 @@ import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
 import ResultsContainer from './Presentational/ResultsContainer';
-import { EventPost, PrettyEventData, SortedEventsObject } from './types';
+import { RawEventPost, PrettyEventData, SortedEventsObject } from './types';
 import { EventFilters } from './types/eventFilters';
 import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
@@ -24,13 +24,21 @@ function App() {
 		title: '',
 		link: '',
 	});
+	function triggerModal(title: string, link: string) {
+		setShowShareModal(true);
+		setShareEventObject({
+			title: title,
+			link: link,
+		});
+	}
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>(
-		[]
-	);
+	const [posts, setPosts] = useState<PrettyEventData[]>([]);
 	const [filters, setFilters] = useState<EventFilters[]>([]);
 	const [search, setSearch] = useState('');
+	function handleSearchInput({ target }) {
+		setSearch(target.value);
+	}
 	const [cursor, setCursor] = useState<string | undefined>('cursor');
 
 	function doFirstSearch(data) {
@@ -39,9 +47,9 @@ function App() {
 			events.pageInfo.hasNextPage ? events.pageInfo.endCursor : undefined
 		);
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
-			(node: EventPost) => destructureData(node)
+			(node: RawEventPost) => destructureData(node)
 		);
-		const sortedEvents = Object.values(
+		const sortedEvents: PrettyEventData[] = Object.values(
 			getTimeSortedEvents(sortEvents(prettyEvents))
 		).flat();
 		setPosts(sortedEvents);
@@ -71,9 +79,6 @@ function App() {
 		]);
 	}
 
-	function handleSearchInput({ target }) {
-		setSearch(target.value);
-	}
 	/** Handle Search Bar */
 	useEffect(() => {
 		setIsLoading(true);
@@ -149,9 +154,8 @@ function App() {
 				{!isLoading ? (
 					<ResultsContainer
 						posts={posts}
+						triggerModal={triggerModal}
 						selectedFilters={selectedFilters}
-						setShowShareModal={setShowShareModal}
-						setShareEventObject={setShareEventObject}
 					/>
 				) : (
 					<LoadingSpinner />

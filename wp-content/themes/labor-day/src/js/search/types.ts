@@ -5,7 +5,7 @@ import { EventType, EventLocation } from './types/eventFilters';
  */
 declare const cnoSiteData: { rootUrl: string };
 
-type EventInfo = {
+export type EventInfo = {
 	description: string;
 	info: {
 		day: string;
@@ -14,7 +14,7 @@ type EventInfo = {
 	};
 };
 /** The raw structure of an event post type */
-export type EventPost = {
+export type RawEventPost = {
 	eventLocations: {
 		nodes: EventLocation[];
 	};
