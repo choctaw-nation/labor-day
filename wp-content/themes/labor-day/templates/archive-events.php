@@ -6,7 +6,7 @@
  */
 
 if ('prod' === $_ENV['CNO_ENV']) {
-	wp_redirect('404',404,);
+	wp_redirect(get_404_template(),404);
 	exit;
 }
 $taxonomies = get_object_taxonomies( 'events', 'objects' );
