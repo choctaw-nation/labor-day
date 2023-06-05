@@ -69,6 +69,9 @@ get_header(); ?>
 				);
 				?>
 			</div>
+			<div class="row">
+				<p>Full schedule will be announced and posted soon!</p>
+			</div>
 		</div>
 		<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 		<div class="container">
