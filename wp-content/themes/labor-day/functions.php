@@ -19,4 +19,4 @@ $init_theme = new CNO_THEME();
 function register_service_worker() {
 	wp_enqueue_script( 'service-worker', '/service-worker.js', array(), '1.0', false );
 }
-add_action( 'wp_enqueue_scripts', 'register_service_worker' );
+// add_action( 'wp_enqueue_scripts', 'register_service_worker' );
