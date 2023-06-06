@@ -1,5 +1,5 @@
 import {
-	EventPost,
+	RawEventPost,
 	ExcerptObject,
 	PrettyEventData,
 	SortedEventsObject,
@@ -19,7 +19,7 @@ export const fuzzySearchKeys = {
 		{ name: 'locations.name', weight: 1 },
 	],
 };
-export function destructureData(data: EventPost): PrettyEventData {
+export function destructureData(data: RawEventPost): PrettyEventData {
 	const {
 		eventLocations: { nodes: locations },
 	} = data;

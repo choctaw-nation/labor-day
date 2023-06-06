@@ -16,7 +16,7 @@ export function AddToScheduleButton({ eventId }) {
 		}, 4000);
 		return () => clearTimeout(timeoutId);
 	}, [responseMessage]);
-	async function addToSchedule(ev: Event) {
+	async function addToSchedule(ev) {
 		try {
 			const response = await Model.addToSchedule(ev);
 			const message = View.getResponseMessage(response);
@@ -27,6 +27,7 @@ export function AddToScheduleButton({ eventId }) {
 			console.error(err);
 		}
 	}
+	// Render Logic
 	if ('View Schedule' === responseMessage) {
 		return (
 			<div>
@@ -34,7 +35,7 @@ export function AddToScheduleButton({ eventId }) {
 				&nbsp;<a href="/my-schedule">{responseMessage}</a>
 			</div>
 		);
-	} else if (inSchedule.includes(eventId)) {
+	} else if (inSchedule[0]?.eventId === eventId) {
 		return (
 			<div>
 				<FontAwesomeIcon icon={['far', 'calendar']} />
