@@ -91,7 +91,6 @@ export default new (class Model {
 	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
 	 */
 	private getEventData = async (id: number): Promise<PrettyEventData> => {
-		console.log(id);
 		try {
 			const response = await fetch(
 				`${cnoSiteData.rootUrl}/graphql?query=${encodeURIComponent(

@@ -13,7 +13,8 @@ export function AddToScheduleButton({ eventId }) {
 		if ('Add to Schedule' === responseMessage) return;
 		const timeoutId = setTimeout(() => {
 			setResponseMessage('View Schedule');
-		}, 4000);
+			View.showScheduleButton();
+		}, View.MESSAGE_TIMEOUT);
 		return () => clearTimeout(timeoutId);
 	}, [responseMessage]);
 	async function addToSchedule(ev) {
@@ -37,7 +38,7 @@ export function AddToScheduleButton({ eventId }) {
 		);
 	} else if (inSchedule[0]?.eventId === eventId) {
 		return (
-			<div>
+			<div className="cno-event__buttons--add-to-schedule">
 				<FontAwesomeIcon icon={['far', 'calendar']} />
 				&nbsp;<a href="/my-schedule">In Schedule</a>
 			</div>

@@ -2,6 +2,9 @@
 @use "../../abstracts/variables" as v;
 @use "../../components/modal-share-event";
 :where(.single-events) {
+	body & {
+		overflow-x: initial;
+	}
 	.cno-event {
 		position: relative;
 		max-height: unset;

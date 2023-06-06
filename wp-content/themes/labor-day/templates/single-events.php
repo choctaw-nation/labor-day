@@ -4,7 +4,7 @@
  */
 
 get_header();
-cno_enqueue_page_script( 'singleEvents', array('fontawesome','main' );
+cno_enqueue_page_script( 'singleEvents' );
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
@@ -39,13 +39,13 @@ extract( get_field( 'info' ) );
 					<?php endif; ?>
 				</div>
 				<div class="sidebar__buttons cno-event__buttons">
-          <?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
+					<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 					<div class="cno-event__buttons--add-to-schedule" data-add-to-schedule="true" data-id="<?php echo get_the_ID(); ?>">
-						<i className="fa-solid fa-plus"></i>&nbsp;Add to Schedule
+						<i class="fa-solid fa-plus"></i>&nbsp;Add to Schedule
 					</div>
-          <?php endif; ?>
+					<?php endif; ?>
 					<div class="cno-event__buttons--share" data-bs-toggle="modal" data-bs-target="#shareEventModal">
-						<i className="fa-solid fa-share"></i>
+						<i class="fa-solid fa-share"></i>
 						&nbsp;Share
 					</div>
 				</div>

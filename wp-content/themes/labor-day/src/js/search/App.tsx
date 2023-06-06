@@ -1,11 +1,6 @@
 import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
-import React, {
-	StrictMode,
-	useState,
-	useEffect,
-	createRoot,
-} from '@wordpress/element';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
@@ -14,12 +9,11 @@ import { RawEventPost, PrettyEventData, SortedEventsObject } from './types';
 import { EventFilters } from './types/eventFilters';
 import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
-import {
-	getLocalStorageData,
-	getTimeSortedEvents,
-} from '../my-schedule/eventFunctions';
+import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
+import model from '../add-to-schedule/model';
+import view from '../add-to-schedule/view';
 
 function App() {
 	const [showShareModal, setShowShareModal] = useState(false);
@@ -37,13 +31,18 @@ function App() {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<PrettyEventData[]>([]);
+	function showFloatingSchedule() {
+		const schedule = model.getSchedule();
+		if (Object.values(schedule).flat().length > 0) {
+			view.showScheduleButton();
+		}
+	}
 	const [filters, setFilters] = useState<EventFilters[]>([]);
 	const [selectedFilters, setSelectedFilters] = useState({
 		'Event Types': 'Select Option',
 		Days: 'Select Option',
 		Locations: 'Select Option',
 	});
-	const [mySchedule, setMySchedule] = useState(getLocalStorageData);
 	const [search, setSearch] = useState('');
 	function handleSearchInput({ target }) {
 		setSearch(target.value);
@@ -88,6 +87,8 @@ function App() {
 		]);
 	}
 
+	/** On First Render, showFloatingSchedule */
+	useEffect(() => showFloatingSchedule(), []);
 	/** Handle Search Bar */
 	useEffect(() => {
 		setIsLoading(true);
@@ -184,9 +185,4 @@ function App() {
 	);
 }
 const root = document.getElementById('app');
-if (root)
-	createRoot(root).render(
-		<StrictMode>
-			<App />
-		</StrictMode>
-	);
+if (root) createRoot(root).render(<App />);

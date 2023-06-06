@@ -3,6 +3,7 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
  * View class to manage the display of the UI components
  */
 export default new (class View {
+	MESSAGE_TIMEOUT = 4000;
 	/**
 	 * List of HTMLButtonElement objects
 	 */
@@ -34,32 +35,36 @@ export default new (class View {
 		}
 
 		this.buttons.forEach((button) => {
-			button.addEventListener('click', (ev) => {
-				ev.preventDefault();
-				const { target } = ev;
+			button.addEventListener(
+				'click',
+				(ev) => {
+					ev.preventDefault();
+					const confirmationContainer = this.buttons[0];
 
-				const confirmationContainer = target
-					?.closest('.cno-event__buttons')
-					?.querySelector('.cno-event__buttons--add-to-schedule');
-
-				console.log(target, confirmationContainer);
-				if (!confirmationContainer) {
-					return;
-				}
-				confirmationContainer.innerText = `Loading...`;
-				method(ev)
-					.then((response: string) => {
-						confirmationContainer.innerHTML =
-							this.getResponseMessage(response);
-						setTimeout(() => {
-							confirmationContainer.innerText =
-								'Added to Schedule';
-						}, 7000);
-					})
-					.catch((err: any) => {
-						console.error(err);
-					});
-			});
+					if (
+						!confirmationContainer ||
+						confirmationContainer.innerHTML ===
+							'<a href="/my-schedule"> View Schedule</a>'
+					) {
+						return;
+					}
+					confirmationContainer.innerText = `Loading...`;
+					method(ev)
+						.then((response: string) => {
+							confirmationContainer.innerHTML =
+								this.getResponseMessage(response);
+							setTimeout(() => {
+								confirmationContainer.innerHTML =
+									'<a href="/my-schedule"> View Schedule</a>';
+							}, this.MESSAGE_TIMEOUT);
+							this.showScheduleButton();
+						})
+						.catch((err: any) => {
+							console.error(err);
+						});
+				},
+				{ once: true }
+			);
 		});
 	}
 
@@ -79,6 +84,9 @@ export default new (class View {
 	}
 
 	showScheduleButton() {
+		const scheduleButton = document.querySelector('.schedule-button');
+		console.log(scheduleButton);
+		if (scheduleButton) return;
 		if (location.href.includes('my-schedule')) return;
 		const div = document.createElement('div');
 		div.classList.add('schedule-button');
