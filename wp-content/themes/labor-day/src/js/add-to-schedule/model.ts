@@ -35,13 +35,12 @@ export default new (class Model {
 	 */
 	addToSchedule(ev): Promise<string> {
 		const { target } = ev;
-		const schedule = this.getSchedule();
 		return new Promise((resolve, reject) => {
 			try {
 				this.checkTargetElement(target);
 				const id: number = Number(target.dataset.id!);
 				const schedule = this.getSchedule();
-				console.log(schedule);
+				if (!schedule) return;
 				try {
 					this.getEventData(id).then((res) => {
 						const dayProp = res.event_info.info.day.toLowerCase();

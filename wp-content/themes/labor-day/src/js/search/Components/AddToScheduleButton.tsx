@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function AddToScheduleButton({ eventId }) {
 	const [responseMessage, setResponseMessage] = useState('Add to Schedule');
 	const [inSchedule] = useState(function () {
-		const sched = Object.values(Model.getSchedule()).flat();
+		const schedule = Model.getSchedule();
+		if (!schedule) return;
+		const sched = Object.values(schedule).flat();
 		return sched.filter((event) => event.eventId === eventId);
 	});
 	useEffect(() => {
@@ -36,7 +38,7 @@ export function AddToScheduleButton({ eventId }) {
 				&nbsp;<a href="/my-schedule">{responseMessage}</a>
 			</div>
 		);
-	} else if (inSchedule[0]?.eventId === eventId) {
+	} else if (inSchedule && inSchedule[0].eventId === eventId) {
 		return (
 			<div className="cno-event__buttons--add-to-schedule">
 				<FontAwesomeIcon icon={['far', 'calendar']} />
