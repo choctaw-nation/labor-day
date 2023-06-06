@@ -8,7 +8,7 @@ $current_id = get_the_ID();
 $args = array(
 	'post_type'      => 'page',
 	'post_parent'    => $current_id,
-	'orderby'        => 'menu_order',
+	'orderby'        => 'title',
 	'order'          => 'ASC',
 	'posts_per_page' => -1,
 );
@@ -44,6 +44,7 @@ $content = new Content_Sections();
 							'media_type'       => 'photo',
 							'reverse'          => false,
 							'image_src'        => get_the_post_thumbnail_url( size: 'large' ),
+							'image_alt'        => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
 						)
 					);
 					?>

@@ -22,7 +22,10 @@
 		$title = $post->post_title;
 		if ( is_post_type_archive() ) {
 			$title = 'Schedule';
-		} echo $title . " | " .  get_bloginfo( 'name' ); ?>
+		} else if ( is_404() ) {
+			$title = 'Page Not Found';
+		}
+			echo $title . " | " .  get_bloginfo( 'name' ); ?>
 	</title>
 	<link rel="manifest" href="/manifest.json">
 	<?php if ('prod' === $_ENV['CNO_ENV']) : ?>

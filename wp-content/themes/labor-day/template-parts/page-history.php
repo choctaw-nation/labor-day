@@ -27,7 +27,8 @@ $content = new Content_Sections();
 			'reverse'  => true,
 		);
 		if ( isset( $image['url'] ) ) {
-			$args['image_src'] = $image['url'];
+			$args['image_src'] = $image['sizes']['max-landscape'];
+			$args['image_alt'] = $image['alt'];
 		}
 		?>
 		<?php $content->two_col_text_and_media( $args ); ?>
@@ -42,7 +43,8 @@ $content = new Content_Sections();
 			'content'  => $subheadline,
 		);
 		if ( isset( $image['url'] ) ) {
-			$args['image_src'] = $image['url'];
+			$args['image_src'] = $image['sizes']['max-landscape'];
+			$args['image_alt'] = $image['alt'];
 		}
 		?>
 		<?php $content->two_col_text_and_media( $args ); ?>
@@ -58,7 +60,8 @@ $content = new Content_Sections();
 			'reverse'  => true,
 		);
 		if ( isset( $image['url'] ) ) {
-			$args['image_src'] = $image['url'];
+			$args['image_src'] = $image['sizes']['max-landscape'];
+			$args['image_alt'] = $image['alt'];
 		}
 		?>
 		<?php $content->two_col_text_and_media( $args ); ?>

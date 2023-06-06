@@ -36,11 +36,11 @@ $ignored_post_ids = array( 50, 174, 200, 183 );
 							if ( $query->have_posts() ) :
 								while ( $query->have_posts() ) :
 									$query->the_post();
-									if ( ! in_array( get_the_ID(), $ignored_post_ids ) ) :
+									if ( ! in_array( get_the_ID(), $ignored_post_ids, true ) ) :
 										?>
-							<div class="swiper-slide" style="background-image: url('<?php echo get_field( 'portrait_orientation_photo' ); ?>');">
+							<div class="swiper-slide" style="background-image: url('<?php echo get_field( 'portrait_orientation_photo' )['sizes']['max-portrait']; ?>');">
 								<a href="<?php echo get_the_permalink(); ?>">
-										<?php extract( get_field( 'info' ) ); ?>
+									<?php extract( get_field( 'info' ) ); ?>
 									<div class="swiper__slide-content">
 										<span class="swiper__slide-content--title"><?php the_title(); ?></span><br />
 										<i class="fa-regular fa-calendar"></i>&nbsp;<?php echo $day . ', ' . cno_get_the_date( $day ); ?><br />
@@ -48,10 +48,10 @@ $ignored_post_ids = array( 50, 174, 200, 183 );
 									</div>
 								</a>
 							</div>
-								<?php endif; ?>
-								<?php endwhile; ?>
-						</div>
 							<?php endif; ?>
+							<?php endwhile; ?>
+						</div>
+						<?php endif; ?>
 						<div class="swiper-pagination"></div>
 					</div>
 				</div>

@@ -132,7 +132,7 @@ function App() {
 						setCursor(undefined);
 					}
 					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						(node: EventPost) => destructureData(node)
+						(node: RawEventPost) => destructureData(node)
 					);
 					const sortedEvents: SortedEventsObject =
 						getTimeSortedEvents(sortEvents(prettyEvents));
@@ -144,11 +144,6 @@ function App() {
 				.catch((err) => console.error(err));
 		}
 	}, [isVisible]);
-
-	/** Handle Local Storage Data */
-	// useEffect(() => {
-	// 	console.log(mySchedule);
-	// }, [mySchedule]);
 	return (
 		<div className="cno-search">
 			<SearchBar

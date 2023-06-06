@@ -106,6 +106,7 @@ class Content_Sections extends Content_Components {
 			'media_type'       => 'photo',
 			'reverse'          => false,
 			'image_src'        => get_theme_file_uri( '/images/placeholder.jpg' ),
+			'image_alt'        => '',
 		);
 
 		$options = array_merge( $default, $options );
@@ -118,7 +119,7 @@ class Content_Sections extends Content_Components {
 		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";
 		$col_1_content   = '';
 		if ( 'photo' === $media_type && $image_src ) {
-			$col_1_content = "<figure class='two-col__media--container mb-md-0'><img src='{$image_src}' class='two-col__media--image' /></figure>";
+			$col_1_content = "<figure class='two-col__media--container mb-md-0'><img src='{$image_src}' alt='{$image_alt}' class='two-col__media--image' /></figure>";
 		} elseif ( 'video' === $media_type ) {
 			$col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
 		}
@@ -169,6 +170,7 @@ class Content_Sections extends Content_Components {
 	public function vertical_card( array $args = array(), bool $echo = true, ) {
 		$default       = array(
 			'image_src'           => null,
+			'image_alt'           => null,
 			'headline'            => '',
 			'headline_element'    => 'h2',
 			'subheadline_content' => '',
@@ -181,7 +183,7 @@ class Content_Sections extends Content_Components {
 
 		$options = array_merge( $default, $headline_args, $args );
 		extract( $options );
-		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} /></figure>";
+		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} alt='{$image_alt}' /></figure>";
 		$card_text_content = "<div class='vertical-card__content'>{$this->headline($headline, false, $options)}</div>";
 		$markup            = "<div class='vertical-card'>{$card_image}{$card_text_content}</div>";
 		if ( $echo ) {

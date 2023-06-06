@@ -22,9 +22,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
-	<?php endif; ?>
 	<section id="about-the-festival">
 		<div class=" container">
 			<div class="row">
@@ -40,7 +38,6 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) ); ?>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="entertainment">
 		<div class="container">
 			<div class="row">
@@ -72,7 +69,11 @@ get_header(); ?>
 				);
 				?>
 			</div>
+			<div class="row">
+				<p>Full schedule will be announced and posted soon!</p>
+			</div>
 		</div>
+		<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 		<div class="container">
 			<div class="row">
 				<h3 class="headline">Entertainment</h3>
@@ -86,8 +87,8 @@ get_header(); ?>
 				</div>
 			</div>
 		</div>
+		<?php endif; ?>
 	</section>
-	<?php endif; ?>
 	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
 			<div class="row">
@@ -105,34 +106,48 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
 	<section id="map">
 		<div class="container">
 			<?php
+			extract(get_field('map'));
 			$args = array(
-				'headline'  => 'Map',
-				'content'   => 'Use the interactive map to view the Choctaw Nation capital grounds, the Labor Day Festival amenities and locations.',
-				'cta_text'  => 'View Map',
-				'cta_link'  => '/map',
-				'image_src' => get_the_post_thumbnail_url( get_page_by_title( 'map' ) ),
+				'headline'       => 'Map',
+				'content'        => $subheadline,
 			);
+			?>
+			<?php
+			if ( isset($image) ) {
+				$args['image_src'] = $image['sizes']['medium_large'];
+				$args['image_alt'] = $image['alt'];
+			}
+			?>
+			<?php 
+			if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) {
+				$args['cta_text'] = 'View Map';
+				$args['cta_link']  = '/map';
+			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
-	<?php endif; ?>
 	<section id="facebook">
 		<div class="container">
 			<?php
+			extract(get_field('facebook'));
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
-				'content'      => 'Stay up to date with all the festival news by liking our Facebook page, see activities and schedule information, keep up with announcements and view great photos during the event.',
+				'content'      => $subheadline,
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
 				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
 				'reverse'      => true,
-				'image_src'      => '/wp-content/uploads/2023/05/cultural-dancing.jpg',
 			);
+			?>
+			<?php
+			if ( isset($image) ) {
+				$args['image_src'] = $image['sizes']['medium_large'];
+				$args['image_alt'] = $image['alt'];
+			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
