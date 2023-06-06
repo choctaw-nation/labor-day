@@ -2,15 +2,24 @@ import React, { useState, useEffect } from '@wordpress/element';
 import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PrettyEventData } from '../types';
 
 export function AddToScheduleButton({ eventId }) {
 	const [responseMessage, setResponseMessage] = useState('Add to Schedule');
 	const [inSchedule] = useState(function () {
 		const schedule = Model.getSchedule();
 		if (!schedule) return;
-		const sched = Object.values(schedule).flat();
-		return sched.filter((event) => event.eventId === eventId);
+		const sched: PrettyEventData[] = Object.values(schedule).flat();
+		if (sched.length === 0) return;
+		const filteredSched = sched.filter(
+			(event) => event.eventId === eventId
+		);
+		if (filteredSched[0]) {
+			return filteredSched[0].eventId === eventId;
+		} else return false;
 	});
+
+	/** Updates Text On responseMessage change. */
 	useEffect(() => {
 		if ('Add to Schedule' === responseMessage) return;
 		const timeoutId = setTimeout(() => {
@@ -19,6 +28,8 @@ export function AddToScheduleButton({ eventId }) {
 		}, View.MESSAGE_TIMEOUT);
 		return () => clearTimeout(timeoutId);
 	}, [responseMessage]);
+
+	/** Adds event to user's schedule and updates the responseMessage. */
 	async function addToSchedule(ev) {
 		try {
 			const response = await Model.addToSchedule(ev);
@@ -38,7 +49,7 @@ export function AddToScheduleButton({ eventId }) {
 				&nbsp;<a href="/my-schedule">{responseMessage}</a>
 			</div>
 		);
-	} else if (inSchedule && inSchedule[0].eventId === eventId) {
+	} else if (inSchedule) {
 		return (
 			<div className="cno-event__buttons--add-to-schedule">
 				<FontAwesomeIcon icon={['far', 'calendar']} />
