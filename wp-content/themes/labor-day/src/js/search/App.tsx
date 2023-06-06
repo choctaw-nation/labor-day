@@ -31,8 +31,10 @@ function App() {
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [posts, setPosts] = useState<PrettyEventData[]>([]);
+
 	function showFloatingSchedule() {
 		const schedule = model.getSchedule();
+		if (!schedule) return;
 		if (Object.values(schedule).flat().length > 0) {
 			view.showScheduleButton();
 		}
@@ -89,6 +91,7 @@ function App() {
 
 	/** On First Render, showFloatingSchedule */
 	useEffect(() => showFloatingSchedule(), []);
+
 	/** Handle Search Bar */
 	useEffect(() => {
 		setIsLoading(true);
@@ -145,44 +148,61 @@ function App() {
 				.catch((err) => console.error(err));
 		}
 	}, [isVisible]);
-	return (
-		<div className="cno-search">
-			<SearchBar
-				filters={filters}
-				search={search}
-				selectedFilters={selectedFilters}
-				setSelectedFilters={setSelectedFilters}
-				handleSearchInput={handleSearchInput}
-			/>
-			<div className="container">
-				{!isLoading ? (
-					<ResultsContainer
-						posts={posts}
-						triggerModal={triggerModal}
-						selectedFilters={selectedFilters}
-					/>
-				) : (
-					<LoadingSpinner />
-				)}
-			</div>
-			<Intersector setIsVisible={setIsVisible} />
-			{isVisible && cursor ? (
-				<div className="container load-more-container">
-					<LoadingSpinner />
-				</div>
-			) : (
-				<div className="container load-more-container">
-					End of Results.
-				</div>
-			)}
 
-			<ShareModal
-				showShareModal={showShareModal}
-				setShowShareModal={setShowShareModal}
-				shareEventObject={shareEventObject}
-			/>
-		</div>
-	);
+	/** */
+	const [canGetPosts] = useState(function () {
+		const now = new Date();
+		const end = new Date('September 3, 2023');
+		return now < end;
+	});
+	if (!canGetPosts) {
+		return (
+			<div className="container">
+				<p>
+					Next year's events will be posted here. Check back
+					periodically for updates.
+				</p>
+			</div>
+		);
+	} else
+		return (
+			<div className="cno-search">
+				<SearchBar
+					filters={filters}
+					search={search}
+					selectedFilters={selectedFilters}
+					setSelectedFilters={setSelectedFilters}
+					handleSearchInput={handleSearchInput}
+				/>
+				<div className="container">
+					{!isLoading ? (
+						<ResultsContainer
+							posts={posts}
+							triggerModal={triggerModal}
+							selectedFilters={selectedFilters}
+						/>
+					) : (
+						<LoadingSpinner />
+					)}
+				</div>
+				<Intersector setIsVisible={setIsVisible} />
+				{isVisible && cursor ? (
+					<div className="container load-more-container">
+						<LoadingSpinner />
+					</div>
+				) : (
+					<div className="container load-more-container">
+						End of Results.
+					</div>
+				)}
+
+				<ShareModal
+					showShareModal={showShareModal}
+					setShowShareModal={setShowShareModal}
+					shareEventObject={shareEventObject}
+				/>
+			</div>
+		);
 }
 const root = document.getElementById('app');
 if (root) createRoot(root).render(<App />);

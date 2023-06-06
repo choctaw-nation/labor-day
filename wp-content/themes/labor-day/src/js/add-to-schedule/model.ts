@@ -7,7 +7,13 @@ export default new (class Model {
 	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
 	 * @returns {SortedEventsObject} The user's saved schedule
 	 */
-	getSchedule(): SortedEventsObject {
+	getSchedule(): SortedEventsObject | undefined {
+		const now = new Date();
+		const end = new Date('September 3, 2023');
+		if (now > end) {
+			localStorage.removeItem('schedule');
+			return;
+		}
 		const data: string | null = localStorage.getItem('schedule');
 		const jsonData: SortedEventsObject = data ? JSON.parse(data) : null;
 		if (null === jsonData) {
@@ -29,11 +35,13 @@ export default new (class Model {
 	 */
 	addToSchedule(ev): Promise<string> {
 		const { target } = ev;
+		const schedule = this.getSchedule();
 		return new Promise((resolve, reject) => {
 			try {
 				this.checkTargetElement(target);
 				const id: number = Number(target.dataset.id!);
 				const schedule = this.getSchedule();
+				console.log(schedule);
 				try {
 					this.getEventData(id).then((res) => {
 						const dayProp = res.event_info.info.day.toLowerCase();

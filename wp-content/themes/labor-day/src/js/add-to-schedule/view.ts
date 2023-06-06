@@ -85,9 +85,7 @@ export default new (class View {
 
 	showScheduleButton() {
 		const scheduleButton = document.querySelector('.schedule-button');
-		console.log(scheduleButton);
-		if (scheduleButton) return;
-		if (location.href.includes('my-schedule')) return;
+		if (scheduleButton || location.href.includes('my-schedule')) return;
 		const div = document.createElement('div');
 		div.classList.add('schedule-button');
 		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${faPencil.icon[0]} ${faPencil.icon[0]}"><path d="${faPencil.icon[4]}"></svg> View Your Schedule</a>`;
