@@ -146,9 +146,9 @@ function App() {
 	}, [isVisible]);
 
 	/** Handle Local Storage Data */
-	useEffect(() => {
-		console.log(mySchedule);
-	}, [mySchedule]);
+	// useEffect(() => {
+	// 	console.log(mySchedule);
+	// }, [mySchedule]);
 	return (
 		<div className="cno-search">
 			<SearchBar
