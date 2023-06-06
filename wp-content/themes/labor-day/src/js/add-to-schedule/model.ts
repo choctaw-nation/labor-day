@@ -1,5 +1,5 @@
 import { destructureData } from '../search/Utilities';
-import { EventPost, PrettyEventData } from '../search/types';
+import { RawEventPost, PrettyEventData } from '../search/types';
 import { SortedEventsObject } from '../search/types';
 declare const cnoSiteData: { rootUrl: string };
 export default new (class Model {
@@ -27,7 +27,8 @@ export default new (class Model {
 	 * @returns {Promise<string>} A promise that resolves with either "success" or "info"
 	 * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
 	 */
-	addToSchedule({ target }: { target: HTMLElement }): Promise<string> {
+	addToSchedule(ev): Promise<string> {
+		const { target } = ev;
 		return new Promise((resolve, reject) => {
 			try {
 				this.checkTargetElement(target);
@@ -90,6 +91,7 @@ export default new (class Model {
 	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
 	 */
 	private getEventData = async (id: number): Promise<PrettyEventData> => {
+		console.log(id);
 		try {
 			const response = await fetch(
 				`${cnoSiteData.rootUrl}/graphql?query=${encodeURIComponent(
@@ -101,7 +103,7 @@ export default new (class Model {
 				data: {
 					events: { nodes },
 				},
-			}: { data: { events: { nodes: EventPost[] } } } = data;
+			}: { data: { events: { nodes: RawEventPost[] } } } = data;
 			const event = destructureData(nodes[0]);
 			return event;
 		} catch (err) {

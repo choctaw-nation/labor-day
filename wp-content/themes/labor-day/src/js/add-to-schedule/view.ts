@@ -38,20 +38,22 @@ export default new (class View {
 				ev.preventDefault();
 				const { target } = ev;
 
-				const confirmationContainer = (target as Element)
+				const confirmationContainer = target
 					?.closest('.cno-event__buttons')
-					?.querySelector('.cno-event-schedule-confirmation');
+					?.querySelector('.cno-event__buttons--add-to-schedule');
 
+				console.log(target, confirmationContainer);
 				if (!confirmationContainer) {
 					return;
 				}
-				confirmationContainer.innerHTML = `<div class="alert alert-secondary" role="alert"><span>Loading...</span></div>`;
+				confirmationContainer.innerText = `Loading...`;
 				method(ev)
 					.then((response: string) => {
 						confirmationContainer.innerHTML =
 							this.getResponseMessage(response);
 						setTimeout(() => {
-							confirmationContainer.innerHTML = '';
+							confirmationContainer.innerText =
+								'Added to Schedule';
 						}, 7000);
 					})
 					.catch((err: any) => {
@@ -73,9 +75,7 @@ export default new (class View {
 		} else if ('info' === response) {
 			message = `This event is already in your schedule.`;
 		} else message = '';
-		return `<div class="alert alert-${response}" role="alert">
-		<span>${message}</span>&nbsp;<a href="/my-schedule" style="color:inherit;text-decoration:underline;font-weight:700;">View Your Schedule</a>
-	</div>`;
+		return message;
 	}
 
 	showScheduleButton() {

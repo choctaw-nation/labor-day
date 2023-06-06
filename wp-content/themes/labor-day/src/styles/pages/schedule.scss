@@ -40,11 +40,15 @@
 		width: 100%;
 
 		&__image {
-			aspect-ratio: 16 / 9;
 			margin: 0;
-			@include m.fitMedia($fit: cover);
+			@include m.fitMedia($fit: contain);
 			@include m.media-breakpoint-down(lg) {
 				max-height: 30rem;
+			}
+
+			img {
+				aspect-ratio: 16 / 9;
+				height: auto;
 			}
 		}
 	}

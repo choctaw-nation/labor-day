@@ -1,15 +1,23 @@
 import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
-import React, { useState, useEffect, createRoot } from '@wordpress/element';
+import React, {
+	StrictMode,
+	useState,
+	useEffect,
+	createRoot,
+} from '@wordpress/element';
 import LoadingSpinner from '../spinner';
 import Model from './Model';
 import SearchBar from './Components/SearchBar';
 import ResultsContainer from './Presentational/ResultsContainer';
-import { EventPost, PrettyEventData, SortedEventsObject } from './types';
+import { RawEventPost, PrettyEventData, SortedEventsObject } from './types';
 import { EventFilters } from './types/eventFilters';
 import Fuse from 'fuse.js';
 import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
-import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+import {
+	getLocalStorageData,
+	getTimeSortedEvents,
+} from '../my-schedule/eventFunctions';
 import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
 
@@ -19,13 +27,27 @@ function App() {
 		title: '',
 		link: '',
 	});
+	function triggerModal(title: string, link: string) {
+		setShowShareModal(true);
+		setShareEventObject({
+			title: title,
+			link: link,
+		});
+	}
 	const [isVisible, setIsVisible] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const [posts, setPosts] = useState<SortedEventsObject | PrettyEventData[]>(
-		[]
-	);
+	const [posts, setPosts] = useState<PrettyEventData[]>([]);
 	const [filters, setFilters] = useState<EventFilters[]>([]);
+	const [selectedFilters, setSelectedFilters] = useState({
+		'Event Types': 'Select Option',
+		Days: 'Select Option',
+		Locations: 'Select Option',
+	});
+	const [mySchedule, setMySchedule] = useState(getLocalStorageData);
 	const [search, setSearch] = useState('');
+	function handleSearchInput({ target }) {
+		setSearch(target.value);
+	}
 	const [cursor, setCursor] = useState<string | undefined>('cursor');
 
 	function doFirstSearch(data) {
@@ -34,9 +56,9 @@ function App() {
 			events.pageInfo.hasNextPage ? events.pageInfo.endCursor : undefined
 		);
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
-			(node: EventPost) => destructureData(node)
+			(node: RawEventPost) => destructureData(node)
 		);
-		const sortedEvents = Object.values(
+		const sortedEvents: PrettyEventData[] = Object.values(
 			getTimeSortedEvents(sortEvents(prettyEvents))
 		).flat();
 		setPosts(sortedEvents);
@@ -66,9 +88,6 @@ function App() {
 		]);
 	}
 
-	function handleSearchInput({ target }) {
-		setSearch(target.value);
-	}
 	/** Handle Search Bar */
 	useEffect(() => {
 		setIsLoading(true);
@@ -113,7 +132,7 @@ function App() {
 						setCursor(undefined);
 					}
 					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						(node: EventPost) => destructureData(node)
+						(node: RawEventPost) => destructureData(node)
 					);
 					const sortedEvents: SortedEventsObject =
 						getTimeSortedEvents(sortEvents(prettyEvents));
@@ -125,11 +144,6 @@ function App() {
 				.catch((err) => console.error(err));
 		}
 	}, [isVisible]);
-	const [selectedFilters, setSelectedFilters] = useState({
-		'Event Types': 'Select Option',
-		Days: 'Select Option',
-		Locations: 'Select Option',
-	});
 	return (
 		<div className="cno-search">
 			<SearchBar
@@ -143,9 +157,8 @@ function App() {
 				{!isLoading ? (
 					<ResultsContainer
 						posts={posts}
+						triggerModal={triggerModal}
 						selectedFilters={selectedFilters}
-						setShowShareModal={setShowShareModal}
-						setShareEventObject={setShareEventObject}
 					/>
 				) : (
 					<LoadingSpinner />
@@ -171,4 +184,9 @@ function App() {
 	);
 }
 const root = document.getElementById('app');
-if (root) createRoot(root).render(<App />);
+if (root)
+	createRoot(root).render(
+		<StrictMode>
+			<App />
+		</StrictMode>
+	);

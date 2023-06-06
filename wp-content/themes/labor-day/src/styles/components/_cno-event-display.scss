@@ -56,7 +56,6 @@
 
 	&__image {
 		@include m.fitMedia(img, $fit: cover);
-		aspect-ratio: 16 / 9;
 		@include m.media-breakpoint-down(lg) {
 			padding: 0;
 			order: 1;
@@ -73,10 +72,11 @@
 		&--title {
 			color: v.$color-grey;
 			font-family: v.$font-pill-gothic;
+			margin-bottom: 0;
 		}
 
 		&--description {
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
 		}
 	}
 
