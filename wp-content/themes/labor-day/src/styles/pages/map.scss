@@ -3,12 +3,29 @@
 @use "../components/checkboxes" as c;
 @use "../components/map/map-svg-style";
 
-.map {
+$size: 100%;
+
+.map-figure {
 	position: relative;
-	$size: 100%;
+	min-height: 170rem;
+
+	img {
+		object-fit: contain;
+		top: 0;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		height: auto;
+	}
 
 	svg {
 		width: $size;
+		z-index: 4;
+		position: absolute;
+	}
+
+	#Street_Labels {
+		z-index: 5;
 	}
 }
 
