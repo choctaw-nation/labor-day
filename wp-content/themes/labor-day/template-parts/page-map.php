@@ -8,7 +8,7 @@ cno_enqueue_page_assets( 'map' );
 /**
  * Create labels out of an array of ids
  *
- * @param array $ids     the ids to create checkboxes for.
+ * @param array $ids the ids to create checkboxes for.
  */
 function cno_create_checkboxes( array $ids ): void {
 	foreach ( $ids as $id ) {

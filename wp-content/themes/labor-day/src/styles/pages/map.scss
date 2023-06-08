@@ -7,7 +7,23 @@ $size: 100%;
 
 .map-figure {
 	position: relative;
-	min-height: 170rem;
+	height: 120vw;
+
+	@include m.media-breakpoint-up(sm) {
+		height: 70rem;
+	}
+	@include m.media-breakpoint-up(md) {
+		height: 90rem;
+	}
+	@include m.media-breakpoint-up(lg) {
+		height: 120rem;
+	}
+	@include m.media-breakpoint-up(xl) {
+		height: 150rem;
+	}
+	@include m.media-breakpoint-up(xxl) {
+		height: 170rem;
+	}
 
 	img {
 		object-fit: contain;
