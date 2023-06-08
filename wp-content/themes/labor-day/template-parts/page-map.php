@@ -4,156 +4,216 @@
  */
 
 cno_enqueue_page_assets( 'map' );
+
+/**
+ * Create labels out of an array of ids
+ *
+ * @param array $ids the ids to create checkboxes for.
+ */
+function cno_create_checkboxes( array $ids ): void {
+	foreach ( $ids as $id ) {
+		$checked = isset( $id['checked'] ) && true === $id['checked'] ? 'checked' : '';
+		if ( 'Misc._Place_Labels' === $id['id'] ) {
+			echo "<div class='map-toggles__layer-toggle' style='visibility:hidden;display:none'  data-id='{$id['id']}'><input type='checkbox' disabled {$checked} data-id='{$id['id']}' /></div>";
+		} else {
+			echo "<div class='map-toggles__layer-toggle' data-id='{$id['id']}'><input type='checkbox'  {$checked} data-id='{$id['id']}' />&nbsp;{$id['label']}</div>";
+		}
+	}
+}
+
 ?>
 <div class="container map-container">
-	<figure class="map">
-		<?php echo file_get_contents( get_theme_file_path( '/images/map.svg' ) ); ?>
+	<figure class="map-figure">
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/base.png'; ?>" />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/5k.png'; ?>" id='5k' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/ampitheater.png'; ?>" id='ampitheater' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/arts-and-crafts.png'; ?>" id='arts-and-crafts' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/cafeteria.png'; ?>" id='cafeteria' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/capitol-museum.png'; ?>" id='capitol-museum' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/chapel.png'; ?>" id='chapel' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/choctaw-village.png'; ?>" id='choctaw-village' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/greenhouse.png'; ?>" id='greenhouse' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/ice-house.png'; ?>" id='ice-house' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/lost-child.png'; ?>" id='lost-child' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/red-warrior-ball-park.png'; ?>" id='red-warrior-ball-park' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/red-warrior-park.png'; ?>" id='red-warrior-park' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/stickball-field.png'; ?>" id='stickball-field' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v2/buildings/veterans-cemetery.png'; ?>" id='veterans-cemetery' />
+		<?php echo file_get_contents( get_theme_file_path( '/images/map-v2/map-icons-v2.svg' ) ); ?>
+		<?php echo file_get_contents( get_theme_file_path( '/images/map-v2/street-labels.svg' ) ); ?>
 	</figure>
 	<div class="legend">
 		<div class="map-toggles__container">
 			<div class="map-toggles__areas">
-				<h3 class="headline">Areas</h3>
+				<h3 class="headline">Buildings & Locations</h3>
 				<div class="map-toggles__area-toggles">
-					<div class='map-toggles__layer-toggle' data-id="Parking">
-						<input type='checkbox' checked data-id="Parking" />&nbsp;Parking
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Tent_Camping">
-						<input type='checkbox' checked data-id="Tent_Camping" />&nbsp;Tent Camping
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="RV_Camping">
-						<input type='checkbox' checked data-id="RV_Camping" />&nbsp;RV Camping
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Culture_History">
-						<input type='checkbox' checked data-id="Culture_History" />&nbsp;Culture & History
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Recreation_Area">
-						<input type='checkbox' checked data-id="Recreation_Area" />&nbsp;Recreation Areas
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Sports_Fields">
-						<input type='checkbox' checked data-id="Sports_Fields" />&nbsp;Sports Fields
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Food_Vendors">
-						<input type='checkbox' checked data-id="Food_Vendors" />&nbsp;Food Vendors
-					</div>
-					<div class='map-toggles__layer-toggle' data-id="Tram">
-						<input type='checkbox' checked data-id="Tram" />&nbsp;Trams
-					</div>
-
+					<?php
+					$area_ids = array(
+						array(
+							'id'      => 'ampitheater',
+							'label'   => 'Ampitheater',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'arts-and-crafts',
+							'label'   => 'Arts & Crafts',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'cafeteria',
+							'label'   => 'Cafeteria',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'capitol-museum',
+							'label'   => 'Capitol Museum',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'chapel',
+							'label'   => 'Chapel',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'choctaw-village',
+							'label'   => 'Choctaw Village',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'greenhouse',
+							'label'   => 'Greenhouse',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'ice-house',
+							'label'   => 'Ice House',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'lost-child',
+							'label'   => 'Lost Child',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'red-warrior-ball-park',
+							'label'   => 'Red Warrior Ball Park',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'red-warrior-park',
+							'label'   => 'Red Warrior Park',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'stickball-field',
+							'label'   => 'Stickball Field',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'veterans-cemetery',
+							'label'   => 'Veterans Cemetery',
+							'checked' => true,
+						),
+						array(
+							'id'      => 'Tribal_Police',
+							'label'   => 'Tribal Police',
+							'checked' => true,
+						),
+					);
+					cno_create_checkboxes($area_ids);
+					?>
 				</div>
 			</div>
 			<div class="map-toggles__container--icons">
 				<div class="map-toggles__icons">
-					<h3 class="headline">Icons</h3>
+					<h3 class="headline">Key Areas</h3>
 					<div class="map-toggles__area-toggles">
-						<div class='map-toggles__layer-toggle' data-id="Icons" style="display:none;" visibility='hidden'>
-							<input type='checkbox' checked data-id="Icons" disabled />&nbsp;All Icons
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="ATM">
-							<input type='checkbox' data-id="ATM" />&nbsp;ATMs
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Misc">
-							<input type='checkbox' data-id="Misc" />&nbsp;Misc.
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Water_Station">
-							<input type='checkbox' data-id="Water_Station" />&nbsp;Water Stations
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="First_Aid">
-							<input type='checkbox' data-id="First_Aid" />&nbsp;First Aid
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Concession">
-							<input type='checkbox' data-id="Concession" />&nbsp;Concessions
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Ice_box">
-							<input type='checkbox' data-id="Ice_box" />&nbsp;Ice Boxes
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Elderly_Disabled_Pickup">
-							<input type='checkbox' data-id="Elderly_Disabled_Pickup" />&nbsp;Elderly / Disabled Pickup
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Playground">
-							<input type='checkbox' data-id="Playground" />&nbsp;Playgrounds
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Restrooms">
-							<input type='checkbox' data-id="Restrooms" />&nbsp;Restrooms
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Bath_House">
-							<input type='checkbox' data-id="Bath_House" />&nbsp;Bath Houses
-						</div>
-						<div class='map-toggles__layer-toggle' data-id="Wristband_Stations">
-							<input type='checkbox' data-id="Wristband_Stations" />&nbsp;Wristband Stations
-						</div>
+						<?php
+						$key_area_ids = array(
+							array(
+								'id'      => 'Parking',
+								'label'   => 'Parking',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Accessible_Parking',
+								'label'   => 'Accessible Parking',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'RV_Parking',
+								'label'   => 'RV Parking',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Food',
+								'label'   => 'Food',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Information',
+								'label'   => 'Information',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'First_Aid',
+								'label'   => 'First Aid',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Restrooms',
+								'label'   => 'Restrooms',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Misc._Place_Labels',
+								'label'   => 'Misc. Place Labels',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Shower',
+								'label'   => 'Showers',
+							),
+							array(
+								'id'      => 'Water_Station',
+								'label'   => 'Water Stations',
+							),
+							array(
+								'id'      => 'Concession_Stands',
+								'label'   => 'Concession Stands',
+							),
+							array(
+								'id'      => 'Tent_Camping',
+								'label'   => 'Tent Camping',
+							),
+							array(
+								'id'      => 'ATM',
+								'label'   => 'ATMs',
+							),
+						);
+						cno_create_checkboxes($key_area_ids);
+						?>
 					</div>
 				</div>
 			</div>
 			<div class="map-toggles__container--locations">
 				<div class="map-toggles__locations">
-					<h3 class="headline">Location Labels</h3>
+					<h3 class="headline">Labels</h3>
 					<div class="map-toggles__area-toggles">
-						<div class='map-toggles__layer-toggle' data-id="Number_Labels" visibility='hidden' style="display:none;">
-							<input type='checkbox' data-id="Number_Labels" disabled />&nbsp;All Locations
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_1">
-							<input type="checkbox" data-id="_1" name="Chapel" id="chapel" />&nbsp;1.) Chapel
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_2">
-							<input type="checkbox" data-id="_2" name="Greenhouse" id="greenhouse" />&nbsp;2.) Greenhouse
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_3">
-							<input type="checkbox" data-id="_3" name="Lost Child" id="lost-child" />&nbsp;3.) Lost Child
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_4">
-							<input type="checkbox" data-id="_4" name="Veterans Memorial" id="veterans-memorial" />&nbsp;4.) Veterans Memorial
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_5">
-							<input type="checkbox" data-id="_5" name="Capitol Museum" id="capitol-museum" />&nbsp;5.) Capitol / Museum
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_6">
-							<input type="checkbox" data-id="_6" name="Council Building" id="council-building" />&nbsp;6.) Council Building
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_7">
-							<input type="checkbox" data-id="_7" name="Volleyball" id="volleyball" />&nbsp;7.) Volleyball
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_8">
-							<input type="checkbox" data-id="_8" name="Basketball Cornhole" id="basketball-cornhole" />&nbsp;8.) Basketball /Cornhole
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_9">
-							<input type="checkbox" data-id="_9" name="Horseshoes" id="horseshoes" />&nbsp;9.) Horseshoes
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_10">
-							<input type="checkbox" data-id="_10" name="Information" id="information" />&nbsp;10.) Information
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_11">
-							<input type="checkbox" data-id="_11" name="Membership" id="membership" />&nbsp;11.) Membership
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_12">
-							<input type="checkbox" data-id="_12" name="Cafeteria" id="cafeteria" />&nbsp;12.) Cafeteria
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_13">
-							<input type="checkbox" data-id="_13" name="Education" id="education" />&nbsp;13.) Education
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_14">
-							<input type="checkbox" data-id="_14" name="Choctaw Store" id="choctaw-store" />&nbsp;14.) Choctaw Store
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_15">
-							<input type="checkbox" data-id="_15" name="Snow Cones" id="snow-cones" />&nbsp;15.) Snow Cones
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_16">
-							<input type="checkbox" data-id="_16" name="Arts and Crafts" id="arts-and-crafts" />&nbsp;16.) Arts &amp; Crafts
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_17">
-							<input type="checkbox" data-id="_17" name="Ampitheatre" id="ampitheatre" />&nbsp;17.) Ampitheatre
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_18">
-							<input type="checkbox" data-id="_18" name="Headstart Daycare" id="headstart-daycare" />&nbsp;18.) Headstart / Daycare
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_19">
-							<input type="checkbox" data-id="_19" name="Ice House" id="ice-house" />&nbsp;19.) Ice House
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_20">
-							<input type="checkbox" data-id="_20" name="Healthy Living Expo" id="healthy-living-expo" />&nbsp;20.) Healthy Living Expo
-						</div>
-						<div class="map-toggles__layer-toggle" data-id="_21">
-							<input type="checkbox" data-id="_21" name="5k Start Finish" id="5k-start-finish" />&nbsp;21.) 5k Start / Finish
-						</div>
+						<?php
+						$label_ids = array(
+							array(
+								'id'      => 'Street_Labels',
+								'label'   => 'Street Names',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Zone_Labels',
+								'label'   => 'Zones',
+							),
+						);
+						cno_create_checkboxes($label_ids);
+						?>
 					</div>
 				</div>
 			</div>
