@@ -11,8 +11,16 @@ get_header();
 ?>
 <main class="site-content">
 	<section class="container my-5">
-		<?php $form = get_field( 'form' ); ?>
-		<?php echo do_shortcode( $form ); ?>
+		<?php
+		if ( ! empty( get_field( 'registration_form' ) ) ) {
+			$form = get_field( 'registration_form' );
+			echo do_shortcode( "[gravityform id={$form} title='true']" );
+		} else {
+			the_title( '<h1>', '</h1>' );
+			$href = get_field( 'external_registration_link' );
+			echo "<a href='{$href}' class='btn__fill--secondary' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
+		}
+		?>
 	</section>
 </main>
 <?php
