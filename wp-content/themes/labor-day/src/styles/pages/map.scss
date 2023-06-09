@@ -7,22 +7,22 @@ $size: 100%;
 
 .map-figure {
 	position: relative;
-	height: 120vw;
+	height: 90vw;
 
 	@include m.media-breakpoint-up(sm) {
-		height: 70rem;
+		height: 51.2rem;
 	}
 	@include m.media-breakpoint-up(md) {
-		height: 90rem;
+		height: 69rem;
 	}
 	@include m.media-breakpoint-up(lg) {
-		height: 120rem;
+		height: 92rem;
 	}
 	@include m.media-breakpoint-up(xl) {
-		height: 150rem;
+		height: 110rem;
 	}
 	@include m.media-breakpoint-up(xxl) {
-		height: 170rem;
+		height: 128rem;
 	}
 
 	img {
@@ -33,15 +33,28 @@ $size: 100%;
 		width: 100%;
 		height: auto;
 	}
+	#rv {
+		z-index: 4;
+	}
 
 	svg {
 		width: $size;
-		z-index: 4;
 		position: absolute;
+		z-index: 2;
+	}
+}
+
+.map {
+	&__base {
+		z-index: 1;
+
+		&--buildings {
+			z-index: 2;
+		}
 	}
 
-	#Street_Labels {
-		z-index: 5;
+	&__building {
+		z-index: 2;
 	}
 }
 
@@ -59,14 +72,16 @@ $size: 100%;
 .map-toggles {
 	&__container {
 		padding: 1rem;
-		&--icons {
+
+		&--areas {
 			@extend %container-spacing;
 		}
 	}
 
-	&__areas {
+	&__buildings {
 		@extend %container-spacing;
 	}
+
 	&__layer-toggle {
 		cursor: pointer;
 		@include m.displayFlex($cross: center);
@@ -79,6 +94,14 @@ $size: 100%;
 	&__area-toggles {
 		display: grid;
 		gap: 1rem;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(2, 1fr);
+
+		@include m.media-breakpoint-up(md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@include m.media-breakpoint-up(lg) {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
 }

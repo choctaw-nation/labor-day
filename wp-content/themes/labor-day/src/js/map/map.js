@@ -1,68 +1,81 @@
 import '../../styles/pages/map.scss';
 
-/** An Abstract class that provides the child class with its engine. */
+/**
+ * An Abstract class that provides the child class with its engine.
+ */
 class MapControls {
-	/** Attaches the two eventListeners to the approriate elements
-	 * @param {NodeList} nodeList the divs & inputs to attach eventListeners to
+	/**
+	 * Attaches the eventListeners to the approriate elements
+	 *
+	 * @param {NodeList} nodeList the labels & inputs to attach eventListeners to
 	 */
 	handleNodeList(nodeList) {
 		nodeList.forEach((node) => {
-			node.addEventListener('click', this.#handleVisibility.bind(this));
 			node.addEventListener('change', ({ target }) => {
-				this.#toggleVisibility(target);
+				this.toggleVisibility(target);
 			});
 		});
 	}
 
-	/** The callback function that calls toggleVisibility */
-	#handleVisibility(ev) {
-		const { target } = ev;
-		const input = target.querySelector('input');
-		if (null === input) return;
-		input.checked = !input.checked;
-		this.#toggleVisibility(target, input);
-	}
 	/** Toggles the visibility of a `g` element
 	 * @param {HTMLElement} target A containing div
 	 * @param {HTMLElement} input the checkbox element
 	 */
-	#toggleVisibility(target, input = null) {
-		if (null === input) {
-			const el = document.getElementById(target.dataset.id);
-			el.style.visibility = target.checked ? 'visible' : 'hidden';
-		} else {
-			const el = document.getElementById(target.dataset.id);
-			el.style.visibility = input.checked ? 'visible' : 'hidden';
-		}
+	toggleVisibility(target) {
+		const el = document.getElementById(target.dataset.id);
+		el.style.visibility = target.checked ? 'visible' : 'hidden';
 	}
 }
 
-/** The class that grabs DOM elements and calls the appropriate method. */
+/**
+ * The class that grabs DOM elements and calls the appropriate method.
+ */
 class MapController extends MapControls {
 	constructor() {
 		super();
-		this.#handleLayers();
-		this.#handleIcons();
-		this.#handleLocations();
+		this.handleLayerVisibility(['buildings', 'icons', 'locations']);
+		this.#toggleAll();
 	}
-	/** Control the map's visible layers */
-	#handleLayers() {
-		const layerToggleDivs = document.querySelectorAll(
-			'.map-toggles__areas .map-toggles__layer-toggle'
-		);
-		this.handleNodeList(layerToggleDivs);
+
+	/** Accepts an array of strings that finish the BEM class to select
+	 *
+	 * @param {array} selectors - the class ending to inject.
+	 */
+	handleLayerVisibility(selectors) {
+		selectors.forEach((selector) => this.#controlLayerVisibility(selector));
 	}
-	#handleIcons() {
-		const iconToggles = document.querySelectorAll(
-			'.map-toggles__icons .map-toggles__layer-toggle'
+
+	/** Injects the class, selects the elements, and calls `handleNodeList()`
+	 *
+	 * @param {string} selector - the string to inject into \`.map-toggles__${selector} input:not(.toggle-all)\`
+	 */
+	#controlLayerVisibility(selector) {
+		const layer = document.querySelectorAll(
+			`.map-toggles__${selector} input:not(.toggle-all)`
 		);
-		this.handleNodeList(iconToggles);
+		if (!layer) return;
+		this.handleNodeList(layer);
 	}
-	#handleLocations() {
-		const locationToggles = document.querySelectorAll(
-			'.map-toggles__locations .map-toggles__layer-toggle'
-		);
-		this.handleNodeList(locationToggles);
+
+	/** Controls the toggling of all checkboxes in a section */
+	#toggleAll() {
+		const toggleAllBoxes = document.querySelectorAll('.toggle-all');
+
+		toggleAllBoxes.forEach((el) => {
+			el.addEventListener('change', (ev) => {
+				const { target } = ev;
+				if (!target) return;
+
+				const selector = ev.target.dataset.selector;
+				const checkboxes = document.querySelectorAll(
+					`.map-toggles__${selector} input:not(.toggle-all)`
+				);
+				checkboxes.forEach((input) => {
+					input.checked = !input.checked;
+					this.toggleVisibility(input);
+				});
+			});
+		});
 	}
 }
 const map = new MapController();
