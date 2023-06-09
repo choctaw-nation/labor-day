@@ -44,7 +44,9 @@ function cno_create_checkboxes( array $ids ): void {
 			<div class="map-toggles__buildings">
 				<h3 class="headline">Buildings & Locations</h3>
 				<div class="map-toggles__area-toggles">
-					<label class='map-toggles__layer-toggle'><input type='checkbox' data-selector="buildings" class="toggle-all" />&nbsp;Toggle All</label>
+					<label class='map-toggles__layer-toggle'>
+						<input type='checkbox' data-selector="buildings" class="toggle-all" />&nbsp;Toggle All
+					</label>
 					<?php
 					$area_ids = array(
 						array(
@@ -131,7 +133,9 @@ function cno_create_checkboxes( array $ids ): void {
 				<div class="map-toggles__icons">
 					<h3 class="headline">Key Areas</h3>
 					<div class="map-toggles__area-toggles">
-						<label class='map-toggles__layer-toggle'><input type='checkbox' data-selector="icons" class="toggle-all" />&nbsp;Toggle All</label>
+						<label class='map-toggles__layer-toggle'>
+							<input type='checkbox' data-selector="icons" class="toggle-all" />&nbsp;Toggle All
+						</label>
 						<?php
 						$key_area_ids = array(
 							array(
@@ -182,11 +186,6 @@ function cno_create_checkboxes( array $ids ): void {
 							array(
 								'id'      => 'Water_Station',
 								'label'   => 'Water Stations',
-								'checked' => true,
-							),
-							array(
-								'id'      => 'Concession_Stands',
-								'label'   => 'Concession Stands',
 								'checked' => true,
 							),
 							array(
@@ -249,7 +248,9 @@ function cno_create_checkboxes( array $ids ): void {
 				<div class="map-toggles__locations">
 					<h3 class="headline">Labels</h3>
 					<div class="map-toggles__area-toggles">
-						<label class='map-toggles__layer-toggle'><input type='checkbox' data-selector="locations" class="toggle-all" />&nbsp;Toggle All</label>
+						<label class='map-toggles__layer-toggle'>
+							<input type='checkbox' data-selector="locations" class="toggle-all" />&nbsp;Toggle All
+						</label>
 						<?php
 						$label_ids = array(
 							array(

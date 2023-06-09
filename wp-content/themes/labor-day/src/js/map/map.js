@@ -17,9 +17,10 @@ class MapControls {
 		});
 	}
 
-	/** Toggles the visibility of a `g` element
+	/**
+	 * Toggles the visibility of a `g` element
+	 *
 	 * @param {HTMLElement} target A containing div
-	 * @param {HTMLElement} input the checkbox element
 	 */
 	toggleVisibility(target) {
 		const el = document.getElementById(target.dataset.id);
@@ -37,7 +38,8 @@ class MapController extends MapControls {
 		this.#toggleAll();
 	}
 
-	/** Accepts an array of strings that finish the BEM class to select
+	/**
+	 * Accepts an array of strings that finish the BEM class to select
 	 *
 	 * @param {array} selectors - the class ending to inject.
 	 */
@@ -57,7 +59,9 @@ class MapController extends MapControls {
 		this.handleNodeList(layer);
 	}
 
-	/** Controls the toggling of all checkboxes in a section */
+	/**
+	 * Controls the toggling of all checkboxes in a section.
+	 */
 	#toggleAll() {
 		const toggleAllBoxes = document.querySelectorAll('.toggle-all');
 
@@ -66,7 +70,7 @@ class MapController extends MapControls {
 				const { target } = ev;
 				if (!target) return;
 
-				const selector = ev.target.dataset.selector;
+				const selector = target.dataset.selector;
 				const checkboxes = document.querySelectorAll(
 					`.map-toggles__${selector} input:not(.toggle-all)`
 				);
