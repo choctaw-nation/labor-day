@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from '@wordpress/element';
-export default function Intersector({ setIsVisible }) {
+export default function Intersector({ dispatch }) {
 	const targetRef = useRef(null);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach((entry) => {
-				setIsVisible(entry.isIntersecting);
+				dispatch({
+					type: 'intersecting',
+					payload: entry.isIntersecting,
+				});
 			});
 		});
 		if (targetRef.current) {

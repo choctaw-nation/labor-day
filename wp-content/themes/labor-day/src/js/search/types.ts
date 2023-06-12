@@ -1,4 +1,9 @@
-import { EventType, EventLocation } from './types/eventFilters';
+import {
+	EventType,
+	EventLocation,
+	EventFilters,
+	selectedFilterObject,
+} from './types/eventFilters';
 
 /**
  * Set in the Global scope with PHP and the Wordpress `localize_script` method
@@ -13,6 +18,7 @@ export type EventInfo = {
 		startTime: string;
 	};
 };
+
 /** The raw structure of an event post type */
 export type RawEventPost = {
 	eventLocations: {
@@ -43,6 +49,7 @@ export type RawEventPost = {
 		nodes: EventType[];
 	};
 };
+
 /** The Formatted Event Post Type Data */
 export interface PrettyEventData {
 	locations?: EventLocation[];
@@ -53,6 +60,7 @@ export interface PrettyEventData {
 	event_info: EventInfo;
 	featuredImage?: featuredImage | null;
 }
+
 export type featuredImage = {
 	altText: string;
 	srcSet: string;
@@ -61,6 +69,7 @@ export type featuredImage = {
 	};
 	sizes: string;
 };
+
 type sizes = {
 	height: string;
 	width: string;
@@ -76,4 +85,19 @@ export interface SortedEventsObject {
 	friday: PrettyEventData[];
 	saturday: PrettyEventData[];
 	sunday: PrettyEventData[];
+}
+
+export interface searchAppState {
+	posts: PrettyEventData[];
+	filters: EventFilters[];
+	selectedFilters: selectedFilterObject;
+	search: string;
+	cursor: string | undefined;
+	showShareModal: boolean;
+	shareEventObject: {
+		title: string;
+		link: string;
+	};
+	isVisible: boolean;
+	canGetPosts: boolean;
 }

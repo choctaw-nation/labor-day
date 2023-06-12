@@ -1,10 +1,17 @@
+// 3rd Party
 import React from '@wordpress/element';
-import { PrettyEventData } from '../types';
+
+// Types
+import { PrettyEventData, EventInfo } from '../../types';
+
+// Components
 import FeaturedImage from './FeaturedImage';
-import { getTheDay } from '../../my-schedule/calendarFunctions';
-import { createExcerpt, TimeHandler } from '../Utilities';
-import { EventInfo } from '../types';
-import { LocationButton, ShareModalButton } from './CNOButtons';
+import { LocationButton, ShareModalButton } from '../CNOButtons';
+
+// Utilities
+import { getTheDay } from '../../../my-schedule/calendarFunctions';
+import { createExcerpt } from '../../Utilities/Utilities';
+import TimeHandler from '../../Utilities/TimeHandler';
 
 const time = new TimeHandler();
 
@@ -18,9 +25,10 @@ function getTheClass(extendedClass: string | undefined): string {
 export default function SinglePost({
 	data,
 	extendedClass,
-	triggerModal,
 	children,
+	dispatch,
 }: {
+	dispatch: Function;
 	data: PrettyEventData;
 	children?: JSX.Element;
 	triggerModal?: Function;
@@ -31,11 +39,7 @@ export default function SinglePost({
 		<article className={getTheClass(extendedClass)}>
 			<EventTimeBanner event_info={event_info} />
 			{featuredImage && <FeaturedImage featuredImage={featuredImage} />}
-			<CNOEventInfo
-				data={data}
-				triggerModal={triggerModal}
-				children={children}
-			/>
+			<CNOEventInfo data={data} dispatch={dispatch} children={children} />
 		</article>
 	);
 }
@@ -82,7 +86,7 @@ function EventContent({ title, description }) {
 	);
 }
 
-function CNOEventInfo({ data, triggerModal, children }) {
+function CNOEventInfo({ data, dispatch, children }) {
 	const { locations, title, event_info, link } = data;
 	return (
 		<div className="cno-event__info col-lg-7">
@@ -95,7 +99,7 @@ function CNOEventInfo({ data, triggerModal, children }) {
 					/>
 				)}
 				<ShareModalButton
-					triggerModal={triggerModal}
+					dispatch={dispatch}
 					title={title}
 					link={link}
 				/>

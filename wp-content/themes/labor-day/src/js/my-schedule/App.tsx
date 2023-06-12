@@ -1,9 +1,15 @@
+// 3rd Party
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
+
+// Types
+import { SortedEventsObject, PrettyEventData } from '../search/types';
+
+// Components
 import EventsDisplay from './EventDisplay';
-import { SortedEventsObject } from '../search/types';
 import LoadingSpinner from '../spinner';
+
+// Utilities
 import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
-import { PrettyEventData } from '../search/types';
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
