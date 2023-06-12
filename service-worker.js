@@ -1,17 +1,35 @@
 // service-worker.js
 if ('serviceWorker' in navigator) {
 	window.addEventListener('load', function () {
-		navigator.serviceWorker
-			.register('service-worker.js')
-			.then(function (registration) {
-				console.log(
-					'Service Worker registered with scope:',
-					registration.scope
-				);
-			})
-			.catch(function (error) {
-				console.error('Service Worker registration failed:', error);
-			});
+		navigator.serviceWorker.getRegistration().then((registration) => {
+			if (registration) {
+				registration
+					.unregister()
+					.then(() => {
+						console.log('Service worker unregistered');
+					})
+					.catch((error) => {
+						console.error(
+							'Failed to unregister service worker:',
+							error
+						);
+					});
+			} else {
+				console.log('No service worker registered');
+			}
+		});
+
+		// 	navigator.serviceWorker
+		// 		.register('service-worker.js')
+		// 		.then(function (registration) {
+		// 			console.log(
+		// 				'Service Worker registered with scope:',
+		// 				registration.scope
+		// 			);
+		// 		})
+		// 		.catch(function (error) {
+		// 			console.error('Service Worker registration failed:', error);
+		// 		});
 	});
 }
 const distFileRoot = '/wp-content/themes/labor-day/dist';
