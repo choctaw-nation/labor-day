@@ -3,10 +3,16 @@ import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
 
 // React + 3rd Parties
-import React, { useEffect, createRoot, useReducer } from '@wordpress/element';
+import React, {
+	useEffect,
+	createRoot,
+	useReducer,
+	useState,
+} from '@wordpress/element';
+import Fuse from 'fuse.js';
 
 // Types
-import { searchAppState } from './types';
+import { PrettyEventData, RawEventPost, searchAppState } from './types';
 
 // Components
 import LoadingSpinner from '../spinner';
@@ -21,10 +27,14 @@ import SearchBarContainer from './Presentational/Search Bar/SearchBarContainer';
 import reducer from './Utilities/reducer';
 import model from '../add-to-schedule/model';
 import view from '../add-to-schedule/view';
+import Model from './Model';
 import {
-	useSearchPosts,
-	useGetMorePosts,
-} from './Utilities/CustomHooks/SearchHooks';
+	destructureData,
+	sortEvents,
+	fuzzySearchKeys,
+} from './Utilities/Utilities';
+import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+import { useSearchPosts } from './Utilities/CustomHooks/SearchHooks';
 
 export const initialState: searchAppState = {
 	posts: [],
@@ -73,8 +83,10 @@ export const initialState: searchAppState = {
 };
 
 function App() {
+	const [isLoading, setIsLoading] = useState(false);
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const {
+		posts,
 		showShareModal,
 		shareEventObject,
 		search,
@@ -85,12 +97,33 @@ function App() {
 		selectedFilters,
 	} = state;
 
-	const { isLoading, posts } = useSearchPosts(search, dispatch);
-	// const morePosts = useGetMorePosts(cursor, isVisible, dispatch);
+	// function doFirstSearch(data) {
+	// 	const { events } = data;
+	// 	dispatch({
+	// 		type: 'updateCursor',
+	// 		payload: events.pageInfo.hasNextPage
+	// 			? events.pageInfo.endCursor
+	// 			: undefined,
+	// 	});
+	// 	const prettyEvents: PrettyEventData[] = events.nodes.map(
+	// 		(node: RawEventPost) => destructureData(node)
+	// 	);
+	// 	const sortedEvents: PrettyEventData[] = Object.values(
+	// 		getTimeSortedEvents(sortEvents(prettyEvents))
+	// 	).flat();
+	// 	dispatch({ type: 'updatePosts', payload: sortedEvents });
+	// 	dispatch({ type: 'setFilters', payload: data });
+	// }
+
+	/** Handle Search */
+	useEffect(() => {
+		setIsLoading(() => useSearchPosts(search, posts, dispatch));
+	}, [search]);
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
 		if (cursor && isVisible) {
+			console.log('getting more posts!');
 			Model.getPosts(cursor)
 				.then((data) => {
 					if (undefined === data) return;
@@ -106,13 +139,18 @@ function App() {
 							payload: undefined,
 						});
 					}
-					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						(node: RawEventPost) => destructureData(node)
+					const prettyEvents = events.nodes.map((node) =>
+						destructureData(node)
 					);
-					const sortedEvents: SortedEventsObject =
-						getTimeSortedEvents(sortEvents(prettyEvents));
-					setPosts((prev) => {
-						return [...prev, ...Object.values(sortedEvents).flat()];
+					const sortedEvents = getTimeSortedEvents(
+						sortEvents(prettyEvents)
+					);
+					// setPosts((prev) => {
+					// 	return [...prev, ...Object.values(sortedEvents).flat()];
+					// });
+					dispatch({
+						type: 'updatePosts',
+						payload: Object.values(sortedEvents).flat(),
 					});
 					dispatch({ type: 'intersecting', payload: false });
 				})

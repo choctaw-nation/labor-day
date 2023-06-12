@@ -9,6 +9,16 @@ export default function reducer(
 	action
 ): searchAppState | void {
 	switch (action.type) {
+		case 'setPosts':
+			return {
+				...state,
+				posts: action.payload,
+			};
+		case 'updatePosts':
+			return {
+				...state,
+				posts: [...state.posts, ...action.payload],
+			};
 		case 'resetSelectedFilters':
 			return {
 				...state,
