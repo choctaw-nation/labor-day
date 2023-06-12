@@ -143,7 +143,6 @@ function App() {
 					type: 'setPosts',
 					payload: results.map((result) => result.item),
 				});
-				// setPosts(results.map((result) => result.item));
 				setIsLoading(false);
 			}, 350);
 			return () => clearTimeout(timeout);
