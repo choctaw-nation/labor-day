@@ -1,5 +1,9 @@
+// 3rd Party
 import React from '@wordpress/element';
-import { featuredImage } from '../types';
+
+// Types
+import { featuredImage } from '../../types';
+
 export default function FeaturedImage({
 	featuredImage,
 }: {

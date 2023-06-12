@@ -1,4 +1,4 @@
-import { destructureData } from '../search/Utilities';
+import { destructureData } from '../search/Utilities/Utilities';
 import { RawEventPost, PrettyEventData } from '../search/types';
 import { SortedEventsObject } from '../search/types';
 declare const cnoSiteData: { rootUrl: string };

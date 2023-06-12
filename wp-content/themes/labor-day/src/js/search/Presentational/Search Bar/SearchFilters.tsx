@@ -1,24 +1,15 @@
 import React from '@wordpress/element';
-import { EventFilters, selectedFilterObject } from '../types/eventFilters';
+import { EventFilters, selectedFilterObject } from '../../types/eventFilters';
 
 export default function SearchFilters({
 	filters,
 	selectedFilters,
-	setSelectedFilters,
+	dispatch,
 }: {
 	filters: EventFilters[];
 	selectedFilters: selectedFilterObject;
-	setSelectedFilters: Function;
+	dispatch: Function;
 }) {
-	function handleDropdownItemClick(categoryName: string, filterName: string) {
-		setSelectedFilters((prevSelectedFilters) => {
-			const newFilters = {
-				...prevSelectedFilters,
-				[categoryName]: filterName,
-			};
-			return newFilters;
-		});
-	}
 	return (
 		<div className="cno-event-search-filters">
 			{filters.map(({ type: { name, filters } }) => (
@@ -45,10 +36,12 @@ export default function SearchFilters({
 										key={i}
 										role="button"
 										onClick={() =>
-											handleDropdownItemClick(
-												name,
-												filter.name
-											)
+											dispatch({
+												type: 'selectFilter',
+												payload: {
+													[name]: filter.name,
+												},
+											})
 										}
 									>
 										{filter.name}

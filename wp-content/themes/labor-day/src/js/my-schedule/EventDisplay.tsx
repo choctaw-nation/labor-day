@@ -1,14 +1,19 @@
 import React from '@wordpress/element';
-import { SortedEventsObject } from '../search/types';
-import { downloadICSFile } from './calendarFunctions';
-import { PrettyEventData } from '../search/types';
-import SinglePost from '../search/Presentational/SinglePost';
-import { createExcerpt } from '../search/Utilities';
+
+// Types
+import { SortedEventsObject, PrettyEventData } from '../search/types';
+
+// Components
+import SinglePost from '../search/Presentational/Posts/SinglePost';
 import {
 	ExportToCalendar,
 	ReadMoreButton,
 	RemoveFromSchedule,
 } from '../search/Presentational/CNOButtons';
+
+// Utilities
+import { createExcerpt } from '../search/Utilities/Utilities';
+import { downloadICSFile } from './calendarFunctions';
 
 export default function EventsDisplay({
 	schedule,

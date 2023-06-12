@@ -47,12 +47,15 @@ export function ExportToCalendar({ handleClick, eventId }) {
 	);
 }
 
-export function ShareModalButton({ triggerModal, title, link }) {
+export function ShareModalButton({ dispatch, title, link }) {
 	return (
 		<div
 			className="cno-event__buttons--share"
 			onClick={() => {
-				triggerModal(title, link);
+				dispatch({
+					type: 'triggerModal',
+					payload: { title: title, link: link },
+				});
 			}}
 		>
 			<FontAwesomeIcon icon={['fas', 'share']} />

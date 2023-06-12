@@ -1,127 +1,92 @@
+// Styles
 import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
-import React, { useState, useEffect, createRoot } from '@wordpress/element';
+
+// React + 3rd Parties
+import React, { useEffect, createRoot, useReducer } from '@wordpress/element';
+
+// Types
+import { searchAppState } from './types';
+
+// Components
 import LoadingSpinner from '../spinner';
-import Model from './Model';
-import SearchBar from './Components/SearchBar';
-import ResultsContainer from './Presentational/ResultsContainer';
-import { RawEventPost, PrettyEventData, SortedEventsObject } from './types';
-import { EventFilters } from './types/eventFilters';
-import Fuse from 'fuse.js';
-import { destructureData, fuzzySearchKeys, sortEvents } from './Utilities';
-import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
+import ResultsContainer from './Presentational/Search Bar/ResultsContainer';
 import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
+import SearchInput from './Presentational/Search Bar/SearchInput';
+import SearchFiltersContainer from './Presentational/Search Bar/SearchFiltersContainer';
+import SearchBarContainer from './Presentational/Search Bar/SearchBarContainer';
+
+// Utilities
+import reducer from './Utilities/reducer';
 import model from '../add-to-schedule/model';
 import view from '../add-to-schedule/view';
+import {
+	useSearchPosts,
+	useGetMorePosts,
+} from './Utilities/CustomHooks/SearchHooks';
 
-function App() {
-	const [showShareModal, setShowShareModal] = useState(false);
-	const [shareEventObject, setShareEventObject] = useState({
-		title: '',
-		link: '',
-	});
-	function triggerModal(title: string, link: string) {
-		setShowShareModal(true);
-		setShareEventObject({
-			title: title,
-			link: link,
-		});
-	}
-	const [isVisible, setIsVisible] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
-	const [posts, setPosts] = useState<PrettyEventData[]>([]);
-
-	function showFloatingSchedule() {
-		const schedule = model.getSchedule();
-		if (!schedule) return;
-		if (Object.values(schedule).flat().length > 0) {
-			view.showScheduleButton();
-		}
-	}
-	const [filters, setFilters] = useState<EventFilters[]>([]);
-	const [selectedFilters, setSelectedFilters] = useState({
+export const initialState: searchAppState = {
+	posts: [],
+	filters: [
+		{
+			type: {
+				name: 'Event Types',
+				filters: [],
+			},
+		},
+		{
+			type: {
+				name: 'Locations',
+				filters: [],
+			},
+		},
+		{
+			type: {
+				name: 'Days',
+				filters: [
+					{ name: 'Friday', dayId: 1 },
+					{ name: 'Saturday', dayId: 2 },
+					{ name: 'Sunday', dayId: 3 },
+				],
+			},
+		},
+	],
+	selectedFilters: {
 		'Event Types': 'Select Option',
 		Days: 'Select Option',
 		Locations: 'Select Option',
-	});
-	const [search, setSearch] = useState('');
-	function handleSearchInput({ target }) {
-		setSearch(target.value);
-	}
-	const [cursor, setCursor] = useState<string | undefined>('cursor');
+	},
+	search: '',
+	cursor: 'cursor',
+	showShareModal: false,
+	shareEventObject: {
+		title: '',
+		link: '',
+	},
+	isVisible: false,
+	canGetPosts: (() => {
+		const now = new Date();
+		const end = new Date('September 3, 2023');
+		return now < end;
+	})(),
+};
 
-	function doFirstSearch(data) {
-		const { eventLocations, eventTypes, events } = data;
-		setCursor(
-			events.pageInfo.hasNextPage ? events.pageInfo.endCursor : undefined
-		);
-		const prettyEvents: PrettyEventData[] = events.nodes.map(
-			(node: RawEventPost) => destructureData(node)
-		);
-		const sortedEvents: PrettyEventData[] = Object.values(
-			getTimeSortedEvents(sortEvents(prettyEvents))
-		).flat();
-		setPosts(sortedEvents);
-		setFilters([
-			{
-				type: {
-					name: 'Event Types',
-					filters: [...eventTypes.nodes],
-				},
-			},
-			{
-				type: {
-					name: 'Locations',
-					filters: [...eventLocations.nodes],
-				},
-			},
-			{
-				type: {
-					name: 'Days',
-					filters: [
-						{ name: 'Friday', dayId: 1 },
-						{ name: 'Saturday', dayId: 2 },
-						{ name: 'Sunday', dayId: 3 },
-					],
-				},
-			},
-		]);
-	}
+function App() {
+	const [state, dispatch] = useReducer(reducer, initialState);
+	const {
+		showShareModal,
+		shareEventObject,
+		search,
+		isVisible,
+		cursor,
+		canGetPosts,
+		filters,
+		selectedFilters,
+	} = state;
 
-	/** On First Render, showFloatingSchedule */
-	useEffect(() => showFloatingSchedule(), []);
-
-	/** Handle Search Bar */
-	useEffect(() => {
-		setIsLoading(true);
-		if ('' === search) {
-			Model.getPosts()
-				.then((data) => {
-					if (undefined === data) return;
-					doFirstSearch(data);
-					setIsLoading(false);
-				})
-				.catch((err) => console.error(err));
-		} else {
-			const timeout = setTimeout(() => {
-				const searchOptions = {
-					...fuzzySearchKeys,
-					minMatchCharLength: 3,
-					includeScore: true,
-					threshold: 0.3,
-				};
-				const fuse = new Fuse(
-					Object.values(posts).flat(),
-					searchOptions
-				);
-				const results = fuse.search(search);
-				setPosts(results.map((result) => result.item));
-				setIsLoading(false);
-			}, 350);
-			return () => clearTimeout(timeout);
-		}
-	}, [search]);
+	const { isLoading, posts } = useSearchPosts(search, dispatch);
+	// const morePosts = useGetMorePosts(cursor, isVisible, dispatch);
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
@@ -131,9 +96,15 @@ function App() {
 					if (undefined === data) return;
 					const { events } = data;
 					if (events.pageInfo.hasNextPage) {
-						setCursor(events.pageInfo.endCursor);
+						dispatch({
+							type: 'updateCursor',
+							payload: events.pageInfo.endCursor,
+						});
 					} else {
-						setCursor(undefined);
+						dispatch({
+							type: 'updateCursor',
+							payload: undefined,
+						});
 					}
 					const prettyEvents: PrettyEventData[] = events.nodes.map(
 						(node: RawEventPost) => destructureData(node)
@@ -143,18 +114,21 @@ function App() {
 					setPosts((prev) => {
 						return [...prev, ...Object.values(sortedEvents).flat()];
 					});
-					setIsVisible(false);
+					dispatch({ type: 'intersecting', payload: false });
 				})
 				.catch((err) => console.error(err));
 		}
 	}, [isVisible]);
 
-	/** */
-	const [canGetPosts] = useState(function () {
-		const now = new Date();
-		const end = new Date('September 3, 2023');
-		return now < end;
-	});
+	/** On First Render, show floating schedule button */
+	useEffect(() => {
+		const schedule = model.getSchedule();
+		if (!schedule) return;
+		if (Object.values(schedule).flat().length > 0) {
+			view.showScheduleButton();
+		}
+	}, []);
+
 	if (!canGetPosts) {
 		return (
 			<div className="container">
@@ -167,25 +141,26 @@ function App() {
 	} else
 		return (
 			<div className="cno-search">
-				<SearchBar
-					filters={filters}
-					search={search}
-					selectedFilters={selectedFilters}
-					setSelectedFilters={setSelectedFilters}
-					handleSearchInput={handleSearchInput}
-				/>
+				<SearchBarContainer>
+					<SearchInput dispatch={dispatch} search={search} />
+					<SearchFiltersContainer
+						dispatch={dispatch}
+						selectedFilters={selectedFilters}
+						filters={filters}
+					/>
+				</SearchBarContainer>
 				<div className="container">
-					{!isLoading ? (
+					{isLoading ? (
+						<LoadingSpinner />
+					) : (
 						<ResultsContainer
+							dispatch={dispatch}
 							posts={posts}
-							triggerModal={triggerModal}
 							selectedFilters={selectedFilters}
 						/>
-					) : (
-						<LoadingSpinner />
 					)}
 				</div>
-				<Intersector setIsVisible={setIsVisible} />
+				<Intersector dispatch={dispatch} />
 				{isVisible && cursor ? (
 					<div className="container load-more-container">
 						<LoadingSpinner />
@@ -195,10 +170,9 @@ function App() {
 						End of Results.
 					</div>
 				)}
-
 				<ShareModal
+					dispatch={dispatch}
 					showShareModal={showShareModal}
-					setShowShareModal={setShowShareModal}
 					shareEventObject={shareEventObject}
 				/>
 			</div>
