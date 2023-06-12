@@ -139,7 +139,7 @@ get_header(); ?>
 				'content'      => $subheadline,
 				'cta_text'     => 'Follow On Facebook',
 				'cta_external' => true,
-				'cta_link'     => 'https://www.facebook.com/ChoctawNationLaborDayFestival',
+				'cta_link'     => 'https://chocta.ws/fb-labor-day',
 				'reverse'      => true,
 			);
 			?>
