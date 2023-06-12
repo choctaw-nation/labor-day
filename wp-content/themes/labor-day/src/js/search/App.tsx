@@ -97,33 +97,62 @@ function App() {
 		selectedFilters,
 	} = state;
 
-	// function doFirstSearch(data) {
-	// 	const { events } = data;
-	// 	dispatch({
-	// 		type: 'updateCursor',
-	// 		payload: events.pageInfo.hasNextPage
-	// 			? events.pageInfo.endCursor
-	// 			: undefined,
-	// 	});
-	// 	const prettyEvents: PrettyEventData[] = events.nodes.map(
-	// 		(node: RawEventPost) => destructureData(node)
-	// 	);
-	// 	const sortedEvents: PrettyEventData[] = Object.values(
-	// 		getTimeSortedEvents(sortEvents(prettyEvents))
-	// 	).flat();
-	// 	dispatch({ type: 'updatePosts', payload: sortedEvents });
-	// 	dispatch({ type: 'setFilters', payload: data });
-	// }
+	function doFirstSearch(data) {
+		const { events } = data;
+		dispatch({
+			type: 'updateCursor',
+			payload: events.pageInfo.hasNextPage
+				? events.pageInfo.endCursor
+				: undefined,
+		});
+		const prettyEvents: PrettyEventData[] = events.nodes.map(
+			(node: RawEventPost) => destructureData(node)
+		);
+		const sortedEvents: PrettyEventData[] = Object.values(
+			getTimeSortedEvents(sortEvents(prettyEvents))
+		).flat();
+		dispatch({ type: 'updatePosts', payload: sortedEvents });
+		dispatch({ type: 'setFilters', payload: data });
+	}
 
 	/** Handle Search */
 	useEffect(() => {
-		setIsLoading(() => useSearchPosts(search, posts, dispatch));
+		setIsLoading(true);
+		if ('' === search) {
+			Model.getPosts()
+				.then((data) => {
+					if (undefined === data) return;
+					doFirstSearch(data);
+				})
+				.catch((err) => console.error(err))
+				.finally(() => setIsLoading(false));
+		} else {
+			const timeout = setTimeout(() => {
+				const searchOptions = {
+					...fuzzySearchKeys,
+					minMatchCharLength: 3,
+					includeScore: true,
+					threshold: 0.3,
+				};
+				const fuse = new Fuse(
+					Object.values(posts).flat(),
+					searchOptions
+				);
+				const results = fuse.search(search);
+				dispatch({
+					type: 'setPosts',
+					payload: results.map((result) => result.item),
+				});
+				// setPosts(results.map((result) => result.item));
+				setIsLoading(false);
+			}, 350);
+			return () => clearTimeout(timeout);
+		}
 	}, [search]);
 
 	/** Get More Posts on Scroll */
 	useEffect(() => {
 		if (cursor && isVisible) {
-			console.log('getting more posts!');
 			Model.getPosts(cursor)
 				.then((data) => {
 					if (undefined === data) return;

@@ -10,9 +10,8 @@ import Model from '../../Model';
 import { sortEvents, fuzzySearchKeys, destructureData } from '../Utilities';
 import { getTimeSortedEvents } from '../../../my-schedule/eventFunctions';
 
-export function useSearchPosts(posts, search, dispatch): boolean {
-	const [isLoading, setIsLoading] = useState(false);
-	// const [posts, setPosts] = useState<PrettyEventData[]>([]);
+export function useSearchPosts(currentPosts, search, dispatch) {
+	const [posts, setPosts] = useState<PrettyEventData[]>([]);
 	function doFirstSearch(data) {
 		const { events } = data;
 		dispatch({
@@ -27,21 +26,20 @@ export function useSearchPosts(posts, search, dispatch): boolean {
 		const sortedEvents: PrettyEventData[] = Object.values(
 			getTimeSortedEvents(sortEvents(prettyEvents))
 		).flat();
-		dispatch({ type: 'updatePosts', payload: sortedEvents });
-		// setPosts(sortedEvents);
+
+		// dispatch({ type: 'updatePosts', payload: sortedEvents });
+		setPosts(sortedEvents);
 		dispatch({ type: 'setFilters', payload: data });
 	}
 
 	useEffect(() => {
-		setIsLoading(true);
 		if ('' === search) {
 			Model.getPosts()
 				.then((data) => {
 					if (undefined === data) return;
 					doFirstSearch(data);
 				})
-				.catch((err) => console.error(err))
-				.finally(() => setIsLoading(false));
+				.catch((err) => console.error(err));
 		} else {
 			const timeout = setTimeout(() => {
 				const searchOptions = {
@@ -51,52 +49,47 @@ export function useSearchPosts(posts, search, dispatch): boolean {
 					threshold: 0.3,
 				};
 				const fuse = new Fuse(
-					Object.values(posts).flat(),
+					Object.values(currentPosts).flat(),
 					searchOptions
 				);
 				const results = fuse.search(search);
-				dispatch({
-					type: 'setPosts',
-					payload: results.map((result) => result.item),
-				});
-				// setPosts(results.map((result) => result.item));
-				setIsLoading(false);
+				setPosts(results.map((result) => result.item));
 			}, 350);
 			return () => clearTimeout(timeout);
 		}
 	}, [search]);
 
-	return isLoading;
+	return { posts };
 }
 
-// export function useGetMorePosts(cursor, dispatch) {
-// 	let posts: PrettyEventData[] = [];
-// 	Model.getPosts(cursor)
-// 		.then((data) => {
-// 			if (undefined === data) return;
-// 			const { events } = data;
-// 			if (events.pageInfo.hasNextPage) {
-// 				dispatch({
-// 					type: 'updateCursor',
-// 					payload: events.pageInfo.endCursor,
-// 				});
-// 			} else {
-// 				dispatch({
-// 					type: 'updateCursor',
-// 					payload: undefined,
-// 				});
-// 			}
-// 			const prettyEvents = events.nodes.map((node) =>
-// 				destructureData(node)
-// 			);
-// 			const sortedEvents = getTimeSortedEvents(sortEvents(prettyEvents));
-// 			dispatch({
-// 				type: 'updatePosts',
-// 				payload: Object.values(sortedEvents).flat(),
-// 			});
-// 			dispatch({ type: 'intersecting', payload: false });
-// 		})
-// 		.catch((err) => console.error(err));
+export function useGetMorePosts(cursor, dispatch) {
+	let posts: PrettyEventData[] = [];
+	Model.getPosts(cursor)
+		.then((data) => {
+			if (undefined === data) return;
+			const { events } = data;
+			if (events.pageInfo.hasNextPage) {
+				dispatch({
+					type: 'updateCursor',
+					payload: events.pageInfo.endCursor,
+				});
+			} else {
+				dispatch({
+					type: 'updateCursor',
+					payload: undefined,
+				});
+			}
+			const prettyEvents = events.nodes.map((node) =>
+				destructureData(node)
+			);
+			const sortedEvents = getTimeSortedEvents(sortEvents(prettyEvents));
+			dispatch({
+				type: 'updatePosts',
+				payload: Object.values(sortedEvents).flat(),
+			});
+			dispatch({ type: 'intersecting', payload: false });
+		})
+		.catch((err) => console.error(err));
 
-// 	return posts;
-// }
+	return posts;
+}
