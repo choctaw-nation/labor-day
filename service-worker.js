@@ -14,8 +14,6 @@ if ('serviceWorker' in navigator) {
 							error
 						);
 					});
-			} else {
-				console.log('No service worker registered');
 			}
 		});
 
