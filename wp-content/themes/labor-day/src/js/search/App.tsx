@@ -12,7 +12,7 @@ import React, {
 import Fuse from 'fuse.js';
 
 // Types
-import { PrettyEventData, RawEventPost, searchAppState } from './types';
+import { PrettyEventData, RawEventPost } from './types';
 
 // Components
 import LoadingSpinner from '../spinner';
@@ -24,7 +24,7 @@ import SearchFiltersContainer from './Presentational/Search Bar/SearchFiltersCon
 import SearchBarContainer from './Presentational/Search Bar/SearchBarContainer';
 
 // Utilities
-import reducer from './Utilities/reducer';
+import { reducer, initialState } from './Utilities/reducer';
 import model from '../add-to-schedule/model';
 import view from '../add-to-schedule/view';
 import Model from './Model';
@@ -35,52 +35,6 @@ import {
 } from './Utilities/Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 import { useSearchPosts } from './Utilities/CustomHooks/SearchHooks';
-
-export const initialState: searchAppState = {
-	posts: [],
-	filters: [
-		{
-			type: {
-				name: 'Event Types',
-				filters: [],
-			},
-		},
-		{
-			type: {
-				name: 'Locations',
-				filters: [],
-			},
-		},
-		{
-			type: {
-				name: 'Days',
-				filters: [
-					{ name: 'Friday', dayId: 1 },
-					{ name: 'Saturday', dayId: 2 },
-					{ name: 'Sunday', dayId: 3 },
-				],
-			},
-		},
-	],
-	selectedFilters: {
-		'Event Types': 'Select Option',
-		Days: 'Select Option',
-		Locations: 'Select Option',
-	},
-	search: '',
-	cursor: 'cursor',
-	showShareModal: false,
-	shareEventObject: {
-		title: '',
-		link: '',
-	},
-	isVisible: false,
-	canGetPosts: (() => {
-		const now = new Date();
-		const end = new Date('September 3, 2023');
-		return now < end;
-	})(),
-};
 
 function App() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -173,9 +127,6 @@ function App() {
 					const sortedEvents = getTimeSortedEvents(
 						sortEvents(prettyEvents)
 					);
-					// setPosts((prev) => {
-					// 	return [...prev, ...Object.values(sortedEvents).flat()];
-					// });
 					dispatch({
 						type: 'updatePosts',
 						payload: Object.values(sortedEvents).flat(),

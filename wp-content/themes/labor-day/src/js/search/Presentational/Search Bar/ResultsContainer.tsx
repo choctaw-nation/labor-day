@@ -12,6 +12,7 @@ import { AddToScheduleButton } from '../../Components/AddToScheduleButton';
 
 // Utilities
 import { createExcerpt } from '../../Utilities/Utilities';
+import { initialState } from '../../Utilities/reducer';
 
 // The Component
 export default function ResultsContainer({
@@ -23,9 +24,7 @@ export default function ResultsContainer({
 	selectedFilters: selectedFilterObject;
 	dispatch: Function;
 }) {
-	const emptyFilters = Object.values(selectedFilters).every(
-		(filter) => 'Select Option' === filter
-	);
+	const emptyFilters = initialState.selectedFilters === selectedFilters;
 	return (
 		<section className="cno-events">
 			{posts.map((post: PrettyEventData) => {
@@ -78,5 +77,5 @@ function postMatchesFilters(
  * @returns boolean
  */
 function filterIsEmpty(filter: string): boolean {
-	return filter === 'Select Option';
+	return filter === initialState.selectedFilters[filter];
 }

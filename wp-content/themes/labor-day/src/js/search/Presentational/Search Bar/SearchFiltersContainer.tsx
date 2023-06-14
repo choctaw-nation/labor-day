@@ -6,6 +6,7 @@ import SearchFilters from './SearchFilters';
 
 // Utilities
 import { useShowFilters } from '../../Utilities/CustomHooks';
+import { initialState } from '../../Utilities/reducer';
 
 export default function SearchFiltersContainer({
 	selectedFilters,
@@ -25,11 +26,9 @@ export default function SearchFiltersContainer({
 				>
 					{showFilters ? 'Hide Filters' : 'Show Filters'}
 				</button>
-				{Object.values(selectedFilters).some(
-					(filter) => 'Select Option' !== filter
-				) && (
+				{initialState.selectedFilters !== selectedFilters && (
 					<button
-						className="btn__fill--secondary"
+						className="btn__outline--secondary"
 						onClick={() => {
 							dispatch({ type: 'resetSelectedFilters' });
 						}}
