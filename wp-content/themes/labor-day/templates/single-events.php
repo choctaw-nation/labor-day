@@ -8,11 +8,18 @@ cno_enqueue_page_script( 'singleEvents' );
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
-	<?php
-	if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) :
-		?>
+	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 	<div class="row">
-		<?php get_template_part( 'template-parts/aside', 'breadcrumb' ); ?>
+		<?php
+		get_template_part(
+			'template-parts/aside',
+			'breadcrumb',
+			array(
+				'link' => '/events',
+				'text' => 'Back to All Events',
+			)
+		);
+		?>
 	</div>
 	<?php endif; ?>
 	<article class="cno-event py-5">
