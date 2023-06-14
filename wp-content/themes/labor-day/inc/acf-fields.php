@@ -913,6 +913,27 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					'default_value'     => '',
 					'placeholder'       => '',
 				),
+				array(
+					'key'               => 'field_648a217348834',
+					'label'             => 'Additional Information',
+					'name'              => 'additional_information',
+					'aria-label'        => '',
+					'type'              => 'wysiwyg',
+					'instructions'      => '',
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'show_in_graphql'   => 0,
+					'default_value'     => '',
+					'tabs'              => 'visual',
+					'toolbar'           => 'basic',
+					'media_upload'      => 0,
+					'delay'             => 1,
+				),
 			),
 			'location'                              => array(
 				array(
