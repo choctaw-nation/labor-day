@@ -1,13 +1,53 @@
 // Types
 import { searchAppState } from '../types';
 
-// Utility
-import { initialState } from '../App';
+export const initialState: searchAppState = {
+	posts: [],
+	filters: [
+		{
+			type: {
+				name: 'Event Types',
+				filters: [],
+			},
+		},
+		{
+			type: {
+				name: 'Locations',
+				filters: [],
+			},
+		},
+		{
+			type: {
+				name: 'Days',
+				filters: [
+					{ name: 'Friday', dayId: 1 },
+					{ name: 'Saturday', dayId: 2 },
+					{ name: 'Sunday', dayId: 3 },
+				],
+			},
+		},
+	],
+	selectedFilters: {
+		'Event Types': 'Event Types',
+		Days: 'Days',
+		Locations: 'Locations',
+	},
+	search: '',
+	cursor: 'cursor',
+	showShareModal: false,
+	shareEventObject: {
+		title: '',
+		link: '',
+	},
+	isVisible: false,
+	canGetPosts: (() => {
+		const now = new Date();
+		const end = new Date('September 3, 2023');
+		return now < end;
+	})(),
+};
 
-export default function reducer(
-	state: searchAppState,
-	action
-): searchAppState | void {
+export function reducer(state: searchAppState, action): searchAppState | void {
 	switch (action.type) {
 		case 'setPosts':
 			return {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from '@wordpress/element';
 /** Custom Hook to control Filter Visibility */
 export function useShowFilters() {
 	const [showFilters, setShowFilters] = useState(true);
-	const [windowWidth, setWindowWidth] = useState(0);
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 	useEffect(() => {
 		function handleResize() {
