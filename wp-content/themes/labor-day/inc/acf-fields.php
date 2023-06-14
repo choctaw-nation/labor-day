@@ -1,39 +1,5 @@
 <?php
 /** The ACF Fields */
-// if ( function_exists('acf_add_local_field_group') ):
-
-// acf_add_local_field_group(array(
-// 'key' => 'group_64766140c34ff',
-// 'title' => 'Entertainment',
-// 'fields' => array(
-
-// ),
-// 'location' => array(
-// array(
-// array(
-// 'param' => 'post_type',
-// 'operator' => '==',
-// 'value' => 'events',
-// ),
-// ),
-// ),
-// 'menu_order' => 0,
-// 'position' => 'acf_after_title',
-// 'style' => 'default',
-// 'label_placement' => 'top',
-// 'instruction_placement' => 'label',
-// 'hide_on_screen' => '',
-// 'active' => true,
-// 'description' => '',
-// 'show_in_rest' => 0,
-// 'show_in_graphql' => 0,
-// 'graphql_field_name' => 'entertainment',
-// 'map_graphql_types_from_location_rules' => 0,
-// 'graphql_types' => '',
-// ));
-
-// endif;
-
 
 if ( function_exists( 'acf_add_local_field_group' ) ) :
 	/** Page: Festival Info (FAQs + Giveaways) */

@@ -113,18 +113,14 @@ get_header(); ?>
 			$args = array(
 				'headline'       => 'Map',
 				'content'        => $subheadline,
+				'cta_text'       => 'View Map',
+				'cta_link'       => '/map'
 			);
 			?>
 			<?php
 			if ( isset($image) ) {
 				$args['image_src'] = $image['sizes']['medium_large'];
 				$args['image_alt'] = $image['alt'];
-			}
-			?>
-			<?php 
-			if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) {
-				$args['cta_text'] = 'View Map';
-				$args['cta_link']  = '/map';
 			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
