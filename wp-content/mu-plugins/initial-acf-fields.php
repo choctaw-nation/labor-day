@@ -63,6 +63,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 							'placeholder'       => '',
 							'prepend'           => '',
 							'append'            => '',
+							'new_lines'         => 'br',
 						),
 						array(
 							'key'               => 'field_63e674ea76c3a',
