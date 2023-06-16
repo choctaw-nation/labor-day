@@ -63,8 +63,8 @@ get_header(); ?>
 					'template-parts/content',
 					'featured-events',
 					array(
-						'first'  => 200,
-						'second' => 183,
+						'first'  => 183,
+						'second' => 200,
 					)
 				);
 				?>
