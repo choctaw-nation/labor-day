@@ -44,6 +44,16 @@ extract( get_field( 'info' ) );
 						<strong>End Time: </strong><?php echo $end_time; ?>
 					</div>
 					<?php endif; ?>
+					<div class="cno-event-meta__location">
+						<?php
+						$event_locations = get_the_terms( $post, 'event_location' );
+						if ( ! empty( $event_locations ) && ! is_wp_error( $event_locations ) ) {
+							foreach ( $event_locations as $location ) {
+								echo ' <b>Location:</b> ' . $location->name;
+							}
+						}
+						?>
+					</div>
 				</div>
 				<div class="sidebar__buttons cno-event__buttons">
 					<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
