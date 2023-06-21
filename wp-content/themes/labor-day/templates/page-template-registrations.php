@@ -11,7 +11,7 @@ $additional_info      = acf_esc_html( get_field( 'additional_information' ) );
 get_header();
 ?>
 <main class="site-content">
-	<section class="container my-5 p-0">
+	<section class="container my-5">
 		<div class="row">
 			<?php
 			get_template_part(
