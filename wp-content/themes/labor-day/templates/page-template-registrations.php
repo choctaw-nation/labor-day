@@ -36,7 +36,7 @@ get_header();
 			$form_id = get_field( 'registration_form' );
 			$href    = get_field( 'external_registration_link' );
 			if ( ! empty( $form_id ) && empty( $href ) ) {
-				echo do_shortcode( "[gravityform id={$form} title='false']" );
+				echo do_shortcode( "[gravityform id={$form_id} title='false']" );
 			} elseif ( empty( $form_id ) && ! empty( $href ) ) {
 				echo "<a href='{$href}' class='btn__fill--secondary' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
 			}
