@@ -884,7 +884,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					),
 					'show_in_graphql'   => 0,
 					'return_format'     => 'id',
-					'allow_null'        => 0,
+					'allow_null'        => 1,
 					'multiple'          => 0,
 				),
 				array(

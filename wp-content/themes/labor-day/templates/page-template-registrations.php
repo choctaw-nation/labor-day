@@ -33,11 +33,11 @@ get_header();
 		</div>
 		<div class="row">
 			<?php
-			if ( ! empty( get_field( 'registration_form' ) ) ) {
-				$form = get_field( 'registration_form' );
+			$form_id = get_field( 'registration_form' );
+			$href    = get_field( 'external_registration_link' );
+			if ( ! empty( $form_id ) && empty( $href ) ) {
 				echo do_shortcode( "[gravityform id={$form} title='false']" );
-			} else {
-				$href = get_field( 'external_registration_link' );
+			} elseif ( empty( $form_id ) && ! empty( $href ) ) {
 				echo "<a href='{$href}' class='btn__fill--secondary' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
 			}
 			?>
