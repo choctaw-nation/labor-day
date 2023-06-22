@@ -20,7 +20,7 @@ function cno_create_checkboxes( array $ids ): void {
 ?>
 <div class="container map-container">
 	<figure class="map-figure">
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/Base.png'; ?>" />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/base-v2.png'; ?>" />
 		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/zones.svg' ) ); ?>
 		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/5k.png'; ?>" id='5k' />
 		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/ampitheater.png'; ?>" id='ampitheater' />
