@@ -25,11 +25,13 @@ get_header();
 			?>
 		</div>
 		<div class="row">
-			<?php the_title( '<h1>', '</h1>' ); ?>
-			<?php
-			if ( ! empty( $additional_info ) ) {
-				echo $additional_info;}
-			?>
+			<div class="col">
+				<?php the_title( '<h1>', '</h1>' ); ?>
+				<?php
+				if ( ! empty( $additional_info ) ) {
+					echo $additional_info;}
+				?>
+			</div>
 		</div>
 		<div class="row">
 			<?php
