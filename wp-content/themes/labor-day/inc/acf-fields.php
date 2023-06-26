@@ -929,7 +929,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					),
 					'show_in_graphql'   => 0,
 					'default_value'     => '',
-					'tabs'              => 'visual',
+					'tabs'              => 'all',
 					'toolbar'           => 'basic',
 					'media_upload'      => 0,
 					'delay'             => 1,
