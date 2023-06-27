@@ -86,7 +86,6 @@ function cno_create_checkboxes( array $ids ): void {
 			echo "<img src='{$src}' id='{$id}' />";
 		}
 		?>
-		<img src='<?php echo get_template_directory_uri() . '/images/map-v3/rv-parking.png'; ?>' id='rv' />
 		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/key-areas.svg' ) ); ?>
 	</figure>
 	<div class="legend">
@@ -204,7 +203,7 @@ function cno_create_checkboxes( array $ids ): void {
 								'checked' => true,
 							),
 							array(
-								'id'      => 'rv',
+								'id'      => 'RV_Parking',
 								'label'   => 'RV Parking',
 								'checked' => true,
 							),
