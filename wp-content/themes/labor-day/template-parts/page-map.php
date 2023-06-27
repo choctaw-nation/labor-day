@@ -22,22 +22,72 @@ function cno_create_checkboxes( array $ids ): void {
 	<figure class="map-figure">
 		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/base-v2.png'; ?>" />
 		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/zones.svg' ) ); ?>
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/5k.png'; ?>" id='5k' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/ampitheater.png'; ?>" id='ampitheater' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/arts-and-crafts.png'; ?>" id='arts-and-crafts' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/cafeteria.png'; ?>" id='cafeteria' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/capitol-museum.png'; ?>" id='capitol-museum' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/chapel.png'; ?>" id='chapel' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/choctaw-village.png'; ?>" id='choctaw-village' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/greenhouse.png'; ?>" id='greenhouse' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/ice-house.png'; ?>" id='ice-house' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/lost-child.png'; ?>" id='lost-child' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/red-warrior-ball-field.png'; ?>" id='red-warrior-ball-park' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/red-warrior-park.png'; ?>" id='red-warrior-park' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/stickball-field.png'; ?>" id='stickball-field' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/cemetery.png'; ?>" id='veterans-cemetery' />
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/rv-parking.png'; ?>" id='rv' />
-		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/icons-and-labels.svg' ) ); ?>
+		<?php
+		$images = array(
+			array(
+				'name' => '5k',
+			),
+			array(
+				'name' => 'ampitheater',
+			),
+			array(
+				'name' => 'arts-and-crafts',
+				'id' => ''
+			),
+			array(
+				'name' => 'cafeteria',
+				'id' => ''
+			),
+			array(
+				'name' => 'capitol-museum',
+				'id' => ''
+			),
+			array(
+				'name' => 'chapel',
+				'id' => ''
+			),
+			array(
+				'name' => 'choctaw-village',
+				'id' => ''
+			),
+			array(
+				'name' => 'greenhouse',
+				'id' => ''
+			),
+			array(
+				'name' => 'ice-house',
+				'id' => ''
+			),
+			array(
+				'name' => 'lost-child',
+				'id' => ''
+			),
+			array(
+				'name' => 'red-warrior-ball-field',
+				'id' => 'red-warrior-ball-park'
+			),
+			array(
+				'name' => 'red-warrior-park',
+				'id' => ''
+			),
+			array(
+				'name' => 'stickball-field',
+				'id' => ''
+			),
+			array(
+				'name' => 'cemetery',
+				'id' => 'veterans-cemetery'
+			),
+		);
+		?>
+		<?php foreach ($images as $image) {
+			$src = get_template_directory_uri() . "/images/map-v3/buildings/{$image['name']}.png";
+			$id = empty($image['id']) ? $image['name'] : $image['id'];
+			echo "<img src='{$src}' id='{$id}' />";
+		}
+		?>
+		<img src='<?php echo get_template_directory_uri() . '/images/map-v3/rv-parking.png'; ?>' id='rv' />
+		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/key-areas.svg' ) ); ?>
 	</figure>
 	<div class="legend">
 		<div class="map-toggles__container">
@@ -141,6 +191,11 @@ function cno_create_checkboxes( array $ids ): void {
 							array(
 								'id'      => 'Parking',
 								'label'   => 'Parking',
+								'checked' => true,
+							),
+							array(
+								'id'      => 'Associate_Parking',
+								'label'   => 'Associate Parking',
 								'checked' => true,
 							),
 							array(

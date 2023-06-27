@@ -1,3 +1,4 @@
+import { lightFormat } from 'date-fns';
 import '../../styles/pages/map.scss';
 
 /**
@@ -24,6 +25,7 @@ class MapControls {
 	 */
 	toggleVisibility(target) {
 		const el = document.getElementById(target.dataset.id);
+		if (!el) return;
 		el.style.visibility = target.checked ? 'visible' : 'hidden';
 	}
 }
@@ -39,7 +41,7 @@ class MapController extends MapControls {
 	}
 
 	/**
-	 * Accepts an array of strings that finish the BEM class to select
+	 * Accepts an array of strings that finish the BEM class to select (e.g. `.map-toggles__${selector}`)
 	 *
 	 * @param {array} selectors - the class ending to inject.
 	 */
@@ -74,9 +76,9 @@ class MapController extends MapControls {
 				const checkboxes = document.querySelectorAll(
 					`.map-toggles__${selector} input:not(.toggle-all)`
 				);
-				checkboxes.forEach((input) => {
-					input.checked = !input.checked;
-					this.toggleVisibility(input);
+				checkboxes.forEach((checkbox, i) => {
+					checkbox.checked = !checkbox.checked;
+					this.toggleVisibility(checkbox);
 				});
 			});
 		});
