@@ -179,3 +179,15 @@
 		position: relative;
 	}
 }
+
+#map {
+	.two-col__media--container {
+		max-height: unset;
+
+		img {
+			aspect-ratio: 1;
+			height: auto;
+			max-height: unset;
+		}
+	}
+}

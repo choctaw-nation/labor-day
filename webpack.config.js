@@ -56,18 +56,18 @@ module.exports = {
 			filename: `[name].js`,
 		},
 	},
-	plugins: [
-		...defaultConfig.plugins,
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'static',
-			reportFilename: path.join(
-				__dirname,
-				'bundle-analyzer',
-				'report.html'
-			),
-			openAnalyzer: false,
-		}),
-	],
+	// plugins: [
+	// 	...defaultConfig.plugins,
+	// 	new BundleAnalyzerPlugin({
+	// 		analyzerMode: 'static',
+	// 		reportFilename: path.join(
+	// 			__dirname,
+	// 			'bundle-analyzer',
+	// 			'report.html'
+	// 		),
+	// 		openAnalyzer: false,
+	// 	}),
+	// ],
 	optimization: {
 		...defaultConfig.optimization,
 		minimize: true, // Enable code minification
