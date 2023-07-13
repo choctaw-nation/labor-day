@@ -130,15 +130,35 @@ class Content_Sections extends Content_Components {
 			'subheadline_element' => $content_wrapper,
 			'subheadline_class'   => $content_class,
 		);
+
 		$col_2_content = $this->headline( $headline, false, $headline_args );
+
 		if ( ! empty( $cta_text ) ) {
-			$btn_options    = array(
+			$btn_options = array(
 				'text'        => $cta_text,
 				'link'        => $cta_link,
 				'is_external' => $cta_external,
 				'html_class'  => $cta_class,
 			);
-			$col_2_content .= $this->cta_button( $btn_options, false );
+
+			// TODO: #94 Make this better @kjroelke
+			if ( '5K' === $headline ) {
+				$col_2_content .= "<div class='row row-cols-1 row-cols-md-2 gap-md-3 flex-nowrap w-100'>" . $this->cta_button( $btn_options, false );
+			} else {
+				$col_2_content .= $this->cta_button( $btn_options, false );
+			}
+		}
+		// TODO: #94 Make this better @kjroelke
+		if ( '5K' === $headline ) {
+			$col_2_content .= $this->cta_button(
+				array(
+					'text'        => 'PACE Members Apply Here',
+					'link'        => 'https://forms.office.com/pages/responsepage.aspx?id=J5wXR8vx0kOwdHfxONpxRJKkvjrJDJJAud1v2q23KKtUOFhaNlE4NllINE9BOEpINENOMkkyUFhCUy4u',
+					'is_external' => true,
+					'html_class'  => 'btn__outline--primary registration-form__button flex-grow-1',
+				),
+				false
+			) . '</div>';
 		}
 		$markup = "
         {$container_start}
