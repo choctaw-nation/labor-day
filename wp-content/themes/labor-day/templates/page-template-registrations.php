@@ -40,7 +40,7 @@ get_header();
 			if ( ! empty( $form_id ) && empty( $href ) ) {
 				echo do_shortcode( "[gravityform id={$form_id} title='false']" );
 			} elseif ( empty( $form_id ) && ! empty( $href ) ) {
-				echo "<a href='{$href}' class='btn__fill--secondary' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
+				echo "<a href='{$href}' class='btn__fill--secondary w-auto' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
 			}
 			?>
 		</div>
