@@ -1,6 +1,9 @@
 <?php
 /**
- * Generic Page Template
+ * Template Name: Simple Page (Blank, Container)
+ * Handles the output of Simple Pages
+ *
+ * @package ChoctawNation
  */
 
 $content = new Content_Sections();
@@ -26,34 +29,9 @@ get_header();
 		</div>
 	</section>
 	<?php endif; ?>
-	<?php
-	switch ( $post->post_name ) {
-		case 'registrations':
-			get_template_part( 'template-parts/page', 'registrations' );
-			break;
-		case 'map':
-			get_template_part( 'template-parts/page', 'map' );
-			break;
-		case 'history':
-			get_template_part( 'template-parts/page', 'history' );
-			break;
-		case 'contact':
-			get_template_part( 'template-parts/page', 'contact' );
-			break;
-		case 'my-schedule':
-			get_template_part( 'template-parts/page', 'my-schedule' );
-			break;
-		case 'festival-information':
-			get_template_part( 'template-parts/page', 'festival-information' );
-			break;
-		case 'volunteers':
-			get_template_part( 'template-parts/page', 'volunteers' );
-			break;
-		default:
-			echo "<div class='mt-5'>" . get_the_content() . '</div>';
-	}
-	?>
-
+	<article class="container">
+		<?php echo acf_esc_html( get_field( 'acf_the_content' ) ); ?>
+	</article>
 </main>
 <?php
 get_footer();
