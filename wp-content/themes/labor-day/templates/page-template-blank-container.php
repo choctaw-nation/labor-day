@@ -29,7 +29,7 @@ get_header();
 		</div>
 	</section>
 	<?php endif; ?>
-	<article class="container">
+	<article class="container my-5">
 		<?php echo acf_esc_html( get_field( 'acf_the_content' ) ); ?>
 	</article>
 </main>
