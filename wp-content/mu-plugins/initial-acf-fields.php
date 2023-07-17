@@ -58,7 +58,6 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 								'class' => '',
 								'id'    => '',
 							),
-							'default_value'     => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
 							'maxlength'         => '',
 							'placeholder'       => '',
 							'prepend'           => '',
