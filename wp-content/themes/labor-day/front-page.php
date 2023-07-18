@@ -70,24 +70,11 @@ get_header(); ?>
 				?>
 			</div>
 			<div class="row">
-				<p>Full schedule will be announced and posted soon!</p>
-			</div>
-		</div>
-		<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV["CNO_ENV"] ) : ?>
-		<div class="container">
-			<div class="row">
-				<h3 class="headline">Entertainment</h3>
-			</div>
-		</div>
-		<?php get_template_part( 'template-parts/slider', 'entertainment' ); ?>
-		<div class="container">
-			<div class="row">
 				<div class="col d-flex-column align-items-center">
 					<a href="/events" class="btn__fill--primary">See Full Schedule</a>
 				</div>
 			</div>
 		</div>
-		<?php endif; ?>
 	</section>
 	<section id="vendors" class='bg-color-primary'>
 		<div class="container">
