@@ -32,7 +32,7 @@ export default new (class Model {
 			first: 100,
 			after: after ?? '',
 		};
-		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
+		const query = `query Events($first: Int = 100, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
   events(after: $after, first: $first) {
     pageInfo {
       hasNextPage
