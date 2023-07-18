@@ -9,7 +9,9 @@
  */
 function get_the_map_snippet( $term, $location_name ) {
 	$src = get_stylesheet_directory_uri() . '/images/map-locations/' . $term . '.webp';
-	echo "<img class='map-snippet col-12 col-lg-8' src='{$src}' alt='A snippet of the festival grounds map showing the location of the {$location_name}' />";
+	if ( $src ) {
+		echo "<img class='map-snippet col-12 col-lg-8' src='{$src}' alt='A snippet of the festival grounds map showing the location of the {$location_name}' />";
+	}
 }
 
 get_header();
@@ -62,6 +64,9 @@ get_header();
 						break;
 					case 'playground':
 						get_the_map_snippet( $term, 'Playground' );
+						break;
+					case 'red-warrior-park':
+						get_the_map_snippet( $term, 'Red Warrior Park' );
 						break;
 					case 'softball-fields':
 						get_the_map_snippet( $term, 'Softball Fields' );
