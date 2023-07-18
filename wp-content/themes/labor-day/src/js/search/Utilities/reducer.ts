@@ -1,6 +1,8 @@
 // Types
-import { searchAppState } from '../types';
+import { PrettyEventData, searchAppState } from '../types';
+import TimeHandler from './TimeHandler';
 
+const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
 	posts: [],
 	filters: [
@@ -55,9 +57,14 @@ export function reducer(state: searchAppState, action): searchAppState | void {
 				posts: action.payload,
 			};
 		case 'updatePosts':
+			const now = new Date();
+			const dateFilteredPosts = action.payload.filter(
+				(event: PrettyEventData) =>
+					timeHandler.createDateString(event.event_info.info) > now
+			);
 			return {
 				...state,
-				posts: [...state.posts, ...action.payload],
+				posts: [...state.posts, ...dateFilteredPosts],
 			};
 		case 'resetSelectedFilters':
 			return {

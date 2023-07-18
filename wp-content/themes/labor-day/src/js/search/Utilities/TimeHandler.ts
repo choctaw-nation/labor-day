@@ -1,3 +1,5 @@
+import { EventInfo } from '../types';
+
 export default class TimeHandler {
 	/** Removes minutes from a time string if the time is at the top of the hour. (e.g. "9:00 am" to "9 AM")
 	 * @param {string} time the time string
@@ -8,6 +10,7 @@ export default class TimeHandler {
 			.slice(-2)
 			.toUpperCase()}`;
 	}
+
 	/** adds an hour from startTime to create a default endTime
 	 * @param {string} startTime the startTime
 	 * @returns {string} the new endTime
@@ -62,5 +65,19 @@ export default class TimeHandler {
 			)}${start.slice(-2).toUpperCase()}`;
 			return finalString;
 		} else return `${start.toUpperCase()} &ndash; ${end}`;
+	}
+
+	createDateString(info: EventInfo['info']) {
+		let dateTime: Date;
+		const endTime = info.endTime ?? this.addOneHour(info.startTime);
+
+		if ('Friday' === info.day) {
+			dateTime = new Date(`September 1, 2023 ${endTime}`);
+		} else if ('Saturday' === info.day) {
+			dateTime = new Date(`September 2, 2023 ${endTime}`);
+		} else if ('Sunday' === info.day) {
+			dateTime = new Date(`September 3, 2023 ${endTime}`);
+		}
+		return dateTime;
 	}
 }
