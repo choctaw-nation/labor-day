@@ -11,8 +11,7 @@ class CNO_THEME {
 		$this->load_required_files();
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'register_cno_menus' ) );
-		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'title-tag' );
+		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		$this->disable_discussion();
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
@@ -201,6 +200,11 @@ class CNO_THEME {
 				'footer_menu-2' => __( 'Footer Menu 2', 'cno' ),
 			)
 		);
+	}
+
+	public function handle_theme_supports() {
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'title-tag' );
 	}
 
 	/**

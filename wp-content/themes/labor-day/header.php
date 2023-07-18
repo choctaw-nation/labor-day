@@ -16,11 +16,6 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
-	<!-- <title>
-		<?php
-		wp_title();
-		 ?>
-	</title> -->
 	<link rel="manifest" href="/manifest.json">
 	<?php if ('prod' === $_ENV['CNO_ENV']) : ?>
 	<!-- Google tag (gtag.js) -->
@@ -38,7 +33,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class() ?>>
+<body <?php body_class(); ?>>
 	<header class="d-flex" id="site-header">
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">

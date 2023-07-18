@@ -1,4 +1,4 @@
-import { POSTS_PER_PAGE, graphQL } from './Utilities/Utilities';
+import { graphQL } from './Utilities/Utilities';
 import { makeRequestResponse, queryVars } from './types/promises';
 
 export default new (class Model {

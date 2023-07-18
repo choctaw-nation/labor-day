@@ -1,7 +1,6 @@
 <?php //phpcs:ignore
 /** Event Location Display */
 
-
 /** Gets the map image
  *
  * @param string $term the term name
