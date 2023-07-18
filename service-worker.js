@@ -50,19 +50,19 @@ const appShellFiles = [
 ];
 
 // Install service worker and cache app shell files
-self.addEventListener('install', (event) => {
-	event.waitUntil(
-		caches.open('app-shell-cache').then((cache) => {
-			return cache.addAll(appShellFiles);
-		})
-	);
-});
+// self.addEventListener('install', (event) => {
+// 	event.waitUntil(
+// 		caches.open('app-shell-cache').then((cache) => {
+// 			return cache.addAll(appShellFiles);
+// 		})
+// 	);
+// });
 
-// Serve cached app shell files when offline
-self.addEventListener('fetch', (event) => {
-	event.respondWith(
-		caches.match(event.request).then((response) => {
-			return response || fetch(event.request);
-		})
-	);
-});
+// // Serve cached app shell files when offline
+// self.addEventListener('fetch', (event) => {
+// 	event.respondWith(
+// 		caches.match(event.request).then((response) => {
+// 			return response || fetch(event.request);
+// 		})
+// 	);
+// });
