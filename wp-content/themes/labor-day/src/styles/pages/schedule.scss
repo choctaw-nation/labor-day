@@ -3,7 +3,7 @@
 @use "../pages/my-schedule"; // Dev Note: %cno-events is defined here
 
 :is(.post-type-archive-events) .hero {
-	height: auto;
+	min-height: unset;
 }
 
 .archive {

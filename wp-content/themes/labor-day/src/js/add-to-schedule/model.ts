@@ -2,6 +2,7 @@ import { destructureData } from '../search/Utilities/Utilities';
 import { RawEventPost, PrettyEventData } from '../search/types';
 import { SortedEventsObject } from '../search/types';
 declare const cnoSiteData: { rootUrl: string };
+
 export default new (class Model {
 	/**
 	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.

@@ -29,7 +29,7 @@ export default new (class Model {
 		after: string = ''
 	): Promise<makeRequestResponse | undefined> {
 		const variables: queryVars = {
-			first: Number(POSTS_PER_PAGE),
+			first: 100,
 			after: after ?? '',
 		};
 		const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {

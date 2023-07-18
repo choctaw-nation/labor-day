@@ -5,10 +5,10 @@
  * @package ChoctawNation
  */
 
-if ('prod' === $_ENV['CNO_ENV']) {
-	wp_redirect(get_404_template(),302);
-	exit;
-}
+// if ('prod' === $_ENV['CNO_ENV']) {
+// wp_redirect(get_404_template(),302);
+// exit;
+// }
 $taxonomies = get_object_taxonomies( 'events', 'objects' );
 cno_enqueue_page_assets( 'search', array( 'scripts' => array( 'fontawesome' ) ) );
 get_header();
