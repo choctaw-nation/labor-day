@@ -12,6 +12,7 @@ class CNO_THEME {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'register_cno_menus' ) );
 		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'title-tag' );
 		$this->disable_discussion();
 		add_action( 'init', array( $this, 'alter_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
@@ -76,9 +77,7 @@ class CNO_THEME {
 		}
 		register_taxonomy(
 			'event_type',
-			array(
-				0 => 'events',
-			),
+			'events',
 			array(
 				'labels'              => array(
 					'name'                  => 'Event Types',
@@ -117,9 +116,7 @@ class CNO_THEME {
 
 		register_taxonomy(
 			'event_location',
-			array(
-				0 => 'events',
-			),
+			'events',
 			array(
 				'labels'              => array(
 					'name'                  => 'Locations',

@@ -9,13 +9,13 @@ class CNOEventsPlugin {
 		}
 	}
 	public function include_templates( $template ) {
-		if ( get_post_type() == 'events' && is_single() ) {
+		if ( get_post_type() == 'events' && is_single() && ! is_tax() ) {
 			$template = locate_template( array( 'templates/single-events.php' ), false, false );
 			if ( ! $template ) {
 				$template = dirname( __FILE__, 2 ) . '/templates/single-events.php';
 			}
 		}
-		if ( get_post_type() == 'events' && is_archive() ) {
+		if ( get_post_type() == 'events' && is_archive() && ! is_tax() ) {
 			$template = locate_template( array( 'templates/archive-events.php' ), false, false );
 			if ( ! $template ) {
 				$template = dirname( __FILE__, 2 ) . '/templates/archive-events.php';

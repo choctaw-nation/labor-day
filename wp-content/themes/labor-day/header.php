@@ -16,16 +16,11 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
-	<title>
+	<!-- <title>
 		<?php
-		$title = $post->post_title;
-		if ( is_post_type_archive() ) {
-			$title = 'Schedule';
-		} else if ( is_404() ) {
-			$title = 'Page Not Found';
-		}
-			echo $title . " | " .  get_bloginfo( 'name' ); ?>
-	</title>
+		wp_title();
+		 ?>
+	</title> -->
 	<link rel="manifest" href="/manifest.json">
 	<?php if ('prod' === $_ENV['CNO_ENV']) : ?>
 	<!-- Google tag (gtag.js) -->
