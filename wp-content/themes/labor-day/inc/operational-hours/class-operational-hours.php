@@ -15,6 +15,7 @@ class Operational_Hours {
 
 	public function list_the_hours() {
 		echo "<ul class='hours-list'>";
+		var_dump( $this->operations );
 		foreach ( $this->operations as $operation ) {
 			$operation_title = esc_textarea( $operation['operation_title'] );
 			$is_open         = $this->get_open_days( $operation );
@@ -26,10 +27,10 @@ class Operational_Hours {
 			// 1. get friday hours markup || 1a. add 'Friday' to $days
 			// 2. if Sat/Sun same as previous, add day to $days, else get hours markup
 			// 3. repeat step 2
-			
+
 			// $day             = ucfirst( $key );
 			// $markup         .= "<div class='hours-list-item__day--{$key}'>{$day}: <span class='hours-list-item__time--open'>{$operation[$key]["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation[$key]["close"]}</span></div>";
-			
+
 			// 4. return markup
 			$markup .= '</li>';
 			return $markup;
@@ -46,9 +47,9 @@ class Operational_Hours {
 	 */
 	private function display_operation_hours( array $operation ):string {
 		$operation_title = esc_textarea( $operation['operation_title'] );
-		$is_open         = $this->get_open_days( $operation );
-		$markup          = '';
-		$markup         .= "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$operation_title}</span>";
+		// $is_open         = $this->get_open_days( $operation );
+		$markup  = '';
+		$markup .= "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$operation_title}</span>";
 		foreach ( $is_open as $key => $value ) {
 			if ( $value ) {
 				$markup .= $this->get_hours_by_day( $operation, $key );
