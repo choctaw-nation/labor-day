@@ -132,6 +132,9 @@ export default new (class Model {
         }
         description
       }
+	  seo {
+		archiveContent
+	  }
       eventLocations {
         nodes {
           name
