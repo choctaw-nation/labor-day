@@ -10,7 +10,6 @@ import { LocationButton, ShareModalButton } from '../CNOButtons';
 
 // Utilities
 import { getTheDay } from '../../../my-schedule/calendarFunctions';
-import { createExcerpt } from '../../Utilities/Utilities';
 import TimeHandler from '../../Utilities/TimeHandler';
 
 const time = new TimeHandler();
@@ -36,11 +35,11 @@ export default function SinglePost({
 }) {
 	const { event_info, featuredImage } = data;
 	return (
-		<article className={getTheClass(extendedClass)}>
+		<div className={getTheClass(extendedClass)}>
 			<EventTimeBanner event_info={event_info} />
 			{featuredImage && <FeaturedImage featuredImage={featuredImage} />}
 			<CNOEventInfo data={data} dispatch={dispatch} children={children} />
-		</article>
+		</div>
 	);
 }
 

@@ -46,7 +46,7 @@ export default class TimeHandler {
 		startTime: string;
 		endTime: string | null;
 	}): string {
-		let end = '';
+		let end = endTime?.toUpperCase() ?? '';
 		const start = startTime.includes(':00')
 			? this.removeMinutes(startTime)
 			: startTime;
