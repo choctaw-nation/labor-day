@@ -40,6 +40,14 @@
 	.cno-event {
 		width: 100%;
 
+		@include m.media-breakpoint-up(xl) {
+			height: 20.25rem;
+		}
+
+		@include m.media-breakpoint-up(xxl) {
+			height: 23.625rem;
+		}
+
 		&__image {
 			margin: 0;
 			@include m.fitMedia($fit: contain);
@@ -50,6 +58,12 @@
 			img {
 				aspect-ratio: 16 / 9;
 				height: auto;
+			}
+		}
+
+		&__info {
+			@include m.media-breakpoint-up(lg) {
+				flex-grow: 1;
 			}
 		}
 	}

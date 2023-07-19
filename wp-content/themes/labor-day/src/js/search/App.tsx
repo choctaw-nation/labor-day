@@ -17,7 +17,7 @@ import { PrettyEventData, RawEventPost } from './types';
 // Components
 import LoadingSpinner from '../spinner';
 import ResultsContainer from './Presentational/Search Bar/ResultsContainer';
-import Intersector from './Components/Intersector';
+// import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
 import SearchInput from './Presentational/Search Bar/SearchInput';
 import SearchFiltersContainer from './Presentational/Search Bar/SearchFiltersContainer';
@@ -34,7 +34,7 @@ import {
 	fuzzySearchKeys,
 } from './Utilities/Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
-import { useSearchPosts } from './Utilities/CustomHooks/SearchHooks';
+// import { useSearchPosts } from './Utilities/CustomHooks/SearchHooks';
 
 function App() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +44,8 @@ function App() {
 		showShareModal,
 		shareEventObject,
 		search,
-		isVisible,
-		cursor,
+		// isVisible,
+		// cursor,
 		canGetPosts,
 		filters,
 		selectedFilters,
@@ -53,12 +53,12 @@ function App() {
 
 	function doFirstSearch(data) {
 		const { events } = data;
-		dispatch({
-			type: 'updateCursor',
-			payload: events.pageInfo.hasNextPage
-				? events.pageInfo.endCursor
-				: undefined,
-		});
+		// dispatch({
+		// 	type: 'updateCursor',
+		// 	payload: events.pageInfo.hasNextPage
+		// 		? events.pageInfo.endCursor
+		// 		: undefined,
+		// });
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
 			(node: RawEventPost) => destructureData(node)
 		);
@@ -104,38 +104,38 @@ function App() {
 	}, [search]);
 
 	/** Get More Posts on Scroll */
-	useEffect(() => {
-		if (cursor && isVisible) {
-			Model.getPosts(cursor)
-				.then((data) => {
-					if (undefined === data) return;
-					const { events } = data;
-					if (events.pageInfo.hasNextPage) {
-						dispatch({
-							type: 'updateCursor',
-							payload: events.pageInfo.endCursor,
-						});
-					} else {
-						dispatch({
-							type: 'updateCursor',
-							payload: undefined,
-						});
-					}
-					const prettyEvents = events.nodes.map((node) =>
-						destructureData(node)
-					);
-					const sortedEvents = getTimeSortedEvents(
-						sortEvents(prettyEvents)
-					);
-					dispatch({
-						type: 'updatePosts',
-						payload: Object.values(sortedEvents).flat(),
-					});
-					dispatch({ type: 'intersecting', payload: false });
-				})
-				.catch((err) => console.error(err));
-		}
-	}, [isVisible]);
+	// useEffect(() => {
+	// 	if (cursor && isVisible) {
+	// 		Model.getPosts(cursor)
+	// 			.then((data) => {
+	// 				if (undefined === data) return;
+	// 				const { events } = data;
+	// 				if (events.pageInfo.hasNextPage) {
+	// 					dispatch({
+	// 						type: 'updateCursor',
+	// 						payload: events.pageInfo.endCursor,
+	// 					});
+	// 				} else {
+	// 					dispatch({
+	// 						type: 'updateCursor',
+	// 						payload: undefined,
+	// 					});
+	// 				}
+	// 				const prettyEvents = events.nodes.map((node) =>
+	// 					destructureData(node)
+	// 				);
+	// 				const sortedEvents = getTimeSortedEvents(
+	// 					sortEvents(prettyEvents)
+	// 				);
+	// 				dispatch({
+	// 					type: 'updatePosts',
+	// 					payload: Object.values(sortedEvents).flat(),
+	// 				});
+	// 				dispatch({ type: 'intersecting', payload: false });
+	// 			})
+	// 			.catch((err) => console.error(err));
+	// 	}
+	// }, [isVisible]);
 
 	/** On First Render, show floating schedule button */
 	useEffect(() => {
@@ -177,16 +177,11 @@ function App() {
 						/>
 					)}
 				</div>
-				<Intersector dispatch={dispatch} />
-				{isVisible && cursor ? (
-					<div className="container load-more-container">
-						<LoadingSpinner />
-					</div>
-				) : (
-					<div className="container load-more-container">
-						End of Results.
-					</div>
-				)}
+				{/* <Intersector dispatch={dispatch} /> */}
+
+				<div className="container load-more-container">
+					End of Results.
+				</div>
 				<ShareModal
 					dispatch={dispatch}
 					showShareModal={showShareModal}

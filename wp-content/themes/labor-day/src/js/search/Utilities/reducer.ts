@@ -35,13 +35,13 @@ export const initialState: searchAppState = {
 		Locations: 'Locations',
 	},
 	search: '',
-	cursor: 'cursor',
+	// cursor: 'cursor',
 	showShareModal: false,
 	shareEventObject: {
 		title: '',
 		link: '',
 	},
-	isVisible: false,
+	// isVisible: false,
 	canGetPosts: (() => {
 		const now = new Date();
 		const end = new Date('September 3, 2023');
@@ -126,16 +126,16 @@ export function reducer(state: searchAppState, action): searchAppState | void {
 				...state,
 				search: action.payload,
 			};
-		case 'intersecting':
-			return {
-				...state,
-				isVisible: action.payload,
-			};
-		case 'updateCursor':
-			return {
-				...state,
-				cursor: action.payload,
-			};
+		// case 'intersecting':
+		// 	return {
+		// 		...state,
+		// 		isVisible: action.payload,
+		// 	};
+		// case 'updateCursor':
+		// 	return {
+		// 		...state,
+		// 		cursor: action.payload,
+		// 	};
 		default:
 			throw new Error(`Unknown action type! ${action.type}`);
 	}

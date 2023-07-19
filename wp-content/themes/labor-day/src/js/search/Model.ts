@@ -32,69 +32,68 @@ export default new (class Model {
 			first: 100,
 			after: after ?? '',
 		};
-		const query = `query Events($first: Int = 100, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
-  events(after: $after, first: $first) {
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-    nodes {
-      eventLocations {
-        nodes {
-          name
-          uri
-          event_locationId
-        }
-      }
-      event_info {
-        description
-        info {
-          day
-          endTime
-          startTime
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          mediaDetails {
-            sizes(include: $include) {
-              height
-              width
-              sourceUrl
-            }
-          }
-          srcSet(size: $size)
-		  sizes(size: $size)
-        }
-      }
-      title(format: RENDERED)
-      link
-	  eventId
-      eventTypes {
-        nodes {
-          event_typeId
-          name
-          uri
-        }
-      }
-    }
-  }
-  eventTypes {
-    nodes {
-      event_typeId
-      name
-	  uri
-    }
-  }
-  eventLocations {
-    nodes {
-      name
-      uri
-      event_locationId
-    }
-  }
-}`;
+		const query = `query Events($first: Int = 100, $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
+			events(first: $first) {
+			  nodes {
+				eventLocations {
+				  nodes {
+					name
+					uri
+					event_locationId
+				  }
+				}
+				event_info {
+				  description
+				  info {
+					day
+					endTime
+					startTime
+				  }
+				}
+				featuredImage {
+				  node {
+					altText
+					mediaDetails {
+					  sizes(include: $include) {
+						height
+						width
+						sourceUrl
+					  }
+					}
+					srcSet(size: $size)
+					sizes(size: $size)
+				  }
+				}
+				title(format: RENDERED)
+				link
+				eventId
+				eventTypes {
+				  nodes {
+					event_typeId
+					name
+					uri
+				  }
+				}
+				seo {
+				  archiveContent
+				}
+			  }
+			}
+			eventTypes {
+			  nodes {
+				event_typeId
+				name
+				uri
+			  }
+			}
+			eventLocations {
+			  nodes {
+				name
+				uri
+				event_locationId
+			  }
+			}
+		  }`;
 
 		const request = {
 			query: query,

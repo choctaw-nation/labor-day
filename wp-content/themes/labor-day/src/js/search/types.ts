@@ -48,6 +48,9 @@ export type RawEventPost = {
 	eventTypes: {
 		nodes: EventType[];
 	};
+	seo: {
+		archiveContent: string;
+	};
 };
 
 /** The Formatted Event Post Type Data */
@@ -57,6 +60,7 @@ export interface PrettyEventData {
 	eventId: number;
 	link: string;
 	title: string;
+	excerpt: string | null;
 	event_info: EventInfo;
 	featuredImage?: featuredImage | null;
 }

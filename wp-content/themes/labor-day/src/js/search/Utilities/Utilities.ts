@@ -31,12 +31,16 @@ export function destructureData(data: RawEventPost): PrettyEventData {
 	} = data;
 	const { eventId, link, title } = data;
 	const { event_info } = data;
+	const {
+		seo: { archiveContent: excerpt },
+	} = data;
 	const destructuredData: PrettyEventData = {
 		locations,
 		type,
 		eventId,
 		link,
 		title,
+		excerpt,
 		event_info,
 	};
 	destructuredData.featuredImage = data.featuredImage

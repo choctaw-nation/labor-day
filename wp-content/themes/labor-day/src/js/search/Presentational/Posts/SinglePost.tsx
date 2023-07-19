@@ -72,25 +72,20 @@ function EventTimeBanner({
 	);
 }
 
-function EventContent({ title, description }) {
+function EventContent({ title, excerpt }) {
 	return (
 		<>
 			<h2 className="cno-event__info--title headline">{title}</h2>
-			<div
-				className="cno-event__info--description"
-				dangerouslySetInnerHTML={{
-					__html: createExcerpt(description).excerpt,
-				}}
-			/>
+			<p className="cno-event__info--description">{excerpt}</p>
 		</>
 	);
 }
 
 function CNOEventInfo({ data, dispatch, children }) {
-	const { locations, title, event_info, link } = data;
+	const { locations, title, link, excerpt } = data;
 	return (
 		<div className="cno-event__info col-lg-7">
-			<EventContent title={title} description={event_info.description} />
+			<EventContent title={title} excerpt={excerpt} />
 			<div className="cno-event__buttons">
 				{locations && locations.length > 0 && (
 					<LocationButton
@@ -104,7 +99,6 @@ function CNOEventInfo({ data, dispatch, children }) {
 					link={link}
 				/>
 				{children}
-				{}
 			</div>
 		</div>
 	);

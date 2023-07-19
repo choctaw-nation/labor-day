@@ -37,8 +37,7 @@ export default function ResultsContainer({
 						>
 							<>
 								<AddToScheduleButton eventId={post.eventId} />
-								{createExcerpt(post.event_info.description)
-									.readMore && (
+								{post.event_info.description && (
 									<ReadMoreButton link={post.link} />
 								)}
 							</>
