@@ -17,8 +17,42 @@
 			@extend %cno-events;
 		}
 
+		.cno-event-search__filters {
+			display: block;
+			@include m.media-breakpoint-up(lg) {
+				display: grid;
+			}
+
+			&--header {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+				// @include m.displayFlex(column);
+
+				button {
+					margin: 0;
+					margin-bottom: 1rem;
+					&:nth-child(2) {
+						grid-column: 2 / 3;
+					}
+				}
+
+				@include m.media-breakpoint-up(sm) {
+					@include m.displayFlex(row);
+
+					button {
+						margin-left: 1rem;
+					}
+				}
+			}
+		}
 		.cno-event-search-filters {
-			@include m.displayFlex($cross: center);
+			@include m.displayFlex(column);
+			gap: 2rem;
+
+			@include m.media-breakpoint-up(sm) {
+				@include m.displayFlex($cross: center);
+			}
 
 			&__container {
 				@include m.displayFlex(column);
