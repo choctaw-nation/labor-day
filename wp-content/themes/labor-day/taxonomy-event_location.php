@@ -3,7 +3,7 @@
 
 /** Gets the map image
  *
- * @param string $term the term name
+ * @param string $term the term name / file name
  * @param string $location_name the location name for alt text
  */
 function get_the_map_snippet( $term, $location_name ) {
@@ -62,7 +62,7 @@ get_header();
 						get_the_map_snippet( $term, 'Healthy Living Tent' );
 						break;
 					case 'playground':
-						get_the_map_snippet( $term, 'Playground' );
+						get_the_map_snippet( 'playground-v2', 'Playground' );
 						break;
 					case 'red-warrior-park':
 						get_the_map_snippet( $term, 'Red Warrior Park' );
