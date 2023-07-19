@@ -20,7 +20,8 @@ function cno_create_checkboxes( array $ids ): void {
 ?>
 <div class="container map-container">
 	<figure class="map-figure">
-		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/base-v2.png'; ?>" />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/base-v2.png'; ?>" class='map__base' />
+		<img src="<?php echo get_template_directory_uri() . '/images/map-v3/buildings/Base__buildings.png'; ?>" class="map__base--buildings" />
 		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/zones.svg' ) ); ?>
 		<?php
 		$images = array(
@@ -83,7 +84,7 @@ function cno_create_checkboxes( array $ids ): void {
 		<?php foreach ($images as $image) {
 			$src = get_template_directory_uri() . "/images/map-v3/buildings/{$image['name']}.png";
 			$id = empty($image['id']) ? $image['name'] : $image['id'];
-			echo "<img src='{$src}' id='{$id}' />";
+			echo "<img src='{$src}' id='{$id}' class='map__base--buildings' />";
 		}
 		?>
 		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/key-areas.svg' ) ); ?>
@@ -100,7 +101,7 @@ function cno_create_checkboxes( array $ids ): void {
 					$area_ids = array(
 						array(
 							'id'      => 'ampitheater',
-							'label'   => 'Ampitheater',
+							'label'   => 'Amphitheater',
 							'checked' => true,
 						),
 						array(

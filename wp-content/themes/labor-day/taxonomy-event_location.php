@@ -31,8 +31,8 @@ get_header();
 			<div class="row">
 				<?php
 				switch ( $term ) {
-					case 'ampitheatre':
-						get_the_map_snippet( $term, 'Ampitheatre' );
+					case 'amphitheater':
+						get_the_map_snippet( 'ampitheatre', 'Amphitheater' );
 						break;
 					case 'capitol-lawn':
 						get_the_map_snippet( $term, 'Capitol Lawn' );
