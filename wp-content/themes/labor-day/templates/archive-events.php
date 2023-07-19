@@ -19,7 +19,7 @@ get_header();
 		<button class='btn__outline--secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
 	</div>
 </section>
-<?php // get_template_part( 'template-parts/modal', 'operational-hours' ); ?>
+<?php get_template_part( 'template-parts/modal', 'operational-hours' ); ?>
 <div class="cno-events-wrapper" id="app">
 	<?php if ( have_posts() ) : ?>
 	<section class="cno-event-search">
