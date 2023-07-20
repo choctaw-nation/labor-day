@@ -43,7 +43,9 @@ class Operational_Hours {
 			if ( $operation['saturday']['same_as_previous'] ) {
 				array_push( $days, 'Saturday' );
 			} else {
-				$days      = array( 'Saturday' );
+				if ( false === $is_open['friday'] ) {
+					$days = array( 'Saturday' );
+				}
 				$sat_hours = "<div class='hours-list-item__day--saturday'><b>Saturday:</b> <span class='hours-list-item__time--open'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['saturday']["close"]}</span>";
 			}
 		}
@@ -54,12 +56,14 @@ class Operational_Hours {
 				$sun_hours = "<div class='hours-list-item__day--sunday'><b>Sunday:</b> <span class='hours-list-item__time--open'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['sunday']["close"]}</span>";
 			}
 		}
-		$day_label = join( ', ', $days );
-		$markup   .= "<div class='hours-list-item__day'><b>{$day_label}:</b> " . $combined_hours;
-		$markup   .= '</div>';
+		if ( ! empty( $combined_hours ) ) {
+			$day_label = join( ', ', $days );
+			$markup   .= "<div class='hours-list-item__day'><b>{$day_label}:</b> " . $combined_hours;
+			$markup   .= '</div>';
+		}
 		if ( ! empty( $sat_hours ) ) {
-			$markup .= $sat_hours;
-			$markup .= '</div>';
+				$markup .= $sat_hours;
+				$markup .= '</div>';
 		}
 		if ( ! empty( $sun_hours ) ) {
 			$markup .= $sun_hours;
