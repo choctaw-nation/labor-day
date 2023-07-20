@@ -1,46 +1,87 @@
 <?php
+
 /** Operational Hours */
 class Operational_Hours {
-	private $hours     = array();
-	private $day_order = array( 'Friday', 'Saturday', 'Sunday' );
-	public function __construct( array $hours_field ) {
-		$this->hours = $hours_field;
-		usort( $this->hours, array( $this, 'compare_hours' ) );
+	private array $operations = array();
+
+	/** Construct the class
+	 *
+	 * @param array $operations_field the Hours of Operations ACF Options field
+	 */
+	public function __construct( array $operations_field ) {
+		$this->operations = $operations_field;
 	}
+
+	/** Public API to generate HTML */
 	public function list_the_hours() {
 		echo "<ul class='hours-list'>";
-		foreach ( $this->hours as $hour ) {
-			echo "<li class='hours-list__item hours-list-item'>
-		<span class='hours-list-item__title h4'>{$hour["title"]}</span>
-		<div class='hours-list-item__time'>
-			<span class='hours-list-item__time--open'>{$hour["open"]}</span>&nbsp;&ndash;&nbsp;
-			<span class='hours-list-item__time--close'>{$hour["closes"]}</span>
-		</div>
-		<span class='hours-list-item__days'>
-		";
-			$days = count( $hour['days'] );
-			for ( $i = 0; $i < $days; $i++ ) {
-				if ( $days - 1 > $i ) {
-					echo $hour['days'][ $i ] . ', ';
-				} else {
-					echo $hour['days'][ $i ];
-				}
-			}
-			echo '</span></li>';
-		};
+		$markup = '';
+		foreach ( $this->operations as $operation ) {
+			$markup .= $this->get_the_hours_markup( $operation );
+		}
+		echo $markup;
 		echo '</ul>';
 	}
-	private function compare_hours( $a, $b ) {
-			// Get the day order index for each entry
-			$day_index_a = array_search( $a['days'][0], $this->day_order );
-			$day_index_b = array_search( $b['days'][0], $this->day_order );
 
-			// Compare by day index first
-		if ( $day_index_a !== $day_index_b ) {
-			return $day_index_a - $day_index_b;
+
+	/** Loops over the ACF Repeater field and returns the markup
+	 *
+	 * @param array $operation the operational hour object
+	 */
+	private function get_the_hours_markup( array $operation ) {
+		$days            = array();
+		$operation_title = esc_textarea( $operation['operation_title'] );
+		$is_open         = $this->get_open_days( $operation );
+		$markup          = '';
+		$markup         .= "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$operation_title}</span>";
+		$combined_hours  = '';
+		if ( $is_open['friday'] ) {
+			$days            = array( 'Friday' );
+			$combined_hours .= "<span class='hours-list-item__time--open'>{$operation['friday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['friday']["close"]}</span>";
 		}
-
-			// Compare by open time if the day is the same
-			return strtotime( $a['open'] ) - strtotime( $b['open'] );
+		if ( $is_open['saturday'] ) {
+			if ( $operation['saturday']['same_as_previous'] ) {
+				array_push( $days, 'Saturday' );
+			} else {
+				$days      = array( 'Saturday' );
+				$sat_hours = "<div class='hours-list-item__day--saturday'><b>Saturday:</b> <span class='hours-list-item__time--open'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['saturday']["close"]}</span>";
+			}
+		}
+		if ( $is_open['sunday'] ) {
+			if ( $operation['sunday']['same_as_previous'] ) {
+				array_push( $days, 'Sunday' );
+			} else {
+				$sun_hours = "<div class='hours-list-item__day--sunday'><b>Sunday:</b> <span class='hours-list-item__time--open'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['sunday']["close"]}</span>";
+			}
+		}
+		$day_label = join( ', ', $days );
+		$markup   .= "<div class='hours-list-item__day'><b>{$day_label}:</b> " . $combined_hours;
+		$markup   .= '</div>';
+		if ( ! empty( $sat_hours ) ) {
+			$markup .= $sat_hours;
+			$markup .= '</div>';
+		}
+		if ( ! empty( $sun_hours ) ) {
+			$markup .= $sun_hours;
+			$markup .= '</div>';
+		}
+		$markup .= '</li>';
+		return $markup;
 	}
+
+	/**
+	 * Checks which days are open and returns an associative array with $days as key and booleans as value
+	 *
+	 * @param array $operation the operation array
+	 * @return array the booleans to extract
+	 */
+	private function get_open_days( array $operation ):array {
+		extract( $operation );
+		return array(
+			'friday'   => ! empty( $friday['open'] ),
+			'saturday' => true === $saturday['same_as_previous'] || ( ! empty( $saturday['open'] ) ),
+			'sunday'   => true === $sunday['same_as_previous'] || ( ! empty( $sunday['open'] ) ),
+		);
+	}
+
 }
