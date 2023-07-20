@@ -31,27 +31,5 @@
 		&__title {
 			font-size: 1.35em;
 		}
-
-		%day {
-			grid-row: 2 / 3;
-		}
-		&__day {
-			&--friday {
-				@extend %day;
-			}
-			&--saturday {
-				@extend %day;
-			}
-			&--sunday {
-				@extend %day;
-			}
-		}
-
-		&__time {
-			&--open {
-			}
-			&--close {
-			}
-		}
 	}
 }

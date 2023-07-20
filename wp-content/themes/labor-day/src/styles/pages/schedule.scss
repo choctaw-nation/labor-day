@@ -1,5 +1,6 @@
 @use "../components/schedule/search-bar";
 @use "../abstracts/mixins" as m;
+@use "../components/hours-modal";
 @use "../pages/my-schedule"; // Dev Note: %cno-events is defined here
 
 :is(.post-type-archive-events) .hero {
