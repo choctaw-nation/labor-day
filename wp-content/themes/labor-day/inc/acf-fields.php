@@ -1592,8 +1592,9 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 			'graphql_types'                         => '',
 		)
 	);
-	
-acf_remove_local_field_group( 'group_6447d4956d6aa' );
-acf_get_store( 'field-groups' )->remove( 'group_6447d4956d6aa' );
-	
+
+	/** Removes explicit "Operational Hours" Field Group in favor of GUI-defined Operational Hours */
+	acf_remove_local_field_group( 'group_6447d4956d6aa' );
+	acf_get_store( 'field-groups' )->remove( 'group_6447d4956d6aa' );
+
 endif;

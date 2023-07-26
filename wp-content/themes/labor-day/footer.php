@@ -22,7 +22,7 @@ if ( $has_weather_alert ) {
 				<div class="h4 headline">Choctaw Nation Capitol Grounds</div>
 				<div class="subheadline">Council House Rd</div>
 				<div class="subheadline">Tushkahoma, OK 74574</div>
-				<a href="#" class="btn__fill--primary d-block align-self-start">Get Directions</a>
+				<a href="https://goo.gl/maps/se2k5hvdoozfuqHt7" class="btn__fill--primary d-block align-self-start">Get Directions</a>
 			</div>
 		</div>
 	</div>
