@@ -73,6 +73,7 @@ function cno_get_the_date( string $day ): string {
 	}
 	return $date;
 }
+
 /**
  * Enqueues the page style.
  *
