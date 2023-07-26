@@ -1,13 +1,13 @@
 // Types
-import { getTimeSortedEvents } from '../../my-schedule/eventFunctions';
-import Model from '../Model';
-import { PrettyEventData, RawEventPost, searchAppState } from '../types';
+import { PrettyEventData, searchAppState } from '../types';
+import { AppActions } from './AppActions';
 import TimeHandler from './TimeHandler';
-import { destructureData, sortEvents } from './Utilities';
 
 const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
 	posts: [],
+	isLoading: false,
+	searchResults: [],
 	filters: [
 		{
 			type: {
@@ -37,7 +37,7 @@ export const initialState: searchAppState = {
 		Days: 'Days',
 		Locations: 'Locations',
 	},
-	search: '',
+	searchTerm: '',
 	showShareModal: false,
 	shareEventObject: {
 		title: '',
@@ -50,65 +50,14 @@ export const initialState: searchAppState = {
 	})(),
 };
 
-export function reducer(state: searchAppState, action): searchAppState | void {
+export function reducer(
+	state: searchAppState,
+	action: AppActions
+): searchAppState {
 	const now = new Date();
 	switch (action.type) {
-		case 'getPosts':
-			Model.getPosts()
-				.then((data) => {
-					if (undefined === data) return;
-					const { events, eventTypes, eventLocations } = data;
-					const prettyEvents: PrettyEventData[] = events.nodes.map(
-						(node: RawEventPost) => destructureData(node)
-					);
-					const sortedEvents: PrettyEventData[] = Object.values(
-						getTimeSortedEvents(sortEvents(prettyEvents))
-					)
-						.flat()
-						.filter(
-							(event: PrettyEventData) =>
-								timeHandler.createDateString(
-									event.event_info.info
-								) > now
-						);
-					const filtersArr = [
-						{
-							type: {
-								name: 'Event Types',
-								filters: [...eventTypes.nodes],
-							},
-						},
-						{
-							type: {
-								name: 'Locations',
-								filters: [...eventLocations.nodes],
-							},
-						},
-						{
-							type: {
-								name: 'Days',
-								filters: [
-									{ name: 'Friday', dayId: 1 },
-									{ name: 'Saturday', dayId: 2 },
-									{ name: 'Sunday', dayId: 3 },
-								],
-							},
-						},
-					];
-					return {
-						...state,
-						filters: filtersArr,
-						posts: sortedEvents,
-					};
-				})
-				.catch((err) => console.error(err));
-			break;
-		// return state;
-		case 'setPosts':
-			return {
-				...state,
-				posts: action.payload,
-			};
+		case 'isLoading':
+			return { ...state, isLoading: action.payload };
 		case 'updatePosts':
 			const dateFilteredPosts = action.payload.filter(
 				(event: PrettyEventData) =>
@@ -181,8 +130,15 @@ export function reducer(state: searchAppState, action): searchAppState | void {
 		case 'doSearch':
 			return {
 				...state,
-				search: action.payload,
+				searchTerm: action.payload,
 			};
+		case 'setSearchResults':
+			return {
+				...state,
+				searchResults: action.payload,
+			};
+		case 'resetSearch':
+			return { ...state, searchResults: [], searchTerm: '' };
 		default:
 			throw new Error(`Unknown action type! ${action.type}`);
 	}

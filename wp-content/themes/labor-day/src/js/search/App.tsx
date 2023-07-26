@@ -4,10 +4,10 @@ import '../../styles/pages/schedule.scss';
 
 // React + 3rd Parties
 import React, {
+	useState,
 	useEffect,
 	createRoot,
 	useReducer,
-	useState,
 } from '@wordpress/element';
 import Fuse from 'fuse.js';
 
@@ -17,7 +17,6 @@ import { PrettyEventData, RawEventPost } from './types';
 // Components
 import LoadingSpinner from '../spinner';
 import ResultsContainer from './Presentational/Search Bar/ResultsContainer';
-// import Intersector from './Components/Intersector';
 import ShareModal from './Presentational/ShareModal';
 import SearchInput from './Presentational/Search Bar/SearchInput';
 import SearchFiltersContainer from './Presentational/Search Bar/SearchFiltersContainer';
@@ -25,79 +24,87 @@ import SearchBarContainer from './Presentational/Search Bar/SearchBarContainer';
 
 // Utilities
 import { reducer, initialState } from './Utilities/reducer';
-import model from '../add-to-schedule/model';
-import view from '../add-to-schedule/view';
-import Model from './Model';
 import {
 	destructureData,
 	sortEvents,
 	fuzzySearchKeys,
+	handleFirstAppRender,
 } from './Utilities/Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
-// import { useSearchPosts } from './Utilities/CustomHooks/SearchHooks';
 
 function App() {
-	const [isLoading, setIsLoading] = useState(false);
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const {
+		isLoading,
 		posts,
+		searchResults,
 		showShareModal,
 		shareEventObject,
-		search,
+		searchTerm,
 		canGetPosts,
 		filters,
 		selectedFilters,
 	} = state;
 
-	// function doFirstSearch(data) {
-	// 	const { events } = data;
-	// 	const prettyEvents: PrettyEventData[] = events.nodes.map(
-	// 		(node: RawEventPost) => destructureData(node)
-	// 	);
-	// 	const sortedEvents: PrettyEventData[] = Object.values(
-	// 		getTimeSortedEvents(sortEvents(prettyEvents))
-	// 	).flat();
-	// 	dispatch({ type: 'updatePosts', payload: sortedEvents });
-	// }
+	/** First Render */
+	useEffect(() => {
+		dispatch({ type: 'isLoading', payload: true });
+		handleFirstAppRender()
+			.then((data) => {
+				const { events } = data!;
+				const prettyEvents: PrettyEventData[] = events.nodes.map(
+					(node: RawEventPost) => destructureData(node)
+				);
+				const sortedEvents: PrettyEventData[] = Object.values(
+					getTimeSortedEvents(sortEvents(prettyEvents))
+				).flat();
+				dispatch({ type: 'updatePosts', payload: sortedEvents });
+				dispatch({ type: 'setFilters', payload: data! });
+			})
+			.finally(() => dispatch({ type: 'isLoading', payload: false }));
+	}, []);
 
 	/** Handle Search */
 	useEffect(() => {
-		setIsLoading(true);
-		if ('' === search) {
-			dispatch({ type: 'getPosts' });
-			console.log(posts);
-			setIsLoading(false);
-		} else {
+		if ('' === searchTerm) {
+			dispatch({ type: 'isLoading', payload: true });
+			dispatch({ type: 'resetSearch' });
+
+			// Use setTimeout to mimic an asynchronous operation
 			const timeout = setTimeout(() => {
-				const searchOptions = {
+				dispatch({ type: 'isLoading', payload: false });
+			}, 0);
+
+			return () => clearTimeout(timeout);
+		} else {
+			dispatch({ type: 'isLoading', payload: true });
+			const timeout = setTimeout(() => {
+				const fuse = new Fuse(Object.values(posts).flat(), {
 					...fuzzySearchKeys,
 					minMatchCharLength: 3,
 					includeScore: true,
 					threshold: 0.3,
-				};
-				const fuse = new Fuse(
-					Object.values(posts).flat(),
-					searchOptions
-				);
-				const results = fuse.search(search);
+				});
+				const results = fuse.search(searchTerm);
 				dispatch({
-					type: 'setPosts',
+					type: 'setSearchResults',
 					payload: results.map((result) => result.item),
 				});
-				setIsLoading(false);
+				dispatch({ type: 'isLoading', payload: false });
 			}, 350);
 			return () => clearTimeout(timeout);
 		}
-	}, [search, posts]);
+	}, [searchTerm, posts]);
 
-	/** On First Render, show floating schedule button */
+	const [showAll, setShowAll] = useState(searchResults.length === 0);
+	function toggleShowAll() {
+		setShowAll(!showAll);
+		dispatch({ type: 'resetSearch' });
+		window.scrollTo({ top: 0, behavior: 'auto' });
+	}
 	useEffect(() => {
-		const schedule = model.getSchedule();
-		if (!schedule) return;
-		if (Object.values(schedule).flat().length > 0) {
-			view.showScheduleButton();
-		}
-	}, []);
+		if (searchResults.length > 0) setShowAll(false);
+	}, [searchResults]);
 
 	if (!canGetPosts) {
 		return (
@@ -112,7 +119,7 @@ function App() {
 		return (
 			<div className="cno-search">
 				<SearchBarContainer>
-					<SearchInput dispatch={dispatch} search={search} />
+					<SearchInput dispatch={dispatch} search={searchTerm} />
 					<SearchFiltersContainer
 						dispatch={dispatch}
 						selectedFilters={selectedFilters}
@@ -123,11 +130,31 @@ function App() {
 					{isLoading ? (
 						<LoadingSpinner />
 					) : (
-						<ResultsContainer
-							dispatch={dispatch}
-							posts={posts}
-							selectedFilters={selectedFilters}
-						/>
+						<>
+							{searchResults.length > 0 && (
+								<>
+									<ResultsContainer
+										dispatch={dispatch}
+										posts={searchResults}
+										isSearch={true}
+										selectedFilters={selectedFilters}
+									/>
+									<button
+										className="btn__primary--fill"
+										onClick={toggleShowAll}
+									>
+										Reset Search
+									</button>
+								</>
+							)}
+							{showAll && (
+								<ResultsContainer
+									dispatch={dispatch}
+									posts={posts}
+									selectedFilters={selectedFilters}
+								/>
+							)}
+						</>
 					)}
 				</div>
 				<div className="container load-more-container">

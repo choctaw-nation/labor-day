@@ -11,7 +11,6 @@ import { ReadMoreButton } from '../CNOButtons';
 import { AddToScheduleButton } from '../../Components/AddToScheduleButton';
 
 // Utilities
-import { createExcerpt } from '../../Utilities/Utilities';
 import { initialState } from '../../Utilities/reducer';
 
 // The Component
@@ -19,15 +18,20 @@ export default function ResultsContainer({
 	posts,
 	dispatch,
 	selectedFilters,
+	isSearch,
 }: {
+	isSearch?: true;
 	posts: PrettyEventData[];
 	selectedFilters: selectedFilterObject;
 	dispatch: Function;
 }) {
 	const emptyFilters = initialState.selectedFilters === selectedFilters;
+	const classList = isSearch
+		? 'cno-events cno-events__search-results'
+		: 'cno-events';
 	return (
-		<section className="cno-events">
-			{posts.map((post: PrettyEventData) => {
+		<section className={classList}>
+			{posts.map((post) => {
 				if (emptyFilters || postMatchesFilters(post, selectedFilters)) {
 					return (
 						<SinglePost

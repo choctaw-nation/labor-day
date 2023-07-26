@@ -1,3 +1,7 @@
+import model from '../../add-to-schedule/model';
+import view from '../../add-to-schedule/view';
+import Model from '../Model';
+
 import {
 	RawEventPost,
 	ExcerptObject,
@@ -81,4 +85,20 @@ export function sortEvents(events: PrettyEventData[]): SortedEventsObject {
 		dailyEvents.forEach((ev) => sortedEvents[day].push(ev));
 	});
 	return sortedEvents;
+}
+
+/** On First Render, show floating schedule button and get posts */
+export async function handleFirstAppRender() {
+	const schedule = model.getSchedule();
+	if (!schedule) return;
+	if (Object.values(schedule).flat().length > 0) {
+		view.showScheduleButton();
+	}
+	try {
+		const data = await Model.getPosts();
+		if (undefined === data) return;
+		return data;
+	} catch (err) {
+		console.error(err);
+	}
 }
