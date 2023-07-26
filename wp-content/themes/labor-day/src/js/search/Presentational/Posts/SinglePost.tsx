@@ -50,7 +50,7 @@ function EventTimeBanner({
 }): JSX.Element {
 	return (
 		<aside
-			className={`cno-event__time col-lg-1 px-lg-0 cno-event__time--${info.day.toLowerCase()}`}
+			className={`cno-event__time col-xl-1 cno-event__time--${info.day.toLowerCase()}`}
 		>
 			<div className="cno-event__time--date">
 				<span className="cno-event__time--month">SEP</span>
@@ -83,7 +83,7 @@ function EventContent({ title, excerpt }) {
 function CNOEventInfo({ data, dispatch, children }) {
 	const { locations, title, link, excerpt } = data;
 	return (
-		<div className="cno-event__info col-lg-7">
+		<div className="cno-event__info col-xl-7">
 			<EventContent title={title} excerpt={excerpt} />
 			<div className="cno-event__buttons">
 				{locations && locations.length > 0 && (
