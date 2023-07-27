@@ -3,12 +3,7 @@ import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
 
 // React + 3rd Parties
-import React, {
-	useState,
-	useEffect,
-	createRoot,
-	useReducer,
-} from '@wordpress/element';
+import React, { useEffect, useReducer, createRoot } from '@wordpress/element';
 import Fuse from 'fuse.js';
 
 // Types
@@ -37,6 +32,7 @@ function App() {
 	const {
 		isLoading,
 		posts,
+		showAll,
 		searchResults,
 		showShareModal,
 		shareEventObject,
@@ -49,32 +45,33 @@ function App() {
 	/** First Render */
 	useEffect(() => {
 		dispatch({ type: 'isLoading', payload: true });
-		handleFirstAppRender()
-			.then((data) => {
-				const { events } = data!;
-				const prettyEvents: PrettyEventData[] = events.nodes.map(
-					(node: RawEventPost) => destructureData(node)
-				);
-				const sortedEvents: PrettyEventData[] = Object.values(
-					getTimeSortedEvents(sortEvents(prettyEvents))
-				).flat();
-				dispatch({ type: 'updatePosts', payload: sortedEvents });
-				dispatch({ type: 'setFilters', payload: data! });
-			})
-			.finally(() => dispatch({ type: 'isLoading', payload: false }));
+		(async function () {
+			const data = await handleFirstAppRender();
+			const { events } = data!;
+			const prettyEvents: PrettyEventData[] = events.nodes.map(
+				(node: RawEventPost) => destructureData(node)
+			);
+			const sortedEvents: PrettyEventData[] = Object.values(
+				getTimeSortedEvents(sortEvents(prettyEvents))
+			).flat();
+			dispatch({ type: 'updatePosts', payload: sortedEvents });
+			dispatch({ type: 'setFilters', payload: data! });
+		})();
+		dispatch({ type: 'isLoading', payload: false });
 	}, []);
 
 	/** Handle Search */
 	useEffect(() => {
 		if ('' === searchTerm) {
-			dispatch({ type: 'isLoading', payload: true });
-			dispatch({ type: 'resetSearch' });
-
-			// Use setTimeout to mimic an asynchronous operation
+			dispatch({ type: 'showAll', payload: true });
+			if (searchResults.length !== 0) {
+				dispatch({ type: 'isLoading', payload: true });
+				dispatch({ type: 'resetSearch' });
+			}
+			// Use setTimeout to force JS to wait until next tick in engine before resetting Loading state
 			const timeout = setTimeout(() => {
 				dispatch({ type: 'isLoading', payload: false });
 			}, 0);
-
 			return () => clearTimeout(timeout);
 		} else {
 			dispatch({ type: 'isLoading', payload: true });
@@ -94,16 +91,11 @@ function App() {
 			}, 350);
 			return () => clearTimeout(timeout);
 		}
-	}, [searchTerm, posts]);
+	}, [searchTerm, posts, searchResults.length]);
 
-	const [showAll, setShowAll] = useState(searchResults.length === 0);
-	function toggleShowAll() {
-		setShowAll(!showAll);
-		dispatch({ type: 'resetSearch' });
-		window.scrollTo({ top: 0, behavior: 'auto' });
-	}
 	useEffect(() => {
-		if (searchResults.length > 0) setShowAll(false);
+		if (searchResults.length > 0)
+			dispatch({ type: 'showAll', payload: false });
 	}, [searchResults]);
 
 	if (!canGetPosts) {
@@ -141,7 +133,17 @@ function App() {
 									/>
 									<button
 										className="btn__primary--fill"
-										onClick={toggleShowAll}
+										onClick={() => {
+											dispatch({
+												type: 'showAll',
+												payload: !showAll,
+											});
+											dispatch({ type: 'resetSearch' });
+											window.scrollTo({
+												top: 0,
+												behavior: 'auto',
+											});
+										}}
 									>
 										Reset Search
 									</button>

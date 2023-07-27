@@ -1,6 +1,11 @@
 import { PrettyEventData } from '../types';
 import { EventLocation, EventType } from '../types/eventFilters';
 
+type ShowAllAction = {
+	type: 'showAll';
+	payload: boolean;
+};
+
 type IsLoadingAction = {
 	type: 'isLoading';
 	payload: boolean;
@@ -55,6 +60,7 @@ type ResetSearchAction = {
 
 export type AppActions =
 	| IsLoadingAction
+	| ShowAllAction
 	| UpdatePostsAction
 	| ResetSelectedFiltersAction
 	| SelectFilterAction

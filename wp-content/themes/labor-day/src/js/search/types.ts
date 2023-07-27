@@ -93,6 +93,7 @@ export interface SortedEventsObject {
 
 export interface searchAppState {
 	isLoading: boolean;
+	showAll: boolean;
 	posts: PrettyEventData[];
 	searchResults: PrettyEventData[];
 	filters: EventFilters[];

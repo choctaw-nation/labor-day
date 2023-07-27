@@ -1,6 +1,6 @@
 {
 	"name": "cno-labor-day",
-	"version": "1.0.0",
+	"version": "1.9.0",
 	"description": "Custom WP theme for CNO labor day site",
 	"main": "wp-content/themes/labor-day/src/index.js",
 	"prettier": "@wordpress/prettier-config",
