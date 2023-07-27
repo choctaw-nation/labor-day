@@ -92,16 +92,17 @@ export interface SortedEventsObject {
 }
 
 export interface searchAppState {
+	isLoading: boolean;
+	showAll: boolean;
 	posts: PrettyEventData[];
+	searchResults: PrettyEventData[];
 	filters: EventFilters[];
 	selectedFilters: selectedFilterObject;
-	search: string;
-	cursor: string | undefined;
+	searchTerm: string;
 	showShareModal: boolean;
 	shareEventObject: {
 		title: string;
 		link: string;
 	};
-	isVisible: boolean;
 	canGetPosts: boolean;
 }

@@ -1,10 +1,14 @@
 // Types
 import { PrettyEventData, searchAppState } from '../types';
+import { AppActions } from './AppActions';
 import TimeHandler from './TimeHandler';
 
 const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
 	posts: [],
+	isLoading: false,
+	searchResults: [],
+	showAll: true,
 	filters: [
 		{
 			type: {
@@ -34,14 +38,12 @@ export const initialState: searchAppState = {
 		Days: 'Days',
 		Locations: 'Locations',
 	},
-	search: '',
-	// cursor: 'cursor',
+	searchTerm: '',
 	showShareModal: false,
 	shareEventObject: {
 		title: '',
 		link: '',
 	},
-	// isVisible: false,
 	canGetPosts: (() => {
 		const now = new Date();
 		const end = new Date('September 3, 2023');
@@ -49,23 +51,30 @@ export const initialState: searchAppState = {
 	})(),
 };
 
-export function reducer(state: searchAppState, action): searchAppState | void {
+export function reducer(
+	state: searchAppState,
+	action: AppActions
+): searchAppState {
+	const now = new Date();
 	switch (action.type) {
-		case 'setPosts':
-			return {
-				...state,
-				posts: action.payload,
-			};
+		case 'showAll':
+			return { ...state, showAll: action.payload };
+		case 'isLoading':
+			return { ...state, isLoading: action.payload };
 		case 'updatePosts':
-			const now = new Date();
 			const dateFilteredPosts = action.payload.filter(
 				(event: PrettyEventData) =>
 					timeHandler.createDateString(event.event_info.info) > now
 			);
-			return {
-				...state,
-				posts: [...state.posts, ...dateFilteredPosts],
-			};
+			return state.posts.length > 0
+				? {
+						...state,
+						posts: [...state.posts, ...dateFilteredPosts],
+				  }
+				: {
+						...state,
+						posts: dateFilteredPosts,
+				  };
 		case 'resetSelectedFilters':
 			return {
 				...state,
@@ -124,18 +133,15 @@ export function reducer(state: searchAppState, action): searchAppState | void {
 		case 'doSearch':
 			return {
 				...state,
-				search: action.payload,
+				searchTerm: action.payload,
 			};
-		// case 'intersecting':
-		// 	return {
-		// 		...state,
-		// 		isVisible: action.payload,
-		// 	};
-		// case 'updateCursor':
-		// 	return {
-		// 		...state,
-		// 		cursor: action.payload,
-		// 	};
+		case 'setSearchResults':
+			return {
+				...state,
+				searchResults: action.payload,
+			};
+		case 'resetSearch':
+			return { ...state, searchResults: [], searchTerm: '' };
 		default:
 			throw new Error(`Unknown action type! ${action.type}`);
 	}
