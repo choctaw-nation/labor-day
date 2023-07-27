@@ -28,7 +28,6 @@
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 1rem;
-				// @include m.displayFlex(column);
 
 				button {
 					margin: 0;
@@ -47,6 +46,7 @@
 				}
 			}
 		}
+
 		.cno-event-search-filters {
 			@include m.displayFlex(column);
 			gap: 2rem;
@@ -75,6 +75,10 @@
 	.cno-event {
 		width: 100%;
 
+		@include m.media-breakpoint-only(lg) {
+			margin-bottom: 6rem;
+		}
+
 		@include m.media-breakpoint-up(xl) {
 			height: 20.25rem;
 		}
@@ -86,6 +90,15 @@
 		&__image {
 			margin: 0;
 			@include m.fitMedia($fit: contain);
+
+			@include m.media-breakpoint-only(lg) {
+				padding: 0;
+				margin-bottom: 2rem;
+				img {
+					max-height: unset;
+				}
+			}
+
 			@include m.media-breakpoint-down(lg) {
 				max-height: 30rem;
 			}
@@ -97,6 +110,9 @@
 		}
 
 		&__info {
+			@include m.media-breakpoint-only(lg) {
+				min-height: 16rem;
+			}
 			@include m.media-breakpoint-up(lg) {
 				flex-grow: 1;
 			}
