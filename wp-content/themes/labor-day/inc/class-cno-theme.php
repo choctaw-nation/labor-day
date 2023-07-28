@@ -53,7 +53,7 @@ class CNO_THEME {
 		foreach ( $sizes as $size ) {
 			add_image_size( $size['name'], $size['width'], $size['height'] );
 		}
-		$removeable_sizes = array( 'medium', 'medium_large', 'large', '1536x1536', '2048x2048' );
+		$removeable_sizes = array( '1536x1536', '2048x2048' );
 		foreach ( $removeable_sizes as $size ) {
 			remove_image_size( $size );
 		}
