@@ -30,7 +30,7 @@ if ( $has_weather_alert ) {
 <footer class="footer text-white">
 	<div class="container my-5 text-center">
 		<div class="row">
-			<div class="col"><a href="<?php echo esc_url( site_url() ); ?>" class="logo">
+			<div class="col"><a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label='to Home Page'>
 					<figure class="logo-image d-inline-block">
 						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); ?>
 						<span aria-label="to Home Page">
@@ -59,10 +59,10 @@ if ( $has_weather_alert ) {
 			</div>
 			<div class="col socials">
 				<?php extract(get_field('socials', 'options')); ?>
-				<a href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
+				<a aria-label='to the Choctaw Nation Labor Day Facebook page' href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
 					<i class='fa-brands fa-facebook'></i>
 				</a>
-				<a href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
+				<a aria-label='to the Choctaw Nation Instagram' href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
 					<i class='fa-brands fa-instagram'></i>
 				</a>
 			</div>
