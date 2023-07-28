@@ -1,4 +1,4 @@
-<?php
+<?php //phpcs:ignore
 /**
  * The Theme Footer
  */
