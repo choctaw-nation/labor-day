@@ -57,10 +57,6 @@ export function reducer(
 ): searchAppState {
 	const now = new Date();
 	switch (action.type) {
-		case 'showAll':
-			return { ...state, showAll: action.payload };
-		case 'isLoading':
-			return { ...state, isLoading: action.payload };
 		case 'updatePosts':
 			const dateFilteredPosts = action.payload.filter(
 				(event: PrettyEventData) =>

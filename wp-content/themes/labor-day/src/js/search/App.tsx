@@ -3,7 +3,12 @@ import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
 
 // React + 3rd Parties
-import React, { useEffect, useReducer, createRoot } from '@wordpress/element';
+import React, {
+	useState,
+	useEffect,
+	useReducer,
+	createRoot,
+} from '@wordpress/element';
 import Fuse from 'fuse.js';
 
 // Types
@@ -30,9 +35,7 @@ import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const {
-		isLoading,
 		posts,
-		showAll,
 		searchResults,
 		showShareModal,
 		shareEventObject,
@@ -41,11 +44,19 @@ function App() {
 		filters,
 		selectedFilters,
 	} = state;
+	const [isLoading, setIsLoading] = useState(false);
+	const [showAll, setShowAll] = useState(false);
+	const [searchPosts, setSearchPosts] = useState<PrettyEventData[]>([]);
+
+	/** Abstract Searchable Array for Fuzzy Searching */
+	useEffect(() => {
+		setSearchPosts(Object.values(posts).flat());
+	}, [posts]);
 
 	/** First Render */
 	useEffect(() => {
-		dispatch({ type: 'isLoading', payload: true });
 		(async function () {
+			setIsLoading(true);
 			const data = await handleFirstAppRender();
 			const { events } = data!;
 			const prettyEvents: PrettyEventData[] = events.nodes.map(
@@ -56,27 +67,22 @@ function App() {
 			).flat();
 			dispatch({ type: 'updatePosts', payload: sortedEvents });
 			dispatch({ type: 'setFilters', payload: data! });
+			setIsLoading(false);
 		})();
-		dispatch({ type: 'isLoading', payload: false });
 	}, []);
 
 	/** Handle Search */
 	useEffect(() => {
 		if ('' === searchTerm) {
-			dispatch({ type: 'showAll', payload: true });
+			setShowAll(true);
 			if (searchResults.length !== 0) {
-				dispatch({ type: 'isLoading', payload: true });
 				dispatch({ type: 'resetSearch' });
 			}
-			// Use setTimeout to force JS to wait until next tick in engine before resetting Loading state
-			const timeout = setTimeout(() => {
-				dispatch({ type: 'isLoading', payload: false });
-			}, 0);
-			return () => clearTimeout(timeout);
 		} else {
-			dispatch({ type: 'isLoading', payload: true });
+			if (searchPosts.length === 0) return;
+			setIsLoading(true);
 			const timeout = setTimeout(() => {
-				const fuse = new Fuse(Object.values(posts).flat(), {
+				const fuse = new Fuse(searchPosts, {
 					...fuzzySearchKeys,
 					minMatchCharLength: 3,
 					includeScore: true,
@@ -87,16 +93,12 @@ function App() {
 					type: 'setSearchResults',
 					payload: results.map((result) => result.item),
 				});
-				dispatch({ type: 'isLoading', payload: false });
+				setIsLoading(false);
 			}, 350);
 			return () => clearTimeout(timeout);
 		}
-	}, [searchTerm, posts, searchResults.length]);
-
-	useEffect(() => {
-		if (searchResults.length > 0)
-			dispatch({ type: 'showAll', payload: false });
-	}, [searchResults]);
+		if (searchResults.length > 0) setShowAll(false);
+	}, [searchTerm, searchPosts, searchResults.length]);
 
 	if (!canGetPosts) {
 		return (
