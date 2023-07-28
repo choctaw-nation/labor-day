@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-@import url(https://use.typekit.net/jky5sek.css);
+
 %body-text {
 	font-family: v.$font-body;
 	color: v.$color-black;
