@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:ignore
 /**
  * Homepage Template
  *
@@ -106,8 +106,7 @@ get_header(); ?>
 			?>
 			<?php
 			if ( isset($image) ) {
-				$args['image_src'] = $image['sizes']['medium_large'];
-				$args['image_alt'] = $image['alt'];
+				$args['image'] = $image;
 			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>
@@ -128,8 +127,7 @@ get_header(); ?>
 			?>
 			<?php
 			if ( isset($image) ) {
-				$args['image_src'] = $image['sizes']['medium_large'];
-				$args['image_alt'] = $image['alt'];
+				$args['image'] = $image;
 			}
 			?>
 			<?php $content->two_col_text_and_media( $args ); ?>

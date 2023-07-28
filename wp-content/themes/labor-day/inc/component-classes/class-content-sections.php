@@ -105,6 +105,7 @@ class Content_Sections extends Content_Components {
 			'cta_class'        => 'cta__btn btn__fill--primary align-self-start',
 			'media_type'       => 'photo',
 			'reverse'          => false,
+			'image'            => null,
 			'image_src'        => get_theme_file_uri( '/images/placeholder.jpg' ),
 			'image_alt'        => '',
 		);
@@ -118,8 +119,17 @@ class Content_Sections extends Content_Components {
 		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media gx-5' data-aos='" . ( $reverse ? 'fade-left' : 'fade-right' ) . "'>";
 		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";
 		$col_1_content   = '';
-		if ( 'photo' === $media_type && $image_src ) {
-			$col_1_content = "<figure class='two-col__media--container mb-md-0'><img src='{$image_src}' alt='{$image_alt}' class='two-col__media--image' /></figure>";
+
+		if ( 'photo' === $media_type && $image ) {
+			$col_1_content = "<figure class='two-col__media--container mb-md-0'>";
+			if ( 'array' === gettype( $image ) ) {
+				$srcset         = wp_get_attachment_image_srcset( $image['ID'] );
+				$alt            = esc_textarea( $image['alt'] );
+				$col_1_content .= empty( $alt ) ? "<img src='{$image['sizes']['medium_large']}' alt='' aria-hidden='true' srcset='{$srcset}' class='two-col__media--image' />" : "<img src='{$image['sizes']['medium_large']}' alt='{$alt}'  srcset='{$srcset}' class='two-col__media--image' />";
+			} elseif ( 'string' === gettype( $image ) ) {
+				$col_1_content .= $image;
+			}
+			$col_1_content .= '</figure>';
 		} elseif ( 'video' === $media_type ) {
 			$col_1_content = "<figure class='two-col__media--container'>Video!</figure>";
 		}
@@ -191,6 +201,7 @@ class Content_Sections extends Content_Components {
 		$default       = array(
 			'image_src'           => null,
 			'image_alt'           => null,
+			'srcset'              => '',
 			'headline'            => '',
 			'headline_element'    => 'h2',
 			'subheadline_content' => '',
@@ -203,7 +214,7 @@ class Content_Sections extends Content_Components {
 
 		$options = array_merge( $default, $headline_args, $args );
 		extract( $options );
-		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} alt='{$image_alt}' /></figure>";
+		$card_image        = "<figure class='vertical-card__image' data-aos='fade-up'><img src={$image_src} alt='{$image_alt}' srcset='{$srcset}' /></figure>";
 		$card_text_content = "<div class='vertical-card__content'>{$this->headline($headline, false, $options)}</div>";
 		$markup            = "<div class='vertical-card'>{$card_image}{$card_text_content}</div>";
 		if ( $echo ) {

@@ -29,7 +29,7 @@ $content = new Content_Sections();
 			<li class="registration-form-list__item">
 				<article class="registration-form">
 					<?php
-					$args                           = array(
+					$args = array(
 						'split'            => array( 4, 8 ),
 						'headline'         => get_the_title(),
 						'headline_element' => 'h3',
@@ -42,9 +42,9 @@ $content = new Content_Sections();
 						'cta_class'        => 'btn__fill--primary registration-form__button',
 						'media_type'       => 'photo',
 						'reverse'          => false,
-						'image_src'        => get_the_post_thumbnail_url( size: 'large' ),
-						'image_alt'        => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
+						'image'            => get_the_post_thumbnail( size:'large', attr: 'class=two-col__media--image' ),
 					);
+
 					$has_external_registration_link = get_field( 'has_external_registration_link' );
 					if ( $has_external_registration_link ) {
 						$args['cta_link'] = get_field( 'external_registration_link' );
