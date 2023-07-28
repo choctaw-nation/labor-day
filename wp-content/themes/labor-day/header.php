@@ -30,6 +30,7 @@
 	gtag('config', 'G-FSCY06MCKK');
 	</script>
 	<?php endif;?>
+	<?php wp_title( display:false ); ?>
 	<?php wp_head(); ?>
 </head>
 
