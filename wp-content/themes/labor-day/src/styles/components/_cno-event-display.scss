@@ -7,7 +7,7 @@
 
 	@include m.media-breakpoint-only(lg) {
 		display: grid;
-		grid-template-columns: 0.5fr 2fr;
+		grid-template-columns: 12rem 2fr;
 	}
 
 	&__time {
@@ -15,6 +15,7 @@
 		font-weight: 700;
 		line-height: 1.2;
 		text-align: center;
+
 		@include m.displayFlex(column, center, stretch);
 
 		@include m.media-breakpoint-only(lg) {
@@ -32,11 +33,17 @@
 		}
 
 		&--month {
-			font-size: 2em;
+			font-size: 1.5em;
+			@include m.media-breakpoint-up(xxl) {
+				font-size: 2.8rem;
+			}
 		}
 
 		&--day {
-			font-size: 3em;
+			font-size: 2.8rem;
+			@include m.media-breakpoint-up(xl) {
+				font-size: 3em;
+			}
 		}
 
 		&--day-of-week {
@@ -45,8 +52,8 @@
 
 		&--time {
 			border-top: 1px solid white;
-			margin-top: 1rem;
-			padding-top: 1rem;
+			margin-top: 0.5rem;
+			padding-top: 0.5rem;
 			@include m.media-breakpoint-down(lg) {
 				margin-bottom: 1rem;
 			}
@@ -95,6 +102,13 @@
 			color: v.$color-grey;
 			font-family: v.$font-pill-gothic;
 			margin-bottom: 0;
+
+			@include m.media-breakpoint-up(xl) {
+				font-size: 2.5em;
+			}
+			@include m.media-breakpoint-up(xxl) {
+				font-size: 3em;
+			}
 		}
 
 		&--description {

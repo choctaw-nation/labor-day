@@ -12,7 +12,7 @@ export default function FeaturedImage({
 	const { altText, srcSet, mediaDetails, sizes } = featuredImage;
 
 	return (
-		<figure className="cno-event__image col-xl-3">
+		<figure className="cno-event__image col-xl-4 col-xxl-3">
 			<img
 				width={mediaDetails.sizes[0].width}
 				height={mediaDetails.sizes[0].height}

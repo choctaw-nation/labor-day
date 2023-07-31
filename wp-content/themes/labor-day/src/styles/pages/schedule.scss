@@ -80,11 +80,11 @@
 		}
 
 		@include m.media-breakpoint-up(xl) {
-			height: 20.25rem;
+			min-height: 20rem;
 		}
 
 		@include m.media-breakpoint-up(xxl) {
-			height: 23.625rem;
+			min-height: 17.5rem;
 		}
 
 		&__image {
@@ -93,7 +93,7 @@
 
 			@include m.media-breakpoint-only(lg) {
 				padding: 0;
-				margin-bottom: 2rem;
+				margin-bottom: 1rem;
 				img {
 					max-height: unset;
 				}
