@@ -136,10 +136,7 @@ function App() {
 									<button
 										className="btn__primary--fill"
 										onClick={() => {
-											dispatch({
-												type: 'showAll',
-												payload: !showAll,
-											});
+											setShowAll(true);
 											dispatch({ type: 'resetSearch' });
 											window.scrollTo({
 												top: 0,
