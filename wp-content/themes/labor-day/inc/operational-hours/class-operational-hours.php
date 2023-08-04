@@ -9,7 +9,12 @@ class Operational_Hours {
 	 * Sunday 10:00 am - 10:00 pm */
 	private $rv_date_times = array(
 		array(
-			'label' => 'Wednesday (Aug 30) &ndash; Saturday (Sep 1)',
+			'label' => 'Wednesday (Aug 30)',
+			'open'  => '8:00 am',
+			'close' => '8:00 pm',
+		),
+		array(
+			'label' => 'Thursday (Aug 31) &ndash; Saturday (Sep 1)',
 			'open'  => '8:00 am',
 			'close' => '11:00 pm',
 		),
