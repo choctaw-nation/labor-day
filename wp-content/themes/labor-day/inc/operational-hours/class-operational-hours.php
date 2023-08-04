@@ -5,7 +5,8 @@ class Operational_Hours {
 	private array $operations = array();
 	private $rv_hours_title   = 'RV/Tent Gate Hours';
 	/** Info from client:
-	 * Wednesday thru Sat 8:00 am - 11:00 pm
+	 * Wednesday 8:00 am - 8:00 pm
+	 * Thursday thru Sat 8:00 am - 11:00 pm
 	 * Sunday 10:00 am - 10:00 pm */
 	private $rv_date_times = array(
 		array(
