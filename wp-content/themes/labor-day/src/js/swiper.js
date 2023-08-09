@@ -1,4 +1,5 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
@@ -18,8 +19,13 @@ const defaultArgs = {
 		nextEl: '.swiper-button-next',
 		prevEl: '.swiper-button-prev',
 	},
-	slidesPerView: 3,
 	spaceBetween: 20,
+	breakpoints: {
+		767: {
+			slidesPerView: 3,
+			slidesPerGroup: 3,
+		},
+	},
 };
 
 /**
@@ -29,9 +35,6 @@ const defaultArgs = {
  */
 export function newSlider(el, args = {}) {
 	const newArgs = Object.assign({}, defaultArgs, args);
-	if (window.innerWidth < 767) {
-		newArgs.slidesPerView = 1;
-	}
 	const swiper = new Swiper(el, newArgs);
 	return swiper;
 }

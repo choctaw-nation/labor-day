@@ -5,28 +5,7 @@ import { newSlider } from '../swiper';
 
 (function init() {
 	/** Sliders */
-	const entertainmentSlider = document.getElementById('entertainment-slider');
 	const registrationSlider = document.getElementById('registration-slider');
-	if (entertainmentSlider) {
-		newSlider(entertainmentSlider, {
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '.entertainment-slider-navigation.swiper-button-next',
-				prevEl: '.entertainment-slider-navigation.swiper-button-prev',
-			},
-			breakpoints: {
-				576: {
-					slidesPerView: 2,
-				},
-				767: {
-					slidesPerView: 3,
-				},
-				991: {
-					slidesPerView: 4,
-				},
-			},
-		});
-	}
 	if (registrationSlider) {
 		newSlider(registrationSlider, {
 			slidesPerView: 1,
@@ -37,9 +16,11 @@ import { newSlider } from '../swiper';
 			breakpoints: {
 				576: {
 					slidesPerView: 2,
+					slidesPerGroup: 2,
 				},
 				767: {
 					slidesPerView: 3,
+					slidesPerGroup: 3,
 				},
 			},
 		});
