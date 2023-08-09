@@ -116,7 +116,7 @@ function cno_enqueue_page_script( string $id, array $deps = array( 'main' ) ) {
 			get_stylesheet_directory_uri() . "/dist/{$id}.js",
 			$deps,
 			filemtime( get_stylesheet_directory() . "/dist/{$id}.js" ),
-			in_footer: true
+			true
 		);
 	}
 }

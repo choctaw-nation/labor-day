@@ -57,16 +57,6 @@ class CNO_THEME {
 		foreach ( $removeable_sizes as $size ) {
 			remove_image_size( $size );
 		}
-
-		// phpcs:ignore
-		// function custom_image_sizes( $size_names ) {
-		// $new_sizes = array(
-		// 'homepage-thumb'   => 'Homepage Thumbmail',
-		// 'singlepost-thumb' => 'Infographic Single Post',
-		// );
-		// return array_merge( $size_names, $new_sizes );
-		// }
-		// add_filter( 'image_size_names_choose', 'custom_image_sizes' );
 	}
 
 	/** Register custom taxonomies. */
@@ -157,15 +147,36 @@ class CNO_THEME {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
-		// Get modification time. Enqueue files with modification date to prevent browser from loading cached scripts and styles when file content changes.
+		// Get modification time.
 		$modified_styles  = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.css' ) );
 		$modified_scripts = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.js' ) );
 
+		// CSS
 		wp_enqueue_style( 'vendors', get_template_directory_uri() . '/dist/vendors/vendors.css', array(), $modified_styles );
 		wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/global.css', array( 'vendors' ), $modified_styles );
-		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/dist/vendors/bootstrap.js', array(), $modified_scripts, true );
-		wp_enqueue_script( 'fontawesome', get_template_directory_uri() . '/dist/vendors/fontawesome.js', in_footer:true );
-		wp_enqueue_script( 'main', get_template_directory_uri() . '/dist/global.js', array( 'bootstrap', 'fontawesome' ), $modified_scripts, in_footer: true );
+
+		// JS
+		wp_enqueue_script(
+			'bootstrap',
+			get_template_directory_uri() . '/dist/vendors/bootstrap.js',
+			array(),
+			$modified_scripts,
+			true
+		);
+		wp_enqueue_script(
+			'fontawesome',
+			get_template_directory_uri() . '/dist/vendors/fontawesome.js',
+			array(),
+			$modified_scripts,
+			true
+		);
+		wp_enqueue_script(
+			'main',
+			get_template_directory_uri() . '/dist/global.js',
+			array( 'bootstrap', 'fontawesome' ),
+			$modified_scripts,
+			true
+		);
 		wp_localize_script(
 			'main',
 			'cnoSiteData',
@@ -175,6 +186,7 @@ class CNO_THEME {
 			)
 		);
 
+		// Remove CSS/JS
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
 
 	}
@@ -202,6 +214,7 @@ class CNO_THEME {
 		);
 	}
 
+	/** Add Theme Support for Featured Images & WP handling of `<title>` tag */
 	public function handle_theme_supports() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'title-tag' );
