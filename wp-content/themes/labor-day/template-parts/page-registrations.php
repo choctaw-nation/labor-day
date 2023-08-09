@@ -51,7 +51,7 @@ $content = new Content_Sections();
 					} else {
 						$args['cta_link'] = get_the_permalink();
 					}
-					if ( 'Arts & Crafts Vendor Application' === $post->post_title ) {
+					if ( 'Arts & Crafts Vendor Application' === $post->post_title || 'RV Reservation Requests' === $post->post_title ) {
 						$args['cta_text'] = null;
 					}
 					$content->two_col_text_and_media( $args );
