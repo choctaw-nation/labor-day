@@ -87,7 +87,7 @@ function cno_create_checkboxes( array $ids ): void {
 			echo "<img src='{$src}' id='{$id}' class='map__base--buildings' />";
 		}
 		?>
-		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/icons-areas-street-labels-v2.2.svg' ) ); ?>
+		<?php echo file_get_contents( get_theme_file_path( '/images/map-v3/svgs/icons-areas-labels-v2.3.svg' ) ); ?>
 	</figure>
 	<div class="legend">
 		<div class="map-toggles__container">
