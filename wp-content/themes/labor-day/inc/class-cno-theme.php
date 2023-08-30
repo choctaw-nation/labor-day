@@ -147,46 +147,54 @@ class CNO_THEME {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
-		// Get modification time.
-		$modified_styles  = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.css' ) );
-		$modified_scripts = gmdate( 'YmdHi', filemtime( get_stylesheet_directory() . '/dist/global.js' ) );
+		$deps                = array();
+		$deps['main']        = require_once get_theme_file_path( '/dist/global.asset.php' );
+		$deps['vendors']     = require_once get_theme_file_path( '/dist/vendors/vendors.asset.php' );
+		$deps['bootstrap']   = require_once get_theme_file_path( '/dist/vendors/bootstrap.asset.php' );
+		$deps['fontawesome'] = require_once get_theme_file_path( '/dist/vendors/fontawesome.asset.php' );
 
 		// CSS
-		wp_enqueue_style( 'vendors', get_template_directory_uri() . '/dist/vendors/vendors.css', array(), $modified_styles );
-		wp_enqueue_style( 'main', get_template_directory_uri() . '/dist/global.css', array( 'vendors' ), $modified_styles );
+		wp_enqueue_style(
+			'vendors',
+			get_template_directory_uri() . '/dist/vendors/vendors.css',
+			array(),
+			$deps['vendors']['version']
+		);
+		wp_enqueue_style(
+			'main',
+			get_template_directory_uri() . '/dist/global.css',
+			array( 'vendors' ),
+			$deps['main']['version']
+		);
 
 		// JS
 		wp_enqueue_script(
 			'bootstrap',
 			get_template_directory_uri() . '/dist/vendors/bootstrap.js',
 			array(),
-			$modified_scripts,
-			true
+			$deps['bootstrap']['version'],
+			array( 'strategy' => 'defer' )
 		);
+
 		wp_enqueue_script(
 			'fontawesome',
 			get_template_directory_uri() . '/dist/vendors/fontawesome.js',
 			array(),
-			$modified_scripts,
-			true
+			$deps['fontawesome']['version'],
+			array( 'strategy' => 'async' )
 		);
+
+		$global_deps = array_merge( $deps['main']['dependencies'], array( 'bootstrap', 'fontawesome' ) );
 		wp_enqueue_script(
 			'main',
 			get_template_directory_uri() . '/dist/global.js',
-			array( 'bootstrap', 'fontawesome' ),
-			$modified_scripts,
-			true
-		);
-		wp_localize_script(
-			'main',
-			'cnoSiteData',
-			array(
-				'rootUrl'      => home_url(),
-				'postsPerPage' => get_query_var( 'posts_per_page' ),
-			)
+			$global_deps,
+			$deps['main']['version'],
+			array( 'strategy' => 'defer' )
 		);
 
-		// Remove CSS/JS
+		wp_localize_script( 'main', 'cnoSiteData', array( 'rootUrl' => home_url() ) );
+
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
 
 	}

@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v1.9.14
+
+-   Added Location to Map
+-   Updated the Enqueue Scripts to use generated Asset files (instead of file modification timestamp).
+
 ## v1.9.13
 
 -   Init Changelog!
