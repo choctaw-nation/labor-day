@@ -52,5 +52,9 @@ module.exports = {
 			path: __dirname + `${THEME_DIR}/dist`,
 			filename: `[name].js`,
 		},
+		optimization: {
+			...defaultConfig.optimization,
+			usedExports: true,
+		},
 	},
 };
