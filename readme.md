@@ -4,6 +4,10 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v1.9.15
+
+-   Updated JS enqueue to be loaded in the footer again (albeit with WP 6.3 $args array)
+
 ## v1.9.14
 
 -   Added Location to Map

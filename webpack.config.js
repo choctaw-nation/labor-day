@@ -17,7 +17,7 @@ module.exports = {
 	...{
 		entry: function () {
 			const entries = {
-				global: `.${THEME_DIR}/src/index.js`,
+				global: `.${THEME_DIR}/src/index.ts`,
 				'vendors/fontawesome': `.${THEME_DIR}/src/js/vendors/fontawesome.js`,
 				'vendors/bootstrap': `.${THEME_DIR}/src/js/vendors/bootstrap.js`,
 				'vendors/vendors': `.${THEME_DIR}/src/styles/vendors/vendors.scss`,
@@ -51,10 +51,6 @@ module.exports = {
 		output: {
 			path: __dirname + `${THEME_DIR}/dist`,
 			filename: `[name].js`,
-		},
-		optimization: {
-			...defaultConfig.optimization,
-			usedExports: true,
 		},
 	},
 };

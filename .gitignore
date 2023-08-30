@@ -37,6 +37,7 @@ auth.json
 # WP-Content
 /wp-content/uploads/
 /wp-content/upgrade/
+/wp-content/upgrade-temp-backup
 /wp-content/plugins/*
 !/wp-content/plugins/cno-*
 /wp-content/cache/*

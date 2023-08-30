@@ -173,7 +173,7 @@ class CNO_THEME {
 			get_template_directory_uri() . '/dist/vendors/bootstrap.js',
 			array(),
 			$deps['bootstrap']['version'],
-			array( 'strategy' => 'defer' )
+			array( 'in_footer' => true )
 		);
 
 		wp_enqueue_script(
@@ -181,7 +181,7 @@ class CNO_THEME {
 			get_template_directory_uri() . '/dist/vendors/fontawesome.js',
 			array(),
 			$deps['fontawesome']['version'],
-			array( 'strategy' => 'async' )
+			array( 'in_footer' => true )
 		);
 
 		$global_deps = array_merge( $deps['main']['dependencies'], array( 'bootstrap', 'fontawesome' ) );
@@ -190,7 +190,7 @@ class CNO_THEME {
 			get_template_directory_uri() . '/dist/global.js',
 			$global_deps,
 			$deps['main']['version'],
-			array( 'strategy' => 'defer' )
+			array( 'in_footer' => true )
 		);
 
 		wp_localize_script( 'main', 'cnoSiteData', array( 'rootUrl' => home_url() ) );

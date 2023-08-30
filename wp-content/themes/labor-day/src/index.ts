@@ -9,6 +9,7 @@ AOS.init({ easing: 'ease-out', duration: 600, once: true });
 const allAnchors = document.querySelectorAll('a');
 allAnchors.forEach((anchor) => {
 	if (anchor.href.includes(cnoSiteData.rootUrl)) return;
+	console.log(anchor);
 	anchor.target = '_blank';
 	anchor.rel = 'noopener noreferrer';
 });
