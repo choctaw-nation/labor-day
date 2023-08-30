@@ -13,15 +13,22 @@
 	<exclude-pattern>/wp-config-sample.php</exclude-pattern>
 	<exclude-pattern>/wp-content/themes/*/dist/*.asset.php</exclude-pattern>
 
-	<!-- Exclude the Composer Vendor directory. -->
+	<!-- Exclude Package Manager directories. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>
-
-	<!-- Exclude the Node Modules directory. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
 	<!-- Exclude minified Javascript files. -->
 	<exclude-pattern>*.min.js</exclude-pattern>
-
+	
+	<!-- Minimum WordPress Version -->
+	<config name="minimum_wp_version" value="6.0"/>
+	
+	<!-- Prefix All Globals with CNO -->
+	<!-- <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="cno" />
+		</properties>
+	</rule> -->
 	<!-- Include the WordPress-Extra standard. -->
 	<rule ref="WordPress-Extra">
 		<exclude name="WordPress.WP.I18n" />

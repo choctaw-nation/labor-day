@@ -81,7 +81,18 @@ function cno_get_the_date( string $day ): string {
  * @param array  $deps Optional array of dependencies.
  */
 function cno_enqueue_page_style( string $id, array $deps = array( 'main' ) ) {
-	if ( file_exists( get_stylesheet_directory() . "/dist/{$id}.css" ) ) {
+	$asset_file = get_stylesheet_directory() . "/dist/{$id}.asset.php";
+	if ( file_exists( $asset_file ) ) {
+		$asset      = require $asset_file;
+		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'main' ) );
+		wp_enqueue_style(
+			$id,
+			get_stylesheet_directory_uri() . "/dist/{$id}.css",
+			$total_deps,
+			$asset['version'],
+		);
+
+	} else {
 		wp_enqueue_style(
 			$id,
 			get_stylesheet_directory_uri() . "/dist/{$id}.css",
