@@ -7,6 +7,7 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 ## v1.10.1
 
 -   Fixed bug that caused page styles not to load when using `cno_enqueue_page` functions
+-   Fixed bug that broke the 'Tribal Police" icon on the map
 
 ## v1.10.0
 

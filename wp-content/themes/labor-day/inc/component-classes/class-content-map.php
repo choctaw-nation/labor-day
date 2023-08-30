@@ -219,7 +219,7 @@ class Content_Map {
 				'checked' => true,
 			),
 			array(
-				'id'      => 'Tribal_Police',
+				'id'      => 'ial-Tribal_Police',
 				'label'   => 'Tribal Police',
 				'checked' => true,
 			),
