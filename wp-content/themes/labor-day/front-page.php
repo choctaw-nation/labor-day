@@ -96,26 +96,25 @@ get_header(); ?>
 	<section id="map">
 		<div class="container">
 			<?php
-			extract(get_field('map'));
+			extract( get_field( 'map' ) );
 			$args = array(
-				'headline'       => 'Map',
-				'content'        => $subheadline,
-				'cta_text'       => 'View Map',
-				'cta_link'       => '/map'
+				'headline' => 'Map',
+				'content'  => $subheadline,
+				'cta_text' => 'View Map',
+				'cta_link' => '/map',
 			);
-			?>
-			<?php
-			if ( isset($image) ) {
+
+			if ( isset( $image ) ) {
 				$args['image'] = $image;
 			}
+			$content->two_col_text_and_media( $args );
 			?>
-			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
 	<section id="facebook">
 		<div class="container">
 			<?php
-			extract(get_field('facebook'));
+			extract( get_field( 'facebook' ) );
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
 				'content'      => $subheadline,
@@ -124,13 +123,11 @@ get_header(); ?>
 				'cta_link'     => 'https://chocta.ws/fb-labor-day',
 				'reverse'      => true,
 			);
-			?>
-			<?php
-			if ( isset($image) ) {
+			if ( isset( $image ) ) {
 				$args['image'] = $image;
 			}
+			$content->two_col_text_and_media( $args );
 			?>
-			<?php $content->two_col_text_and_media( $args ); ?>
 		</div>
 	</section>
 </main>

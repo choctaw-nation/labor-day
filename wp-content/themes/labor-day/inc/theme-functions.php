@@ -84,7 +84,7 @@ function cno_enqueue_page_style( string $id, array $deps = array( 'main' ) ) {
 	$asset_file = get_stylesheet_directory() . "/dist/{$id}.asset.php";
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'main' ) );
+		$total_deps = array_unique( array_merge( $deps, array( 'main' ) ) );
 		wp_enqueue_style(
 			$id,
 			get_stylesheet_directory_uri() . "/dist/{$id}.css",
