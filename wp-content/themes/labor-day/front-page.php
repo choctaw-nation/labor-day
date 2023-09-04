@@ -16,7 +16,7 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
-					<span class="headline animate__animated animate__fadeInUp animate__delay-1s d-block">September 1 &ndash; 3, 2023</span>
+					<span class="headline animate__animated animate__fadeInUp animate__delay-1s d-block">August 30 &ndash; September 1, 2024</span>
 					<div class="countdown" id='countdown'></div>
 				</div>
 			</div>
