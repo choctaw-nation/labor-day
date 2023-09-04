@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * Basic Header Template
  */
@@ -17,7 +17,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
 	<link rel="manifest" href="/manifest.json">
-	<?php if ('prod' === $_ENV['CNO_ENV']) : ?>
+	<?php if ( 'prod' === $_ENV['CNO_ENV'] ) : ?>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSCY06MCKK"></script>
 	<script>
@@ -29,7 +29,7 @@
 	gtag('js', new Date());
 	gtag('config', 'G-FSCY06MCKK');
 	</script>
-	<?php endif;?>
+	<?php endif; ?>
 	<?php wp_title( display:false ); ?>
 	<?php wp_head(); ?>
 </head>
@@ -39,22 +39,25 @@
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
 				<figure class="logo-image d-inline-block">
-					<?php echo file_get_contents('wp-content/themes/labor-day/images/labor-day-logo.svg'); ?>
+					<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); ?>
 					<h1>
 						<?php echo bloginfo( 'name' ); ?>
 					</h1>
 				</figure>
 			</a>
-			<?php 
-			wp_nav_menu(
-				array(
-					'theme_location'  => 'primary_menu',
-					'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
-					'container'       => 'nav',
-					'container_class' => 'navbar d-none d-lg-flex align-items-center',
-					'walker'          => new CNO_Nav_Walker()
-				)
-			);?>
-			<?php get_template_part( 'template-parts/nav', 'mobile-menu' ); ?>
+			<?php
+			if ( has_nav_menu( 'primary_menu' ) ) {
+				wp_nav_menu(
+					array(
+						'theme_location'  => 'primary_menu',
+						'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
+						'container'       => 'nav',
+						'container_class' => 'navbar d-none d-lg-flex align-items-center',
+						'walker'          => new CNO_Nav_Walker(),
+					)
+				);
+			}
+			get_template_part( 'template-parts/nav', 'mobile-menu' );
+			?>
 		</div>
 	</header>

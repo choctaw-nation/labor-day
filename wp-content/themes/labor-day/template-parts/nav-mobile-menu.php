@@ -16,15 +16,17 @@
 	</div>
 	<div class="offcanvas__body">
 		<?php
-		wp_nav_menu(
-			array(
-				'theme_location'  => 'mobile_menu',
-				'menu_class'      => 'mobile-navbar__menu p-0 m-0 d-inline-flex flex-column',
-				'container'       => 'nav',
-				'container_class' => 'mobile-navbar d-flex align-items-center',
-				'walker'          => new CNO_Nav_Walker(),
-			)
-		);
+		if ( has_nav_menu( 'mobile_menu' ) ) {
+			wp_nav_menu(
+				array(
+					'theme_location'  => 'mobile_menu',
+					'menu_class'      => 'mobile-navbar__menu p-0 m-0 d-inline-flex flex-column',
+					'container'       => 'nav',
+					'container_class' => 'mobile-navbar d-flex align-items-center',
+					'walker'          => new CNO_Nav_Walker(),
+				)
+			);
+		}
 		?>
 	</div>
 </div>
