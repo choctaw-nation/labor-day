@@ -46,29 +46,9 @@ get_header(); ?>
 			</div>
 			<div class="row">
 				<h3 class="featured-event__headline--day-label">Saturday</h3>
-				<?php
-				// get_template_part(
-					'template-parts/content',
-					'featured-events',
-					array(
-						'first'  => 50,
-						'second' => 174,
-					)
-					);
-					?>
 			</div>
 			<div class="row">
 				<h3 class="featured-event__headline--day-label">Sunday</h3>
-				<?php
-				// get_template_part(
-					'template-parts/content',
-					'featured-events',
-					array(
-						'first'  => 183,
-						'second' => 200,
-					)
-					);
-					?>
 			</div>
 			<div class="row">
 				<div class="col d-flex-column align-items-center">
