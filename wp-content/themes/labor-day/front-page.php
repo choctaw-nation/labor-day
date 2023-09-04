@@ -38,7 +38,8 @@ get_header(); ?>
 		</div>
 	</section>
 	<?php get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) ); ?>
-	<section id="entertainment">
+	<!-- Hide Until 2024 -->
+	<!-- <section id="entertainment">
 		<div class="container">
 			<div class="row">
 				<h2 class="featured-event__headline">Special Entertainment</h2>
@@ -46,28 +47,28 @@ get_header(); ?>
 			<div class="row">
 				<h3 class="featured-event__headline--day-label">Saturday</h3>
 				<?php
-				get_template_part(
+				// get_template_part(
 					'template-parts/content',
 					'featured-events',
 					array(
 						'first'  => 50,
 						'second' => 174,
 					)
-				);
-				?>
+					);
+					?>
 			</div>
 			<div class="row">
 				<h3 class="featured-event__headline--day-label">Sunday</h3>
 				<?php
-				get_template_part(
+				// get_template_part(
 					'template-parts/content',
 					'featured-events',
 					array(
 						'first'  => 183,
 						'second' => 200,
 					)
-				);
-				?>
+					);
+					?>
 			</div>
 			<div class="row">
 				<div class="col d-flex-column align-items-center">
@@ -84,7 +85,7 @@ get_header(); ?>
 				</h2>
 			</div>
 		</div>
-		<?php get_template_part( 'template-parts/slider', 'registrations' ); ?>
+		<?php // get_template_part( 'template-parts/slider', 'registrations' ); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex-column">
@@ -92,7 +93,7 @@ get_header(); ?>
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 	<section id="map">
 		<div class="container">
 			<?php
