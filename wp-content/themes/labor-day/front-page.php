@@ -22,7 +22,7 @@ get_header(); ?>
 			</div>
 		</div>
 	</section>
-	<?php get_template_part( 'template-parts/aside', 'subscribe' ); ?>
+	<?php // get_template_part( 'template-parts/aside', 'subscribe' ); ?>
 	<section id="about-the-festival">
 		<div class=" container">
 			<div class="row">

@@ -10,7 +10,7 @@ $message      = 'LABORDAY'
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h3 class="headline subscribe__headline">Be the first to know about the 2023 Choctaw Labor Day Festival</h3>
+				<h3 class="headline subscribe__headline">Be the first to know about the 2024 Choctaw Labor Day Festival</h3>
 			</div>
 		</div>
 		<div class="row cta">
