@@ -54,7 +54,7 @@ function CountdownApp() {
 	});
 
 	useEffect(() => {
-		const targetDate = new Date('September 1, 2023');
+		const targetDate = new Date('August 30, 2024');
 
 		const intervalId = setInterval(() => {
 			const now = new Date();
