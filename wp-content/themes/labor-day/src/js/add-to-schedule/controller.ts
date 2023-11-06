@@ -1,4 +1,4 @@
-import Model from './model';
+import {model} from './model';
 import View from './view';
 
 /**
@@ -11,13 +11,13 @@ export class Controller {
 	debug = false;
 
 	constructor() {
-		const schedule = Model.getSchedule();
+		const schedule = model.getSchedule();
 		if (0 < Object.values(schedule).flat().length) {
 			View.showScheduleButton();
 		}
 		// Register click event listeners for buttons in the view
 		if (View.buttons.length > 0) {
-			View.clickHandler(Model.addToSchedule.bind(Model));
+			View.clickHandler(model.addToSchedule.bind(model));
 		}
 
 		// Run a debug method if debug mode is enabled

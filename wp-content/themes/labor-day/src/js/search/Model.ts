@@ -1,7 +1,7 @@
 import { graphQL } from './Utilities/Utilities';
 import { makeRequestResponse, queryVars } from './types/promises';
 
-export default new (class Model {
+class Model {
 	async makeRequest(request: {
 		query: string;
 		variables: {
@@ -107,4 +107,6 @@ export default new (class Model {
 		}
 		return undefined;
 	}
-})();
+}
+
+export const model = new Model();

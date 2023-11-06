@@ -1,6 +1,6 @@
-import model from '../../add-to-schedule/model';
+import {model} from '../../add-to-schedule/model';
 import view from '../../add-to-schedule/view';
-import Model from '../Model';
+import { model as SearchModel } from '../Model';
 
 import {
 	RawEventPost,
@@ -56,16 +56,16 @@ export function destructureData(data: RawEventPost): PrettyEventData {
 
 export function createExcerpt(str: string): ExcerptObject {
 	if (null === str) return { excerpt: '', readMore: false };
-	const index = str.slice(3, 247);
+	const excerpt = str.slice(3, 247);
 	const remainingContent = str.substring(248);
 	if (remainingContent.length > 1) {
 		return {
-			excerpt: str.slice(3, 247) + '...',
+			excerpt: excerpt + '...',
 			readMore: remainingContent.length > 1,
 		};
 	} else {
 		return {
-			excerpt: str.slice(3, 247),
+			excerpt: excerpt,
 			readMore: remainingContent.length > 1,
 		};
 	}
@@ -90,12 +90,11 @@ export function sortEvents(events: PrettyEventData[]): SortedEventsObject {
 /** On First Render, show floating schedule button and get posts */
 export async function handleFirstAppRender() {
 	const schedule = model.getSchedule();
-	if (!schedule) return;
 	if (Object.values(schedule).flat().length > 0) {
 		view.showScheduleButton();
 	}
 	try {
-		const data = await Model.getPosts();
+		const data = await SearchModel.getPosts();
 		if (undefined === data) return;
 		return data;
 	} catch (err) {

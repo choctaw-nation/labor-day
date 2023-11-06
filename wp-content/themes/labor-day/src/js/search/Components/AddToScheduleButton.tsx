@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from '@wordpress/element';
-import Model from '../../add-to-schedule/model';
+import {model} from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PrettyEventData } from '../types';
@@ -7,8 +7,7 @@ import { PrettyEventData } from '../types';
 export function AddToScheduleButton({ eventId }) {
 	const [responseMessage, setResponseMessage] = useState('Add to Schedule');
 	const [inSchedule] = useState(function () {
-		const schedule = Model.getSchedule();
-		if (!schedule) return;
+		const schedule = model.getSchedule();
 		const sched: PrettyEventData[] = Object.values(schedule).flat();
 		if (sched.length === 0) return;
 		const filteredSched = sched.filter(
@@ -32,7 +31,7 @@ export function AddToScheduleButton({ eventId }) {
 	/** Adds event to user's schedule and updates the responseMessage. */
 	async function addToSchedule(ev) {
 		try {
-			const response = await Model.addToSchedule(ev);
+			const response = await model.addToSchedule(ev);
 			const message = View.getResponseMessage(response);
 			if ('' !== message) {
 				setResponseMessage(message);

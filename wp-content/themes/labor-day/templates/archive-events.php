@@ -50,9 +50,9 @@ get_header();
 								echo "<label for='{$t->slug}'>{$t->name}</label>";
 								echo '</div>';
 							}
-						};
+						}
 						echo '</div>';
-					};
+					}
 					?>
 				</div>
 			</div>

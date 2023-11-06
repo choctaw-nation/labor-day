@@ -45,9 +45,9 @@ export const initialState: searchAppState = {
 		link: '',
 	},
 	canGetPosts: (() => {
-		const now = new Date();
-		const end = new Date('September 3, 2023');
-		return now < end;
+		// const now = new Date();
+		// const end = new Date('September 3, 2023');
+		return true;
 	})(),
 };
 
@@ -57,20 +57,27 @@ export function reducer(
 ): searchAppState {
 	const now = new Date();
 	switch (action.type) {
+		case 'isLoading':
+			return {
+				...state,
+				isLoading: action.payload,
+			};
 		case 'updatePosts':
-			const dateFilteredPosts = action.payload.filter(
-				(event: PrettyEventData) =>
-					timeHandler.createDateString(event.event_info.info) > now
-			);
-			return state.posts.length > 0
-				? {
-						...state,
-						posts: [...state.posts, ...dateFilteredPosts],
-				  }
-				: {
-						...state,
-						posts: dateFilteredPosts,
-				  };
+			// const dateFilteredPosts = action.payload.filter(
+			// 	(event: PrettyEventData) =>
+			// 		timeHandler.createDateString(event.event_info.info) > now
+			// );
+			return {
+				...state,
+				posts: action.payload,
+			};
+		// state.posts.length > 0
+		// ? {
+		// 		...state,
+		// 		posts: [...state.posts, ...dateFilteredPosts],
+		//   }
+		// :
+
 		case 'resetSelectedFilters':
 			return {
 				...state,

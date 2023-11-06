@@ -3,26 +3,26 @@ import { RawEventPost, PrettyEventData } from '../search/types';
 import { SortedEventsObject } from '../search/types';
 declare const cnoSiteData: { rootUrl: string };
 
-export default new (class Model {
+class Model {
 	/**
 	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
 	 * @returns {SortedEventsObject} The user's saved schedule
 	 */
-	getSchedule(): SortedEventsObject | undefined {
+	getSchedule(): SortedEventsObject {
 		const now = new Date();
 		const end = new Date('September 3, 2023');
+		const initialState: SortedEventsObject = {
+			friday: [],
+			saturday: [],
+			sunday: [],
+		};
 		if (now > end) {
 			localStorage.removeItem('schedule');
-			return;
+			return initialState;
 		}
 		const data: string | null = localStorage.getItem('schedule');
 		const jsonData: SortedEventsObject = data ? JSON.parse(data) : null;
 		if (null === jsonData) {
-			const initialState: SortedEventsObject = {
-				friday: [],
-				saturday: [],
-				sunday: [],
-			};
 			return initialState;
 		} else return jsonData;
 	}
@@ -169,4 +169,6 @@ export default new (class Model {
 }`;
 		return query;
 	}
-})();
+}
+
+export const model = new Model();

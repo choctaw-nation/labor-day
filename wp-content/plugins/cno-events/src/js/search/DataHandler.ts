@@ -1,27 +1,27 @@
 import { EventPost, PrettyEventData } from './types';
 import { POSTS_PER_PAGE, graphQL } from './App';
 
-async function makeRequest( request ) {
+async function makeRequest(request) {
 	try {
-		const response = await fetch( `${ graphQL }`, {
+		const response = await fetch(`${graphQL}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify( request ),
-		} );
+			body: JSON.stringify(request),
+		});
 		const { data } = await response.json();
 		return data;
-	} catch ( error ) {
-		console.error( 'makeRequest error:', error );
+	} catch (error) {
+		console.error('makeRequest error:', error);
 		throw error;
 	}
 }
 export async function getPosts() {
 	const variables = {
-		first: Number( POSTS_PER_PAGE ),
+		first: Number(POSTS_PER_PAGE),
 		after: '',
-		include: [ 'LARGE' ],
+		include: ['LARGE'],
 		size: 'LARGE',
 	};
 	const query = `query Events($first: Int = 4, $after: String = "", $include: [MediaItemSizeEnum] = [LARGE], $size: MediaItemSizeEnum = LARGE) {
@@ -94,13 +94,14 @@ export async function getPosts() {
 		variables: variables,
 	};
 	try {
-		const data = await makeRequest( request );
+		const data = await makeRequest(request);
 		return data;
-	} catch ( err ) {
-		console.error( err );
+	} catch (err) {
+		console.error(err);
 	}
 }
-export function destructureData( data: EventPost ): PrettyEventData {
+
+export function destructureData(data: EventPost): PrettyEventData {
 	const {
 		eventLocations: { nodes: locations },
 	} = data;
@@ -114,7 +115,7 @@ export function destructureData( data: EventPost ): PrettyEventData {
 			node: { altText, srcSet, mediaDetails, sizes },
 		},
 	} = data;
-	const size = mediaDetails.sizes[ 0 ];
+	const size = mediaDetails.sizes[0];
 	const destructuredData = {
 		locations,
 		type,
