@@ -1,4 +1,4 @@
-<?php // phpcs:ignore
+<?php
 /**
  * Homepage Template
  *
@@ -6,12 +6,14 @@
  * @since  1.0
  */
 
+use ChoctawNation\ACF\Image;
 $content = new Content_Sections();
 cno_enqueue_page_assets( 'frontPage' );
-get_header(); ?>
+get_header();
+$background_image = new Image( get_field( 'hero' )['background_image'] );
+?>
 <main class="site-content">
-	<?php $background_image_url = get_field( 'hero' )['background_image']; ?>
-	<section class='w-100 hero--image' style="background-image:url('<?php echo esc_url( $background_image_url ); ?>');" id='hero'>
+	<section class='w-100 hero--image' style="background-image:url('<?php echo $background_image->src; ?>');" id='hero'>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -77,16 +79,16 @@ get_header(); ?>
 	<section id="map">
 		<div class="container">
 			<?php
-			extract( get_field( 'map' ) );
-			$args = array(
+			$map_fields = get_field( 'map' );
+			$args       = array(
 				'headline' => 'Map',
-				'content'  => $subheadline,
+				'content'  => $map_fields['subheadline'],
 				'cta_text' => 'View Map',
 				'cta_link' => '/map',
 			);
 
-			if ( isset( $image ) ) {
-				$args['image'] = $image;
+			if ( isset( $map_fields['image'] ) ) {
+				$args['image'] = $map_fields['image'];
 			}
 			$content->two_col_text_and_media( $args );
 			?>
@@ -95,7 +97,8 @@ get_header(); ?>
 	<section id="facebook">
 		<div class="container">
 			<?php
-			extract( get_field( 'facebook' ) );
+			$fb_fields = get_field( 'facebook' );
+			extract( $fb_fields );
 			$args = array(
 				'headline'     => 'Labor Day Festival on Facebook',
 				'content'      => $subheadline,

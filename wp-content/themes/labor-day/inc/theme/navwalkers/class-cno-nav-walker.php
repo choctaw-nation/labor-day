@@ -1,9 +1,13 @@
-<?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
+<?php
 /**
  * CNO Nav Walker
  * based on Bootscore's Navwalker
  *
  * @link https://github.com/bootscore/bootscore/blob/main/inc/class-bootstrap-5-navwalker.php
+ */
+
+/**
+ * Class CNO_Nav_Walker
  */
 class CNO_Nav_Walker extends Walker_Nav_Menu {
 	private $current_item;

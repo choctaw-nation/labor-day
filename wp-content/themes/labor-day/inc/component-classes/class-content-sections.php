@@ -1,4 +1,4 @@
-<?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
+<?php
 /**
  * A Component Class that displays content a few different ways. All methods have an $args bypass and an $echo control where `false` returns the markup and `true` echoes the markup. The $args array also shows expected parameters.
  *
@@ -10,6 +10,12 @@
  *
  * @author KJ Roelke
  * @version 1.0.0
+ */
+
+use ChoctawNation\ACF\Image;
+
+/**
+ * Class Content_Components
  */
 class Content_Sections extends Content_Components {
 
@@ -123,9 +129,8 @@ class Content_Sections extends Content_Components {
 		if ( 'photo' === $media_type && $image ) {
 			$col_1_content = "<figure class='two-col__media--container mb-md-0'>";
 			if ( 'array' === gettype( $image ) ) {
-				$srcset         = wp_get_attachment_image_srcset( $image['ID'] );
-				$alt            = esc_textarea( $image['alt'] );
-				$col_1_content .= empty( $alt ) ? "<img src='{$image['sizes']['medium_large']}' alt='' aria-hidden='true' srcset='{$srcset}' class='two-col__media--image' />" : "<img src='{$image['sizes']['medium_large']}' alt='{$alt}'  srcset='{$srcset}' class='two-col__media--image' />";
+				$image          = new Image( $image );
+				$col_1_content .= $image->get_the_image( 'two-col__media--image' );
 			} elseif ( 'string' === gettype( $image ) ) {
 				$col_1_content .= $image;
 			}

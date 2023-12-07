@@ -8,8 +8,8 @@
  */
 
 // Init Theme.
-require_once get_template_directory() . '/inc/class-cno-theme.php';
-$init_theme = new CNO_THEME();
+require_once get_template_directory() . '/inc/theme/class-cno-theme-init.php';
+$init_theme = new CNO_Theme_Init();
 
 /**
  * ==============================================================

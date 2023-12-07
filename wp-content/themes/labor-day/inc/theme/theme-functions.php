@@ -1,8 +1,9 @@
 <?php
 /**
- * The helper functions to use
+ * The global helper functions to use
  *
  * @since 1.0
+ * @package ChoctawNation
  */
 
 /** Trim the Event Description.
@@ -65,11 +66,11 @@ function cno_acf_options_page() {
  */
 function cno_get_the_date( string $day ): string {
 	if ( 'Friday' === $day ) {
-		$date = 'September 1';
+		$date = 'August 30';
 	} elseif ( 'Saturday' === $day ) {
-		$date = 'September 2';
+		$date = 'September 1';
 	} else {
-		$date = 'September 3';
+		$date = 'September 2';
 	}
 	return $date;
 }
@@ -80,14 +81,14 @@ function cno_get_the_date( string $day ): string {
  * @param string $id The id you set in webpack.config.js.
  * @param array  $deps Optional array of dependencies.
  */
-function cno_enqueue_page_style( string $id, array $deps = array( 'main' ) ) {
-	$asset_file = get_stylesheet_directory() . "/dist/{$id}.asset.php";
+function cno_enqueue_page_style( string $id, array $deps = array( 'global' ) ) {
+	$asset_file = get_stylesheet_directory() . "/dist/pages/{$id}.asset.php";
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_unique( array_merge( $deps, array( 'main' ) ) );
+		$total_deps = array_unique( array_merge( $deps, array( 'global' ) ) );
 		wp_enqueue_style(
 			$id,
-			get_stylesheet_directory_uri() . "/dist/{$id}.css",
+			get_stylesheet_directory_uri() . "/dist/pages/{$id}.css",
 			$total_deps,
 			$asset['version'],
 		);
@@ -95,9 +96,9 @@ function cno_enqueue_page_style( string $id, array $deps = array( 'main' ) ) {
 	} else {
 		wp_enqueue_style(
 			$id,
-			get_stylesheet_directory_uri() . "/dist/{$id}.css",
+			get_stylesheet_directory_uri() . "/dist/pages/{$id}.css",
 			$deps,
-			filemtime( get_stylesheet_directory() . "/dist/{$id}.css" )
+			filemtime( get_stylesheet_directory() . "/dist/pages/{$id}.css" )
 		);
 	}
 }
@@ -108,26 +109,26 @@ function cno_enqueue_page_style( string $id, array $deps = array( 'main' ) ) {
  * @param string $id The id you set in webpack.config.js.
  * @param array  $deps Optional array of dependencies.
  */
-function cno_enqueue_page_script( string $id, array $deps = array( 'main' ) ) {
-	$asset_file = get_stylesheet_directory() . "/dist/{$id}.asset.php";
+function cno_enqueue_page_script( string $id, array $deps = array( 'global' ) ) {
+	$asset_file = get_stylesheet_directory() . "/dist/pages/{$id}.asset.php";
 
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'main' ) );
+		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'global' ) );
 		wp_enqueue_script(
 			$id,
-			get_stylesheet_directory_uri() . "/dist/{$id}.js",
+			get_stylesheet_directory_uri() . "/dist/pages/{$id}.js",
 			$total_deps,
 			$asset['version'],
-			true
+			array( 'strategy' => 'defer' )
 		);
 	} else {
 		wp_enqueue_script(
 			$id,
-			get_stylesheet_directory_uri() . "/dist/{$id}.js",
+			get_stylesheet_directory_uri() . "/dist/pages/{$id}.js",
 			$deps,
-			filemtime( get_stylesheet_directory() . "/dist/{$id}.js" ),
-			true
+			filemtime( get_stylesheet_directory() . "/dist/pages/{$id}.js" ),
+			array( 'strategy' => 'defer' )
 		);
 	}
 }
@@ -140,8 +141,8 @@ function cno_enqueue_page_script( string $id, array $deps = array( 'main' ) ) {
  */
 function cno_enqueue_page_assets( string $id, array $deps = array() ) {
 	$default_deps = array(
-		'styles'  => array( 'main' ),
-		'scripts' => array( 'main' ),
+		'styles'  => array( 'global' ),
+		'scripts' => array( 'global' ),
 	);
 
 	$deps = wp_parse_args( $deps, $default_deps );

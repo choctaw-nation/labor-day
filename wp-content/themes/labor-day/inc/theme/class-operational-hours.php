@@ -1,4 +1,7 @@
 <?php
+/**
+ * The Operational Hours Class
+ */
 
 /** Operational Hours */
 class Operational_Hours {
@@ -52,7 +55,7 @@ class Operational_Hours {
 		 * @param array  $div_elements the days and open/close times of the operation
 		 * @return string the HTML
 		 */
-	private function set_the_rv_hours( string $title, array $div_elements ):string {
+	private function set_the_rv_hours( string $title, array $div_elements ): string {
 		$markup = "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$title}</span>";
 		foreach ( $div_elements as $block ) {
 			$markup .= "<div class='hours-list-item__day'><b>{$block['label']}:</b>&nbsp;<span class='hours-list-item__time--open'>{$block['open']}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$block['close']}</span></div>";
@@ -65,7 +68,7 @@ class Operational_Hours {
 		 *
 		 * @param array $operation the operational hour object
 		 */
-	private function get_the_hours_markup( array $operation ):string {
+	private function get_the_hours_markup( array $operation ): string {
 		$days            = array();
 		$operation_title = esc_textarea( $operation['operation_title'] );
 		$is_open         = $this->get_open_days( $operation );
@@ -116,7 +119,7 @@ class Operational_Hours {
 		 * @param array $operation the operation array
 		 * @return array the booleans to extract
 		 */
-	private function get_open_days( array $operation ):array {
+	private function get_open_days( array $operation ): array {
 		extract( $operation );
 		return array(
 			'friday'   => ! empty( $friday['open'] ),
@@ -124,5 +127,4 @@ class Operational_Hours {
 			'sunday'   => true === $sunday['same_as_previous'] || ( ! empty( $sunday['open'] ) ),
 		);
 	}
-
 }
