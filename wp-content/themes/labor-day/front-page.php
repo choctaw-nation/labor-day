@@ -59,7 +59,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 				</h2>
 			</div>
 		</div>
-		<?php get_template_part( 'template-parts/slider', 'registrations' ); ?>
+		<?php get_template_part( 'template-parts/home/slider', 'registrations' ); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex-column">
