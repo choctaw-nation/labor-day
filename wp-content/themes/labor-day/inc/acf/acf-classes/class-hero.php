@@ -44,11 +44,11 @@ class Hero extends Generator {
 
 	// phpcs:ignore
 	protected function init_props( array $acf ) {
-		$this->headline    = esc_textarea( $acf['headline'] );
+		$this->headline    = get_the_title( $this->post_id );
 		$this->subheadline = esc_textarea( $acf['subheadline'] );
 		$this->has_cta     = $acf['has_cta'];
-		if ( $this->has_cta && ! empty( $acf['cta'] ) ) {
-			$this->set_the_cta( $acf['cta'] );
+		if ( $this->has_cta ) {
+			$this->set_the_cta( $acf );
 		}
 		$this->has_background_image = $acf['has_background_image'];
 		if ( $this->has_background_image ) {
@@ -62,9 +62,9 @@ class Hero extends Generator {
 	 */
 	private function set_the_cta( array $acf ) {
 		$this->cta = array(
-			'link'   => esc_url( $acf['url'] ),
-			'text'   => esc_textarea( $acf['title'] ),
-			'target' => empty( $acf['target'] ) ? '' : "target='{$acf['target']}'",
+			'link' => esc_url( $acf['cta_link'] ),
+			'text' => esc_textarea( $acf['cta_text'] ),
+			// 'target' => empty( $acf['target'] ) ? '' : "target='{$acf['target']}'",
 		);
 	}
 
@@ -90,7 +90,7 @@ class Hero extends Generator {
 
 	/** Echoes the subheadline */
 	public function the_subheadline() {
-		return $this->get_the_subheadline();
+		echo $this->get_the_subheadline();
 	}
 
 	/** Gets the Background Image source_url */
@@ -128,7 +128,7 @@ class Hero extends Generator {
 	 * @param string $html_class [Optional] HTML classes to pass on
 	 */
 	public function get_the_cta( string $html_class = '' ): string {
-		return "<a href='{$this->cta['link']}' {$this->cta['target']} class='{$html_class}'>{$this->cta['text']}</a>";
+		return "<a href='{$this->cta['link']}' class='{$html_class}'>{$this->cta['text']}</a>";
 	}
 
 	/** Returns an anchor with the props set

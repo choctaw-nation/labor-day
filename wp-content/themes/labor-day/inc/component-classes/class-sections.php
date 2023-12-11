@@ -9,15 +9,19 @@
  * @method vertical_card
  *
  * @author KJ Roelke
- * @version 1.0.0
+ * @package ChoctawNation
+ * @subpackage Content
+ * @version 2.0.0
  */
+
+namespace ChoctawNation\Content;
 
 use ChoctawNation\ACF\Image;
 
 /**
  * Class Content_Components
  */
-class Content_Sections extends Content_Components {
+class Sections extends Components {
 
 	/**
 	 * Gets the Hero `<section>` with class 'hero'. Optional Background Image or color.
@@ -128,11 +132,17 @@ class Content_Sections extends Content_Components {
 
 		if ( 'photo' === $media_type && $image ) {
 			$col_1_content = "<figure class='two-col__media--container mb-md-0'>";
-			if ( 'array' === gettype( $image ) ) {
-				$image          = new Image( $image );
-				$col_1_content .= $image->get_the_image( 'two-col__media--image' );
-			} elseif ( 'string' === gettype( $image ) ) {
-				$col_1_content .= $image;
+			switch ( gettype( $image ) ) {
+				case 'array':
+					$image          = new Image( $image );
+					$col_1_content .= $image->get_the_image( 'two-col__media--image' );
+					break;
+				case 'string':
+					$col_1_content .= $image;
+					break;
+				case 'integer':
+					$col_1_content .= wp_get_attachment_image( $image, 'full', false, array( 'class' => 'two-col__media--image' ) );
+					break;
 			}
 			$col_1_content .= '</figure>';
 		} elseif ( 'video' === $media_type ) {
@@ -182,7 +192,7 @@ class Content_Sections extends Content_Components {
         {$div_end}";
 
 		if ( $echo ) {
-			echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $markup;
 		} else {
 			return $markup;
 		}

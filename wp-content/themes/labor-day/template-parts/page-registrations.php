@@ -1,65 +1,40 @@
 <?php
 /**
  * Page Name: Registrations
+ *
+ * @package ChoctawNation
+ * @since 1.0
  */
 
-$current_id = get_the_ID();
+use ChoctawNation\Content\Sections;
+
+
 
 $args = array(
 	'post_type'      => 'page',
-	'post_parent'    => $current_id,
+	'post_parent'    => $post->ID,
 	'orderby'        => 'title',
 	'order'          => 'ASC',
 	'posts_per_page' => -1,
 	'post_status'    => 'publish',
 );
 
-$query = new WP_Query( $args );
+$registrations = new WP_Query( $args );
 
-$content = new Content_Sections();
 ?>
 <section class="registrations">
 	<div class="container">
-		<?php if ( $query->have_posts() ) : ?>
+		<?php if ( $registrations->have_posts() ) : ?>
 		<ul class="registration-form-list">
 			<?php
-			while ( $query->have_posts() ) :
-				$query->the_post();
-				?>
-			<li class="registration-form-list__item">
-				<article class="registration-form">
-					<?php
-					$args = array(
-						'split'            => array( 4, 8 ),
-						'headline'         => get_the_title(),
-						'headline_element' => 'h3',
-						'headline_class'   => 'registration-form__content--headline',
-						'content'          => get_field( 'hero' )['subheadline'],
-						'content_wrapper'  => 'p',
-						'content_class'    => 'registration-form__content--subheadline',
-						'cta_text'         => 'Apply Now',
-						'cta_external'     => false,
-						'cta_class'        => 'btn__fill--primary registration-form__button',
-						'media_type'       => 'photo',
-						'reverse'          => false,
-						'image'            => get_the_post_thumbnail( size:'large', attr: 'class=two-col__media--image' ),
-					);
-
-					$has_external_registration_link = get_field( 'has_external_registration_link' );
-					if ( $has_external_registration_link ) {
-						$args['cta_link'] = get_field( 'external_registration_link' );
-					} else {
-						$args['cta_link'] = get_the_permalink();
-					}
-					if ( 'Arts & Crafts Vendor Application' === $post->post_title || 'RV Reservation Requests' === $post->post_title ) {
-						$args['cta_text'] = null;
-					}
-					$content->two_col_text_and_media( $args );
-					?>
-				</article>
-			</li>
-			<?php endwhile; ?>
+			while ( $registrations->have_posts() ) {
+				$registrations->the_post();
+				get_template_part( 'template-parts/registrations/content', 'registration-preview' );
+			}
+			?>
 		</ul>
+		<?php else : ?>
+		<p>Registrations have not opened yet. Check back later.</p>
 		<?php endif; ?>
 	</div>
 </section>

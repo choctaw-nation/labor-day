@@ -3,6 +3,8 @@
  * Basic Header Template
  */
 
+use ChoctawNation\Nav_Walker;
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+	<?php wp_body_open(); ?>
 	<header class="d-flex" id="site-header">
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
@@ -40,7 +42,7 @@
 						'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
 						'container'       => 'nav',
 						'container_class' => 'navbar d-none d-lg-flex align-items-center',
-						'walker'          => new CNO_Nav_Walker(),
+						'walker'          => new Nav_Walker(),
 					)
 				);
 			}

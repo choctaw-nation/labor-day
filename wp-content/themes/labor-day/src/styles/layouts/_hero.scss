@@ -1,5 +1,5 @@
 @use "../abstracts/mixins" as m;
-@use "../abstracts/variables" as v;
+
 %hero {
 	display: flex;
 	position: relative;
@@ -55,7 +55,7 @@
 		max-height: 60vh;
 
 		.headline {
-			color: v.$color-primary;
+			color: var(--color-primary);
 		}
 	}
 }

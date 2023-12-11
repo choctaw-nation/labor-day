@@ -3,8 +3,10 @@
  * The display for featured events on the homepage.
  */
 
+use ChoctawNation\Content\Sections;
+
 extract( $args );
-$content = new Content_Sections();
+$content = new Sections();
 
 $card_1                        = array(
 	'image_src'        => get_the_post_thumbnail_url( $first ),

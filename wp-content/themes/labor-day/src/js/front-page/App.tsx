@@ -1,13 +1,14 @@
 import '../../styles/pages/front-page.scss';
-import { createRoot, useState, useEffect } from '@wordpress/element';
+import React, { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
 import CountdownTimer from './Countdown';
 import { newSlider } from '../swiper';
 
-(function init() {
+( function init() {
 	/** Sliders */
-	const registrationSlider = document.getElementById('registration-slider');
-	if (registrationSlider) {
-		newSlider(registrationSlider, {
+	const registrationSlider = document.getElementById( 'registration-slider' );
+	if ( registrationSlider ) {
+		newSlider( registrationSlider, {
 			slidesPerView: 1,
 			navigation: {
 				nextEl: '.registration-slider-navigation.swiper-button-next',
@@ -23,72 +24,76 @@ import { newSlider } from '../swiper';
 					slidesPerGroup: 3,
 				},
 			},
-		});
+		} );
 	}
 
 	// Email Hot Swap
-	const subscribeButton = document.getElementById('subscribe-modal-trigger');
-	if (subscribeButton) {
-		subscribeButton.addEventListener('click', () => fillEmailValues());
+	const subscribeButton = document.getElementById(
+		'subscribe-modal-trigger'
+	);
+	if ( subscribeButton ) {
+		subscribeButton.addEventListener( 'click', () => fillEmailValues() );
 	}
 
 	/** Grabs email from initial form and fills in the Gravity Form field */
 	function fillEmailValues() {
-		const modal = document.getElementById('subscribe-modal');
-		const emailInput = document.getElementById('email');
-		if (null === emailInput) return;
+		const modal = document.getElementById( 'subscribe-modal' );
+		const emailInput = document.getElementById( 'email' );
+		if ( null === emailInput ) return;
 		const email = emailInput.value ?? '';
-		const preFilledEmail = modal.querySelector('input[type="email"]');
-		if (preFilledEmail) {
+		const preFilledEmail = modal.querySelector( 'input[type="email"]' );
+		if ( preFilledEmail ) {
 			preFilledEmail.value = email;
 		}
 	}
-})();
+} )();
 
 function CountdownApp() {
-	const [remainingTime, setRemainingTime] = useState({
+	const [ remainingTime, setRemainingTime ] = useState( {
 		days: '-',
 		hours: '-',
 		minutes: '-',
 		seconds: '-',
-	});
+	} );
 
-	useEffect(() => {
-		const targetDate = new Date('August 30, 2024');
+	useEffect( () => {
+		const targetDate = new Date( 'August 30, 2024' );
 
-		const intervalId = setInterval(() => {
+		const intervalId = setInterval( () => {
 			const now = new Date();
 			const timeDiff = targetDate.getTime() - now.getTime();
 
-			if (timeDiff <= 0) {
-				clearInterval(intervalId);
-				setRemainingTime({
+			if ( timeDiff <= 0 ) {
+				clearInterval( intervalId );
+				setRemainingTime( {
 					days: 0,
 					hours: 0,
 					minutes: 0,
 					seconds: 0,
-				});
+				} );
 			} else {
-				const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+				const days = Math.floor( timeDiff / ( 1000 * 60 * 60 * 24 ) );
 				const hours = Math.floor(
-					(timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+					( timeDiff % ( 1000 * 60 * 60 * 24 ) ) / ( 1000 * 60 * 60 )
 				);
 				const minutes = Math.floor(
-					(timeDiff % (1000 * 60 * 60)) / (1000 * 60)
+					( timeDiff % ( 1000 * 60 * 60 ) ) / ( 1000 * 60 )
 				);
-				const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-				setRemainingTime({ days, hours, minutes, seconds });
+				const seconds = Math.floor(
+					( timeDiff % ( 1000 * 60 ) ) / 1000
+				);
+				setRemainingTime( { days, hours, minutes, seconds } );
 			}
-		}, 1000);
+		}, 1000 );
 
-		return () => clearInterval(intervalId);
-	}, []);
+		return () => clearInterval( intervalId );
+	}, [] );
 
-	if (Object.values(remainingTime).every((val) => val <= 0)) {
+	if ( Object.values( remainingTime ).every( ( val ) => val <= 0 ) ) {
 		return null;
 	} else {
-		return <CountdownTimer remainingTime={remainingTime} />;
+		return <CountdownTimer remainingTime={ remainingTime } />;
 	}
 }
 
-createRoot(document.getElementById('countdown')).render(<CountdownApp />);
+createRoot( document.getElementById( 'countdown' ) ).render( <CountdownApp /> );

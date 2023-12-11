@@ -6,8 +6,10 @@
  * @since 1.3
  */
 
+namespace ChoctawNation;
+
 /** Builds the Theme */
-class CNO_Theme_Init {
+class Theme_Init {
 	// phpcs:ignore 
 	public function __construct() {
 		$this->load_required_files();
@@ -22,8 +24,7 @@ class CNO_Theme_Init {
 
 	/** Calls in Required Files */
 	private function load_required_files() {
-		// require WPMU_PLUGIN_DIR . '/advanced-custom-fields-pro/acf.php';
-		// require WPMU_PLUGIN_DIR . '/initial-acf-fields.php';
+		$base_path = get_template_directory() . '/inc';
 		$this->load_acf_classes(
 			array(
 				'generator',
@@ -34,21 +35,21 @@ class CNO_Theme_Init {
 
 		$files = array( 'theme-functions' );
 		foreach ( $files as $file ) {
-			require_once get_template_directory() . "/inc/theme/{$file}.php";
+			require_once $base_path . "/theme/{$file}.php";
 		}
 
 		$components = array( 'components', 'sections', 'map' );
 		foreach ( $components as $component ) {
-			require_once get_template_directory() . "/inc/component-classes/class-content-{$component}.php";
+			require_once $base_path . "/component-classes/class-{$component}.php";
 		}
 
 		$asset_loader = array( 'enum-enqueue-type', 'class-asset-loader' );
 		foreach ( $asset_loader as $asset ) {
-			require_once get_template_directory() . "/inc/theme/asset-loader/{$asset}.php";
+			require_once $base_path . "/theme/asset-loader/{$asset}.php";
 		}
 
-		require_once get_template_directory() . '/inc/theme/class-operational-hours.php';
-		require_once get_template_directory() . '/inc/theme/navwalkers/class-cno-nav-walker.php';
+		require_once $base_path . '/theme/class-operational-hours.php';
+		require_once $base_path . '/theme/navwalkers/class-nav-walker.php';
 	}
 
 	/** Takes an array of file names to load
@@ -152,14 +153,7 @@ class CNO_Theme_Init {
 		add_action(
 			'wp_head',
 			function () {
-				?>
-			<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());	
-				gtag('config', 'G-FSCY06MCKK');
-			</script>
-				<?php
+				echo "<script>window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-FSCY06MCKK');</script>";
 			}
 		);
 	}

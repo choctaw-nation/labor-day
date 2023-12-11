@@ -1,121 +1,27 @@
-@use "../abstracts/variables" as v;
-@use "../abstracts/mixins" as m;
-
 %body-text {
-	font-family: v.$font-body;
-	color: v.$color-black;
-	font-display: swap;
-}
-
-body {
-	@extend %body-text;
-}
-
-a {
-	text-decoration: none;
-	color: v.$color-primary;
-
-	&:hover {
-		color: v.$color-primary--light;
-	}
+	font-family: var(--font-body);
+	color: var(--color-black);
+	font-size: 2.16rem;
 }
 
 p {
-	font-size: 1.35em;
-
 	@extend %body-text;
 }
 
-.text-content {
-	font-size: 1.35em;
+.subheadline {
+	@extend %body-text;
+	font-weight: 400;
+}
 
+.text-content {
 	@extend %body-text;
 }
 
 li {
-	font-size: 2.1rem;
-
 	@extend %body-text;
 }
 
 .small,
 small {
-	font-family: v.$font-body;
-}
-
-%heading {
-	font-family: v.$font-headings;
-	font-weight: 600;
-	color: v.$color-primary;
-	display: block;
-	font-display: swap;
-}
-
-h1,
-.h1 {
-	@extend %heading;
-	font-size: 4em;
-	text-transform: uppercase;
-
-	@include m.media-breakpoint-down(lg) {
-		font-size: 3em;
-	}
-}
-
-h2,
-.h2 {
-	@extend %heading;
-	font-size: 3em;
-
-	@include m.media-breakpoint-down(lg) {
-		font-size: 2.4em;
-	}
-	text-transform: uppercase;
-}
-
-h3,
-.h3 {
-	@extend %heading;
-	font-size: 2.4em;
-
-	@include m.media-breakpoint-down(lg) {
-		font-size: 2em;
-	}
-	text-transform: uppercase;
-}
-
-h4,
-.h4 {
-	@extend %heading;
-	font-size: 1.75em;
-
-	@include m.media-breakpoint-down(lg) {
-		font-size: 1.5em;
-	}
-}
-
-h5,
-.h5,
-h6,
-.h6 {
-	@extend %heading;
-}
-
-.headline {
-	@extend %heading;
-}
-%subheadline {
-	font-family: v.$font-headings;
-	font-weight: 400;
-	font-size: 1.35em;
-	font-display: swap;
-
-	@include m.media-breakpoint-down(lg) {
-		font-size: 1.2em;
-	}
-	display: inline-block;
-}
-
-.subheadline {
-	@extend %subheadline;
+	font-family: var(--font-body);
 }

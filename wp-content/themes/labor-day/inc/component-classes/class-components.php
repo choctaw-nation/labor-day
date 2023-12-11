@@ -1,4 +1,14 @@
-<?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
+<?php
+/**
+ * Component Classes
+ *
+ * @package ChoctawNation
+ * @subpackage Content
+ * @since 1.0.
+ */
+
+namespace ChoctawNation\Content;
+
 /**
  * A Component Class that displays content a few different ways. All methods have an $args bypass and an $echo control where `false` returns the markup and `true` echoes the markup. The $args array also shows expected parameters.
  *
@@ -9,7 +19,7 @@
  * @version 1.0.0
  * @since 1.0.0
  */
-class Content_Components {
+class Components {
 
 	/**
 	 * A headline element that has lots of optional parameters in the $args array.

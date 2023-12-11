@@ -1,10 +1,14 @@
-<?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
+<?php
 /**
  * Page: History
+ *
+ * @package ChoctawNation
+ * @since 1.0
  */
 
+use ChoctawNation\Content\Sections;
 
-$content = new Content_Sections();
+$content = new Sections();
 ?>
 <section id="capitol">
 	<div class="container">

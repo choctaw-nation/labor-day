@@ -6,6 +6,8 @@
  * @since 2.0
  */
 
+namespace ChoctawNation;
+
 /** Allowable Enqueue Types */
 enum Enqueue_Type {
 	case script;

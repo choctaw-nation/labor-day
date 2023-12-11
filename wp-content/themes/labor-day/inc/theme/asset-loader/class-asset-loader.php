@@ -6,6 +6,8 @@
  * @since 2.0
  */
 
+namespace ChoctawNation;
+
 /** On Construction, enqueues the assets
  *
  * @property string       $id the file id;
@@ -69,17 +71,19 @@ class Asset_Loader {
 		$this->file_path  = empty( $folder ) ? get_stylesheet_directory() . '/dist' : get_stylesheet_directory() . "/dist/{$folder}";
 		$this->file_uri   = empty( $folder ) ? get_stylesheet_directory_uri() . '/dist' : get_stylesheet_directory_uri() . "/dist/{$folder}";
 		$this->asset_file = $this->get_the_asset_file();
-		$this->deps       = $this->set_the_dependencies( $deps );
 		$this->strategy   = $strategy;
 
 		switch ( $type ) {
 			case Enqueue_Type::style:
+				$this->deps['styles'] = $this->set_the_dependencies( $deps );
 				$this->enqueue_page_style();
 				break;
 			case Enqueue_Type::script:
+				$this->deps['scripts'] = $this->set_the_dependencies( $deps );
 				$this->enqueue_page_script();
 				break;
 			case Enqueue_Type::both:
+				$this->deps = $this->set_the_dependencies( $deps, 'both' );
 				$this->enqueue_page_assets();
 				break;
 		}
@@ -94,12 +98,13 @@ class Asset_Loader {
 
 	/** Sets the dependencies to a single array with unique values
 	 *
-	 * @param ?array $deps the user-passed dependencies
+	 * @param ?array  $deps the user-passed dependencies
+	 * @param ?string $return_type whether to return split dependencies or not
 	 */
-	private function set_the_dependencies( ?array $deps ): ?array {
+	private function set_the_dependencies( ?array $deps, ?string $return_type = null ): ?array {
 		$dependencies = $this->asset_file['dependencies'];
-		if ( null === $deps ) {
-			return $deps;
+		if ( 'both' === $return_type ) {
+			return $this->handle_both_deps( $deps, $dependencies );
 		}
 		if ( 'global' !== $this->id ) {
 			$dependencies = array_merge( $this->asset_file['dependencies'], array( 'global' ) );
@@ -111,6 +116,26 @@ class Asset_Loader {
 	}
 
 	/**
+	 * Handles both dependencies by merging them with the given dependencies array.
+	 *
+	 * @param array|null $deps The dependencies array.
+	 * @param array      $dependencies The array of dependencies to merge.
+	 * @return array The merged array of dependencies.
+	 */
+	private function handle_both_deps( ?array $deps, array $dependencies ): array {
+		$both = array(
+			'scripts' => array( ...$dependencies ),
+			'styles'  => array(),
+		);
+
+		if ( $deps ) {
+			$both['scripts'] = isset( $deps['scripts'] ) ? array_unique( array( ...$deps['scripts'], ...$both['scripts'] ) ) : $both['scripts'];
+			$both['styles']  = isset( $deps['styles'] ) ? array_unique( array( ...$deps['styles'], ...$both['styles'] ) ) : array_unique( array( ...$both['styles'], ...$deps ) );
+		}
+		return $both;
+	}
+
+	/**
 	 * Enqueues the page style.
 	 */
 	public function enqueue_page_style() {
@@ -118,7 +143,7 @@ class Asset_Loader {
 			wp_enqueue_style(
 				$this->id,
 				$this->file_uri . "/{$this->id}.css",
-				$this->deps,
+				$this->deps['styles'],
 				$this->asset_file['version']
 			);
 		}
@@ -132,7 +157,7 @@ class Asset_Loader {
 			wp_enqueue_script(
 				$this->id,
 				$this->file_uri . "/{$this->id}.js",
-				$this->deps,
+				$this->deps['scripts'],
 				$this->asset_file['version'],
 				$this->strategy,
 			);

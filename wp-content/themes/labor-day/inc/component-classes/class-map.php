@@ -1,8 +1,15 @@
 <?php
-/** Map Builder */
+/** Map Builder
+ *
+ * @package ChoctawNation
+ * @subpackage Content
+ * @since 1.0
+ */
+
+namespace ChoctawNation\Content;
 
 /** Generates the Map */
-class Content_Map {
+class Map {
 	/** Map base (png)
 	 *
 	 * @var $base

@@ -1,9 +1,14 @@
 <?php
 /**
  * Page: Festival Information
+ *
+ * @package ChoctawNation
+ * @since 1.0
  */
 
-$content = new Content_Sections();
+use ChoctawNation\Content\Sections;
+
+$content = new Sections();
 ?>
 <section id="faqs">
 	<div class="container gx-5">

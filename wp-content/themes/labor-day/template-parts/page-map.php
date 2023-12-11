@@ -5,7 +5,11 @@
  * @package ChoctawNation
  */
 
-$cno_map    = new Content_Map();
+use ChoctawNation\Asset_Loader;
+use ChoctawNation\Content\Map;
+use ChoctawNation\Enqueue_Type;
+
+$cno_map    = new Map();
 $map_assets = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 ?>
 <div class="container map-container">

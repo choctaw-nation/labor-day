@@ -49,7 +49,7 @@ abstract class Generator {
 	 */
 	protected function set_the_image( array $image ) {
 		if ( is_array( $image ) ) {
-			$this->image = new ACF_Image( $image );
+			$this->image = new Image( $image );
 		}
 	}
 }

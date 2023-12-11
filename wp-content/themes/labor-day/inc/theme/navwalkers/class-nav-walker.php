@@ -6,10 +6,12 @@
  * @link https://github.com/bootscore/bootscore/blob/main/inc/class-bootstrap-5-navwalker.php
  */
 
+namespace ChoctawNation;
+
 /**
  * Class CNO_Nav_Walker
  */
-class CNO_Nav_Walker extends Walker_Nav_Menu {
+class Nav_Walker extends \Walker_Nav_Menu {
 	private $current_item;
 	private $dropdown_menu_alignment_values = array(
 		'dropdown-menu-start',
@@ -26,7 +28,7 @@ class CNO_Nav_Walker extends Walker_Nav_Menu {
 		'dropdown-menu-xxl-end',
 	);
 
-	function start_lvl( &$output, $depth = 0, $args = null ) {
+	public function start_lvl( &$output, $depth = 0, $args = null ) {
 		$dropdown_menu_class[] = 'navbar__sub-menu sub-menu';
 		foreach ( $this->current_item->classes as $class ) {
 			if ( in_array( $class, $this->dropdown_menu_alignment_values ) ) {
@@ -38,7 +40,7 @@ class CNO_Nav_Walker extends Walker_Nav_Menu {
 		$output .= "\n$indent<ul class=\"dropdown-menu$submenu " . esc_attr( implode( ' ', $dropdown_menu_class ) ) . " depth_$depth\">\n";
 	}
 
-	function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
 		$this->current_item = $item;
 
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';

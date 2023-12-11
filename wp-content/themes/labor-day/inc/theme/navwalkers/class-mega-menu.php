@@ -10,10 +10,12 @@
  * @version 1.0
  */
 
+namespace ChoctawNation;
+
 /**
  * Extends the WP Nav Walker to create megamenu option
  */
-class CNO_Mega_Menu extends CNO_Navwalker {
+class Mega_Menu extends Nav_Walker {
 	/**
 	 * An array of the last items' IDs of each top-level menu item
 	 *
