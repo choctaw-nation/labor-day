@@ -2,9 +2,26 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/functions" as fn;
 
-body {
-	position: relative;
+:root {
+	--color-primary: #{v.$color-primary};
+	--color-primary--dark: #{v.$color-primary--dark};
+	--color-primary--light: #{v.$color-primary--light};
+
+	--color-secondary: #{v.$color-secondary};
+	--color-tertiary: #{v.$color-tertiary};
+	--color-black: #{v.$color-black};
+	--color-grey: #{v.$color-grey};
+	--color-purple: #{v.$color-purple};
+	--color-white: #{v.$color-white};
+
+	--font-headings: #{v.$font-headings};
+	--font-body: #{v.$font-body};
+	--font-serif: #{v.$font-serif};
+	--font-pill-gothic: #{v.$font-pill-gothic};
+
+	--transition-standard: #{v.$transition--standard};
 }
+
 ::selection {
 	color: white;
 	background-color: v.$color-primary--dark;
@@ -15,13 +32,6 @@ section {
 
 	@include m.media-breakpoint-down(md) {
 		padding: 3.5rem 0;
-	}
-}
-
-.container {
-	position: relative;
-	@include m.media-breakpoint-down(sm) {
-		--bs-gutter-x: 4rem;
 	}
 }
 
@@ -63,23 +73,4 @@ section {
 	.fadeIn--hide {
 		transform: none;
 	}
-}
-
-:root {
-	--transition--standard: #{v.$transition--standard};
-	--color-primary: #{v.$color-primary};
-	--color-primary--dark: #{v.$color-primary--dark};
-	--color-primary--light: #{v.$color-primary--light};
-
-	--color-secondary: #{v.$color-secondary};
-	--color-tertiary: #{v.$color-tertiary};
-
-	--color-black: black;
-	--color-grey: #777;
-	--color-purple: #{v.$color-purple};
-	--color-white: white;
-
-	--font-headings: #{v.$font-headings};
-	--font-body: #{v.$font-body};
-	--font-serif: #{v.$font-serif};
 }

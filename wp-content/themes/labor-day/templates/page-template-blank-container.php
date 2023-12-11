@@ -6,7 +6,9 @@
  * @package ChoctawNation
  */
 
-$content = new Content_Sections();
+use ChoctawNation\Content\Sections;
+
+$content = new Sections();
 get_header();
 ?>
 <main class="site-content <?php echo strtolower( $post->post_title ); ?>">

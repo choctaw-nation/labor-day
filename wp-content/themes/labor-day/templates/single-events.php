@@ -74,5 +74,5 @@ extract( get_field( 'info' ) );
 	</article>
 </div>
 <?php
-get_template_part( 'template-parts/modal', 'share-event' );
+get_template_part( 'template-parts/events/modal', 'share-event' );
 get_footer();

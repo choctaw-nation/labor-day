@@ -3,7 +3,7 @@
 @use "../components/slider";
 @use "../components/subscribe";
 @use "../components/subscribe-modal";
-@use "../components//text-callout";
+@use "../components/text-callout";
 
 .countdown {
 	width: 100%;
@@ -68,15 +68,7 @@
 		}
 	}
 }
-#about-the-festival {
-	.col-lg-4 {
-		@include m.displayFlex(column, $cross: center);
-	}
 
-	.col-lg-8 {
-		@include m.displayFlex(column, center, center);
-	}
-}
 .great-seal {
 	width: 88%;
 	@include m.fitMedia(svg);
@@ -87,26 +79,9 @@
 }
 
 #entertainment {
-	.container {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.row:nth-child(3) {
-		margin-top: 4rem;
-
-		.col {
-			align-items: center;
-		}
-	}
-
 	.featured-event {
 		&__headline {
-			color: v.$color-primary--dark;
-
-			&--day-label {
-				color: v.$color-secondary;
-			}
+			color: var(--color-primary--dark);
 		}
 
 		&__title {

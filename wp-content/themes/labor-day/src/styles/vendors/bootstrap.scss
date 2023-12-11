@@ -1,0 +1,105 @@
+@use "../abstracts/variables" as v;
+
+// Required
+@import "bootstrap/scss/functions";
+
+/**
+* Colors
+*/
+$primary: v.$color-primary;
+$secondary: v.$color-secondary;
+// $light: #f8f4fb;
+// $dark: #08040b;
+
+/**
+* Typography
+*/
+$font-family-sans-serif: "Gill Sans Nova", "Helvetica Neue", "Noto Sans",
+	"Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+	"Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace:
+	Monaspace Neon,
+	"Courier New",
+	monospace;
+
+$font-size-root: 62.5%; // Assuming browser is set to 16px, this will make 1rem = 10px
+$font-size-base: 1.6rem; // Sets the base font size to 16px
+
+// LINKS
+$link-decoration: none;
+// $link-color: v.$color;
+$link-hover-color: v.$color-secondary;
+
+// HEADINGS
+$headings-font-family: v.$font-headings;
+$headings-font-weight: 600;
+$headings-color: v.$color-primary;
+
+$dropdown-font-size: 2.16rem;
+
+$body-color: v.$color-black;
+
+$btn-transition: all v.$transition--standard;
+
+/**
+* Spacing
+*/
+$grid-gutter-width: 2.4rem; // 24px
+$spacer: 1.6rem; // 16px
+
+/**
+* Options
+* @see https://getbootstrap.com/docs/5.3/customize/options/
+*/
+$enable-shadows: true;
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// Map Overrides Here (Optional)
+
+// Required Bootstrap Modules
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+
+// Useful Bootstrap Utilities (Optional)
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/dropdown";
+
+// Optional Bootstrap Modules (w/ Dependencies)
+@import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+// @import "bootstrap/scss/tables";
+// @import "bootstrap/scss/forms";
+// @import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar"; // Requires nav
+// @import "bootstrap/scss/card";
+// @import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+// @import "bootstrap/scss/progress";
+// @import "bootstrap/scss/list-group";
+// @import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal"; // Requires transitions
+// @import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/spinners";
+// @import "bootstrap/scss/placeholders";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";

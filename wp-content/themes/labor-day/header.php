@@ -3,6 +3,8 @@
  * Basic Header Template
  */
 
+use ChoctawNation\Nav_Walker;
+
 ?>
 
 <!DOCTYPE html>
@@ -17,24 +19,11 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
 	<link rel="manifest" href="/manifest.json">
-	<?php if ( 'prod' === $_ENV['CNO_ENV'] ) : ?>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FSCY06MCKK"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-
-	function gtag() {
-		dataLayer.push(arguments);
-	}
-	gtag('js', new Date());
-	gtag('config', 'G-FSCY06MCKK');
-	</script>
-	<?php endif; ?>
-	<?php wp_title( display:false ); ?>
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+	<?php wp_body_open(); ?>
 	<header class="d-flex" id="site-header">
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
 			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
@@ -53,7 +42,7 @@
 						'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
 						'container'       => 'nav',
 						'container_class' => 'navbar d-none d-lg-flex align-items-center',
-						'walker'          => new CNO_Nav_Walker(),
+						'walker'          => new Nav_Walker(),
 					)
 				);
 			}

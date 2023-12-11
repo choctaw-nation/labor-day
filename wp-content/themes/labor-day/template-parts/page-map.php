@@ -1,12 +1,16 @@
 <?php
 /**
  * Page: Map
+ *
+ * @package ChoctawNation
  */
 
-require_once get_theme_file_path( 'inc/component-classes/class-content-map.php' );
+use ChoctawNation\Asset_Loader;
+use ChoctawNation\Content\Map;
+use ChoctawNation\Enqueue_Type;
 
-$cno_map = new Content_Map();
-cno_enqueue_page_assets( 'map' );
+$cno_map    = new Map();
+$map_assets = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 ?>
 <div class="container map-container">
 	<figure class="map-figure">
