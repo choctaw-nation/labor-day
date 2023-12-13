@@ -35,8 +35,8 @@ $hero    = new Hero( $post->ID, get_field( 'hero' ) );
 			if ( 'Arts & Crafts Vendor Application' !== $post->post_title ) {
 				if ( 'RV Reservation Requests' === $post->post_title ) {
 					$timezone  = new DateTimeZone( 'America/Chicago' );
-					$today     = new DateTime( 'now' . $timezone );
-					$open_date = new DateTime( strtotime( '2024-01-02' ), $timezone );
+					$today     = new DateTime( 'now', $timezone );
+					$open_date = new DateTime( '2024-01-02', $timezone );
 					if ( $today < $open_date ) {
 						return;
 					}
