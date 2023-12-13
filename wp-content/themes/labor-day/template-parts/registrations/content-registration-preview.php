@@ -31,11 +31,19 @@ $hero    = new Hero( $post->ID, get_field( 'hero' ) );
 			<?php
 			$has_external_registration_link = get_field( 'has_external_registration_link' );
 			$cta_link                       = $has_external_registration_link ? get_field( 'external_registration_link' ) : get_the_permalink();
-			?>
-			<?php if ( 'Arts & Crafts Vendor Application' !== $post->post_title ) : ?>
-			<a href="<?php echo $cta_link; ?>" class="btn__fill--primary mt-auto w-25 text-center">Apply Now</a>
-			<?php endif; ?>
-		</div>
 
+			if ( 'Arts & Crafts Vendor Application' !== $post->post_title ) {
+				if ( 'RV Reservation Requests' === $post->post_title ) {
+					$timezone  = new DateTimeZone( 'America/Chicago' );
+					$today     = new DateTime( 'now' . $timezone );
+					$open_date = new DateTime( strtotime( '2024-01-02' ), $timezone );
+					if ( $today < $open_date ) {
+						return;
+					}
+				}
+				echo "<a href='{$cta_link}' class='btn__fill--primary mt-auto w-25 text-center'>Apply Now</a>";
+			}
+			?>
+		</div>
 	</div>
 </li>
