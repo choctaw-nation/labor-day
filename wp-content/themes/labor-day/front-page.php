@@ -49,25 +49,9 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 	/**
 	 * Hide Until 2024
 	 */
-	// get_template_part( 'template-parts/home/content', 'entertainment' );
+	// get_template_part( 'template-parts/home/section', 'entertainment' );
+	// get_template_part( 'template-parts/home/section', 'registrations' );
 	?>
-	<section id="vendors" class='bg-primary'>
-		<div class="container">
-			<div class="row">
-				<h2 class="headline text-white">
-					Register Now
-				</h2>
-			</div>
-		</div>
-		<?php get_template_part( 'template-parts/home/slider', 'registrations' ); ?>
-		<div class="container">
-			<div class="row">
-				<div class="col d-flex-column">
-					<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
-				</div>
-			</div>
-		</div>
-	</section>
 	<section id="map">
 		<div class="container">
 			<?php

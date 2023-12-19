@@ -1,13 +1,22 @@
 <?php
-/** Registrations Slider
+/**
+ * Registrations Slider
  * powered by swiper.js
+ *
+ * @package ChoctawNation
  */
 
-$query = new WP_Query(
+/**
+ * The page ID whose children makes up the slider slides
+ *
+ * @var int $registrations_page_id
+ */
+$registrations_page_id = 9;
+$query                 = new WP_Query(
 	array(
 		'post_type'      => 'page',
 		'post_status'    => 'publish',
-		'post_parent'    => get_page_by_title( 'Registrations' )->ID,
+		'post_parent'    => $registrations_page_id,
 		'posts_per_page' => -1,
 	)
 );
