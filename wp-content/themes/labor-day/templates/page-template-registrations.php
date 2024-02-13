@@ -25,7 +25,7 @@ get_header();
 			?>
 		</div>
 		<div class="row">
-			<div class="col">
+			<div class="col d-block">
 				<?php the_title( '<h1>', '</h1>' ); ?>
 				<?php
 				if ( ! empty( $additional_info ) ) {
