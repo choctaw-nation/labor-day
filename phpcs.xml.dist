@@ -40,11 +40,10 @@
 
 	<!-- Let's also check that everything is properly documented. -->
 	<rule ref="WordPress-Docs">
-		<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
 		<exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
 		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
 		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
-		<exclude name="Generic.Files.EndFileNewline.NotFound" />
+		<!-- <exclude name="Generic.Files.EndFileNewline.NotFound" /> -->
 	</rule>
 
 </ruleset>

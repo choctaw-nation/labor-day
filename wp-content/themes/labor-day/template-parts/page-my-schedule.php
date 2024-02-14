@@ -1,6 +1,8 @@
 <?php
 /**
  * Page: My Schedule
+ *
+ * @package ChoctawNation
  */
 
 cno_enqueue_page_assets( 'mySchedule', array( 'scripts' => array( 'fontawesome' ) ) );

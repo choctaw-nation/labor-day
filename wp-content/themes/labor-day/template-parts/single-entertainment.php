@@ -1,6 +1,8 @@
 <?php
 /**
  * Single: Entertainment Post Type Output
+ *
+ * @package ChoctawNation
  */
 
 extract( get_field( 'info' ) );

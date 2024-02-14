@@ -6,10 +6,6 @@
  * @since 1.0
  */
 
-use ChoctawNation\Content\Sections;
-
-
-
 $args = array(
 	'post_type'      => 'page',
 	'post_parent'    => $post->ID,

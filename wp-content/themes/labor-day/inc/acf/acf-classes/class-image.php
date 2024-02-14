@@ -67,7 +67,7 @@ class Image {
 	 * @return string the HTML
 	 */
 	public function get_the_image( string $img_class = '' ): string {
-		$markup = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' alt='{$this->alt}'/>";
+		$markup = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' alt='{$this->alt}' loading='lazy' />";
 		return $markup;
 	}
 

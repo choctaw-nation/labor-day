@@ -11,11 +11,7 @@
 
 		&--container {
 			max-height: 50rem;
-			@include m.fitMedia($fit: cover);
-
-			img {
-				aspect-ratio: 16 / 9;
-			}
+			object-position: center;
 		}
 	}
 

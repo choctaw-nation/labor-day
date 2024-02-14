@@ -30,9 +30,10 @@ if ( $has_weather_alert ) {
 <footer class="footer text-white">
 	<div class="container my-5 text-center">
 		<div class="row">
-			<div class="col"><a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label='to Home Page'>
-					<figure class="logo-image d-inline-block">
-						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); ?>
+			<div class="col">
+				<a href="<?php echo esc_url( site_url() ); ?>" class="logo w-100 h-100" aria-label='to Home Page'>
+					<figure class="logo-image d-inline-block ratio">
+						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading='lazy'>
 						<span aria-label="to Home Page">
 							<?php echo bloginfo( 'name' ); ?>
 						</span>
@@ -75,7 +76,7 @@ if ( $has_weather_alert ) {
 		</div>
 	</div>
 	<div id=" copyright" class="py-5 text-center">
-		<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . " <a href='https://choctawnation.com' target='_blank' rel='noopener noreferrer' class='text-white'>Choctaw Nation of Oklahoma</a>. All Rights Reserved."; ?>
+		<?php echo '&copy;&nbsp;' . gmdate( 'Y' ) . " <a href='https://www.choctawnation.com' target='_blank' rel='noopener noreferrer' class='text-white'>Choctaw Nation of Oklahoma</a>. All Rights Reserved."; ?>
 	</div>
 </footer>
 <?php wp_footer(); ?>

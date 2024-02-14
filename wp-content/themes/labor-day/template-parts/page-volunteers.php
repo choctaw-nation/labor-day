@@ -1,6 +1,8 @@
 <?php
 /**
  * Page: Festival Information
+ *
+ * @package ChoctawNation
  */
 
 $content = new Content_Sections();
