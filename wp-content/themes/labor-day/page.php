@@ -1,6 +1,8 @@
 <?php
 /**
  * Generic Page Template
+ *
+ * @package ChoctawNation
  */
 
 get_header();

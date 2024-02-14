@@ -14,19 +14,24 @@ $hero    = new Hero( $post->ID, get_field( 'hero' ) );
 ?>
 <li class="registration-form-list__item">
 	<div class="registration-form row justify-content-between">
-		<figure class="col-lg-4 two-col__media--container">
-			<?php
-			the_post_thumbnail(
-				'large',
-				array(
-					'class'    => 'h-100 w-100 object-fit-cover',
-					'data-aos' => 'fade-right',
-				)
-			);
-			?>
-		</figure>
+		<div class="col-lg-4">
+			<figure class="two-col__media--container ratio ratio-16x9">
+				<?php
+				the_post_thumbnail(
+					'large',
+					array(
+						'class'    => 'h-100 w-100 object-fit-cover',
+						'data-aos' => 'fade-right',
+						'loading'  => 'lazy',
+					)
+				);
+				?>
+			</figure>
+		</div>
 		<div class="col-lg-8 d-flex flex-column">
-			<h3 class="h2 text-capitalize"><?php the_title(); ?></h3>
+			<h3 class="h2 text-capitalize">
+				<?php the_title(); ?>
+			</h3>
 			<p><?php $hero->the_subheadline(); ?></p>
 			<?php
 			$has_external_registration_link = get_field( 'has_external_registration_link' );

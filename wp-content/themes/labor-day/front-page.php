@@ -34,7 +34,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 			<div class="row">
 				<div class="col-lg-4 d-flex flex-column align-items-center" data-aos="fade-right">
 					<figure class='great-seal'>
-						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/great-seal-2.svg' ); ?>
+						<img src="<?php echo get_template_directory_uri() . '/images/great-seal-2.svg'; ?>" alt="The Great Seal of the Choctaw Nation" loading='lazy'>
 					</figure>
 				</div>
 				<div class="col-lg-8 d-flex flex-column justify-content-center align-items-center">

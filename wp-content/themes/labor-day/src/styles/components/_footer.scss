@@ -16,7 +16,7 @@
 		display: block;
 
 		&-image {
-			@include m.fitMedia(svg);
+			@include m.fitMedia(img);
 			height: 20rem;
 		}
 

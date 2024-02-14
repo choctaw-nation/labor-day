@@ -131,17 +131,25 @@ class Sections extends Components {
 		$col_1_content   = '';
 
 		if ( 'photo' === $media_type && $image ) {
-			$col_1_content = "<figure class='two-col__media--container mb-md-0'>";
+			$col_1_content = "<figure class='two-col__media--container mb-md-0 ratio ratio-16x9'>";
 			switch ( gettype( $image ) ) {
 				case 'array':
 					$image          = new Image( $image );
-					$col_1_content .= $image->get_the_image( 'two-col__media--image' );
+					$col_1_content .= $image->get_the_image( 'two-col__media--image object-fit-cover' );
 					break;
 				case 'string':
 					$col_1_content .= $image;
 					break;
 				case 'integer':
-					$col_1_content .= wp_get_attachment_image( $image, 'full', false, array( 'class' => 'two-col__media--image' ) );
+					$col_1_content .= wp_get_attachment_image(
+						$image,
+						'full',
+						false,
+						array(
+							'class'   => 'two-col__media--image object-fit-cover',
+							'loading' => 'lazy',
+						)
+					);
 					break;
 			}
 			$col_1_content .= '</figure>';
