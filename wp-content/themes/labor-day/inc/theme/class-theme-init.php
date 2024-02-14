@@ -117,15 +117,6 @@ class Theme_Init {
 			null // phpcs:ignore
 		);
 
-		$fontawesome = require_once get_theme_file_path( '/dist/vendors/fontawesome.asset.php' );
-		wp_enqueue_script(
-			'fontawesome',
-			get_template_directory_uri() . '/dist/vendors/fontawesome.js',
-			array(),
-			$fontawesome['version'],
-			array( 'strategy' => 'defer' )
-		);
-
 		$animate   = new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
 		$bootstrap = new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
 
