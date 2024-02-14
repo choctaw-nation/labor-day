@@ -3,48 +3,66 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
 const THEME_NAME = 'labor-day';
 const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
 
-function snakeToCamel( str ) {
-	return str.replace( /([-_][a-z])/g, ( group ) =>
-		group.toUpperCase().replace( '-', '' ).replace( '_', '' )
-	);
-}
-
 const appNames = [ 'front-page', 'my-schedule', 'search' ];
 const styleSheets = []; // for scss only
 
 module.exports = {
 	...defaultConfig,
 	...{
-		entry: function () {
-			const entries = {
-				global: `.${ THEME_DIR }/src/index.ts`,
-				'vendors/fontawesome': `.${ THEME_DIR }/src/js/vendors/fontawesome.js`,
-				'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
-				'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
-				'pages/map': `.${ THEME_DIR }/src/js/map/map.js`,
-				'pages/singleEvents': `.${ THEME_DIR }/src/js/add-to-schedule/App.js`,
-			};
-			if ( appNames.length > 0 ) {
-				appNames.forEach( ( appName ) => {
-					const appNameOutput = snakeToCamel( appName );
-					entries[
-						`pages/${ appNameOutput }`
-					] = `.${ THEME_DIR }/src/js/${ appName }/App.tsx`;
-				} );
-			}
-			if ( styleSheets.length > 0 ) {
-				styleSheets.forEach( ( styleSheet ) => {
-					const styleSheetOutput = snakeToCamel( styleSheet );
-					entries[
-						`pages/${ styleSheetOutput }`
-					] = `.${ THEME_DIR }/src/styles/pages/${ styleSheet }.scss`;
-				} );
-			}
-			return entries;
-		},
+		entry: () => ( {
+			global: `.${ THEME_DIR }/src/index.ts`,
+			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
+			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
+			'pages/map': `.${ THEME_DIR }/src/js/map/map.js`,
+			'pages/singleEvents': `.${ THEME_DIR }/src/js/add-to-schedule/App.js`,
+			...addEntries( appNames, 'pages' ),
+			...addEntries( styleSheets, 'styles' ),
+		} ),
 		output: {
 			path: __dirname + `${ THEME_DIR }/dist`,
 			filename: `[name].js`,
 		},
 	},
 };
+
+/**
+ * Helper function to add entries to the entries object. It takes an array of strings in either kebab-case or snake_case and returns an object with the key as the entry name and the value as the path to the entry file.
+ * @param {array} array - Array of strings
+ * @param {string} type - The type of entry. Either 'pages' or 'styles'
+ */
+function addEntries( array, type ) {
+	if ( ! Array.isArray( array ) ) {
+		throw new Error( `Expecting an array, received ${ typeof array }!` );
+	}
+	if ( 0 >= array.length ) {
+		return {};
+	}
+	const entries = {};
+	array.forEach( ( asset ) => {
+		const assetOutput = snakeToCamel( asset );
+		if ( type === 'styles' ) {
+			entries[
+				`pages/${ assetOutput }`
+			] = `.${ THEME_DIR }/src/styles/pages/${ asset }.scss`;
+		} else if ( type === 'pages' ) {
+			entries[
+				`pages/${ assetOutput }`
+			] = `.${ THEME_DIR }/src/js/${ asset }/App.tsx`;
+		} else {
+			throw new Error(
+				`Invalid type! Expected "styles" or "pages", received "${ type }"`
+			);
+		}
+	} );
+	return entries;
+}
+
+/** A simple utility class to alter strings from kebab-case or snake_case to camelCase
+ *
+ * @param {string} str - The string to be converted
+ */
+function snakeToCamel( str ) {
+	return str.replace( /([-_][a-z])/g, ( group ) =>
+		group.toUpperCase().replace( '-', '' ).replace( '_', '' )
+	);
+}
