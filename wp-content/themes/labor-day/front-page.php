@@ -50,7 +50,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 	 * Hide Until 2024
 	 */
 	// get_template_part( 'template-parts/home/section', 'entertainment' );
-	// get_template_part( 'template-parts/home/section', 'registrations' );
+	get_template_part( 'template-parts/home/section', 'registrations' );
 	?>
 	<section id="map">
 		<div class="container">
