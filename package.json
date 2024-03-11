@@ -13,7 +13,7 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"author": "Choctaw Nation of Oklahoma",
-	"license": "ISC",
+	"license": "LGPL-3.0-or-later",
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
 		"@fortawesome/free-brands-svg-icons": "^6.5.1",
