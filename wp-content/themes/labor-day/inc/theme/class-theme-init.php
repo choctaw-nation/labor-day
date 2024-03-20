@@ -131,22 +131,6 @@ class Theme_Init {
 		);
 
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
-		if ( 'prod' === $_ENV['CNO_ENV'] ) {
-			$this->add_google_tag_manager();
-		}
-	}
-
-	/**
-	 * Adds Google Tag Manager to the head of the site
-	 */
-	private function add_google_tag_manager() {
-		wp_enqueue_script( 'google-tag-manager', 'https://www.googletagmanager.com/gtag/js?id=G-FSCY06MCKK', array(), null, array( 'strategy' => 'async' ) );
-		add_action(
-			'wp_head',
-			function () {
-				echo "<script>window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-FSCY06MCKK');</script>";
-			}
-		);
 	}
 
 	/**
