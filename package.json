@@ -1,6 +1,6 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.0.7",
+	"version": "2.0.8",
 	"description": "Custom WP theme for CNO labor day site",
 	"main": "wp-content/themes/labor-day/src/index.js",
 	"prettier": "@wordpress/prettier-config",
@@ -22,7 +22,7 @@
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"aos": "^2.3.4",
 		"bootstrap": "^5.3.3",
-		"date-fns": "^2.30.0",
+		"date-fns": "^3.6.0",
 		"fuse.js": "^7.0.0",
 		"swiper": "^11.0.7"
 	},

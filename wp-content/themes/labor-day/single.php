@@ -1,6 +1,8 @@
 <?php
 /**
  * Single Display
+ *
+ * @package ChoctawNation
  */
 
 get_header();
