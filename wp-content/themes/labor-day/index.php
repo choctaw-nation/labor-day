@@ -1,5 +1,7 @@
 <?php
 /** The Index.php
+ *
+ * @package ChoctawNation
  */
 
 get_header();

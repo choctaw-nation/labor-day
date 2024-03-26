@@ -1,6 +1,8 @@
 <?php
 /**
  * The Theme Footer
+ *
+ * @package ChoctawNation
  */
 
 $has_weather_alert = get_field( 'enable_weather_alert', 'option' );

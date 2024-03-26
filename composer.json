@@ -8,6 +8,10 @@
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
+	"scripts": {
+		"phpcs": "phpcs wp-content/themes/labor-day/**.php",
+		"phpcbf": "phpcbf wp-content/themes/labor-day/**.php"
+	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
 	}

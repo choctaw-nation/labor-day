@@ -47,9 +47,9 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 	get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) );
 
 	/**
-	 * Hide Until 2024
+	 * Hiding Until 2024 launch
+	 * get_template_part( 'template-parts/home/section', 'entertainment' );
 	 */
-	// get_template_part( 'template-parts/home/section', 'entertainment' );
 	get_template_part( 'template-parts/home/section', 'registrations' );
 	?>
 	<section id="map">
