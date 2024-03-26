@@ -4,6 +4,7 @@
  *
  * @author KJ Roelke
  * @since  1.0
+ * @package ChoctawNation
  */
 
 use ChoctawNation\ACF\Image;
@@ -28,12 +29,11 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 			</div>
 		</div>
 	</section>
-	<?php // get_template_part( 'template-parts/aside', 'subscribe' ); ?>
 	<section id="about-the-festival">
 		<div class=" container">
 			<div class="row">
 				<div class="col-lg-4 d-flex flex-column align-items-center" data-aos="fade-right">
-					<figure class='great-seal'>
+					<figure class='great-seal ratio ratio-1x1'>
 						<img src="<?php echo get_template_directory_uri() . '/images/great-seal-2.svg'; ?>" alt="The Great Seal of the Choctaw Nation" loading='lazy'>
 					</figure>
 				</div>
