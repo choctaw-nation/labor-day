@@ -6,8 +6,6 @@
  */
 
 $has_weather_alert = get_field( 'enable_weather_alert', 'option' );
-?>
-<?php
 if ( $has_weather_alert ) {
 	get_template_part( 'template-parts/aside', 'weather-alert' );
 }
