@@ -1,4 +1,4 @@
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
 import { SortedEventsObject, PrettyEventData } from '../search/types';
@@ -23,34 +23,26 @@ export default function EventsDisplay( {
 	removeEvent: CallableFunction;
 } ) {
 	const events: PrettyEventData[] = Object.values( schedule ).flat();
+
 	function handleClick( id: number ) {
 		const event = events.filter( ( { eventId } ) => eventId === id );
 		downloadICSFile( event[ 0 ] );
 	}
-	return events.map( ( event: PrettyEventData ) => {
-		const {
-			eventId,
-			link,
-			description,
-			info: { day },
-		} = event;
-		return (
-			<SinglePost data={ event } key={ eventId }>
-				<>
-					{ createExcerpt( description ).readMore && (
-						<ReadMoreButton link={ link } />
-					) }
-					<ExportToCalendar
-						handleClick={ handleClick }
-						eventId={ eventId }
-					/>
-					<RemoveFromSchedule
-						removeEvent={ removeEvent }
-						eventId={ event.eventId }
-						day={ day }
-					/>
-				</>
-			</SinglePost>
-		);
-	} );
+
+	return events.map( ( event: PrettyEventData ) => (
+		<SinglePost data={ event } key={ event.eventId }>
+			{ createExcerpt( event.description ).readMore && (
+				<ReadMoreButton link={ event.link } />
+			) }
+			<ExportToCalendar
+				handleClick={ handleClick }
+				eventId={ event.eventId }
+			/>
+			<RemoveFromSchedule
+				removeEvent={ removeEvent }
+				eventId={ event.eventId }
+				day={ event.info.day }
+			/>
+		</SinglePost>
+	) );
 }

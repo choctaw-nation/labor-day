@@ -1,5 +1,3 @@
-import { WP_Term } from 'wp-types';
-
 export interface EventDay {
 	name: string;
 	dayId: number;
@@ -8,7 +6,10 @@ export interface EventDay {
 export type EventFilters = {
 	type: {
 		name: string;
-		filters: WP_Term[];
+		filters: {
+			name: string;
+			slug: string;
+		}[];
 	};
 };
 

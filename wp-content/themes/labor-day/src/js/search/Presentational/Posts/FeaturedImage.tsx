@@ -1,5 +1,5 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
 import { FeaturedImage as FeaturedImageType } from '../../types';

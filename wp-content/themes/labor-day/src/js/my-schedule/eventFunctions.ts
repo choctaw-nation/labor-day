@@ -19,11 +19,14 @@ export function getLocalStorageData(): SortedEventsObject {
 			saturday: [],
 			sunday: [],
 		};
+		if ( Object.values( jsonEvents ).flat().length === 0 ) {
+			throw new Error( 'No events found in local storage!' );
+		}
 		const days: string[] = [ 'friday', 'saturday', 'sunday' ];
 		days.forEach( ( day ) => {
 			const dailyEvents = jsonEvents[ day ].filter(
 				( ev: PrettyEventData ) => {
-					return ev.event_info.info.day.toLowerCase() == day;
+					return ev.info.day.toLowerCase() == day;
 				}
 			);
 			dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
@@ -35,24 +38,19 @@ export function getLocalStorageData(): SortedEventsObject {
 }
 
 /** Orders the events of the day by time from morning to night.
+ *
  * @param {SortedEventsObject} sortedEvents the data to sort.
  * @returns {SortedEventsObject} the sorted events.
  */
 export function getTimeSortedEvents(
 	sortedEvents: SortedEventsObject
 ): SortedEventsObject {
-	/** The sorting event
-	 * @param {LaborDayEvent} a the first event
-	 * @param {LaborDayEvent} b the event to compare it against.
-	 */
-	function eventSorter( a: PrettyEventData, b: PrettyEventData ): number {
-		return (
-			new Date( '1970/01/01 ' + a.info.startTime ) -
-			new Date( '1970/01/01 ' + b.info.startTime )
-		);
-	}
 	for ( const day in sortedEvents ) {
-		sortedEvents[ day ].sort( eventSorter );
+		sortedEvents[ day ].sort(
+			( a: PrettyEventData, b: PrettyEventData ): number =>
+				new Date( '1970/01/01 ' + a.info.startTime ) -
+				new Date( '1970/01/01 ' + b.info.startTime )
+		);
 	}
 	return sortedEvents;
 }

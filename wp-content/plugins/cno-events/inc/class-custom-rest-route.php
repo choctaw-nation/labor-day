@@ -47,7 +47,12 @@ class Custom_Rest_Route {
 		);
 		$search_term = $request->get_param( 'search' );
 		if ( ! empty( $search_term ) ) {
-			$args['s'] = $search_term;
+			$args['s']          = $search_term;
+			$args['relevanssi'] = true;
+		}
+		$event_id = $request->get_param( 'id' );
+		if ( ! empty( $event_id ) ) {
+			$args['p'] = $event_id;
 		}
 		$event_info = array();
 		$events     = new \WP_Query( $args );

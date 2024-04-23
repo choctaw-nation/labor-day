@@ -19,6 +19,7 @@ function formatICalDateTime( date: Date ): string {
 	const dateString = format( date, "yyyyMMdd'T'HHmmss" );
 	return `${ dateString }`;
 }
+
 export function downloadICSFile( event: PrettyEventData ) {
 	let start_date = '';
 	switch ( event.info.day ) {
