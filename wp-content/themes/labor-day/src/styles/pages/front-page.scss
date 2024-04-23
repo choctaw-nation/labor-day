@@ -6,10 +6,6 @@
 @use "../components/text-callout";
 
 .countdown {
-	width: 100%;
-	text-align: center;
-	color: white;
-
 	a {
 		margin-top: 2rem;
 		font-size: 1.2em;
@@ -74,7 +70,6 @@
 	@include m.fitMedia(svg);
 	@include m.media-breakpoint-down(lg) {
 		width: 50%;
-		margin-bottom: 2rem;
 	}
 }
 

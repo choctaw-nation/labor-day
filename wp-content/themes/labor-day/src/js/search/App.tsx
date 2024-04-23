@@ -6,7 +6,6 @@ import '../../styles/pages/schedule.scss';
 import React, { useState, useEffect, useReducer, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import Fuse from 'fuse.js';
-import Dropdown from 'bootstrap/js/dist/dropdown';
 
 // Types
 import { PrettyEventData } from './types';
@@ -37,17 +36,11 @@ function App() {
 		filters,
 		selectedFilters,
 	} = state;
-	const [ showAll, setShowAll ] = useState( false );
+	const [ showAll ] = useState( 0 === searchResults.length );
 	const [ searchPosts, setSearchPosts ] = useState< PrettyEventData[] >( [] );
-
-	/** Abstract Searchable Array for Fuzzy Searching */
-	useEffect( () => {
-		setSearchPosts( Object.values( posts ).flat() );
-	}, [ posts ] );
 
 	/** First Render */
 	useEffect( () => {
-		setShowAll( true );
 		dispatch( { type: 'isLoading', payload: true } );
 		( async function () {
 			const data = await getEvents();
@@ -61,13 +54,17 @@ function App() {
 		dispatch( { type: 'isLoading', payload: false } );
 	}, [] );
 
+	/** Sets `searchPosts = posts` for Fuzzy Searching */
+	useEffect( () => {
+		setSearchPosts( Object.values( posts ).flat() );
+	}, [ posts ] );
+
 	/** Handle Search */
 	useEffect( () => {
-		if ( '' === searchTerm ) {
-			setShowAll( true );
-			if ( searchResults.length !== 0 ) {
-				dispatch( { type: 'resetSearch' } );
-			}
+		const url = new URL( window.location.href );
+		const searchParam = url.searchParams.get( 's' );
+		if ( '' === searchParam && '' === searchTerm ) {
+			dispatch( { type: 'resetSearch' } );
 		} else {
 			if ( searchPosts.length === 0 ) return;
 			dispatch( { type: 'isLoading', payload: true } );
@@ -78,7 +75,7 @@ function App() {
 					includeScore: true,
 					threshold: 0.3,
 				} );
-				const results = fuse.search( searchTerm );
+				const results = fuse.search( searchParam || searchTerm );
 				dispatch( {
 					type: 'setSearchResults',
 					payload: results.map( ( result ) => result.item ),
@@ -88,10 +85,6 @@ function App() {
 			return () => clearTimeout( timeout );
 		}
 	}, [ searchTerm, searchPosts, searchResults.length ] );
-
-	useEffect( () => {
-		setShowAll( 0 === searchResults.length );
-	}, [ searchResults.length ] );
 
 	if ( false === canGetPosts ) {
 		return (

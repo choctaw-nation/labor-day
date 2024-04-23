@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import Dropdown from 'bootstrap/js/dist/dropdown';
 import { EventFilters, selectedFilterObject } from '../../types/eventFilters';
+
+const filterKeys = {
+	'Event Types': 'event-types',
+	Days: 'days',
+	Locations: 'locations',
+};
 
 export default function SearchFilters( {
 	filters,
@@ -15,7 +22,7 @@ export default function SearchFilters( {
 			{ filters.map( ( filter ) => (
 				<SearchFilter
 					filter={ filter }
-					key={ filter.type.name }
+					key={ filterKeys[ filter.type.name ] }
 					dispatch={ dispatch }
 					selectedFilters={ selectedFilters }
 				/>
@@ -28,43 +35,49 @@ function SearchFilter( { filter, dispatch, selectedFilters } ) {
 	const {
 		type: { name, filters },
 	} = filter;
+	const ref = useRef( null );
+	useEffect( () => {
+		if ( ref.current ) new Dropdown( ref.current );
+	}, [ ref ] );
+
 	return (
 		<div className="cno-event-search-filters__container">
 			<div className="cno-event-search-filters__filter-container">
 				<div className="dropdown">
 					<button
+						ref={ ref }
 						className="btn__outline--secondary dropdown-toggle"
-						type="button"
-						id={ `${ name }-dropdown` }
+						id={ `${ filterKeys[ name ] }-dropdown` }
 						data-bs-toggle="dropdown"
 						aria-haspopup="true"
 						aria-expanded="false"
 					>
 						{ selectedFilters[ name ] }
 					</button>
-					<div
+					<ul
 						className="dropdown-menu"
-						aria-labelledby={ `${ name }-dropdown` }
+						aria-labelledby={ `${ filterKeys[ name ] }-dropdown` }
 					>
 						{ filters.map( ( filter, i ) => {
-							console.log( filter );
 							return (
-								<button
-									key={ i }
-									onClick={ () =>
-										dispatch( {
-											type: 'selectFilter',
-											payload: {
-												[ name ]: filter.name,
-											},
-										} )
-									}
-								>
-									{ filter.name }
-								</button>
+								<li key={ i }>
+									<button
+										className="dropdown-item fs-6 w-auto"
+										onClick={ () =>
+											dispatch( {
+												type: 'selectFilter',
+												payload: {
+													[ name ]: filter.name,
+												},
+											} )
+										}
+									>
+										{ filter.name }
+									</button>
+								</li>
 							);
 						} ) }
-					</div>
+					</ul>
 				</div>
 			</div>
 		</div>

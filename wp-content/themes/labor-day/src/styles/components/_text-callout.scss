@@ -3,9 +3,7 @@
 
 $overlay-opacity: 0.52;
 %text-callout {
-	position: relative;
 	padding: 1rem 0;
-	overflow: hidden;
 }
 
 .text-callout {
@@ -23,22 +21,9 @@ $overlay-opacity: 0.52;
 	}
 
 	&__content {
-		position: relative;
-		color: white;
-		z-index: 4;
-
 		figure {
 			align-self: center;
 			@include m.fitMedia(svg);
-		}
-
-		.text-content {
-			@include m.displayFlex(column, $cross: center);
-			color: white;
-			font-size: 5.6rem;
-			@include m.media-breakpoint-down(lg) {
-				font-size: 3rem;
-			}
 		}
 
 		.quote {
@@ -56,11 +41,6 @@ $overlay-opacity: 0.52;
 .bg {
 	background-position: center 60%;
 	background-size: cover;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
 	opacity: $overlay-opacity;
 	mix-blend-mode: multiply;
 	@include m.media-breakpoint-down(md) {
@@ -69,6 +49,7 @@ $overlay-opacity: 0.52;
 }
 
 .overlay {
+	opacity: $overlay-opacity;
 	&--primary {
 		@extend .overlay;
 		background-color: rgba(v.$color-primary--light, $overlay-opacity);
