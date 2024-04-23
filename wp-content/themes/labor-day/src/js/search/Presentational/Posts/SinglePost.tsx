@@ -80,8 +80,14 @@ function CNOEventInfo( { data, dispatch, children } ) {
 	const { locations, title, link, description } = data;
 	return (
 		<div className="cno-event__info col-xl-6 col-xxl-7">
-			<h2 className="cno-event__info--title headline">{ title }</h2>
-			<p className="cno-event__info--description">{ description }</p>
+			<h2
+				className="cno-event__info--title headline"
+				dangerouslySetInnerHTML={ { __html: title } }
+			/>
+			<p
+				className="cno-event__info--description"
+				dangerouslySetInnerHTML={ { __html: description } }
+			/>
 			<div className="cno-event__buttons">
 				{ locations && locations.length > 0 && (
 					<LocationButton

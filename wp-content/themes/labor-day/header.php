@@ -24,7 +24,7 @@ use ChoctawNation\Nav_Walker;
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( array( 'w-100', 'overflow-x-hidden' ) ); ?>>
 	<?php wp_body_open(); ?>
 	<header class="d-flex" id="site-header">
 		<div class="navbar container gx-5 py-4 d-flex justify-content-between">

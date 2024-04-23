@@ -58,7 +58,9 @@ export default function ResultsContainer( {
 	);
 }
 
-/** Returns true if Post matches selected filters
+/**
+ * Returns true if Post matches selected filters
+ *
  * @param {PrettyEventData} post The post to check
  * @returns boolean
  */
@@ -66,20 +68,32 @@ function postMatchesFilters(
 	post: PrettyEventData,
 	selectedFilters: selectedFilterObject
 ): boolean {
-	const postInFilters: boolean =
-		( filterIsEmpty( selectedFilters.Locations ) ||
-			post.locations?.some(
+	const filters = {
+		Locations: post.locations,
+		'Event Types': post.type,
+		Days: post.info.day,
+	};
+	const hasLocation =
+		filterIsEmpty( selectedFilters.Locations ) ||
+		( filters.Locations &&
+			filters.Locations.some(
 				( location ) => selectedFilters.Locations === location.name
-			) ) &&
-		( filterIsEmpty( selectedFilters[ 'Event Types' ] ) ||
-			post.type?.some(
-				( type ) => selectedFilters[ 'Event Types' ] === type.name
-			) ) &&
-		( filterIsEmpty( selectedFilters.Days ) ||
-			selectedFilters.Days === post.event_info.info.day );
-	return postInFilters;
+			) );
+	const hasType =
+		filterIsEmpty( selectedFilters[ 'Event Types' ] ) ||
+		filters[ 'Event Types' ].some(
+			( type ) => selectedFilters[ 'Event Types' ] === type.name
+		);
+	const hasDay =
+		filterIsEmpty( selectedFilters.Days ) ||
+		selectedFilters.Days === filters.Days;
+	console.log( selectedFilters.Days, filters.Days );
+	return hasLocation && hasType && hasDay;
 }
-/** Returns true if filter is default "empty" value
+
+/**
+ * Returns true if filter is default "empty" value
+ *
  * @param {string} filter the filter to check
  * @returns boolean
  */

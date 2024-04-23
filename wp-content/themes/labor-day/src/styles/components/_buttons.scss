@@ -115,7 +115,7 @@ a.btn {
 	text-decoration: none;
 }
 
-button {
+button:where(:not(.post-type-archive-events .dropdown-item)) {
 	@extend .btn__fill--primary !optional;
 }
 

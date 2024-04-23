@@ -58,6 +58,7 @@ export function reducer(
 	action: AppActions
 ): searchAppState {
 	const now = new Date();
+	const url = new URL( window.location.href );
 	switch ( action.type ) {
 		case 'isLoading':
 			return {
@@ -65,21 +66,10 @@ export function reducer(
 				isLoading: action.payload,
 			};
 		case 'updatePosts':
-			// const dateFilteredPosts = action.payload.filter(
-			// 	(event: PrettyEventData) =>
-			// 		timeHandler.createDateString(event.event_info.info) > now
-			// );
 			return {
 				...state,
 				posts: action.payload,
 			};
-		// state.posts.length > 0
-		// ? {
-		// 		...state,
-		// 		posts: [...state.posts, ...dateFilteredPosts],
-		//   }
-		// :
-
 		case 'resetSelectedFilters':
 			return {
 				...state,
@@ -135,6 +125,8 @@ export function reducer(
 				shareEventObject: initialState.shareEventObject,
 			};
 		case 'doSearch':
+			url.searchParams.set( 's', action.payload );
+			window.history.replaceState( null, '', url.toString() );
 			return {
 				...state,
 				searchTerm: action.payload,
@@ -145,6 +137,8 @@ export function reducer(
 				searchResults: action.payload,
 			};
 		case 'resetSearch':
+			url.searchParams.delete( 's' );
+			window.history.replaceState( null, '', url.toString() );
 			return { ...state, searchResults: [], searchTerm: '' };
 		default:
 			throw new Error( `Unknown action type! ${ action.type }` );
@@ -163,7 +157,7 @@ function getTerms(
 ): EventFilters[ 'type' ][ 'filters' ] {
 	const terms = data.map( ( event ) => {
 		if ( ! event[ term ] ) {
-			return {};
+			return null;
 		} else {
 			const termName = event[ term ] as WP_Term[];
 			return {
@@ -172,11 +166,18 @@ function getTerms(
 			};
 		}
 	} );
-	const filteredTerms = terms.filter( ( term ) => term ) as {
-		name: string;
-		slug: string;
-	}[];
-
-	console.log( filteredTerms );
+	const filteredTerms = terms.filter( Boolean ).reduce(
+		( unique, term ) => {
+			if ( ! term ) {
+				return unique;
+			}
+			return unique.some(
+				( u ) => u.name === term.name && u.slug === term.slug
+			)
+				? unique
+				: [ ...unique, term ];
+		},
+		[] as { name: string; slug: string }[]
+	);
 	return filteredTerms;
 }

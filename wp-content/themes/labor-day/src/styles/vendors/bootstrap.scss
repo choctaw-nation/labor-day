@@ -8,8 +8,6 @@
 */
 $primary: v.$color-primary;
 $secondary: v.$color-secondary;
-// $light: #f8f4fb;
-// $dark: #08040b;
 
 /**
 * Typography
@@ -35,6 +33,18 @@ $headings-font-family: v.$font-headings;
 $headings-font-weight: 600;
 $headings-color: v.$color-primary;
 
+/**
+* Minor Third Type Scale
+* @see https://typescale.com/
+*/
+
+$h1-font-size: $font-size-base * 2.986;
+$h2-font-size: $font-size-base * 2.488;
+$h3-font-size: $font-size-base * 2.074;
+$h4-font-size: $font-size-base * 1.728;
+$h5-font-size: $font-size-base * 1.44;
+$h6-font-size: $font-size-base * 1.2;
+
 $dropdown-font-size: 2.16rem;
 
 $body-color: v.$color-black;
@@ -57,6 +67,17 @@ $enable-shadows: true;
 @import "bootstrap/scss/variables-dark";
 
 // Map Overrides Here (Optional)
+
+$theme-colors: map-merge(
+	$theme-colors,
+	(
+		"tertiary": v.$color-tertiary,
+		"black": v.$color-black,
+		"white": v.$color-white,
+		"grey": v.$color-grey,
+		"purple": v.$color-purple,
+	)
+);
 
 // Required Bootstrap Modules
 @import "bootstrap/scss/maps";

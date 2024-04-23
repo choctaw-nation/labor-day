@@ -18,27 +18,28 @@ get_header();
 $background_image = new Image( get_field( 'hero' )['background_image'] );
 ?>
 <main class="site-content">
-	<section class='w-100 hero--image' style="background-image:url('<?php echo $background_image->src; ?>');" id='hero'>
+	<section class='w-100 position-relative hero--image' id='hero'>
+		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover' ); ?>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
 					<span class="headline animate__animated animate__fadeInUp animate__delay-1s d-block">August 30 &ndash; September 1, 2024</span>
-					<div class="countdown" id='countdown'></div>
+					<div class="countdown w-100 text-white text-center" id='countdown'></div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<section id="about-the-festival">
 		<div class=" container">
-			<div class="row">
+			<div class="row row-gap-4">
 				<div class="col-lg-4 d-flex flex-column align-items-center" data-aos="fade-right">
 					<figure class='great-seal ratio ratio-1x1'>
 						<img src="<?php echo get_template_directory_uri() . '/images/great-seal-2.svg'; ?>" alt="The Great Seal of the Choctaw Nation" loading='lazy'>
 					</figure>
 				</div>
 				<div class="col-lg-8 d-flex flex-column justify-content-center align-items-center">
-					<p><?php echo get_field( 'section_2' )['about']; ?></p>
+					<p class='fs-6'><?php echo get_field( 'section_2' )['about']; ?></p>
 				</div>
 			</div>
 		</div>
