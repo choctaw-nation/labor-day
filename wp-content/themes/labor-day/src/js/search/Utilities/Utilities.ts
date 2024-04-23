@@ -1,13 +1,8 @@
-import { model } from '../../add-to-schedule/model';
-import view from '../../add-to-schedule/view';
+import Model from '../../add-to-schedule/model';
+import View from '../../add-to-schedule/view';
 import { model as SearchModel } from '../Model';
 
-import {
-	RawEventPost,
-	ExcerptObject,
-	PrettyEventData,
-	SortedEventsObject,
-} from '../types';
+import { ExcerptObject, PrettyEventData, SortedEventsObject } from '../types';
 
 declare const cnoSiteData: {
 	rootUrl: string;
@@ -15,7 +10,6 @@ declare const cnoSiteData: {
 };
 
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-export const graphQL = `${ rootUrl }/graphql`;
 
 export const fuzzySearchKeys = {
 	keys: [
@@ -25,34 +19,6 @@ export const fuzzySearchKeys = {
 		{ name: 'locations.name', weight: 1 },
 	],
 };
-
-export function destructureData( data: RawEventPost ): PrettyEventData {
-	const {
-		eventLocations: { nodes: locations },
-	} = data;
-	const {
-		eventTypes: { nodes: type },
-	} = data;
-	const { eventId, link, title } = data;
-	const { event_info } = data;
-	const {
-		seo: { archiveContent: excerpt },
-	} = data;
-	const destructuredData: PrettyEventData = {
-		locations,
-		type,
-		eventId,
-		link,
-		title,
-		excerpt,
-		event_info,
-	};
-	destructuredData.featuredImage = data.featuredImage
-		? data.featuredImage.node
-		: null;
-
-	return destructuredData;
-}
 
 export function createExcerpt( str: string ): ExcerptObject {
 	if ( null === str ) return { excerpt: '', readMore: false };
@@ -88,13 +54,15 @@ export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
 }
 
 /** On First Render, show floating schedule button and get posts */
-export async function handleFirstAppRender() {
+export async function getEvents( searchTerm?: string = undefined ) {
+	const model = new Model();
+	const view = new View();
 	const schedule = model.getSchedule();
 	if ( Object.values( schedule ).flat().length > 0 ) {
 		view.showScheduleButton();
 	}
 	try {
-		const data = await SearchModel.getPosts();
+		const data = await SearchModel.makeRequest( searchTerm );
 		if ( undefined === data ) return;
 		return data;
 	} catch ( err ) {

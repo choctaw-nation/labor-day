@@ -1,5 +1,5 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
 import { PrettyEventData, EventInfo } from '../../types';
@@ -27,7 +27,7 @@ export default function SinglePost( {
 	children,
 	dispatch,
 }: {
-	dispatch: Function;
+	dispatch?: Function;
 	data: PrettyEventData;
 	children?: React.Element;
 	triggerModal?: Function;

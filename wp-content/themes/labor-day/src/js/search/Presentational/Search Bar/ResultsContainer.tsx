@@ -1,5 +1,5 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
 import { PrettyEventData } from '../../types';
@@ -53,6 +53,7 @@ export default function ResultsContainer( {
 				}
 				return null;
 			} ) }
+			<div className="load-more-container">End of Results.</div>
 		</section>
 	);
 }

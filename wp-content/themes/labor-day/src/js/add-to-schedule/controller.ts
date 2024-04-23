@@ -1,4 +1,4 @@
-import {model} from './model';
+import Model from './model';
 import View from './view';
 
 /**
@@ -6,23 +6,29 @@ import View from './view';
  */
 export class Controller {
 	/**
+	 * The view object.
+	 */
+	private view: View;
+	/**
 	 * Determines whether or not the controller is in debug mode.
 	 */
 	debug = false;
 
 	constructor() {
+		this.view = new View();
+		const model = new Model();
 		const schedule = model.getSchedule();
-		if (0 < Object.values(schedule).flat().length) {
-			View.showScheduleButton();
+		if ( 0 < Object.values( schedule ).flat().length ) {
+			this.view.showScheduleButton();
 		}
 		// Register click event listeners for buttons in the view
-		if (View.buttons.length > 0) {
-			View.clickHandler(model.addToSchedule.bind(model));
+		if ( this.view.buttons.length > 0 ) {
+			this.view.clickHandler( model.addToSchedule.bind( model ) );
 		}
 
 		// Run a debug method if debug mode is enabled
-		if (this.debug) {
-			this.#debugMethod();
+		if ( this.debug ) {
+			this.debugMethod();
 		}
 	}
 
@@ -32,8 +38,8 @@ export class Controller {
 	 *
 	 * @private
 	 */
-	#debugMethod() {
-		console.log('hello from schedule-handler');
-		console.log(View.buttons);
+	private debugMethod() {
+		console.log( 'hello from schedule-handler' );
+		console.log( this.view.buttons );
 	}
 }

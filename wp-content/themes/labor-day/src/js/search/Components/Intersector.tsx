@@ -1,24 +1,25 @@
-import React, { useRef, useEffect } from '@wordpress/element';
-export default function Intersector({ dispatch }) {
-	const targetRef = useRef(null);
+import React, { useRef, useEffect } from 'react';
 
-	useEffect(() => {
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				dispatch({
+export default function Intersector( { dispatch } ) {
+	const targetRef = useRef( null );
+
+	useEffect( () => {
+		const observer = new IntersectionObserver( ( entries ) => {
+			entries.forEach( ( entry ) => {
+				dispatch( {
 					type: 'intersecting',
 					payload: entry.isIntersecting,
-				});
-			});
-		});
-		if (targetRef.current) {
-			observer.observe(targetRef.current);
+				} );
+			} );
+		} );
+		if ( targetRef.current ) {
+			observer.observe( targetRef.current );
 		}
 		return () => {
-			if (targetRef.current) {
-				observer.unobserve(targetRef.current);
+			if ( targetRef.current ) {
+				observer.unobserve( targetRef.current );
 			}
 		};
-	}, []);
-	return <div className="intersector" ref={targetRef}></div>;
+	}, [] );
+	return <div className="intersector" ref={ targetRef }></div>;
 }

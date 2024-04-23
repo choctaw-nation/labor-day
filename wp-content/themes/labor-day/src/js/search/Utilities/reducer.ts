@@ -1,9 +1,9 @@
 // Types
 import { WP_Term } from 'wp-types';
 import { PrettyEventData, searchAppState } from '../types';
-import { EventFilter } from '../types/eventFilters';
 import { AppActions } from './AppActions';
 import TimeHandler from './TimeHandler';
+import { EventFilters } from '../types/eventFilters';
 
 const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
@@ -160,6 +160,23 @@ export function reducer(
 function getTerms(
 	data: PrettyEventData[],
 	term: 'type' | 'locations'
-): WP_Term[] {
-	return data.map( ( event ) => event[ term ] );
+): EventFilters[ 'type' ][ 'filters' ] {
+	const terms = data.map( ( event ) => {
+		if ( ! event[ term ] ) {
+			return {};
+		} else {
+			const termName = event[ term ] as WP_Term[];
+			return {
+				name: termName[ 0 ].name,
+				slug: termName[ 0 ].slug,
+			};
+		}
+	} );
+	const filteredTerms = terms.filter( ( term ) => term ) as {
+		name: string;
+		slug: string;
+	}[];
+
+	console.log( filteredTerms );
+	return filteredTerms;
 }

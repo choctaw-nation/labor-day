@@ -3,12 +3,10 @@ import { PrettyEventData } from './types';
 
 class Model {
 	async makeRequest(
-		request: {
-			query?: string;
-		} = {}
-	) {
+		query?: string = undefined
+	): Promise< PrettyEventData[] > {
 		const url = `${ rootUrl }/wp-json/cno/v1/events${
-			request.query ? `?s=${ request.query }` : ''
+			query ? `?s=${ query }` : ''
 		}`;
 		const response = await fetch( url );
 		if ( ! response.ok ) {
@@ -18,18 +16,6 @@ class Model {
 			const data = await response.json();
 			return data;
 		}
-	}
-	/** Sends a GraphQL Query and returns the posts in a promise
-	 * @param {queryVars | undefined} vars the graphQL variables
-	 */
-	async getPosts(): Promise< PrettyEventData[] | undefined > {
-		try {
-			const data = await this.makeRequest();
-			return data;
-		} catch ( err ) {
-			console.error( err );
-		}
-		return undefined;
 	}
 }
 

@@ -1,5 +1,6 @@
 // 3rd Party Libraries
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect } from 'react';
+
 import Fuse from 'fuse.js';
 
 // Types
@@ -10,38 +11,38 @@ import Model from '../../Model';
 import { sortEvents, fuzzySearchKeys, destructureData } from '../Utilities';
 import { getTimeSortedEvents } from '../../../my-schedule/eventFunctions';
 
-export function useSearchPosts(currentPosts, search, dispatch) {
-	const [posts, setPosts] = useState<PrettyEventData[]>([]);
-	function doFirstSearch(data) {
+export function useSearchPosts( currentPosts, search, dispatch ) {
+	const [ posts, setPosts ] = useState< PrettyEventData[] >( [] );
+	function doFirstSearch( data ) {
 		const { events } = data;
-		dispatch({
+		dispatch( {
 			type: 'updateCursor',
 			payload: events.pageInfo.hasNextPage
 				? events.pageInfo.endCursor
 				: undefined,
-		});
+		} );
 		const prettyEvents: PrettyEventData[] = events.nodes.map(
-			(node: RawEventPost) => destructureData(node)
+			( node: RawEventPost ) => destructureData( node )
 		);
 		const sortedEvents: PrettyEventData[] = Object.values(
-			getTimeSortedEvents(sortEvents(prettyEvents))
+			getTimeSortedEvents( sortEvents( prettyEvents ) )
 		).flat();
 
 		// dispatch({ type: 'updatePosts', payload: sortedEvents });
-		setPosts(sortedEvents);
-		dispatch({ type: 'setFilters', payload: data });
+		setPosts( sortedEvents );
+		dispatch( { type: 'setFilters', payload: data } );
 	}
 
-	useEffect(() => {
-		if ('' === search) {
+	useEffect( () => {
+		if ( '' === search ) {
 			Model.getPosts()
-				.then((data) => {
-					if (undefined === data) return;
-					doFirstSearch(data);
-				})
-				.catch((err) => console.error(err));
+				.then( ( data ) => {
+					if ( undefined === data ) return;
+					doFirstSearch( data );
+				} )
+				.catch( ( err ) => console.error( err ) );
 		} else {
-			const timeout = setTimeout(() => {
+			const timeout = setTimeout( () => {
 				const searchOptions = {
 					...fuzzySearchKeys,
 					minMatchCharLength: 3,
@@ -49,47 +50,49 @@ export function useSearchPosts(currentPosts, search, dispatch) {
 					threshold: 0.3,
 				};
 				const fuse = new Fuse(
-					Object.values(currentPosts).flat(),
+					Object.values( currentPosts ).flat(),
 					searchOptions
 				);
-				const results = fuse.search(search);
-				setPosts(results.map((result) => result.item));
-			}, 350);
-			return () => clearTimeout(timeout);
+				const results = fuse.search( search );
+				setPosts( results.map( ( result ) => result.item ) );
+			}, 350 );
+			return () => clearTimeout( timeout );
 		}
-	}, [search]);
+	}, [ search ] );
 
 	return { posts };
 }
 
-export function useGetMorePosts(cursor, dispatch) {
+export function useGetMorePosts( cursor, dispatch ) {
 	let posts: PrettyEventData[] = [];
-	Model.getPosts(cursor)
-		.then((data) => {
-			if (undefined === data) return;
+	Model.getPosts( cursor )
+		.then( ( data ) => {
+			if ( undefined === data ) return;
 			const { events } = data;
-			if (events.pageInfo.hasNextPage) {
-				dispatch({
+			if ( events.pageInfo.hasNextPage ) {
+				dispatch( {
 					type: 'updateCursor',
 					payload: events.pageInfo.endCursor,
-				});
+				} );
 			} else {
-				dispatch({
+				dispatch( {
 					type: 'updateCursor',
 					payload: undefined,
-				});
+				} );
 			}
-			const prettyEvents = events.nodes.map((node) =>
-				destructureData(node)
+			const prettyEvents = events.nodes.map( ( node ) =>
+				destructureData( node )
 			);
-			const sortedEvents = getTimeSortedEvents(sortEvents(prettyEvents));
-			dispatch({
+			const sortedEvents = getTimeSortedEvents(
+				sortEvents( prettyEvents )
+			);
+			dispatch( {
 				type: 'updatePosts',
-				payload: Object.values(sortedEvents).flat(),
-			});
-			dispatch({ type: 'intersecting', payload: false });
-		})
-		.catch((err) => console.error(err));
+				payload: Object.values( sortedEvents ).flat(),
+			} );
+			dispatch( { type: 'intersecting', payload: false } );
+		} )
+		.catch( ( err ) => console.error( err ) );
 
 	return posts;
 }

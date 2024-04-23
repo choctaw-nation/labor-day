@@ -3,17 +3,13 @@ import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
 
 // React + 3rd Parties
-import React, {
-	useState,
-	useEffect,
-	useReducer,
-	createRoot,
-	StrictMode,
-} from '@wordpress/element';
+import React, { useState, useEffect, useReducer, StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import Fuse from 'fuse.js';
+import Dropdown from 'bootstrap/js/dist/dropdown';
 
 // Types
-import { PrettyEventData, RawEventPost } from './types';
+import { PrettyEventData } from './types';
 
 // Components
 import LoadingSpinner from '../spinner';
@@ -25,12 +21,7 @@ import SearchBarContainer from './Presentational/Search Bar/SearchBarContainer';
 
 // Utilities
 import { reducer, initialState } from './Utilities/reducer';
-import {
-	destructureData,
-	sortEvents,
-	fuzzySearchKeys,
-	handleFirstAppRender,
-} from './Utilities/Utilities';
+import { sortEvents, fuzzySearchKeys, getEvents } from './Utilities/Utilities';
 import { getTimeSortedEvents } from '../my-schedule/eventFunctions';
 
 function App() {
@@ -59,7 +50,7 @@ function App() {
 		setShowAll( true );
 		dispatch( { type: 'isLoading', payload: true } );
 		( async function () {
-			const data = await handleFirstAppRender();
+			const data = await getEvents();
 			if ( ! data ) return;
 			const sortedEvents: PrettyEventData[] = Object.values(
 				getTimeSortedEvents( sortEvents( data ) )
@@ -71,33 +62,36 @@ function App() {
 	}, [] );
 
 	/** Handle Search */
-	// useEffect( () => {
-	// 	if ( '' === searchTerm ) {
-	// 		setShowAll( true );
-	// 		if ( searchResults.length !== 0 ) {
-	// 			dispatch( { type: 'resetSearch' } );
-	// 		}
-	// 	} else {
-	// 		if ( searchPosts.length === 0 ) return;
-	// 		dispatch( { type: 'isLoading', payload: true } );
-	// 		const timeout = setTimeout( () => {
-	// 			const fuse = new Fuse( searchPosts, {
-	// 				...fuzzySearchKeys,
-	// 				minMatchCharLength: 3,
-	// 				includeScore: true,
-	// 				threshold: 0.3,
-	// 			} );
-	// 			const results = fuse.search( searchTerm );
-	// 			dispatch( {
-	// 				type: 'setSearchResults',
-	// 				payload: results.map( ( result ) => result.item ),
-	// 			} );
-	// 			dispatch( { type: 'isLoading', payload: false } );
-	// 		}, 350 );
-	// 		return () => clearTimeout( timeout );
-	// 	}
-	// 	if ( searchResults.length > 0 ) setShowAll( false );
-	// }, [ searchTerm, searchPosts, searchResults.length ] );
+	useEffect( () => {
+		if ( '' === searchTerm ) {
+			setShowAll( true );
+			if ( searchResults.length !== 0 ) {
+				dispatch( { type: 'resetSearch' } );
+			}
+		} else {
+			if ( searchPosts.length === 0 ) return;
+			dispatch( { type: 'isLoading', payload: true } );
+			const timeout = setTimeout( () => {
+				const fuse = new Fuse( searchPosts, {
+					...fuzzySearchKeys,
+					minMatchCharLength: 3,
+					includeScore: true,
+					threshold: 0.3,
+				} );
+				const results = fuse.search( searchTerm );
+				dispatch( {
+					type: 'setSearchResults',
+					payload: results.map( ( result ) => result.item ),
+				} );
+				dispatch( { type: 'isLoading', payload: false } );
+			}, 350 );
+			return () => clearTimeout( timeout );
+		}
+	}, [ searchTerm, searchPosts, searchResults.length ] );
+
+	useEffect( () => {
+		setShowAll( 0 === searchResults.length );
+	}, [ searchResults.length ] );
 
 	if ( false === canGetPosts ) {
 		return (
@@ -119,51 +113,44 @@ function App() {
 						filters={ filters }
 					/>
 				</SearchBarContainer>
-				{ isLoading && (
-					<div className="container">
-						<LoadingSpinner />
-					</div>
-				) }
-				{ ! isLoading && searchResults.length > 0 && (
-					<div className="container">
-						<ResultsContainer
-							dispatch={ dispatch }
-							posts={ searchResults }
-							isSearch={ true }
-							selectedFilters={ selectedFilters }
-						/>
-						<button
-							className="btn__primary--fill"
-							onClick={ () => {
-								setShowAll( true );
-								dispatch( { type: 'resetSearch' } );
-								window.scrollTo( {
-									top: 0,
-									behavior: 'auto',
-								} );
-							} }
-						>
-							Reset Search
-						</button>
-					</div>
-				) }
-				{ ! isLoading && showAll && (
-					<div className="container">
+				<div className="container">
+					{ isLoading && <LoadingSpinner /> }
+					{ ! isLoading && searchResults.length > 0 && (
+						<>
+							<ResultsContainer
+								dispatch={ dispatch }
+								posts={ searchResults }
+								isSearch={ true }
+								selectedFilters={ selectedFilters }
+							/>
+							<button
+								className="btn__primary--fill"
+								onClick={ () => {
+									setShowAll( true );
+									dispatch( { type: 'resetSearch' } );
+									window.scrollTo( {
+										top: 0,
+										behavior: 'auto',
+									} );
+								} }
+							>
+								Reset Search
+							</button>
+						</>
+					) }
+					{ ! isLoading && showAll && (
 						<ResultsContainer
 							dispatch={ dispatch }
 							posts={ posts }
 							selectedFilters={ selectedFilters }
-						/>{ ' ' }
-					</div>
-				) }
-				<div className="container load-more-container">
-					End of Results.
+						/>
+					) }
+					<ShareModal
+						dispatch={ dispatch }
+						showShareModal={ showShareModal }
+						shareEventObject={ shareEventObject }
+					/>
 				</div>
-				<ShareModal
-					dispatch={ dispatch }
-					showShareModal={ showShareModal }
-					shareEventObject={ shareEventObject }
-				/>
 			</div>
 		);
 }

@@ -1,11 +1,11 @@
-import React from '@wordpress/element';
+import React from 'react';
 
-export default function SearchBarContainer({ children }) {
+export default function SearchBarContainer( { children } ) {
 	return (
 		<section className="cno-event-search">
 			<div className="container">
 				<h2 className="cno-event-search__title">Search Events</h2>
-				{children}
+				{ children }
 			</div>
 		</section>
 	);

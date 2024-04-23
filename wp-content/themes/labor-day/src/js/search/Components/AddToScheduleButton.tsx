@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from '@wordpress/element';
-import { model } from '../../add-to-schedule/model';
+import React, { useState, useEffect } from 'react';
+import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { PrettyEventData } from '../types';
+
+const model = new Model();
+const view = new View();
 
 export function AddToScheduleButton( { eventId } ) {
 	const [ responseMessage, setResponseMessage ] =
@@ -26,8 +29,8 @@ export function AddToScheduleButton( { eventId } ) {
 		if ( 'Add to Schedule' === responseMessage ) return;
 		const timeoutId = setTimeout( () => {
 			setResponseMessage( 'View Schedule' );
-			View.showScheduleButton();
-		}, View.MESSAGE_TIMEOUT );
+			view.showScheduleButton();
+		}, view.MESSAGE_TIMEOUT );
 		return () => clearTimeout( timeoutId );
 	}, [ responseMessage ] );
 
@@ -35,7 +38,7 @@ export function AddToScheduleButton( { eventId } ) {
 	async function addToSchedule( ev ) {
 		try {
 			const response = await model.addToSchedule( ev );
-			const message = View.getResponseMessage( response );
+			const message = view.getResponseMessage( response );
 			if ( '' !== message ) {
 				setResponseMessage( message );
 			} else setResponseMessage( '' );

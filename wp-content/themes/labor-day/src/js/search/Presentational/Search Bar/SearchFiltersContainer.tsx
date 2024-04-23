@@ -1,5 +1,5 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Components
 import SearchFilters from './SearchFilters';
@@ -8,11 +8,11 @@ import SearchFilters from './SearchFilters';
 import { useShowFilters } from '../../Utilities/CustomHooks';
 import { initialState } from '../../Utilities/reducer';
 
-export default function SearchFiltersContainer({
+export default function SearchFiltersContainer( {
 	selectedFilters,
 	filters,
 	dispatch,
-}) {
+} ) {
 	const { showFilters, setShowFilters, windowWidth } = useShowFilters();
 	return (
 		<div className="cno-event-search__filters">
@@ -20,23 +20,23 @@ export default function SearchFiltersContainer({
 				<h3 className="cno-event-search__filters--title">Filters</h3>
 				<button
 					className="btn__fill--secondary"
-					onClick={() => {
-						setShowFilters(!showFilters);
-					}}
+					onClick={ () => {
+						setShowFilters( ! showFilters );
+					} }
 				>
-					{showFilters ? 'Hide Filters' : 'Show Filters'}
+					{ showFilters ? 'Hide Filters' : 'Show Filters' }
 				</button>
-				{initialState.selectedFilters !== selectedFilters && (
+				{ initialState.selectedFilters !== selectedFilters && (
 					<button
 						className="btn__outline--secondary"
-						onClick={() => {
-							dispatch({ type: 'resetSelectedFilters' });
-						}}
+						onClick={ () => {
+							dispatch( { type: 'resetSelectedFilters' } );
+						} }
 					>
 						Reset Filters
 					</button>
-				)}
-				{windowWidth > 767 && (
+				) }
+				{ windowWidth > 767 && (
 					<button
 						className="btn__fill--secondary"
 						data-bs-toggle="modal"
@@ -44,15 +44,15 @@ export default function SearchFiltersContainer({
 					>
 						View Services / Operations Hours
 					</button>
-				)}
+				) }
 			</div>
-			{showFilters && (
+			{ showFilters && (
 				<SearchFilters
-					dispatch={dispatch}
-					filters={filters}
-					selectedFilters={selectedFilters}
+					dispatch={ dispatch }
+					filters={ filters }
+					selectedFilters={ selectedFilters }
 				/>
-			)}
+			) }
 		</div>
 	);
 }

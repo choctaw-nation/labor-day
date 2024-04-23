@@ -1,5 +1,5 @@
+import { WP_Term } from 'wp-types';
 import { PrettyEventData } from '../types';
-import { EventLocation, EventType } from '../types/eventFilters';
 
 type ShowAllAction = {
 	type: 'showAll';
@@ -23,15 +23,15 @@ type ResetSelectedFiltersAction = {
 type SelectFilterAction = {
 	type: 'selectFilter';
 	payload: {
-		[key: string]: any;
+		[ key: string ]: any;
 	};
 };
 
 type SetFiltersAction = {
 	type: 'setFilters';
 	payload: {
-		eventTypes: { nodes: EventType[] };
-		eventLocations: { nodes: EventLocation[] };
+		types: WP_Term[];
+		locations: WP_Term[];
 	};
 };
 
