@@ -1,83 +1,59 @@
 import { EventInfo } from '../types';
 
+/**
+ * Handles time formatting
+ */
 export default class TimeHandler {
-	/** Removes minutes from a time string if the time is at the top of the hour. (e.g. "9:00 am" to "9 AM")
+	/**
+	 * Removes minutes from a time string if the time is at the top of the hour.
+	 * (e.g. "9:00 am" to "9 AM")
+	 *
 	 * @param {string} time the time string
 	 * @returns {string} the shortened time.
 	 */
-	private removeMinutes(time: string): string {
-		return `${time.slice(0, time.indexOf(':00'))} ${time
-			.slice(-2)
-			.toUpperCase()}`;
+	private formatTimeString( time: string ): string {
+		const timeString = time.includes( ':00' )
+			? time.slice( 0, time.indexOf( ':00' ) )
+			: time;
+		return `${ timeString.toUpperCase() } ${ time
+			.slice( -2 )
+			.toUpperCase() }`;
 	}
 
-	/** adds an hour from startTime to create a default endTime
-	 * @param {string} startTime the startTime
-	 * @returns {string} the new endTime
+	/**
+	 * Removes the Meridiem indicator from the time string if they are the same
+	 * (e.g. "9 AM - 10 AM" to "9 - 10 AM")
+	 *
+	 * @param start Start Time
+	 * @param end End Time
 	 */
-	private addOneHour(startTime: string): string {
-		const [hours, minutes, period] = startTime.split(/:| /);
-		let hour = parseInt(hours, 10);
-		const isAM = period.toLowerCase() === 'am';
+	private handleMeridiemIndicator( start, end ): string {
+		const startMeridiem = start.slice( -2 ).toUpperCase();
+		const endMeridiem = end.slice( -2 ).toUpperCase();
 
-		if (hour === 12) {
-			// Convert 12-hour format to 24-hour format
-			hour = isAM ? 0 : 12;
-		} else if (!isAM) {
-			// Add 12 hours for PM times except for 12:00 PM
-			hour += 12;
-		}
-
-		const time = new Date();
-		time.setHours(hour);
-		time.setMinutes(parseInt(minutes, 10) + 60);
-
-		const newTime = time.toLocaleTimeString([], {
-			hour: 'numeric',
-			minute: '2-digit',
-		});
-		return newTime;
-	}
-
-	handleTime({
-		startTime,
-		endTime,
-	}: {
-		startTime: string;
-		endTime: string | null;
-	}): string {
-		let end = endTime?.toUpperCase() ?? '';
-		const start = startTime.includes(':00')
-			? this.removeMinutes(startTime)
-			: startTime;
-		if (endTime?.includes(':00')) {
-			end = this.removeMinutes(endTime);
-		} else if (null === endTime) {
-			const defaultEndTime = this.addOneHour(startTime);
-			end = defaultEndTime.includes(':00')
-				? this.removeMinutes(defaultEndTime)
-				: defaultEndTime;
-		}
-		if (start.slice(-2).toUpperCase() == end.slice(-2)) {
-			const finalString = `${start.slice(0, -2)} &ndash; ${end.slice(
+		if ( startMeridiem === endMeridiem ) {
+			const finalString = `${ start.slice( 0, -2 ) } &ndash; ${ end.slice(
 				0,
 				-2
-			)}${start.slice(-2).toUpperCase()}`;
+			) } ${ startMeridiem }`;
 			return finalString;
-		} else return `${start.toUpperCase()} &ndash; ${end}`;
+		} else {
+			return `${ start } &ndash; ${ end }`;
+		}
 	}
 
-	createDateString(info: EventInfo['info']) {
-		let dateTime: Date;
-		const endTime = info.endTime ?? this.addOneHour(info.startTime);
+	/**
+	 * Handles the time formatting for the event.
+	 * @param {EventInfo} eventInfo the event info object.
+	 * @returns {string} the formatted time string.
+	 */
+	handleTime( eventInfo: EventInfo ): string {
+		const { start_time, end_time } = eventInfo;
 
-		if ('Friday' === info.day) {
-			dateTime = new Date(`September 1, 2023 ${endTime}`);
-		} else if ('Saturday' === info.day) {
-			dateTime = new Date(`September 2, 2023 ${endTime}`);
-		} else if ('Sunday' === info.day) {
-			dateTime = new Date(`September 3, 2023 ${endTime}`);
-		}
-		return dateTime;
+		const start = this.formatTimeString( start_time );
+		// Early return if there is no end time.
+		if ( ! end_time ) return start;
+		const end = this.formatTimeString( end_time );
+		return this.handleMeridiemIndicator( start, end );
 	}
 }

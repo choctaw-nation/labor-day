@@ -1,25 +1,14 @@
-interface Filter {
-	uri: string;
-	name: string;
-}
+import { WP_Term } from 'wp-types';
 
-export interface EventType extends Filter {
-	event_typeId: number;
-}
-
-export interface EventLocation extends Filter {
-	event_locationId: number;
-}
 export interface EventDay {
 	name: string;
 	dayId: number;
 }
 
-export type EventFilter = EventType | EventLocation | EventDay;
 export type EventFilters = {
 	type: {
 		name: string;
-		filters: EventFilter[];
+		filters: WP_Term[];
 	};
 };
 

@@ -1,9 +1,5 @@
-import {
-	EventType,
-	EventLocation,
-	EventFilters,
-	selectedFilterObject,
-} from './types/eventFilters';
+import { EventFilters, selectedFilterObject } from './types/eventFilters';
+import { WP_Term } from 'wp-types';
 
 /**
  * Set in the Global scope with PHP and the Wordpress `localize_script` method
@@ -11,73 +7,27 @@ import {
 declare const cnoSiteData: { rootUrl: string };
 
 export type EventInfo = {
-	description: string;
-	info: {
-		day: string;
-		endTime: string | null;
-		startTime: string;
-	};
-};
-
-/** The raw structure of an event post type */
-export type RawEventPost = {
-	eventLocations: {
-		nodes: EventLocation[];
-	};
-	event_info: EventInfo;
-	featuredImage: {
-		node: {
-			altText: string;
-			mediaDetails: {
-				sizes: [
-					{
-						height: string;
-						name: string;
-						width: string;
-						sourceUrl: string;
-					}
-				];
-			};
-			srcSet: string;
-			sizes: string;
-		};
-	};
-	title: string;
-	link: string;
-	eventId: number;
-	eventTypes: {
-		nodes: EventType[];
-	};
-	seo: {
-		archiveContent: string;
-	};
+	day: 'Friday' | 'Saturday' | 'Sunday';
+	end_time: string | null;
+	start_time: string;
 };
 
 /** The Formatted Event Post Type Data */
 export interface PrettyEventData {
-	locations?: EventLocation[];
-	type: EventType[];
 	eventId: number;
 	link: string;
 	title: string;
-	excerpt: string | null;
-	event_info: EventInfo;
-	featuredImage?: featuredImage | null;
+	description: string;
+	info: EventInfo;
+	featured_image?: FeaturedImage | null;
+	locations?: WP_Term[];
+	type: WP_Term[];
 }
 
-export type featuredImage = {
+export type FeaturedImage = {
 	altText: string;
-	srcSet: string;
-	mediaDetails: {
-		sizes: sizes[];
-	};
-	sizes: string;
-};
-
-type sizes = {
-	height: string;
-	width: string;
-	sourceUrl: string;
+	srcset: string;
+	src: string;
 };
 
 export type ExcerptObject = {

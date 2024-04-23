@@ -1,5 +1,7 @@
 // Types
+import { WP_Term } from 'wp-types';
 import { PrettyEventData, searchAppState } from '../types';
+import { EventFilter } from '../types/eventFilters';
 import { AppActions } from './AppActions';
 import TimeHandler from './TimeHandler';
 
@@ -44,11 +46,11 @@ export const initialState: searchAppState = {
 		title: '',
 		link: '',
 	},
-	canGetPosts: (() => {
+	canGetPosts: ( () => {
 		// const now = new Date();
 		// const end = new Date('September 3, 2023');
 		return true;
-	})(),
+	} )(),
 };
 
 export function reducer(
@@ -56,7 +58,7 @@ export function reducer(
 	action: AppActions
 ): searchAppState {
 	const now = new Date();
-	switch (action.type) {
+	switch ( action.type ) {
 		case 'isLoading':
 			return {
 				...state,
@@ -92,18 +94,17 @@ export function reducer(
 				},
 			};
 		case 'setFilters':
-			const { eventTypes, eventLocations } = action.payload;
 			const filtersArr = [
 				{
 					type: {
 						name: 'Event Types',
-						filters: [...eventTypes.nodes],
+						filters: [ ...getTerms( action.payload, 'type' ) ],
 					},
 				},
 				{
 					type: {
 						name: 'Locations',
-						filters: [...eventLocations.nodes],
+						filters: [ ...getTerms( action.payload, 'locations' ) ],
 					},
 				},
 				{
@@ -146,6 +147,19 @@ export function reducer(
 		case 'resetSearch':
 			return { ...state, searchResults: [], searchTerm: '' };
 		default:
-			throw new Error(`Unknown action type! ${action.type}`);
+			throw new Error( `Unknown action type! ${ action.type }` );
 	}
+}
+
+/**
+ * Get the terms for the filters
+ * @param data The data to be filtered
+ * @param term The term to be filtered
+ * @returns An object with the term and the filters
+ */
+function getTerms(
+	data: PrettyEventData[],
+	term: 'type' | 'locations'
+): WP_Term[] {
+	return data.map( ( event ) => event[ term ] );
 }

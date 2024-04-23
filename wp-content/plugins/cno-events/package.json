@@ -16,8 +16,5 @@
 	"devDependencies": {
 		"@wordpress/scripts": "^26.2.0",
 		"bootstrap": "^5.2.3"
-	},
-	"dependencies": {
-		"fuse.js": "^6.6.2"
 	}
 }

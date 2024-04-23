@@ -2,11 +2,12 @@
 /**
  * The Events Archive (Plugin Override)
  *
- * @package ChoctawNation
+ * @package LaborDay
+ * @subpackage Events
  */
 
 $taxonomies = get_object_taxonomies( 'events', 'objects' );
-cno_enqueue_page_assets( 'search', array( 'scripts' => array( 'fontawesome' ) ) );
+cno_enqueue_page_assets( 'search' );
 get_header();
 ?>
 <section class="hero">
@@ -61,11 +62,11 @@ get_header();
 	<div class="container">
 		<section class="cno-events" id="results">
 			<?php
-			while ( have_posts() ) :
+			while ( have_posts() ) {
 				the_post();
-				?>
-			<?php get_template_part( 'template-parts/events/content', 'event-display' ); ?>
-			<?php endwhile; ?>
+				get_template_part( 'template-parts/events/content', 'event-display' );
+			}
+			?>
 		</section>
 	</div>
 	<?php else : ?>

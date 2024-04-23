@@ -1,4 +1,4 @@
-import {model} from '../../add-to-schedule/model';
+import { model } from '../../add-to-schedule/model';
 import view from '../../add-to-schedule/view';
 import { model as SearchModel } from '../Model';
 
@@ -15,7 +15,7 @@ declare const cnoSiteData: {
 };
 
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-export const graphQL = `${rootUrl}/graphql`;
+export const graphQL = `${ rootUrl }/graphql`;
 
 export const fuzzySearchKeys = {
 	keys: [
@@ -26,7 +26,7 @@ export const fuzzySearchKeys = {
 	],
 };
 
-export function destructureData(data: RawEventPost): PrettyEventData {
+export function destructureData( data: RawEventPost ): PrettyEventData {
 	const {
 		eventLocations: { nodes: locations },
 	} = data;
@@ -54,11 +54,11 @@ export function destructureData(data: RawEventPost): PrettyEventData {
 	return destructuredData;
 }
 
-export function createExcerpt(str: string): ExcerptObject {
-	if (null === str) return { excerpt: '', readMore: false };
-	const excerpt = str.slice(3, 247);
-	const remainingContent = str.substring(248);
-	if (remainingContent.length > 1) {
+export function createExcerpt( str: string ): ExcerptObject {
+	if ( null === str ) return { excerpt: '', readMore: false };
+	const excerpt = str.slice( 3, 247 );
+	const remainingContent = str.substring( 248 );
+	if ( remainingContent.length > 1 ) {
 		return {
 			excerpt: excerpt + '...',
 			readMore: remainingContent.length > 1,
@@ -71,33 +71,33 @@ export function createExcerpt(str: string): ExcerptObject {
 	}
 }
 
-export function sortEvents(events: PrettyEventData[]): SortedEventsObject {
-	const days: string[] = ['friday', 'saturday', 'sunday'];
+export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
+	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
 	const sortedEvents: SortedEventsObject = {
 		friday: [],
 		saturday: [],
 		sunday: [],
 	};
-	days.forEach((day) => {
-		const dailyEvents = events.filter((ev: PrettyEventData) => {
-			return ev.event_info.info.day.toLowerCase() == day;
-		});
-		dailyEvents.forEach((ev) => sortedEvents[day].push(ev));
-	});
+	days.forEach( ( day ) => {
+		const dailyEvents = events.filter( ( ev: PrettyEventData ) => {
+			return ev.info.day.toLowerCase() === day;
+		} );
+		dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );
+	} );
 	return sortedEvents;
 }
 
 /** On First Render, show floating schedule button and get posts */
 export async function handleFirstAppRender() {
 	const schedule = model.getSchedule();
-	if (Object.values(schedule).flat().length > 0) {
+	if ( Object.values( schedule ).flat().length > 0 ) {
 		view.showScheduleButton();
 	}
 	try {
 		const data = await SearchModel.getPosts();
-		if (undefined === data) return;
+		if ( undefined === data ) return;
 		return data;
-	} catch (err) {
-		console.error(err);
+	} catch ( err ) {
+		console.error( err );
 	}
 }

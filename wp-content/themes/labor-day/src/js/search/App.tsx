@@ -61,12 +61,8 @@ function App() {
 		( async function () {
 			const data = await handleFirstAppRender();
 			if ( ! data ) return;
-			const { events } = data;
-			const prettyEvents: PrettyEventData[] = events.nodes.map(
-				( node: RawEventPost ) => destructureData( node )
-			);
 			const sortedEvents: PrettyEventData[] = Object.values(
-				getTimeSortedEvents( sortEvents( prettyEvents ) )
+				getTimeSortedEvents( sortEvents( data ) )
 			).flat();
 			dispatch( { type: 'updatePosts', payload: sortedEvents } );
 			dispatch( { type: 'setFilters', payload: data } );
@@ -75,33 +71,33 @@ function App() {
 	}, [] );
 
 	/** Handle Search */
-	useEffect( () => {
-		if ( '' === searchTerm ) {
-			setShowAll( true );
-			if ( searchResults.length !== 0 ) {
-				dispatch( { type: 'resetSearch' } );
-			}
-		} else {
-			if ( searchPosts.length === 0 ) return;
-			dispatch( { type: 'isLoading', payload: true } );
-			const timeout = setTimeout( () => {
-				const fuse = new Fuse( searchPosts, {
-					...fuzzySearchKeys,
-					minMatchCharLength: 3,
-					includeScore: true,
-					threshold: 0.3,
-				} );
-				const results = fuse.search( searchTerm );
-				dispatch( {
-					type: 'setSearchResults',
-					payload: results.map( ( result ) => result.item ),
-				} );
-				dispatch( { type: 'isLoading', payload: false } );
-			}, 350 );
-			return () => clearTimeout( timeout );
-		}
-		if ( searchResults.length > 0 ) setShowAll( false );
-	}, [ searchTerm, searchPosts, searchResults.length ] );
+	// useEffect( () => {
+	// 	if ( '' === searchTerm ) {
+	// 		setShowAll( true );
+	// 		if ( searchResults.length !== 0 ) {
+	// 			dispatch( { type: 'resetSearch' } );
+	// 		}
+	// 	} else {
+	// 		if ( searchPosts.length === 0 ) return;
+	// 		dispatch( { type: 'isLoading', payload: true } );
+	// 		const timeout = setTimeout( () => {
+	// 			const fuse = new Fuse( searchPosts, {
+	// 				...fuzzySearchKeys,
+	// 				minMatchCharLength: 3,
+	// 				includeScore: true,
+	// 				threshold: 0.3,
+	// 			} );
+	// 			const results = fuse.search( searchTerm );
+	// 			dispatch( {
+	// 				type: 'setSearchResults',
+	// 				payload: results.map( ( result ) => result.item ),
+	// 			} );
+	// 			dispatch( { type: 'isLoading', payload: false } );
+	// 		}, 350 );
+	// 		return () => clearTimeout( timeout );
+	// 	}
+	// 	if ( searchResults.length > 0 ) setShowAll( false );
+	// }, [ searchTerm, searchPosts, searchResults.length ] );
 
 	if ( false === canGetPosts ) {
 		return (
@@ -172,4 +168,9 @@ function App() {
 		);
 }
 const root = document.getElementById( 'app' );
-if ( root ) createRoot( root ).render( <App /> );
+if ( root )
+	createRoot( root ).render(
+		<StrictMode>
+			<App />
+		</StrictMode>
+	);
