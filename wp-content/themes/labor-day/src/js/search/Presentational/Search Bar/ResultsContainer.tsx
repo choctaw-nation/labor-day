@@ -14,7 +14,7 @@ import { AddToScheduleButton } from '../../Components/AddToScheduleButton';
 import { initialState } from '../../Utilities/reducer';
 
 // The Component
-export default function ResultsContainer({
+export default function ResultsContainer( {
 	posts,
 	dispatch,
 	selectedFilters,
@@ -24,32 +24,35 @@ export default function ResultsContainer({
 	posts: PrettyEventData[];
 	selectedFilters: selectedFilterObject;
 	dispatch: Function;
-}) {
+} ) {
 	const emptyFilters = initialState.selectedFilters === selectedFilters;
 	const classList = isSearch
 		? 'cno-events cno-events__search-results'
 		: 'cno-events';
 	return (
-		<section className={classList}>
-			{posts.map((post) => {
-				if (emptyFilters || postMatchesFilters(post, selectedFilters)) {
+		<section className={ classList }>
+			{ posts.map( ( post ) => {
+				if (
+					emptyFilters ||
+					postMatchesFilters( post, selectedFilters )
+				) {
 					return (
 						<SinglePost
-							data={post}
-							dispatch={dispatch}
-							key={post.eventId}
+							data={ post }
+							dispatch={ dispatch }
+							key={ post.eventId }
 						>
 							<>
-								<AddToScheduleButton eventId={post.eventId} />
-								{post.event_info.description && (
-									<ReadMoreButton link={post.link} />
-								)}
+								<AddToScheduleButton eventId={ post.eventId } />
+								{ post.description && (
+									<ReadMoreButton link={ post.link } />
+								) }
 							</>
 						</SinglePost>
 					);
 				}
 				return null;
-			})}
+			} ) }
 		</section>
 	);
 }
@@ -63,22 +66,22 @@ function postMatchesFilters(
 	selectedFilters: selectedFilterObject
 ): boolean {
 	const postInFilters: boolean =
-		(filterIsEmpty(selectedFilters.Locations) ||
+		( filterIsEmpty( selectedFilters.Locations ) ||
 			post.locations?.some(
-				(location) => selectedFilters.Locations === location.name
-			)) &&
-		(filterIsEmpty(selectedFilters['Event Types']) ||
+				( location ) => selectedFilters.Locations === location.name
+			) ) &&
+		( filterIsEmpty( selectedFilters[ 'Event Types' ] ) ||
 			post.type?.some(
-				(type) => selectedFilters['Event Types'] === type.name
-			)) &&
-		(filterIsEmpty(selectedFilters.Days) ||
-			selectedFilters.Days === post.event_info.info.day);
+				( type ) => selectedFilters[ 'Event Types' ] === type.name
+			) ) &&
+		( filterIsEmpty( selectedFilters.Days ) ||
+			selectedFilters.Days === post.event_info.info.day );
 	return postInFilters;
 }
 /** Returns true if filter is default "empty" value
  * @param {string} filter the filter to check
  * @returns boolean
  */
-function filterIsEmpty(filter: string): boolean {
-	return filter === initialState.selectedFilters[filter];
+function filterIsEmpty( filter: string ): boolean {
+	return filter === initialState.selectedFilters[ filter ];
 }

@@ -15,44 +15,42 @@ import {
 import { createExcerpt } from '../search/Utilities/Utilities';
 import { downloadICSFile } from './calendarFunctions';
 
-export default function EventsDisplay({
+export default function EventsDisplay( {
 	schedule,
 	removeEvent,
 }: {
 	schedule: SortedEventsObject;
 	removeEvent: CallableFunction;
-}) {
-	const events: PrettyEventData[] = Object.values(schedule).flat();
-	function handleClick(id: number) {
-		const event = events.filter(({ eventId }) => eventId === id);
-		downloadICSFile(event[0]);
+} ) {
+	const events: PrettyEventData[] = Object.values( schedule ).flat();
+	function handleClick( id: number ) {
+		const event = events.filter( ( { eventId } ) => eventId === id );
+		downloadICSFile( event[ 0 ] );
 	}
-	return events.map((event: PrettyEventData) => {
+	return events.map( ( event: PrettyEventData ) => {
 		const {
 			eventId,
 			link,
-			event_info: {
-				description,
-				info: { day },
-			},
+			description,
+			info: { day },
 		} = event;
 		return (
-			<SinglePost data={event} key={eventId}>
+			<SinglePost data={ event } key={ eventId }>
 				<>
-					{createExcerpt(description).readMore && (
-						<ReadMoreButton link={link} />
-					)}
+					{ createExcerpt( description ).readMore && (
+						<ReadMoreButton link={ link } />
+					) }
 					<ExportToCalendar
-						handleClick={handleClick}
-						eventId={eventId}
+						handleClick={ handleClick }
+						eventId={ eventId }
 					/>
 					<RemoveFromSchedule
-						removeEvent={removeEvent}
-						eventId={event.eventId}
-						day={day}
+						removeEvent={ removeEvent }
+						eventId={ event.eventId }
+						day={ day }
 					/>
 				</>
 			</SinglePost>
 		);
-	});
+	} );
 }

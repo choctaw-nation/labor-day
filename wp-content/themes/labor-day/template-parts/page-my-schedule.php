@@ -5,7 +5,7 @@
  * @package ChoctawNation
  */
 
-cno_enqueue_page_assets( 'mySchedule', array( 'scripts' => array( 'fontawesome' ) ) );
+cno_enqueue_page_assets( 'mySchedule' );
 ?>
 <div class="container">
 	<div class="row">
