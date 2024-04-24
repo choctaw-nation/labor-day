@@ -49,14 +49,28 @@ $dropdown-font-size: 2.16rem;
 
 $body-color: v.$color-black;
 
+// ====================================
+/**
+* Buttons
+*/
 $btn-transition: all v.$transition--standard;
+$btn-border-radius: 0;
+$btn-border-width: 2px;
+$btn-font-weight: 500;
+$btn-font-size: 2.4rem;
+$btn-line-height: 1.5;
+$btn-padding-x: 1.365rem;
+$btn-padding-y: 1rem;
 
+// ====================================
 /**
 * Spacing
 */
+
 $grid-gutter-width: 2.4rem; // 24px
 $spacer: 1.6rem; // 16px
 
+// ====================================
 /**
 * Options
 * @see https://getbootstrap.com/docs/5.3/customize/options/

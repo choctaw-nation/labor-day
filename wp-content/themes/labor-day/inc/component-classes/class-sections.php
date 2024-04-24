@@ -108,11 +108,11 @@ class Sections extends Components {
 			'headline_class'   => 'headline',
 			'content'          => '',
 			'content_wrapper'  => 'p',
-			'content_class'    => 'text-content mb-5',
+			'content_class'    => 'fs-6 mb-5',
 			'cta_text'         => null,
 			'cta_link'         => null,
 			'cta_external'     => false,
-			'cta_class'        => 'cta__btn btn__fill--primary align-self-start',
+			'cta_class'        => 'cta__btn btn btn-primary align-self-start',
 			'media_type'       => 'photo',
 			'reverse'          => false,
 			'image'            => null,
@@ -124,7 +124,7 @@ class Sections extends Components {
 
 		extract( $options );
 
-		$container_start = $reverse ? '<div class="row flex-row-reverse two-col">' : '<div class="row two-col">';
+		$container_start = $reverse ? '<div class="row flex-row-reverse two-col my-5 py-5">' : '<div class="row two-col my-5 py-5">';
 		$div_end         = '</div>';
 		$col_start_1     = "<div class='col-lg-{$split[0]} two-col__media gx-5' data-aos='" . ( $reverse ? 'fade-left' : 'fade-right' ) . "'>";
 		$col_start_2     = "<div class='col-lg-{$split[1]} two-col__content gx-5'>";

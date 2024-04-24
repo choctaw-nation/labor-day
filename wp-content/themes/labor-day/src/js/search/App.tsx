@@ -117,7 +117,7 @@ function App() {
 								selectedFilters={ selectedFilters }
 							/>
 							<button
-								className="btn__primary--fill"
+								className="btn btn-primary"
 								onClick={ () => {
 									setShowAll( true );
 									dispatch( { type: 'resetSearch' } );
@@ -148,9 +148,4 @@ function App() {
 		);
 }
 const root = document.getElementById( 'app' );
-if ( root )
-	createRoot( root ).render(
-		<StrictMode>
-			<App />
-		</StrictMode>
-	);
+if ( root ) createRoot( root ).render( <App /> );

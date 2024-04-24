@@ -18,10 +18,10 @@ $args = array(
 $registrations = new WP_Query( $args );
 
 ?>
-<section class="registrations">
+<section class="registrations p-0">
 	<div class="container">
 		<?php if ( $registrations->have_posts() ) : ?>
-		<ul class="registration-form-list">
+		<ul class="registration-form-list p-0 list-unstyled">
 			<?php
 			while ( $registrations->have_posts() ) {
 				$registrations->the_post();

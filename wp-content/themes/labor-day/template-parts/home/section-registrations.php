@@ -8,8 +8,8 @@
  */
 
 ?>
-<section id="vendors" class='bg-primary'>
-	<div class="container">
+<section id="vendors" class='text-bg-primary py-5'>
+	<div class="container my-5">
 		<div class="row">
 			<h2 class="headline text-white">
 				Register Now
@@ -19,8 +19,8 @@
 	<?php get_template_part( 'template-parts/home/slider', 'registrations' ); ?>
 	<div class="container">
 		<div class="row">
-			<div class="col d-flex-column">
-				<a href="/registrations" class="btn__fill--secondary align-self-center">See All Registrations</a>
+			<div class="col d-flex flex-column">
+				<a href="/registrations" class="btn btn-secondary align-self-center mt-5">See All Registrations</a>
 			</div>
 		</div>
 	</div>

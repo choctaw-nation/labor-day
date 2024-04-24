@@ -1,4 +1,3 @@
-@use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
 #copyright {
@@ -6,62 +5,15 @@
 }
 
 .footer {
-	position: relative;
-	display: block;
-	background-color: v.$color-primary--dark;
-	padding: 1rem;
+	background-color: var(--color-primary--dark);
 
-	.logo {
-		color: white;
-		display: block;
-
-		&-image {
-			@include m.fitMedia(img);
-			height: 20rem;
-		}
-
-		span {
-			display: none;
-		}
-	}
-
-	.row {
-		@include m.media-breakpoint-down(md) {
-			@include m.displayFlex(column, space-evenly);
-
-			.col {
-				margin-bottom: 2rem;
-				.logo {
-					@include m.media-breakpoint-down(md) {
-						margin: 0 auto;
-					}
-				}
-			}
-		}
+	.logo-image {
+		@include m.fitMedia(img);
+		height: 20rem;
 	}
 }
 
 .footer-navbar {
-	font-size: 1.6rem;
-
-	&__container {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, max(205px));
-		gap: 1rem;
-		align-content: center;
-		@include m.media-breakpoint-down(md) {
-			justify-content: center;
-		}
-	}
-
-	&__menu {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-
-		@include m.displayFlex(column);
-	}
-
 	.menu-item {
 		font-size: 1.2em;
 		line-height: 1.35em;
@@ -69,65 +21,35 @@
 
 		a {
 			color: white;
-			transition: color v.$transition--standard;
+			transition: color var(--transition--standard);
 		}
 
 		&:hover {
 			a {
-				color: v.$color-secondary;
+				color: var(--bs-secondary);
 			}
 		}
 	}
 }
 
 .socials {
-	@include m.displayFlex(row, $cross: center);
-	@include m.media-breakpoint-down(md) {
-		@include m.displayFlex($main: center);
-		margin: 1rem auto 0 auto;
-	}
-
 	.social-icon {
-		display: inline-block;
-		margin: 0 5px;
-
-		&:not(:last-child) {
-			margin-right: 2rem;
-		}
-
-		svg {
+		i {
 			color: white;
-			transition: color v.$transition--standard;
-			height: 3.5rem;
+			transition: color var(--transition--standard);
 		}
 
 		&:hover {
-			svg {
-				color: v.$color-secondary;
+			i {
+				color: var(--bs-secondary);
 			}
 		}
 	}
 }
 
-.desktop-footer {
-	@include m.media-breakpoint-down(lg) {
-		display: none;
-	}
-}
-
 .footer-callout {
-	position: relative;
-	font-size: 1.2em;
-	margin-top: 3.5rem;
-	margin-bottom: 3.5rem;
-
-	@include m.media-breakpoint-down(lg) {
-		padding: 3.5rem 1rem;
-	}
-
 	&__bg {
-		background-color: v.$color-tertiary;
-		position: absolute;
+		background-color: var(--bs-tertiary);
 		top: 20%;
 		bottom: 20%;
 		left: 0;
@@ -147,11 +69,7 @@
 
 	&__text {
 		*:not(a) {
-			color: v.$color-primary--dark;
-		}
-
-		.subheadline:nth-child(3) {
-			margin-bottom: 4rem;
+			color: var(--color-primary--dark);
 		}
 	}
 }

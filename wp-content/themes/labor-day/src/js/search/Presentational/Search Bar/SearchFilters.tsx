@@ -46,7 +46,7 @@ function SearchFilter( { filter, dispatch, selectedFilters } ) {
 				<div className="dropdown">
 					<button
 						ref={ ref }
-						className="btn__outline--secondary dropdown-toggle"
+						className="btn btn-outline-secondary dropdown-toggle"
 						id={ `${ filterKeys[ name ] }-dropdown` }
 						data-bs-toggle="dropdown"
 						aria-haspopup="true"

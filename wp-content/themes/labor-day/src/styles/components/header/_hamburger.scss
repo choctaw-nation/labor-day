@@ -1,14 +1,15 @@
 @use "../../abstracts/mixins" as m;
 @use "../../abstracts/variables" as v;
-$size: 6.5rem;
+
 .hamburger {
+	--size: 6.5rem;
 	padding: 1rem;
 	position: relative;
-	height: $size;
-	width: $size;
+	height: var(--size);
+	width: var(--size);
 	cursor: pointer;
 	&:hover {
-		background-color: v.$color-secondary;
+		background-color: var(--bs-secondary);
 	}
 
 	&__line {

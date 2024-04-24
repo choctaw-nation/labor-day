@@ -18,19 +18,19 @@ get_header();
 $background_image = new Image( get_field( 'hero' )['background_image'] );
 ?>
 <main class="site-content">
-	<section class='w-100 position-relative hero--image' id='hero'>
-		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover' ); ?>
-		<div class="overlay"></div>
-		<div class="container">
+	<section class='w-100 position-relative hero d-flex align-items-center py-5' id='hero'>
+		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover hero-image' ); ?>
+		<div class="bg-dark bg-opacity-75 position-absolute top-0 w-100 h-100 z-1"></div>
+		<div class="container position-relative z-2">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
-					<span class="headline animate__animated animate__fadeInUp animate__delay-1s d-block">August 30 &ndash; September 1, 2024</span>
+					<span class="headline text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August 30 &ndash; September 1, 2024</span>
 					<div class="countdown w-100 text-white text-center" id='countdown'></div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section id="about-the-festival">
+	<section class="my-5 py-5" id="about-the-festival">
 		<div class=" container">
 			<div class="row row-gap-4">
 				<div class="col-lg-4 d-flex flex-column align-items-center" data-aos="fade-right">
@@ -53,7 +53,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 	 */
 	get_template_part( 'template-parts/home/section', 'registrations' );
 	?>
-	<section id="map">
+	<section id="map" class="my-5 py-5">
 		<div class="container">
 			<?php
 			$map_fields = get_field( 'map' );
