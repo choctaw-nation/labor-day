@@ -35,7 +35,7 @@ if ( $has_weather_alert ) {
 				<a href="<?php echo esc_url( site_url() ); ?>" class="logo w-100 h-100" aria-label='to Home Page'>
 					<figure class="logo-image d-inline-block">
 						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="lazy"
-							 class="w-100 h-100 object-fit-contain">
+							class="w-100 h-100 object-fit-contain">
 					</figure>
 				</a>
 			</div>

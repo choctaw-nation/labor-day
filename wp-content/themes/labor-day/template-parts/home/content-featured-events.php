@@ -1,6 +1,8 @@
 <?php
 /**
  * The display for featured events on the homepage.
+ *
+ * @package ChoctawNation
  */
 
 use ChoctawNation\Content\Sections;

@@ -49,8 +49,34 @@ $body-color: v.$color-black;
 
 // ====================================
 /**
+* Navbar
+*/
+
+$navbar-nav-link-padding-x: 1rem;
+
+$navbar-light-color: white;
+$navbar-light-hover-color: $secondary;
+$navbar-light-active-color: $secondary;
+$navbar-light-icon-color: white;
+$navbar-light-toggler-border-color: transparent;
+
+$dropdown-spacer: 0.5rem;
+$dropdown-font-size: 2rem;
+
+// ================================================
+
+/**
+* Offcanvas
+*/
+
+$offcanvas-bg-color: v.$color-primary--dark;
+$offcanvas-color: white;
+
+// ====================================
+/**
 * Buttons
 */
+
 $btn-transition: all v.$transition--standard;
 $btn-border-radius: 0;
 $btn-border-width: 2px;
@@ -73,6 +99,7 @@ $spacer: 1.6rem; // 16px
 * Options
 * @see https://getbootstrap.com/docs/5.3/customize/options/
 */
+
 $enable-shadows: true;
 $enable-dark-mode: false;
 
@@ -113,7 +140,7 @@ $theme-colors: map-merge(
 // @import "bootstrap/scss/images";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
-// @import "bootstrap/scss/button-group";
+@import "bootstrap/scss/button-group";
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar"; // Requires nav
 // @import "bootstrap/scss/card";

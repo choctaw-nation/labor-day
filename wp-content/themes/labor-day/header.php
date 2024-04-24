@@ -5,7 +5,7 @@
  * @package ChoctawNation
  */
 
-use ChoctawNation\Nav_Walker;
+use ChoctawNation\Navwalker;
 
 ?>
 
@@ -27,28 +27,40 @@ use ChoctawNation\Nav_Walker;
 <body <?php body_class( array( 'w-100' ) ); ?>>
 	<?php wp_body_open(); ?>
 	<header class="d-flex" id="site-header">
-		<div class="navbar container gx-5 py-4 d-flex justify-content-between">
-			<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
-				<figure class="logo-image d-inline-block">
-					<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); // phpcs:ignore ?>
-					<h1>
-						<?php echo bloginfo( 'name' ); ?>
-					</h1>
-				</figure>
-			</a>
-			<?php
-			if ( has_nav_menu( 'primary_menu' ) ) {
-				wp_nav_menu(
-					array(
-						'theme_location'  => 'primary_menu',
-						'menu_class'      => 'navbar__menu p-0 m-0 d-inline-flex',
-						'container'       => 'nav',
-						'container_class' => 'navbar d-none d-lg-flex align-items-center',
-						'walker'          => new Nav_Walker(),
-					)
-				);
-			}
-			get_template_part( 'template-parts/nav', 'mobile-menu' );
-			?>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<a href="<?php echo esc_url( site_url() ); ?>" class="logo" aria-label="to Home Page">
+					<figure class="logo-image d-inline-block">
+						<?php echo file_get_contents( 'wp-content/themes/labor-day/images/labor-day-logo.svg' ); // phpcs:ignore ?>
+						<h1>
+							<?php echo bloginfo( 'name' ); ?>
+						</h1>
+					</figure>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+						aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end ms-auto flex-grow-0" id='navbarNav' tabindex="-1">
+					<div class="offcanvas-header mt-5">
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+								style='--bs-btn-close-color:white;filter:var(--bs-btn-close-white-filter)'></button>
+					</div>
+					<?php
+					if ( has_nav_menu( 'primary_menu' ) ) {
+						wp_nav_menu(
+							array(
+								'theme_location'  => 'primary_menu',
+								'menu_class'      => 'p-0 m-0 navbar-nav align-items-center',
+								'container'       => 'div',
+								'container_class' => 'offcanvas-body',
+								'walker'          => new Navwalker(),
+							)
+						);
+					}
+					?>
+				</div>
+
+			</nav>
 		</div>
 	</header>

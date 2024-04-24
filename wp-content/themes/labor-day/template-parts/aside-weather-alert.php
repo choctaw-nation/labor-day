@@ -2,6 +2,8 @@
 /**
  * The Weather Alert Widget.
  * Will show message if message is newer or cookie has expired.
+ *
+ * @package ChoctawNation
  */
 
 $weather_alert_message = get_field( 'alert_text', 'option' );
