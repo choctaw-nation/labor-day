@@ -3,38 +3,22 @@ import { format } from 'date-fns';
 
 /** Receives the day and returns the date (number) */
 export function getTheDay( day: string ): string | null {
-	switch ( day ) {
-		case 'Friday':
-			return '30';
-		case 'Saturday':
-			return '31';
-		case 'Sunday':
-			return '1';
-		default:
-			return null;
-	}
-}
-
-function formatICalDateTime( date: Date ): string {
-	const dateString = format( date, "yyyyMMdd'T'HHmmss" );
-	return `${ dateString }`;
+	const dayMap = {
+		Friday: '30',
+		Saturday: '31',
+		Sunday: '1',
+	};
+	return dayMap[ day ] || null;
 }
 
 export function downloadICSFile( event: PrettyEventData ) {
-	let start_date = '';
-	switch ( event.info.day ) {
-		case 'Friday':
-			start_date = 'September 1, 2023';
-			break;
-		case 'Saturday':
-			start_date = 'September 2, 2023';
-			break;
-		case 'Sunday':
-			start_date = 'September 3, 2023';
-			break;
-		default:
-			throw new Error( 'Could not set date!' );
-	}
+	const datesMap = {
+		Friday: 'August 30, 2024',
+		Saturday: 'August 31, 2024',
+		Sunday: 'September 1, 2024',
+	};
+	const start_date = datesMap[ event.info.day ];
+
 	const startDateTime = formatICalDateTime(
 		new Date( `${ start_date } ${ event.info.start_time }` )
 	);
@@ -74,4 +58,15 @@ END:VCALENDAR`;
 	document.body.appendChild( link );
 	link.click();
 	document.body.removeChild( link );
+}
+
+/**
+ * Formats the date to the iCal format.
+ *
+ * @param date the date to format
+ * @returns {string} the correct date format for iCal
+ */
+function formatICalDateTime( date: Date ): string {
+	const dateString = format( date, "yyyyMMdd'T'HHmmss" );
+	return `${ dateString }`;
 }

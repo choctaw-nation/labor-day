@@ -77,7 +77,7 @@ function EventTimeBanner( { info }: { info: EventInfo } ): React.Element {
 }
 
 function CNOEventInfo( { data, dispatch, children } ) {
-	const { locations, title, link, description } = data;
+	const { locations, title, link, description } = data as PrettyEventData;
 	return (
 		<div className="cno-event__info col-xl-6 col-xxl-7">
 			<h2
@@ -88,12 +88,9 @@ function CNOEventInfo( { data, dispatch, children } ) {
 				className="cno-event__info--description"
 				dangerouslySetInnerHTML={ { __html: description } }
 			/>
-			<div className="cno-event__buttons">
+			<div className="cno-event__buttons mt-auto d-flex align-items-stretch gap-3 position-relative">
 				{ locations && locations.length > 0 && (
-					<LocationButton
-						href={ locations[ 0 ].uri }
-						name={ locations[ 0 ].name }
-					/>
+					<LocationButton name={ locations[ 0 ].name } />
 				) }
 				<ShareModalButton
 					dispatch={ dispatch }

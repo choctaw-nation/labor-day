@@ -8,7 +8,7 @@
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Text Domain: cno
- * Requires Plugins: advanced-custom-fields-pro, relevanssi
+ * Requires Plugins: advanced-custom-fields-pro
  *
  * @package CNOLaborDay
  * @subpackage Events

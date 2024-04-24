@@ -18,7 +18,7 @@ export default class View {
 	 * Constructs a new View object
 	 */
 	constructor() {
-		this.currentPage = location.href;
+		this.currentPage = window.location.href;
 		this.buttons = document.querySelectorAll< HTMLButtonElement >(
 			'[data-add-to-schedule]'
 		);

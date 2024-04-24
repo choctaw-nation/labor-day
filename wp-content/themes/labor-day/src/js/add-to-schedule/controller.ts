@@ -12,7 +12,7 @@ export class Controller {
 	/**
 	 * Determines whether or not the controller is in debug mode.
 	 */
-	debug = false;
+	debug = true;
 
 	constructor() {
 		this.view = new View();

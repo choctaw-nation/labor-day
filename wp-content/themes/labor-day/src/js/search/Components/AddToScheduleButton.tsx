@@ -49,21 +49,21 @@ export function AddToScheduleButton( { eventId } ) {
 	// Render Logic
 	if ( 'View Schedule' === responseMessage ) {
 		return (
-			<div>
+			<button>
 				<FontAwesomeIcon icon={ faCalendar } />
 				&nbsp;<a href="/my-schedule">{ responseMessage }</a>
-			</div>
+			</button>
 		);
 	} else if ( inSchedule ) {
 		return (
-			<div className="cno-event__buttons--add-to-schedule">
+			<button className="cno-event__buttons--add-to-schedule">
 				<FontAwesomeIcon icon={ faCalendar } />
 				&nbsp;<a href="/my-schedule">In Schedule</a>
-			</div>
+			</button>
 		);
 	} else
 		return (
-			<div
+			<button
 				className="cno-event__buttons--add-to-schedule"
 				data-add-to-schedule="true"
 				data-id={ eventId }
@@ -73,6 +73,6 @@ export function AddToScheduleButton( { eventId } ) {
 				} }
 			>
 				<FontAwesomeIcon icon={ faPlus } /> { responseMessage }
-			</div>
+			</button>
 		);
 }

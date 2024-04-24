@@ -12,6 +12,7 @@ import { AddToScheduleButton } from '../../Components/AddToScheduleButton';
 
 // Utilities
 import { initialState } from '../../Utilities/reducer';
+import { WP_Term } from 'wp-types';
 
 // The Component
 export default function ResultsContainer( {
@@ -73,12 +74,10 @@ function postMatchesFilters(
 		'Event Types': post.type,
 		Days: post.info.day,
 	};
-	const hasLocation =
-		filterIsEmpty( selectedFilters.Locations ) ||
-		( filters.Locations &&
-			filters.Locations.some(
-				( location ) => selectedFilters.Locations === location.name
-			) );
+	const hasLocation = eventMatchesLocation(
+		selectedFilters,
+		filters.Locations
+	);
 	const hasType =
 		filterIsEmpty( selectedFilters[ 'Event Types' ] ) ||
 		filters[ 'Event Types' ].some(
@@ -87,8 +86,27 @@ function postMatchesFilters(
 	const hasDay =
 		filterIsEmpty( selectedFilters.Days ) ||
 		selectedFilters.Days === filters.Days;
-	console.log( selectedFilters.Days, filters.Days );
 	return hasLocation && hasType && hasDay;
+}
+
+/**
+ * Handles Location checking to return a boolean (if location is undefined)
+ *
+ * @param {selectedFilterObject} selectedFilters the selected Filters
+ * @param {WP_Term[]|undefined} location The post's location, if present
+ * @returns {boolean}
+ */
+function eventMatchesLocation(
+	selectedFilters: selectedFilterObject,
+	locations: WP_Term[] | false
+): boolean {
+	const matchesLocation =
+		false === locations
+			? false
+			: locations.some(
+					( location ) => selectedFilters.Locations === location.name
+			  );
+	return filterIsEmpty( selectedFilters.Locations ) || matchesLocation;
 }
 
 /**
