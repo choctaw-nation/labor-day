@@ -1,6 +1,9 @@
 <?php
 /**
  * Single Event Template (Overrides Plugin Template)
+ *
+ * @package ChoctawNation
+ * @subpackage Events
  */
 
 get_header();

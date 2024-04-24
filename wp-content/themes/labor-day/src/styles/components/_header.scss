@@ -1,8 +1,5 @@
 @use "../abstracts/functions" as fn;
 @use "../abstracts/mixins" as m;
-@use "./header/hamburger";
-@use "./header/offcanvas";
-@use "./header/submenu";
 
 #site-header {
 	background-color: var(--color-primary--dark);
@@ -19,80 +16,23 @@
 	}
 }
 
-.navbar {
-	align-items: center;
+.sub-menu {
+	width: max-content;
+
+	.current-menu-item {
+		background-color: var(--bs-secondary);
+
+		a {
+			color: white;
+		}
+	}
+
+	li {
+		transition: background-color var(--transition--secondary);
+	}
 
 	a {
-		transition: fn.transition(color);
-		text-decoration: none;
-		text-transform: uppercase;
-		font-size: 2rem;
-	}
-
-	&__menu {
-		list-style: none;
-		padding: unset;
-	}
-
-	&__menu-item {
-		padding: 10px;
-		margin: 0 10px;
-		display: inline-block;
-		border-bottom: 2px solid transparent;
-		transition: fn.transition(border-color);
-
-		&:hover {
-			cursor: pointer;
-			a::after {
-				transform: scaleX(1);
-			}
-			&:not(.sub-menu a) {
-				color: white;
-			}
-		}
-		&--link {
-			position: relative;
-			&:not(.sub-menu a) {
-				color: white;
-			}
-			@include m.anchorHoverState($color: white);
-		}
-	}
-}
-
-.mobile-navbar {
-	@extend .navbar;
-
-	&__menu {
-		flex: 1 1 100%;
-	}
-}
-
-.sub-menu {
-	background-color: var(--bs-tertiary);
-	margin: 0;
-	border-radius: 0 0 3.75px 3.75px;
-
-	&__menu-item {
-		margin: 0;
-		padding: 1rem;
-		width: 100%;
-
-		&:hover,
-		&:focus,
-		&:active {
-			background-color: var(--color-primary--dark);
-			border-color: transparent;
-
-			.sub-menu__menu-item--link {
-				color: var(--bs-tertiary);
-				background-color: none;
-			}
-		}
-
-		&--link {
-			color: var(--color-primary--dark);
-			font-size: 1.8rem;
-		}
+		font-size: 1.8rem;
+		transition: color var(--transition--secondary);
 	}
 }

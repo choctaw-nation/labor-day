@@ -49,7 +49,7 @@ class Theme_Init {
 		}
 
 		require_once $base_path . '/theme/class-operational-hours.php';
-		require_once $base_path . '/theme/navwalkers/class-nav-walker.php';
+		require_once $base_path . '/theme/navwalkers/class-navwalker.php';
 	}
 
 	/** Takes an array of file names to load

@@ -2,6 +2,8 @@
 /**
  * Entertainment Slider
  * uses swiper.js
+ *
+ * @package ChoctawNation
  */
 
 $query = new WP_Query(
@@ -40,7 +42,7 @@ $ignored_post_ids = array( 50, 174, 200, 183 );
 										?>
 							<div class="swiper-slide" style="background-image: url('<?php echo get_field( 'portrait_orientation_photo' )['sizes']['max-portrait']; ?>');">
 								<a href="<?php echo get_the_permalink(); ?>">
-									<?php extract( get_field( 'info' ) ); ?>
+										<?php extract( get_field( 'info' ) ); ?>
 									<div class="swiper__slide-content">
 										<span class="swiper__slide-content--title"><?php the_title(); ?></span><br />
 										<i class="fa-regular fa-calendar"></i>&nbsp;<?php echo $day . ', ' . cno_get_the_date( $day ); ?><br />
