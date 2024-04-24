@@ -1,7 +1,6 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-$overlay-opacity: 0.52;
 %text-callout {
 	padding: 1rem 0;
 }
@@ -41,17 +40,9 @@ $overlay-opacity: 0.52;
 .bg {
 	background-position: center 60%;
 	background-size: cover;
-	opacity: $overlay-opacity;
+	opacity: 0.52;
 	mix-blend-mode: multiply;
 	@include m.media-breakpoint-down(md) {
 		top: -80%;
-	}
-}
-
-.overlay {
-	opacity: $overlay-opacity;
-	&--primary {
-		@extend .overlay;
-		background-color: rgba(v.$color-primary--light, $overlay-opacity);
 	}
 }

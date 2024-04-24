@@ -7,13 +7,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
-export function LocationButton( { href, name } ) {
+export function LocationButton( { name } ) {
 	return (
-		<a className="cno-event__buttons--location" href={ href }>
+		<span className="cno-event__buttons--location">
 			<FontAwesomeIcon icon={ faLocationDot } />
 			&nbsp;
 			{ name }
-		</a>
+		</span>
 	);
 }
 
@@ -28,20 +28,20 @@ export function ReadMoreButton( { link } ) {
 
 export function RemoveFromSchedule( { removeEvent, eventId, day } ) {
 	return (
-		<a
+		<button
 			className="cno-event__buttons--remove-event"
 			onClick={ () => {
 				removeEvent( eventId, day );
 			} }
 		>
 			&times; Remove Event
-		</a>
+		</button>
 	);
 }
 
 export function ExportToCalendar( { handleClick, eventId } ) {
 	return (
-		<a
+		<button
 			className="cno-event__buttons--calendar"
 			onClick={ () => {
 				handleClick( eventId );
@@ -49,23 +49,23 @@ export function ExportToCalendar( { handleClick, eventId } ) {
 		>
 			<FontAwesomeIcon icon={ faCalendar } />
 			&nbsp;Export to Calendar
-		</a>
+		</button>
 	);
 }
 
 export function ShareModalButton( { dispatch, title, link } ) {
 	return (
-		<div
+		<button
 			className="cno-event__buttons--share"
 			onClick={ () => {
 				dispatch( {
 					type: 'triggerModal',
-					payload: { title: title, link: link },
+					payload: { title, link },
 				} );
 			} }
 		>
 			<FontAwesomeIcon icon={ faShare } />
 			&nbsp;Share
-		</div>
+		</button>
 	);
 }

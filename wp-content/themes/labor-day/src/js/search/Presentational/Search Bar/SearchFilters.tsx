@@ -62,7 +62,7 @@ function SearchFilter( { filter, dispatch, selectedFilters } ) {
 							return (
 								<li key={ i }>
 									<button
-										className="dropdown-item fs-6 w-auto"
+										className="dropdown-item fs-6 w-100"
 										onClick={ () =>
 											dispatch( {
 												type: 'selectFilter',

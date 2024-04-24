@@ -121,32 +121,39 @@
 	}
 
 	&__buttons {
-		margin-top: auto;
-		@include m.displayFlex($cross: stretch);
-		gap: 2rem;
-		position: relative;
 		& > * {
 			@include m.displayFlex(row, $cross: center);
-			cursor: pointer;
 			transition: fn.transition(
 				(background-color, border-color, transform, box-shadow, color)
 			);
 		}
 
+		& button {
+			background-color: transparent;
+			border: none;
+		}
+
 		& > div:hover {
-			color: v.$color-primary--light;
+			color: var(--color-primary--light);
 		}
 
 		&--location {
-			color: v.$color-secondary;
+			color: var(--bs-secondary);
 		}
 
 		&--share {
-			color: v.$color-grey;
+			color: var(--bs-grey);
 		}
 
-		&--add-to-schedule {
-			color: v.$color-primary;
+		&--add-to-schedule,
+		&--calendar {
+			color: var(--bs-primary);
+
+			&:hover,
+			&:active,
+			&:focus {
+				color: var(--bs-secondary);
+			}
 		}
 
 		.alert {

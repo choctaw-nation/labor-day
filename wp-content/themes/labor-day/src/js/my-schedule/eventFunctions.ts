@@ -26,7 +26,7 @@ export function getLocalStorageData(): SortedEventsObject {
 		days.forEach( ( day ) => {
 			const dailyEvents = jsonEvents[ day ].filter(
 				( ev: PrettyEventData ) => {
-					return ev.info.day.toLowerCase() == day;
+					return ev.info.day.toLowerCase() === day;
 				}
 			);
 			dailyEvents.forEach( ( ev ) => sortedEvents[ day ].push( ev ) );

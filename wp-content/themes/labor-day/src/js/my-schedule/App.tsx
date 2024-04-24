@@ -20,8 +20,7 @@ const emptyEventsState: SortedEventsObject = {
 
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
-	const [ events, setEvents ] =
-		useState< SortedEventsObject >( emptyEventsState );
+	const [ events, setEvents ] = useState( emptyEventsState );
 
 	const emptyEvents =
 		events.friday.length === 0 &&
@@ -33,7 +32,7 @@ function App() {
 			const sortedEvents = getLocalStorageData();
 			setEvents( getTimeSortedEvents( sortedEvents ) );
 		} catch ( err ) {
-			// console.error( err );
+			console.error( err );
 			// TODO: handle this better
 			setEvents( emptyEventsState );
 			return;
@@ -80,7 +79,7 @@ function App() {
 		);
 	}
 	return (
-		<div className="container cno-events">
+		<div className="container">
 			<EventsDisplay schedule={ events } removeEvent={ removeEvent } />
 		</div>
 	);

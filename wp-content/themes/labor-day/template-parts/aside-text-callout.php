@@ -10,7 +10,7 @@ extract( $args );
 <aside class="<?php echo "text-callout--{$color} position-relative overflow-hidden py-5"; ?>">
 	<div class="bg position-absolute top-0 w-100 h-100" style="background-image:url('<?php echo get_theme_file_uri( '/images/gradient_texture.jpg' ); ?>')"></div>
 	<?php
-	echo "<div class='overlay--{$color} opacity-50 z-1 position-absolute top-0 w-100'></div>";
+	echo "<div class='overlay--{$color} opacity-50 z-1 position-absolute top-0 w-100 h-100'></div>";
 	?>
 	<div class="container my-5">
 		<div class="row">

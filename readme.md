@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.1.0
+
+-   Rewrote the events plugin to use custom rest route instead of relying on WPGraphQL
+-   Updated Event Post Buttons to be semantic `button` elements instead of improper `a` elements
+-   Reduced custom CSS in favor of modifying Bootstrap's compiled CSS + utility classes
+
 ## v2.0.3
 
 -   Bug fixes
