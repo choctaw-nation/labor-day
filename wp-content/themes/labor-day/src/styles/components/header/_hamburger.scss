@@ -8,6 +8,8 @@
 	height: var(--size);
 	width: var(--size);
 	cursor: pointer;
+	box-shadow: none;
+
 	&:hover {
 		background-color: var(--bs-secondary);
 	}
