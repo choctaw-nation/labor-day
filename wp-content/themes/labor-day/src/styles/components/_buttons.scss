@@ -1,13 +1,35 @@
 @use "../abstracts/functions" as fn;
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-%btn {
-	cursor: pointer;
-	border: 2px solid transparent;
-	padding: 1rem 1.375rem 1.2rem;
-	display: inline-block;
-	font-size: 2.4rem;
-	font-weight: 500;
+
+$standard-buttons: ("primary", "secondary");
+@each $color in $standard-buttons {
+	.btn-#{$color} {
+		color: white;
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: white;
+			color: var(--bs-#{$color});
+		}
+	}
+	.btn-outline-#{$color} {
+		background-color: white;
+		border-color: var(--bs-#{$color});
+		color: var(--bs-#{$color});
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: var(--bs-#{$color});
+			color: white;
+		}
+	}
+}
+
+.btn {
+	padding-bottom: 1.2rem;
 	transform: translateY(0);
 	text-transform: uppercase;
 	transition: fn.transition(
@@ -20,130 +42,31 @@
 	}
 }
 
-.btn {
-	@extend %btn;
-
-	&__fill {
-		@extend .btn;
-		color: white;
-
-		a {
-			color: white;
-		}
-
-		&:hover,
-		&:active,
-		&:focus {
-			background-color: white;
-		}
-
-		&--primary {
-			@extend .btn__fill;
-			background-color: v.$color-primary;
-
-			&:hover,
-			&:active,
-			&:focus {
-				border-color: v.$color-primary;
-				color: v.$color-primary;
-
-				a {
-					color: v.$color-primary;
-				}
-			}
-		}
-
-		&--secondary {
-			@extend .btn__fill;
-			background-color: v.$color-secondary;
-
-			&:hover,
-			&:active,
-			&:focus {
-				border-color: v.$color-secondary;
-				color: v.$color-secondary;
-
-				a {
-					color: v.$color-secondary;
-				}
-			}
-		}
-	}
-
-	&__outline {
-		@extend .btn;
-		background-color: white;
-
-		&:hover,
-		&:active,
-		&:focus {
-			color: white;
-
-			a {
-				color: white;
-			}
-		}
-
-		&--primary {
-			@extend .btn__outline;
-			border-color: v.$color-primary;
-			color: v.$color-primary;
-
-			&:hover,
-			&:active,
-			&:focus {
-				background-color: v.$color-primary;
-			}
-		}
-
-		&--secondary {
-			@extend .btn__outline;
-			border-color: v.$color-secondary;
-			color: v.$color-secondary;
-
-			&:hover,
-			&:active,
-			&:focus {
-				border-color: v.$color-secondary;
-				background-color: v.$color-secondary;
-			}
-		}
-	}
-}
-
-a.btn {
-	text-decoration: none;
-}
-
-button:where(:not(.post-type-archive-events .dropdown-item)) {
-	@extend .btn__fill--primary !optional;
-}
-
 .schedule-button {
 	position: fixed;
 	bottom: 3%;
 	right: 3%;
-	color: v.$color-primary;
+	color: var(--bs-primary);
 	padding: 2rem;
 	border-radius: 1rem;
 	background-color: white;
 	z-index: 40;
-	border: 2px solid v.$color-primary;
-	transition: background-color v.$transition--standard;
+	border: 2px solid var(--bs-primary);
+	transition: background-color var(--transition--standard);
 
 	&:hover {
-		background-color: v.$color-primary;
+		background-color: var(--bs-primary);
 		* {
 			color: white;
 		}
 	}
 
 	a {
-		transition: color v.$transition--standard;
+		transition: color var(--transition--standard);
 	}
 
 	svg {
-		transition: fill v.$transition--standard;
+		transition: fill var(--transition--standard);
 		fill: currentColor;
 		width: 3rem;
 	}

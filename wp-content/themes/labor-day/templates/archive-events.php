@@ -11,13 +11,17 @@ cno_enqueue_page_assets( 'search' );
 get_header();
 ?>
 <section class="hero">
-	<div class="container">
-		<h1>Schedule</h1>
-		<span class="subheadline mb-5">
-			<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
-		</span>
-		<a href="/my-schedule" class="btn__fill--secondary mb-3 mb-lg-0">View Your Schedule</a>
-		<button class='btn__outline--secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
+	<div class="container my-5 py-5">
+		<div class="row">
+			<div class="col">
+				<h1>Schedule</h1>
+				<span class="subheadline mb-5">
+					<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
+				</span>
+				<a href="/my-schedule" class="btn btn-secondary mb-3 mb-lg-0">View Your Schedule</a>
+				<button class='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
+			</div>
+		</div>
 	</div>
 </section>
 <?php get_template_part( 'template-parts/events/modal', 'operational-hours' ); ?>

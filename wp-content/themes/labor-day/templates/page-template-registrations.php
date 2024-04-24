@@ -25,22 +25,23 @@ get_header();
 			?>
 		</div>
 		<div class="row">
-			<div class="col d-block">
+			<div class="col">
 				<?php the_title( '<h1>', '</h1>' ); ?>
 				<?php
 				if ( ! empty( $additional_info ) ) {
-					echo $additional_info;}
+					echo "<div class='fs-6'>{$additional_info}</div>";
+				}
 				?>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row fs-6">
 			<?php
 			$form_id = get_field( 'registration_form' );
-			$href    = get_field( 'external_registration_link' );
+			$href    = esc_url( get_field( 'external_registration_link' ) );
 			if ( ! empty( $form_id ) && empty( $href ) ) {
 				echo do_shortcode( "[gravityform id={$form_id} title='false']" );
 			} elseif ( empty( $form_id ) && ! empty( $href ) ) {
-				echo "<a href='{$href}' class='btn__fill--secondary w-auto' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
+				echo "<a href='{$href}' class='btn btn-secondary w-auto mt-4' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
 			}
 			?>
 		</div>

@@ -69,7 +69,13 @@ function App() {
 	if ( emptyEvents ) {
 		return (
 			<div className="container">
-				<p>Seems like you haven't added any events yet.</p>
+				<div className="row">
+					<div className="col">
+						<p className="fs-6">
+							Seems like you haven't added any events yet.
+						</p>
+					</div>
+				</div>
 			</div>
 		);
 	}

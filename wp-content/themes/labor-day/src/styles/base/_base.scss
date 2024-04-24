@@ -26,32 +26,6 @@
 	color: white;
 	background-color: v.$color-primary--dark;
 }
-section {
-	padding: 6.5rem 0;
-	position: relative;
-
-	@include m.media-breakpoint-down(md) {
-		padding: 3.5rem 0;
-	}
-}
-
-.row {
-	position: relative;
-	margin-top: 3rem;
-	margin-bottom: 3rem;
-	height: auto;
-}
-
-.col {
-	@include m.displayFlex(column);
-	position: relative;
-	height: auto;
-}
-
-.bg-color-primary {
-	background-color: v.$color-primary;
-	color: white;
-}
 
 .hide {
 	display: none !important;

@@ -1,13 +1,11 @@
 @use "../abstracts/functions" as fn;
-@use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-@use "./buttons";
 @use "./header/hamburger";
 @use "./header/offcanvas";
 @use "./header/submenu";
 
 #site-header {
-	background-color: v.$color-primary--dark;
+	background-color: var(--color-primary--dark);
 }
 
 .logo-image {
@@ -58,10 +56,6 @@
 			}
 			@include m.anchorHoverState($color: white);
 		}
-
-		&.cta {
-			@extend .btn__fill--primary;
-		}
 	}
 }
 
@@ -74,7 +68,7 @@
 }
 
 .sub-menu {
-	background-color: v.$color-tertiary;
+	background-color: var(--bs-tertiary);
 	margin: 0;
 	border-radius: 0 0 3.75px 3.75px;
 
@@ -86,17 +80,17 @@
 		&:hover,
 		&:focus,
 		&:active {
-			background-color: v.$color-primary--dark;
+			background-color: var(--color-primary--dark);
 			border-color: transparent;
 
 			.sub-menu__menu-item--link {
-				color: v.$color-tertiary;
+				color: var(--bs-tertiary);
 				background-color: none;
 			}
 		}
 
 		&--link {
-			color: v.$color-primary--dark;
+			color: var(--color-primary--dark);
 			font-size: 1.8rem;
 		}
 	}

@@ -12,7 +12,7 @@ use ChoctawNation\Content\Sections;
 $content = new Sections();
 $hero    = new Hero( $post->ID, get_field( 'hero' ) );
 ?>
-<li class="registration-form-list__item">
+<li class="registration-form-list__item my-5">
 	<div class="registration-form row justify-content-between">
 		<div class="col-lg-4">
 			<figure class="two-col__media--container ratio ratio-16x9 mb-0">
@@ -29,14 +29,14 @@ $hero    = new Hero( $post->ID, get_field( 'hero' ) );
 			</figure>
 		</div>
 		<div class="col-lg-8 d-flex flex-column">
-			<h3 class="h2 text-capitalize">
+			<h3 class="fs-2 text-capitalize">
 				<?php the_title(); ?>
 			</h3>
-			<p><?php $hero->the_subheadline(); ?></p>
+			<p class="fs-6 mb-5"><?php $hero->the_subheadline(); ?></p>
 			<?php
 			$has_external_registration_link = get_field( 'has_external_registration_link' );
 			$cta_link                       = $has_external_registration_link ? get_field( 'external_registration_link' ) : get_the_permalink();
-			echo "<a href='{$cta_link}' class='btn__fill--primary mt-auto align-self-start text-center'>Apply Now</a>";
+			echo "<a href='{$cta_link}' class='btn btn-primary mt-auto align-self-start text-center'>Apply Now</a>";
 			?>
 		</div>
 	</div>

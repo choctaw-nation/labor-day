@@ -19,7 +19,7 @@ export default function SearchFiltersContainer( {
 			<div className="cno-event-search__filters--header">
 				<h3 className="cno-event-search__filters--title">Filters</h3>
 				<button
-					className="btn__fill--secondary"
+					className="btn btn-secondary"
 					onClick={ () => {
 						setShowFilters( ! showFilters );
 					} }
@@ -28,7 +28,7 @@ export default function SearchFiltersContainer( {
 				</button>
 				{ initialState.selectedFilters !== selectedFilters && (
 					<button
-						className="btn__outline--secondary"
+						className="btn btn-outline-secondary"
 						onClick={ () => {
 							dispatch( { type: 'resetSelectedFilters' } );
 						} }
@@ -38,7 +38,7 @@ export default function SearchFiltersContainer( {
 				) }
 				{ windowWidth > 767 && (
 					<button
-						className="btn__fill--secondary"
+						className="btn btn-secondary"
 						data-bs-toggle="modal"
 						data-bs-target="#hoursModal"
 					>

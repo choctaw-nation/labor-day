@@ -1,9 +1,16 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 @use "../components/slider";
-@use "../components/subscribe";
-@use "../components/subscribe-modal";
-@use "../components/text-callout";
+// @use "../components/subscribe";
+// @use "../components/subscribe-modal";
+
+.hero {
+	min-height: 60rem;
+
+	.headline {
+		font-size: 4em;
+	}
+}
 
 .countdown {
 	a {
@@ -22,43 +29,38 @@
 	}
 
 	&__container {
-		border-top: 5px solid white;
-		font-size: 3.5em;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 15rem);
 		justify-content: space-evenly;
-		@include m.media-breakpoint-down(lg) {
-			font-size: 2em;
-		}
 	}
 
 	&__days {
-		@include m.displayFlex(column, flex-start, center);
 		animation-delay: 1.2s;
 	}
 
 	&__hours {
-		@extend .countdown__days;
 		animation-delay: 1.4s;
 	}
 
 	&__minutes {
-		@extend .countdown__days;
 		animation-delay: 1.6s;
+
 		@include m.media-breakpoint-only(sm) {
 			grid-row: 2 / 3;
 		}
+
 		@media screen and (min-width: 466px) and (max-width: 576px) {
 			grid-row: 2 / 3;
 		}
 	}
 
 	&__seconds {
-		@extend .countdown__days;
 		animation-delay: 1.8s;
+
 		@include m.media-breakpoint-only(sm) {
 			grid-row: 2 / 3;
 		}
+
 		@media screen and (min-width: 466px) and (max-width: 576px) {
 			grid-row: 2 / 3;
 		}

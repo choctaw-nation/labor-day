@@ -5,7 +5,7 @@
 	width: max-content;
 
 	.current-menu-item {
-		background-color: v.$color-secondary;
+		background-color: var(--bs-secondary);
 
 		a {
 			color: white;
@@ -13,11 +13,11 @@
 	}
 
 	li {
-		transition: background-color v.$transition--standard;
+		transition: background-color var(--transition--secondary);
 	}
 
 	a {
 		font-size: 1.8rem;
-		transition: color v.$transition--standard;
+		transition: color var(--transition--secondary);
 	}
 }
