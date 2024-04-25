@@ -151,7 +151,6 @@ class Theme_Init {
 		register_nav_menus(
 			array(
 				'primary_menu'  => __( 'Primary Menu', 'cno' ),
-				'mobile_menu'   => __( 'Mobile Menu', 'cno' ),
 				'footer_menu-1' => __( 'Footer Menu 1', 'cno' ),
 				'footer_menu-2' => __( 'Footer Menu 2', 'cno' ),
 			)

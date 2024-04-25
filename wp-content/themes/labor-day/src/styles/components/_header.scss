@@ -1,5 +1,6 @@
 @use "../abstracts/functions" as fn;
 @use "../abstracts/mixins" as m;
+@use "bootstrap/scss/vendor/rfs" as rfs;
 
 #site-header {
 	background-color: var(--color-primary--dark);
@@ -7,7 +8,6 @@
 
 .logo-image {
 	@include m.fitMedia(svg);
-	margin: 0;
 	padding: 1rem;
 	height: 15rem;
 
@@ -16,23 +16,65 @@
 	}
 }
 
-.sub-menu {
-	width: max-content;
+.navbar-nav {
+	.nav-item {
+		margin-inline: 1rem;
 
-	.current-menu-item {
-		background-color: var(--bs-secondary);
+		&.active {
+			.nav-link::after {
+				transform: scaleX(1);
+			}
+		}
 
-		a {
-			color: white;
+		&:hover,
+		&:focus-within {
+			cursor: pointer;
+
+			.nav-link {
+				color: var(--bs-secondary);
+
+				&::after {
+					transform: scaleX(1);
+				}
+			}
+
+			.dropdown-toggle {
+				color: var(--bs-secondary);
+			}
+
+			.dropdown-menu {
+				display: block;
+				top: 100%;
+				left: 0;
+			}
+		}
+
+		.nav-link {
+			@include rfs.font-size(2rem);
+			@include m.anchorHoverState($color: white);
+			position: relative;
+			text-transform: uppercase;
 		}
 	}
 
-	li {
-		transition: background-color var(--transition--secondary);
-	}
+	.btn-group {
+		display: flex;
+		align-items: center;
+		column-gap: 1rem;
+		flex-wrap: wrap;
 
-	a {
-		font-size: 1.8rem;
-		transition: color var(--transition--secondary);
+		& > * {
+			flex: 0 0 auto;
+		}
+
+		.dropdown-toggle {
+			box-shadow: none;
+			color: white;
+		}
 	}
+}
+
+.dropdown-menu.show {
+	flex-basis: 100%;
+	flex-grow: 1;
 }

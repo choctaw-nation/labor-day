@@ -28,7 +28,7 @@ $standard-buttons: ("primary", "secondary");
 	}
 }
 
-.btn {
+.btn:not(.dropdown-toggle) {
 	padding-bottom: 1.2rem;
 	transform: translateY(0);
 	text-transform: uppercase;
