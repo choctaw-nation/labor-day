@@ -11,6 +11,7 @@ import LoadingSpinner from '../spinner';
 
 // Utilities
 import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
+import ShareModal from '../search/Presentational/ShareModal';
 
 const emptyEventsState: SortedEventsObject = {
 	friday: [],
@@ -21,6 +22,11 @@ const emptyEventsState: SortedEventsObject = {
 function App() {
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ events, setEvents ] = useState( emptyEventsState );
+	const [ showShareModal, setShowShareModal ] = useState( false );
+	const [ shareEventObject, setShareEventObject ] = useState( {
+		title: '',
+		link: '',
+	} );
 
 	const emptyEvents =
 		events.friday.length === 0 &&
@@ -53,6 +59,19 @@ function App() {
 		setEvents( updatedEvents );
 		setIsLoading( false );
 	}
+	function dispatch( action: { type: string; payload: {} } ) {
+		switch ( action.type ) {
+			case 'triggerModal':
+				setShowShareModal( true );
+				setShareEventObject( action.payload );
+				break;
+			case 'closeModal':
+				setShowShareModal( false );
+				break;
+			default:
+				break;
+		}
+	}
 
 	useEffect( () => {
 		localStorage.setItem( 'schedule', JSON.stringify( events ) );
@@ -80,7 +99,16 @@ function App() {
 	}
 	return (
 		<div className="container">
-			<EventsDisplay schedule={ events } removeEvent={ removeEvent } />
+			<EventsDisplay
+				dispatch={ dispatch }
+				schedule={ events }
+				removeEvent={ removeEvent }
+			/>
+			<ShareModal
+				dispatch={ dispatch }
+				showShareModal={ showShareModal }
+				shareEventObject={ shareEventObject }
+			/>
 		</div>
 	);
 }

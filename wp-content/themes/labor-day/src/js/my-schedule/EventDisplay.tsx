@@ -18,9 +18,11 @@ import { downloadICSFile } from './calendarFunctions';
 export default function EventsDisplay( {
 	schedule,
 	removeEvent,
+	dispatch,
 }: {
 	schedule: SortedEventsObject;
 	removeEvent: CallableFunction;
+	dispatch: CallableFunction;
 } ) {
 	const events: PrettyEventData[] = Object.values( schedule ).flat();
 
@@ -30,7 +32,12 @@ export default function EventsDisplay( {
 	}
 
 	return events.map( ( event: PrettyEventData ) => (
-		<SinglePost extendedClass="my-5" data={ event } key={ event.eventId }>
+		<SinglePost
+			dispatch={ dispatch }
+			extendedClass="my-5"
+			data={ event }
+			key={ event.eventId }
+		>
 			{ createExcerpt( event.description ).readMore && (
 				<ReadMoreButton link={ event.link } />
 			) }

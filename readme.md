@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.1.3
+
+-   Fixed a bug where the "Share" modal wasn't working on the `/my-schedule` page.
+-   Reduced custom CSS
+
 ## v2.1.2
 
 -   Fixed `event_location` taxonomy not appearing (had to manually flush permalinks)

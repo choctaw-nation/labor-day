@@ -65,14 +65,16 @@ function cno_acf_options_page() {
  * @return string Date as long month, single number (e.g. "September 1");
  */
 function cno_get_the_date( string $day ): string {
-	if ( 'Friday' === $day ) {
-		$date = 'August 30';
-	} elseif ( 'Saturday' === $day ) {
-		$date = 'September 1';
+	$date_map = array(
+		'Friday'   => 'August 30',
+		'Saturday' => 'August 31',
+		'Sunday'   => 'September 1',
+	);
+	if ( array_key_exists( $day, $date_map ) ) {
+		return $date_map[ $day ];
 	} else {
-		$date = 'September 2';
+		return '';
 	}
-	return $date;
 }
 
 /**
@@ -163,9 +165,9 @@ add_filter( 'gform_submit_button', 'add_custom_css_classes', 10, 2 );
 function add_custom_css_classes( $button ): string {
 	$dom = new DOMDocument();
 	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
-	$input   = $dom->getElementsByTagName( 'input' )->item( 0 );
-	$classes = $input->getAttribute( 'class' );
-	$classes = 'btn btn-secondary';
-	$input->setAttribute( 'class', $classes );
-	return $dom->saveHtml( $input );
+$input = $dom->getElementsByTagName( 'input' )->item( 0 );
+$classes = $input->getAttribute( 'class' );
+$classes = 'btn btn-secondary';
+$input->setAttribute( 'class', $classes );
+return $dom->saveHtml( $input );
 }
