@@ -1,12 +1,12 @@
 @use "../../abstracts/mixins" as m;
 @use "../../abstracts/variables" as v;
-@use "../../components/modal-share-event";
+
 :where(.single-events) {
 	body & {
 		overflow-x: initial;
 	}
+
 	.cno-event {
-		position: relative;
 		max-height: unset;
 		@include m.displayFlex(column, $cross: stretch);
 		@include m.media-breakpoint-up(lg) {
@@ -18,45 +18,20 @@
 
 		&__image {
 			order: unset;
-			@include m.fitMedia($fit: contain);
-			img {
-				aspect-ratio: 16 / 9;
-				height: auto;
-			}
 		}
 	}
 
 	.cno-event-meta {
-		background-color: unset;
-		padding: unset;
 		@include m.media-breakpoint-up(lg) {
 			top: 5%;
 			position: sticky;
 		}
-
-		&__container {
-			margin-bottom: 2rem;
-			padding: 2rem;
-			background-color: v.$color-tertiary;
-		}
 	}
 
 	.sidebar {
-		position: relative;
-		height: 100%;
-		@include m.displayFlex(column, flex-start, stretch);
 		@include m.media-breakpoint-up(lg) {
 			grid-column: 2 / 3;
 			grid-row: 1 / span 3;
-		}
-
-		&__buttons {
-			font-size: 1em;
-			@include m.displayFlex;
-
-			a {
-				align-self: flex-start;
-			}
 		}
 
 		&__confirmation {
