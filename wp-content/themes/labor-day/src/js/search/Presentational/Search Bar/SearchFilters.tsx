@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react';
-import Dropdown from 'bootstrap/js/dist/dropdown';
+import React from 'react';
 import { EventFilters, selectedFilterObject } from '../../types/eventFilters';
 
 const filterKeys = {
@@ -35,17 +34,12 @@ function SearchFilter( { filter, dispatch, selectedFilters } ) {
 	const {
 		type: { name, filters },
 	} = filter;
-	const ref = useRef( null );
-	useEffect( () => {
-		if ( ref.current ) new Dropdown( ref.current );
-	}, [ ref ] );
 
 	return (
 		<div className="cno-event-search-filters__container">
 			<div className="cno-event-search-filters__filter-container">
 				<div className="dropdown">
 					<button
-						ref={ ref }
 						className="btn btn-outline-secondary dropdown-toggle"
 						id={ `${ filterKeys[ name ] }-dropdown` }
 						data-bs-toggle="dropdown"
