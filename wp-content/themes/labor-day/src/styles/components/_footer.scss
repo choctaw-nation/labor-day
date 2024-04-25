@@ -34,13 +34,13 @@
 
 .socials {
 	.social-icon {
-		i {
+		svg {
 			color: white;
 			transition: color var(--transition--standard);
 		}
 
 		&:hover {
-			i {
+			svg {
 				color: var(--bs-secondary);
 			}
 		}
