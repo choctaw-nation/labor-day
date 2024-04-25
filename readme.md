@@ -4,6 +4,15 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.1.1
+
+-   Updated `header.php` to only call in 1 Menu
+-   Removed deprecated "Mobile Menu" from theme
+-   Removed JS `mouseover` event in favor of CSS `:hover` styles for dropdown
+-   Replaced old `Nav_Walker` in favor of theme-compliant `Navwalker` that uses `dropdown-toggle` for dropdown elements.
+-   Updated header styles to use more Bootstrap customization and less custom css
+-   Added `mix-blend-mode:multiply` on front-page hero overlay
+
 ## v2.1.0
 
 -   Rewrote the events plugin to use custom rest route instead of relying on WPGraphQL

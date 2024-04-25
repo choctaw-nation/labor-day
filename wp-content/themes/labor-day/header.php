@@ -51,7 +51,7 @@ use ChoctawNation\Navwalker;
 						wp_nav_menu(
 							array(
 								'theme_location'  => 'primary_menu',
-								'menu_class'      => 'p-0 m-0 navbar-nav align-items-center',
+								'menu_class'      => 'p-0 m-0 navbar-nav align-items-lg-center',
 								'container'       => 'div',
 								'container_class' => 'offcanvas-body',
 								'walker'          => new Navwalker(),
