@@ -1,6 +1,6 @@
 {
 	"name": "cno-events",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "An events Plugin for the Choctaw Nation of Oklahoma",
 	"main": "src/index.js",
 	"prettier": "@wordpress/prettier-config",
@@ -14,7 +14,7 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"@wordpress/scripts": "^26.2.0",
-		"bootstrap": "^5.2.3"
+		"@wordpress/scripts": "^26.7.0",
+		"bootstrap": "^5.3.3"
 	}
 }

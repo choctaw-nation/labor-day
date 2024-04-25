@@ -90,7 +90,10 @@ function CNOEventInfo( { data, dispatch, children } ) {
 			/>
 			<div className="cno-event__buttons mt-auto d-flex align-items-stretch gap-3 position-relative">
 				{ locations && locations.length > 0 && (
-					<LocationButton name={ locations[ 0 ].name } />
+					<LocationButton
+						name={ locations[ 0 ].name }
+						slug={ locations[ 0 ].slug }
+					/>
 				) }
 				<ShareModalButton
 					dispatch={ dispatch }

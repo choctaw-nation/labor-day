@@ -7,13 +7,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
-export function LocationButton( { name } ) {
+export function LocationButton( {
+	name,
+	slug,
+}: {
+	name: string;
+	slug: string;
+} ) {
 	return (
-		<span className="cno-event__buttons--location">
+		<a
+			className="cno-event__buttons--location"
+			href={ `${ cnoSiteData.rootUrl }/event_location/${ slug }` }
+		>
 			<FontAwesomeIcon icon={ faLocationDot } />
 			&nbsp;
 			{ name }
-		</span>
+		</a>
 	);
 }
 
@@ -29,7 +38,7 @@ export function ReadMoreButton( { link } ) {
 export function RemoveFromSchedule( { removeEvent, eventId, day } ) {
 	return (
 		<button
-			className="cno-event__buttons--remove-event"
+			className="cno-event__buttons--remove-event text-danger"
 			onClick={ () => {
 				removeEvent( eventId, day );
 			} }

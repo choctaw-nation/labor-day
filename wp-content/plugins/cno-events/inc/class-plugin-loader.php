@@ -8,20 +8,36 @@
 
 namespace CNOLaborDay\Events;
 
-use LaborDay\Events\Custom_Rest_Route;
+use CNOLaborDay\Events\Custom_Rest_Route;
+use CNOLaborDay\Events\CPT_Loader;
 
 /**
  * The Plugin Loader
  */
 class Plugin_Loader {
+	/**
+	 * The Custom Rest Route Class
+	 *
+	 * @var Custom_Rest_Route
+	 */
 	private Custom_Rest_Route $rest_handler;
+
+	/**
+	 * CPT Loader class
+	 *
+	 * @var CPT_Loader
+	 */
+	private CPT_Loader $cpt_loader;
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		require_once __DIR__ . '/class-custom-rest-route.php';
 		$this->rest_handler = new Custom_Rest_Route();
-		add_action( 'init', array( $this, 'register_event_custom_post_type' ) );
+		require_once __DIR__ . '/class-cpt-loader.php';
+		$this->cpt_loader = new CPT_Loader();
+		add_action( 'init', array( $this->cpt_loader, 'init' ) );
 		add_filter( 'template_include', array( $this, 'include_templates' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_event_styles' ) );
 		add_action( 'rest_api_init', array( $this->rest_handler, 'register_rest_routes' ) );
@@ -31,7 +47,7 @@ class Plugin_Loader {
 	 * Activate the plugin
 	 */
 	public function activate() {
-		$this->register_event_custom_post_type();
+		$this->cpt_loader->init();
 		$this->register_rest_routes();
 		flush_rewrite_rules();
 	}
@@ -40,7 +56,11 @@ class Plugin_Loader {
 	 * Deactivate the plugin
 	 */
 	public function deactivate() {
-		unregister_post_type( 'events' );
+		$this->cpt_loader->deactivate();
+		$this->rest_handler->deregister_rest_route();
+		remove_filter( 'template_include', array( $this, 'include_templates' ) );
+		remove_action( 'wp_enqueue_scripts', array( $this, 'enqueue_event_styles' ) );
+		remove_action( 'rest_api_init', array( $this->rest_handler, 'register_rest_routes' ) );
 		flush_rewrite_rules();
 	}
 
@@ -66,53 +86,7 @@ class Plugin_Loader {
 		return $template;
 	}
 
-	/**
-	 * Register the custom post type
-	 *
-	 * @param array $args The post type arguments.
-	 */
-	public function register_event_custom_post_type( $args = array() ) {
-		$post_type_labels = array(
-			'name'               => 'Events',
-			'singular_name'      => 'Event',
-			'menu_name'          => 'Events',
-			'parent_item_colon'  => 'Parent Event',
-			'all_items'          => 'All Events',
-			'view_item'          => 'View Event',
-			'view_items'         => 'View Events',
-			'add_new_item'       => 'Add New Event',
-			'add_new'            => 'Add Event',
-			'edit_item'          => 'Edit Event',
-			'update_item'        => 'Update Event',
-			'search_items'       => 'Search Events',
-			'not_found'          => 'Not Found',
-			'not_found_in_trash' => 'Not found in Trash',
-		);
-		if ( empty( $args ) ) {
-			$args = array(
-				'labels'              => $post_type_labels,
-				'hierarchical'        => false,
-				'description'         => 'Events',
-				'supports'            => array( 'title', 'thumbnail', 'revisions', 'excerpt' ),
-				'show_ui'             => true,
-				'show_in_rest'        => true,
-				'show_in_menu'        => true,
-				'menu_position'       => 25,
-				'menu_icon'           => 'dashicons-calendar-alt',
-				'show_in_nav_menus'   => true,
-				'publicly_queryable'  => true,
-				'exclude_from_search' => false,
-				'query_var'           => true,
-				'can_export'          => true,
-				'public'              => true,
-				'has_archive'         => true,
-				'show_in_graphql'     => true,
-				'graphql_single_name' => 'event',
-				'graphql_plural_name' => 'events',
-			);
-		}
-		register_post_type( 'events', $args );
-	}
+
 
 	/**
 	 * Enqueue the event styles
@@ -125,7 +99,6 @@ class Plugin_Loader {
 	 * Register the custom rest routes
 	 */
 	public function register_rest_routes() {
-		$custom_rest_route = new Custom_Rest_Route();
-		$custom_rest_route->register_rest_routes();
+		$this->rest_handler->register_rest_routes();
 	}
 }

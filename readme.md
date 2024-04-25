@@ -4,6 +4,14 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.1.2
+
+-   Fixed `event_location` taxonomy not appearing (had to manually flush permalinks)
+-   Refactored `Theme_Init` and `CNO Events` plugin to load taxonomies within the plugin (instead of in the theme) and added extra deactivation methods
+-   Updated `taxonomy-event_location.php` to look better
+-   Updated the `LocationButton` component to link to the location taxonomy page
+-   Updatedd `RemoveEvent` component to be red
+
 ## v2.1.1
 
 -   Updated `header.php` to only call in 1 Menu

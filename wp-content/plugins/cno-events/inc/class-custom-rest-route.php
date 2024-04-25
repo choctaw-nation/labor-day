@@ -2,16 +2,32 @@
 /**
  * Class: Custom Rest Route
  *
- * @package LaborDay
+ * @package CNOLaborDay
  * @subpackage Events
  */
 
-namespace LaborDay\Events;
+namespace CNOLaborDay\Events;
 
 /**
  * Custom Rest Route
  */
 class Custom_Rest_Route {
+	/**
+	 * Remove Rest Route
+	 */
+	public function deregister_rest_route() {
+		register_rest_route(
+			'cno/v1',
+			'/events',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => function () {
+					return new \WP_Error( 'no_route', 'This route has been removed', array( 'status' => 410 ) );
+				},
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
 
 	/**
 	 * Register the custom rest routes
