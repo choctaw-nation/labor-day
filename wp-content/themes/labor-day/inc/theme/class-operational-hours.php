@@ -1,6 +1,9 @@
 <?php
 /**
  * The Operational Hours Class
+ *
+ * @package ChoctawNation
+ * @subpackage Events
  */
 
 /** Operational Hours */

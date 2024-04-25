@@ -1,7 +1,13 @@
-import React from '@wordpress/element';
+import React from 'react';
 import { EventFilters, selectedFilterObject } from '../../types/eventFilters';
 
-export default function SearchFilters({
+const filterKeys = {
+	'Event Types': 'event-types',
+	Days: 'days',
+	Locations: 'locations',
+};
+
+export default function SearchFilters( {
 	filters,
 	selectedFilters,
 	dispatch,
@@ -9,60 +15,63 @@ export default function SearchFilters({
 	filters: EventFilters[];
 	selectedFilters: selectedFilterObject;
 	dispatch: Function;
-}) {
+} ) {
 	return (
 		<div className="cno-event-search-filters">
-			{filters.map((filter) => (
+			{ filters.map( ( filter ) => (
 				<SearchFilter
-					filter={filter}
-					key={filter.type.name}
-					dispatch={dispatch}
-					selectedFilters={selectedFilters}
+					filter={ filter }
+					key={ filterKeys[ filter.type.name ] }
+					dispatch={ dispatch }
+					selectedFilters={ selectedFilters }
 				/>
-			))}
+			) ) }
 		</div>
 	);
 }
 
-function SearchFilter({ filter, dispatch, selectedFilters }) {
+function SearchFilter( { filter, dispatch, selectedFilters } ) {
 	const {
 		type: { name, filters },
 	} = filter;
+
 	return (
 		<div className="cno-event-search-filters__container">
 			<div className="cno-event-search-filters__filter-container">
 				<div className="dropdown">
 					<button
-						className="btn__outline--secondary dropdown-toggle"
-						type="button"
-						id={`${name}-dropdown`}
+						className="btn btn-outline-secondary dropdown-toggle"
+						id={ `${ filterKeys[ name ] }-dropdown` }
 						data-bs-toggle="dropdown"
 						aria-haspopup="true"
 						aria-expanded="false"
 					>
-						{selectedFilters[name]}
+						{ selectedFilters[ name ] }
 					</button>
-					<div
+					<ul
 						className="dropdown-menu"
-						aria-labelledby={`${name}-dropdown`}
+						aria-labelledby={ `${ filterKeys[ name ] }-dropdown` }
 					>
-						{filters.map((filter, i) => (
-							<a
-								key={i}
-								role="button"
-								onClick={() =>
-									dispatch({
-										type: 'selectFilter',
-										payload: {
-											[name]: filter.name,
-										},
-									})
-								}
-							>
-								{filter.name}
-							</a>
-						))}
-					</div>
+						{ filters.map( ( filter, i ) => {
+							return (
+								<li key={ i }>
+									<button
+										className="dropdown-item fs-6 w-100"
+										onClick={ () =>
+											dispatch( {
+												type: 'selectFilter',
+												payload: {
+													[ name ]: filter.name,
+												},
+											} )
+										}
+									>
+										{ filter.name }
+									</button>
+								</li>
+							);
+						} ) }
+					</ul>
 				</div>
 			</div>
 		</div>

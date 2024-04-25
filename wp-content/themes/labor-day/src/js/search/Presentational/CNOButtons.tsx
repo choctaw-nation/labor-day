@@ -1,65 +1,80 @@
-import React from '@wordpress/element';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faCircleInfo,
+	faLocationDot,
+	faShare,
+} from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
-export function LocationButton({ href, name }) {
+export function LocationButton( {
+	name,
+	slug,
+}: {
+	name: string;
+	slug: string;
+} ) {
 	return (
-		<a className="cno-event__buttons--location" href={href}>
-			<FontAwesomeIcon icon={['fas', 'location-dot']} />
+		<a
+			className="cno-event__buttons--location"
+			href={ `${ cnoSiteData.rootUrl }/event_location/${ slug }` }
+		>
+			<FontAwesomeIcon icon={ faLocationDot } />
 			&nbsp;
-			{name}
+			{ name }
 		</a>
 	);
 }
 
-export function ReadMoreButton({ link }) {
+export function ReadMoreButton( { link } ) {
 	return (
-		<a href={link} className="cno-event__buttons--learn-more">
-			<FontAwesomeIcon icon={['fas', 'circle-info']} />
+		<a href={ link } className="cno-event__buttons--learn-more">
+			<FontAwesomeIcon icon={ faCircleInfo } />
 			&nbsp;Learn More
 		</a>
 	);
 }
 
-export function RemoveFromSchedule({ removeEvent, eventId, day }) {
+export function RemoveFromSchedule( { removeEvent, eventId, day } ) {
 	return (
-		<a
-			className="cno-event__buttons--remove-event"
-			onClick={() => {
-				removeEvent(eventId, day);
-			}}
+		<button
+			className="cno-event__buttons--remove-event text-danger"
+			onClick={ () => {
+				removeEvent( eventId, day );
+			} }
 		>
 			&times; Remove Event
-		</a>
+		</button>
 	);
 }
 
-export function ExportToCalendar({ handleClick, eventId }) {
+export function ExportToCalendar( { handleClick, eventId } ) {
 	return (
-		<a
+		<button
 			className="cno-event__buttons--calendar"
-			onClick={() => {
-				handleClick(eventId);
-			}}
+			onClick={ () => {
+				handleClick( eventId );
+			} }
 		>
-			<FontAwesomeIcon icon={['far', 'calendar']} />
+			<FontAwesomeIcon icon={ faCalendar } />
 			&nbsp;Export to Calendar
-		</a>
+		</button>
 	);
 }
 
-export function ShareModalButton({ dispatch, title, link }) {
+export function ShareModalButton( { dispatch, title, link } ) {
 	return (
-		<div
+		<button
 			className="cno-event__buttons--share"
-			onClick={() => {
-				dispatch({
+			onClick={ () => {
+				dispatch( {
 					type: 'triggerModal',
-					payload: { title: title, link: link },
-				});
-			}}
+					payload: { title, link },
+				} );
+			} }
 		>
-			<FontAwesomeIcon icon={['fas', 'share']} />
+			<FontAwesomeIcon icon={ faShare } />
 			&nbsp;Share
-		</div>
+		</button>
 	);
 }

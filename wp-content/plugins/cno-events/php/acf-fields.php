@@ -1,4 +1,0 @@
-<?php
-/**
- *  The ACF Fields
- */

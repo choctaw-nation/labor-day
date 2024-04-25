@@ -1,5 +1,5 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
 import { PrettyEventData, EventInfo } from '../../types';
@@ -15,91 +15,92 @@ import TimeHandler from '../../Utilities/TimeHandler';
 const time = new TimeHandler();
 
 /** Handles extra classes on top of standard classes. */
-function getTheClass(extendedClass: string | undefined): string {
+function getTheClass( extendedClass: string | undefined ): string {
 	return extendedClass
-		? `${extendedClass} cno-event row animate__animated animate__fadeIn`
+		? `${ extendedClass } cno-event row animate__animated animate__fadeIn`
 		: 'cno-event row animate__animated animate__fadeIn';
 }
 
-export default function SinglePost({
+export default function SinglePost( {
 	data,
 	extendedClass,
 	children,
 	dispatch,
 }: {
-	dispatch: Function;
+	dispatch?: Function;
 	data: PrettyEventData;
-	children?: JSX.Element;
+	children?: React.Element;
 	triggerModal?: Function;
 	extendedClass?: string;
-}) {
-	const { event_info, featuredImage } = data;
+} ) {
+	const { info, featured_image } = data;
 	return (
-		<div className={getTheClass(extendedClass)}>
-			<EventTimeBanner event_info={event_info} />
-			{featuredImage && <FeaturedImage featuredImage={featuredImage} />}
-			<CNOEventInfo data={data} dispatch={dispatch} children={children} />
+		<div className={ getTheClass( extendedClass ) }>
+			<EventTimeBanner info={ info } />
+			{ featured_image && (
+				<FeaturedImage featuredImage={ featured_image } />
+			) }
+			<CNOEventInfo
+				data={ data }
+				dispatch={ dispatch }
+				children={ children }
+			/>
 		</div>
 	);
 }
 
-function EventTimeBanner({
-	event_info: { info },
-}: {
-	event_info: EventInfo;
-}): JSX.Element {
+function EventTimeBanner( { info }: { info: EventInfo } ): React.Element {
 	const asideClass: string =
 		'Saturday' === info.day
-			? `cno-event__time px-xl-0 col-xl-1 cno-event__time--${info.day.toLowerCase()}`
-			: `cno-event__time col-xl-1 cno-event__time--${info.day.toLowerCase()}`;
+			? `cno-event__time px-xl-0 col-xl-1 cno-event__time--${ info.day.toLowerCase() }`
+			: `cno-event__time col-xl-1 cno-event__time--${ info.day.toLowerCase() }`;
+	const month = 'Sunday' === info.day ? 'SEP' : 'AUG';
 	return (
-		<aside className={asideClass}>
+		<aside className={ asideClass }>
 			<div className="cno-event__time--date">
-				<span className="cno-event__time--month">SEP</span>
+				<span className="cno-event__time--month">{ month }</span>
 				<span className="cno-event__time--day">
-					{getTheDay(info.day)}
+					{ getTheDay( info.day ) }
 				</span>
 				<span className="cno-event__time--day-of-week">
-					{info.day.toUpperCase()}
+					{ info.day.toUpperCase() }
 				</span>
 			</div>
 			<div
 				className="cno-event__time--time"
-				dangerouslySetInnerHTML={{
-					__html: time.handleTime(info),
-				}}
+				dangerouslySetInnerHTML={ {
+					__html: time.handleTime( info ),
+				} }
 			/>
 		</aside>
 	);
 }
 
-function EventContent({ title, excerpt }) {
-	return (
-		<>
-			<h2 className="cno-event__info--title headline">{title}</h2>
-			<p className="cno-event__info--description">{excerpt}</p>
-		</>
-	);
-}
-
-function CNOEventInfo({ data, dispatch, children }) {
-	const { locations, title, link, excerpt } = data;
+function CNOEventInfo( { data, dispatch, children } ) {
+	const { locations, title, link, description } = data as PrettyEventData;
 	return (
 		<div className="cno-event__info col-xl-6 col-xxl-7">
-			<EventContent title={title} excerpt={excerpt} />
-			<div className="cno-event__buttons">
-				{locations && locations.length > 0 && (
+			<h2
+				className="cno-event__info--title headline"
+				dangerouslySetInnerHTML={ { __html: title } }
+			/>
+			<p
+				className="cno-event__info--description"
+				dangerouslySetInnerHTML={ { __html: description } }
+			/>
+			<div className="cno-event__buttons mt-auto d-flex align-items-stretch gap-3 position-relative">
+				{ locations && locations.length > 0 && (
 					<LocationButton
-						href={locations[0].uri}
-						name={locations[0].name}
+						name={ locations[ 0 ].name }
+						slug={ locations[ 0 ].slug }
 					/>
-				)}
+				) }
 				<ShareModalButton
-					dispatch={dispatch}
-					title={title}
-					link={link}
+					dispatch={ dispatch }
+					title={ title }
+					link={ link }
 				/>
-				{children}
+				{ children }
 			</div>
 		</div>
 	);

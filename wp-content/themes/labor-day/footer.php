@@ -10,67 +10,63 @@ if ( $has_weather_alert ) {
 	get_template_part( 'template-parts/aside', 'weather-alert' );
 }
 ?>
-<aside class="footer-callout">
-	<div class="footer-callout__bg"></div>
-	<div class="container">
+<aside class="footer-callout py-5 px-3 p-lg-0 my-3 position-relative z-1">
+	<div class="footer-callout__bg position-absolute"></div>
+	<div class="container position-relative z-2">
 		<div class="row justify-content-center align-items-center">
 			<figure class="footer-callout__image col-lg-6 col-sm-12 gx-5" data-aos='fade-right'>
 				<?php extract( get_field( 'footer_image', 'options' ) ); ?>
 				<img src="<?php echo $sizes['large']; ?>" alt="<?php echo $alt; ?>" srcset="<?php echo wp_get_attachment_image_srcset( $id ); ?>">
 			</figure>
 			<div class="footer-callout__text col-sm-12 col-lg-6 d-flex flex-column gx-5">
-				<div class="h4 headline">Choctaw Nation Capitol Grounds</div>
-				<div class="subheadline">Council House Rd</div>
-				<div class="subheadline">Tushkahoma, OK 74574</div>
-				<a href="https://goo.gl/maps/se2k5hvdoozfuqHt7" class="btn__fill--primary d-block align-self-start">Get Directions</a>
+				<div class="h4">Choctaw Nation Capitol Grounds</div>
+				<p class="fs-6 mb-3">
+					Council House Rd<br />Tushkahoma, OK 74574
+				</p>
+				<a href="https://goo.gl/maps/se2k5hvdoozfuqHt7" class="btn btn-primary d-block align-self-start">Get Directions</a>
 			</div>
 		</div>
 	</div>
 </aside>
-<footer class="footer text-white">
+<footer class="footer text-white position-relative p-3">
 	<div class="container my-5 text-center">
-		<div class="row">
+		<div class="row flex-column flex-lg-row row-gap-4">
 			<div class="col">
 				<a href="<?php echo esc_url( site_url() ); ?>" class="logo w-100 h-100" aria-label='to Home Page'>
-					<figure class="logo-image d-inline-block ratio">
-						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading='lazy'>
-						<span aria-label="to Home Page">
-							<?php echo bloginfo( 'name' ); ?>
-						</span>
+					<figure class="logo-image d-inline-block">
+						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="lazy"
+							class="w-100 h-100 object-fit-contain">
 					</figure>
 				</a>
 			</div>
-			<div class="col footer-navbar__container">
-				<?php
-				if ( has_nav_menu( 'footer_menu-1' ) ) {
-					wp_nav_menu(
-						array(
-							'theme_location'  => 'footer_menu-1',
-							'menu_class'      => 'footer-navbar__menu',
-							'container'       => 'nav',
-							'container_class' => 'footer-navbar',
-						)
-					);
+			<?php
+			$has_menus = has_nav_menu( 'footer_menu-1' ) || has_nav_menu( 'footer_menu-2' );
+			$nav_menus = array( 'footer_menu-1', 'footer_menu-2' );
+
+			if ( $has_menus ) {
+				echo '<div class="col footer-navbar__container d-flex justify-content-evenly align-items-center">';
+				foreach ( $nav_menus as $nav_menu ) {
+					if ( has_nav_menu( $nav_menu ) ) {
+						wp_nav_menu(
+							array(
+								'theme_location'  => $nav_menu,
+								'menu_class'      => 'footer-navbar__menu m-0 p-0 list-unstyled d-flex flex-column text-start',
+								'container'       => 'nav',
+								'container_class' => 'footer-navbar fs-6',
+							)
+						);
+					}
 				}
-				if ( has_nav_menu( 'footer_menu-2' ) ) {
-					wp_nav_menu(
-						array(
-							'theme_location'  => 'footer_menu-2',
-							'menu_class'      => 'footer-navbar__menu',
-							'container'       => 'nav',
-							'container_class' => 'footer-navbar',
-						)
-					);
-				}
-				?>
-			</div>
-			<div class="col socials">
+				echo '</div>';
+			}
+			?>
+			<div class="col socials d-flex align-items-center justify-content-center mx-auto mt-3 m-lg-0 column-gap-3">
 				<?php extract( get_field( 'socials', 'options' ) ); ?>
-				<a aria-label='to the Choctaw Nation Labor Day Facebook page' href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<i class='fa-brands fa-facebook'></i>
+				<a aria-label='to the Choctaw Nation Labor Day Facebook page' href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon mx-2">
+					<i class='fs-3 fa-brands fa-facebook'></i>
 				</a>
-				<a aria-label='to the Choctaw Nation Instagram' href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon">
-					<i class='fa-brands fa-instagram'></i>
+				<a aria-label='to the Choctaw Nation Instagram' href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon mx-2">
+					<i class='fs-3 fa-brands fa-instagram'></i>
 				</a>
 			</div>
 		</div>

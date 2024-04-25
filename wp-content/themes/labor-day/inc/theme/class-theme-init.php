@@ -49,7 +49,7 @@ class Theme_Init {
 		}
 
 		require_once $base_path . '/theme/class-operational-hours.php';
-		require_once $base_path . '/theme/navwalkers/class-nav-walker.php';
+		require_once $base_path . '/theme/navwalkers/class-navwalker.php';
 	}
 
 	/** Takes an array of file names to load
@@ -151,7 +151,6 @@ class Theme_Init {
 		register_nav_menus(
 			array(
 				'primary_menu'  => __( 'Primary Menu', 'cno' ),
-				'mobile_menu'   => __( 'Mobile Menu', 'cno' ),
 				'footer_menu-1' => __( 'Footer Menu 1', 'cno' ),
 				'footer_menu-2' => __( 'Footer Menu 2', 'cno' ),
 			)
@@ -166,91 +165,6 @@ class Theme_Init {
 		foreach ( $post_types as $post_type ) {
 			$this->disable_post_type_support( $post_type );
 		}
-		$this->register_taxonomies();
-	}
-
-	/** Register custom taxonomies. */
-	public function register_taxonomies() {
-		if ( ! post_type_exists( 'events' ) ) {
-			return;
-		}
-		register_taxonomy(
-			'event_type',
-			'events',
-			array(
-				'labels'              => array(
-					'name'                  => 'Event Types',
-					'singular_name'         => 'Event Type',
-					'menu_name'             => 'Event Types',
-					'all_items'             => 'All Event Types',
-					'edit_item'             => 'Edit Event Type',
-					'view_item'             => 'View Event Type',
-					'update_item'           => 'Update Event Type',
-					'add_new_item'          => 'Add New Event Type',
-					'new_item_name'         => 'New Event Type Name',
-					'parent_item'           => 'Parent Event Type',
-					'parent_item_colon'     => 'Parent Event Type:',
-					'search_items'          => 'Search Event Types',
-					'not_found'             => 'No event types found',
-					'no_terms'              => 'No event types',
-					'filter_by_item'        => 'Filter by event type',
-					'items_list_navigation' => 'Event Types list navigation',
-					'items_list'            => 'Event Types list',
-					'back_to_items'         => '← Go to event types',
-					'item_link'             => 'Event Type Link',
-					'item_link_description' => 'A link to a event type',
-				),
-				'public'              => true,
-				'hierarchical'        => true,
-				'show_in_menu'        => true,
-				'show_in_nav_menus'   => false,
-				'show_in_rest'        => true,
-				'show_tagcloud'       => false,
-				'show_admin_column'   => true,
-				'show_in_graphql'     => true,
-				'graphql_single_name' => 'event_type',
-				'graphql_plural_name' => 'event_types',
-			)
-		);
-
-		register_taxonomy(
-			'event_location',
-			'events',
-			array(
-				'labels'              => array(
-					'name'                  => 'Locations',
-					'singular_name'         => 'Location',
-					'menu_name'             => 'Event Locations',
-					'all_items'             => 'All Locations',
-					'edit_item'             => 'Edit Location',
-					'view_item'             => 'View Location',
-					'update_item'           => 'Update Location',
-					'add_new_item'          => 'Add New Location',
-					'new_item_name'         => 'New Location Name',
-					'parent_item'           => 'Parent Location',
-					'parent_item_colon'     => 'Parent Location:',
-					'search_items'          => 'Search Locations',
-					'not_found'             => 'No locations found',
-					'no_terms'              => 'No locations',
-					'filter_by_item'        => 'Filter by location',
-					'items_list_navigation' => 'Locations list navigation',
-					'items_list'            => 'Locations list',
-					'back_to_items'         => '������� Go to locations',
-					'item_link'             => 'Location Link',
-					'item_link_description' => 'A link to a location',
-				),
-				'public'              => true,
-				'hierarchical'        => true,
-				'show_in_menu'        => true,
-				'show_in_nav_menus'   => false,
-				'show_in_rest'        => true,
-				'show_tagcloud'       => false,
-				'show_admin_column'   => true,
-				'show_in_graphql'     => true,
-				'graphql_single_name' => 'event_location',
-				'graphql_plural_name' => 'event_locations',
-			)
-		);
 	}
 
 	/** Remove comments, pings and trackbacks. */

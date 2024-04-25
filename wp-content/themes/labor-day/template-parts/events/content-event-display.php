@@ -1,6 +1,9 @@
 <?php
 /**
  * The display for Events inside of a loop.
+ *
+ * @package LaborDay
+ * @subpackage Events
  */
 
 ?>
@@ -15,7 +18,10 @@
 			<strong>When: </strong><?php echo $day . ', ' . cno_get_the_date( $day ); ?>
 		</div>
 		<?php
-		echo get_the_term_list( $post->ID, taxonomy: 'event_location', before: '<div class="event-meta__location"><strong>Where:</strong> ', after: '</div>' );
+		$terms_list = get_the_term_list( $post->ID, 'event_location', '<div class="event-meta__location"><strong>Where:</strong> ', '', '</div>' );
+		if ( ! is_wp_error( $terms_list ) ) {
+			echo $terms_list;
+		}
 		?>
 		<div class="event-meta__start-time">
 			<strong>Start Time:</strong> <?php echo $start_time; ?>
@@ -27,14 +33,17 @@
 			echo '</div>';
 		}
 		?>
-		<?php echo get_the_term_list( $post->ID, taxonomy: 'event_type', before: '<div class="event-meta__type"><strong>Event Type:</strong> ', after: '</div>' ); ?>
+		<?php
+		$terms_list = get_the_term_list( $post->ID, 'event_type', '<div class="event-meta__type"><strong>Event Type:</strong> ', '', '</div>' );
+		if ( ! is_wp_error( $terms_list ) ) {
+			echo $terms_list;
+		}
+		?>
 	</aside>
 	<div class="about">
 		<?php
 		if ( has_excerpt() ) {
 			the_excerpt();
-		} else {
-			cno_trim_event_description( get_field( 'description' ) );
 		}
 		?>
 	</div>

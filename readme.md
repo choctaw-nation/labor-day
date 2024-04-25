@@ -4,6 +4,34 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.1.3
+
+-   Fixed a bug where the "Share" modal wasn't working on the `/my-schedule` page.
+-   Reduced custom CSS
+
+## v2.1.2
+
+-   Fixed `event_location` taxonomy not appearing (had to manually flush permalinks)
+-   Refactored `Theme_Init` and `CNO Events` plugin to load taxonomies within the plugin (instead of in the theme) and added extra deactivation methods
+-   Updated `taxonomy-event_location.php` to look better
+-   Updated the `LocationButton` component to link to the location taxonomy page
+-   Updatedd `RemoveEvent` component to be red
+
+## v2.1.1
+
+-   Updated `header.php` to only call in 1 Menu
+-   Removed deprecated "Mobile Menu" from theme
+-   Removed JS `mouseover` event in favor of CSS `:hover` styles for dropdown
+-   Replaced old `Nav_Walker` in favor of theme-compliant `Navwalker` that uses `dropdown-toggle` for dropdown elements.
+-   Updated header styles to use more Bootstrap customization and less custom css
+-   Added `mix-blend-mode:multiply` on front-page hero overlay
+
+## v2.1.0
+
+-   Rewrote the events plugin to use custom rest route instead of relying on WPGraphQL
+-   Updated Event Post Buttons to be semantic `button` elements instead of improper `a` elements
+-   Reduced custom CSS in favor of modifying Bootstrap's compiled CSS + utility classes
+
 ## v2.0.3
 
 -   Bug fixes

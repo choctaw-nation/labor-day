@@ -1,6 +1,9 @@
 <?php
 /**
  * Hours of Operation Modal
+ *
+ * @package ChoctawNation
+ * @subpackage Events
  */
 
 $hours = new Operational_Hours( get_field( 'operational_hours', 'options' ) );

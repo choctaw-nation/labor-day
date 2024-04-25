@@ -8,8 +8,6 @@
 */
 $primary: v.$color-primary;
 $secondary: v.$color-secondary;
-// $light: #f8f4fb;
-// $dark: #08040b;
 
 /**
 * Typography
@@ -35,28 +33,94 @@ $headings-font-family: v.$font-headings;
 $headings-font-weight: 600;
 $headings-color: v.$color-primary;
 
-$dropdown-font-size: 2.16rem;
+/**
+* Minor Third Type Scale
+* @see https://typescale.com/
+*/
+
+$h1-font-size: $font-size-base * 2.986;
+$h2-font-size: $font-size-base * 2.488;
+$h3-font-size: $font-size-base * 2.074;
+$h4-font-size: $font-size-base * 1.728;
+$h5-font-size: $font-size-base * 1.44;
+$h6-font-size: $font-size-base * 1.2;
 
 $body-color: v.$color-black;
 
-$btn-transition: all v.$transition--standard;
+// ====================================
+/**
+* Navbar
+*/
 
+$navbar-nav-link-padding-x: 0;
+
+$navbar-light-color: white;
+$navbar-light-hover-color: $secondary;
+$navbar-light-active-color: white;
+$navbar-light-icon-color: white;
+$navbar-light-toggler-border-color: transparent;
+
+$dropdown-spacer: 0.5rem;
+$dropdown-font-size: 2rem;
+$dropdown-link-active-bg: white;
+$dropdown-border-radius: 0;
+$dropdown-inner-border-radius: 0;
+
+// ================================================
+
+/**
+* Offcanvas
+*/
+
+$offcanvas-bg-color: v.$color-primary--dark;
+$offcanvas-color: white;
+
+// ====================================
+/**
+* Buttons
+*/
+
+$btn-transition: all v.$transition--standard;
+$btn-border-radius: 0;
+$btn-border-width: 2px;
+$btn-font-weight: 500;
+$btn-font-size: 2.4rem;
+$btn-line-height: 1.5;
+$btn-padding-x: 1.365rem;
+$btn-padding-y: 1rem;
+
+// ====================================
 /**
 * Spacing
 */
+
 $grid-gutter-width: 2.4rem; // 24px
 $spacer: 1.6rem; // 16px
 
+// ====================================
 /**
 * Options
 * @see https://getbootstrap.com/docs/5.3/customize/options/
 */
+
 $enable-shadows: true;
+$enable-dark-mode: false;
 
 @import "bootstrap/scss/variables";
-@import "bootstrap/scss/variables-dark";
+// @import "bootstrap/scss/variables-dark";
 
 // Map Overrides Here (Optional)
+
+$theme-colors: map-merge(
+	$theme-colors,
+	(
+		"tertiary": v.$color-tertiary,
+		"black": v.$color-black,
+		"white": v.$color-white,
+		"grey": v.$color-grey,
+		"purple": v.$color-purple,
+	)
+);
 
 // Required Bootstrap Modules
 @import "bootstrap/scss/maps";
@@ -79,7 +143,7 @@ $enable-shadows: true;
 // @import "bootstrap/scss/images";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
-// @import "bootstrap/scss/button-group";
+@import "bootstrap/scss/button-group";
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar"; // Requires nav
 // @import "bootstrap/scss/card";

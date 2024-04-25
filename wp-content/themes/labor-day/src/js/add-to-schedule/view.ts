@@ -2,12 +2,12 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
 /**
  * View class to manage the display of the UI components
  */
-export default new (class View {
+export default class View {
 	MESSAGE_TIMEOUT = 4000;
 	/**
 	 * List of HTMLButtonElement objects
 	 */
-	buttons: NodeListOf<HTMLButtonElement>;
+	buttons: NodeListOf< HTMLButtonElement >;
 
 	/**
 	 * Current page URL
@@ -18,8 +18,8 @@ export default new (class View {
 	 * Constructs a new View object
 	 */
 	constructor() {
-		this.currentPage = location.href;
-		this.buttons = document.querySelectorAll<HTMLButtonElement>(
+		this.currentPage = window.location.href;
+		this.buttons = document.querySelectorAll< HTMLButtonElement >(
 			'[data-add-to-schedule]'
 		);
 	}
@@ -29,43 +29,43 @@ export default new (class View {
 	 * @param {function} method - A function that returns a Promise with a response string
 	 * @returns {void}
 	 */
-	clickHandler(method: Function): void {
-		if (this.buttons.length === 0) {
+	clickHandler( method: Function ): void {
+		if ( this.buttons.length === 0 ) {
 			return;
 		}
 
-		this.buttons.forEach((button) => {
+		this.buttons.forEach( ( button ) => {
 			button.addEventListener(
 				'click',
-				(ev) => {
+				( ev ) => {
 					ev.preventDefault();
-					const confirmationContainer = this.buttons[0];
+					const confirmationContainer = this.buttons[ 0 ];
 
 					if (
-						!confirmationContainer ||
+						! confirmationContainer ||
 						confirmationContainer.innerHTML ===
 							'<a href="/my-schedule"> View Schedule</a>'
 					) {
 						return;
 					}
 					confirmationContainer.innerText = `Loading...`;
-					method(ev)
-						.then((response: string) => {
+					method( ev )
+						.then( ( response: string ) => {
 							confirmationContainer.innerHTML =
-								this.getResponseMessage(response);
-							setTimeout(() => {
+								this.getResponseMessage( response );
+							setTimeout( () => {
 								confirmationContainer.innerHTML =
 									'<a href="/my-schedule"> View Schedule</a>';
-							}, this.MESSAGE_TIMEOUT);
+							}, this.MESSAGE_TIMEOUT );
 							this.showScheduleButton();
-						})
-						.catch((err: any) => {
-							console.error(err);
-						});
+						} )
+						.catch( ( err: any ) => {
+							console.error( err );
+						} );
 				},
 				{ once: true }
 			);
-		});
+		} );
 	}
 
 	/**
@@ -73,23 +73,28 @@ export default new (class View {
 	 * @param {string} response - A string representing the response
 	 * @returns {string} A response message based on the response string
 	 */
-	getResponseMessage(response: string): string {
+	getResponseMessage( response: string ): string {
 		let message = '';
-		if ('success' === response) {
+		if ( 'success' === response ) {
 			message = `Added to your schedule!`;
-		} else if ('info' === response) {
+		} else if ( 'info' === response ) {
 			message = `This event is already in your schedule.`;
 		} else message = '';
 		return message;
 	}
 
+	/**
+	 * Shows the floating schedule button
+	 * @returns {void}
+	 */
 	showScheduleButton() {
-		const scheduleButton = document.querySelector('.schedule-button');
-		if (scheduleButton || location.href.includes('my-schedule')) return;
-		const div = document.createElement('div');
-		div.classList.add('schedule-button');
-		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${faPencil.icon[0]} ${faPencil.icon[0]}"><path d="${faPencil.icon[4]}"></svg> View Your Schedule</a>`;
-		const body = document.querySelector('body');
-		body!.insertAdjacentElement('beforeend', div);
+		const scheduleButton = document.querySelector( '.schedule-button' );
+		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )
+			return;
+		const div = document.createElement( 'div' );
+		div.classList.add( 'schedule-button' );
+		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule</a>`;
+		const body = document.querySelector( 'body' );
+		body!.insertAdjacentElement( 'beforeend', div );
 	}
-})();
+}

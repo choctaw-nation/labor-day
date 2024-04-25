@@ -1,28 +1,28 @@
 // 3rd Party
-import React from '@wordpress/element';
+import React from 'react';
 
 // Types
-import { featuredImage } from '../../types';
+import { FeaturedImage as FeaturedImageType } from '../../types';
 
-export default function FeaturedImage({
+export default function FeaturedImage( {
 	featuredImage,
 }: {
-	featuredImage: featuredImage;
-}) {
-	const { altText, srcSet, mediaDetails, sizes } = featuredImage;
+	featuredImage: FeaturedImageType;
+} ) {
+	const { altText, srcset, src } = featuredImage;
 
 	return (
-		<figure className="cno-event__image col-xl-4 col-xxl-3">
-			<img
-				width={mediaDetails.sizes[0].width}
-				height={mediaDetails.sizes[0].height}
-				src={mediaDetails.sizes[0].sourceUrl}
-				className="attachment-large size-large wp-post-image"
-				alt={altText}
-				decoding="async"
-				srcSet={srcSet}
-				sizes={sizes}
-			/>
-		</figure>
+		<div className="cno-event__image col-xl-4 col-xxl-3">
+			<figure className="ratio ratio-16x9 h-100">
+				<img
+					src={ src }
+					className="wp-post-image object-fit-cover w-100 h-100"
+					alt={ altText }
+					decoding="async"
+					srcSet={ srcset }
+					loading="lazy"
+				/>
+			</figure>
+		</div>
 	);
 }
