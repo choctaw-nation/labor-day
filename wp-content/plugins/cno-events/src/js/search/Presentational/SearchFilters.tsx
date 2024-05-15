@@ -1,4 +1,4 @@
-import React from '@wordpress/element';
+import React from 'react';
 import { EventFilter } from '../types';
 
 export default function SearchFilters( {

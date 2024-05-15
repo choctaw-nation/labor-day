@@ -1,4 +1,4 @@
-import React, { useState } from '@wordpress/element';
+import React, { useState } from 'react';
 import SearchFilters from './SearchFilters';
 import SearchInput from './SearchInput';
 export default function SearchBar( {
