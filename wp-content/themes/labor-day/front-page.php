@@ -46,12 +46,10 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 	</section>
 	<?php
 	get_template_part( 'template-parts/aside', 'text-callout', array( 'color' => 'secondary' ) );
-
-	/**
-	 * Hiding Until 2024 launch
-	 * get_template_part( 'template-parts/home/section', 'entertainment' );
-	 */
-	get_template_part( 'template-parts/home/section', 'registrations' );
+	get_template_part( 'template-parts/home/section', 'entertainment' );
+	if ( get_field( 'show_registrations' ) ) {
+		get_template_part( 'template-parts/home/section', 'registrations' );
+	}
 	?>
 	<section id="map" class="my-5 py-5">
 		<div class="container">

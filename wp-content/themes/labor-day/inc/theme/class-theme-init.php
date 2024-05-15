@@ -30,6 +30,7 @@ class Theme_Init {
 				'generator',
 				'image',
 				'hero',
+				'event',
 			)
 		);
 
