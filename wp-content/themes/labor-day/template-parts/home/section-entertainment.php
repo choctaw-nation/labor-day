@@ -34,6 +34,17 @@ $sorted_events = array(
 foreach ( $events as $event ) {
 	$sorted_events[ $event->get_the_day() ][] = $event;
 }
+
+foreach ( $sorted_events as $day => $day_events ) {
+	usort(
+		$day_events,
+		function ( $a, $b ) {
+			return strtotime( $a->get_the_start_time() ) - strtotime( $b->get_the_start_time() );
+		}
+	);
+	$sorted_events[ $day ] = $day_events;
+}
+
 ?>
 <section id="entertainment" class="py-5 my-5">
 	<div class="container d-flex flex-column">
