@@ -11,11 +11,11 @@
 @use "./components/cno-event-display";
 @use "./components/breadcrumbs";
 @use "./components/weather-alert";
+@use "./components/hero-image";
 // @use "./components/hours-modal";
 
 // Layouts (relatively small files)
 @use "./layouts/single";
-@use "./layouts/hero";
 
 // Pages (relatively small files)
 @use "./pages/festival-information";
