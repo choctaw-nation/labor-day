@@ -4,6 +4,16 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v2.2.1
+
+-   Sorted homepage featured events by date _and_ time.
+
+## v2.2.0
+
+-   Added toggles to control homepage events and registrations sections' visibility
+-   Added an ACF Field to add featured events to homepage
+-   Fixed a bug where time meridiems were appearing in duplicate on the `/events` page
+
 ## v2.1.4
 
 -   Fixed a bug where list wasn't showing on `/registrations` page.
