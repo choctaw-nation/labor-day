@@ -1,9 +1,10 @@
 // Styles
 import '../../styles/components/_hours-modal.scss';
 import '../../styles/pages/schedule.scss';
+import '../../styles/layouts/archive-events.scss';
 
 // React + 3rd Parties
-import React, { useState, useEffect, useReducer, StrictMode } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { createRoot } from 'react-dom/client';
 import Fuse from 'fuse.js';
 

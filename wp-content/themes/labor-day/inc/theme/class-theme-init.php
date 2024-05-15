@@ -8,6 +8,8 @@
 
 namespace ChoctawNation;
 
+use CNOLaborDay\Events\Custom_Rest_Route;
+
 /** Builds the Theme */
 class Theme_Init {
 	// phpcs:ignore 
@@ -34,10 +36,12 @@ class Theme_Init {
 			)
 		);
 
-		$files = array( 'theme-functions' );
+		$files = array( 'theme-functions', 'class-custom-rest-route', 'class-operational-hours', 'navwalkers/class-navwalker' );
 		foreach ( $files as $file ) {
 			require_once $base_path . "/theme/{$file}.php";
 		}
+		$rest_handler = new Custom_Rest_Route();
+		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
 
 		$components = array( 'components', 'sections', 'map' );
 		foreach ( $components as $component ) {
@@ -48,9 +52,6 @@ class Theme_Init {
 		foreach ( $asset_loader as $asset ) {
 			require_once $base_path . "/theme/asset-loader/{$asset}.php";
 		}
-
-		require_once $base_path . '/theme/class-operational-hours.php';
-		require_once $base_path . '/theme/navwalkers/class-navwalker.php';
 	}
 
 	/** Takes an array of file names to load
