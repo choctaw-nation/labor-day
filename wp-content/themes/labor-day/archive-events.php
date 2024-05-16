@@ -19,12 +19,12 @@ get_header();
 					<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
 				</span>
 				<a href="/my-schedule" class="btn btn-secondary mb-3 mb-lg-0">View Your Schedule</a>
-				<button class='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>
+				<!-- <button class='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button> -->
+				<?php // get_template_part( 'template-parts/events/modal', 'operational-hours' ); phpcs:ignore Squiz.PHP.CommentedOutCode.Found ?>
 			</div>
 		</div>
 	</div>
 </section>
-<?php get_template_part( 'template-parts/events/modal', 'operational-hours' ); ?>
 <div class="cno-events-wrapper" id="app">
 	<?php if ( have_posts() ) : ?>
 	<section class="cno-event-search">

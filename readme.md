@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.0.1
+
+-   Re-enable "add to calendar" functionality on `single-events`
+-   Also hide operation hours
+
 ## v3.0.0
 
 -   Remove the CNO Events plugin and add functionality natively to the theme.

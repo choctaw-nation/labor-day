@@ -116,7 +116,7 @@ function cno_enqueue_page_script( string $id, array $deps = array( 'global' ) ) 
 
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'global' ) );
+		$total_deps = array_unique( array_merge( $asset['dependencies'], $deps, array( 'global' ) ) );
 		wp_enqueue_script(
 			$id,
 			get_stylesheet_directory_uri() . "/dist/pages/{$id}.js",
@@ -165,9 +165,9 @@ add_filter( 'gform_submit_button', 'add_custom_css_classes', 10, 2 );
 function add_custom_css_classes( $button ): string {
 	$dom = new DOMDocument();
 	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
-$input = $dom->getElementsByTagName( 'input' )->item( 0 );
-$classes = $input->getAttribute( 'class' );
-$classes = 'btn btn-secondary';
-$input->setAttribute( 'class', $classes );
-return $dom->saveHtml( $input );
+	$input   = $dom->getElementsByTagName( 'input' )->item( 0 );
+	$classes = $input->getAttribute( 'class' );
+	$classes = 'btn btn-secondary';
+	$input->setAttribute( 'class', $classes );
+	return $dom->saveHtml( $input );
 }
