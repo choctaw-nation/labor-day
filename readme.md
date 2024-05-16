@@ -7,6 +7,7 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 ## v3.0.1
 
 -   Re-enable "add to calendar" functionality on `single-events`
+-   Also hide operation hours
 
 ## v3.0.0
 
