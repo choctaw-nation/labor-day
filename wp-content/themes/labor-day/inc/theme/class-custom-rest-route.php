@@ -18,13 +18,28 @@ class Custom_Rest_Route {
 	 * @var int $cache_expiry
 	 */
 	private $cache_expiry = 60 * 60; // 1 hour
-	
+
+	/**
+	 * The base of the rest route
+	 *
+	 * @var string $base
+	 */
+	private $base = 'cno';
+
+	/**
+	 * The version of the rest route
+	 *
+	 * @var string $version
+	 */
+	private $version = '1';
+
+
 	/**
 	 * Register the custom rest routes
 	 */
 	public function register_rest_routes() {
 		register_rest_route(
-			'cno/v1',
+			"{$this->base}/v{$this->version}",
 			'/events',
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
@@ -33,7 +48,7 @@ class Custom_Rest_Route {
 			)
 		);
 		register_rest_route(
-			'cno/v1',
+			"{$this->base}/v{$this->version}",
 			'/event/(?P<id>\d+)',
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
@@ -42,6 +57,23 @@ class Custom_Rest_Route {
 					'id' => array(
 						'validate_callback' => function ( $param, ) {
 							return is_numeric( $param );
+						},
+					),
+				),
+				'permission_callback' => '__return_true',
+			)
+		);
+
+		register_rest_route(
+			"{$this->base}/v{$this->version}",
+			'/events',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'find_event' ),
+				'args'                => array(
+					's' => array(
+						'validate_callback' => function ( $param, ) {
+							return sanitize_text_field( $param );
 						},
 					),
 				),
@@ -118,5 +150,33 @@ class Custom_Rest_Route {
 			'locations'      => get_the_terms( $event_id, 'event_location' ),
 			'type'           => get_the_terms( $event_id, 'event_type' ),
 		);
+	}
+
+	/**
+	 * Handles Server-Side searching with Relevanssi
+	 *
+	 * @param \WP_REST_Request $request The request object.
+	 */
+	public function find_event( \WP_REST_Request $request ): \WP_REST_Response {
+		$search = $request->get_param( 's' );
+		$args   = array(
+			'post_type'      => 'events',
+			'posts_per_page' => -1,
+			's'              => $search,
+			'relevanssi'     => true,
+		);
+
+		$event_info = array();
+		$events     = new \WP_Query( $args );
+		if ( $events->have_posts() ) {
+			while ( $events->have_posts() ) {
+				$events->the_post();
+				$event_info[] = $this->get_the_event_array( get_the_ID() );
+			}
+		} else {
+			throw new \WP_Error( 'no_events_found', 'No events found.', array( 'status' => 404 ) );
+		}
+
+		return rest_ensure_response( $event_info );
 	}
 }

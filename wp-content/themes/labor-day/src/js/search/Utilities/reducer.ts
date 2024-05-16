@@ -56,7 +56,6 @@ export function reducer(
 	state: searchAppState,
 	action: AppActions
 ): searchAppState {
-	const now = new Date();
 	const url = new URL( window.location.href );
 	switch ( action.type ) {
 		case 'isLoading':
@@ -129,16 +128,25 @@ export function reducer(
 			return {
 				...state,
 				searchTerm: action.payload,
+				isLoading: true,
 			};
 		case 'setSearchResults':
 			return {
 				...state,
 				searchResults: action.payload,
+				isLoading: false,
+				showAll: action.payload.length === 0,
 			};
 		case 'resetSearch':
 			url.searchParams.delete( 's' );
 			window.history.replaceState( null, '', url.toString() );
-			return { ...state, searchResults: [], searchTerm: '' };
+			return {
+				...state,
+				searchResults: [],
+				searchTerm: '',
+				showAll: true,
+				isLoading: false,
+			};
 		default:
 			throw new Error( `Unknown action type! ${ action.type }` );
 	}
