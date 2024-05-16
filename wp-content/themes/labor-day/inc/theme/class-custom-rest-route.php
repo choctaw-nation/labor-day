@@ -156,6 +156,8 @@ class Custom_Rest_Route {
 	 * Handles Server-Side searching with Relevanssi
 	 *
 	 * @param \WP_REST_Request $request The request object.
+	 * @return \WP_REST_Response
+	 * @throws \WP_Error If no events are found.
 	 */
 	public function find_event( \WP_REST_Request $request ): \WP_REST_Response {
 		$search = $request->get_param( 's' );
