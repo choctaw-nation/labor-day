@@ -13,22 +13,12 @@ namespace CNOLaborDay\Events;
  */
 class Custom_Rest_Route {
 	/**
-	 * Remove Rest Route
+	 * The cache expiry time
+	 *
+	 * @var int $cache_expiry
 	 */
-	public function deregister_rest_route() {
-		register_rest_route(
-			'cno/v1',
-			'/events',
-			array(
-				'methods'             => \WP_REST_Server::READABLE,
-				'callback'            => function () {
-					return new \WP_Error( 'no_route', 'This route has been removed', array( 'status' => 410 ) );
-				},
-				'permission_callback' => '__return_true',
-			)
-		);
-	}
-
+	private $cache_expiry = 60 * 60; // 1 hour
+	
 	/**
 	 * Register the custom rest routes
 	 */
@@ -39,10 +29,20 @@ class Custom_Rest_Route {
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_events' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+		register_rest_route(
+			'cno/v1',
+			'/event/(?P<id>\d+)',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_event' ),
 				'args'                => array(
-					'search' => array(
-						'description' => 'Search term',
-						'type'        => 'string',
+					'id' => array(
+						'validate_callback' => function ( $param, ) {
+							return is_numeric( $param );
+						},
 					),
 				),
 				'permission_callback' => '__return_true',
@@ -53,45 +53,70 @@ class Custom_Rest_Route {
 	/**
 	 * Get the events
 	 *
-	 * @param \WP_REST_Request $request The request object.
 	 * @return \WP_REST_Response
 	 */
-	public function get_events( \WP_REST_Request $request ): \WP_REST_Response {
-		$args        = array(
+	public function get_events(): \WP_REST_Response {
+		$event_info_transient = get_transient( 'event_info_transient' );
+		if ( false !== $event_info_transient ) {
+			return rest_ensure_response( $event_info_transient );
+		}
+		$args = array(
 			'post_type'      => 'events',
 			'posts_per_page' => -1,
 		);
-		$search_term = $request->get_param( 'search' );
-		if ( ! empty( $search_term ) ) {
-			$args['s']          = $search_term;
-			$args['relevanssi'] = true;
-		}
-		$event_id = $request->get_param( 'id' );
-		if ( ! empty( $event_id ) ) {
-			$args['p'] = $event_id;
-		}
+
 		$event_info = array();
 		$events     = new \WP_Query( $args );
 		if ( $events->have_posts() ) {
 			while ( $events->have_posts() ) {
 				$events->the_post();
-				$event_info[] = array(
-					'eventId'        => get_the_ID(),
-					'title'          => get_the_title(),
-					'info'           => get_field( 'info' ),
-					'description'    => esc_textarea( get_field( 'archive_content' ) ),
-					'link'           => get_the_permalink(),
-					'featured_image' => ! has_post_thumbnail() ? null : array(
-						'src'     => get_the_post_thumbnail_url( get_the_ID(), 'full' ),
-						'altText' => get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true ),
-						'srcset'  => wp_get_attachment_image_srcset( get_post_thumbnail_id(), 'full' ),
-					),
-					'locations'      => get_the_terms( get_the_ID(), 'event_location' ),
-					'type'           => get_the_terms( get_the_ID(), 'event_type' ),
-				);
+				$event_info[] = $this->get_the_event_array( get_the_ID() );
 			}
 		}
 
+		set_transient( 'event_info_transient', $event_info, $this->cache_expiry );
+
 		return rest_ensure_response( $event_info );
+	}
+
+	/**
+	 * Get the event
+	 *
+	 * @param \WP_REST_Request $request The request object.
+	 * @return \WP_REST_Response
+	 */
+	public function get_event( \WP_REST_Request $request ): \WP_REST_Response {
+		$event_id = $request->get_param( 'id' );
+		$event    = get_post( $event_id );
+		if ( ! $event ) {
+			return new \WP_Error( 'event_not_found', 'Event not found. Are you sure it exists?', array( 'status' => 404 ) );
+		}
+
+		$event_info = $this->get_the_event_array( $event_id );
+
+		return rest_ensure_response( $event_info );
+	}
+
+	/**
+	 * Builds the event array
+	 *
+	 * @param int $event_id The event ID.
+	 * @return array the event array
+	 */
+	private function get_the_event_array( int $event_id ): array {
+		return array(
+			'eventId'        => $event_id,
+			'title'          => get_the_title( $event_id ),
+			'info'           => get_field( 'info', $event_id ),
+			'description'    => esc_textarea( get_field( 'archive_content', $event_id ) ),
+			'link'           => get_the_permalink( $event_id ),
+			'featured_image' => ! has_post_thumbnail( $event_id ) ? null : array(
+				'src'     => get_the_post_thumbnail_url( $event_id, 'full' ),
+				'altText' => get_post_meta( get_post_thumbnail_id( $event_id ), '_wp_attachment_image_alt', true ),
+				'srcset'  => wp_get_attachment_image_srcset( get_post_thumbnail_id( $event_id ), 'full' ),
+			),
+			'locations'      => get_the_terms( $event_id, 'event_location' ),
+			'type'           => get_the_terms( $event_id, 'event_type' ),
+		);
 	}
 }

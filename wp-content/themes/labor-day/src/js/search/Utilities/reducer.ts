@@ -2,10 +2,9 @@
 import { WP_Term } from 'wp-types';
 import { PrettyEventData, searchAppState } from '../types';
 import { AppActions } from './AppActions';
-import TimeHandler from './TimeHandler';
+
 import { EventFilters } from '../types/eventFilters';
 
-const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
 	posts: [],
 	isLoading: false,

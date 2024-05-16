@@ -101,13 +101,13 @@ export default class Model {
 	private getEventData = async ( id: number ): Promise< PrettyEventData > => {
 		try {
 			const response = await fetch(
-				`${ cnoSiteData.rootUrl }/wp-json/cno/v1/events?id=${ id }`
+				`${ cnoSiteData.rootUrl }/wp-json/cno/v1/event/${ id }`
 			);
 			if ( ! response.ok ) {
 				throw new Error( 'There was an issue with the fetch request' );
 			}
 			const data = await response.json();
-			return data[ 0 ];
+			return data;
 		} catch ( err ) {
 			throw err;
 		}
