@@ -8,11 +8,21 @@ import SearchFilters from './SearchFilters';
 import { useShowFilters } from '../../Utilities/CustomHooks';
 import { initialState } from '../../Utilities/reducer';
 
+declare global {
+	interface Window {
+		operationalHours?: {
+			showOperationalHours: 'true' | 'false';
+		};
+	}
+}
+
 export default function SearchFiltersContainer( {
 	selectedFilters,
 	filters,
 	dispatch,
 } ) {
+	const canShowOperationalHours =
+		'true' === window?.operationalHours?.showOperationalHours;
 	const { showFilters, setShowFilters, windowWidth } = useShowFilters();
 	return (
 		<div className="cno-event-search__filters">
@@ -36,7 +46,7 @@ export default function SearchFiltersContainer( {
 						Reset Filters
 					</button>
 				) }
-				{ windowWidth > 767 && (
+				{ windowWidth > 767 && canShowOperationalHours && (
 					<button
 						className="btn btn-secondary"
 						data-bs-toggle="modal"

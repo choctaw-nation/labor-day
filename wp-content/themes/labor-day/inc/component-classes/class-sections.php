@@ -40,7 +40,7 @@ class Sections extends Components {
 	 * );
 	 * ```
 	 */
-	public function hero_section( int $post_id = null, $echo = true, array ...$args ) {
+	public function hero_section( int $post_id = null, $echo = true, array ...$args ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		if ( empty( $post_id ) ) {
 			extract( $args );
 		} else {
@@ -100,7 +100,7 @@ class Sections extends Components {
 	 *
 	 * @return string The markup for the two-column layout
 	 */
-	public function two_col_text_and_media( array $options, bool $echo = true ) {
+	public function two_col_text_and_media( array $options, bool $echo = true ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		$default = array(
 			'split'            => array( 6, 6 ),
 			'headline'         => '',
@@ -220,7 +220,7 @@ class Sections extends Components {
 	 * ```
 	 * @param bool  $echo toggle return / echo output
 	 */
-	public function vertical_card( array $args = array(), bool $echo = true, ) {
+	public function vertical_card( array $args = array(), bool $echo = true, ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		$default       = array(
 			'image_src'           => null,
 			'image_alt'           => null,

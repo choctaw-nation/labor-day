@@ -52,7 +52,7 @@ foreach ( $sorted_events as $day => $day_events ) {
 			<h2 class="featured-event__headline">Special Entertainment</h2>
 		</div>
 		<?php foreach ( $sorted_events as $day => $day_events ) : ?>
-		<?php
+			<?php
 			if ( empty( $day_events ) ) {
 				continue;
 			}
