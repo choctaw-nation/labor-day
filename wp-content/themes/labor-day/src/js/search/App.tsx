@@ -4,7 +4,7 @@ import '../../styles/pages/schedule.scss';
 import '../../styles/layouts/archive-events.scss';
 
 // React + 3rd Parties
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import Fuse from 'fuse.js';
 
@@ -36,10 +36,10 @@ function App() {
 		canGetPosts,
 		filters,
 		selectedFilters,
+		showAll,
 	} = state;
-	const [ showAll, setShowAll ] = useState( 0 === searchResults.length );
-	const [ searchPosts, setSearchPosts ] = useState< PrettyEventData[] >( [] );
 
+	const [ searchPosts, setSearchPosts ] = useState< PrettyEventData[] >( [] );
 	/** First Render */
 	useEffect( () => {
 		dispatch( { type: 'isLoading', payload: true } );
@@ -67,7 +67,9 @@ function App() {
 		if ( '' === searchParam && '' === searchTerm ) {
 			dispatch( { type: 'resetSearch' } );
 		} else {
-			if ( searchPosts.length === 0 ) return;
+			if ( searchPosts.length === 0 ) {
+				return;
+			}
 			dispatch( { type: 'isLoading', payload: true } );
 			const timeout = setTimeout( () => {
 				const fuse = new Fuse( searchPosts, {
@@ -85,7 +87,7 @@ function App() {
 			}, 350 );
 			return () => clearTimeout( timeout );
 		}
-	}, [ searchTerm, searchPosts, searchResults.length ] );
+	}, [ searchTerm, searchPosts, searchResults.length, posts ] );
 
 	if ( false === canGetPosts ) {
 		return (
@@ -120,7 +122,6 @@ function App() {
 							<button
 								className="btn btn-primary"
 								onClick={ () => {
-									setShowAll( true );
 									dispatch( { type: 'resetSearch' } );
 									window.scrollTo( {
 										top: 0,
@@ -132,6 +133,25 @@ function App() {
 							</button>
 						</>
 					) }
+					{ ! isLoading &&
+						searchResults.length === 0 &&
+						searchTerm && (
+							<>
+								<p className="my-5">No events found.</p>
+								<button
+									className="btn btn-primary"
+									onClick={ () => {
+										dispatch( { type: 'resetSearch' } );
+										window.scrollTo( {
+											top: 0,
+											behavior: 'auto',
+										} );
+									} }
+								>
+									Reset Search
+								</button>
+							</>
+						) }
 					{ ! isLoading && showAll && (
 						<ResultsContainer
 							dispatch={ dispatch }
@@ -149,4 +169,9 @@ function App() {
 		);
 }
 const root = document.getElementById( 'app' );
-if ( root ) createRoot( root ).render( <App /> );
+if ( root )
+	createRoot( root ).render(
+		<StrictMode>
+			<App />
+		</StrictMode>
+	);

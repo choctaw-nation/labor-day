@@ -92,7 +92,7 @@ export default class View {
 		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )
 			return;
 		const div = document.createElement( 'div' );
-		div.classList.add( 'schedule-button' );
+		div.classList.add( 'schedule-button', 'shadow' );
 		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule</a>`;
 		const body = document.querySelector( 'body' );
 		body!.insertAdjacentElement( 'beforeend', div );

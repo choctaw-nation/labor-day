@@ -22,6 +22,7 @@ class Theme_Init {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
+		add_filter( 'template_include', array( $this, 'override_search_template' ) );
 	}
 
 	/** Calls in Required Files */
@@ -209,5 +210,21 @@ class Theme_Init {
 				remove_post_type_support( $post_type, $support );
 			}
 		}
+	}
+
+	/**
+	 * Overrides the search template to use archive-events.php
+	 *
+	 * @param string $template the template to override
+	 * @return string the new template
+	 */
+	public function override_search_template( $template ): string {
+		if ( is_search() ) {
+			$new_template = locate_template( array( 'archive-events.php' ) );
+			if ( '' !== $new_template ) {
+				return $new_template;
+			}
+		}
+		return $template;
 	}
 }
