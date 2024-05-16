@@ -20,7 +20,7 @@ get_header();
 				</span>
 				<a href="/my-schedule" class="btn btn-secondary mb-3 mb-lg-0">View Your Schedule</a>
 				<!-- <button class='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button> -->
-				<?php // get_template_part( 'template-parts/events/modal', 'operational-hours' ); ?>
+				<?php // get_template_part( 'template-parts/events/modal', 'operational-hours' ); phpcs:ignore Squiz.PHP.CommentedOutCode.Found ?>
 			</div>
 		</div>
 	</div>
