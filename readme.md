@@ -4,6 +4,14 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.1.0
+
+-   Added Options pages as ACF Fields
+    -   Added ACF JSON file for options pages
+-   Enabled Operational Hours Visibility Toggle
+-   Updated React to handle operational hours visibility
+-   Better wpcs conformity
+
 ## v3.0.1
 
 -   Re-enable "add to calendar" functionality on `single-events`

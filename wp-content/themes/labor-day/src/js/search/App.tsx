@@ -37,7 +37,7 @@ function App() {
 		filters,
 		selectedFilters,
 	} = state;
-	const [ showAll ] = useState( 0 === searchResults.length );
+	const [ showAll, setShowAll ] = useState( 0 === searchResults.length );
 	const [ searchPosts, setSearchPosts ] = useState< PrettyEventData[] >( [] );
 
 	/** First Render */

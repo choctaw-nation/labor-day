@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function SearchBarContainer( { children } ) {
+interface props {
+	children?: React.ReactNode;
+}
+
+export default function SearchBarContainer( { children }: props ) {
 	return (
 		<section className="cno-event-search">
 			<div className="container">
