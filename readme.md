@@ -4,6 +4,14 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.2.1
+
+-   Better server-side searching when loading `/events` with a search param (powered by Relevanssi)
+-   Added extra REST route to handle search params
+-   Overload the template to force search to use `archive-events`
+-   fix JS search errors
+-   Bump npm package dependencies' versions
+
 ## v3.2.0
 
 -   Added a new rest route to get a single event
