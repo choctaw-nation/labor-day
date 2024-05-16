@@ -7,7 +7,9 @@ function getEvents() {
 		throw new Error( 'No events found in local storage!' );
 	} else return data;
 }
-/** Gets events from localStorage
+/**
+ * Gets events from localStorage
+ *
  * @returns {SortedEventsObject} the events, sorted.
  */
 export function getLocalStorageData(): SortedEventsObject {
@@ -37,7 +39,8 @@ export function getLocalStorageData(): SortedEventsObject {
 	}
 }
 
-/** Orders the events of the day by time from morning to night.
+/**
+ * Orders the events of the day by time from morning to night.
  *
  * @param {SortedEventsObject} sortedEvents the data to sort.
  * @returns {SortedEventsObject} the sorted events.
@@ -45,12 +48,13 @@ export function getLocalStorageData(): SortedEventsObject {
 export function getTimeSortedEvents(
 	sortedEvents: SortedEventsObject
 ): SortedEventsObject {
+	const finalSort = {};
 	for ( const day in sortedEvents ) {
-		sortedEvents[ day ].sort(
+		finalSort[ day ] = sortedEvents[ day ].toSorted(
 			( a: PrettyEventData, b: PrettyEventData ): number =>
-				new Date( '1970/01/01 ' + a.info.startTime ) -
-				new Date( '1970/01/01 ' + b.info.startTime )
+				new Date( '1970/01/01 ' + a.info.start_time ).getTime() -
+				new Date( '1970/01/01 ' + b.info.start_time ).getTime()
 		);
 	}
-	return sortedEvents;
+	return finalSort as SortedEventsObject;
 }

@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.2.0
+
+-   Added a new rest route to get a single event
+-   Added caching to the REST route so it's a little more performant.
+-   Fixed some type errors when adding events to schedule
+
 ## v3.1.1
 
 -   Fix hero image bug
