@@ -6,12 +6,11 @@
  * @subpackage Events
  */
 
-get_header();
 cno_enqueue_page_script( 'singleEvents' );
+get_header();
 extract( get_field( 'info' ) );
 ?>
 <div class="container">
-	<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 	<div class="row">
 		<?php
 		get_template_part(
@@ -24,7 +23,6 @@ extract( get_field( 'info' ) );
 		);
 		?>
 	</div>
-	<?php endif; ?>
 	<article class="cno-event position-relative py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<figure class="cno-event__image ratio ratio-16x9">
@@ -59,11 +57,9 @@ extract( get_field( 'info' ) );
 					</div>
 				</div>
 				<div class="d-flex column-gap-3">
-					<?php if ( isset( $_ENV['CNO_ENV'] ) && 'prod' !== $_ENV['CNO_ENV'] ) : ?>
 					<button class="bg-transparent border-0 text-primary" data-add-to-schedule="true" data-id="<?php echo get_the_ID(); ?>">
 						<i class="fa-solid fa-plus"></i>&nbsp;Add to Schedule
 					</button>
-					<?php endif; ?>
 					<button class="bg-transparent border-0 text-grey" data-bs-toggle="modal" data-bs-target="#shareEventModal">
 						<i class="fa-solid fa-share"></i>
 						&nbsp;Share
