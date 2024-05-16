@@ -4,6 +4,10 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.1.1
+
+-   Fix hero image bug
+
 ## v3.1.0
 
 -   Added Options pages as ACF Fields
