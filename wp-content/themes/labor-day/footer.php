@@ -14,10 +14,22 @@ if ( $has_weather_alert ) {
 	<div class="footer-callout__bg position-absolute"></div>
 	<div class="container position-relative z-2">
 		<div class="row justify-content-center align-items-center">
-			<figure class="footer-callout__image col-lg-6 col-sm-12 gx-5" data-aos='fade-right'>
-				<?php extract( get_field( 'footer_image', 'options' ) ); ?>
-				<img src="<?php echo $sizes['large']; ?>" alt="<?php echo $alt; ?>" srcset="<?php echo wp_get_attachment_image_srcset( $id ); ?>">
-			</figure>
+			<div class="col-lg-6 col-sm-12 gx-5" data-aos='fade-right'>
+				<figure class="ratio ratio-16x9">
+					<?php
+					$footer_image = get_field( 'footer_image', 'options' );
+					echo wp_get_attachment_image(
+						$footer_image['ID'],
+						'large',
+						false,
+						array(
+							'class'   => 'object-fit-cover',
+							'loading' => 'lazy',
+						)
+					);
+					?>
+				</figure>
+			</div>
 			<div class="footer-callout__text col-sm-12 col-lg-6 d-flex flex-column gx-5">
 				<div class="h4">Choctaw Nation Capitol Grounds</div>
 				<p class="fs-6 mb-3">

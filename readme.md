@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.2.2
+
+-   Fixed a bug where `archive-events` wasn't loading the footer image correctly
+-   Updated the footer image to use `srcset` and lazy loading with a simpler WordPress function
+-   Updated the custom REST route to use a `base_args` array and only retrieved published posts
+
 ## v3.2.1
 
 -   Better server-side searching when loading `/events` with a search param (powered by Relevanssi)

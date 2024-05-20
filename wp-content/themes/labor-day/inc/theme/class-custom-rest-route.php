@@ -33,6 +33,17 @@ class Custom_Rest_Route {
 	 */
 	private $version = '1';
 
+	/**
+	 * The base arguments for the query
+	 *
+	 * @var array $base_args
+	 */
+	private $base_args = array(
+		'post_type'      => 'events',
+		'posts_per_page' => -1,
+		'status'         => 'publish',
+	);
+
 
 	/**
 	 * Register the custom rest routes
@@ -90,15 +101,11 @@ class Custom_Rest_Route {
 	public function get_events(): \WP_REST_Response {
 		$event_info_transient = get_transient( 'event_info_transient' );
 		if ( false !== $event_info_transient ) {
-			return rest_ensure_response( $event_info_transient );
+		return rest_ensure_response( $event_info_transient );
 		}
-		$args = array(
-			'post_type'      => 'events',
-			'posts_per_page' => -1,
-		);
 
 		$event_info = array();
-		$events     = new \WP_Query( $args );
+		$events     = new \WP_Query( $this->base_args );
 		if ( $events->have_posts() ) {
 			while ( $events->have_posts() ) {
 				$events->the_post();
@@ -162,10 +169,9 @@ class Custom_Rest_Route {
 	public function find_event( \WP_REST_Request $request ): \WP_REST_Response {
 		$search = $request->get_param( 's' );
 		$args   = array(
-			'post_type'      => 'events',
-			'posts_per_page' => -1,
-			's'              => $search,
-			'relevanssi'     => true,
+			...$this->base_args,
+			's'          => $search,
+			'relevanssi' => true,
 		);
 
 		$event_info = array();
