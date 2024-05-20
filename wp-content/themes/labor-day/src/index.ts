@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 
 new WeatherAlert();
 
+window.AOS = AOS;
 AOS.init( { easing: 'ease-out', duration: 600, once: true } );
 
 const allAnchors = document.querySelectorAll( 'a' );

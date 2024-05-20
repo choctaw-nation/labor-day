@@ -53,6 +53,9 @@ function App() {
 			dispatch( { type: 'setFilters', payload: data } );
 		} )();
 		dispatch( { type: 'isLoading', payload: false } );
+		if ( window.AOS ) {
+			window.AOS.refresh();
+		}
 	}, [] );
 
 	/** Sets `searchPosts = posts` for Fuzzy Searching */
