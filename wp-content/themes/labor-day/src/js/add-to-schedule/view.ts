@@ -83,10 +83,6 @@ export default class View {
 		return message;
 	}
 
-	/**
-	 * Shows the floating schedule button
-	 * @returns {void}
-	 */
 	showScheduleButton() {
 		const scheduleButton = document.querySelector( '.schedule-button' );
 		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )

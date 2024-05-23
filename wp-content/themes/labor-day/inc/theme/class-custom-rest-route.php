@@ -101,7 +101,7 @@ class Custom_Rest_Route {
 	public function get_events(): \WP_REST_Response {
 		$event_info_transient = get_transient( 'event_info_transient' );
 		if ( false !== $event_info_transient ) {
-		return rest_ensure_response( $event_info_transient );
+			return rest_ensure_response( $event_info_transient );
 		}
 
 		$event_info = array();
