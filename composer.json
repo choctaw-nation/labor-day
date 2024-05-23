@@ -12,6 +12,7 @@
 		"phpcs": "phpcs wp-content/themes/labor-day/ --extensions=php --ignore=wp-content/themes/labor-day/dist/",
 		"phpcbf": "phpcbf wp-content/themes/labor-day/ --extensions=php --ignore=wp-content/themes/labor-day/dist/"
 	},
+	"license": "GPL-3.0-or-later",
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
 	}

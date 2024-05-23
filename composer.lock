@@ -334,17 +334,13 @@
         {
             "name": "wp-coding-standards/wpcs",
             "version": "3.1.0",
-            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
                 "reference": "9333efcbff231f10dfd9c56bb7b65818b4733ca7"
-                "reference": "9333efcbff231f10dfd9c56bb7b65818b4733ca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/9333efcbff231f10dfd9c56bb7b65818b4733ca7",
-                "reference": "9333efcbff231f10dfd9c56bb7b65818b4733ca7",
                 "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/9333efcbff231f10dfd9c56bb7b65818b4733ca7",
                 "reference": "9333efcbff231f10dfd9c56bb7b65818b4733ca7",
                 "shasum": ""
@@ -358,16 +354,12 @@
                 "phpcsstandards/phpcsextra": "^1.2.1",
                 "phpcsstandards/phpcsutils": "^1.0.10",
                 "squizlabs/php_codesniffer": "^3.9.0"
-                "phpcsstandards/phpcsextra": "^1.2.1",
-                "phpcsstandards/phpcsutils": "^1.0.10",
-                "squizlabs/php_codesniffer": "^3.9.0"
             },
             "require-dev": {
                 "php-parallel-lint/php-console-highlighter": "^1.0.0",
                 "php-parallel-lint/php-parallel-lint": "^1.3.2",
                 "phpcompatibility/php-compatibility": "^9.0",
                 "phpcsstandards/phpcsdevtools": "^1.2.0",
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
             },
             "suggest": {
@@ -400,11 +392,9 @@
             "funding": [
                 {
                     "url": "https://opencollective.com/php_codesniffer",
-                    "url": "https://opencollective.com/php_codesniffer",
                     "type": "custom"
                 }
             ],
-            "time": "2024-03-25T16:39:00+00:00"
             "time": "2024-03-25T16:39:00+00:00"
         }
     ],
