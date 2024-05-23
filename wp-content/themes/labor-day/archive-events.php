@@ -32,7 +32,7 @@ get_header();
 	</div>
 </section>
 <div class="cno-events-wrapper" id="app">
-	<?php if ( have_posts() ) :; ?>
+	<?php if ( have_posts() ) : ?>
 	<section class="cno-event-search">
 		<div class="container">
 			<h2 class="cno-event-search__title">Search Events</h2>
@@ -72,7 +72,6 @@ get_header();
 	<div class="container">
 		<section class="cno-events" id="results">
 			<?php
-			while ( have_posts() ) {
 			while ( have_posts() ) {
 				the_post();
 				get_template_part( 'template-parts/events/content', 'event-display' );

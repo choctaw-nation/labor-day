@@ -73,11 +73,11 @@ export default class View {
 	 * @param {string} response - A string representing the response
 	 * @returns {string} A response message based on the response string
 	 */
-	getResponseMessage(response: string): string {
+	getResponseMessage( response: string ): string {
 		let message = '';
-		if ('success' === response) {
+		if ( 'success' === response ) {
 			message = `Added to your schedule!`;
-		} else if ('info' === response) {
+		} else if ( 'info' === response ) {
 			message = `This event is already in your schedule.`;
 		} else message = '';
 		return message;
@@ -93,4 +93,4 @@ export default class View {
 		const body = document.querySelector( 'body' );
 		body!.insertAdjacentElement( 'beforeend', div );
 	}
-})();
+}

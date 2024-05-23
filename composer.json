@@ -9,8 +9,8 @@
 		}
 	},
 	"scripts": {
-		"phpcs": "phpcs wp-content/themes/labor-day/**.php",
-		"phpcbf": "phpcbf wp-content/themes/labor-day/**.php"
+		"phpcs": "phpcs wp-content/themes/labor-day/ --extensions=php --ignore=wp-content/themes/labor-day/dist/",
+		"phpcbf": "phpcbf wp-content/themes/labor-day/ --extensions=php --ignore=wp-content/themes/labor-day/dist/"
 	},
 	"require-dev": {
 		"wp-coding-standards/wpcs": "*"
