@@ -1,0 +1,79 @@
+name: Deploy to WP Engine (Prod)
+on:
+    push:
+        branches:
+            - main
+# Cancel all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    bundle:
+        name: Bundle Assets
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+            - name: Install NPM dependencies
+              run: npm ci
+            - name: Build assets
+              run: npm run build
+            - name: Upload dist folder
+              uses: actions/upload-artifact@v4
+              with:
+                  name: dist
+                  path: wp-content/themes/labor-day/dist
+
+    phpcs:
+        name: PHPCS check
+        runs-on: ubuntu-latest
+        needs: bundle
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: 'shivammathur/setup-php@v2'
+              with:
+                  php-version: 'latest'
+                  ini-values: memory_limit=256M'
+                  coverage: none
+                  tools: cs2pr
+
+            - name: Install Composer dependencies
+              uses: 'ramsey/composer-install@v3'
+              with:
+                  # Bust the cache at least once a month - output format: YYYY-MM.
+                  custom-cache-suffix: $(date -u "+%Y-%m")
+
+            - name: Run PHPCS Beautifier
+              id: phpcbf
+              continue-on-error: true
+              run: composer phpcbf
+
+            - name: Run PHPCS checks
+              id: phpcs
+              run: composer phpcs
+
+            - name: Show PHPCS results in PR
+              if: ${{ always() && steps.phpcs.outcome == 'failure' }}
+              run: cs2pr ./phpcs-report.xml
+    deploy:
+        name: Deploy to WP Engine
+        runs-on: ubuntu-latest
+        needs: [bundle, phpcs]
+        steps:
+            - uses: actions/checkout@v4
+            - name: Download artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: dist
+                  path: wp-content/themes/labor-day/dist/
+            - name: GitHub Action Deploy to WP Engine
+              if: success()
+              uses: wpengine/github-action-wpe-site-deploy@v3
+              with:
+                  WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
+                  WPE_ENV: labordayprod
