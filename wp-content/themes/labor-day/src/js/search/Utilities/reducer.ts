@@ -2,10 +2,9 @@
 import { WP_Term } from 'wp-types';
 import { PrettyEventData, searchAppState } from '../types';
 import { AppActions } from './AppActions';
-import TimeHandler from './TimeHandler';
+
 import { EventFilters } from '../types/eventFilters';
 
-const timeHandler = new TimeHandler();
 export const initialState: searchAppState = {
 	posts: [],
 	isLoading: false,
@@ -47,9 +46,9 @@ export const initialState: searchAppState = {
 		link: '',
 	},
 	canGetPosts: ( () => {
-		// const now = new Date();
-		// const end = new Date('September 3, 2023');
-		return true;
+		const now = new Date();
+		const end = new Date( 'September 1, 2024' );
+		return now < end;
 	} )(),
 };
 
@@ -57,7 +56,6 @@ export function reducer(
 	state: searchAppState,
 	action: AppActions
 ): searchAppState {
-	const now = new Date();
 	const url = new URL( window.location.href );
 	switch ( action.type ) {
 		case 'isLoading':
@@ -130,16 +128,25 @@ export function reducer(
 			return {
 				...state,
 				searchTerm: action.payload,
+				isLoading: true,
 			};
 		case 'setSearchResults':
 			return {
 				...state,
 				searchResults: action.payload,
+				isLoading: false,
+				showAll: action.payload.length === 0,
 			};
 		case 'resetSearch':
 			url.searchParams.delete( 's' );
 			window.history.replaceState( null, '', url.toString() );
-			return { ...state, searchResults: [], searchTerm: '' };
+			return {
+				...state,
+				searchResults: [],
+				searchTerm: '',
+				showAll: true,
+				isLoading: false,
+			};
 		default:
 			throw new Error( `Unknown action type! ${ action.type }` );
 	}

@@ -11,7 +11,7 @@
  * @param string $event_description the string to trim
  * @param bool   $echo echo/return toggle
  */
-function cno_trim_event_description( string $event_description, bool $echo = true ) {
+function cno_trim_event_description( string $event_description, bool $echo = true ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 	$string            = '';
 	$closing_p_tag_pos = strpos( $event_description, '</p>' );
 	if ( false !== $closing_p_tag_pos ) {
@@ -24,37 +24,6 @@ function cno_trim_event_description( string $event_description, bool $echo = tru
 		echo $string;
 	} else {
 		return $string;
-	}
-}
-
-add_action( 'acf/init', 'cno_acf_options_page' );
-/** Add Options Page */
-function cno_acf_options_page() {
-	if ( function_exists( 'acf_add_options_page' ) ) {
-		acf_add_options_page(
-			array(
-				'page_title' => __( 'Theme General Settings' ),
-				'menu_title' => __( 'Theme Settings' ),
-				'menu_slug'  => 'theme-general-settings',
-				'capability' => 'edit_posts',
-				'redirect'   => false,
-			)
-		);
-		acf_add_options_sub_page(
-			array(
-				'page_title'  => 'Hours of Operations',
-				'menu_title'  => 'Operational Hours',
-				'parent_slug' => 'theme-general-settings',
-			)
-		);
-
-		acf_add_options_sub_page(
-			array(
-				'page_title'  => 'Theme Footer Settings',
-				'menu_title'  => 'Footer Settings',
-				'parent_slug' => 'theme-general-settings',
-			)
-		);
 	}
 }
 
@@ -116,7 +85,7 @@ function cno_enqueue_page_script( string $id, array $deps = array( 'global' ) ) 
 
 	if ( file_exists( $asset_file ) ) {
 		$asset      = require $asset_file;
-		$total_deps = array_merge( $asset['dependencies'], $deps, array( 'global' ) );
+		$total_deps = array_unique( array_merge( $asset['dependencies'], $deps, array( 'global' ) ) );
 		wp_enqueue_script(
 			$id,
 			get_stylesheet_directory_uri() . "/dist/pages/{$id}.js",
@@ -165,9 +134,9 @@ add_filter( 'gform_submit_button', 'add_custom_css_classes', 10, 2 );
 function add_custom_css_classes( $button ): string {
 	$dom = new DOMDocument();
 	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
-$input = $dom->getElementsByTagName( 'input' )->item( 0 );
-$classes = $input->getAttribute( 'class' );
-$classes = 'btn btn-secondary';
-$input->setAttribute( 'class', $classes );
-return $dom->saveHtml( $input );
+	$input   = $dom->getElementsByTagName( 'input' )->item( 0 );
+	$classes = $input->getAttribute( 'class' );
+	$classes = 'btn btn-secondary';
+	$input->setAttribute( 'class', $classes );
+	return $dom->saveHtml( $input );
 }

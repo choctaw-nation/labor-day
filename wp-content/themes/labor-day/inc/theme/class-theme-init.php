@@ -8,6 +8,8 @@
 
 namespace ChoctawNation;
 
+use CNOLaborDay\Events\Custom_Rest_Route;
+
 /** Builds the Theme */
 class Theme_Init {
 	// phpcs:ignore 
@@ -20,6 +22,7 @@ class Theme_Init {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
+		add_filter( 'template_include', array( $this, 'override_search_template' ) );
 	}
 
 	/** Calls in Required Files */
@@ -30,13 +33,16 @@ class Theme_Init {
 				'generator',
 				'image',
 				'hero',
+				'event',
 			)
 		);
 
-		$files = array( 'theme-functions' );
+		$files = array( 'theme-functions', 'class-custom-rest-route', 'class-operational-hours', 'navwalkers/class-navwalker' );
 		foreach ( $files as $file ) {
 			require_once $base_path . "/theme/{$file}.php";
 		}
+		$rest_handler = new Custom_Rest_Route();
+		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
 
 		$components = array( 'components', 'sections', 'map' );
 		foreach ( $components as $component ) {
@@ -47,9 +53,6 @@ class Theme_Init {
 		foreach ( $asset_loader as $asset ) {
 			require_once $base_path . "/theme/asset-loader/{$asset}.php";
 		}
-
-		require_once $base_path . '/theme/class-operational-hours.php';
-		require_once $base_path . '/theme/navwalkers/class-navwalker.php';
 	}
 
 	/** Takes an array of file names to load
@@ -207,5 +210,21 @@ class Theme_Init {
 				remove_post_type_support( $post_type, $support );
 			}
 		}
+	}
+
+	/**
+	 * Overrides the search template to use archive-events.php
+	 *
+	 * @param string $template the template to override
+	 * @return string the new template
+	 */
+	public function override_search_template( $template ): string {
+		if ( is_search() ) {
+			$new_template = locate_template( array( 'archive-events.php' ) );
+			if ( '' !== $new_template ) {
+				return $new_template;
+			}
+		}
+		return $template;
 	}
 }

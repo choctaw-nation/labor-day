@@ -20,6 +20,11 @@ export const fuzzySearchKeys = {
 	],
 };
 
+/**
+ * Creates an excerpt from a string.
+ * @param {string} str The string to create an excerpt from
+ * @returns {ExcerptObject} The excerpt object
+ */
 export function createExcerpt( str: string ): ExcerptObject {
 	if ( null === str ) return { excerpt: '', readMore: false };
 	const excerpt = str.slice( 3, 247 );
@@ -37,6 +42,11 @@ export function createExcerpt( str: string ): ExcerptObject {
 	}
 }
 
+/**
+ * Sorts a flat array of events into an object with keys for each day.
+ * @param {PrettyEventData[]} events The flat events array
+ * @returns {SortedEventsObject} The sorted events
+ */
 export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
 	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
 	const sortedEvents: SortedEventsObject = {
@@ -54,7 +64,7 @@ export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
 }
 
 /** On First Render, show floating schedule button and get posts */
-export async function getEvents( searchTerm?: string = undefined ) {
+export async function getEvents( searchTerm: string | undefined = undefined ) {
 	const model = new Model();
 	const view = new View();
 	const schedule = model.getSchedule();

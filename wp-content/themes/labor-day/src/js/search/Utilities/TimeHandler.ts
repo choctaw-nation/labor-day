@@ -12,12 +12,16 @@ export default class TimeHandler {
 	 * @returns {string} the shortened time.
 	 */
 	private formatTimeString( time: string ): string {
-		const timeString = time.includes( ':00' )
-			? time.slice( 0, time.indexOf( ':00' ) )
-			: time;
-		return `${ timeString.toUpperCase() } ${ time
-			.slice( -2 )
-			.toUpperCase() }`;
+		if ( time.includes( ':00' ) ) {
+			const timeString = time.includes( ':00' )
+				? time.slice( 0, time.indexOf( ':00' ) )
+				: time;
+			return `${ timeString.toUpperCase() } ${ time
+				.slice( -2 )
+				.toUpperCase() }`;
+		} else {
+			return time.toUpperCase();
+		}
 	}
 
 	/**
@@ -30,7 +34,6 @@ export default class TimeHandler {
 	private handleMeridiemIndicator( start, end ): string {
 		const startMeridiem = start.slice( -2 ).toUpperCase();
 		const endMeridiem = end.slice( -2 ).toUpperCase();
-
 		if ( startMeridiem === endMeridiem ) {
 			const finalString = `${ start.slice( 0, -2 ) } &ndash; ${ end.slice(
 				0,
@@ -53,6 +56,7 @@ export default class TimeHandler {
 		const start = this.formatTimeString( start_time );
 		// Early return if there is no end time.
 		if ( ! end_time ) return start;
+
 		const end = this.formatTimeString( end_time );
 		return this.handleMeridiemIndicator( start, end );
 	}

@@ -4,6 +4,67 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.2.3
+
+-   Updated homepage events template to add links to events on images and titles
+-   Added CI/CD
+-   Removed `/dist` folder from Github
+
+## v3.2.2
+
+-   Fixed a bug where `archive-events` wasn't loading the footer image correctly
+-   Updated the footer image to use `srcset` and lazy loading with a simpler WordPress function
+-   Updated the custom REST route to use a `base_args` array and only retrieved published posts
+
+## v3.2.1
+
+-   Better server-side searching when loading `/events` with a search param (powered by Relevanssi)
+-   Added extra REST route to handle search params
+-   Overload the template to force search to use `archive-events`
+-   fix JS search errors
+-   Bump npm package dependencies' versions
+
+## v3.2.0
+
+-   Added a new rest route to get a single event
+-   Added caching to the REST route so it's a little more performant.
+-   Fixed some type errors when adding events to schedule
+
+## v3.1.1
+
+-   Fix hero image bug
+
+## v3.1.0
+
+-   Added Options pages as ACF Fields
+    -   Added ACF JSON file for options pages
+-   Enabled Operational Hours Visibility Toggle
+-   Updated React to handle operational hours visibility
+-   Better wpcs conformity
+
+## v3.0.1
+
+-   Re-enable "add to calendar" functionality on `single-events`
+-   Also hide operation hours
+
+## v3.0.0
+
+-   Remove the CNO Events plugin and add functionality natively to the theme.
+
+## v2.2.1
+
+-   Sorted homepage featured events by date _and_ time.
+
+## v2.2.0
+
+-   Added toggles to control homepage events and registrations sections' visibility
+-   Added an ACF Field to add featured events to homepage
+-   Fixed a bug where time meridiems were appearing in duplicate on the `/events` page
+
+## v2.1.4
+
+-   Fixed a bug where list wasn't showing on `/registrations` page.
+
 ## v2.1.3
 
 -   Fixed a bug where the "Share" modal wasn't working on the `/my-schedule` page.

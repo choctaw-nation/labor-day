@@ -8,12 +8,25 @@
 
 /** Operational Hours */
 class Operational_Hours {
+	/** The operations array
+	 *
+	 * @var array $operations
+	 */
 	private array $operations = array();
-	private $rv_hours_title   = 'RV/Tent Gate Hours';
+
+	/** The RV Hours Title
+	 *
+	 * @var string $rv_hours_title
+	 */
+	private $rv_hours_title = 'RV/Tent Gate Hours';
+
 	/** Info from client:
 	 * Wednesday 8:00 am - 8:00 pm
 	 * Thursday thru Sat 8:00 am - 11:00 pm
-	 * Sunday 10:00 am - 10:00 pm */
+	 * Sunday 10:00 am - 10:00 pm
+	 *
+	 * @var array $rv_date_times
+	 */
 	private $rv_date_times = array(
 		array(
 			'label' => 'Wednesday (Aug 30)',
@@ -32,15 +45,18 @@ class Operational_Hours {
 		),
 	);
 
-		/** Construct the class
-		 *
-		 * @param array $operations_field the Hours of Operations ACF Options field
-		 */
+	/** Construct the class
+	 *
+	 * @param array $operations_field the Hours of Operations ACF Options field
+	 */
 	public function __construct( array $operations_field ) {
 		$this->operations = $operations_field;
 	}
 
-		/** Public API to generate HTML */
+	/** Public API to generate HTML
+	 *
+	 * @return void
+	 */
 	public function list_the_hours() {
 		echo "<ul class='hours-list'>";
 		$markup  = '';
@@ -52,12 +68,12 @@ class Operational_Hours {
 		echo '</ul>';
 	}
 
-		/** Hard-Coded RV Hours
-		 *
-		 * @param string $title the Title of the Operation Hour
-		 * @param array  $div_elements the days and open/close times of the operation
-		 * @return string the HTML
-		 */
+	/** Hard-Coded RV Hours
+	 *
+	 * @param string $title the Title of the Operation Hour
+	 * @param array  $div_elements the days and open/close times of the operation
+	 * @return string the HTML
+	 */
 	private function set_the_rv_hours( string $title, array $div_elements ): string {
 		$markup = "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$title}</span>";
 		foreach ( $div_elements as $block ) {
@@ -67,10 +83,11 @@ class Operational_Hours {
 		return $markup;
 	}
 
-		/** Loops over the ACF Repeater field and returns the markup
-		 *
-		 * @param array $operation the operational hour object
-		 */
+	/** Loops over the ACF Repeater field and returns the markup
+	 *
+	 * @param array $operation the operational hour object
+	 * @return string the HTML
+	 */
 	private function get_the_hours_markup( array $operation ): string {
 		$days            = array();
 		$operation_title = esc_textarea( $operation['operation_title'] );

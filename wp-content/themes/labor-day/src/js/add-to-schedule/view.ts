@@ -73,28 +73,24 @@ export default class View {
 	 * @param {string} response - A string representing the response
 	 * @returns {string} A response message based on the response string
 	 */
-	getResponseMessage( response: string ): string {
+	getResponseMessage(response: string): string {
 		let message = '';
-		if ( 'success' === response ) {
+		if ('success' === response) {
 			message = `Added to your schedule!`;
-		} else if ( 'info' === response ) {
+		} else if ('info' === response) {
 			message = `This event is already in your schedule.`;
 		} else message = '';
 		return message;
 	}
 
-	/**
-	 * Shows the floating schedule button
-	 * @returns {void}
-	 */
 	showScheduleButton() {
 		const scheduleButton = document.querySelector( '.schedule-button' );
 		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )
 			return;
 		const div = document.createElement( 'div' );
-		div.classList.add( 'schedule-button' );
+		div.classList.add( 'schedule-button', 'shadow' );
 		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule</a>`;
 		const body = document.querySelector( 'body' );
 		body!.insertAdjacentElement( 'beforeend', div );
 	}
-}
+})();

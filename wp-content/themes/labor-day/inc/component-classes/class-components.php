@@ -36,7 +36,7 @@ class Components {
 	 *      'subheadline_content' => ?string the subheadline content,
 	 *  ```
 	 */
-	public function headline( string $headline, bool $echo = true, array ...$args ) {
+	public function headline( string $headline, bool $echo = true, array ...$args ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		$default = array(
 			'headline_element'    => 'h2',
 			'headline_class'      => 'headline',
@@ -72,7 +72,7 @@ class Components {
 	 * }
 	 * @param bool  $echo Whether to echo or return the markup (default: true)
 	 */
-	public function cta_button( array $options, bool $echo = true ) {
+	public function cta_button( array $options, bool $echo = true ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		$default = array(
 			'text'        => 'Learn More',
 			'link'        => '',
@@ -106,7 +106,7 @@ class Components {
 	 *      'list_class' => string the class to set on the list itself
 	 * @param bool  $echo whether to `echo` or `return` the markup
 	 */
-	public function bulleted_list( array $list_items, array $args = array(), bool $echo = true ) {
+	public function bulleted_list( array $list_items, array $args = array(), bool $echo = true ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound
 		$default = array(
 			'item_class' => '',
 			'list_type'  => 'ul',

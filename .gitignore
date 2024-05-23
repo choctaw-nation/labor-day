@@ -45,6 +45,7 @@ auth.json
 /wp-content/mu-plugins/*
 !/wp-content/mu-plugins/initial-acf-fields.php
 /wp-content/themes/twenty*/
+/wp-content/themes/*/dist/
 /wp-content/.htaccess
 /wp-content/autoptimize_404_handler.php
 /wp-content/db.php

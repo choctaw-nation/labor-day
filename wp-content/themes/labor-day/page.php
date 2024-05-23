@@ -11,7 +11,7 @@ echo "<main class='site-content {$page_class}'>";
 get_template_part( 'template-parts/content', 'hero' );
 
 $templates = array(
-	'registration'         => 'registrations',
+	'registrations'        => 'registrations',
 	'map'                  => 'map',
 	'history'              => 'history',
 	'contact'              => 'contact',

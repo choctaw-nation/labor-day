@@ -34,6 +34,7 @@ export default function SinglePost( {
 	extendedClass?: string;
 } ) {
 	const { info, featured_image } = data;
+
 	return (
 		<div className={ getTheClass( extendedClass ) }>
 			<EventTimeBanner info={ info } />
