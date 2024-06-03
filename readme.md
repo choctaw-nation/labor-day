@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.2.4
+
+-   Added CI/CD for staging env
+-   Updated packages
+-   Added Google reCaptcha in appropriate places (so Gravity Forms reCaptcha can be disabled).
+
 ## v3.2.3
 
 -   Updated homepage events template to add links to events on images and titles

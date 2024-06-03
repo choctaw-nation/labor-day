@@ -1,8 +1,8 @@
-name: Deploy to WP Engine (Dev)
+name: Deploy to WP Engine (Staging)
 on:
     push:
         branches:
-            - dev
+            - stg
 
 # Cancel all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -43,4 +43,4 @@ jobs:
               uses: wpengine/github-action-wpe-site-deploy@v3
               with:
                   WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
-                  WPE_ENV: labordaydev
+                  WPE_ENV: labordaystg

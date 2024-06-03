@@ -40,6 +40,9 @@ get_header();
 			$href    = esc_url( get_field( 'external_registration_link' ) );
 			if ( ! empty( $form_id ) && empty( $href ) ) {
 				echo do_shortcode( "[gravityform id={$form_id} title='false']" );
+				echo "<div class='col'>";
+				get_template_part( 'template-parts/registrations/content-recaptcha-notice' );
+				echo '</div>';
 			} elseif ( empty( $form_id ) && ! empty( $href ) ) {
 				echo "<a href='{$href}' class='btn btn-secondary w-auto mt-4' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
 			}
