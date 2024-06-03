@@ -38,12 +38,11 @@ auth.json
 /wp-content/uploads/
 /wp-content/upgrade/
 /wp-content/upgrade-temp-backup
-/wp-content/plugins/*
-!/wp-content/plugins/cno-*
-/wp-content/cache/*
+/wp-content/plugins/
+/wp-content/.logs/
+/wp-content/cache/
 /wp-content/advanced-cache.php
-/wp-content/mu-plugins/*
-!/wp-content/mu-plugins/initial-acf-fields.php
+/wp-content/mu-plugins/
 /wp-content/themes/twenty*/
 /wp-content/themes/*/dist/
 /wp-content/.htaccess

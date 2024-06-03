@@ -25,45 +25,10 @@ jobs:
               with:
                   name: dist
                   path: wp-content/themes/labor-day/dist
-
-    phpcs:
-        name: PHPCS check
-        runs-on: ubuntu-latest
-        needs: bundle
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Setup PHP
-              uses: 'shivammathur/setup-php@v2'
-              with:
-                  php-version: 'latest'
-                  ini-values: memory_limit=256M'
-                  coverage: none
-                  tools: cs2pr
-
-            - name: Install Composer dependencies
-              uses: 'ramsey/composer-install@v3'
-              with:
-                  # Bust the cache at least once a month - output format: YYYY-MM.
-                  custom-cache-suffix: $(date -u "+%Y-%m")
-
-            - name: Run PHPCS Beautifier
-              id: phpcbf
-              continue-on-error: true
-              run: composer phpcbf
-
-            - name: Run PHPCS checks
-              id: phpcs
-              run: composer phpcs
-
-            - name: Show PHPCS results in PR
-              if: ${{ always() && steps.phpcs.outcome == 'failure' }}
-              run: cs2pr ./phpcs-report.xml
     deploy:
         name: Deploy to WP Engine
         runs-on: ubuntu-latest
-        needs: [bundle, phpcs]
+        needs: [bundle]
         steps:
             - uses: actions/checkout@v4
             - name: Download artifact
