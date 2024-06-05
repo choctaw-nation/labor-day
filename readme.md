@@ -4,6 +4,10 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.0
+
+-   Added new ACF field for 5k PACE registration link & control
+
 ## v3.2.4
 
 -   Added CI/CD for staging env
