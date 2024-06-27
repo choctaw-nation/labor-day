@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.1
+
+-   Update the events rest route to return both the `brief_description` and the `description` fields set with ACF
+-   Update Event cards to display `learn more` button _only_ if the event has its description field filled out. The preview still uses the new `brief_description` field (previously named `description`).
+-   Minor bug fixes
+
 ## v3.3.0
 
 -   Added new ACF field for 5k PACE registration link & control
