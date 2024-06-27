@@ -144,18 +144,19 @@ class Custom_Rest_Route {
 	 */
 	private function get_the_event_array( int $event_id ): array {
 		return array(
-			'eventId'        => $event_id,
-			'title'          => get_the_title( $event_id ),
-			'info'           => get_field( 'info', $event_id ),
-			'description'    => esc_textarea( get_field( 'archive_content', $event_id ) ),
-			'link'           => get_the_permalink( $event_id ),
-			'featured_image' => ! has_post_thumbnail( $event_id ) ? null : array(
+			'eventId'           => $event_id,
+			'title'             => get_the_title( $event_id ),
+			'info'              => get_field( 'info', $event_id ),
+			'description'       => acf_esc_html( get_field( 'description', $event_id ) ),
+			'brief_description' => esc_textarea( get_field( 'archive_content', $event_id ) ),
+			'link'              => get_the_permalink( $event_id ),
+			'featured_image'    => ! has_post_thumbnail( $event_id ) ? null : array(
 				'src'     => get_the_post_thumbnail_url( $event_id, 'full' ),
 				'altText' => get_post_meta( get_post_thumbnail_id( $event_id ), '_wp_attachment_image_alt', true ),
 				'srcset'  => wp_get_attachment_image_srcset( get_post_thumbnail_id( $event_id ), 'full' ),
 			),
-			'locations'      => get_the_terms( $event_id, 'event_location' ),
-			'type'           => get_the_terms( $event_id, 'event_type' ),
+			'locations'         => get_the_terms( $event_id, 'event_location' ),
+			'type'              => get_the_terms( $event_id, 'event_type' ),
 		);
 	}
 

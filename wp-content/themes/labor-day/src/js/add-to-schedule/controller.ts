@@ -9,10 +9,11 @@ export class Controller {
 	 * The view object.
 	 */
 	private view: View;
+
 	/**
 	 * Determines whether or not the controller is in debug mode.
 	 */
-	debug = true;
+	debug = false;
 
 	constructor() {
 		this.view = new View();
@@ -35,8 +36,6 @@ export class Controller {
 	/**
 	 * A private method used for debugging.
 	 * Logs a message and the buttons from the view to the console.
-	 *
-	 * @private
 	 */
 	private debugMethod() {
 		console.log( 'hello from schedule-handler' );
