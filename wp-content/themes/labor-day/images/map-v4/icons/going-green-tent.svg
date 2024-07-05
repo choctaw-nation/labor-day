@@ -1,0 +1,6 @@
+<svg class="map-legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <g class="map-legend__going-green-tent">
+    <rect class="cls-2" x="30.73" y="30.73" width="88.54" height="88.54" transform="translate(-31.07 75) rotate(-45)"/>
+    <text class="cls-1" transform="translate(47.45 96.98)"><tspan x="0" y="0">G</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg class="map-legend"  viewBox="0 0 150 150">
+  <g class="map-legend__atm">
+    <path class="cls-3" d="M75,121.98c25.95,0,46.98-21.03,46.98-46.98s-21.04-46.98-46.98-46.98-46.98,21.03-46.98,46.98,21.03,46.98,46.98,46.98"/>
+    <circle class="cls-4" cx="75" cy="75" r="46.98"/>
+    <text class="cls-1" transform="translate(46.49 108.13)"><tspan x="0" y="0">$</tspan></text>
+    <rect class="cls-2" x="70.33" y="28.49" width="9.34" height="90"/>
+  </g>
+</svg>

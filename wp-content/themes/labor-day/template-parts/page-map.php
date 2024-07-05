@@ -6,7 +6,7 @@
  */
 
 use ChoctawNation\Asset_Loader;
-use ChoctawNation\Content\Map;
+use ChoctawNation\Map\Map;
 use ChoctawNation\Enqueue_Type;
 
 $cno_map    = new Map();

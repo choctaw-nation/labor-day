@@ -1,0 +1,7 @@
+<svg class="map-legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <g class="map-legend__mothers-room">
+    <path class="cls-3" d="M75,121.96c25.93,0,46.96-21.02,46.96-46.96s-21.03-46.96-46.96-46.96-46.96,21.02-46.96,46.96,21.02,46.96,46.96,46.96"/>
+    <circle class="cls-1" cx="75" cy="75" r="46.96"/>
+    <text class="cls-2" transform="translate(45.4 98.48)"><tspan x="0" y="0">M</tspan></text>
+  </g>
+</svg>
