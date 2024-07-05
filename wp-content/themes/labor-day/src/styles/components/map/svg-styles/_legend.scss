@@ -1,0 +1,404 @@
+.map-legend {
+	--size: 30px;
+	width: var(--size);
+	aspect-ratio: 1;
+
+	&__atm {
+		.cls-1 {
+			font-family: var(--font-body);
+			font-size: 99.21px;
+			font-weight: 700;
+		}
+
+		.cls-1,
+		.cls-2 {
+			fill: #9a9b30;
+		}
+
+		.cls-3 {
+			fill: #d6d7db;
+		}
+
+		.cls-3,
+		.cls-2 {
+			stroke-width: 0px;
+		}
+
+		.cls-4 {
+			fill: none;
+			stroke: #9a9b30;
+			stroke-width: 11.45px;
+		}
+	}
+
+	&__chahta-cab {
+		.cls-1 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+
+		.cls-2 {
+			fill: #ac4fc6;
+			stroke-width: 0px;
+		}
+	}
+
+	&__choctaw-store {
+		.cls-1 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+
+		.cls-2 {
+			fill: #9a9b30;
+			stroke-width: 0px;
+		}
+	}
+
+	&__education-tent {
+		.cls-1 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+
+		.cls-2 {
+			fill: #026e9b;
+			stroke-width: 0px;
+		}
+	}
+
+	&__elder-ride {
+		.cls-1 {
+			fill: #d6d6db;
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: none;
+			stroke: #ffb71b;
+			stroke-width: 10.79px;
+		}
+
+		.cls-3 {
+			fill: #c05131;
+			font-family: var(--font-body);
+			font-size: 81.2px;
+			font-weight: 800;
+		}
+	}
+
+	&__first-aid {
+		.cls-1 {
+			fill: none;
+			stroke: #d7282f;
+			stroke-width: 11.45px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+		}
+
+		.cls-2,
+		.cls-3 {
+			stroke-width: 0px;
+		}
+
+		.cls-3 {
+			fill: #d7282f;
+		}
+	}
+
+	&__food {
+		.cls-1 {
+			fill: #e31c79;
+		}
+
+		.cls-1,
+		.cls-2 {
+			stroke-width: 0px;
+		}
+
+		.cls-3 {
+			fill: none;
+			stroke: #e31c79;
+			stroke-width: 11.45px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+		}
+	}
+
+	&__going-green-tent {
+		.cls-1 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+
+		.cls-2 {
+			fill: #41ad49;
+			stroke-width: 0px;
+		}
+	}
+
+	&__healthy-living-expo {
+		.cls-1 {
+			fill: #007b5f;
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+	}
+
+	&__information {
+		.cls-1 {
+			fill: #d6742a;
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 99.21px;
+			font-weight: 700;
+		}
+	}
+
+	&__membership {
+		.cls-1 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+
+		.cls-2 {
+			fill: #5957a6;
+			stroke-width: 0px;
+		}
+	}
+
+	&__mothers-room {
+		.cls-1 {
+			fill: none;
+			stroke: #f27daf;
+			stroke-width: 11.44px;
+		}
+
+		.cls-2 {
+			fill: #f27daf;
+			font-family: var(--font-body);
+			font-size: 66.75px;
+			font-weight: 700;
+		}
+
+		.cls-3 {
+			fill: #d6d7db;
+			stroke-width: 0px;
+		}
+	}
+
+	&__parking-stations {
+		.cls-1 {
+			fill: #009bdf;
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+	}
+
+	&__parking {
+		.cls-1 {
+			fill: #ffb71b;
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #616529;
+			font-family: var(--font-body);
+			font-size: 68.69px;
+			font-weight: 700;
+		}
+	}
+
+	&__restroom {
+		.cls-1 {
+			fill: #007b5f;
+			font-family: var(--font-body);
+			font-size: 80.14px;
+			font-weight: 800;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+			stroke-width: 0px;
+		}
+
+		.cls-3 {
+			fill: none;
+			stroke: #007b5f;
+			stroke-width: 11.45px;
+		}
+	}
+
+	&#map-legend-rv-parking {
+		.cls-1 {
+			stroke: #ac4fc6;
+			stroke-width: 11.45px;
+		}
+
+		.cls-1,
+		.cls-2 {
+			fill: none;
+		}
+
+		.cls-2,
+		.cls-3,
+		.cls-4 {
+			stroke-width: 0px;
+		}
+
+		.cls-3 {
+			fill: #ac4fc6;
+		}
+
+		.cls-5 {
+			clip-path: url(#rv-parking-clippath);
+		}
+
+		.cls-4 {
+			fill: #d6d7db;
+		}
+	}
+
+	&__rv-tent-check-in {
+		.cls-1 {
+			fill: none;
+			stroke: #ab4fc7;
+			stroke-width: 11.45px;
+		}
+
+		.cls-2 {
+			fill: #d6d6db;
+		}
+
+		.cls-2,
+		.cls-3 {
+			stroke-width: 0px;
+		}
+
+		.cls-3 {
+			fill: #ab4fc7;
+		}
+	}
+
+	&__shower {
+		.cls-1 {
+			fill: #009bdf;
+		}
+
+		.cls-1,
+		.cls-2 {
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+		}
+
+		.cls-3 {
+			fill: none;
+			stroke: #009bdf;
+			stroke-width: 11.45px;
+		}
+	}
+
+	&#map-legend-tent-camping {
+		.cls-1 {
+			stroke: #41ad49;
+			stroke-width: 11.45px;
+		}
+
+		.cls-1,
+		.cls-2 {
+			fill: none;
+		}
+
+		.cls-2,
+		.cls-3,
+		.cls-4 {
+			stroke-width: 0px;
+		}
+
+		.cls-5 {
+			clip-path: url(#clippath);
+		}
+
+		.cls-3 {
+			fill: #d6d7db;
+		}
+
+		.cls-4 {
+			fill: #41ad49;
+		}
+	}
+
+	&__tribal-police {
+		.cls-1 {
+			fill: #d6742a;
+		}
+
+		.cls-1,
+		.cls-2 {
+			stroke-width: 0px;
+		}
+
+		.cls-2 {
+			fill: #d6d7db;
+		}
+
+		.cls-3 {
+			fill: none;
+			stroke: #d6742a;
+			stroke-width: 11.45px;
+		}
+	}
+
+	&__water-station {
+		.cls-1 {
+			fill: none;
+			stroke: #026e9b;
+			stroke-width: 11.45px;
+		}
+
+		.cls-2 {
+			fill: #026e9b;
+			font-family: var(--font-body);
+			font-size: 59.91px;
+			font-weight: 800;
+		}
+
+		.cls-3 {
+			fill: #d6d7db;
+			stroke-width: 0px;
+		}
+	}
+}

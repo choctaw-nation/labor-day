@@ -37,14 +37,22 @@ class Theme_Init {
 			)
 		);
 
-		$files = array( 'theme-functions', 'class-custom-rest-route', 'class-operational-hours', 'navwalkers/class-navwalker' );
+		$files = array(
+			'theme-functions',
+			'class-custom-rest-route',
+			'class-operational-hours',
+			'navwalkers/class-navwalker',
+		);
 		foreach ( $files as $file ) {
 			require_once $base_path . "/theme/{$file}.php";
 		}
 		$rest_handler = new Custom_Rest_Route();
 		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
 
-		$components = array( 'components', 'sections', 'map' );
+		$components = array(
+			'components',
+			'sections',
+		);
 		foreach ( $components as $component ) {
 			require_once $base_path . "/component-classes/class-{$component}.php";
 		}
@@ -52,6 +60,15 @@ class Theme_Init {
 		$asset_loader = array( 'enum-enqueue-type', 'class-asset-loader' );
 		foreach ( $asset_loader as $asset ) {
 			require_once $base_path . "/theme/asset-loader/{$asset}.php";
+		}
+
+		$map_files = array(
+			'map-element',
+			'map-constructor',
+			'map',
+		);
+		foreach ( $map_files as $map_file ) {
+			require_once $base_path . "/theme/map/class-{$map_file}.php";
 		}
 	}
 

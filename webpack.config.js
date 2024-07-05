@@ -13,7 +13,7 @@ module.exports = {
 			global: `.${ THEME_DIR }/src/index.ts`,
 			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
-			'pages/map': `.${ THEME_DIR }/src/js/map/map.js`,
+			'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,
 			'pages/singleEvents': `.${ THEME_DIR }/src/js/add-to-schedule/App.js`,
 			...addEntries( appNames, 'pages' ),
 			...addEntries( styleSheets, 'styles' ),
