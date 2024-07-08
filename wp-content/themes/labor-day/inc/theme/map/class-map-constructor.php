@@ -203,9 +203,7 @@ abstract class Map_Constructor {
 
 	/** Sets the `$icons_areas_labels` property */
 	private function set_the_icons_areas_labels() {
-		$this->icons_areas_labels  = $this->get_svg( 'icons' );
-		$this->icons_areas_labels .= $this->get_svg( 'areas' );
-		$this->icons_areas_labels .= $this->get_svg( 'street-labels' );
+		$this->icons_areas_labels = $this->get_svg( 'icons-areas-labels' );
 	}
 
 	/** Sets the area ids */
