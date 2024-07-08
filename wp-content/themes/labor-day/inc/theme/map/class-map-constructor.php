@@ -314,7 +314,7 @@ abstract class Map_Constructor {
 			),
 			new Map_Element(
 				array(
-					'id'    => 'Parking_Station',
+					'id'    => 'Parking_Stations',
 					'label' => 'Parking Stations',
 					'icon'  => 'parking-stations',
 				)
