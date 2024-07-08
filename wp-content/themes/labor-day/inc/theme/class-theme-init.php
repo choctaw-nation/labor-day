@@ -18,7 +18,6 @@ class Theme_Init {
 		$this->disable_discussion();
 		$this->cno_set_environment();
 		$this->handle_theme_image_sizes();
-		add_filter( 'wp_head', array( $this, 'prevent_zoom_on_map_page' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
@@ -123,17 +122,6 @@ class Theme_Init {
 			$_ENV['CNO_ENV'] = 'stage';
 		} else {
 			$_ENV['CNO_ENV'] = 'prod';
-		}
-	}
-
-	/** Prevents zoom on the map page */
-	public function prevent_zoom_on_map_page() {
-		global $post;
-		$is_map_page = 'map' === $post->post_name;
-		if ( $is_map_page ) {
-			echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">';
-		} else {
-			echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 		}
 	}
 
