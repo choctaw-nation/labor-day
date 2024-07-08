@@ -78,12 +78,12 @@ abstract class Map_Constructor {
 
 	/** Gets Map Assets from folders and assigns them to the class */
 	private function get_map_files() {
-		$this->base = $this->map_uri . '/base.png';
+		$this->base = $this->map_uri . '/base.webp';
 		$this->set_the_zones();
 		$this->set_the_buildings();
 		$this->set_the_area_ids();
 		$this->set_the_label_ids();
-		$this->misc_buildings = $this->map_uri . '/misc-buildings.png';
+		$this->misc_buildings = $this->map_uri . '/misc-buildings.webp';
 		$this->set_the_icons_areas_labels();
 	}
 
