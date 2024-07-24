@@ -23,7 +23,7 @@ function register_service_worker() {
 }
 add_action( 'wp_enqueue_scripts', 'register_service_worker' );
 
-/** make gravity forms available to Editor role **/
+/** Make Gravity Forms available to Editor role **/
 function add_gf_cap() {
     $role = get_role( 'editor' );
     $role->add_cap( 'gform_full_access' );
