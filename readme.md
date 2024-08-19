@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.3
+
+- update package.json to fix security issues
+- fix mispelling in footer "Tushkahomma" to "Tuskahomma"
+
 ## v3.3.1
 
 -   Update the events rest route to return both the `brief_description` and the `description` fields set with ACF
