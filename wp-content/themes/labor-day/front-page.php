@@ -24,7 +24,9 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 		<div class="container position-relative z-2">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
-					<span class="headline text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August 29 &ndash; August 31, 2025</span>
+					<span
+						class="headline text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August
+						29 &ndash; August 31, 2025</span>
 					<div class="countdown w-100 text-white text-center" id='countdown'></div>
 				</div>
 			</div>
@@ -35,7 +37,8 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 			<div class="row row-gap-4">
 				<div class="col-lg-4 d-flex flex-column align-items-center" data-aos="fade-right">
 					<figure class='great-seal ratio ratio-1x1'>
-						<img src="<?php echo get_template_directory_uri() . '/images/great-seal-2.svg'; ?>" alt="The Great Seal of the Choctaw Nation" loading='lazy'>
+						<img src="<?php echo get_template_directory_uri() . '/images/great-seal-2.svg'; ?>"
+							alt="The Great Seal of the Choctaw Nation" loading='lazy'>
 					</figure>
 				</div>
 				<div class="col-lg-8 d-flex flex-column justify-content-center align-items-center">

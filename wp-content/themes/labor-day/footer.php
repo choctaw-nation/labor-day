@@ -35,7 +35,8 @@ if ( $has_weather_alert ) {
 				<p class="fs-6 mb-3">
 					Council House Rd<br />Tuskahoma, OK 74574
 				</p>
-				<a href="https://goo.gl/maps/se2k5hvdoozfuqHt7" class="btn btn-primary d-block align-self-start">Get Directions</a>
+				<a href="https://goo.gl/maps/se2k5hvdoozfuqHt7" class="btn btn-primary d-block align-self-start">Get
+					Directions</a>
 			</div>
 		</div>
 	</div>
@@ -46,8 +47,8 @@ if ( $has_weather_alert ) {
 			<div class="col">
 				<a href="<?php echo esc_url( site_url() ); ?>" class="logo w-100 h-100" aria-label='to Home Page'>
 					<figure class="logo-image d-inline-block">
-						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="lazy"
-							class="w-100 h-100 object-fit-contain">
+						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>"
+							alt="Labor Day Festival Logo" loading="lazy" class="w-100 h-100 object-fit-contain">
 					</figure>
 				</a>
 			</div>
@@ -74,10 +75,12 @@ if ( $has_weather_alert ) {
 			?>
 			<div class="col socials d-flex align-items-center justify-content-center mx-auto mt-3 m-lg-0 column-gap-3">
 				<?php extract( get_field( 'socials', 'options' ) ); ?>
-				<a aria-label='to the Choctaw Nation Labor Day Facebook page' href="<?php echo $facebook; ?>" target="_blank" rel="noreferrer noopener" class="social-icon mx-2">
+				<a aria-label='to the Choctaw Nation Labor Day Facebook page' href="<?php echo $facebook; ?>"
+					target="_blank" rel="noreferrer noopener" class="social-icon mx-2">
 					<i class='fs-3 fa-brands fa-facebook'></i>
 				</a>
-				<a aria-label='to the Choctaw Nation Instagram' href="<?php echo $instagram; ?>" target="_blank" rel="noreferrer noopener" class="social-icon mx-2">
+				<a aria-label='to the Choctaw Nation Instagram' href="<?php echo $instagram; ?>" target="_blank"
+					rel="noreferrer noopener" class="social-icon mx-2">
 					<i class='fs-3 fa-brands fa-instagram'></i>
 				</a>
 			</div>
