@@ -95,3 +95,4 @@ class Map extends Map_Constructor {
 		return "<label class='map-toggles__layer-toggle'><input type='checkbox'  {$checked} data-id='{$input_id}' />&nbsp;{$element['label']}</label>";
 	}
 }
+
