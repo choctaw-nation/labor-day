@@ -24,7 +24,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 		<div class="container position-relative z-2">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
-					<span class="headline text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August 30 &ndash; September 1, 2024</span>
+					<span class="headline text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August 29 &ndash; August 31, 2025</span>
 					<div class="countdown w-100 text-white text-center" id='countdown'></div>
 				</div>
 			</div>
