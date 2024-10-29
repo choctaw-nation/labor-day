@@ -4,6 +4,10 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.4
+
+- added image alt tags to the map
+
 ## v3.3.3
 
 - update package.json to fix security issues
