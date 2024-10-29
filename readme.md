@@ -4,10 +4,20 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.5
+
+-   Update npm & composer packages
+-   Update Theme Header to set minimum WordPress version
+-   Update Github Actions
+
+## v3.3.4
+
+-   added alt text to the images.
+
 ## v3.3.3
 
-- update package.json to fix security issues
-- fix mispelling in footer "Tushkahomma" to "Tuskahomma"
+-   update package.json to fix security issues
+-   fix misspelling in footer "Tushkahomma" to "Tuskahomma"
 
 ## v3.3.1
 
