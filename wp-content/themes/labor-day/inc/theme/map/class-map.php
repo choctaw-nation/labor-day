@@ -31,7 +31,7 @@ class Map extends Map_Constructor {
 		foreach ( $this->buildings as $building ) {
 			$src        = $this->map_uri . "/buildings/{$building['name']}.webp";
 			$id         = empty( $building['id'] ) ? $building['name'] : $building['id'];
-			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings' />";
+			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings' alt='image of {$building['name']}'/>";
 		}
 		return $buildings;
 	}
