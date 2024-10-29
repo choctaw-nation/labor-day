@@ -1,0 +1,8 @@
+<svg class="map-legend" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"> 
+  <g class="map-legend__first-aid">
+    <path class="cls-2" d="M75,121.98c25.95,0,46.98-21.03,46.98-46.98s-21.04-46.98-46.98-46.98-46.98,21.03-46.98,46.98,21.03,46.98,46.98,46.98"/>
+    <circle class="cls-1" cx="75" cy="75" r="46.98"/>
+    <rect class="cls-3" x="43.7" y="65.61" width="62.6" height="18.79"/>
+    <rect class="cls-3" x="65.61" y="43.7" width="18.79" height="62.6"/>
+  </g>
+</svg>

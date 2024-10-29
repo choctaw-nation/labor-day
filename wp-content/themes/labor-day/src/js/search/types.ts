@@ -18,6 +18,7 @@ export interface PrettyEventData {
 	link: string;
 	title: string;
 	description: string;
+	brief_description: string;
 	info: EventInfo;
 	featured_image?: FeaturedImage | null;
 	locations?: WP_Term[];

@@ -51,8 +51,8 @@ function App() {
 			).flat();
 			dispatch( { type: 'updatePosts', payload: sortedEvents } );
 			dispatch( { type: 'setFilters', payload: data } );
+			dispatch( { type: 'isLoading', payload: false } );
 		} )();
-		dispatch( { type: 'isLoading', payload: false } );
 		if ( window.AOS ) {
 			window.AOS.refresh();
 		}
