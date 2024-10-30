@@ -17,10 +17,10 @@ class Map extends Map_Constructor {
 
 	/** Generates the markup for the map */
 	public function get_the_map(): string {
-		$markup  = "<img class='map__base' src='{$this->base}'/>";
+		$markup  = "<img class='map__base' src='{$this->base}' alt='Image of Maps base' />";
 		$markup .= $this->zones;
 		$markup .= $this->get_the_buildings();
-		$markup .= "<img class='map__base--buildings' src='{$this->misc_buildings}'/>";
+		$markup .= "<img class='map__base--buildings' src='{$this->misc_buildings}' alt='image of miscellaneous building' />";
 		$markup .= $this->icons_areas_labels;
 		return $markup;
 	}
