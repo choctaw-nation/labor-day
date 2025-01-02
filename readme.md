@@ -4,6 +4,12 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v3.3.7
+
+-   Bring up compat with WP 6.7.1
+-   Update npm packages
+-   Eagerly load hero images and hide them from screen readers
+
 ## v3.3.6
 
 -   added alt base map image and miscellaneous image.
