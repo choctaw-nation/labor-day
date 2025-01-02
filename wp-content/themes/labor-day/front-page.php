@@ -19,7 +19,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 ?>
 <main class="site-content">
 	<section class='w-100 position-relative hero d-flex align-items-center py-5' id='hero'>
-		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover hero-image' ); ?>
+		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover hero-image', false, true ); ?>
 		<div class="bg-dark bg-opacity-50 position-absolute top-0 w-100 h-100 z-1"></div>
 		<div class="container position-relative z-2">
 			<div class="row">

@@ -64,10 +64,15 @@ class Image {
 	 * Generates the img element
 	 *
 	 * @param string $img_class the class to add
+	 * @param bool   $is_lazy whether to lazy load the image
+	 * @param bool   $is_hidden whether to hide the image
 	 * @return string the HTML
 	 */
-	public function get_the_image( string $img_class = '' ): string {
-		$markup = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' alt='{$this->alt}' loading='lazy' />";
+	public function get_the_image( string $img_class = '', bool $is_lazy = true, bool $is_hidden = false ): string {
+		$markup  = "<img class='{$img_class}' src='{$this->src}' srcset='{$this->srcset}' ";
+		$markup .= $is_lazy ? 'loading="lazy"' : 'loading="eager" data-spai-eager';
+		$markup .= $is_hidden ? ' alt="" aria-hidden="true"' : " alt='{$this->alt}'";
+		$markup .= ' />';
 		return $markup;
 	}
 
@@ -75,8 +80,10 @@ class Image {
 	 * Echoes the Image element
 	 *
 	 * @param string $img_class the html class to give the image
+	 * @param bool   $is_lazy whether to lazy load the image
+	 * @param bool   $is_hidden whether to hide the image
 	 */
-	public function the_image( string $img_class = '' ) {
-		echo $this->get_the_image( $img_class );
+	public function the_image( string $img_class = '', bool $is_lazy = true, bool $is_hidden = false ) {
+		echo $this->get_the_image( $img_class, $is_lazy, $is_hidden );
 	}
 }
