@@ -132,7 +132,7 @@ class Hero extends Generator {
 	 * @return string the HTML
 	 */
 	public function get_the_image( string $img_class = '' ): string {
-		return $this->image->get_the_image( $img_class );
+		return $this->image->get_the_image( $img_class, false, true );
 	}
 
 	/**
