@@ -1,46 +1,14 @@
-@use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-%text-callout {
-	padding: 1rem 0;
-}
-
 .text-callout {
-	@extend %text-callout;
-
-	&--primary {
-		@extend %text-callout;
-		background-color: v.$color-primary--light;
-		padding: 6rem 0;
-	}
-
-	&--secondary {
-		@extend %text-callout;
-		background-color: v.$color-secondary;
-	}
-
-	&__content {
-		figure {
-			align-self: center;
-			@include m.fitMedia(svg);
-		}
-
-		.quote {
-			font-weight: 500;
-
-			&--attribution {
-				font-weight: 400;
-				margin-top: 2rem;
-				margin-left: auto;
-			}
-		}
+	figure {
+		@include m.fitMedia(svg);
 	}
 }
 
 .bg {
 	background-position: center 60%;
 	background-size: cover;
-	opacity: 0.52;
 	mix-blend-mode: multiply;
 	@include m.media-breakpoint-down(md) {
 		top: -80%;

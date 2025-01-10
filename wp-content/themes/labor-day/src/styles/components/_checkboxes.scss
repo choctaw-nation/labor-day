@@ -27,8 +27,8 @@ input[type="checkbox"] {
 
 /* Style the custom checkbox */
 @mixin checkboxColor(
-	$color: v.$color-secondary,
-	$background-color: v.$color-primary--dark
+	$color: var(--bs-secondary),
+	$background-color: var(--bs-primary-dark)
 ) {
 	input[type="checkbox"] {
 		&::before {

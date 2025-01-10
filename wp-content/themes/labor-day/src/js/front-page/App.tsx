@@ -1,6 +1,5 @@
 import '../../styles/pages/front-page.scss';
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import CountdownTimer from './Countdown';
 import { newSlider } from '../swiper';
 
@@ -89,7 +88,11 @@ function CountdownApp() {
 		return () => clearInterval( intervalId );
 	}, [] );
 
-	if ( Object.values( remainingTime ).every( ( val ) => val <= 0 ) ) {
+	if (
+		Object.values( remainingTime ).every(
+			( val ) => ( val as number ) <= 0
+		)
+	) {
 		return null;
 	} else {
 		return <CountdownTimer remainingTime={ remainingTime } />;
