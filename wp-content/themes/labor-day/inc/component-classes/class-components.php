@@ -76,7 +76,7 @@ class Components {
 		$default = array(
 			'text'        => 'Learn More',
 			'link'        => '',
-			'html_class'  => 'btn__primary--fill',
+			'html_class'  => 'btn btn-primary',
 			'is_external' => false,
 		);
 		$options = array_merge( $default, $options );
@@ -86,7 +86,7 @@ class Components {
 		if ( empty( $link ) ) {
 			$markup = "<button class='{$html_class}'>{$text}</button>";
 		} else {
-			$markup = ( $is_external ) ? "<a href='{$link}' target='_blank' rel='noopener noreferrer' class='cta__btn {$html_class}'>{$text}</a>" : "<a href='{$link}' class='{$html_class}'>{$text}</a>";
+			$markup = ( $is_external ) ? "<a href='{$link}' target='_blank' rel='noopener noreferrer' class=' {$html_class}'>{$text}</a>" : "<a href='{$link}' class='{$html_class}'>{$text}</a>";
 		}
 
 		if ( $echo ) {
