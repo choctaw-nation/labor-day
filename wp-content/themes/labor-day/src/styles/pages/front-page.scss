@@ -12,9 +12,7 @@
 
 .countdown {
 	&__container {
-		display: grid;
 		grid-template-columns: repeat(auto-fit, 15rem);
-		justify-content: space-evenly;
 	}
 
 	&__days {
@@ -55,82 +53,5 @@
 	@include m.fitMedia(svg);
 	@include m.media-breakpoint-down(lg) {
 		width: 50%;
-	}
-}
-
-#entertainment {
-	.featured-event {
-		&__headline {
-			color: var(--color-primary--dark);
-		}
-
-		&__title {
-			color: v.$color-primary;
-		}
-
-		&__start-time {
-			font-size: 2.4rem;
-			font-weight: 700;
-			color: v.$color-grey;
-			&:hover {
-				color: v.$color-grey;
-			}
-		}
-	}
-
-	.swiper {
-		&-slide {
-			max-height: 80rem;
-			position: relative;
-			background-position: center;
-			background-size: cover;
-			background-repeat: no-repeat;
-			aspect-ratio: 9 / 16;
-		}
-
-		a {
-			height: 100%;
-			@include m.displayFlex(column);
-			background-image: linear-gradient(
-				to bottom,
-				transparent 50%,
-				v.$color-primary--dark 90%
-			);
-			@include m.media-breakpoint-only(md) {
-				background-image: linear-gradient(
-					to bottom,
-					transparent 20%,
-					v.$color-primary--dark 90%
-				);
-			}
-		}
-
-		&__slide-content {
-			margin: auto auto 2rem 2rem;
-			color: white;
-			z-index: 2;
-			font-size: 1.35em;
-
-			@include m.media-breakpoint-only(md) {
-				margin: auto auto 1rem 1rem;
-			}
-			&--title {
-				font-weight: 700;
-			}
-		}
-	}
-
-	.swiper-button-prev,
-	.swiper-button-next {
-		color: v.$color-primary;
-		position: relative;
-	}
-}
-
-#vendors {
-	.swiper-button-prev,
-	.swiper-button-next {
-		color: white;
-		position: relative;
 	}
 }

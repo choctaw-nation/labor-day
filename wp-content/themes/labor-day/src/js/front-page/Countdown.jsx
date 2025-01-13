@@ -5,7 +5,7 @@ export default function CountdownTimer( { remainingTime } ) {
 		return '';
 	} else {
 		return (
-			<div className="countdown__container border-top border-5 border-white fs-2">
+			<div className="countdown__container d-grid justify-content-evenly border-top border-5 border-white fs-2">
 				{ remainingTime.days === 0 ? (
 					''
 				) : (
