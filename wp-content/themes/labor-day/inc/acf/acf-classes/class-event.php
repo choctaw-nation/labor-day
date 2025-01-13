@@ -8,6 +8,8 @@
 
 namespace ChoctawNation\ACF;
 
+use DateTime;
+
 /**
  * The class for creating event objects
  */
@@ -134,6 +136,38 @@ class Event {
 	 */
 	public function the_day(): void {
 		echo $this->get_the_day();
+	}
+
+	/**
+	 * Returns the event date
+	 *
+	 * @param string $format the date format. Default format is 'M j l' or 'Sep 1 Sunday'
+	 * @return string
+	 */
+	public function get_the_date( string $format = 'M j l' ): string {
+		$labor_day_dates = get_field( 'labor_day_dates', 'options' );
+		$date_map        = array(
+			'Friday'   => $labor_day_dates['friday'],
+			'Saturday' => $labor_day_dates['saturday'],
+			'Sunday'   => $labor_day_dates['sunday'],
+		);
+		if ( array_key_exists( $this->get_the_day(), $date_map ) ) {
+			$date = $date_map[ $this->get_the_day() ];
+		} else {
+			$date = '';
+		}
+		$date_string = new DateTime( $date );
+		return $date_string->format( $format );
+	}
+
+	/**
+	 * Echoes the event date
+	 *
+	 * @param string $format the date format. Default format is 'M j l' or 'Sep 1 Sunday'
+	 * @return void
+	 */
+	public function the_date( string $format = 'M j l' ): void {
+		echo $this->get_the_date( $format );
 	}
 
 	/**
