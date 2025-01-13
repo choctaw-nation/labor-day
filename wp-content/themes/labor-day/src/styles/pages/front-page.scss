@@ -1,15 +1,9 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 @use "../components/slider";
-// @use "../components/subscribe";
-// @use "../components/subscribe-modal";
 
 .hero {
-	min-height: 60rem;
-
-	.headline {
-		font-size: 4em;
-	}
+	min-height: 37.5rem;
 
 	.bg-opacity-50 {
 		mix-blend-mode: multiply;
@@ -17,21 +11,6 @@
 }
 
 .countdown {
-	a {
-		margin-top: 2rem;
-		font-size: 1.2em;
-
-		@include m.media-breakpoint-down(lg) {
-			font-size: 1em;
-		}
-	}
-
-	.label {
-		font-size: 3rem;
-		font-weight: 700;
-		text-transform: uppercase;
-	}
-
 	&__container {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 15rem);

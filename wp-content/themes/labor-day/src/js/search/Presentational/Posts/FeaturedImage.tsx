@@ -12,11 +12,11 @@ export default function FeaturedImage( {
 	const { altText, srcset, src } = featuredImage;
 
 	return (
-		<div className="cno-event__image col-xl-4 col-xxl-3">
+		<div className="cno-event__image col-xl-4 col-xxl-3 m-0 p-lg-0">
 			<figure className="ratio ratio-16x9 h-100">
 				<img
 					src={ src }
-					className="wp-post-image object-fit-cover w-100 h-100"
+					className="object-fit-cover w-100 h-100"
 					alt={ altText }
 					decoding="async"
 					srcSet={ srcset }

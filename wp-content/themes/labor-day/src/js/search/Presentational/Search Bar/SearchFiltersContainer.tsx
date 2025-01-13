@@ -25,11 +25,11 @@ export default function SearchFiltersContainer( {
 		'true' === window?.operationalHours?.showOperationalHours;
 	const { showFilters, setShowFilters, windowWidth } = useShowFilters();
 	return (
-		<div className="cno-event-search__filters">
-			<div className="cno-event-search__filters--header">
-				<h3 className="cno-event-search__filters--title">Filters</h3>
+		<div className="d-flex flex-column row-gap-2 mt-3">
+			<div className="d-grid gap-3 d-md-flex flex-wrap">
+				<h3 className="text-white m-0">Filters</h3>
 				<button
-					className="btn btn-secondary"
+					className="btn btn-secondary w-fit"
 					onClick={ () => {
 						setShowFilters( ! showFilters );
 					} }
@@ -38,7 +38,7 @@ export default function SearchFiltersContainer( {
 				</button>
 				{ initialState.selectedFilters !== selectedFilters && (
 					<button
-						className="btn btn-outline-secondary"
+						className="btn btn-outline-secondary w-fit"
 						onClick={ () => {
 							dispatch( { type: 'resetSelectedFilters' } );
 						} }
@@ -48,7 +48,7 @@ export default function SearchFiltersContainer( {
 				) }
 				{ windowWidth > 767 && canShowOperationalHours && (
 					<button
-						className="btn btn-secondary"
+						className="btn btn-secondary w-fit"
 						data-bs-toggle="modal"
 						data-bs-target="#hoursModal"
 					>

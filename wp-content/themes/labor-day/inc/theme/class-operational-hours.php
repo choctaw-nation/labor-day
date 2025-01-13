@@ -58,7 +58,7 @@ class Operational_Hours {
 	 * @return void
 	 */
 	public function list_the_hours() {
-		echo "<ul class='hours-list'>";
+		echo "<ul class='hours-list list-unstyled m-0 p-0'>";
 		$markup  = '';
 		$markup .= $this->set_the_rv_hours( $this->rv_hours_title, $this->rv_date_times );
 		foreach ( $this->operations as $operation ) {
@@ -75,9 +75,9 @@ class Operational_Hours {
 	 * @return string the HTML
 	 */
 	private function set_the_rv_hours( string $title, array $div_elements ): string {
-		$markup = "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$title}</span>";
+		$markup = "<li class='hours-list-item p-2 p-lg-4'><span class='hours-list-item__title h4 fs-5'>{$title}</span>";
 		foreach ( $div_elements as $block ) {
-			$markup .= "<div class='hours-list-item__day'><b>{$block['label']}:</b>&nbsp;<span class='hours-list-item__time--open'>{$block['open']}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$block['close']}</span></div>";
+			$markup .= "<div class='hours-list-item__day fw-bold'>{$block['label']}:&nbsp;<span class='hours-list-item__time--open fw-normal'>{$block['open']}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$block['close']}</span></div>";
 		}
 		$markup .= '</li>';
 		return $markup;
@@ -93,11 +93,11 @@ class Operational_Hours {
 		$operation_title = esc_textarea( $operation['operation_title'] );
 		$is_open         = $this->get_open_days( $operation );
 		$markup          = '';
-		$markup         .= "<li class='hours-list__item hours-list-item'><span class='hours-list-item__title h4'>{$operation_title}</span>";
+		$markup         .= "<li class='hours-list-item p-2 p-lg-4'><span class='hours-list-item__title h4 fs-5'>{$operation_title}</span>";
 		$combined_hours  = '';
 		if ( $is_open['friday'] ) {
 			$days            = array( 'Friday' );
-			$combined_hours .= "<span class='hours-list-item__time--open'>{$operation['friday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['friday']["close"]}</span>";
+			$combined_hours .= "<span class='hours-list-item__time--open fw-normal'>{$operation['friday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['friday']["close"]}</span>";
 		}
 		if ( $is_open['saturday'] ) {
 			if ( $operation['saturday']['same_as_previous'] ) {
@@ -106,19 +106,19 @@ class Operational_Hours {
 				if ( false === $is_open['friday'] ) {
 					$days = array( 'Saturday' );
 				}
-				$sat_hours = "<div class='hours-list-item__day--saturday'><b>Saturday:</b> <span class='hours-list-item__time--open'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['saturday']["close"]}</span>";
+				$sat_hours = "<div class='hours-list-item__day--saturday fw-bold'>Saturday: <span class='hours-list-item__time--open fw-normal'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['saturday']["close"]}</span>";
 			}
 		}
 		if ( $is_open['sunday'] ) {
 			if ( $operation['sunday']['same_as_previous'] ) {
 				array_push( $days, 'Sunday' );
 			} else {
-				$sun_hours = "<div class='hours-list-item__day--sunday'><b>Sunday:</b> <span class='hours-list-item__time--open'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close'>{$operation['sunday']["close"]}</span>";
+				$sun_hours = "<div class='hours-list-item__day--sunday fw-bold'>Sunday: <span class='hours-list-item__time--open fw-normal'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['sunday']["close"]}</span>";
 			}
 		}
 		if ( ! empty( $combined_hours ) ) {
 			$day_label = join( ', ', $days );
-			$markup   .= "<div class='hours-list-item__day'><b>{$day_label}:</b> " . $combined_hours;
+			$markup   .= "<div class='hours-list-item__day fw-bold'>{$day_label}: " . $combined_hours;
 			$markup   .= '</div>';
 		}
 		if ( ! empty( $sat_hours ) ) {

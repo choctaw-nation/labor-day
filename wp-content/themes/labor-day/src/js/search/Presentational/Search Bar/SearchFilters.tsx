@@ -17,7 +17,7 @@ export default function SearchFilters( {
 	dispatch: Function;
 } ) {
 	return (
-		<div className="cno-event-search-filters">
+		<div className="row gx-0 gap-2 align-items-center">
 			{ filters.map( ( filter ) => (
 				<SearchFilter
 					filter={ filter }
@@ -36,43 +36,41 @@ function SearchFilter( { filter, dispatch, selectedFilters } ) {
 	} = filter;
 
 	return (
-		<div className="cno-event-search-filters__container">
-			<div className="cno-event-search-filters__filter-container">
-				<div className="dropdown">
-					<button
-						className="btn btn-outline-secondary dropdown-toggle"
-						id={ `${ filterKeys[ name ] }-dropdown` }
-						data-bs-toggle="dropdown"
-						aria-haspopup="true"
-						aria-expanded="false"
-					>
-						{ selectedFilters[ name ] }
-					</button>
-					<ul
-						className="dropdown-menu"
-						aria-labelledby={ `${ filterKeys[ name ] }-dropdown` }
-					>
-						{ filters.map( ( filter, i ) => {
-							return (
-								<li key={ i }>
-									<button
-										className="dropdown-item fs-6 w-100"
-										onClick={ () =>
-											dispatch( {
-												type: 'selectFilter',
-												payload: {
-													[ name ]: filter.name,
-												},
-											} )
-										}
-									>
-										{ filter.name }
-									</button>
-								</li>
-							);
-						} ) }
-					</ul>
-				</div>
+		<div className="cno-event-search-filters__container w-auto">
+			<div className="dropdown">
+				<button
+					className="btn btn-secondary dropdown-toggle w-auto text-capitalize"
+					id={ `${ filterKeys[ name ] }-dropdown` }
+					data-bs-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
+					{ selectedFilters[ name ] }
+				</button>
+				<ul
+					className="dropdown-menu"
+					aria-labelledby={ `${ filterKeys[ name ] }-dropdown` }
+				>
+					{ filters.map( ( filter, i ) => {
+						return (
+							<li key={ i }>
+								<button
+									className="dropdown-item fs-6 w-100"
+									onClick={ () =>
+										dispatch( {
+											type: 'selectFilter',
+											payload: {
+												[ name ]: filter.name,
+											},
+										} )
+									}
+								>
+									{ filter.name }
+								</button>
+							</li>
+						);
+					} ) }
+				</ul>
 			</div>
 		</div>
 	);

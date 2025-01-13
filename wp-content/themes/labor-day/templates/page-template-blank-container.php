@@ -10,19 +10,11 @@ use ChoctawNation\Content\Sections;
 
 $content = new Sections();
 get_header();
+$background_image_url = get_field( 'hero' )['background_image'];
+$hero_section_class   = 'w-100' . ( $background_image_url ? ' hero--image' : ' text-bg-tertiary py-4' );
 ?>
 <main class="site-content <?php echo strtolower( $post->post_title ); ?>">
-	<?php $background_image_url = get_field( 'hero' )['background_image']; ?>
-	<?php if ( $background_image_url ) : ?>
-	<section class='w-100 hero--image' id='hero' style="background-image:url('<?php echo esc_url( $background_image_url ); ?>')"></section>
-	<div class="container my-5 py-5">
-		<?php the_title( "<h1 class='headline'>", '</h1>' ); ?>
-		<span class="subheadline mb-5">
-			<?php echo empty( get_field( 'hero' )['subheadline'] ) ? acf_get_field( 'hero' )['sub_fields'][0]['default_value'] : get_field( 'hero' )['subheadline']; ?>
-		</span>
-	</div>
-	<?php else : ?>
-	<section class='w-100 hero--color' id='hero' style='background-color:var(--color-tertiary);'>
+	<section class="<?php echo $hero_section_class; ?>" id="hero" <?php echo $background_image_url ? "style='background-image:url('{$background_image_url}')" : ''; ?>>
 		<div class="container text-center">
 			<?php the_title( "<h1 class='headline'>", '</h1>' ); ?>
 			<span class="subheadline mb-5">
@@ -30,9 +22,8 @@ get_header();
 			</span>
 		</div>
 	</section>
-	<?php endif; ?>
 	<article class="container my-5">
-		<?php echo acf_esc_html( get_field( 'acf_the_content' ) ); ?>
+		<?php the_field( 'acf_the_content' ); ?>
 	</article>
 </main>
 <?php

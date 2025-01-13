@@ -1,75 +1,27 @@
 @use "../abstracts/mixins" as m;
 
-#copyright {
-	background-color: #333;
-}
+footer {
+	--bs-link-color-rgb: 255, 255, 255;
 
-.footer {
-	background-color: var(--color-primary--dark);
-
-	.logo-image {
-		@include m.fitMedia(img);
-		height: 20rem;
-	}
-}
-
-.footer-navbar {
 	.menu-item {
-		font-size: 1.2em;
-		line-height: 1.35em;
-		margin: 0 1rem;
-
-		a {
-			color: white;
-			transition: color var(--transition--standard);
-		}
-
-		&:hover {
-			a {
-				color: var(--bs-secondary);
-			}
-		}
+		font-size: 1.35rem;
 	}
-}
 
-.socials {
-	.social-icon {
-		svg {
-			color: white;
-			transition: color var(--transition--standard);
-		}
+	:where(.navbar-nav a) {
+		text-decoration: none;
+	}
 
-		&:hover {
-			svg {
-				color: var(--bs-secondary);
-			}
-		}
+	svg {
+		color: inherit;
+		transition: color var(--transition-standard);
 	}
 }
 
 .footer-callout {
 	&__bg {
-		background-color: var(--bs-tertiary);
-		top: 20%;
-		bottom: 20%;
-		left: 0;
-		right: 0;
-
-		@include m.media-breakpoint-down(lg) {
-			top: 0;
-			bottom: 0;
-		}
-	}
-
-	&__image {
-		max-height: 50rem;
-		aspect-ratio: 805 / 537;
-		@include m.fitMedia;
-	}
-
-	&__text {
-		*:not(a) {
-			color: var(--color-primary--dark);
+		@include m.media-breakpoint-up(lg) {
+			top: 20%;
+			bottom: 20%;
 		}
 	}
 }

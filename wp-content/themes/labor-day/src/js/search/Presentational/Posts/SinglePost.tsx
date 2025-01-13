@@ -16,9 +16,17 @@ const time = new TimeHandler();
 
 /** Handles extra classes on top of standard classes. */
 function getTheClass( extendedClass: string | undefined ): string {
+	const defaultClasses = [
+		'cno-event',
+		'row',
+		'gx-0',
+		'gap-lg-3',
+		'animate__animated',
+		'animate__fadeIn',
+	];
 	return extendedClass
-		? `${ extendedClass } cno-event row animate__animated animate__fadeIn`
-		: 'cno-event row animate__animated animate__fadeIn';
+		? `${ extendedClass } ${ defaultClasses.join( ' ' ) }`
+		: defaultClasses.join( ' ' );
 }
 
 export default function SinglePost( {
@@ -51,13 +59,29 @@ export default function SinglePost( {
 }
 
 function EventTimeBanner( { info }: { info: EventInfo } ): React.Element {
-	const asideClass: string =
-		'Saturday' === info.day
-			? `cno-event__time px-xl-0 col-xl-1 cno-event__time--${ info.day.toLowerCase() }`
-			: `cno-event__time col-xl-1 cno-event__time--${ info.day.toLowerCase() }`;
 	const month = 'Sunday' === info.day ? 'SEP' : 'AUG';
+	const bannerBg = {
+		friday: 'bg-primary',
+		saturday: 'bg-secondary',
+		sunday: 'bg-primary-light',
+	};
+	const asideClass = [
+		'cno-event__time',
+		'px-xl-0',
+		'col-xl-1',
+		'mb-0',
+		'fw-bold',
+		'text-center',
+		'text-white',
+		'd-flex',
+		'flex-column',
+		'align-items-stretch',
+		'flex-wrap',
+		'lh-sm',
+	];
+	asideClass.push( bannerBg[ info.day.toLowerCase() ] );
 	return (
-		<aside className={ asideClass }>
+		<aside className={ asideClass.join( ' ' ) }>
 			<div className="cno-event__time--date">
 				<span className="cno-event__time--month">{ month }</span>
 				<span className="cno-event__time--day">
@@ -81,13 +105,13 @@ function CNOEventInfo( { data, dispatch, children } ) {
 	const { locations, title, link, brief_description } =
 		data as PrettyEventData;
 	return (
-		<div className="cno-event__info col-xl-6 col-xxl-7">
+		<div className="col flex-lg-grow-1 d-flex flex-column flex-wrap order-3 order-lg-0">
 			<h2
-				className="cno-event__info--title headline"
+				className="text-gray font-pill-gothic mb-0"
 				dangerouslySetInnerHTML={ { __html: title } }
 			/>
 			<p
-				className="cno-event__info--description"
+				className="mb-0"
 				dangerouslySetInnerHTML={ { __html: brief_description } }
 			/>
 			<div className="cno-event__buttons mt-auto d-flex align-items-stretch gap-3 position-relative">
