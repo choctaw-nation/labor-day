@@ -15,7 +15,7 @@ $hero        = new Hero( $post->ID, get_field( 'hero' ) );
 <section id="hero" class="hero p-0 position-relative">
 	<?php
 	if ( $hero->has_background_image ) {
-		$hero->the_image( 'w-100 hero-image position-relative object-fit-cover h-100 mx-auto my-0' );
+		$hero->the_image( 'w-100 hero-image position-relative object-fit-cover h-100 mx-auto my-0 d-block' );
 	}
 	?>
 	<div class="container align-self-center position-relative py-5">
