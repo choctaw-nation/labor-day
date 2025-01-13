@@ -27,11 +27,14 @@ export default function ResultsContainer( {
 	dispatch: Function;
 } ) {
 	const emptyFilters = initialState.selectedFilters === selectedFilters;
-	const classList = isSearch
-		? 'cno-events cno-events__search-results'
-		: 'cno-events';
+
+	const classList = [ 'cno-events', 'd-flex', 'flex-column', 'row-gap-5' ];
+	if ( isSearch ) {
+		classList.push( 'cno-events__search-results' );
+	}
+
 	return (
-		<section className={ classList }>
+		<section className={ classList.join( ' ' ) }>
 			{ posts.map( ( post ) => {
 				if (
 					emptyFilters ||

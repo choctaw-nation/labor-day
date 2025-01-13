@@ -94,7 +94,7 @@ function App() {
 
 	if ( false === canGetPosts ) {
 		return (
-			<div className="container">
+			<div className="container py-5">
 				<p>
 					Next year's events will be posted here. Check back
 					periodically for updates.
@@ -112,7 +112,7 @@ function App() {
 						filters={ filters }
 					/>
 				</SearchBarContainer>
-				<div className="container">
+				<div className="container my-5 gx-0">
 					{ isLoading && <LoadingSpinner /> }
 					{ ! isLoading && searchResults.length > 0 && (
 						<>

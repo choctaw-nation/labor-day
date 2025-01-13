@@ -47,7 +47,7 @@ export const initialState: searchAppState = {
 	},
 	canGetPosts: ( () => {
 		const now = new Date();
-		const end = new Date( 'September 2, 2024' );
+		const end = new Date( 'September 1, 2025' );
 		return now < end;
 	} )(),
 };

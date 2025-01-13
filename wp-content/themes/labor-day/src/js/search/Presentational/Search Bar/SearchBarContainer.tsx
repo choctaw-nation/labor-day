@@ -6,9 +6,9 @@ interface props {
 
 export default function SearchBarContainer( { children }: props ) {
 	return (
-		<section className="cno-event-search">
+		<section className="cno-event-search py-5 text-bg-primary">
 			<div className="container">
-				<h2 className="cno-event-search__title">Search Events</h2>
+				<h2 className="text-white">Search Events</h2>
 				{ children }
 			</div>
 		</section>

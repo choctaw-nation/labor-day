@@ -4,6 +4,10 @@
 	font-family: var(--font-body);
 }
 
+.font-pill-gothic {
+	font-family: var(--font-pill-gothic);
+}
+
 .hide {
 	display: none !important;
 	visibility: hidden !important;
@@ -28,4 +32,8 @@
 
 .inset-0 {
 	inset: 0;
+}
+
+.w-fit {
+	width: fit-content;
 }
