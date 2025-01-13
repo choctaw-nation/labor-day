@@ -4,6 +4,14 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v4.0.1
+
+-   Add `d-block` to hero images
+
+## v4.0.0
+
+-   Update CSS to use Bootstrap instead of custom css
+
 ## v3.3.7
 
 -   Bring up compat with WP 6.7.1
