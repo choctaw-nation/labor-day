@@ -6,7 +6,6 @@
  * @package ChoctawNation
  */
 
-// $additional_info = acf_esc_html( the_field( 'additional_information' ) );
 get_header();
 ?>
 <div class="container">

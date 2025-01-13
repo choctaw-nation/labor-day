@@ -47,7 +47,7 @@ if ( $has_weather_alert ) {
 				<a href="<?php echo esc_url( site_url() ); ?>" class="logo w-100 h-100" aria-label='to Home Page'>
 					<figure class="logo-image d-inline-block mb-0 p-3">
 						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="lazy"
-							 class="w-100 h-100 object-fit-contain">
+							class="w-100 h-100 object-fit-contain">
 					</figure>
 				</a>
 			</div>
@@ -85,7 +85,7 @@ if ( $has_weather_alert ) {
 		<div class="row justify-content-center text-center">
 			<div class="col-auto">
 				&copy; <?php echo date( 'Y' ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date ?> <a href="https://www.choctawnation.com" target="_blank"
-				   rel="noopener noreferrer">Choctaw Nation of Oklahoma</a>. All Rights
+					rel="noopener noreferrer">Choctaw Nation of Oklahoma</a>. All Rights
 				Reserved.
 			</div>
 		</div>
