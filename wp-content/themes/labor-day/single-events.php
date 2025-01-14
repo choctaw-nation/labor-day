@@ -6,7 +6,7 @@
  * @subpackage Events
  */
 
-cno_enqueue_page_script( 'singleEvents' );
+wp_enqueue_script( 'add-to-schedule' );
 get_header();
 extract( get_field( 'info' ) );
 ?>

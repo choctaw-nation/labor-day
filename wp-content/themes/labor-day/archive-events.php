@@ -7,7 +7,7 @@
  */
 
 $taxonomies = get_object_taxonomies( 'events', 'objects' );
-cno_enqueue_page_assets( 'search' );
+wp_enqueue_script( 'add-to-schedule' );
 $show_operational_hours = get_field( 'show_operational_hours', 'options' );
 wp_localize_script( 'search', 'operationalHours', array( 'showOperationalHours' => true === $show_operational_hours ? 'true' : 'false' ) );
 get_header();

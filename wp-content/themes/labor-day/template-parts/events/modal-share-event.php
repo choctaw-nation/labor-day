@@ -5,9 +5,13 @@
  * @subpackage Events
  */
 
+if ( ! defined( 'FACEBOOK_APP_ID' ) ) {
+	return;
+}
 $shareable_url   = get_the_permalink();
 $redirect_url    = home_url( '/events' );
-$facebook_app_id = FACEBOOK_APP_ID;
+$facebook_app_id = empty( FACEBOOK_APP_ID ) ? null : FACEBOOK_APP_ID;
+
 
 ?>
 <div class="modal fade" id="shareEventModal" tabindex="-1" aria-labelledby="shareEventModalLabel" aria-hidden="true">

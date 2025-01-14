@@ -150,6 +150,15 @@ class Theme_Init {
 		);
 
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
+
+		$add_to_schedule = require_once get_template_directory() . '/dist/modules/add-to-schedule.asset.php';
+		wp_register_script(
+			'add-to-schedule',
+			get_template_directory_uri() . '/dist/modules/add-to-schedule.js',
+			$add_to_schedule['dependencies'],
+			$add_to_schedule['version'],
+			true
+		);
 	}
 
 	/**
