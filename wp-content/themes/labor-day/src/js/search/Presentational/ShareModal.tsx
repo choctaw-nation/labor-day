@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../../styles/components/_share-modal.scss';
+import React from '@wordpress/element';
+
 import { searchAppState } from '../types';
 declare const cnoSiteData: { rootUrl: string };
 

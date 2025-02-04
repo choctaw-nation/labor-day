@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '@wordpress/element';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faCircleInfo,
