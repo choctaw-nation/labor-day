@@ -1,3 +1,5 @@
+import React from '@wordpress/element';
+
 export default function CountdownContainer( { type, data, delay } ) {
 	return (
 		<div

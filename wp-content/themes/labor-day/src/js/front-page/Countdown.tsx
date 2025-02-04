@@ -1,3 +1,4 @@
+import React from '@wordpress/element';
 import CountdownContainer from './CountdownContainer';
 
 export default function CountdownTimer( { remainingTime } ) {
