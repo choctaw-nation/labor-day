@@ -17,12 +17,6 @@ $init_theme = new Theme_Init();
  * ==============================================================
  */
 
-/** Register Service Worker for PWA Capability */
-function register_service_worker() {
-	wp_enqueue_script( 'service-worker', '/service-worker.js', array(), '1.0.1', false );
-}
-add_action( 'wp_enqueue_scripts', 'register_service_worker' );
-
 /** Make Gravity Forms available to Editor role **/
 function add_gf_cap() {
 	$role = get_role( 'editor' );
