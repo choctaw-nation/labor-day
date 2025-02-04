@@ -111,7 +111,10 @@ export default class View {
 			'position-fixed',
 			'text-capitalize',
 			'rounded-4',
-			'fs-6'
+			'fs-6',
+			'd-flex',
+			'gap-2',
+			'align-items-center'
 		);
 		button.setAttribute( 'href', '/my-schedule' );
 		button.innerHTML = `<svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule`;
