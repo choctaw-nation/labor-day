@@ -1,8 +1,8 @@
 import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
-import { model as SearchModel } from '../Model';
+import { model as SearchModel } from './Model';
 
-import { ExcerptObject, PrettyEventData, SortedEventsObject } from '../types';
+import { ExcerptObject, PrettyEventData, SortedEventsObject } from './types';
 
 declare const cnoSiteData: {
 	rootUrl: string;
@@ -10,15 +10,6 @@ declare const cnoSiteData: {
 };
 
 export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
-
-export const fuzzySearchKeys = {
-	keys: [
-		{ name: 'title', weight: 4 },
-		{ name: 'event_info.description', weight: 2 },
-		{ name: 'type.name', weight: 1 },
-		{ name: 'locations.name', weight: 1 },
-	],
-};
 
 /**
  * Creates an excerpt from a string.

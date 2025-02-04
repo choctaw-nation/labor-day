@@ -1,4 +1,4 @@
-import { rootUrl } from './Utilities/Utilities';
+import { rootUrl } from './Utilities';
 import { PrettyEventData } from './types';
 
 class Model {

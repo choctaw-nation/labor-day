@@ -1,4 +1,4 @@
-import { EventInfo } from '../types';
+import { EventInfo } from './types';
 
 /**
  * Handles time formatting

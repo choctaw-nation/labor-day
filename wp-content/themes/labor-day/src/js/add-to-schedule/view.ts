@@ -88,7 +88,7 @@ export default class View {
 	 * @param {string} response - A string representing the response
 	 * @returns {string} A response message based on the response string
 	 */
-	private getResponseMessage( response: string ): string {
+	getResponseMessage( response: string ): string {
 		let message = '';
 		if ( 'success' === response ) {
 			message = `Added to your schedule!`;

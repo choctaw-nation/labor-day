@@ -16,7 +16,7 @@ export function LocationButton( {
 } ) {
 	return (
 		<a
-			className="cno-event__buttons--location"
+			className="cno-event__buttons--location text-decoration-none"
 			href={ `${ cnoSiteData.rootUrl }/event_location/${ slug }` }
 		>
 			<FontAwesomeIcon icon={ faLocationDot } />

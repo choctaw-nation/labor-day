@@ -1,17 +1,19 @@
 // 3rd Party
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
 
 // Types
-import { SortedEventsObject, PrettyEventData } from '../search/types';
+import { SortedEventsObject, PrettyEventData } from './utilities/types';
 
 // Components
-import EventsDisplay from './EventDisplay';
+import EventsDisplay from './components/EventDisplay';
 import LoadingSpinner from '../spinner';
 
 // Utilities
-import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
-import ShareModal from '../search/Presentational/ShareModal';
+import {
+	getLocalStorageData,
+	getTimeSortedEvents,
+} from './utilities/eventFunctions';
+import ShareModal from './components/ShareModal';
 
 const emptyEventsState: SortedEventsObject = {
 	friday: [],

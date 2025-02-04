@@ -2,15 +2,15 @@
 import React from 'react';
 
 // Types
-import { PrettyEventData, EventInfo } from '../../types';
+import { PrettyEventData, EventInfo } from '../utilities/types';
 
 // Components
 import FeaturedImage from './FeaturedImage';
-import { LocationButton, ShareModalButton } from '../CNOButtons';
+import { LocationButton, ShareModalButton } from '../ui/CNOButtons';
 
 // Utilities
-import { getTheDay } from '../../../my-schedule/calendarFunctions';
-import TimeHandler from '../../Utilities/TimeHandler';
+import { getTheDay } from '../utilities/calendarFunctions';
+import TimeHandler from '../utilities/TimeHandler';
 
 const time = new TimeHandler();
 

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from '@wordpress/element';
 import Model from '../../add-to-schedule/model';
 import View from '../../add-to-schedule/view';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { PrettyEventData } from '../types';
+import { PrettyEventData } from '../utilities/types';
 
 const model = new Model();
 const view = new View();

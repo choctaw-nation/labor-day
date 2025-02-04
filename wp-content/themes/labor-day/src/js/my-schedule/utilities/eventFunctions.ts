@@ -1,5 +1,5 @@
-import { PrettyEventData } from '../search/types';
-import type { SortedEventsObject } from '../search/types';
+import { PrettyEventData } from './types';
+import type { SortedEventsObject } from './types';
 
 function getEvents() {
 	const data = localStorage.getItem( 'schedule' );

@@ -1,4 +1,4 @@
-import { PrettyEventData } from '../search/types';
+import { PrettyEventData } from './types';
 import { format } from 'date-fns';
 
 /** Receives the day and returns the date (number) */

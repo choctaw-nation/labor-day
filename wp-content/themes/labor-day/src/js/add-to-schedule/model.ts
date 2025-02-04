@@ -1,4 +1,7 @@
-import type { SortedEventsObject, PrettyEventData } from '../search/types';
+import type {
+	SortedEventsObject,
+	PrettyEventData,
+} from '../my-schedule/utilities/types';
 declare const cnoSiteData: { rootUrl: string };
 
 export default class Model {
