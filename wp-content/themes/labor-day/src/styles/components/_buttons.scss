@@ -16,31 +16,13 @@
 }
 
 .schedule-button {
-	position: fixed;
 	bottom: 3%;
 	right: 3%;
-	color: var(--bs-primary);
-	padding: 2rem;
-	border-radius: 1rem;
-	background-color: white;
 	z-index: 40;
-	border: 2px solid var(--bs-primary);
-	transition: background-color var(--transition--standard);
-
-	&:hover {
-		background-color: var(--bs-primary);
-		* {
-			color: white;
-		}
-	}
-
-	a {
-		transition: color var(--transition--standard);
-	}
 
 	svg {
 		transition: fill var(--transition--standard);
 		fill: currentColor;
-		width: 3rem;
+		width: 2rem;
 	}
 }

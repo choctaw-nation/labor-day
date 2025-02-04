@@ -8,8 +8,8 @@
 
 ?>
 <?php if ( have_posts() ) : ?>
-<section class="container my-4 d-flex flex-column row-gap-4" id="search-results">
-	<ul class="list-unstyled d-flex flex-column my-0 mx-auto row-gap-4">
+<section class="container my-4 d-flex flex-column row-gap-4">
+	<ul class="list-unstyled d-flex flex-column my-0 mx-auto row-gap-4" id="search-results">
 		<?php
 		while ( have_posts() ) {
 			the_post();

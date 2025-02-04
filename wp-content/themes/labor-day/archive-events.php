@@ -35,6 +35,6 @@ if ( ! is_plugin_active( 'search-filter-pro/search-filter-pro.php' ) ) {
 } else {
 	get_template_part( 'template-parts/events/form', 'search' );
 	echo do_shortcode( '[searchandfilter query="1" action="show-results"]' );
-
 }
+get_template_part( 'template-parts/events/modal', 'share-event' );
 get_footer();
