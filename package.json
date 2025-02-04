@@ -1,6 +1,6 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.0.17",
+	"version": "2.0.18",
 	"description": "Custom WP theme for CNO labor day site",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
@@ -22,14 +22,13 @@
 		"aos": "^2.3.4",
 		"bootstrap": "^5.3.3",
 		"date-fns": "^3.6.0",
-		"fuse.js": "^7.0.0",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
 		"swiper": "^11.2.1"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.8.1",
+		"@wordpress/element": "^6.17.0",
+		"@wordpress/scripts": "^30.10.0",
 		"animate.css": "^4.1.1",
+		"webpack-remove-empty-scripts": "^1.0.4",
 		"wp-types": "^4.66.1"
 	}
 }
