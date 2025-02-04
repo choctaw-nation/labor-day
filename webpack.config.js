@@ -1,9 +1,10 @@
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
+const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
 
 const THEME_NAME = 'labor-day';
 const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
 
-const appNames = [ 'front-page', 'my-schedule', 'search' ];
+const appNames = [ 'front-page', 'my-schedule' ];
 const styleSheets = []; // for scss only
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
 			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
 			'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,
-			'modules/add-to-schedule': `.${ THEME_DIR }/src/js/add-to-schedule/App.js`,
+			'modules/add-to-schedule': `.${ THEME_DIR }/src/js/add-to-schedule/controller.ts`,
 			...addEntries( appNames, 'pages' ),
 			...addEntries( styleSheets, 'styles' ),
 		} ),
@@ -22,6 +23,12 @@ module.exports = {
 			path: __dirname + `${ THEME_DIR }/dist`,
 			filename: `[name].js`,
 		},
+		plugins: [
+			...defaultConfig.plugins,
+			new RemoveEmptyScriptsPlugin( {
+				stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+			} ),
+		],
 	},
 };
 
