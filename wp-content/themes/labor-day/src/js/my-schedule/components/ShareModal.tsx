@@ -1,6 +1,6 @@
 import React from '@wordpress/element';
 
-import { searchAppState } from '../types';
+import type { searchAppState } from '../utilities/types';
 declare const cnoSiteData: { rootUrl: string };
 
 export default function ShareModal( {

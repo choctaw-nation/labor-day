@@ -1,4 +1,3 @@
-import { EventFilters, selectedFilterObject } from './types/eventFilters';
 import { WP_Term } from 'wp-types';
 
 /**

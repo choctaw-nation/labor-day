@@ -11,7 +11,7 @@ export default class Model {
 	 */
 	getSchedule(): SortedEventsObject {
 		const now = new Date();
-		const end = new Date( 'August 31, 2025' );
+		const end = new Date( window.cnoSiteData.laborDayDates.sunday );
 		const initialState: SortedEventsObject = {
 			friday: [],
 			saturday: [],

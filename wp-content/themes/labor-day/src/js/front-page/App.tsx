@@ -61,7 +61,7 @@ function CountdownApp() {
 	} );
 
 	useEffect( () => {
-		const targetDate = new Date( 'August 29, 2025' );
+		const targetDate = new Date( window.cnoSiteData.laborDayDates.friday );
 
 		const intervalId = setInterval( () => {
 			const now = new Date();

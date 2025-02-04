@@ -15,7 +15,7 @@ cno_enqueue_page_assets( 'mySchedule' );
 			'breadcrumb',
 			array(
 				'link' => '/events',
-				'text' => 'All Events',
+				'text' => 'Back to all events',
 			)
 		);
 		?>

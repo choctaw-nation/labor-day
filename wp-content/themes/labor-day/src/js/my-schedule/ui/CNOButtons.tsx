@@ -4,9 +4,32 @@ import {
 	faCircleInfo,
 	faLocationDot,
 	faShare,
+	IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
+interface EventButtonProps {
+	element: 'button' | 'a';
+	href?: string;
+	icon: IconDefinition;
+	onClick: () => void;
+	text: string;
+}
+export default function EventButton( {
+	element,
+	icon,
+	onClick,
+	text,
+	href,
+}: EventButtonProps ) {
+	const Button = element;
+	return (
+		<Button className="cno-event-button" onClick={ onClick } href={ href }>
+			<FontAwesomeIcon icon={ icon } />
+			&nbsp;
+			{ text }
+		</Button>
+	);
+}
 export function LocationButton( {
 	name,
 	slug,
@@ -17,7 +40,7 @@ export function LocationButton( {
 	return (
 		<a
 			className="cno-event__buttons--location text-decoration-none"
-			href={ `${ cnoSiteData.rootUrl }/event_location/${ slug }` }
+			href={ `${ window.cnoSiteData.rootUrl }/event_location/${ slug }` }
 		>
 			<FontAwesomeIcon icon={ faLocationDot } />
 			&nbsp;
@@ -44,20 +67,6 @@ export function RemoveFromSchedule( { removeEvent, eventId, day } ) {
 			} }
 		>
 			&times; Remove Event
-		</button>
-	);
-}
-
-export function ExportToCalendar( { handleClick, eventId } ) {
-	return (
-		<button
-			className="cno-event__buttons--calendar"
-			onClick={ () => {
-				handleClick( eventId );
-			} }
-		>
-			<FontAwesomeIcon icon={ faCalendar } />
-			&nbsp;Export to Calendar
 		</button>
 	);
 }

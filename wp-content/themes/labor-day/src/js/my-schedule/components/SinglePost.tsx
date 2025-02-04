@@ -1,8 +1,6 @@
-// 3rd Party
-import React from 'react';
-
 // Types
-import { PrettyEventData, EventInfo } from '../utilities/types';
+import React, { Dispatch, PropsWithChildren } from 'react';
+import type { PrettyEventData, EventInfo } from '../utilities/types';
 
 // Components
 import FeaturedImage from './FeaturedImage';
@@ -28,19 +26,18 @@ function getTheClass( extendedClass: string | undefined ): string {
 		? `${ extendedClass } ${ defaultClasses.join( ' ' ) }`
 		: defaultClasses.join( ' ' );
 }
-
+interface SinglePostProps {
+	dispatch?: Dispatch< { type: string; payload: {} } >;
+	data: PrettyEventData;
+	triggerModal?: Function;
+	extendedClass?: string;
+}
 export default function SinglePost( {
 	data,
 	extendedClass,
 	children,
 	dispatch,
-}: {
-	dispatch?: Function;
-	data: PrettyEventData;
-	children?: React.Element;
-	triggerModal?: Function;
-	extendedClass?: string;
-} ) {
+}: PropsWithChildren< SinglePostProps > ) {
 	const { info, featured_image } = data;
 
 	return (
@@ -58,7 +55,7 @@ export default function SinglePost( {
 	);
 }
 
-function EventTimeBanner( { info }: { info: EventInfo } ): React.Element {
+function EventTimeBanner( { info }: { info: EventInfo } ) {
 	const month = 'Sunday' === info.day ? 'SEP' : 'AUG';
 	const bannerBg = {
 		friday: 'bg-primary',

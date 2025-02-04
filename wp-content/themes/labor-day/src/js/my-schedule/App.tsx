@@ -1,12 +1,9 @@
 // 3rd Party
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
-
-// Types
-import { SortedEventsObject, PrettyEventData } from './utilities/types';
+import type { SortedEventsObject, PrettyEventData } from './utilities/types';
 
 // Components
 import EventsDisplay from './components/EventDisplay';
-import LoadingSpinner from '../spinner';
 
 // Utilities
 import {
@@ -80,11 +77,7 @@ function App() {
 	}, [ events ] );
 
 	if ( isLoading ) {
-		return (
-			<div className="container">
-				<LoadingSpinner />
-			</div>
-		);
+		return <div className="container"></div>;
 	}
 	if ( emptyEvents ) {
 		return (
@@ -105,11 +98,6 @@ function App() {
 				dispatch={ dispatch }
 				schedule={ events }
 				removeEvent={ removeEvent }
-			/>
-			<ShareModal
-				dispatch={ dispatch }
-				showShareModal={ showShareModal }
-				shareEventObject={ shareEventObject }
 			/>
 		</div>
 	);
