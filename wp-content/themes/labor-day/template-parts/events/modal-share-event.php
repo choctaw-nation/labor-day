@@ -33,7 +33,7 @@ $redirect_url  = home_url( '/events' );
 					</li>
 					<li class="my-3">
 						<a href="<?php echo "sms:?&body=Halito%20(Hello)! I'm going to {$post->post_title} and I thought you'd like to check it out, too! Learn more at {$shareable_url}"; ?>"
-						   target=" _blank" class="share-locations__location--text btn__outline--secondary">
+							target=" _blank" class="share-locations__location--text btn__outline--secondary">
 							<i class="fa-solid fa-comment"></i> Share via
 							SMS
 						</a>

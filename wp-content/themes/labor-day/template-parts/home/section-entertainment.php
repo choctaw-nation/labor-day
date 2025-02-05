@@ -53,7 +53,7 @@ foreach ( $sorted_events as $day => $day_events ) {
 		</div>
 	</div>
 	<?php foreach ( $sorted_events as $day => $day_events ) : ?>
-	<?php
+		<?php
 		if ( empty( $day_events ) ) {
 			continue;
 		}
