@@ -1,7 +1,7 @@
 name: Deploy to WP Engine
 on:
     push:
-        branches: [dev, stg, main]
+        branches: [dev, stg, main, v*]
 
 jobs:
     deploy-prod:
@@ -24,7 +24,7 @@ jobs:
 
     deploy-dev:
         name: Deploy to Development
-        if: github.ref == 'refs/heads/dev'
+        if: github.ref == 'refs/heads/dev' || startsWith(github.ref, 'refs/heads/v')
         uses: choctaw-nation/shared-github-actions/.github/workflows/deploy.yml@main
         with:
             WPE_ENV: labordaydev # WP Engine environment name

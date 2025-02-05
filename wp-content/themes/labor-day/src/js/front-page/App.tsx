@@ -48,7 +48,12 @@ import { newSlider } from '../swiper';
 } )();
 
 function CountdownApp() {
-	const [ remainingTime, setRemainingTime ] = useState( {
+	const [ remainingTime, setRemainingTime ] = useState< {
+		days: string | number;
+		hours: string | number;
+		minutes: string | number;
+		seconds: string | number;
+	} >( {
 		days: '-',
 		hours: '-',
 		minutes: '-',
@@ -56,7 +61,7 @@ function CountdownApp() {
 	} );
 
 	useEffect( () => {
-		const targetDate = new Date( 'August 29, 2025' );
+		const targetDate = new Date( window.cnoSiteData.laborDayDates.friday );
 
 		const intervalId = setInterval( () => {
 			const now = new Date();
@@ -99,4 +104,6 @@ function CountdownApp() {
 	}
 }
 
-createRoot( document.getElementById( 'countdown' ) ).render( <CountdownApp /> );
+createRoot( document.getElementById( 'countdown' )! ).render(
+	<CountdownApp />
+);

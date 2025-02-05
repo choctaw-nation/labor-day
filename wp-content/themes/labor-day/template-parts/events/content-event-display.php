@@ -7,49 +7,22 @@
  */
 
 ?>
-<article class="cno-event">
-	<figure class="cno-event__image">
-		<?php the_post_thumbnail( 'large' ); ?>
+<?php get_template_part( 'template-parts/events/event', 'time-banner' ); ?>
+<div class="col-xl-5 col-xxl-4 flex-grow-1 flex-lg-grow-0 order-1 order-xl-0">
+	<figure class="mb-0 ratio ratio-16x9">
+		<?php
+			the_post_thumbnail(
+				'large',
+				array(
+					'loading' => 'lazy',
+					'class'   => 'w-100 h-auto object-fit-cover',
+				)
+			);
+			?>
 	</figure>
-	<h2><?php the_title(); ?></h2>
-	<aside class="event-meta mb-3">
-		<?php extract( get_field( 'info' ) ); ?>
-		<div class="event-meta__day">
-			<strong>When: </strong><?php echo $day . ', ' . cno_get_the_date( $day ); ?>
-		</div>
-		<?php
-		$terms_list = get_the_term_list( $post->ID, 'event_location', '<div class="event-meta__location"><strong>Where:</strong> ', '', '</div>' );
-		if ( ! is_wp_error( $terms_list ) ) {
-			echo $terms_list;
-		}
-		?>
-		<div class="event-meta__start-time">
-			<strong>Start Time:</strong> <?php echo $start_time; ?>
-		</div>
-		<?php
-		if ( ! empty( $end_time ) ) {
-			echo '<div class="event-meta__end-time">';
-			echo '<strong>End Time:</strong> ' . $end_time;
-			echo '</div>';
-		}
-		?>
-		<?php
-		$terms_list = get_the_term_list( $post->ID, 'event_type', '<div class="event-meta__type"><strong>Event Type:</strong> ', '', '</div>' );
-		if ( ! is_wp_error( $terms_list ) ) {
-			echo $terms_list;
-		}
-		?>
-	</aside>
-	<div class="about">
-		<?php
-		if ( has_excerpt() ) {
-			the_excerpt();
-		}
-		?>
-	</div>
-	<div class="cno-event__buttons">
-		<button class="btn__fill--primary" data-add-to-schedule='true' data-id="<?php echo get_the_ID(); ?>">Add to Schedule</button>
-		<a href="<?php the_permalink(); ?>" class="btn__outline--primary">Learn More</a>
-		<div class="cno-event-schedule-confirmation"></div>
-	</div>
-</article>
+</div>
+<div class="col flex-grow-1 d-flex flex-column flex-wrap order-3 order-xl-0 mt-2 mt-lg-0">
+	<?php relevanssi_the_title( '<h2 class="text-gray font-pill-gothic mb-0">', '</h2>' ); ?>
+	<p class="fs-6"><?php the_field( 'archive_content' ); ?></p>
+	<?php get_template_part( 'template-parts/events/event', 'buttons' ); ?>
+</div>

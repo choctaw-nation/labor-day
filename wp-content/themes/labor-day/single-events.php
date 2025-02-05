@@ -6,7 +6,7 @@
  * @subpackage Events
  */
 
-cno_enqueue_page_script( 'singleEvents' );
+wp_enqueue_script( 'add-to-schedule' );
 get_header();
 extract( get_field( 'info' ) );
 ?>
@@ -26,7 +26,16 @@ extract( get_field( 'info' ) );
 	<article class="cno-event position-relative py-5">
 		<?php if ( has_post_thumbnail() ) : ?>
 		<figure class="cno-event__image ratio ratio-16x9">
-			<?php the_post_thumbnail( 'full', array( 'class' => 'w-100 h-100 object-fit-contain' ) ); ?>
+			<?php
+			the_post_thumbnail(
+				'full',
+				array(
+					'class'           => 'w-100 h-100 object-fit-contain',
+					'loading'         => 'eager',
+					'data-spai-eager' => true,
+				)
+			);
+			?>
 		</figure>
 		<?php endif; ?>
 		<h1 class="cno-event__title headline" <?php echo ( has_post_thumbnail() ) ? '' : "style='grid-row:1/2;'"; ?>> <?php the_title(); ?></h1>

@@ -34,6 +34,7 @@ function cno_trim_event_description( string $event_description, bool $echo = tru
  * @return string Date as long month, single number (e.g. "September 1");
  */
 function cno_get_the_date( string $day ): string {
+
 	$date_map = array(
 		'Friday'   => 'August 30',
 		'Saturday' => 'August 31',

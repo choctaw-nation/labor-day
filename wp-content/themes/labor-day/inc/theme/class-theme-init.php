@@ -136,11 +136,22 @@ class Theme_Init {
 			null // phpcs:ignore
 		);
 
-		$animate   = new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
-		$bootstrap = new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
+		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
+		new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
 
-		$global_scripts = new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
-		wp_localize_script( 'global', 'cnoSiteData', array( 'rootUrl' => home_url() ) );
+		new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
+		wp_localize_script(
+			'global',
+			'cnoSiteData',
+			array(
+				'rootUrl'       => home_url(),
+				'laborDayDates' => array(
+					'friday'   => get_field( 'labor_day_dates_friday', 'option' ),
+					'saturday' => get_field( 'labor_day_dates_saturday', 'option' ),
+					'sunday'   => get_field( 'labor_day_dates_sunday', 'option' ),
+				),
+			)
+		);
 
 		wp_enqueue_style(
 			'main',
@@ -150,6 +161,15 @@ class Theme_Init {
 		);
 
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
+
+		$add_to_schedule = require_once get_template_directory() . '/dist/modules/add-to-schedule.asset.php';
+		wp_register_script(
+			'add-to-schedule',
+			get_template_directory_uri() . '/dist/modules/add-to-schedule.js',
+			$add_to_schedule['dependencies'],
+			$add_to_schedule['version'],
+			true
+		);
 	}
 
 	/**

@@ -1,17 +1,15 @@
 // 3rd Party
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-
-// Types
-import { SortedEventsObject, PrettyEventData } from '../search/types';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
+import type { SortedEventsObject, PrettyEventData } from './utilities/types';
 
 // Components
-import EventsDisplay from './EventDisplay';
-import LoadingSpinner from '../spinner';
+import EventsDisplay from './components/EventDisplay';
 
 // Utilities
-import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
-import ShareModal from '../search/Presentational/ShareModal';
+import {
+	getLocalStorageData,
+	getTimeSortedEvents,
+} from './utilities/eventFunctions';
 
 const emptyEventsState: SortedEventsObject = {
 	friday: [],
@@ -78,11 +76,7 @@ function App() {
 	}, [ events ] );
 
 	if ( isLoading ) {
-		return (
-			<div className="container">
-				<LoadingSpinner />
-			</div>
-		);
+		return <div className="container"></div>;
 	}
 	if ( emptyEvents ) {
 		return (
@@ -103,11 +97,6 @@ function App() {
 				dispatch={ dispatch }
 				schedule={ events }
 				removeEvent={ removeEvent }
-			/>
-			<ShareModal
-				dispatch={ dispatch }
-				showShareModal={ showShareModal }
-				shareEventObject={ shareEventObject }
 			/>
 		</div>
 	);
