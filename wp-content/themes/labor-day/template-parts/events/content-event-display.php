@@ -22,7 +22,7 @@
 	</figure>
 </div>
 <div class="col flex-grow-1 d-flex flex-column flex-wrap order-3 order-xl-0 mt-2 mt-lg-0">
-	<?php the_title( '<h2 class="text-gray font-pill-gothic mb-0">', '</h2>' ); ?>
+	<?php relevanssi_the_title( '<h2 class="text-gray font-pill-gothic mb-0">', '</h2>' ); ?>
 	<p class="fs-6"><?php the_field( 'archive_content' ); ?></p>
 	<?php get_template_part( 'template-parts/events/event', 'buttons' ); ?>
 </div>
