@@ -1,15 +1,13 @@
 import React from '@wordpress/element';
 
 // Types
-import { SortedEventsObject, PrettyEventData } from '../utilities/types';
+import type { SortedEventsObject, PrettyEventData } from '../utilities/types';
 
 // Components
 import SinglePost from './SinglePost';
-import {
-	ExportToCalendar,
-	ReadMoreButton,
-	RemoveFromSchedule,
-} from '../ui/CNOButtons';
+import ExportToCalendar from './ExportToCalendar';
+import RemoveFromSchedule from './RemoveFromSchedule';
+import ReadMoreButton from './ReadMoreButton';
 
 // Utilities
 import { createExcerpt } from '../utilities/Utilities';

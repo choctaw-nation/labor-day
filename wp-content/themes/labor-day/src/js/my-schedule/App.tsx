@@ -10,7 +10,6 @@ import {
 	getLocalStorageData,
 	getTimeSortedEvents,
 } from './utilities/eventFunctions';
-import ShareModal from './components/ShareModal';
 
 const emptyEventsState: SortedEventsObject = {
 	friday: [],
