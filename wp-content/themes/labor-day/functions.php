@@ -16,10 +16,3 @@ $init_theme = new Theme_Init();
 /**
  * ==============================================================
  */
-
-/** Make Gravity Forms available to Editor role **/
-function add_gf_cap() {
-	$role = get_role( 'editor' );
-	$role->add_cap( 'gform_full_access' );
-}
-add_action( 'admin_init', 'add_gf_cap' );
