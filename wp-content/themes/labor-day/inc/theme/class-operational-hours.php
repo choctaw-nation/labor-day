@@ -86,10 +86,11 @@ class Operational_Hours {
 	/** Loops over the ACF Repeater field and returns the markup
 	 *
 	 * @param array $operation the operational hour object
+	 * @param int   $index the index of the operation
 	 * @return string the HTML
 	 */
 	private function get_the_hours_markup( array $operation, int $index ): string {
-		$is_even         = $index % 2 === 0;
+		$is_even         = 0 === $index % 2;
 		$days            = array();
 		$operation_title = esc_textarea( $operation['operation_title'] );
 		$is_open         = $this->get_open_days( $operation );

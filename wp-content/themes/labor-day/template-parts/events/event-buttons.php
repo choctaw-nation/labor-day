@@ -9,11 +9,13 @@
 $location_terms = get_the_terms( get_the_ID(), 'event_location' );
 ?>
 <div class="mt-auto d-flex align-items-stretch gap-3 position-relative">
+	<?php if ( ! empty( $location_terms ) ) : ?>
 	<a class="text-secondary text-decoration-none d-flex align-items-center" href="<?php echo $location_terms[0]->slug; ?>">
 		<i class="fa fa-solid fa-location-dot"></i>
 		&nbsp;
 		<?php echo $location_terms[0]->name; ?>
 	</a>
+	<?php endif; ?>
 	<button class="text-black bg-transparent border-0 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#shareEventModal">
 		<i class="fa fa-solid fa-share"></i>
 		&nbsp;Share
