@@ -5,44 +5,58 @@ import TimeHandler from '../utilities/TimeHandler';
 const time = new TimeHandler();
 
 export default function EventTimeBanner( { info }: { info: EventInfo } ) {
-	const month = 'Sunday' === info.day ? 'SEP' : 'AUG';
+	const month = getShortMonth( info.day );
 	const bannerBg = {
 		friday: 'bg-primary',
 		saturday: 'bg-secondary',
 		sunday: 'bg-primary-light',
 	};
 	const asideClass = [
-		'cno-event__time',
-		'px-xl-0',
 		'col-xl-1',
+		'd-flex',
+		'flex-column',
+		'justify-content-center',
+		'align-items-stretch',
+		'order-2',
+		'order-xl-0',
+		'lh-sm',
 		'mb-0',
 		'fw-bold',
 		'text-center',
 		'text-white',
-		'd-flex',
-		'flex-column',
-		'align-items-stretch',
 		'flex-wrap',
-		'lh-sm',
 	];
 	asideClass.push( bannerBg[ info.day.toLowerCase() ] );
 	return (
-		<aside className={ asideClass.join( ' ' ) }>
-			<div className="cno-event__time--date">
-				<span className="cno-event__time--month">{ month }</span>
-				<span className="cno-event__time--day">
+		<div className={ asideClass.join( ' ' ) }>
+			<div className="d-flex flex-column align-items-center justify-content-start flex-wrap my-1 my-xl-0">
+				<span className="fw-bold text-uppercase">{ month }</span>
+				<span className="fw-bold text-uppercase fs-1">
 					{ getTheDay( info.day ) }
 				</span>
-				<span className="cno-event__time--day-of-week">
+				<span className="fw-bold text-uppercase">
 					{ info.day.toUpperCase() }
 				</span>
 			</div>
 			<div
-				className="cno-event__time--time"
+				className="fw-bold text-uppercase border-top border-1 border-white mt-xl-2 px-2 py-1 pt-xl-3 text-center"
 				dangerouslySetInnerHTML={ {
 					__html: time.handleTime( info ),
 				} }
 			/>
-		</aside>
+		</div>
 	);
+}
+
+/** Gets the short month name. */
+function getShortMonth( day: string ): string | null {
+	const dates = window.cnoSiteData.laborDayDates;
+	if ( dates[ day.toLowerCase() ] ) {
+		return new Date( dates[ day.toLowerCase() ] ).toLocaleDateString(
+			'en-US',
+			{ month: 'short' }
+		);
+	} else {
+		return null;
+	}
 }

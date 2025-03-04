@@ -294,6 +294,9 @@ class Theme_Init {
 					'key'     => 'info_start_time',
 					'compare' => 'EXISTS',
 				),
+				'end_time_clause'   => array(
+					'key' => 'info_end_time',
+				),
 			)
 		);
 		$query->set(
@@ -301,6 +304,7 @@ class Theme_Init {
 			array(
 				'day_clause'        => 'ASC',
 				'start_time_clause' => 'ASC',
+				'end_time_clause'   => 'ASC',
 			)
 		);
 	}
