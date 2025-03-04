@@ -61,8 +61,8 @@ class Operational_Hours {
 		echo "<ul class='hours-list list-unstyled m-0 p-0'>";
 		$markup  = '';
 		$markup .= $this->set_the_rv_hours( $this->rv_hours_title, $this->rv_date_times );
-		foreach ( $this->operations as $operation ) {
-			$markup .= $this->get_the_hours_markup( $operation );
+		foreach ( $this->operations as $index => $operation ) {
+			$markup .= $this->get_the_hours_markup( $operation, $index );
 		}
 		echo $markup;
 		echo '</ul>';
@@ -86,14 +86,16 @@ class Operational_Hours {
 	/** Loops over the ACF Repeater field and returns the markup
 	 *
 	 * @param array $operation the operational hour object
+	 * @param int   $index the index of the operation
 	 * @return string the HTML
 	 */
-	private function get_the_hours_markup( array $operation ): string {
+	private function get_the_hours_markup( array $operation, int $index ): string {
+		$is_even         = 0 === $index % 2;
 		$days            = array();
 		$operation_title = esc_textarea( $operation['operation_title'] );
 		$is_open         = $this->get_open_days( $operation );
 		$markup          = '';
-		$markup         .= "<li class='hours-list-item p-2 p-lg-4'><span class='hours-list-item__title h4 fs-5'>{$operation_title}</span>";
+		$markup         .= "<li class='hours-list-item p-2 p-lg-4" . ( $is_even ? ' bg-tertiary' : '' ) . "'><span class='hours-list-item__title h4 fs-5'>{$operation_title}</span>";
 		$combined_hours  = '';
 		if ( $is_open['friday'] ) {
 			$days            = array( 'Friday' );

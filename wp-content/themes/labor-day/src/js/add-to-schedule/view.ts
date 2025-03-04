@@ -3,11 +3,7 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons';
  * View class to manage the display of the UI components
  */
 export default class View {
-	MESSAGE_TIMEOUT = 4000;
-	/**
-	 * List of HTMLButtonElement objects
-	 */
-	buttons: NodeListOf< HTMLButtonElement >;
+	MESSAGE_TIMEOUT = 2500;
 
 	/**
 	 * Current page URL
@@ -19,9 +15,12 @@ export default class View {
 	 */
 	constructor() {
 		this.currentPage = window.location.href;
-		this.buttons = document.querySelectorAll< HTMLButtonElement >(
-			'[data-add-to-schedule]'
-		);
+	}
+
+	get buttons(): HTMLCollectionOf< HTMLButtonElement > {
+		return document.getElementsByClassName(
+			'add-to-schedule'
+		) as HTMLCollectionOf< HTMLButtonElement >;
 	}
 
 	/**
@@ -30,42 +29,58 @@ export default class View {
 	 * @returns {void}
 	 */
 	clickHandler( method: Function ): void {
-		if ( this.buttons.length === 0 ) {
-			return;
+		const resultsContainer = document.getElementById( 'search-results' );
+		if ( ! resultsContainer ) {
+			throw new Error( 'No search results container found' );
 		}
-
-		this.buttons.forEach( ( button ) => {
-			button.addEventListener(
-				'click',
-				( ev ) => {
-					ev.preventDefault();
-					const confirmationContainer = this.buttons[ 0 ];
-
-					if (
-						! confirmationContainer ||
-						confirmationContainer.innerHTML ===
-							'<a href="/my-schedule"> View Schedule</a>'
-					) {
-						return;
-					}
-					confirmationContainer.innerText = `Loading...`;
-					method( ev )
-						.then( ( response: string ) => {
-							confirmationContainer.innerHTML =
-								this.getResponseMessage( response );
-							setTimeout( () => {
-								confirmationContainer.innerHTML =
-									'<a href="/my-schedule"> View Schedule</a>';
-							}, this.MESSAGE_TIMEOUT );
-							this.showScheduleButton();
-						} )
-						.catch( ( err: any ) => {
-							console.error( err );
-						} );
-				},
-				{ once: true }
+		resultsContainer.addEventListener( 'click', ( ev ) => {
+			if ( this.buttons.length === 0 || ! ev.target ) {
+				return;
+			}
+			if (
+				! ( ev.target instanceof HTMLButtonElement ) ||
+				! ev.target.classList.contains( 'add-to-schedule' )
+			) {
+				return;
+			}
+			const buttonMap = this.createButtonMap();
+			const confirmationContainer = buttonMap.get(
+				Number( ev.target.dataset.id )
 			);
+
+			if (
+				! confirmationContainer ||
+				confirmationContainer.innerHTML ===
+					'<a href="/my-schedule"> View Schedule</a>'
+			) {
+				return;
+			}
+			confirmationContainer.innerText = `Loading...`;
+			method( ev )
+				.then( ( response: string ) => {
+					confirmationContainer.innerHTML =
+						this.getResponseMessage( response );
+					setTimeout( () => {
+						confirmationContainer.innerHTML =
+							'<a href="/my-schedule"> View Schedule</a>';
+					}, this.MESSAGE_TIMEOUT );
+					this.showScheduleButton();
+				} )
+				.catch( ( err: any ) => {
+					console.error( err );
+				} );
 		} );
+	}
+
+	private createButtonMap(): Map< number, HTMLButtonElement > {
+		const buttonMap = new Map();
+		for ( let button of this.buttons ) {
+			buttonMap.set(
+				Number( button.getAttribute( 'data-id' )! ),
+				button
+			);
+		}
+		return buttonMap;
 	}
 
 	/**
@@ -87,10 +102,23 @@ export default class View {
 		const scheduleButton = document.querySelector( '.schedule-button' );
 		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )
 			return;
-		const div = document.createElement( 'div' );
-		div.classList.add( 'schedule-button', 'shadow' );
-		div.innerHTML = `<a href="/my-schedule"><svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule</a>`;
+		const button = document.createElement( 'a' );
+		button.classList.add(
+			'schedule-button',
+			'shadow',
+			'btn',
+			'btn-primary',
+			'position-fixed',
+			'text-capitalize',
+			'rounded-4',
+			'fs-6',
+			'd-flex',
+			'gap-2',
+			'align-items-center'
+		);
+		button.setAttribute( 'href', '/my-schedule' );
+		button.innerHTML = `<svg viewBox="0 0 ${ faPencil.icon[ 0 ] } ${ faPencil.icon[ 0 ] }"><path d="${ faPencil.icon[ 4 ] }"></svg> View Your Schedule`;
 		const body = document.querySelector( 'body' );
-		body!.insertAdjacentElement( 'beforeend', div );
+		body!.insertAdjacentElement( 'beforeend', button );
 	}
 }

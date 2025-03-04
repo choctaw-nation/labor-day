@@ -1,5 +1,7 @@
-import { PrettyEventData } from '../search/types';
-import { SortedEventsObject } from '../search/types';
+import type {
+	SortedEventsObject,
+	PrettyEventData,
+} from '../my-schedule/utilities/types';
 declare const cnoSiteData: { rootUrl: string };
 
 export default class Model {
@@ -9,7 +11,7 @@ export default class Model {
 	 */
 	getSchedule(): SortedEventsObject {
 		const now = new Date();
-		const end = new Date( 'September 1, 2024' );
+		const end = new Date( window.cnoSiteData.laborDayDates.sunday );
 		const initialState: SortedEventsObject = {
 			friday: [],
 			saturday: [],

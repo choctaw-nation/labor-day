@@ -1,17 +1,15 @@
 // 3rd Party
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-
-// Types
-import { SortedEventsObject, PrettyEventData } from '../search/types';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
+import type { SortedEventsObject, PrettyEventData } from './utilities/types';
 
 // Components
-import EventsDisplay from './EventDisplay';
-import LoadingSpinner from '../spinner';
+import EventsDisplay from './components/EventDisplay';
 
 // Utilities
-import { getLocalStorageData, getTimeSortedEvents } from './eventFunctions';
-import ShareModal from '../search/Presentational/ShareModal';
+import {
+	getLocalStorageData,
+	getTimeSortedEvents,
+} from './utilities/eventFunctions';
 
 const emptyEventsState: SortedEventsObject = {
 	friday: [],
@@ -78,38 +76,25 @@ function App() {
 	}, [ events ] );
 
 	if ( isLoading ) {
-		return (
-			<div className="container">
-				<LoadingSpinner />
-			</div>
-		);
+		return <p>Loading...</p>;
 	}
 	if ( emptyEvents ) {
 		return (
-			<div className="container">
-				<div className="row">
-					<div className="col">
-						<p className="fs-6">
-							Seems like you haven't added any events yet.
-						</p>
-					</div>
+			<div className="row">
+				<div className="col">
+					<p className="fs-6">
+						Seems like you haven't added any events yet.
+					</p>
 				</div>
 			</div>
 		);
 	}
 	return (
-		<div className="container">
-			<EventsDisplay
-				dispatch={ dispatch }
-				schedule={ events }
-				removeEvent={ removeEvent }
-			/>
-			<ShareModal
-				dispatch={ dispatch }
-				showShareModal={ showShareModal }
-				shareEventObject={ shareEventObject }
-			/>
-		</div>
+		<EventsDisplay
+			dispatch={ dispatch }
+			schedule={ events }
+			removeEvent={ removeEvent }
+		/>
 	);
 }
 const root = document.getElementById( 'app' );

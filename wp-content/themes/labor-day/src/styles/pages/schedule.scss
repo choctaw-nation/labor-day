@@ -1,6 +1,4 @@
-@use "../components/schedule/search-bar";
 @use "../abstracts/mixins" as m;
-@use "../components/hours-modal";
 
 :is(.post-type-archive-events) .hero {
 	min-height: unset;

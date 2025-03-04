@@ -83,7 +83,7 @@ foreach ( $sorted_events as $day => $day_events ) {
 					<?php $event->the_title(); ?>
 				</a>
 			</h3>
-			<span class="fw-bold fs-6"><?php $event->the_times(); ?></span>
+			<span class="fw-bold text-gray fs-5"><?php $event->the_times(); ?></span>
 		</div>
 		<?php endforeach; ?>
 	</div>

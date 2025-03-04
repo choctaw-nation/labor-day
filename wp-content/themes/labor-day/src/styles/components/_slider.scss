@@ -85,35 +85,6 @@
 	}
 }
 
-#entertainment-slider {
-	@include swiperStyles(v.$color-primary);
-
-	.cno-event {
-		height: 100%;
-		max-height: unset;
-		@include m.displayFlex(column);
-
-		&__image {
-			@include m.media-breakpoint-down(lg) {
-				order: unset;
-				max-height: 30rem;
-			}
-
-			img {
-				aspect-ratio: 16 / 9;
-			}
-		}
-
-		.about {
-			margin-bottom: 1rem;
-		}
-
-		&__buttons {
-			margin-top: auto;
-		}
-	}
-}
-
 #registration-slider {
 	.slider {
 		&__info {

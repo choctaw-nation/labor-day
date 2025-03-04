@@ -10,6 +10,7 @@ namespace ChoctawNation;
 
 use CNOLaborDay\Events\Custom_Rest_Route;
 
+
 /** Builds the Theme */
 class Theme_Init {
 	// phpcs:ignore 
@@ -21,6 +22,8 @@ class Theme_Init {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
 		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
+		add_action( 'admin_init', array( $this, 'allow_gf_cap' ) );
+		add_action( 'pre_get_posts', array( $this, 'override_events_query' ), 9999 );
 		add_filter( 'template_include', array( $this, 'override_search_template' ) );
 	}
 
@@ -133,23 +136,43 @@ class Theme_Init {
 			'typekit',
 			'https://use.typekit.net/jky5sek.css',
 			array(),
-			null // phpcs:ignore
+		null // phpcs:ignore
 		);
 
-		$animate   = new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
-		$bootstrap = new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
+		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
+		new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
 
-		$global_scripts = new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
-		wp_localize_script( 'global', 'cnoSiteData', array( 'rootUrl' => home_url() ) );
+		new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
+		wp_localize_script(
+			'global',
+			'cnoSiteData',
+			array(
+				'rootUrl'       => home_url(),
+				'laborDayDates' => array(
+					'friday'   => get_field( 'labor_day_dates_friday', 'option' ),
+					'saturday' => get_field( 'labor_day_dates_saturday', 'option' ),
+					'sunday'   => get_field( 'labor_day_dates_sunday', 'option' ),
+				),
+			)
+		);
 
 		wp_enqueue_style(
 			'main',
 			get_stylesheet_uri(),
 			array( 'global' ),
-			null, // phpcs:ignore
+		null, // phpcs:ignore
 		);
 
 		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
+
+		$add_to_schedule = require_once get_template_directory() . '/dist/modules/add-to-schedule.asset.php';
+		wp_register_script(
+			'add-to-schedule',
+			get_template_directory_uri() . '/dist/modules/add-to-schedule.js',
+			$add_to_schedule['dependencies'],
+			$add_to_schedule['version'],
+			true
+		);
 	}
 
 	/**
@@ -242,5 +265,47 @@ class Theme_Init {
 			}
 		}
 		return $template;
+	}
+
+	/** Allow Editor to access Gravity Forms */
+	public function allow_gf_cap() {
+		$role = get_role( 'editor' );
+		$role->add_cap( 'gform_full_access' );
+	}
+
+	/**
+	 * Override the events query to use archive-events.php
+	 *
+	 * @param \WP_Query $query the query to override
+	 */
+	public function override_events_query( \WP_Query $query ) {
+		if ( is_admin() || 'events' !== $query->get( 'post_type' ) || ! $query->is_main_query() ) {
+			return;
+		}
+		$query->set(
+			'meta_query',
+			array(
+				'relation'          => 'AND',
+				'day_clause'        => array(
+					'key'     => 'info_day',
+					'compare' => 'EXISTS',
+				),
+				'start_time_clause' => array(
+					'key'     => 'info_start_time',
+					'compare' => 'EXISTS',
+				),
+				'end_time_clause'   => array(
+					'key' => 'info_end_time',
+				),
+			)
+		);
+		$query->set(
+			'orderby',
+			array(
+				'day_clause'        => 'ASC',
+				'start_time_clause' => 'ASC',
+				'end_time_clause'   => 'ASC',
+			)
+		);
 	}
 }
