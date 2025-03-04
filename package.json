@@ -1,6 +1,6 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.0.16",
+	"version": "2.0.18",
 	"description": "Custom WP theme for CNO labor day site",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
@@ -14,23 +14,22 @@
 	"author": "Choctaw Nation of Oklahoma",
 	"license": "GPL-3.0-or-later",
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.6.0",
-		"@fortawesome/free-brands-svg-icons": "^6.6.0",
-		"@fortawesome/free-regular-svg-icons": "^6.6.0",
-		"@fortawesome/free-solid-svg-icons": "^6.6.0",
+		"@fortawesome/fontawesome-svg-core": "^6.7.2",
+		"@fortawesome/free-brands-svg-icons": "^6.7.2",
+		"@fortawesome/free-regular-svg-icons": "^6.7.2",
+		"@fortawesome/free-solid-svg-icons": "^6.7.2",
 		"@fortawesome/react-fontawesome": "^0.2.2",
 		"aos": "^2.3.4",
 		"bootstrap": "^5.3.3",
 		"date-fns": "^3.6.0",
-		"fuse.js": "^7.0.0",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"swiper": "^11.1.14"
+		"swiper": "^11.2.4"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.7.0",
+		"@types/react": "^18.3.18",
+		"@wordpress/element": "^6.19.0",
+		"@wordpress/scripts": "^30.12.0",
 		"animate.css": "^4.1.1",
-		"eslint-config-react-app": "^7.0.1",
-		"wp-types": "^4.66.1"
+		"webpack-remove-empty-scripts": "^1.0.4",
+		"wp-types": "^4.67.0"
 	}
 }

@@ -17,10 +17,10 @@ class Map extends Map_Constructor {
 
 	/** Generates the markup for the map */
 	public function get_the_map(): string {
-		$markup  = "<img class='map__base' src='{$this->base}' alt='Image of Maps base' />";
+		$markup  = "<img class='map__base object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->base}' alt='Image of Maps base' />";
 		$markup .= $this->zones;
 		$markup .= $this->get_the_buildings();
-		$markup .= "<img class='map__base--buildings' src='{$this->misc_buildings}' alt='image of miscellaneous building' />";
+		$markup .= "<img class='map__base--buildings object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->misc_buildings}' alt='image of miscellaneous building' />";
 		$markup .= $this->icons_areas_labels;
 		return $markup;
 	}
@@ -31,7 +31,7 @@ class Map extends Map_Constructor {
 		foreach ( $this->buildings as $building ) {
 			$src        = $this->map_uri . "/buildings/{$building['name']}.webp";
 			$id         = empty( $building['id'] ) ? $building['name'] : $building['id'];
-			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings' alt='image of {$building['label']}'/>";
+			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings object-fit-contain inset-0 position-absolute w-100 h-auto' alt='image of {$building['label']}'/>";
 		}
 		return $buildings;
 	}
@@ -63,7 +63,7 @@ class Map extends Map_Constructor {
 				$id = (array) $id;
 			}
 			if ( isset( $id['icon'] ) ) {
-				$checkboxes .= '<div class="map-toggles__layer-toggle">';
+				$checkboxes .= '<div class="map-toggles__layer-toggle d-flex align-items-center">';
 				$checkboxes .= $this->get_the_checkbox( $id );
 				$checkboxes .= $this->get_the_icon( $id['icon'] );
 				$checkboxes .= '</div>';
@@ -92,6 +92,6 @@ class Map extends Map_Constructor {
 	private function get_the_checkbox( $element ): string {
 		$checked  = isset( $element['checked'] ) && true === $element['checked'] ? 'checked' : '';
 		$input_id = empty( $element['id'] ) ? $element['name'] : $element['id'];
-		return "<label class='map-toggles__layer-toggle'><input type='checkbox'  {$checked} data-id='{$input_id}' />&nbsp;{$element['label']}</label>";
+		return "<label class='map-toggles__layer-toggle d-flex align-items-center'><input type='checkbox'  {$checked} data-id='{$input_id}' />&nbsp;{$element['label']}</label>";
 	}
 }

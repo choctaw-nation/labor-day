@@ -1,5 +1,6 @@
 // Theme Globals
 @use "./base/base";
+@use "./base/utilities";
 
 // Components
 @use "./components/header";
@@ -12,12 +13,6 @@
 @use "./components/breadcrumbs";
 @use "./components/weather-alert";
 @use "./components/hero-image";
-// @use "./components/hours-modal";
 
 // Layouts (relatively small files)
 @use "./layouts/single";
-
-// Pages (relatively small files)
-@use "./pages/festival-information";
-// @use "./pages/history";
-@use "./pages/my-schedule";

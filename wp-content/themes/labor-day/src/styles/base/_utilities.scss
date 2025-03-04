@@ -1,0 +1,39 @@
+@use "../abstracts/functions" as fn;
+
+.font-gill-sans {
+	font-family: var(--font-body);
+}
+
+.font-pill-gothic {
+	font-family: var(--font-pill-gothic);
+}
+
+.hide {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.fadeIn {
+	transition: fn.transition((opacity, transform), (1s ease));
+	opacity: 1;
+	transform: translateY(0);
+
+	&--hide {
+		opacity: 0;
+		transform: translateY(2.5rem);
+
+		@media (print), (prefers-reduced-motion: reduce) {
+			& {
+				transform: none;
+			}
+		}
+	}
+}
+
+.inset-0 {
+	inset: 0;
+}
+
+.w-fit {
+	width: fit-content;
+}

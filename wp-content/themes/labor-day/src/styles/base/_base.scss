@@ -1,6 +1,4 @@
-@use "../abstracts/mixins" as m;
 @use "../abstracts/variables" as v;
-@use "../abstracts/functions" as fn;
 
 :root {
 	--color-primary: #{v.$color-primary};
@@ -24,32 +22,26 @@
 
 ::selection {
 	color: white;
-	background-color: v.$color-primary--dark;
+	background-color: var(--bs-primary-dark);
 }
 
-.hide {
-	display: none !important;
-	visibility: hidden !important;
+body {
+	text-wrap: pretty;
+	word-break: normal;
 }
 
-.fadeIn {
-	transition: fn.transition((opacity, transform), (1s ease));
-	opacity: 1;
-	transform: translateY(0);
-
-	&--hide {
-		opacity: 0;
-		transform: translateY(4rem);
-	}
+[class*="fs-"] > p {
+	font-size: inherit;
 }
 
-@media (print), (prefers-reduced-motion: reduce) {
-	.fadeIn--hide {
-		transform: none;
-	}
+a {
+	transition: color var(--transition-standard);
 }
 
+:where(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
+	text-wrap: balance;
+}
 ul,
 ol {
-	margin-left: 2rem;
+	margin-left: 1.25rem;
 }

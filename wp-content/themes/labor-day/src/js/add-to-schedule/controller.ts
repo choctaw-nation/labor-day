@@ -4,7 +4,7 @@ import View from './view';
 /**
  * Controller class that handles user interaction and data flow between the Model and View.
  */
-export class Controller {
+new ( class Controller {
 	/**
 	 * The view object.
 	 */
@@ -41,4 +41,4 @@ export class Controller {
 		console.log( 'hello from schedule-handler' );
 		console.log( this.view.buttons );
 	}
-}
+} )();

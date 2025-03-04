@@ -7,6 +7,6 @@
 
 extract( $args );
 ?>
-<aside class="breadcrumbs my-5">
-	<a class='breadcrumb' href="<?php echo $link; ?>"><?php echo $text; ?></a>
-</aside>
+<nav class="d-block my-5" aria-label="breadcrumb">
+	<a class="breadcrumb fs-5 fw-bold text-decoration-none position-relative text-secondary" href="<?php echo $link; ?>"><?php echo $text; ?></a>
+</nav>
