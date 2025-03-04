@@ -42,13 +42,13 @@ export default function SinglePost( {
 			{ featured_image && (
 				<FeaturedImage featuredImage={ featured_image } />
 			) }
-			<div className="col flex-lg-grow-1 d-flex flex-column flex-wrap order-3 order-lg-0">
+			<div className="col flex-grow-1 d-flex flex-column flex-wrap order-3 order-xl-0 mt-2 mt-lg-0">
 				<h2
 					className="text-gray font-pill-gothic mb-0"
 					dangerouslySetInnerHTML={ { __html: title } }
 				/>
 				<p
-					className="mb-0"
+					className="fs-6"
 					dangerouslySetInnerHTML={ { __html: brief_description } }
 				/>
 				<div className="cno-event__buttons mt-auto d-flex align-items-stretch gap-3 position-relative">

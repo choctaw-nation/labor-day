@@ -134,7 +134,7 @@ add_filter( 'gform_submit_button', 'add_custom_css_classes', 10, 2 );
  */
 function add_custom_css_classes( $button ): string {
 	$dom = new DOMDocument();
-	$dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
+	$dom->loadHTML( $button );
 	$input   = $dom->getElementsByTagName( 'input' )->item( 0 );
 	$classes = $input->getAttribute( 'class' );
 	$classes = 'btn btn-secondary';

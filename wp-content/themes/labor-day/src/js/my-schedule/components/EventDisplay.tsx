@@ -30,12 +30,7 @@ export default function EventsDisplay( {
 	}
 
 	return events.map( ( event: PrettyEventData ) => (
-		<SinglePost
-			dispatch={ dispatch }
-			extendedClass="my-5"
-			data={ event }
-			key={ event.eventId }
-		>
+		<SinglePost dispatch={ dispatch } data={ event } key={ event.eventId }>
 			{ createExcerpt( event.description ).readMore && (
 				<ReadMoreButton link={ event.link } />
 			) }

@@ -76,29 +76,25 @@ function App() {
 	}, [ events ] );
 
 	if ( isLoading ) {
-		return <div className="container"></div>;
+		return <p>Loading...</p>;
 	}
 	if ( emptyEvents ) {
 		return (
-			<div className="container">
-				<div className="row">
-					<div className="col">
-						<p className="fs-6">
-							Seems like you haven't added any events yet.
-						</p>
-					</div>
+			<div className="row">
+				<div className="col">
+					<p className="fs-6">
+						Seems like you haven't added any events yet.
+					</p>
 				</div>
 			</div>
 		);
 	}
 	return (
-		<div className="container">
-			<EventsDisplay
-				dispatch={ dispatch }
-				schedule={ events }
-				removeEvent={ removeEvent }
-			/>
-		</div>
+		<EventsDisplay
+			dispatch={ dispatch }
+			schedule={ events }
+			removeEvent={ removeEvent }
+		/>
 	);
 }
 const root = document.getElementById( 'app' );

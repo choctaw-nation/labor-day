@@ -12,7 +12,7 @@ export default function LocationButton( {
 	return (
 		<EventButton
 			element="a"
-			classes="cno-event__buttons--location text-decoration-none"
+			classes="cno-event__buttons--location text-decoration-none d-flex align-items-center"
 			icon={ faLocationDot }
 			text={ name }
 			href={ `${ window.cnoSiteData.rootUrl }/event_location/${ slug }` }
