@@ -35,22 +35,24 @@ $query                 = new WP_Query(
 						$query->the_post();
 						?>
 				<div class="swiper-slide">
-					<a href="<?php the_permalink(); ?>">
-						<div class="slider__image mb-4">
+					<a href="<?php the_permalink(); ?>" class="d-flex flex-column row-gap-3">
+						<div class="slider__image">
 							<?php the_post_thumbnail( 'medium_large' ); ?>
 						</div>
-						<?php the_title( "<h4 class='slider__info'>", '</h4>' ); ?>
+						<?php the_title( '<h4 class="text-white mb-0">', '</h4>' ); ?>
 					</a>
 				</div>
 				<?php endwhile; ?>
 				<?php endif; ?>
 			</div>
-			<div class="swiper-pagination"></div>
 		</div>
 	</div>
 	<div class="col-1 d-flex justify-content-center position-relative">
 		<div class="registration-slider-navigation swiper-button-next"></div>
 	</div>
+</div>
+<div class="row" style="--swiper-pagination-color: white;">
+	<div class="col position-relative"><div class="swiper-pagination"></div></div>
 </div>
 <?php
 wp_reset_postdata();

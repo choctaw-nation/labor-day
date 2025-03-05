@@ -9,8 +9,8 @@
 
 ?>
 <section id="vendors" class="text-bg-primary py-5 d-flex flex-column row-gap-5">
-	<div class="container">
-		<h2 class="text-white">
+	<div class="container d-flex flex-column align-items-stretch row-gap-4">
+		<h2 class="text-white mb-0">
 			Register Now
 		</h2>
 		<?php get_template_part( 'template-parts/home/slider', 'registrations' ); ?>
