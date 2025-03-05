@@ -3,8 +3,6 @@
 @use "bootstrap/scss/vendor/rfs" as rfs;
 
 .logo-image {
-	@include m.fitMedia(svg);
-	padding: 0.625rem;
 	height: 9.375rem;
 }
 
