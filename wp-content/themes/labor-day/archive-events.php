@@ -19,13 +19,15 @@ get_header();
 			<span class="subheadline mb-5">
 				<?php echo empty( get_field( 'hero', 28 )['subheadline'] ) ? acf_get_field( 'hero', 28 )['sub_fields'][0]['default_value'] : get_field( 'hero', 28 )['subheadline']; ?>
 			</span>
-			<a href="/my-schedule" class="btn btn-secondary mb-3 mb-lg-0">View Your Schedule</a>
+			<div class="d-flex flex-wrap gap-3">
+			<a href="/my-schedule" class="btn btn-secondary fs-6">View Your Schedule</a>
 			<?php
 			if ( $show_operational_hours ) {
-				echo '<button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>';
+				echo '<button class="btn btn-outline-secondary fs-6" data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>';
 				get_template_part( 'template-parts/events/modal', 'operational-hours' );
 			}
 			?>
+			</div>
 		</div>
 	</div>
 </section>

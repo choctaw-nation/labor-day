@@ -20,7 +20,7 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 <h1 class="visually-hidden">
 	<?php echo bloginfo( 'name' ); ?>
 </h1>
-<main class="site-content">
+<main class="site-content overflow-hidden">
 	<section class="position-relative hero d-flex flex-column justify-content-center py-5" id="hero">
 		<?php $background_image->the_image( 'z-n1 position-absolute top-0 w-100 h-100 object-fit-cover start-50 translate-middle-x', false, true ); ?>
 		<div class="bg-dark bg-opacity-50 position-absolute top-0 w-100 h-100 z-1"></div>
