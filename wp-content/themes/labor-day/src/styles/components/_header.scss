@@ -2,23 +2,15 @@
 @use "../abstracts/mixins" as m;
 @use "bootstrap/scss/vendor/rfs" as rfs;
 
-#site-header {
-	background-color: var(--color-primary--dark);
-}
-
 .logo-image {
 	@include m.fitMedia(svg);
-	padding: 1rem;
-	height: 15rem;
-
-	h1 {
-		display: none;
-	}
+	padding: 0.625rem;
+	height: 9.375rem;
 }
 
 .navbar-nav {
 	.nav-item {
-		margin-inline: 1rem;
+		margin-inline: 0.625rem;
 
 		&.active {
 			.nav-link::after {
@@ -50,7 +42,7 @@
 		}
 
 		.nav-link {
-			@include rfs.font-size(2rem);
+			@include rfs.font-size(1.25rem);
 			@include m.anchorHoverState($color: white);
 			position: relative;
 			text-transform: uppercase;

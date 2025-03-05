@@ -15,10 +15,12 @@ cno_enqueue_page_assets( 'mySchedule' );
 			'breadcrumb',
 			array(
 				'link' => '/events',
-				'text' => 'All Events',
+				'text' => 'Back to All Events',
 			)
 		);
 		?>
 	</div>
 </div>
-<div id="app">This page requires Javascript to work.</div>
+<div id="app" class="container d-flex flex-column row-gap-5">This page requires Javascript to work.</div>
+<?php
+get_template_part( 'template-parts/events/modal', 'share-event' );

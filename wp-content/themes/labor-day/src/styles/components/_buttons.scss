@@ -2,34 +2,7 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-$standard-buttons: ("primary", "secondary");
-@each $color in $standard-buttons {
-	.btn-#{$color} {
-		color: white;
-
-		&:hover,
-		&:active,
-		&:focus {
-			background-color: white;
-			color: var(--bs-#{$color});
-		}
-	}
-	.btn-outline-#{$color} {
-		background-color: white;
-		border-color: var(--bs-#{$color});
-		color: var(--bs-#{$color});
-
-		&:hover,
-		&:active,
-		&:focus {
-			background-color: var(--bs-#{$color});
-			color: white;
-		}
-	}
-}
-
 .btn:not(.dropdown-toggle) {
-	padding-bottom: 1.2rem;
 	transform: translateY(0);
 	text-transform: uppercase;
 	transition: fn.transition(
@@ -43,31 +16,13 @@ $standard-buttons: ("primary", "secondary");
 }
 
 .schedule-button {
-	position: fixed;
 	bottom: 3%;
 	right: 3%;
-	color: var(--bs-primary);
-	padding: 2rem;
-	border-radius: 1rem;
-	background-color: white;
 	z-index: 40;
-	border: 2px solid var(--bs-primary);
-	transition: background-color var(--transition--standard);
-
-	&:hover {
-		background-color: var(--bs-primary);
-		* {
-			color: white;
-		}
-	}
-
-	a {
-		transition: color var(--transition--standard);
-	}
 
 	svg {
 		transition: fill var(--transition--standard);
 		fill: currentColor;
-		width: 3rem;
+		width: 1.5rem;
 	}
 }

@@ -12,26 +12,23 @@ $secondary: v.$color-secondary;
 /**
 * Typography
 */
-$font-family-sans-serif: gill-sans-nova, "Helvetica Neue", "Noto Sans",
-	"Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-	"Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: v.$font-body;
 $font-family-monospace:
 	Monaspace Neon,
 	"Courier New",
 	monospace;
 
-$font-size-root: 62.5%; // Assuming browser is set to 16px, this will make 1rem = 10px
-$font-size-base: 1.6rem; // Sets the base font size to 16px
+$font-size-base: 1rem;
+$body-color: v.$color-black;
 
 // LINKS
-$link-decoration: none;
-// $link-color: v.$color;
-$link-hover-color: v.$color-secondary;
+$link-color: $primary;
+$link-hover-color: $secondary;
 
 // HEADINGS
-$headings-font-family: v.$font-headings;
+$headings-font-family: v.$font-body;
 $headings-font-weight: 600;
-$headings-color: v.$color-primary;
+$headings-color: $primary;
 
 /**
 * Minor Third Type Scale
@@ -45,7 +42,23 @@ $h4-font-size: $font-size-base * 1.728;
 $h5-font-size: $font-size-base * 1.44;
 $h6-font-size: $font-size-base * 1.2;
 
-$body-color: v.$color-black;
+/**
+* Display Type Scale
+* Perfect Fourth Typescale
+* @see https://typescale.com
+*/
+$display-font-sizes: (
+	1: 5.61rem,
+	2: 4.209rem,
+	3: 3.157rem,
+	4: 2.369rem,
+	5: 1.777rem,
+	6: 1.333rem,
+);
+
+$display-font-family: v.$font-headings;
+$display-font-weight: 600;
+$display-line-height: calc(2ex + 4px);
 
 // ====================================
 /**
@@ -84,18 +97,10 @@ $btn-transition: all v.$transition--standard;
 $btn-border-radius: 0;
 $btn-border-width: 2px;
 $btn-font-weight: 500;
-$btn-font-size: 2.4rem;
+$btn-font-size: 1.5rem;
 $btn-line-height: 1.5;
-$btn-padding-x: 1.365rem;
-$btn-padding-y: 1rem;
-
-// ====================================
-/**
-* Spacing
-*/
-
-$grid-gutter-width: 2.4rem; // 24px
-$spacer: 1.6rem; // 16px
+$btn-padding-x: 0.853125rem;
+$btn-padding-y: 0.625rem;
 
 // ====================================
 /**
@@ -117,8 +122,10 @@ $theme-colors: map-merge(
 		"tertiary": v.$color-tertiary,
 		"black": v.$color-black,
 		"white": v.$color-white,
-		"grey": v.$color-grey,
+		"gray": v.$color-grey,
 		"purple": v.$color-purple,
+		"primary-light": v.$color-primary--light,
+		"primary-dark": v.$color-primary--dark,
 	)
 );
 
@@ -131,6 +138,38 @@ $theme-colors: map-merge(
 
 // Useful Bootstrap Utilities (Optional)
 @import "bootstrap/scss/buttons";
+
+// Override Bootstrap Buttons
+@each $color, $value in $theme-colors {
+	.btn-#{$color} {
+		@if "primary" == $color or "secondary" == $color {
+			/**
+			* Override the styles with the `button-variant` mixin
+			* @see https://getbootstrap.com/docs/5.3/components/buttons/#sass-loops
+			*/
+			@include button-variant(
+				$value,
+				$value,
+				$color: white,
+				$hover-background: white,
+				$hover-border: $value,
+				$hover-color: $value,
+				$active-background: white,
+				$active-border: $value,
+				$active-color: $value
+			);
+		} @else {
+			@include button-variant($value, $value);
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.btn-outline-#{$color} {
+		@include button-outline-variant($value);
+	}
+}
+
 @import "bootstrap/scss/transitions";
 @import "bootstrap/scss/close";
 @import "bootstrap/scss/offcanvas";

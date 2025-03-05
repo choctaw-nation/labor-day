@@ -1,6 +1,5 @@
 import '../../styles/pages/front-page.scss';
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import CountdownTimer from './Countdown';
 import { newSlider } from '../swiper';
 
@@ -49,7 +48,12 @@ import { newSlider } from '../swiper';
 } )();
 
 function CountdownApp() {
-	const [ remainingTime, setRemainingTime ] = useState( {
+	const [ remainingTime, setRemainingTime ] = useState< {
+		days: string | number;
+		hours: string | number;
+		minutes: string | number;
+		seconds: string | number;
+	} >( {
 		days: '-',
 		hours: '-',
 		minutes: '-',
@@ -57,7 +61,7 @@ function CountdownApp() {
 	} );
 
 	useEffect( () => {
-		const targetDate = new Date( 'August 29, 2025' );
+		const targetDate = new Date( window.cnoSiteData.laborDayDates.friday );
 
 		const intervalId = setInterval( () => {
 			const now = new Date();
@@ -89,11 +93,17 @@ function CountdownApp() {
 		return () => clearInterval( intervalId );
 	}, [] );
 
-	if ( Object.values( remainingTime ).every( ( val ) => val <= 0 ) ) {
+	if (
+		Object.values( remainingTime ).every(
+			( val ) => ( val as number ) <= 0
+		)
+	) {
 		return null;
 	} else {
 		return <CountdownTimer remainingTime={ remainingTime } />;
 	}
 }
 
-createRoot( document.getElementById( 'countdown' ) ).render( <CountdownApp /> );
+createRoot( document.getElementById( 'countdown' )! ).render(
+	<CountdownApp />
+);

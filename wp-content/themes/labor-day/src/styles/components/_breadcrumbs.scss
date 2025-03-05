@@ -1,21 +1,12 @@
-@use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
 
-.breadcrumbs {
-	display: block;
+.breadcrumb {
+	transition: color var(--transition-standard);
+	@include m.anchorHoverState($color: var(--bs-secondary), $width: 100%);
 
-	.breadcrumb {
-		color: v.$color-secondary;
-		font-size: 2rem;
-		font-weight: 700;
-		transition: color v.$transition--standard;
-		position: relative;
-		@include m.anchorHoverState($color: v.$color-secondary, $width: 100%);
-
-		&:hover {
-			&::after {
-				transform: scaleX(1);
-			}
+	&:hover {
+		&::after {
+			transform: scaleX(1);
 		}
 	}
 }

@@ -1,7 +1,4 @@
-@use "../components/schedule/search-bar";
 @use "../abstracts/mixins" as m;
-@use "../components/hours-modal";
-@use "../pages/my-schedule"; // Dev Note: %cno-events is defined here
 
 :is(.post-type-archive-events) .hero {
 	min-height: unset;
@@ -11,110 +8,15 @@
 .archive {
 	position: relative;
 
-	.cno-events-wrapper {
-		margin: 0 auto;
-
-		.cno-events {
-			@extend %cno-events;
-		}
-
-		.cno-event-search__filters {
-			display: block;
-			@include m.media-breakpoint-up(lg) {
-				display: grid;
-			}
-
-			&--header {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 1rem;
-
-				button {
-					margin: 0;
-					margin-bottom: 1rem;
-					&:nth-child(2) {
-						grid-column: 2 / 3;
-					}
-				}
-
-				@include m.media-breakpoint-up(sm) {
-					@include m.displayFlex(row);
-
-					button {
-						margin-left: 1rem;
-					}
-				}
-			}
-		}
-
-		.cno-event-search-filters {
-			@include m.displayFlex(column);
-			gap: 2rem;
-
-			@include m.media-breakpoint-up(sm) {
-				@include m.displayFlex($cross: center);
-			}
-
-			&__container {
-				@include m.displayFlex(column);
-				margin-top: 0 !important;
-
-				&:not(:last-child) {
-					margin-right: 4rem;
-				}
-			}
-
-			&__filter-container {
-				button {
-					margin: 0;
-				}
-			}
-		}
-	}
-
 	.cno-event {
-		width: 100%;
-
-		@include m.media-breakpoint-only(lg) {
-			margin-bottom: 6rem;
-		}
-
-		@include m.media-breakpoint-up(xl) {
-			min-height: 20rem;
-		}
-
-		@include m.media-breakpoint-up(xxl) {
-			min-height: 17.5rem;
-		}
-
 		&__image {
-			margin: 0;
-			@include m.fitMedia($fit: contain);
-
 			@include m.media-breakpoint-only(lg) {
-				padding: 0;
 				margin-bottom: 1rem;
-				img {
-					max-height: unset;
-				}
-			}
-
-			@include m.media-breakpoint-down(lg) {
-				max-height: 30rem;
 			}
 
 			img {
 				aspect-ratio: 16 / 9;
 				height: auto;
-			}
-		}
-
-		&__info {
-			@include m.media-breakpoint-only(lg) {
-				min-height: 16rem;
-			}
-			@include m.media-breakpoint-up(lg) {
-				flex-grow: 1;
 			}
 		}
 	}
