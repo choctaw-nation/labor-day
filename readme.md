@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v4.0.2
+
+-   Fix overflow and responsive issues
+-   Prefer `gap` over `margin` for spacing
+
 ## v4.0.1
 
 -   Add `d-block` to hero images
