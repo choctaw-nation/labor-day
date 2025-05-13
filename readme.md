@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v4.0.3
+
+-   Chore: updated packages
+    -   `@types/react` and `date-fns` had major SemVer changes. `date-fns` was checked to ensure the format function still works as expected (`calendarFunctions.ts` function `formatICalDateTime`).
+
 ## v4.0.2
 
 -   Fix overflow and responsive issues
