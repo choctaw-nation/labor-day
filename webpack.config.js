@@ -15,6 +15,7 @@ module.exports = {
 			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
 			'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,
+			'pages/registrations': `.${ THEME_DIR }/src/js/registrations/RegistrationsHandler.ts`,
 			'modules/add-to-schedule': `.${ THEME_DIR }/src/js/add-to-schedule/controller.ts`,
 			...addEntries( appNames, 'pages' ),
 			...addEntries( styleSheets, 'styles' ),
