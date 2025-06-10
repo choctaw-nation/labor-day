@@ -9,12 +9,14 @@
 			background-color: var(--bs-primary) !important;
 		}
 	}
+
 	&--default {
 		background-color: transparent !important;
 		color: black !important;
 		border-width: 2px;
 		border-style: solid;
 		border-color: var(--bs-secondary);
+
 		&.gpnf-btn-cancel {
 			background-color: transparent !important;
 			color: black !important;
@@ -23,12 +25,14 @@
 			border-color: var(--bs-secondary);
 		}
 	}
+
 	&--danger {
 		background-color: var(--bs-danger) !important;
 		color: black !important;
 		border-width: 2px;
 		border-style: solid;
 		border-color: var(--bs-danger);
+
 		&.gpnf-btn-cancel {
 			background-color: var(--bs-danger) !important;
 			color: black !important;
