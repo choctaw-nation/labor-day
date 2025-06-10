@@ -6,6 +6,10 @@
  * @package ChoctawNation
  */
 
+use ChoctawNation\Asset_Loader;
+use ChoctawNation\Enqueue_Type;
+
+new Asset_Loader( 'registrations', Enqueue_Type::both, 'pages' );
 get_header();
 ?>
 <div class="container">
@@ -41,8 +45,10 @@ get_header();
 		<div class="col">
 			<?php
 			if ( $is_local_form ) {
+				echo "<div id='cno-gform-id' data-cno-gform-id='{$form_id}'>";
 				echo do_shortcode( "[gravityform id={$form_id} title='false']" );
 				get_template_part( 'template-parts/registrations/content-recaptcha-notice' );
+				echo '</div>';
 			}
 			if ( $is_external_form ) {
 				echo "<a href='{$href}' class='btn btn-secondary w-auto mt-4' target='_blank' rel='noopener noreferrer'>Apply Here</a>";
