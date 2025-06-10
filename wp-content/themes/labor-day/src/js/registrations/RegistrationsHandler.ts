@@ -1,7 +1,7 @@
 import '../../styles/pages/registrations.scss';
 import { getParentFields } from './gformUtils';
 import populateNestedFormFields from './populateNestedFormFields';
-
+window.gform.addFilter( 'gpnf_fetch_form_html_on_load', () => true );
 const functionsMap = {
 	'war-hoops': () =>
 		populateNestedFormFields( getParentFields(), 'war-hoops' ),

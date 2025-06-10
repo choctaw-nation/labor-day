@@ -28,16 +28,40 @@ export default function populateNestedFormFields(
 class NestedFormHandler {
 	private FORM_ID: number;
 	private form: HTMLFormElement;
+	private retries: number = 0;
+	private maxRetries: number = 5;
 
 	constructor( args: populateNestedFormFieldsProps, formSlug: FormSlugs ) {
 		this.FORM_ID = 18;
 		try {
-			this.form = getForm( this.FORM_ID );
-			this.populateFields( args, formSlug );
+			this.getForm().then( () => {
+				this.populateFields( args, formSlug );
+			} );
 		} catch ( error ) {
 			throw new Error(
 				`Error initializing NestedFormHandler: ${ error.message }`
 			);
+		}
+	}
+
+	private async getForm() {
+		let lastError: Error | null = null;
+		while ( this.retries < this.maxRetries ) {
+			try {
+				this.form = getForm( this.FORM_ID );
+				break;
+			} catch ( error ) {
+				lastError = error as Error;
+				this.retries++;
+				console.log( this.retries );
+				if ( this.retries >= this.maxRetries ) {
+					throw lastError;
+				}
+				// Wait 100ms before retrying
+				const wait = ( ms: number ) =>
+					new Promise( ( res ) => setTimeout( res, ms ) );
+				await wait( 100 );
+			}
 		}
 	}
 
