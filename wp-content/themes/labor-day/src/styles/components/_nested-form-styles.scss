@@ -1,0 +1,44 @@
+.gpnf-modal-header {
+	background-color: var(--bs-primary) !important;
+}
+
+.tingle-btn {
+	&--primary {
+		background-color: var(--bs-primary) !important;
+		&.gpnf-btn-submit {
+			background-color: var(--bs-primary) !important;
+		}
+	}
+
+	&--default {
+		background-color: transparent !important;
+		color: black !important;
+		border-width: 2px;
+		border-style: solid;
+		border-color: var(--bs-secondary);
+
+		&.gpnf-btn-cancel {
+			background-color: transparent !important;
+			color: black !important;
+			border-width: 2px;
+			border-style: solid;
+			border-color: var(--bs-secondary);
+		}
+	}
+
+	&--danger {
+		background-color: var(--bs-danger) !important;
+		color: black !important;
+		border-width: 2px;
+		border-style: solid;
+		border-color: var(--bs-danger);
+
+		&.gpnf-btn-cancel {
+			background-color: var(--bs-danger) !important;
+			color: black !important;
+			border-width: 2px;
+			border-style: solid;
+			border-color: var(--bs-danger);
+		}
+	}
+}
