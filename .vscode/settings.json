@@ -1,5 +1,6 @@
 {
 	"editor.detectIndentation": false,
 	"editor.indentSize": "tabSize",
-	"editor.insertSpaces": false
+	"editor.insertSpaces": false,
+	"cSpell.words": [ "Dont" ]
 }

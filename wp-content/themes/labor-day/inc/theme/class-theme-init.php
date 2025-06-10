@@ -44,10 +44,12 @@ class Theme_Init {
 			'class-custom-rest-route',
 			'class-operational-hours',
 			'navwalkers/class-navwalker',
+			'class-acf-handler',
 		);
 		foreach ( $files as $file ) {
 			require_once $base_path . "/theme/{$file}.php";
 		}
+		new ACF_Handler();
 		$rest_handler = new Custom_Rest_Route();
 		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
 
