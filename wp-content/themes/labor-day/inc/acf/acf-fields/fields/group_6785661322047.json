@@ -1,0 +1,104 @@
+{
+    "key": "group_6785661322047",
+    "title": "Options — Dates",
+    "fields": [
+        {
+            "key": "field_678566138805d",
+            "label": "Labor Day Dates",
+            "name": "labor_day_dates",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_678566398805e",
+                    "label": "Friday",
+                    "name": "friday",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 1,
+                    "display_format": "D F j, Y",
+                    "return_format": "F j, Y",
+                    "first_day": 0,
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_6785665d8805f",
+                    "label": "Saturday",
+                    "name": "saturday",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 1,
+                    "display_format": "D F j, Y",
+                    "return_format": "F j, Y",
+                    "first_day": 0,
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_6785666a88060",
+                    "label": "Sunday",
+                    "name": "sunday",
+                    "aria-label": "",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 1,
+                    "display_format": "D F j, Y",
+                    "return_format": "F j, Y",
+                    "first_day": 0,
+                    "allow_in_bindings": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Holds the Labor Day Dates Fields",
+    "show_in_rest": 0,
+    "modified": 1749574570
+}
