@@ -15,6 +15,8 @@ $args = array(
 	'post_status'    => 'publish',
 );
 
+$after_list_content = get_field('after_list_content');
+
 $registrations = new WP_Query( $args );
 
 ?>
@@ -34,3 +36,11 @@ $registrations = new WP_Query( $args );
 		<?php endif; ?>
 	</div>
 </section>
+
+<?php if ( $after_list_content ) : ?>
+<section class="registrations-note p-0">
+	<div class="container">
+		<?php echo $after_list_content; ?>
+	</div>
+</section>
+<?php endif; ?>
