@@ -34,11 +34,11 @@ function cno_trim_event_description( string $event_description, bool $echo = tru
  * @return string Date as long month, single number (e.g. "September 1");
  */
 function cno_get_the_date( string $day ): string {
-
-	$date_map = array(
-		'Friday'   => 'August 30',
-		'Saturday' => 'August 31',
-		'Sunday'   => 'September 1',
+	$labor_day_dates = get_field( 'labor_day_dates', 'options' );
+	$date_map        = array(
+		'Friday'   => $labor_day_dates['friday'],
+		'Saturday' => $labor_day_dates['saturday'],
+		'Sunday'   => $labor_day_dates['sunday'],
 	);
 	if ( array_key_exists( $day, $date_map ) ) {
 		return $date_map[ $day ];
