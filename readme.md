@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v4.2.1
+
+-   Fixed: `cno_get_the_date` now correctly uses the global ACF fields
+-   Chore: Updated packages
+
 ## v4.2.0
 
 -   Site now supports Nested Forms
