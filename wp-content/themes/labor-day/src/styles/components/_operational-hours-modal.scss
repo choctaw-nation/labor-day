@@ -1,0 +1,8 @@
+@use "../abstracts/mixins" as m;
+
+:where(#hoursModal #rv-tent-hours) {
+	div p {
+		font-size: inherit;
+		margin-bottom: 0;
+	}
+}
