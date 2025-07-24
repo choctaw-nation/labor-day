@@ -1,0 +1,13 @@
+<svg class="map-legend" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.16 21.16">
+  <g id="Icons" class="map-legend__tram-stop">
+    <g id="TramStop">
+      <rect class="cls-3" x="1.08" y="1.08" width="19" height="19"/>
+      <rect class="cls-4" x="1.08" y="1.08" width="19" height="19"/>
+      <g class="cls-1">
+        <g class="cls-1">
+          <text class="cls-2" transform="translate(4.44 16.02)"><tspan x="0" y="0">T</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

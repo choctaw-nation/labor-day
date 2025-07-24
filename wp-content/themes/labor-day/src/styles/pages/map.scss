@@ -36,23 +36,6 @@
 	}
 }
 
-.map {
-	&__base {
-		z-index: 1;
-
-		&--buildings {
-			z-index: 2;
-		}
-	}
-
-	&__building {
-		z-index: 2;
-	}
-}
-
-%container-spacing {
-	margin-bottom: 3rem;
-}
 .map-toggles {
 	&__layer-toggle {
 		cursor: pointer;

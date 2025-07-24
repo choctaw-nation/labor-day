@@ -71,7 +71,7 @@ abstract class Map_Constructor {
 
 	/** Constructor */
 	public function __construct() {
-		$this->map_version = 'v4';
+		$this->map_version = 'v5';
 		$this->map_uri     = get_template_directory_uri() . "/images/map-{$this->map_version}";
 		$this->get_map_files();
 	}
@@ -192,8 +192,8 @@ abstract class Map_Constructor {
 				'checked' => true,
 			),
 			array(
-				'name'    => 'veterans-cemetery',
-				'label'   => 'Veterans Cemetery',
+				'name'    => 'veteran-cemetery',
+				'label'   => 'Veteran Cemetery',
 				'checked' => true,
 			),
 		);
@@ -213,6 +213,7 @@ abstract class Map_Constructor {
 				array(
 					'id'    => 'Accessible_Parking',
 					'label' => 'Accessible Parking',
+					'icon'  => 'accessible-parking',
 				)
 			),
 			new Map_Element(
@@ -272,7 +273,7 @@ abstract class Map_Constructor {
 			),
 			new Map_Element(
 				array(
-					'id'    => 'Going_Green_Tent',
+					'id'    => 'Going_Green_Tents',
 					'label' => 'Going Green Tent',
 					'icon'  => 'going-green-tent',
 				)
@@ -289,6 +290,13 @@ abstract class Map_Constructor {
 					'id'    => 'Information',
 					'label' => 'Information',
 					'icon'  => 'information',
+				)
+			),
+			new Map_Element(
+				array(
+					'id'    => 'Lost_Child',
+					'label' => 'Lost Child (Wristband Station)',
+					'icon'  => 'lost-child-station',
 				)
 			),
 			new Map_Element(
@@ -314,7 +322,7 @@ abstract class Map_Constructor {
 			),
 			new Map_Element(
 				array(
-					'id'    => 'Parking_Stations',
+					'id'    => 'Parking_Station',
 					'label' => 'Parking Stations',
 					'icon'  => 'parking-stations',
 				)
@@ -357,8 +365,9 @@ abstract class Map_Constructor {
 			),
 			new Map_Element(
 				array(
-					'id'    => 'Tram_Stops',
+					'id'    => 'Tram_Stop',
 					'label' => 'Tram Stops',
+					'icon'  => 'tram-stop',
 				)
 			),
 			new Map_Element(

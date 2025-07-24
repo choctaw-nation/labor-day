@@ -3,6 +3,11 @@
 	width: var(--size);
 	aspect-ratio: 1;
 
+	&__accessible-parking {
+		.cls-1 {
+			fill: #e5a519;
+		}
+	}
 	&__atm {
 		.cls-1 {
 			font-family: var(--font-body);
@@ -174,6 +179,30 @@
 			font-family: var(--font-body);
 			font-size: 99.21px;
 			font-weight: 700;
+		}
+	}
+
+	&__lost-child {
+		.st0 {
+			fill: #d6d7db;
+		}
+
+		.st1 {
+			fill: none;
+			stroke: #5957a6;
+			stroke-width: 11.4px;
+		}
+
+		&.st3 {
+			fill: #5957a6;
+			font-family: var(--font-body);
+			font-size: 51.8px;
+			font-weight: 700;
+		}
+
+		.st4,
+		.st2 {
+			letter-spacing: 0em;
 		}
 	}
 
@@ -379,6 +408,30 @@
 			fill: none;
 			stroke: #d6742a;
 			stroke-width: 11.45px;
+		}
+	}
+
+	&__tram-stop {
+		.cls-1,
+		.cls-2 {
+			isolation: isolate;
+		}
+
+		.cls-3 {
+			fill: #d6d6db;
+		}
+
+		.cls-2 {
+			fill: #616529;
+			font-family: var(--font-body);
+			font-size: 16.24px;
+			font-weight: 800;
+		}
+
+		.cls-4 {
+			fill: none;
+			stroke: #ffb71b;
+			stroke-width: 2.16px;
 		}
 	}
 
