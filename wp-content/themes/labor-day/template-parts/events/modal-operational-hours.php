@@ -15,7 +15,7 @@ $hours = new Operational_Hours( get_field( 'operational_hours', 'options' ) );
 				<h1 class="modal-title text-primary-dark h4" id="operationalHoursModal">Hours of Operations</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body p-0">
 				<?php $hours->list_the_hours(); ?>
 			</div>
 		</div>

@@ -25,6 +25,7 @@ use ChoctawNation\Navwalker;
 
 <body <?php body_class( array( 'w-100' ) ); ?>>
 	<?php wp_body_open(); ?>
+	<?php get_template_part( 'template-parts/nav', 'utility-nav' ); ?>
 	<header class="text-bg-primary-dark" id="site-header">
 		<div class="container-lg">
 			<nav class="navbar navbar-expand-lg">
