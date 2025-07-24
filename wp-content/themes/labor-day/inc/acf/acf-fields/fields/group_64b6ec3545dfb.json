@@ -16,11 +16,73 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "message": "Publish Operational Hours",
             "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "allow_in_bindings": 1,
+            "ui_on_text": "Visible",
+            "ui_off_text": "Hidden",
+            "ui": 1
+        },
+        {
+            "key": "field_688292433378f",
+            "label": "RV \/ Tent Hours",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "open": 1,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_68828b8c58811",
+            "label": "RV \/ Tent Hours",
+            "name": "rv_tent_hours",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "A WYSIWYG editor because these break the format of all other operational hours.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_6882925133790",
+            "label": "Operational Hours",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
         },
         {
             "key": "field_64b6ec3726824",
@@ -330,5 +392,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749574597
+    "modified": 1753387649
 }

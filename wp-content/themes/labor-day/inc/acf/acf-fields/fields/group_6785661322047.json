@@ -1,7 +1,26 @@
 {
     "key": "group_6785661322047",
-    "title": "Options — Dates",
+    "title": "Options — Theme Settings",
     "fields": [
+        {
+            "key": "field_68828c73a90df",
+            "label": "Labor Day Weekend Dates",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
         {
             "key": "field_678566138805d",
             "label": "Labor Day Dates",
@@ -80,6 +99,230 @@
                     "allow_in_bindings": 0
                 }
             ]
+        },
+        {
+            "key": "field_68828c5870af4",
+            "label": "Weather Alert",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6463924642596",
+            "label": "Enable Weather Alert?",
+            "name": "enable_weather_alert",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Activates a dismissable dialog box to alert site visitors of an immediate change (e.g. if an event has been cancelled or delayed due to weather)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Active",
+            "ui_off_text": "Inactive",
+            "ui": 1
+        },
+        {
+            "key": "field_6463928165d1c",
+            "label": "Alert Text",
+            "name": "alert_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "rows": "",
+            "placeholder": "[Event] has been delayed until [time]",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_68828cef2b929",
+            "label": "Utility Nav",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_68828cfb36ed4",
+            "label": "Enable Utility Nav",
+            "name": "enable_utility_nav",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Adds a small nav above the header for quick utilities.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "ui": 1
+        },
+        {
+            "key": "field_688290fac5308",
+            "label": "Link Alignment",
+            "name": "link_alignment",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "How to align links along the top",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "choices": {
+                "start": "Left",
+                "center": "Middle",
+                "end": "Right"
+            },
+            "default_value": "end",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_68828d2636ed5",
+            "label": "Nav Items",
+            "name": "nav_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 1,
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Item",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_68828ef8e552d",
+                    "label": "Nav Item Label",
+                    "name": "nav_item_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 1,
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_68828d2636ed5"
+                },
+                {
+                    "key": "field_68828f05e552e",
+                    "label": "Nav Item Url",
+                    "name": "nav_item_url",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 1,
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_68828d2636ed5"
+                },
+                {
+                    "key": "field_688290b490377",
+                    "label": "New Window",
+                    "name": "new_window",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Whether to open the link in a new window",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "New Window",
+                    "ui_off_text": "Same Window",
+                    "ui": 1,
+                    "parent_repeater": "field_68828d2636ed5"
+                }
+            ]
         }
     ],
     "location": [
@@ -98,7 +341,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Holds the Labor Day Dates Fields",
+    "description": "General Theme Settings",
     "show_in_rest": 0,
-    "modified": 1749574570
+    "modified": 1753387372
 }
