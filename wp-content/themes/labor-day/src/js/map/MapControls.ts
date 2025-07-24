@@ -5,11 +5,12 @@ export default abstract class MapControls {
 	/**
 	 * Attaches the eventListeners to the appropriate elements
 	 *
-	 * @param {NodeList} nodeList the labels & inputs to attach eventListeners to
+	 * @param  nodeList the labels & inputs to attach eventListeners to
 	 */
-	handleNodeList( nodeList: NodeList ) {
+	handleNodeList( nodeList: NodeListOf< HTMLInputElement > ) {
 		nodeList.forEach( ( node ) => {
-			node.addEventListener( 'change', ( { target } ) => {
+			node.addEventListener( 'change', ( ev ) => {
+				const target = ev.target as HTMLInputElement;
 				this.toggleVisibility( target );
 			} );
 		} );
@@ -24,6 +25,5 @@ export default abstract class MapControls {
 		const el = document.getElementById( target.dataset.id! );
 		if ( ! el ) return;
 		el.style.visibility = target.checked ? 'visible' : 'hidden';
-		console.log( el );
 	}
 }

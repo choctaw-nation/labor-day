@@ -50,7 +50,5 @@ $map_assets = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </div>

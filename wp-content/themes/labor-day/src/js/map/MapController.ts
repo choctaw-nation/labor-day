@@ -14,9 +14,9 @@ new ( class MapController extends MapControls {
 	/**
 	 * Accepts an array of strings that finish the BEM class to select (e.g. `.map-toggles__${selector}`)
 	 *
-	 * @param {array} selectors - the class ending to inject.
+	 * @param selectors - the class ending to inject.
 	 */
-	handleLayerVisibility( selectors ) {
+	handleLayerVisibility( selectors: string[] ) {
 		selectors.forEach( ( selector ) =>
 			this.controlLayerVisibility( selector )
 		);
@@ -24,10 +24,10 @@ new ( class MapController extends MapControls {
 
 	/** Injects the class, selects the elements, and calls `handleNodeList()`
 	 *
-	 * @param {string} selector - the string to inject into \`.map-toggles__${selector} input:not(.toggle-all)\`
+	 * @param selector - the string to inject into \`.map-toggles__${selector} input:not(.toggle-all)\`
 	 */
-	private controlLayerVisibility( selector ) {
-		const layer = document.querySelectorAll(
+	private controlLayerVisibility( selector: string ) {
+		const layer = document.querySelectorAll< HTMLInputElement >(
 			`.map-toggles__${ selector } input:not(.toggle-all)`
 		);
 		if ( ! layer ) return;
@@ -38,17 +38,19 @@ new ( class MapController extends MapControls {
 	 * Controls the toggling of all checkboxes in a section.
 	 */
 	private toggleAll() {
-		const toggleAllBoxes = document.querySelectorAll( '.toggle-all' );
+		const toggleAllBoxes =
+			document.querySelectorAll< HTMLInputElement >( '.toggle-all' );
 
 		toggleAllBoxes.forEach( ( el ) => {
 			el.addEventListener( 'change', ( ev ) => {
-				const { target } = ev;
+				const target = ev.target as HTMLInputElement;
 				if ( ! target ) return;
 
 				const selector = target.dataset.selector;
-				const checkboxes = document.querySelectorAll(
-					`.map-toggles__${ selector } input:not(.toggle-all)`
-				);
+				const checkboxes =
+					document.querySelectorAll< HTMLInputElement >(
+						`.map-toggles__${ selector } input:not(.toggle-all)`
+					);
 				checkboxes.forEach( ( checkbox, i ) => {
 					checkbox.checked = ! checkbox.checked;
 					this.toggleVisibility( checkbox );
