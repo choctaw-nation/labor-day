@@ -17,10 +17,10 @@ class Map extends Map_Constructor {
 
 	/** Generates the markup for the map */
 	public function get_the_map(): string {
-		$markup  = "<img class='map__base z-1 object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->base}' alt='Image of Maps base' />";
+		$markup  = "<img class='map__base z-1 object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->base}' alt='' />";
 		$markup .= $this->zones;
 		$markup .= $this->get_the_buildings();
-		$markup .= "<img class='map__base--buildings z-2 object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->misc_buildings}' alt='image of miscellaneous building' />";
+		$markup .= "<img class='map__base--buildings z-2 object-fit-contain inset-0 position-absolute w-100 h-auto' src='{$this->misc_buildings}' alt='' />";
 		$markup .= $this->icons_areas_labels;
 		return $markup;
 	}
@@ -31,7 +31,7 @@ class Map extends Map_Constructor {
 		foreach ( $this->buildings as $building ) {
 			$src        = $this->map_uri . "/buildings/{$building['name']}.webp";
 			$id         = empty( $building['id'] ) ? $building['name'] : $building['id'];
-			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings z-2 object-fit-contain inset-0 position-absolute w-100 h-auto' alt='image of {$building['label']}'/>";
+			$buildings .= "<img src='{$src}' id='{$id}' class='map__base--buildings z-2 object-fit-contain inset-0 position-absolute w-100 h-auto' alt='{$building['label']}'/>";
 		}
 		return $buildings;
 	}

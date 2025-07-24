@@ -1,0 +1,10 @@
+<svg class="map-legend" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 150 150">
+  <g class="map-legend__lost-child">
+    <path class="st0" d="M75,124.7c25.9,0,47-21,47-47s-21-47-47-47-47,21-47,47,21,47,47,47"/>
+    <circle class="st1" cx="75" cy="77.8" r="47"/>
+  </g>
+  <text class="map-legend__lost-child st3" transform="translate(42.5 97.1)">
+  <tspan class="st2" x="0" y="0">L</tspan>
+  <tspan class="st4" x="28.5" y="0">C</tspan>
+  </text>
+</svg>
