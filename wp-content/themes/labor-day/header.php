@@ -26,13 +26,14 @@ use ChoctawNation\Navwalker;
 
 <body <?php body_class( array( 'w-100' ) ); ?>>
 	<?php wp_body_open(); ?>
+	<?php get_template_part( 'template-parts/nav', 'utility-nav' ); ?>
 	<header class="text-bg-primary-dark" id="site-header">
 		<div class="container-lg">
 			<nav class="navbar navbar-expand-lg">
 				<a href="<?php echo esc_url( site_url() ); ?>" class="logo flex-grow-0 w-auto" aria-label="to Home Page">
 					<figure class="logo-image d-inline-block mb-0 p-3 w-auto">
-						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="eager"
-							class="h-100 object-fit-contain" data-spai-eager />
+						<img src="<?php echo get_template_directory_uri() . '/images/labor-day-logo.svg'; ?>" alt="Labor Day Festival Logo" loading="eager" class="h-100 object-fit-contain"
+							data-spai-eager />
 					</figure>
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
