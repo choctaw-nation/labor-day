@@ -20,30 +20,6 @@ class Operational_Hours {
 	 */
 	private $rv_hours_title = 'RV/Tent Gate Hours';
 
-	/** Info from client:
-	 * Wednesday 8:00 am - 8:00 pm
-	 * Thursday thru Sat 8:00 am - 11:00 pm
-	 * Sunday 10:00 am - 10:00 pm
-	 *
-	 * @var array $rv_date_times
-	 */
-	private $rv_date_times = array(
-		array(
-			'label' => 'Wednesday (Aug 30)',
-			'open'  => '8:00 am',
-			'close' => '8:00 pm',
-		),
-		array(
-			'label' => 'Thursday (Aug 31) &ndash; Saturday (Sep 1)',
-			'open'  => '8:00 am',
-			'close' => '11:00 pm',
-		),
-		array(
-			'label' => 'Sunday',
-			'open'  => '10:00 am',
-			'close' => '10:00 pm',
-		),
-	);
 
 	/** Construct the class
 	 *
@@ -60,7 +36,7 @@ class Operational_Hours {
 	public function list_the_hours() {
 		echo "<ul class='hours-list list-unstyled m-0 p-0'>";
 		$markup  = '';
-		$markup .= $this->set_the_rv_hours( $this->rv_hours_title, $this->rv_date_times );
+		$markup .= $this->set_the_rv_hours();
 		foreach ( $this->operations as $index => $operation ) {
 			$markup .= $this->get_the_hours_markup( $operation, $index );
 		}
@@ -68,17 +44,17 @@ class Operational_Hours {
 		echo '</ul>';
 	}
 
-	/** Hard-Coded RV Hours
+	/**
+	 * RV Hours
 	 *
-	 * @param string $title the Title of the Operation Hour
-	 * @param array  $div_elements the days and open/close times of the operation
 	 * @return string the HTML
 	 */
-	private function set_the_rv_hours( string $title, array $div_elements ): string {
-		$markup = "<li class='hours-list-item p-2 p-lg-4'><span class='hours-list-item__title h4 fs-5'>{$title}</span>";
-		foreach ( $div_elements as $block ) {
-			$markup .= "<div class='hours-list-item__day fw-bold'>{$block['label']}:&nbsp;<span class='hours-list-item__time--open fw-normal'>{$block['open']}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$block['close']}</span></div>";
+	private function set_the_rv_hours(): string {
+		if ( empty( get_field( 'rv_tent_hours', 'options' ) ) ) {
+			return '';
 		}
+		$markup  = "<li class='p-2 p-lg-4 fs-6' id='rv-tent-hours'><h2 class='fs-5'>{$this->rv_hours_title}</h2>";
+		$markup .= '<div>' . acf_esc_html( get_field( 'rv_tent_hours', 'options' ) ) . '</div>';
 		$markup .= '</li>';
 		return $markup;
 	}
@@ -95,11 +71,11 @@ class Operational_Hours {
 		$operation_title = esc_textarea( $operation['operation_title'] );
 		$is_open         = $this->get_open_days( $operation );
 		$markup          = '';
-		$markup         .= "<li class='hours-list-item p-2 p-lg-4" . ( $is_even ? ' bg-tertiary' : '' ) . "'><span class='hours-list-item__title h4 fs-5'>{$operation_title}</span>";
+		$markup         .= "<li class='p-2 p-lg-4" . ( $is_even ? ' bg-tertiary' : '' ) . " fs-6'><h2 class='fs-5'>{$operation_title}</h2>";
 		$combined_hours  = '';
 		if ( $is_open['friday'] ) {
 			$days            = array( 'Friday' );
-			$combined_hours .= "<span class='hours-list-item__time--open fw-normal'>{$operation['friday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['friday']["close"]}</span>";
+			$combined_hours .= "<span class='fw-normal'>{$operation['friday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='fw-normal'>{$operation['friday']["close"]}</span>";
 		}
 		if ( $is_open['saturday'] ) {
 			if ( $operation['saturday']['same_as_previous'] ) {
@@ -108,19 +84,19 @@ class Operational_Hours {
 				if ( false === $is_open['friday'] ) {
 					$days = array( 'Saturday' );
 				}
-				$sat_hours = "<div class='hours-list-item__day--saturday fw-bold'>Saturday: <span class='hours-list-item__time--open fw-normal'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['saturday']["close"]}</span>";
+				$sat_hours = "<div class='fw-bold'>Saturday: <span class='fw-normal'>{$operation['saturday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='fw-normal'>{$operation['saturday']["close"]}</span>";
 			}
 		}
 		if ( $is_open['sunday'] ) {
 			if ( $operation['sunday']['same_as_previous'] ) {
 				array_push( $days, 'Sunday' );
 			} else {
-				$sun_hours = "<div class='hours-list-item__day--sunday fw-bold'>Sunday: <span class='hours-list-item__time--open fw-normal'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='hours-list-item__time--close fw-normal'>{$operation['sunday']["close"]}</span>";
+				$sun_hours = "<div class='fw-bold'>Sunday: <span class='fw-normal'>{$operation['sunday']["open"]}</span>&nbsp;&ndash;&nbsp;<span class='fw-normal'>{$operation['sunday']["close"]}</span>";
 			}
 		}
 		if ( ! empty( $combined_hours ) ) {
 			$day_label = join( ', ', $days );
-			$markup   .= "<div class='hours-list-item__day fw-bold'>{$day_label}: " . $combined_hours;
+			$markup   .= "<div class='fw-bold'>{$day_label}: " . $combined_hours;
 			$markup   .= '</div>';
 		}
 		if ( ! empty( $sat_hours ) ) {
