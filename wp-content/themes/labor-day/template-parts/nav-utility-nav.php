@@ -12,7 +12,7 @@ if ( ! get_field( 'enable_utility_nav', 'options' ) || ! have_rows( 'nav_items',
 $row_classes   = array( 'row', 'row-cols-auto', 'list-unstyled', 'mb-0', 'gx-0', 'gap-2', 'align-items-center' );
 $row_classes[] = 'justify-content-' . get_field( 'link_alignment', 'options' );
 ?>
-<nav class="container-fluid text-bg-secondary py-2">
+<nav class="container-fluid text-bg-tertiary py-2">
 	<ul class="<?php echo esc_attr( implode( ' ', $row_classes ) ); ?>">
 		<?php
 		while ( have_rows( 'nav_items', 'options' ) ) {
