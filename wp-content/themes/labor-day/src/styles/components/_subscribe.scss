@@ -19,7 +19,7 @@
 	margin: 3rem 0;
 
 	&__email {
-		@include m.displayFlex($main: flex-end, $cross: stretch);
+		@include m.d-flex($main: flex-end, $cross: stretch);
 
 		flex: 1 0 auto;
 		gap: 2rem;
@@ -60,7 +60,7 @@
 	}
 
 	&__text {
-		@include m.displayFlex(column, center);
+		@include m.d-flex(column, center);
 
 		border-left: 2px solid white;
 		margin-left: 5px;

@@ -3,7 +3,7 @@
 
 .gallery {
 	&__item {
-		@include m.fitMedia($fit: cover);
+		@include m.fit-media($fit: cover);
 
 		&--image {
 			aspect-ratio: 16 / 9;

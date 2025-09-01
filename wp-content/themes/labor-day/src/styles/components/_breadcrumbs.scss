@@ -3,7 +3,7 @@
 .breadcrumb {
 	transition: color var(--transition-standard);
 
-	@include m.anchorHoverState($color: var(--bs-secondary), $width: 100%);
+	@include m.anchor-hover-state($color: var(--bs-secondary), $width: 100%);
 
 	&:hover {
 		&::after {

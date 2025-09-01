@@ -7,7 +7,7 @@
 
 $content = new Content_Sections();
 ?>
-<section id="parking" class="fadeIn">
+<section id="parking" class="fade-in">
 	<?php extract( get_field( 'section_3' ) ); ?>
 	<div class="container">
 		<?php
@@ -25,7 +25,7 @@ $content = new Content_Sections();
 		<?php $content->two_col_text_and_media( $args ); ?>
 	</div>
 </section>
-<section id="check-in" class="fadeIn">
+<section id="check-in" class="fade-in">
 	<?php extract( get_field( 'section_4' ) ); ?>
 	<div class="container">
 		<?php

@@ -2,7 +2,7 @@
 
 .text-callout {
 	figure {
-		@include m.fitMedia(svg);
+		@include m.fit-media(svg);
 	}
 }
 

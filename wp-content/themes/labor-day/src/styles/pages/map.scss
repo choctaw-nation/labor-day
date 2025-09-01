@@ -44,7 +44,7 @@
 	&__layer-toggle {
 		cursor: pointer;
 
-		@include c.checkboxColor(
+		@include c.checkbox-color(
 			$background-color: var(--bs-primary),
 			$color: white
 		);

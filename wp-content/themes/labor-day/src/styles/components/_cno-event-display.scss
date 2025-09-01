@@ -16,7 +16,7 @@
 		line-height: 1.2;
 		text-align: center;
 
-		@include m.displayFlex(column, center, stretch);
+		@include m.d-flex(column, center, stretch);
 
 		@include m.media-breakpoint-only(lg) {
 			grid-column: 1 / 2;
@@ -29,7 +29,7 @@
 		}
 
 		&--date {
-			@include m.displayFlex(column, $cross: center);
+			@include m.d-flex(column, $cross: center);
 		}
 
 		&--month {
@@ -88,7 +88,7 @@
 
 	&__buttons {
 		& > * {
-			@include m.displayFlex(row, $cross: center);
+			@include m.d-flex(row, $cross: center);
 
 			transition: fn.transition(
 				(background-color, border-color, transform, box-shadow, color)

@@ -23,7 +23,7 @@ get_header();
 			<a href="/my-schedule" class="btn btn-secondary fs-6">View Your Schedule</a>
 			<?php
 			if ( $show_operational_hours ) {
-				echo '<button class="btn btn-outline-secondary fs-6" data-bs-toggle="modal" data-bs-target="#hoursModal"> View Services / Operations Hours </button>';
+				echo '<button class="btn btn-outline-secondary fs-6" data-bs-toggle="modal" data-bs-target="#hours-modal"> View Services / Operations Hours </button>';
 				get_template_part( 'template-parts/events/modal', 'operational-hours' );
 			}
 			?>
