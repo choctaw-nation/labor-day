@@ -56,7 +56,6 @@ function getShortMonth( day: string ): string | null {
 			'en-US',
 			{ month: 'short' }
 		);
-	} else {
-		return null;
 	}
+	return null;
 }

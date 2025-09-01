@@ -14,10 +14,12 @@ export const { postsPerPage: POSTS_PER_PAGE, rootUrl } = cnoSiteData;
 /**
  * Creates an excerpt from a string.
  * @param {string} str The string to create an excerpt from
- * @returns {ExcerptObject} The excerpt object
+ * @return {ExcerptObject} The excerpt object
  */
 export function createExcerpt( str: string ): ExcerptObject {
-	if ( null === str ) return { excerpt: '', readMore: false };
+	if ( null === str ) {
+		return { excerpt: '', readMore: false };
+	}
 	const excerpt = str.slice( 3, 247 );
 	const remainingContent = str.substring( 248 );
 	if ( remainingContent.length > 1 ) {
@@ -25,18 +27,17 @@ export function createExcerpt( str: string ): ExcerptObject {
 			excerpt: excerpt + '...',
 			readMore: remainingContent.length > 1,
 		};
-	} else {
-		return {
-			excerpt: excerpt,
-			readMore: remainingContent.length > 1,
-		};
 	}
+	return {
+		excerpt,
+		readMore: remainingContent.length > 1,
+	};
 }
 
 /**
  * Sorts a flat array of events into an object with keys for each day.
  * @param {PrettyEventData[]} events The flat events array
- * @returns {SortedEventsObject} The sorted events
+ * @return {SortedEventsObject} The sorted events
  */
 export function sortEvents( events: PrettyEventData[] ): SortedEventsObject {
 	const days: string[] = [ 'friday', 'saturday', 'sunday' ];
@@ -64,9 +65,12 @@ export async function getEvents( searchTerm: string | undefined = undefined ) {
 	}
 	try {
 		const data = await SearchModel.makeRequest( searchTerm );
-		if ( undefined === data ) return;
+		if ( undefined === data ) {
+			return;
+		}
 		return data;
 	} catch ( err ) {
+		// eslint-disable-next-line no-console
 		console.error( err );
 	}
 }

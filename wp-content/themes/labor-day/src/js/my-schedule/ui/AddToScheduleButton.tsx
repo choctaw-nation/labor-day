@@ -12,21 +12,25 @@ const view = new View();
 export function AddToScheduleButton( { eventId } ) {
 	const [ responseMessage, setResponseMessage ] =
 		useState( 'Add to Schedule' );
-	const [ inSchedule ] = useState( function () {
+	const [ inSchedule ] = useState( function() {
 		const schedule = model.getSchedule();
 		const sched: PrettyEventData[] = Object.values( schedule ).flat();
-		if ( sched.length === 0 ) return;
+		if ( sched.length === 0 ) {
+			return;
+		}
 		const filteredSched = sched.filter(
 			( event ) => event.eventId === eventId
 		);
 		if ( filteredSched[ 0 ] ) {
 			return filteredSched[ 0 ].eventId === eventId;
-		} else return false;
+		} return false;
 	} );
 
 	/** Updates Text On responseMessage change. */
 	useEffect( () => {
-		if ( 'Add to Schedule' === responseMessage ) return;
+		if ( 'Add to Schedule' === responseMessage ) {
+			return;
+		}
 		const timeoutId = setTimeout( () => {
 			setResponseMessage( 'View Schedule' );
 			view.showScheduleButton();
@@ -41,8 +45,11 @@ export function AddToScheduleButton( { eventId } ) {
 			const message = view.getResponseMessage( response );
 			if ( '' !== message ) {
 				setResponseMessage( message );
-			} else setResponseMessage( '' );
+			} else {
+				setResponseMessage( '' );
+			}
 		} catch ( err ) {
+			// eslint-disable-next-line no-console
 			console.error( err );
 		}
 	}
@@ -61,18 +68,17 @@ export function AddToScheduleButton( { eventId } ) {
 				&nbsp;<a href="/my-schedule">In Schedule</a>
 			</button>
 		);
-	} else
-		return (
-			<button
-				className="cno-event__buttons--add-to-schedule"
-				data-add-to-schedule="true"
-				data-id={ eventId }
-				onClick={ ( ev ) => {
-					setResponseMessage( 'Adding to schedule...' );
-					addToSchedule( ev );
-				} }
-			>
-				<FontAwesomeIcon icon={ faPlus } /> { responseMessage }
-			</button>
-		);
+	} return (
+		<button
+			className="cno-event__buttons--add-to-schedule"
+			data-add-to-schedule="true"
+			data-id={ eventId }
+			onClick={ ( ev ) => {
+				setResponseMessage( 'Adding to schedule...' );
+				addToSchedule( ev );
+			} }
+		>
+			<FontAwesomeIcon icon={ faPlus } /> { responseMessage }
+		</button>
+	);
 }

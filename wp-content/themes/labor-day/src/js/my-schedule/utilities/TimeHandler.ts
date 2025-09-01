@@ -1,3 +1,4 @@
+
 import { EventInfo } from './types';
 
 /**
@@ -9,7 +10,7 @@ export default class TimeHandler {
 	 * (e.g. "9:00 am" to "9 AM")
 	 *
 	 * @param {string} time the time string
-	 * @returns {string} the shortened time.
+	 * @return {string} the shortened time.
 	 */
 	private formatTimeString( time: string ): string {
 		if ( time.includes( ':00' ) ) {
@@ -19,9 +20,8 @@ export default class TimeHandler {
 			return `${ timeString.toUpperCase() } ${ time
 				.slice( -2 )
 				.toUpperCase() }`;
-		} else {
-			return time.toUpperCase();
 		}
+		return time.toUpperCase();
 	}
 
 	/**
@@ -29,7 +29,7 @@ export default class TimeHandler {
 	 * (e.g. "9 AM - 10 AM" to "9 - 10 AM")
 	 *
 	 * @param start Start Time
-	 * @param end End Time
+	 * @param end   End Time
 	 */
 	private handleMeridiemIndicator( start, end ): string {
 		const startMeridiem = start.slice( -2 ).toUpperCase();
@@ -40,22 +40,24 @@ export default class TimeHandler {
 				-2
 			) } ${ startMeridiem }`;
 			return finalString;
-		} else {
-			return `${ start } &ndash; ${ end }`;
 		}
+		return `${ start } &ndash; ${ end }`;
 	}
 
 	/**
 	 * Handles the time formatting for the event.
 	 * @param {EventInfo} eventInfo the event info object.
-	 * @returns {string} the formatted time string.
+	 * @return {string} the formatted time string.
 	 */
 	handleTime( eventInfo: EventInfo ): string {
+		/* eslint-disable camelcase */
 		const { start_time, end_time } = eventInfo;
 
 		const start = this.formatTimeString( start_time );
 		// Early return if there is no end time.
-		if ( ! end_time ) return start;
+		if ( ! end_time ) {
+			return start;
+		}
 
 		const end = this.formatTimeString( end_time );
 		return this.handleMeridiemIndicator( start, end );
