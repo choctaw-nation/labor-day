@@ -8,9 +8,6 @@
 
 namespace ChoctawNation;
 
-use CNOLaborDay\Events\Custom_Rest_Route;
-
-
 /** Builds the Theme */
 class Theme_Init {
 	// phpcs:ignore 
