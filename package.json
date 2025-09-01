@@ -1,6 +1,6 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.1.4",
+	"version": "2.1.5",
 	"description": "Custom WP theme for CNO labor day site",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
@@ -9,6 +9,8 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
+		"lint:css": "npx stylelint '**/*.scss' '**/*.css' --fix",
+		"lint:js": "npx eslint --fix",
 		"packages-update": "wp-scripts packages-update"
 	},
 	"author": "Choctaw Nation of Oklahoma",
@@ -25,8 +27,8 @@
 		"swiper": "^11.2.10"
 	},
 	"devDependencies": {
-		"@types/react": "^19.1.8",
-		"@wordpress/scripts": "^30.20.0",
+		"@types/react": "^19.1.12",
+		"@wordpress/scripts": "^30.22.0",
 		"animate.css": "^4.1.1",
 		"webpack-remove-empty-scripts": "^1.1.1",
 		"wp-types": "^4.68.1"

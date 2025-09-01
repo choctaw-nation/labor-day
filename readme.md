@@ -4,6 +4,11 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v4.4.2 - [September 1, 2025]
+
+- Fixed: Homepage countdown is now ACF-powered
+- Chore: Update packages & add vscode settings to repo
+
 ## v4.4.1
 
 -   Fixed: Utility nav colors are updated
