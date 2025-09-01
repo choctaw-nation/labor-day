@@ -12,6 +12,7 @@ input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	transform: translateY(-0.075em);
+
 	&::before {
 		content: "";
 		width: 0.65em;
@@ -19,8 +20,9 @@ input[type="checkbox"] {
 		transform: scale(0);
 		transition: 120ms transform ease-in-out;
 	}
+
 	:focus {
-		outline: max(2px, 0.15em) solid currentColor;
+		outline: max(2px, 0.15em) solid currentcolor;
 		outline-offset: max(2px, 0.15em);
 	}
 }
@@ -34,6 +36,7 @@ input[type="checkbox"] {
 		&::before {
 			box-shadow: inset 1em 1em $color;
 		}
+
 		&:checked {
 			background-color: $background-color;
 			border-color: $background-color;

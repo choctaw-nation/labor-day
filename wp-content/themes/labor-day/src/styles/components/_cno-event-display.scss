@@ -54,6 +54,7 @@
 			border-top: 1px solid white;
 			margin-top: 0.5rem;
 			padding-top: 0.5rem;
+
 			@include m.media-breakpoint-down(lg) {
 				margin-bottom: 1rem;
 			}
@@ -88,6 +89,7 @@
 	&__buttons {
 		& > * {
 			@include m.displayFlex(row, $cross: center);
+
 			transition: fn.transition(
 				(background-color, border-color, transform, box-shadow, color)
 			);
@@ -126,6 +128,7 @@
 		}
 	}
 }
+
 .cno-event-schedule-confirmation {
 	display: block;
 	min-width: clamp(28rem, 100%, 40rem);

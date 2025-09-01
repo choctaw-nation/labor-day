@@ -1,25 +1,29 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
-
 @use "../components/checkboxes" as c;
 @use "../components/map/map-svg-style";
 
 .map-figure {
 	--size: 100%;
+
 	height: 90vw;
 
 	@include m.media-breakpoint-up(sm) {
 		height: 32rem;
 	}
+
 	@include m.media-breakpoint-up(md) {
 		height: 43.125rem;
 	}
+
 	@include m.media-breakpoint-up(lg) {
 		height: 57.5rem;
 	}
+
 	@include m.media-breakpoint-up(xl) {
 		height: 68.75rem;
 	}
+
 	@include m.media-breakpoint-up(xxl) {
 		height: 80rem;
 	}
@@ -39,6 +43,7 @@
 .map-toggles {
 	&__layer-toggle {
 		cursor: pointer;
+
 		@include c.checkboxColor(
 			$background-color: var(--bs-primary),
 			$color: white

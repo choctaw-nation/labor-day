@@ -1,4 +1,5 @@
 @use "../abstracts/mixins" as m;
+
 .vertical-card {
 	@include m.displayFlex(column, $cross: stretch);
 

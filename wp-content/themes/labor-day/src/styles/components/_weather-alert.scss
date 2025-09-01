@@ -1,7 +1,9 @@
 @use "../abstracts/variables" as v;
 @use "../abstracts/mixins" as m;
+
 .weather-alert {
 	@include m.displayFlex(column);
+
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -9,6 +11,7 @@
 	border: 2px solid v.$color-primary--dark;
 	border-radius: 1rem;
 	font-size: 1.35em;
+
 	&::backdrop {
 		background-color: rgba(v.$color-primary--dark, 0.75);
 	}

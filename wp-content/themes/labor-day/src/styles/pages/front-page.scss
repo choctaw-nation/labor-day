@@ -30,7 +30,7 @@
 			grid-row: 2 / 3;
 		}
 
-		@media screen and (min-width: 466px) and (max-width: 576px) {
+		@media screen and (width >= 466px) and (width <= 576px) {
 			grid-row: 2 / 3;
 		}
 	}
@@ -42,7 +42,7 @@
 			grid-row: 2 / 3;
 		}
 
-		@media screen and (min-width: 466px) and (max-width: 576px) {
+		@media screen and (width >= 466px) and (width <= 576px) {
 			grid-row: 2 / 3;
 		}
 	}
@@ -50,7 +50,9 @@
 
 .great-seal {
 	width: 88%;
+
 	@include m.fitMedia(svg);
+
 	@include m.media-breakpoint-down(lg) {
 		width: 50%;
 	}

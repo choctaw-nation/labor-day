@@ -5,7 +5,8 @@
 	padding: 2rem;
 	border: none;
 	border-radius: 5px;
+
 	&::backdrop {
-		background-color: rgba(black, 0.35);
+		background-color: rgb(black, 0.35);
 	}
 }
