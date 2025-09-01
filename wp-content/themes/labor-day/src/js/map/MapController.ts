@@ -22,7 +22,8 @@ new ( class MapController extends MapControls {
 		);
 	}
 
-	/** Injects the class, selects the elements, and calls `handleNodeList()`
+	/**
+	 * Injects the class, selects the elements, and calls `handleNodeList()`
 	 *
 	 * @param selector - the string to inject into \`.map-toggles__${selector} input:not(.toggle-all)\`
 	 */
@@ -30,7 +31,9 @@ new ( class MapController extends MapControls {
 		const layer = document.querySelectorAll< HTMLInputElement >(
 			`.map-toggles__${ selector } input:not(.toggle-all)`
 		);
-		if ( ! layer ) return;
+		if ( ! layer ) {
+			return;
+		}
 		this.handleNodeList( layer );
 	}
 
@@ -44,7 +47,9 @@ new ( class MapController extends MapControls {
 		toggleAllBoxes.forEach( ( el ) => {
 			el.addEventListener( 'change', ( ev ) => {
 				const target = ev.target as HTMLInputElement;
-				if ( ! target ) return;
+				if ( ! target ) {
+					return;
+				}
 
 				const selector = target.dataset.selector;
 				const checkboxes =

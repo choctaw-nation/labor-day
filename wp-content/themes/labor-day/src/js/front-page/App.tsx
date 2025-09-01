@@ -36,16 +36,18 @@ import { newSlider } from '../swiper';
 
 	/** Grabs email from initial form and fills in the Gravity Form field */
 	function fillEmailValues() {
-		const modal = document.getElementById( 'subscribe-modal' );
-		const emailInput = document.getElementById( 'email' );
-		if ( null === emailInput ) return;
+		const emailInput = document.getElementById( 'email' ) as HTMLInputElement;
+		if ( null === emailInput ) {
+			return;
+		}
 		const email = emailInput.value ?? '';
-		const preFilledEmail = modal.querySelector( 'input[type="email"]' );
+		const modal = document.getElementById( 'subscribe-modal' );
+		const preFilledEmail = modal?.querySelector( 'input[type="email"]' ) as HTMLInputElement | null;
 		if ( preFilledEmail ) {
 			preFilledEmail.value = email;
 		}
 	}
-} )();
+}() );
 
 function CountdownApp() {
 	const [ remainingTime, setRemainingTime ] = useState< {
@@ -99,9 +101,8 @@ function CountdownApp() {
 		)
 	) {
 		return null;
-	} else {
-		return <CountdownTimer remainingTime={ remainingTime } />;
 	}
+	return <CountdownTimer remainingTime={ remainingTime } />;
 }
 
 createRoot( document.getElementById( 'countdown' )! ).render(

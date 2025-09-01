@@ -25,8 +25,8 @@ export default class View {
 
 	/**
 	 * Adds click event listener to buttons and handles click events
-	 * @param {function} method - A function that returns a Promise with a response string
-	 * @returns {void}
+	 * @param {Function} method - A function that returns a Promise with a response string
+	 * @return {void}
 	 */
 	clickHandler( method: Function ): void {
 		const resultsContainer = document.getElementById( 'search-results' );
@@ -67,6 +67,7 @@ export default class View {
 					this.showScheduleButton();
 				} )
 				.catch( ( err: any ) => {
+					// eslint-disable-next-line no-console
 					console.error( err );
 				} );
 		} );
@@ -74,7 +75,7 @@ export default class View {
 
 	private createButtonMap(): Map< number, HTMLButtonElement > {
 		const buttonMap = new Map();
-		for ( let button of this.buttons ) {
+		for ( const button of this.buttons ) {
 			buttonMap.set(
 				Number( button.getAttribute( 'data-id' )! ),
 				button
@@ -86,7 +87,7 @@ export default class View {
 	/**
 	 * Returns a response message based on the response string
 	 * @param {string} response - A string representing the response
-	 * @returns {string} A response message based on the response string
+	 * @return {string} A response message based on the response string
 	 */
 	getResponseMessage( response: string ): string {
 		let message = '';
@@ -94,14 +95,17 @@ export default class View {
 			message = `Added to your schedule!`;
 		} else if ( 'info' === response ) {
 			message = `This event is already in your schedule.`;
-		} else message = '';
+		} else {
+			message = '';
+		}
 		return message;
 	}
 
 	showScheduleButton() {
 		const scheduleButton = document.querySelector( '.schedule-button' );
-		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) )
+		if ( scheduleButton || window.location.href.includes( 'my-schedule' ) ) {
 			return;
+		}
 		const button = document.createElement( 'a' );
 		button.classList.add(
 			'schedule-button',

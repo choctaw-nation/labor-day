@@ -5,12 +5,14 @@ function getEvents() {
 	const data = localStorage.getItem( 'schedule' );
 	if ( null === data ) {
 		throw new Error( 'No events found in local storage!' );
-	} else return data;
+	} else {
+		return data;
+	}
 }
 /**
  * Gets events from localStorage
  *
- * @returns {SortedEventsObject} the events, sorted.
+ * @return {SortedEventsObject} the events, sorted.
  */
 export function getLocalStorageData(): SortedEventsObject {
 	try {
@@ -43,7 +45,7 @@ export function getLocalStorageData(): SortedEventsObject {
  * Orders the events of the day by time from morning to night.
  *
  * @param {SortedEventsObject} sortedEvents the data to sort.
- * @returns {SortedEventsObject} the sorted events.
+ * @return {SortedEventsObject} the sorted events.
  */
 export function getTimeSortedEvents(
 	sortedEvents: SortedEventsObject

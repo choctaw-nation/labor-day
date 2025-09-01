@@ -17,10 +17,12 @@ window.addEventListener( 'DOMContentLoaded', () => {
 			try {
 				populateFields();
 			} catch ( error ) {
+				// eslint-disable-next-line no-console
 				console.error( error.message );
 			}
 		} );
 	} catch ( error ) {
+		// eslint-disable-next-line no-console
 		console.error( error );
 	}
 } );
@@ -43,6 +45,7 @@ function populateFields() {
 			try {
 				functionsMap[ slug ]();
 			} catch ( error ) {
+				// eslint-disable-next-line no-console
 				console.error(
 					`Error populating fields for ${ slug }: ${ error.message }`
 				);
@@ -56,8 +59,8 @@ function populateFields() {
 /**
  * Adds Bootstrap classes to the "Add Entry" button in a nested form.
  *
- * @param nestedFormId {string|number|undefined} - The ID of the nested form for which to update the add entry button classes.
- * @returns {HTMLButtonElement} - The updated "Add Entry" button element.
+ * @param  nestedFormId {string|number|undefined} - The ID of the nested form for which to update the add entry button classes.
+ * @return {HTMLButtonElement} - The updated "Add Entry" button element.
  * @throws {Error} - If the "Add Entry" button is not found for the specified nested form ID.
  */
 function updateAddEntryButtonClasses(

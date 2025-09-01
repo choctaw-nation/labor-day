@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Types
-import { FeaturedImage as FeaturedImageType } from '../../types';
+import type { FeaturedImage as FeaturedImageType } from '../utilities/types';
 
 export default function FeaturedImage( {
 	featuredImage,

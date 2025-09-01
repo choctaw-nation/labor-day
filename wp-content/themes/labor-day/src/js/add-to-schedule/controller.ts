@@ -38,7 +38,9 @@ new ( class Controller {
 	 * Logs a message and the buttons from the view to the console.
 	 */
 	private debugMethod() {
+		/* eslint-disable no-console */
 		console.log( 'hello from schedule-handler' );
 		console.log( this.view.buttons );
+		/* eslint-enable no-console */
 	}
 } )();
