@@ -44,6 +44,13 @@ class Custom_Rest_Route {
 		'status'         => 'publish',
 	);
 
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+	}
+
 
 	/**
 	 * Register the custom rest routes

@@ -51,7 +51,7 @@ class Theme_Init {
 		$utility_files = array(
 			'gutenberg-handler' => 'Gutenberg_Handler',
 			'acf-handler'       => 'ACF_Handler',
-			'custom-rest-route' => null,
+			'custom-rest-route' => 'Custom_Rest_Route',
 			'operational-hours' => null,
 
 		);
@@ -63,8 +63,6 @@ class Theme_Init {
 			$class = __NAMESPACE__ . '\\' . $class_name;
 			new $class();
 		}
-		$rest_handler = new Custom_Rest_Route();
-		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
 
 		$components = array(
 			'components',
