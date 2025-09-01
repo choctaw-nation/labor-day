@@ -1,3 +1,4 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
 @use "../abstracts/variables" as v;
 
 // Required
@@ -14,10 +15,9 @@ $secondary: v.$color-secondary;
 */
 $font-family-sans-serif: v.$font-body;
 $font-family-monospace:
-	Monaspace Neon,
+	monaspace neon,
 	"Courier New",
 	monospace;
-
 $font-size-base: 1rem;
 $body-color: v.$color-black;
 
@@ -55,24 +55,22 @@ $display-font-sizes: (
 	5: 1.777rem,
 	6: 1.333rem,
 );
-
 $display-font-family: v.$font-headings;
 $display-font-weight: 600;
 $display-line-height: calc(2ex + 4px);
 
 // ====================================
+
 /**
 * Navbar
 */
 
 $navbar-nav-link-padding-x: 0;
-
 $navbar-light-color: white;
 $navbar-light-hover-color: $secondary;
 $navbar-light-active-color: white;
 $navbar-light-icon-color: white;
 $navbar-light-toggler-border-color: transparent;
-
 $dropdown-spacer: 0.5rem;
 $dropdown-font-size: 2rem;
 $dropdown-link-active-bg: white;
@@ -89,6 +87,7 @@ $offcanvas-bg-color: v.$color-primary--dark;
 $offcanvas-color: white;
 
 // ====================================
+
 /**
 * Buttons
 */
@@ -103,6 +102,7 @@ $btn-padding-x: 0.853125rem;
 $btn-padding-y: 0.625rem;
 
 // ====================================
+
 /**
 * Options
 * @see https://getbootstrap.com/docs/5.3/customize/options/
@@ -112,6 +112,7 @@ $enable-shadows: false;
 $enable-dark-mode: false;
 
 @import "bootstrap/scss/variables";
+
 // @import "bootstrap/scss/variables-dark";
 
 // Map Overrides Here (Optional)
@@ -179,6 +180,7 @@ $theme-colors: map-merge(
 
 // Optional Bootstrap Modules (w/ Dependencies)
 @import "bootstrap/scss/type";
+
 // @import "bootstrap/scss/images";
 // @import "bootstrap/scss/tables";
 // @import "bootstrap/scss/forms";
@@ -191,6 +193,7 @@ $theme-colors: map-merge(
 // @import "bootstrap/scss/pagination";
 // @import "bootstrap/scss/badge";
 @import "bootstrap/scss/alert";
+
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
 // @import "bootstrap/scss/toasts";
