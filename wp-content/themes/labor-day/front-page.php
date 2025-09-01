@@ -27,7 +27,12 @@ $background_image = new Image( get_field( 'hero' )['background_image'] );
 		<div class="container position-relative z-2">
 			<div class="row">
 				<div class="col animate__animated animate__fadeInRight">
-					<span class="display-2 fw-normal lh-base text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">August 29 &ndash; August 31, 2025</span>
+					<span class="display-2 fw-normal lh-base text-white text-center animate__animated animate__fadeInUp animate__delay-1s d-block">
+					<?php
+					$labor_day_dates = get_field( 'labor_day_dates', 'options' );
+					echo gmdate( 'F j', strtotime( $labor_day_dates['friday'] ) ) . ' &ndash; ' . gmdate( 'F j, Y', strtotime( $labor_day_dates['sunday'] ) );
+					?>
+					</span>
 					<div class="countdown w-100 text-white text-center" id="countdown"></div>
 				</div>
 			</div>
