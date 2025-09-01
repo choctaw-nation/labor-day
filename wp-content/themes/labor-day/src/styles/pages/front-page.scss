@@ -51,7 +51,7 @@
 .great-seal {
 	width: 88%;
 
-	@include m.fitMedia(svg);
+	@include m.fit-media(svg);
 
 	@include m.media-breakpoint-down(lg) {
 		width: 50%;

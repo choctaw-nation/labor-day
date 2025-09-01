@@ -1,10 +1,10 @@
 @use "../abstracts/mixins" as m;
 
 .vertical-card {
-	@include m.displayFlex(column, $cross: stretch);
+	@include m.d-flex(column, $cross: stretch);
 
 	&__image {
-		@include m.fitMedia($fit: cover);
+		@include m.fit-media($fit: cover);
 
 		@include m.media-breakpoint-down(md) {
 			max-height: 30rem;

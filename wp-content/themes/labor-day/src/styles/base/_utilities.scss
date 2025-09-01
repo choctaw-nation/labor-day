@@ -13,7 +13,7 @@
 	visibility: hidden !important;
 }
 
-.fadeIn {
+.fade-in {
 	transition: fn.transition((opacity, transform), (1s ease));
 	opacity: 1;
 	transform: translateY(0);
@@ -21,11 +21,9 @@
 	&--hide {
 		opacity: 0;
 		transform: translateY(2.5rem);
-
+		/* stylelint-disable-next-line media-feature-name-no-unknown */
 		@media (print), (prefers-reduced-motion: reduce) {
-			& {
-				transform: none;
-			}
+			transform: none;
 		}
 	}
 }
