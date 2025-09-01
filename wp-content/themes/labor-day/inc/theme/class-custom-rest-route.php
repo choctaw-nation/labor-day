@@ -1,12 +1,18 @@
 <?php
 /**
  * Class: Custom Rest Route
+ * TODO: Delete me?
  *
  * @package CNOLaborDay
  * @subpackage Events
  */
 
 namespace CNOLaborDay\Events;
+
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
+use WP_REST_Server;
 
 /**
  * Custom Rest Route
@@ -60,7 +66,7 @@ class Custom_Rest_Route {
 			"{$this->base}/v{$this->version}",
 			'/events',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_events' ),
 				'permission_callback' => '__return_true',
 			)
@@ -69,7 +75,7 @@ class Custom_Rest_Route {
 			"{$this->base}/v{$this->version}",
 			'/event/(?P<id>\d+)',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_event' ),
 				'args'                => array(
 					'id' => array(
@@ -86,7 +92,7 @@ class Custom_Rest_Route {
 			"{$this->base}/v{$this->version}",
 			'/events',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'find_event' ),
 				'args'                => array(
 					's' => array(
@@ -103,9 +109,9 @@ class Custom_Rest_Route {
 	/**
 	 * Get the events
 	 *
-	 * @return \WP_REST_Response
+	 * @return WP_REST_Response
 	 */
-	public function get_events(): \WP_REST_Response {
+	public function get_events(): WP_REST_Response {
 		$event_info_transient = get_transient( 'event_info_transient' );
 		if ( false !== $event_info_transient ) {
 			return rest_ensure_response( $event_info_transient );
@@ -131,7 +137,7 @@ class Custom_Rest_Route {
 	 * @param \WP_REST_Request $request The request object.
 	 * @return \WP_REST_Response
 	 */
-	public function get_event( \WP_REST_Request $request ): \WP_REST_Response {
+	public function get_event( WP_REST_Request $request ): WP_REST_Response|WP_Error {
 		$event_id = $request->get_param( 'id' );
 		$event    = get_post( $event_id );
 		if ( ! $event ) {
@@ -174,7 +180,7 @@ class Custom_Rest_Route {
 	 * @return \WP_REST_Response
 	 * @throws \WP_Error If no events are found.
 	 */
-	public function find_event( \WP_REST_Request $request ): \WP_REST_Response {
+	public function find_event( WP_REST_Request $request ): WP_REST_Response {
 		$search = $request->get_param( 's' );
 		$args   = array(
 			...$this->base_args,
