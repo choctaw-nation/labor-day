@@ -1,0 +1,16 @@
+{
+	"recommendations": [
+		"stylelint.vscode-stylelint",
+		"torresgol10.bootstrap-class-autocomplete",
+		"streetsidesoftware.code-spell-checker",
+		"naumovs.color-highlight",
+		"dbaeumer.vscode-eslint",
+		"rifi2k.format-html-in-php",
+		"pkief.material-icon-theme",
+		"wongjn.php-sniffer",
+		"ms-playwright.playwright",
+		"esbenp.prettier-vscode",
+		"richie5um2.vscode-sort-json",
+		"redhat.vscode-yaml"
+	]
+}
