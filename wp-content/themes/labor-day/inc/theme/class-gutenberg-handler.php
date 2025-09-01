@@ -8,8 +8,6 @@
 
 namespace ChoctawNation;
 
-use WP_Block_Editor_Context;
-
 /**
  * Gutenberg Handler
  */
