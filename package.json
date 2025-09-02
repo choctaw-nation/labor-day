@@ -25,7 +25,6 @@
 		"aos": "^2.3.4",
 		"bootstrap": "^5.3.7",
 		"date-fns": "^4.1.0",
-		"react": "^18.3.1",
 		"swiper": "^11.2.10"
 	},
 	"devDependencies": {
@@ -36,7 +35,6 @@
 		"@types/wordpress__blocks": "^12.5.18",
 		"@wordpress/block-editor": "^15.2.0",
 		"@wordpress/components": "^30.2.0",
-		"@wordpress/compose": "^7.29.0",
 		"@wordpress/editor": "^14.29.0",
 		"@wordpress/scripts": "^30.22.0",
 		"animate.css": "^4.1.1",
@@ -45,6 +43,7 @@
 		"eslint-import-resolver-typescript": "^4.4.4",
 		"eslint-plugin-react-hooks": "^5.2.0",
 		"globals": "^16.3.0",
+		"react": "^18.3.1",
 		"stylelint": "^16.23.1",
 		"stylelint-config-standard-scss": "^15.0.1",
 		"stylelint-scss": "^6.12.1",
