@@ -24,7 +24,14 @@
 		"prettier.useTabs": false
 	},
 	"bootstrapAutocomplete.version": "5.3.2",
-	"cSpell.words": [ "formid", "gpnf", "nestedformid", "Populator" ],
+	"cSpell.words": [
+		"formid",
+		"gpnf",
+		"mediapress",
+		"nestedformid",
+		"NONBLOCKING",
+		"Populator"
+	],
 	"css.format.spaceAroundSelectorSeparator": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "always",

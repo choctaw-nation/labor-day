@@ -153,9 +153,25 @@ class Theme_Init {
 		);
 
 		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
-		new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
+		new Asset_Loader(
+			'bootstrap',
+			Enqueue_Type::both,
+			'vendors',
+			array(
+				'styles'  => array(),
+				'scripts' => array(),
+			)
+		);
 
-		new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
+		new Asset_Loader(
+			'global',
+			Enqueue_Type::both,
+			null,
+			array(
+				'styles'  => array( 'bootstrap' ),
+				'scripts' => array( 'bootstrap' ),
+			)
+		);
 		wp_localize_script(
 			'global',
 			'cnoSiteData',
