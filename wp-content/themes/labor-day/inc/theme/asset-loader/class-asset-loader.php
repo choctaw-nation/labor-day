@@ -3,7 +3,6 @@
  * Refactoring Enqueue Scripts into a class
  *
  * @package ChoctawNation
- * @since 2.0
  */
 
 namespace ChoctawNation;
@@ -49,7 +48,7 @@ class Asset_Loader {
 	 *
 	 * @var array|false $asset_file
 	 */
-	private array|false $asset_file;
+	private $asset_file;
 
 	/**
 	 * The JS Loading strategy
@@ -73,17 +72,24 @@ class Asset_Loader {
 		$this->asset_file = $this->get_the_asset_file();
 		$this->strategy   = $strategy;
 
+		if ( null === $deps ) {
+			$deps = Enqueue_Type::both === $type ? array(
+				'scripts' => array( 'global' ),
+				'styles'  => array( 'global' ),
+			) : array( 'global' );
+		}
+
 		switch ( $type ) {
 			case Enqueue_Type::style:
-				$this->deps['styles'] = $this->set_the_dependencies( $deps );
+				$this->deps['styles'] = array_unique( array_merge( $deps, $this->asset_file['dependencies'] ) );
 				$this->enqueue_page_style();
 				break;
 			case Enqueue_Type::script:
-				$this->deps['scripts'] = $this->set_the_dependencies( $deps );
+				$this->deps['scripts'] = array_unique( array_merge( $deps, $this->asset_file['dependencies'] ) );
 				$this->enqueue_page_script();
 				break;
 			case Enqueue_Type::both:
-				$this->deps = $this->set_the_dependencies( $deps, 'both' );
+				$this->deps = $this->set_the_dependencies( $deps );
 				$this->enqueue_page_assets();
 				break;
 		}
@@ -98,41 +104,21 @@ class Asset_Loader {
 
 	/** Sets the dependencies to a single array with unique values
 	 *
-	 * @param ?array  $deps the user-passed dependencies
-	 * @param ?string $return_type whether to return split dependencies or not
+	 * @param ?array $deps the user-passed dependencies
 	 */
-	private function set_the_dependencies( ?array $deps, ?string $return_type = null ): ?array {
-		$dependencies = $this->asset_file['dependencies'];
-		if ( 'both' === $return_type ) {
-			return $this->handle_both_deps( $deps, $dependencies );
+	private function set_the_dependencies( ?array $deps ): ?array {
+		if ( isset( $deps['scripts'] ) ) {
+			$scripts = array_merge( $this->asset_file['dependencies'], $deps['scripts'] );
+		} else {
+			$deps = array(
+				'styles'  => array(),
+				'scripts' => array(),
+			);
 		}
-		if ( 'global' !== $this->id ) {
-			$dependencies = array_merge( $this->asset_file['dependencies'], array( 'global' ) );
-		}
-		if ( null !== $deps ) {
-			$dependencies = array_unique( array_merge( $dependencies, $deps ) );
-		}
-		return array_unique( $dependencies );
-	}
-
-	/**
-	 * Handles both dependencies by merging them with the given dependencies array.
-	 *
-	 * @param array|null $deps The dependencies array.
-	 * @param array      $dependencies The array of dependencies to merge.
-	 * @return array The merged array of dependencies.
-	 */
-	private function handle_both_deps( ?array $deps, array $dependencies ): array {
-		$both = array(
-			'scripts' => array( ...$dependencies ),
-			'styles'  => array(),
+		return array(
+			'scripts' => array_unique( array_merge( $scripts, $deps['scripts'] ) ),
+			'styles'  => $deps['styles'],
 		);
-
-		if ( $deps ) {
-			$both['scripts'] = isset( $deps['scripts'] ) ? array_unique( array( ...$deps['scripts'], ...$both['scripts'] ) ) : $both['scripts'];
-			$both['styles']  = isset( $deps['styles'] ) ? array_unique( array( ...$deps['styles'], ...$both['styles'] ) ) : array_unique( array( ...$both['styles'], ...$deps ) );
-		}
-		return $both;
 	}
 
 	/**

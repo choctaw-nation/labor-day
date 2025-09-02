@@ -18,7 +18,7 @@ class Gutenberg_Handler {
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
 		add_action( 'after_setup_theme', array( $this, 'cno_block_theme_support' ), 50 );
-		// add_action( 'init', array( $this, 'register_block_pattern_categories' ) ); phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+		add_action( 'init', array( $this, 'setup_block_supports' ) );
 		add_filter( 'block_editor_settings_all', array( $this, 'restrict_gutenberg_ui' ), 10, 1 );
 		add_filter( 'allowed_block_types_all', array( $this, 'restrict_block_types' ), 10, 2 );
 	}
@@ -36,6 +36,12 @@ class Gutenberg_Handler {
 	 * Enqueue the block editor assets that control the layout of the Block Editor.
 	 */
 	public function enqueue_block_assets() {
+		wp_enqueue_style(
+			'typekit',
+			'https://use.typekit.net/jky5sek.css',
+			array(),
+		null // phpcs:ignore
+		);
 		new Asset_Loader( 'editDefaultBlocks', Enqueue_Type::script, 'admin', array() );
 		new Asset_Loader( 'mediapressCustomFilters', Enqueue_Type::script, 'admin', array() );
 	}
@@ -62,7 +68,7 @@ class Gutenberg_Handler {
 	/**
 	 * Register the block pattern category.
 	 */
-	public function register_block_pattern_categories() {
+	public function setup_block_supports() {
 	}
 
 	/**
@@ -149,7 +155,7 @@ class Gutenberg_Handler {
 				'core/site-title',
 				'core/social-link',
 				'core/social-links',
-				'core/spacer',
+				// 'core/spacer',
 				'core/tag-cloud',
 				'core/term-description',
 				'core/video',
