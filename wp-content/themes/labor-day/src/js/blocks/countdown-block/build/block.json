@@ -1,0 +1,98 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "telex/countdown-timer",
+  "version": "0.1.0",
+  "title": "Countdown Timer",
+  "category": "widgets",
+  "icon": "clock",
+  "description": "Display a countdown timer to a specific date and time with customizable styling and labels.",
+  "example": {
+    "attributes": {
+      "targetDate": "2025-12-31T23:59:59",
+      "showDays": true,
+      "showHours": true,
+      "showMinutes": true,
+      "showSeconds": true
+    }
+  },
+  "attributes": {
+    "targetDate": {
+      "type": "string",
+      "default": ""
+    },
+    "showDays": {
+      "type": "boolean",
+      "default": true
+    },
+    "showHours": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMinutes": {
+      "type": "boolean",
+      "default": true
+    },
+    "showSeconds": {
+      "type": "boolean",
+      "default": true
+    },
+    "labelDays": {
+      "type": "string",
+      "default": "Days"
+    },
+    "labelHours": {
+      "type": "string",
+      "default": "Hours"
+    },
+    "labelMinutes": {
+      "type": "string",
+      "default": "Minutes"
+    },
+    "labelSeconds": {
+      "type": "string",
+      "default": "Seconds"
+    },
+    "completionMessage": {
+      "type": "string",
+      "default": "The countdown has ended!"
+    },
+    "numberColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "labelColor": {
+      "type": "string",
+      "default": "#666666"
+    },
+    "numberFontSize": {
+      "type": "number",
+      "default": 48
+    },
+    "labelFontSize": {
+      "type": "number",
+      "default": 14
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true,
+    "color": {
+      "background": true,
+      "text": false
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "textdomain": "countdown-timer",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

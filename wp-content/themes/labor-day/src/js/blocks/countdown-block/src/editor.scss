@@ -1,0 +1,14 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-telex-countdown-timer {
+	.countdown-timer-placeholder {
+		background: #f9f9f9;
+		border: 2px dashed #ddd;
+		
+		&:hover {
+			border-color: #999;
+		}
+	}
+}
