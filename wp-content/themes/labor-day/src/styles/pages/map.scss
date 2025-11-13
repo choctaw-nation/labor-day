@@ -62,3 +62,15 @@
 		}
 	}
 }
+
+.hero{  @include m.media-breakpoint-up(lg) {
+	height: 430px;
+	overflow: hidden;
+
+	img{
+		object-fit: cover;
+		height: 100%;
+		object-position: center center;
+	}
+}
+}
