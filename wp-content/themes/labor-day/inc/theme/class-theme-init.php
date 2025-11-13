@@ -146,13 +146,6 @@ class Theme_Init {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
-		wp_enqueue_style(
-			'typekit',
-			'https://use.typekit.net/jky5sek.css',
-			array(),
-		null // phpcs:ignore
-		);
-
 		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
 		new Asset_Loader(
 			'bootstrap',

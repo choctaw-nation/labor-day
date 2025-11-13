@@ -31,7 +31,7 @@ export default function save( { attributes } ) {
 		labelColor,
 		numberFontSize,
 		labelFontSize,
-		alignment
+		alignment,
 	} = attributes;
 
 	const blockProps = useBlockProps.save( {
@@ -50,8 +50,8 @@ export default function save( { attributes } ) {
 		'data-number-font-size': numberFontSize,
 		'data-label-font-size': labelFontSize,
 		style: {
-			textAlign: alignment
-		}
+			textAlign: alignment,
+		},
 	} );
 
 	return (

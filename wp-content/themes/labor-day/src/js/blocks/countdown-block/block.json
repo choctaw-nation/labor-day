@@ -1,12 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "telex/countdown-timer",
+	"name": "cno/countdown-block",
 	"version": "0.1.0",
-	"title": "Countdown Timer",
+	"title": "Countdown",
 	"category": "widgets",
 	"icon": "clock",
-	"description": "Display a countdown timer to a specific date and time with customizable styling and labels.",
+	"keywords": [ "countdown", "timer" ],
+	"description": "Display a countdown to a specific date and time with customizable styling and labels.",
 	"example": {
 		"attributes": {
 			"targetDate": "2025-12-31T23:59:59",
@@ -66,33 +67,54 @@
 			"default": "#666666"
 		},
 		"numberFontSize": {
-			"type": "number",
-			"default": 48
+			"type": "string",
+			"default": "1.2rem"
 		},
 		"labelFontSize": {
-			"type": "number",
-			"default": 14
+			"type": "string",
+			"default": "16px"
+		},
+		"textAlign": {
+			"type": "string",
+			"default": "center",
+			"enum": [ "left", "center", "right" ]
 		},
 		"alignment": {
 			"type": "string",
-			"default": "center"
+			"default": "center",
+			"enum": [
+				"flex-start",
+				"center",
+				"flex-end",
+				"space-between",
+				"space-around",
+				"space-evenly"
+			]
+		},
+		"orientation": {
+			"type": "string",
+			"default": "horizontal",
+			"enum": [ "horizontal", "vertical" ]
 		}
 	},
 	"supports": {
 		"html": false,
-		"align": true,
+		"align": [ "wide", "full" ],
+		"alignWide": true,
 		"color": {
-			"background": true,
-			"text": false
+			"text": false,
+			"background": false,
+			"gradients": false,
+			"link": false
 		},
 		"spacing": {
-			"padding": true,
-			"margin": true
+			"padding": false,
+			"margin": true,
+			"blockGap": true
 		}
 	},
-	"textdomain": "countdown-timer",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"viewScriptModule": "file:./view.js"
 }

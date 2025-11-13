@@ -125,7 +125,7 @@
 			"dropCap": false,
 			"fontFamilies": [
 				{
-					"fontFamily": "gill-sans-nova, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+					"fontFamily": "\"gill-sans-nova\", \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
 					"name": "Gill Sans Nova",
 					"slug": "body"
 				}
@@ -211,8 +211,8 @@
 		"spacing": {
 			"padding": {
 				"bottom": "0",
-				"left": "var:preset|spacing|lg",
-				"right": "var:preset|spacing|lg",
+				"left": "calc(var(--wp--preset--spacing--lg) * .5)",
+				"right": "calc(var(--wp--preset--spacing--lg) * .5)",
 				"top": "0"
 			},
 			"blockGap": "var:preset|spacing|base"
