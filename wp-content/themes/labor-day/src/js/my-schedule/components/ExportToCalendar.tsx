@@ -1,5 +1,4 @@
 import React from '@wordpress/element';
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import EventButton from '../ui/EventButton';
 
 export default function ExportToCalendar( { handleClick, eventId } ) {
@@ -9,7 +8,7 @@ export default function ExportToCalendar( { handleClick, eventId } ) {
 			onClick={ () => {
 				handleClick( eventId );
 			} }
-			icon={ faCalendar }
+			icon={ '<i class="fa-regular fa-calendar"></i>' }
 			text="Export to Calendar"
 		/>
 	);

@@ -1,4 +1,3 @@
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import React from '@wordpress/element';
 import EventButton from '../ui/EventButton';
 
@@ -7,7 +6,7 @@ export default function ReadMoreButton( { link } ) {
 		<EventButton
 			element="a"
 			classes="text-decoration-none"
-			icon={ faCircleInfo }
+			icon={ '<i class="fa-solid fa-circle-info"></i>' }
 			text="Learn More"
 			href={ link }
 		/>
