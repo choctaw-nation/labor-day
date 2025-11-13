@@ -1,4 +1,5 @@
-@use '../abstracts/fluid-type-utils' as fluid-type;
+@use "../abstracts/fluid-type-utils" as fluid-type;
+@use "../abstracts/variables" as v;
 
 :root {
 	@include fluid-type.generate-type-scale;
@@ -10,26 +11,33 @@
 	);
 }
 
-body {
-	text-wrap: pretty;
-	word-break: normal;
-}
-
 // HEADINGS
 
-$headings: (1:"xxxl", 2:"xxl", 3:"xl", 4:"lg", 5:"md", 6:"sm");
+$headings: (
+	1: "xxxl",
+	2: "xxl",
+	3: "xl",
+	4: "lg",
+	5: "md",
+	6: "sm",
+);
 
 /**
 * Reset Headings and utils to use WP sizes instead of bootstrap's
 */
-@each $heading,$slug in $headings {
-	h#{$heading},
-	.h#{$heading} {
-		text-wrap: balance;
+@each $heading, $slug in $headings {
+	h#{$heading} {
 		font-size: var(--wp--preset--font-size--#{$slug});
 	}
+
+	:root .h#{$heading} {
+		text-wrap: pretty;
+		font-size: var(--wp--preset--font-size--#{$slug});
+		font-family: var(--wp--preset--font-family--headings, v.$font-headings);
+	}
+
 	.fs-#{$heading} {
-		font-size:var(--wp--preset--font-size--#{$slug}) !important;
+		font-size: var(--wp--preset--font-size--#{$slug}) !important;
 	}
 }
 
@@ -39,6 +47,15 @@ $headings: (1:"xxxl", 2:"xxl", 3:"xl", 4:"lg", 5:"md", 6:"sm");
 @each $step in fluid-type.$display-steps {
 	.display-#{$step} {
 		font-size: var(--fs-display-#{$step}) !important;
+	}
+}
+
+body {
+	text-wrap: pretty;
+	word-break: normal;
+
+	address {
+		text-wrap: initial;
 	}
 }
 

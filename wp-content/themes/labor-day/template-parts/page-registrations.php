@@ -15,7 +15,7 @@ $args = array(
 	'post_status'    => 'publish',
 );
 
-$after_list_content = get_field('after_list_content');
+$after_list_content = get_field( 'after_list_content' );
 
 $registrations = new WP_Query( $args );
 

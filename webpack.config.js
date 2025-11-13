@@ -12,6 +12,7 @@ module.exports = {
 	...defaultConfig,
 	...{
 		entry: () => ( {
+			...defaultConfig.entry(),
 			global: `.${ THEME_DIR }/src/index.ts`,
 			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,

@@ -8,6 +8,8 @@
 
 namespace ChoctawNation;
 
+use WP_Block_Editor_Context;
+
 /**
  * Gutenberg Handler
  */
@@ -18,9 +20,9 @@ class Gutenberg_Handler {
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
 		add_action( 'after_setup_theme', array( $this, 'cno_block_theme_support' ), 50 );
-		add_action( 'init', array( $this, 'setup_block_supports' ) );
 		add_filter( 'block_editor_settings_all', array( $this, 'restrict_gutenberg_ui' ), 10, 1 );
 		add_filter( 'allowed_block_types_all', array( $this, 'restrict_block_types' ), 10, 2 );
+		add_filter( 'use_block_editor_for_post_type', array( $this, 'handle_page_templates' ), 20, 2 );
 	}
 
 	/**
@@ -66,12 +68,6 @@ class Gutenberg_Handler {
 	}
 
 	/**
-	 * Register the block pattern category.
-	 */
-	public function setup_block_supports() {
-	}
-
-	/**
 	 * Restrict access to the locking UI to Administrators.
 	 *
 	 * @param array $settings Default editor settings.
@@ -92,23 +88,22 @@ class Gutenberg_Handler {
 	 *
 	 * This function restricts the available block types to Heading, List, Image, and Paragraph only.
 	 *
-	 * @param array|bool $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+	 * @param array|bool              $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+	 * @param WP_Block_Editor_Context $context               The block editor context
 	 *
 	 * @return array|bool The array of allowed block types or boolean to enable/disable all.
 	 */
-	public function restrict_block_types( array|bool $allowed_block_types ): array|bool {
-		$is_administrator = $this->is_admin();
+	public function restrict_block_types( array|bool $allowed_block_types, WP_Block_Editor_Context $context ): array|bool {
 		// Get all registered blocks if $allowed_block_types is not already set.
 		if ( ! is_array( $allowed_block_types ) || empty( $allowed_block_types ) ) {
 			$registered_blocks   = \WP_Block_Type_Registry::get_instance()->get_all_registered();
 			$allowed_block_types = array_keys( $registered_blocks );
 		}
-		if ( $is_administrator ) {
+
+		if ( ! $this->is_admin() ) {
 			$disallowed_blocks = array(
 				'core/archives',
 				'core/avatar',
-				'core/button',
-				'core/buttons',
 				'core/calendar',
 				'core/categories',
 				'core/comments',
@@ -124,13 +119,13 @@ class Gutenberg_Handler {
 				'core/comments-pagination-next',
 				'core/comments-pagination-numbers',
 				'core/comments-title',
-				'core/embed',
 				'core/home-link',
 				'core/file',
 				'core/latest-comments',
 				'core/latest-posts',
 				'core/loginout',
 				'core/missing',
+				'core/media-text',
 				'core/navigation',
 				'core/navigation-link',
 				'core/navigation-submenu',
@@ -155,53 +150,47 @@ class Gutenberg_Handler {
 				'core/site-title',
 				'core/social-link',
 				'core/social-links',
-				// 'core/spacer',
 				'core/tag-cloud',
 				'core/term-description',
 				'core/video',
 			);
-
-			// Create a new array for the allowed blocks.
-			$filtered_blocks = array();
-
-			// Loop through each block in the allowed blocks list.
-			foreach ( $allowed_block_types as $block ) {
-
-				// Check if the block is not in the disallowed blocks list.
-				if ( ! in_array( $block, $disallowed_blocks, true ) ) {
-
-					// If it's not disallowed, add it to the filtered list.
-					$filtered_blocks[] = $block;
+			return array_filter(
+				$allowed_block_types,
+				function ( $block ) use ( $disallowed_blocks ) {
+					return ! in_array( $block, $disallowed_blocks, true );
 				}
-			}
-
-			// Return the filtered list of allowed blocks
-			return $filtered_blocks;
-		}
-
-		if ( ! $is_administrator ) {
-			$allowed_block_types = array(
-				'core/heading',
-				'core/list',
-				'core/list-item',
-				'core/image',
-				'core/paragraph',
-				'core/gallery',
-				'core/shortcode',
-				'core/freeform',
-				'core/pattern',
-				'core/table',
-				'core/quote',
-				'core/pullquote',
-				'core/code',
-				'core/html',
-				'core/block',
-				'core/buttons',
-				'core/button',
-				'gravityforms/form',
 			);
-			return $allowed_block_types;
 		}
 		return $allowed_block_types;
+	}
+
+	/**
+	 * Disallows the Block Editor (and editor altogether) for certain post types
+	 *
+	 * @param bool   $use_block_editor Whether to use the block editor.
+	 * @param string $post_type The post type being checked.
+	 * @return bool
+	 */
+	public function handle_page_templates( bool $use_block_editor, string $post_type, ): bool {
+		if ( ! is_admin() ) {
+			return $use_block_editor;
+		}
+		$disallowed_post_types = array( 'staff', 'opinion' );
+		if ( in_array( $post_type, $disallowed_post_types, true ) ) {
+			return false;
+		}
+		global $post;
+		if ( ! $post ) {
+			return $use_block_editor;
+		}
+		$current_template     = get_page_template_slug( $post );
+		$homepage_id          = (int) get_option( 'page_on_front' );
+		$is_homepage          = ( $homepage_id && $homepage_id === $post->ID );
+		$disallowed_templates = array( 'templates/map.php' );
+		if ( in_array( $current_template, $disallowed_templates, true ) ) {
+			// could also use $is_homepage check here if needed
+			return false;
+		}
+		return $use_block_editor;
 	}
 }

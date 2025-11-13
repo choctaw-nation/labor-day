@@ -10,7 +10,7 @@ namespace ChoctawNation;
 
 /** Builds the Theme */
 class Theme_Init {
-	// phpcs:ignore 
+	// phpcs:ignore
 	public function __construct() {
 		$this->load_required_files();
 		$this->disable_discussion();
@@ -46,6 +46,7 @@ class Theme_Init {
 			require_once $base_path . "/theme/navwalkers/class-{$navwalker}.php";
 		}
 		$utility_files = array(
+			'role-editor'       => 'Role_Editor',
 			'gutenberg-handler' => 'Gutenberg_Handler',
 			'acf-handler'       => 'ACF_Handler',
 			'custom-rest-route' => 'Custom_Rest_Route',
