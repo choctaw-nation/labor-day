@@ -1,7 +1,11 @@
+import { TimeRemainingObject } from './types';
+
 /**
  * Calculate time remaining
+ *
+ * @param targetDate the target date string
  */
-export function calculateTimeRemaining( targetDate ) {
+export function calculateTimeRemaining( targetDate:string ):TimeRemainingObject|null {
 	if ( ! targetDate ) {
 		return null;
 	}

@@ -1,11 +1,4 @@
 import { BlockControls, AlignmentToolbar } from '@wordpress/block-editor';
-import {
-	ToolbarButton,
-	Popover,
-	CustomSelectControl,
-	Button,
-} from '@wordpress/components';
-import { useState } from '@wordpress/element';
 
 import OrientationPicker from './components/OrientationPicker';
 import DateTimePicker from './components/DateTimePicker';

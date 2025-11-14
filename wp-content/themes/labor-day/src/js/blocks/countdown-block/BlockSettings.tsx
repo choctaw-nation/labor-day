@@ -15,35 +15,28 @@ import {
 	ColorPalette,
 	FontSizePicker,
 } from '@wordpress/components';
+import useFontSize from './hooks/useFontSize';
 
 export default function BlockSettings( { attributes, setAttributes } ) {
 	const {
 		targetDate,
+		showEmptyLabels,
 		showDays,
 		showHours,
 		showMinutes,
 		showSeconds,
-		labelDays,
-		labelHours,
-		labelMinutes,
-		labelSeconds,
 		completionMessage,
 		numberColor,
 		labelColor,
-		numberFontSize,
-		labelFontSize,
 	} = attributes;
-	const canShowLabels = [
-		showDays,
-		showHours,
-		showMinutes,
-		showSeconds,
-	].some( ( v ) => v === true );
 
-	const { colors, fontSizes } = useSelect( ( select ) => {
-		const settings = select( blockEditorStore ).getSettings();
-		return { colors: settings.colors, fontSizes: settings.fontSizes };
-	}, [] );
+	const colors = useSelect(
+		( select ) => select( blockEditorStore ).getSettings().colors,
+		[]
+	);
+	const { numberFontSize, labelFontSize, fontSizes } =
+		useFontSize( attributes );
+
 	return (
 		<Fragment>
 			<InspectorControls>
@@ -71,127 +64,82 @@ export default function BlockSettings( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 				<PanelBody title={ 'Labels' } initialOpen={ false }>
-					<ToggleControl
-						__nextHasNoMarginBottom
-						label={ 'Show Days' }
-						checked={ showDays }
-						onChange={ ( value ) =>
-							setAttributes( { showDays: value } )
-						}
-					/>
-					{ showDays && (
-						<TextControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							label={ 'Days Label' }
-							value={ labelDays }
-							onChange={ ( value ) =>
-								setAttributes( { labelDays: value } )
-							}
-						/>
-					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
-						label={ 'Show Hours' }
-						checked={ showHours }
-						onChange={ ( value ) =>
-							setAttributes( { showHours: value } )
-						}
-					/>
-					{ showHours && (
-						<TextControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							label={ 'Hours Label' }
-							value={ labelHours }
-							onChange={ ( value ) =>
-								setAttributes( { labelHours: value } )
-							}
-						/>
-					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
-						label={ 'Show Minutes' }
-						checked={ showMinutes }
-						onChange={ ( value ) =>
-							setAttributes( { showMinutes: value } )
-						}
-					/>
-					{ showMinutes && (
-						<TextControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							label={ 'Minutes Label' }
-							value={ labelMinutes }
-							onChange={ ( value ) =>
-								setAttributes( { labelMinutes: value } )
-							}
-						/>
-					) }
-					<ToggleControl
-						__nextHasNoMarginBottom
-						label={ 'Show Seconds' }
-						checked={ showSeconds }
-						onChange={ ( value ) =>
-							setAttributes( { showSeconds: value } )
-						}
-					/>
-					{ showSeconds && (
-						<TextControl
-							__next40pxDefaultSize
-							__nextHasNoMarginBottom
-							label={ 'Seconds Label' }
-							value={ labelSeconds }
-							onChange={ ( value ) =>
-								setAttributes( { labelSeconds: value } )
-							}
-						/>
-					) }
+					<Flex gap={ 6 } direction={ 'column' }>
+						<FlexBlock>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ 'Show expired units' }
+								checked={ showEmptyLabels }
+								onChange={ ( value ) =>
+									setAttributes( { showEmptyLabels: value } )
+								}
+								help={
+									'Sets visibility of a unit when expired'
+								}
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ 'Show Days' }
+								checked={ showDays }
+								onChange={ ( value ) =>
+									setAttributes( { showDays: value } )
+								}
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ 'Show Hours' }
+								checked={ showHours }
+								onChange={ ( value ) =>
+									setAttributes( { showHours: value } )
+								}
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ 'Show Minutes' }
+								checked={ showMinutes }
+								onChange={ ( value ) =>
+									setAttributes( { showMinutes: value } )
+								}
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label={ 'Show Seconds' }
+								checked={ showSeconds }
+								onChange={ ( value ) =>
+									setAttributes( { showSeconds: value } )
+								}
+							/>
+						</FlexBlock>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls group="styles">
-				<PanelBody title={ 'Colors' } initialOpen={ false }>
-					<div style={ { marginBottom: '16px' } }>
-						<strong>{ 'Number Color' }</strong>
-						<ColorPalette
-							disableCustomColors={ true }
-							colors={ colors }
-							value={ numberColor }
-							onChange={ ( value ) =>
-								setAttributes( { numberColor: value } )
-							}
-						/>
-					</div>
-					<div>
-						<strong>{ 'Label Color' }</strong>
-						<ColorPalette
-							disableCustomColors={ true }
-							colors={ colors }
-							value={ labelColor }
-							onChange={ ( value ) =>
-								setAttributes( { labelColor: value } )
-							}
-						/>
-					</div>
-				</PanelBody>
 				<PanelBody title={ 'Typography' } initialOpen={ false }>
 					<Flex gap={ 6 } direction={ 'column' }>
 						<FlexBlock>
 							<p>
 								<strong>{ 'Number Font Size' }</strong>
-								<FontSizePicker
-									__next40pxDefaultSize
-									disableCustomFontSizes={ true }
-									valueMode="slug"
-									fontSizes={ fontSizes }
-									value={ numberFontSize }
-									onChange={ ( value ) =>
-										setAttributes( {
-											numberFontSize: value,
-										} )
-									}
-								/>
 							</p>
+							<FontSizePicker
+								__next40pxDefaultSize
+								disableCustomFontSizes={ true }
+								valueMode="slug"
+								fontSizes={ fontSizes }
+								value={ numberFontSize }
+								onChange={ ( _, selectedItem ) => {
+									setAttributes( {
+										numberFontSize: selectedItem?.slug,
+									} );
+								} }
+							/>
 						</FlexBlock>
 						<FlexBlock>
 							<p>
@@ -203,8 +151,40 @@ export default function BlockSettings( { attributes, setAttributes } ) {
 								valueMode="slug"
 								fontSizes={ fontSizes }
 								value={ labelFontSize }
+								onChange={ ( _, selectedItem ) =>
+									setAttributes( {
+										labelFontSize: selectedItem?.slug,
+									} )
+								}
+							/>
+						</FlexBlock>
+					</Flex>
+				</PanelBody>
+				<PanelBody title={ 'Colors' } initialOpen={ false }>
+					<Flex gap={ 6 } direction={ 'column' }>
+						<FlexBlock>
+							<p style={ { marginBlock: '1rem' } }>
+								<strong>{ 'Number Color' }</strong>
+							</p>
+							<ColorPalette
+								disableCustomColors={ true }
+								colors={ colors }
+								value={ numberColor }
 								onChange={ ( value ) =>
-									setAttributes( { labelFontSize: value } )
+									setAttributes( { numberColor: value } )
+								}
+							/>
+						</FlexBlock>
+						<FlexBlock>
+							<p style={ { marginBlock: '1rem' } }>
+								<strong>{ 'Label Color' }</strong>
+							</p>
+							<ColorPalette
+								disableCustomColors={ true }
+								colors={ colors }
+								value={ labelColor }
+								onChange={ ( value ) =>
+									setAttributes( { labelColor: value } )
 								}
 							/>
 						</FlexBlock>

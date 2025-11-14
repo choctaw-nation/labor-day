@@ -18,9 +18,21 @@
 		}
 	},
 	"attributes": {
+		"style": {
+			"type": "object",
+			"default": {
+				"spacing": {
+					"blockGap": "var:preset|spacing|base"
+				}
+			}
+		},
 		"targetDate": {
 			"type": "string",
 			"default": ""
+		},
+		"showEmptyLabels": {
+			"type": "boolean",
+			"default": false
 		},
 		"showDays": {
 			"type": "boolean",
@@ -38,22 +50,6 @@
 			"type": "boolean",
 			"default": true
 		},
-		"labelDays": {
-			"type": "string",
-			"default": "Days"
-		},
-		"labelHours": {
-			"type": "string",
-			"default": "Hours"
-		},
-		"labelMinutes": {
-			"type": "string",
-			"default": "Minutes"
-		},
-		"labelSeconds": {
-			"type": "string",
-			"default": "Seconds"
-		},
 		"completionMessage": {
 			"type": "string",
 			"default": "The countdown has ended!"
@@ -68,11 +64,11 @@
 		},
 		"numberFontSize": {
 			"type": "string",
-			"default": "1.2rem"
+			"default": "lg"
 		},
 		"labelFontSize": {
 			"type": "string",
-			"default": "16px"
+			"default": "lg"
 		},
 		"textAlign": {
 			"type": "string",
@@ -116,5 +112,5 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScriptModule": "file:./view.js"
+	"viewScriptModule": "file:./view.ts"
 }

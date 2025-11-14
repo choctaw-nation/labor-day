@@ -2,13 +2,18 @@
  * The following styles get applied inside the editor only.
  */
 
-.wp-block-telex-countdown-timer {
-	.countdown-timer-placeholder {
+.wp-block-cno-countdown-block {
+	.countdown-block__placeholder {
 		background: #f9f9f9;
 		border: 2px dashed #ddd;
-		
+		color: black;
+
 		&:hover {
 			border-color: #999;
 		}
+	}
+
+	p {
+		margin-block-start: 0;
 	}
 }
