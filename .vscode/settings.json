@@ -44,7 +44,9 @@
 		"mediapress",
 		"nestedformid",
 		"NONBLOCKING",
-		"Populator"
+		"Populator",
+		"Tuskahoma",
+		"xxxxl"
 	],
 	"css.format.spaceAroundSelectorSeparator": true,
 	"editor.codeActionsOnSave": {

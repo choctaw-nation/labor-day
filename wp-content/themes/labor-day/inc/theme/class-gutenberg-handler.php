@@ -101,7 +101,7 @@ class Gutenberg_Handler {
 	 *
 	 * @return array|bool The array of allowed block types or boolean to enable/disable all.
 	 */
-	public function restrict_block_types( array|bool $allowed_block_types, WP_Block_Editor_Context $context ): array|bool {
+	public function restrict_block_types( array|bool $allowed_block_types, WP_Block_Editor_Context $context ): array|bool { // phpcs:ignore 
 		// Get all registered blocks if $allowed_block_types is not already set.
 		if ( ! is_array( $allowed_block_types ) || empty( $allowed_block_types ) ) {
 			$registered_blocks   = \WP_Block_Type_Registry::get_instance()->get_all_registered();
@@ -203,7 +203,7 @@ class Gutenberg_Handler {
 	}
 
 	/**
-	Register any theme-specific blocks
+	 * Register any theme-specific blocks
 	 */
 	public function register_theme_blocks() {
 		// Load blocks

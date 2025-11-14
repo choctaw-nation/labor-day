@@ -1,4 +1,3 @@
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
 /**
  * View class to manage the display of the UI components
  */

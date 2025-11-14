@@ -9,7 +9,7 @@ const view = new View();
 export function AddToScheduleButton( { eventId } ) {
 	const [ responseMessage, setResponseMessage ] =
 		useState( 'Add to Schedule' );
-	const [ inSchedule ] = useState( function () {
+	const [ inSchedule ] = useState( function() {
 		const schedule = model.getSchedule();
 		const sched: PrettyEventData[] = Object.values( schedule ).flat();
 		if ( sched.length === 0 ) {
