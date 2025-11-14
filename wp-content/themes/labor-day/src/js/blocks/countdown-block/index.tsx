@@ -4,8 +4,8 @@ import { registerBlockType } from '@wordpress/blocks';
  * Internal dependencies
  */
 import './style.scss';
-import Edit from './Edit';
-import Save from './Save';
+import Edit from './edit';
+import Save from './save';
 import metadata from './block.json';
 
 /**
