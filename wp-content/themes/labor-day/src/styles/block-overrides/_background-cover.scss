@@ -1,15 +1,9 @@
 @use "../abstracts/mixins" as m;
 
 .wp-block-cover {
-	&__image-background {
+	&__background {
 		background-position: center 60%;
 		background-size: cover;
 		mix-blend-mode: multiply;
-		z-index: 2;
-	}
-
-	&__background {
-		z-index: 1;
-		background-color: red !important;
 	}
 }
