@@ -1,46 +1,37 @@
-const path = require( 'path' );
-
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
+const configs = require( '@wordpress/scripts/config/webpack.config.js' );
 const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
 
 const THEME_NAME = 'labor-day';
-const THEME_DIR = path.resolve(
-	__dirname,
-	`wp-content/themes/${ THEME_NAME }`
-);
+const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
 
-const appNames = [ 'front-page', 'my-schedule' ];
-const styleSheets = []; // for scss only
 const blockEditor = [ 'editDefaultBlocks', 'mediapressCustomFilters' ];
-
-module.exports = {
+const defaultConfig = configs[ 1 ];
+const config = {
 	...defaultConfig,
-	...{
-		entry: () => ( {
-			...defaultConfig.entry(),
-			global: `.${ THEME_DIR }/src/index.ts`,
-			'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
-			'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
-			'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,
-			'pages/registrations': `.${ THEME_DIR }/src/js/registrations/RegistrationsHandler.ts`,
-			'modules/add-to-schedule': `.${ THEME_DIR }/src/js/add-to-schedule/controller.ts`,
-			...addEntries( appNames, 'pages' ),
-			...addEntries( styleSheets, 'styles' ),
-			...addEntries( blockEditor, 'admin' ),
+	entry: {
+		...defaultConfig.entry,
+		global: `.${ THEME_DIR }/src/index.ts`,
+		'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
+		'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
+		'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,
+		'pages/mySchedule': `.${ THEME_DIR }/src/js/my-schedule/App.tsx`,
+		'pages/registrations': `.${ THEME_DIR }/src/js/registrations/RegistrationsHandler.ts`,
+		'modules/add-to-schedule': `.${ THEME_DIR }/src/js/add-to-schedule/controller.ts`,
 
-		} ),
-		output: {
-			path: __dirname + `${ THEME_DIR }/dist`,
-			filename: `[name].js`,
-		},
-		plugins: [
-			...defaultConfig.plugins,
-			new RemoveEmptyScriptsPlugin( {
-				stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-			} ),
-		],
+		...addEntries( blockEditor, 'admin' ),
 	},
+	output: {
+		path: __dirname + `${ THEME_DIR }/dist`,
+		filename: `[name].js`,
+	},
+	plugins: [
+		...defaultConfig.plugins,
+		new RemoveEmptyScriptsPlugin( {
+			stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+		} ),
+	],
 };
+module.exports = config;
 
 /**
  * Helper function to add entries to the entries object. It takes an array of strings in either kebab-case or snake_case and returns an object with the key as the entry name and the value as the path to the entry file.
@@ -59,17 +50,15 @@ function addEntries( array, type ) {
 		styles: {
 			outputDir: ( assetOutput ) => `pages/${ assetOutput }`,
 			path: ( asset ) =>
-				path.resolve( THEME_DIR, `src/styles/pages/${ asset }.scss` ),
+				`.${ THEME_DIR }/src/styles/pages/${ asset }.scss`,
 		},
 		pages: {
 			outputDir: ( assetOutput ) => `pages/${ assetOutput }`,
-			path: ( asset ) =>
-				path.resolve( THEME_DIR, `src/js/${ asset }/App.tsx` ),
+			path: ( asset ) => `.${ THEME_DIR }/src/js/${ asset }/index.ts`,
 		},
 		admin: {
 			outputDir: ( assetOutput ) => `admin/${ assetOutput }`,
-			path: ( asset ) =>
-				path.resolve( THEME_DIR, `src/js/gutenberg/${ asset }.ts` ),
+			path: ( asset ) => `.${ THEME_DIR }/src/js/gutenberg/${ asset }.ts`,
 		},
 	};
 	array.forEach( ( asset ) => {
