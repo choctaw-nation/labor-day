@@ -18,11 +18,13 @@ class Gutenberg_Handler {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_global_block_assets' ) );
 		add_action( 'after_setup_theme', array( $this, 'cno_block_theme_support' ), 50 );
 		add_filter( 'block_editor_settings_all', array( $this, 'restrict_gutenberg_ui' ), 10, 1 );
 		add_filter( 'allowed_block_types_all', array( $this, 'restrict_block_types' ), 10, 2 );
 		add_filter( 'use_block_editor_for_post_type', array( $this, 'handle_page_templates' ), 20, 2 );
+		add_action( 'init', array( $this, 'register_theme_blocks' ) );
 	}
 
 	/**
@@ -37,15 +39,21 @@ class Gutenberg_Handler {
 	/**
 	 * Enqueue the block editor assets that control the layout of the Block Editor.
 	 */
-	public function enqueue_block_assets() {
+	public function enqueue_block_editor_assets() {
+		new Asset_Loader( 'editDefaultBlocks', Enqueue_Type::script, 'admin', array() );
+		new Asset_Loader( 'mediapressCustomFilters', Enqueue_Type::script, 'admin', array() );
+	}
+
+	/**
+	 * Enqueue the block editor assets that control the layout of the Block Editor.
+	 */
+	public function enqueue_global_block_assets() {
 		wp_enqueue_style(
 			'typekit',
 			'https://use.typekit.net/jky5sek.css',
 			array(),
-		null // phpcs:ignore
+			null // phpcs:ignore
 		);
-		new Asset_Loader( 'editDefaultBlocks', Enqueue_Type::script, 'admin', array() );
-		new Asset_Loader( 'mediapressCustomFilters', Enqueue_Type::script, 'admin', array() );
 	}
 
 	/**
@@ -192,5 +200,14 @@ class Gutenberg_Handler {
 			return false;
 		}
 		return $use_block_editor;
+	}
+
+	/**
+	Register any theme-specific blocks
+	 */
+	public function register_theme_blocks() {
+		// Load blocks
+		$blocks_path = get_template_directory() . '/dist';
+		wp_register_block_types_from_metadata_collection( $blocks_path . '/js/blocks', $blocks_path . '/blocks-manifest.php' );
 	}
 }

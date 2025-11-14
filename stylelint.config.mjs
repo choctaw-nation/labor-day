@@ -22,6 +22,12 @@ export default {
 					'Custom properties must be kebab-case, or WordPress-style (--wp--preset--type--value)',
 			},
 		],
+		'selector-class-pattern': [
+			'^([a-z][a-z0-9]*)(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$',
+			{
+				message: 'Expected class selector to be kebab-case or BEM format',
+			},
+		],
 	},
 	ignoreFiles: [
 		'wp-content/themes/**/src/styles/abstracts/_bs_breakpoints.scss',

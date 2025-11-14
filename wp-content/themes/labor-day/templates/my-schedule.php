@@ -2,14 +2,13 @@
 /**
  * Template Name: My Schedule
  *
- *
  * @package ChoctawNation
  */
 
 cno_enqueue_page_assets( 'mySchedule' );
 get_header();
 ?>
-<main <?php post_class('site-content');?>>
+<main <?php post_class( 'site-content' ); ?>>
 <div class="container">
 	<div class="row">
 		<?php

@@ -33,7 +33,16 @@ $default-type-base-min: 16px;
 $default-type-base-max: 20px;
 
 // Type Scale steps
-$default-type-steps: (small:"sm", p:"base", h6:"md", h5:"lg", h4:"xl", h3:"xxl", h2:"xxxl", h1:"xxxxl");
+$default-type-steps: (
+	small: "sm",
+	p: "base",
+	h6: "md",
+	h5: "lg",
+	h4: "xl",
+	h3: "xxl",
+	h2: "xxxl",
+	h1: "xxxxl",
+);
 $display-steps: (6, 5, 4, 3, 2, 1);
 
 // Default Type Scale
@@ -61,11 +70,15 @@ $default-type-scale: map.get($scales, minor-third);
 	@return $rems;
 }
 
-
 /**
  * Conditionally writes a clamped fluid type value based on a minimum and maximum pixel size.
 */
-@function clamped($min-px, $max-px, $min-bp: $default-min-bp, $max-bp: $default-max-bp) {
+@function clamped(
+	$min-px,
+	$max-px,
+	$min-bp: $default-min-bp,
+	$max-bp: $default-max-bp
+) {
 	$slope: math.div($max-px - $min-px, $max-bp - $min-bp);
 	$slope-vw: _rnd($slope * 100);
 	$intercept-rems: _rnd(_to-rems($min-px - $slope * $min-bp));
@@ -75,7 +88,6 @@ $default-type-scale: map.get($scales, minor-third);
 
 	@return clamp(#{$min-rems}, #{$preferred}, #{$max-rems});
 }
-
 
 ///////////
 // MIXINS
@@ -99,19 +111,20 @@ $default-type-scale: map.get($scales, minor-third);
 		$steps-keys: $type-steps;
 	}
 
-
 	@for $i from 1 through list.length($steps-keys) {
 		$step-key: list.nth($steps-keys, $i);
 		$step-value: 0;
 
 		@if meta.type-of($type-steps) == "map" {
-		$step-value: map.get($type-steps, $step-key);
+			$step-value: map.get($type-steps, $step-key);
 		} @else {
 			$step-value: $step-key;
 		}
 
-		$min: $default-type-base-min * math.pow($type-scale, $i - $type-base-index);
-		$max: $default-type-base-max * math.pow($type-scale, $i - $type-base-index);
+		$min: $default-type-base-min *
+			math.pow($type-scale, $i - $type-base-index);
+		$max: $default-type-base-max *
+			math.pow($type-scale, $i - $type-base-index);
 
 		--#{$prefix}-#{$step-value}: #{clamped($min, $max)};
 	}
