@@ -18,3 +18,6 @@
 
 // Layouts (relatively small files)
 @use "./layouts/single";
+
+// Block Overrides
+@use "./block-overrides/featured-image";
