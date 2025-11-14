@@ -135,16 +135,16 @@
 					"slug": "root",
 					"size": "1rem",
 					"name": "Root",
-					"fluid": false
-				},
-				{
-					"slug": "base",
-					"size": "1rem",
-					"name": "Body",
 					"fluid": {
 						"min": "1rem",
 						"max": "1.25rem"
 					}
+				},
+				{
+					"slug": "base",
+					"size": "1.35rem",
+					"name": "Body",
+					"fluid": false
 				},
 				{
 					"slug": "sm",
@@ -221,6 +221,46 @@
 			"core/heading": {
 				"typography": {
 					"fontFamily": "var:preset|font-family|body"
+				},
+				"color": {
+					"text": "var:preset|color|primary"
+				}
+			},
+			"core/pullquote": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|body",
+					"fontSize": "var:preset|font-size|xxl"
+				},
+				"spacing": {
+					"padding": {
+						"top": "var:preset|spacing|lg",
+						"bottom": "var:preset|spacing|lg"
+					}
+				}
+			},
+			"core/button": {
+				"border": {
+					"radius": "0",
+					"width": "2px",
+					"color": "var:preset|color|primary"
+				},
+				"spacing": {
+					"padding": {
+						"top": "var:preset|spacing|sm",
+						"right": "var:preset|spacing|lg",
+						"bottom": "var:preset|spacing|sm",
+						"left": "var:preset|spacing|lg"
+					},
+					"blockGap": "var:preset|spacing|base"
+				},
+				"typography": {
+					"fontFamily": "var:preset|font-family|body",
+					"fontSize": "var:preset|font-size|base",
+					"textTransform": "uppercase"
+				},
+				"color": {
+					"background": "var:preset|color|primary",
+					"text": "var:preset|color|white"
 				}
 			},
 			"core/list": {
@@ -275,7 +315,33 @@
 			},
 			"heading": {
 				"typography": {
-					"fontFamily": "var:preset|font-family|body"
+					"fontFamily": "var:preset|font-family|body",
+					"fontWeight": "600"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|primary"
+				},
+				":hover": {
+					"color": {
+						"text": "var:preset|color|secondary"
+					}
+				},
+				":active": {
+					"color": {
+						"text": "var:preset|color|secondary"
+					}
+				},
+				":focus": {
+					"color": {
+						"text": "var:preset|color|secondary"
+					}
+				},
+				":visited": {
+					"color": {
+						"text": "var:preset|color|primary"
+					}
 				}
 			}
 		},

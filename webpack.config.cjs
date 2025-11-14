@@ -11,6 +11,7 @@ const config = {
 	entry: {
 		...defaultConfig.entry,
 		global: `.${ THEME_DIR }/src/index.ts`,
+		'admin/editor-styles': `.${ THEME_DIR }/src/styles/editor.scss`,
 		'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
 		'vendors/animate': `.${ THEME_DIR }/src/styles/vendors/animate.min.css`,
 		'pages/map': `.${ THEME_DIR }/src/js/map/MapController.ts`,

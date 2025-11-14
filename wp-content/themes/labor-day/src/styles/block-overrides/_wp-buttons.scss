@@ -1,0 +1,16 @@
+@use "../abstracts/functions" as fn;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.wp-block-button .wp-block-button__link {
+	transform: translateY(0);
+	text-transform: uppercase;
+	transition: fn.transition(
+		(background-color, border-color, transform, box-shadow, color)
+	);
+
+	&:hover {
+		box-shadow: 2px 4px 8px rgb(black, 0.35);
+		transform: translateY(-4px);
+	}
+}

@@ -1,0 +1,5 @@
+@use "../abstracts/mixins" as m;
+
+.wp-block-pullquote blockquote p {
+	font-size: inherit;
+}
