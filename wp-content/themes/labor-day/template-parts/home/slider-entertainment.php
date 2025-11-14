@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable WordPress.PHP.DontExtract.extract_extract
 /**
  * Entertainment Slider
  * uses swiper.js

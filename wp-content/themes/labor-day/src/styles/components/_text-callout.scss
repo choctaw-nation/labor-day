@@ -2,7 +2,7 @@
 
 .text-callout {
 	figure {
-		@include m.fitMedia(svg);
+		@include m.fit-media(svg);
 	}
 }
 
@@ -10,6 +10,7 @@
 	background-position: center 60%;
 	background-size: cover;
 	mix-blend-mode: multiply;
+
 	@include m.media-breakpoint-down(md) {
 		top: -80%;
 	}

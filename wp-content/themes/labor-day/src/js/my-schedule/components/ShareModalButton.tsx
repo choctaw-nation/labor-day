@@ -1,6 +1,5 @@
 import React from '@wordpress/element';
 import EventButton from '../ui/EventButton';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'bootstrap/js/dist/modal';
 
 const modalEl = document.getElementById( 'shareEventModal' );
@@ -13,7 +12,7 @@ export default function ShareModalButton( { title, link } ) {
 				handleModal( title, link );
 			} }
 			element="button"
-			icon={ faShare }
+			icon={ '<i class="fa-solid fa-share"></i>' }
 			text="Share"
 		/>
 	);

@@ -1,4 +1,5 @@
-import { WP_Term } from 'wp-types';
+/* eslint-disable camelcase */
+import type { WP_Term } from 'wp-types';
 
 /**
  * Set in the Global scope with PHP and the Wordpress `localize_script` method

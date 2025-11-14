@@ -31,6 +31,17 @@
 			</property>
 		</properties>
 	</rule>
+
+	<!-- Add Custom Capabilities -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="can_unlock_blocks" />
+			</property>
+		</properties>
+	</rule>
+
+
 	<!-- Include the WordPress-Extra standard. -->
 	<rule ref="WordPress-Extra">
 		<exclude name="WordPress.WP.I18n" />
@@ -39,7 +50,6 @@
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals" />
 		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
 		<exclude name="Generic.Functions.CallTimePassByReference" />
-		<exclude name="WordPress.PHP.DontExtract.extract_extract" />
 	</rule>
 
 	<!-- Let's also check that everything is properly documented. -->

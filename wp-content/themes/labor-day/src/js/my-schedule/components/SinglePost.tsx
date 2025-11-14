@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Types
 import React, { Dispatch, PropsWithChildren } from 'react';
 import type { PrettyEventData } from '../utilities/types';

@@ -1,36 +1,48 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.1.5",
+	"version": "3.0.0",
 	"description": "Custom WP theme for CNO labor day site",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
 	],
 	"scripts": {
-		"start": "wp-scripts start",
-		"build": "wp-scripts build",
+		"start": "wp-scripts start --config webpack.config.cjs --blocks-manifest --experimental-modules --webpack-copy-php --source-path=wp-content/themes/labor-day/src/ --output-path=wp-content/themes/labor-day/dist/",
+		"build": "wp-scripts build --config webpack.config.cjs --blocks-manifest --experimental-modules --webpack-copy-php --source-path=wp-content/themes/labor-day/src/ --output-path=wp-content/themes/labor-day/dist/",
 		"lint:css": "npx stylelint '**/*.scss' '**/*.css' --fix",
 		"lint:js": "npx eslint --fix",
+		"check-engines": "wp-scripts check-engines",
 		"packages-update": "wp-scripts packages-update"
 	},
 	"author": "Choctaw Nation of Oklahoma",
 	"license": "GPL-3.0-or-later",
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.7.2",
-		"@fortawesome/free-brands-svg-icons": "^6.7.2",
-		"@fortawesome/free-regular-svg-icons": "^6.7.2",
-		"@fortawesome/free-solid-svg-icons": "^6.7.2",
-		"@fortawesome/react-fontawesome": "^0.2.2",
+		"@choctawnationofoklahoma/wp-flex-reverse-toggle": "^1.1.2",
 		"aos": "^2.3.4",
 		"bootstrap": "^5.3.7",
 		"date-fns": "^4.1.0",
-		"swiper": "^11.2.10"
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"swiper": "^12.0.3"
 	},
 	"devDependencies": {
-		"@types/react": "^19.1.12",
-		"@wordpress/scripts": "^30.22.0",
+		"@eslint/compat": "^1.4.1",
+		"@eslint/eslintrc": "^3.3.1",
+		"@eslint/js": "^9.39.1",
+		"@wordpress/block-editor": "^15.8.0",
+		"@wordpress/components": "^30.8.0",
+		"@wordpress/editor": "^14.35.0",
+		"@wordpress/icons": "^11.2.0",
+		"@wordpress/scripts": "^31.0.0",
 		"animate.css": "^4.1.1",
-		"webpack-remove-empty-scripts": "^1.1.1",
-		"wp-types": "^4.68.1"
+		"eslint": "^9.39.1",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-typescript": "^4.4.4",
+		"eslint-plugin-react-hooks": "^7.0.1",
+		"globals": "^16.5.0",
+		"stylelint": "^16.25.0",
+		"stylelint-config-standard-scss": "^16.0.0",
+		"stylelint-scss": "^6.12.1",
+		"webpack-remove-empty-scripts": "^1.1.1"
 	}
 }

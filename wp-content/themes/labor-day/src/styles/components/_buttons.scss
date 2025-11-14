@@ -10,7 +10,7 @@
 	);
 
 	&:hover {
-		box-shadow: 2px 4px 8px rgba(black, 0.35);
+		box-shadow: 2px 4px 8px rgb(black, 0.35);
 		transform: translateY(-4px);
 	}
 }
@@ -22,7 +22,7 @@
 
 	svg {
 		transition: fill var(--transition--standard);
-		fill: currentColor;
+		fill: currentcolor;
 		width: 1.5rem;
 	}
 }

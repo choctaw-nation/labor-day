@@ -1,0 +1,15 @@
+@use "../abstracts/mixins" as m;
+
+:where(.page) 
+.wp-block-post-featured-image {
+  @include m.media-breakpoint-up(lg) {
+	height: 430px;
+	overflow: hidden;
+
+	img{
+		object-fit: cover;
+		height: 100%;
+		object-position: center 20%;
+	}
+  }
+}

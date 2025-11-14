@@ -36,6 +36,7 @@ function App() {
 			const sortedEvents = getLocalStorageData();
 			setEvents( getTimeSortedEvents( sortedEvents ) );
 		} catch ( err ) {
+			// eslint-disable-next-line no-console
 			console.error( err );
 			// TODO: handle this better
 			setEvents( emptyEventsState );
@@ -83,7 +84,7 @@ function App() {
 			<div className="row">
 				<div className="col">
 					<p className="fs-6">
-						Seems like you haven't added any events yet.
+						Seems like you haven&apos;t added any events yet.
 					</p>
 				</div>
 			</div>
@@ -98,4 +99,6 @@ function App() {
 	);
 }
 const root = document.getElementById( 'app' );
-if ( root ) createRoot( root ).render( <App /> );
+if ( root ) {
+	createRoot( root ).render( <App /> );
+}

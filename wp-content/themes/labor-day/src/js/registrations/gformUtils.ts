@@ -19,7 +19,7 @@ export function getForm(
 
 /**
  * Gets the parent Gravity Form ID from the container element with ID "cno-gform-id".
- * @returns {number} - The Gravity Form ID from the container element with ID "cno-gform-id".
+ * @return {number} - The Gravity Form ID from the container element with ID "cno-gform-id".
  */
 function getGformId(): number {
 	const container = document.getElementById( 'cno-gform-id' );

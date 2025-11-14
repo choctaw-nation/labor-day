@@ -1,6 +1,5 @@
 import React from '@wordpress/element';
 import EventButton from '../ui/EventButton';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 export default function LocationButton( {
 	name,
@@ -13,7 +12,7 @@ export default function LocationButton( {
 		<EventButton
 			element="a"
 			classes="cno-event__buttons--location text-decoration-none d-flex align-items-center"
-			icon={ faLocationDot }
+			icon={ '<i class="fa-solid fa-location-dot"></i>' }
 			text={ name }
 			href={ `${ window.cnoSiteData.rootUrl }/event_location/${ slug }` }
 		/>

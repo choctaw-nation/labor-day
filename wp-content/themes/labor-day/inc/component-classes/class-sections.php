@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable WordPress.PHP.DontExtract.extract_extract
 /**
  * A Component Class that displays content a few different ways. All methods have an $args bypass and an $echo control where `false` returns the markup and `true` echoes the markup. The $args array also shows expected parameters.
  *

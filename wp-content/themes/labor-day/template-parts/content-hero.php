@@ -18,6 +18,8 @@ $hero        = new Hero( $post->ID, get_field( 'hero' ) );
 		$hero->the_image( 'w-100 hero-image position-relative object-fit-cover h-100 mx-auto my-0 d-block' );
 	}
 	?>
+</section>
+<section id="page-title">
 	<div class="container align-self-center position-relative py-5">
 		<div class="row">
 			<div class="col">

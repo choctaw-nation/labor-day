@@ -53,7 +53,6 @@ class NestedFormHandler {
 			} catch ( error ) {
 				lastError = error as Error;
 				this.retries++;
-				console.log( this.retries );
 				if ( this.retries >= this.maxRetries ) {
 					throw lastError;
 				}
@@ -98,7 +97,7 @@ class NestedFormHandler {
 				lastName: HTMLInputElement;
 				phone: HTMLInputElement;
 				email: HTMLInputElement;
-		  }
+		}
 		| undefined {
 		if ( ! this.form ) {
 			return;
@@ -132,7 +131,7 @@ class NestedFormHandler {
 	 * Utility to generate query selector string for form fields
 	 *
 	 * @param id the nested field id
-	 * @returns
+	 * @return
 	 */
 	private fieldSelect( id: number | string ): string {
 		return `#input_${ this.FORM_ID }_${ id }`;

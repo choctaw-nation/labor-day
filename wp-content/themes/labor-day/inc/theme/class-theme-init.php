@@ -8,12 +8,9 @@
 
 namespace ChoctawNation;
 
-use CNOLaborDay\Events\Custom_Rest_Route;
-
-
 /** Builds the Theme */
 class Theme_Init {
-	// phpcs:ignore 
+	// phpcs:ignore
 	public function __construct() {
 		$this->load_required_files();
 		$this->disable_discussion();
@@ -30,6 +27,9 @@ class Theme_Init {
 	/** Calls in Required Files */
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
+
+		// Load theme functions
+		require_once $base_path . '/theme/theme-functions.php';
 		$this->load_acf_classes(
 			array(
 				'generator',
@@ -39,19 +39,28 @@ class Theme_Init {
 			)
 		);
 
-		$files = array(
-			'theme-functions',
-			'class-custom-rest-route',
-			'class-operational-hours',
-			'navwalkers/class-navwalker',
-			'class-acf-handler',
+		$navwalkers = array(
+			'navwalker',
 		);
-		foreach ( $files as $file ) {
-			require_once $base_path . "/theme/{$file}.php";
+		foreach ( $navwalkers as $navwalker ) {
+			require_once $base_path . "/theme/navwalkers/class-{$navwalker}.php";
 		}
-		new ACF_Handler();
-		$rest_handler = new Custom_Rest_Route();
-		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
+		$utility_files = array(
+			'role-editor'       => 'Role_Editor',
+			'gutenberg-handler' => 'Gutenberg_Handler',
+			'acf-handler'       => 'ACF_Handler',
+			'custom-rest-route' => 'Custom_Rest_Route',
+			'operational-hours' => null,
+
+		);
+		foreach ( $utility_files as $utility_file => $class_name ) {
+			require_once $base_path . "/theme/class-{$utility_file}.php";
+			if ( is_null( $class_name ) ) {
+				continue;
+			}
+			$class = __NAMESPACE__ . '\\' . $class_name;
+			new $class();
+		}
 
 		$components = array(
 			'components',
@@ -61,7 +70,10 @@ class Theme_Init {
 			require_once $base_path . "/component-classes/class-{$component}.php";
 		}
 
-		$asset_loader = array( 'enum-enqueue-type', 'class-asset-loader' );
+		$asset_loader = array(
+			'enum-enqueue-type',
+			'class-asset-loader',
+		);
 		foreach ( $asset_loader as $asset ) {
 			require_once $base_path . "/theme/asset-loader/{$asset}.php";
 		}
@@ -134,17 +146,26 @@ class Theme_Init {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
-		wp_enqueue_style(
-			'typekit',
-			'https://use.typekit.net/jky5sek.css',
-			array(),
-		null // phpcs:ignore
+		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
+		new Asset_Loader(
+			'bootstrap',
+			Enqueue_Type::both,
+			'vendors',
+			array(
+				'styles'  => array(),
+				'scripts' => array(),
+			)
 		);
 
-		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
-		new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
-
-		new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
+		new Asset_Loader(
+			'global',
+			Enqueue_Type::both,
+			null,
+			array(
+				'styles'  => array( 'bootstrap' ),
+				'scripts' => array( 'bootstrap' ),
+			)
+		);
 		wp_localize_script(
 			'global',
 			'cnoSiteData',
@@ -165,7 +186,12 @@ class Theme_Init {
 		null, // phpcs:ignore
 		);
 
-		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
+		$this->remove_wordpress_styles(
+			array(
+				'classic-theme-styles',
+				'dashicons',
+			)
+		);
 
 		$add_to_schedule = require_once get_template_directory() . '/dist/modules/add-to-schedule.asset.php';
 		wp_register_script(
@@ -245,7 +271,7 @@ class Theme_Init {
 	 * @param string $post_type the post type to remove supports from
 	 */
 	private function disable_post_type_support( string $post_type ) {
-		$supports = array( 'editor', 'comments', 'trackbacks', 'revisions', 'author' );
+		$supports = array( 'comments', 'trackbacks', 'revisions', 'author' );
 		foreach ( $supports as $support ) {
 			if ( post_type_supports( $post_type, $support ) ) {
 				remove_post_type_support( $post_type, $support );

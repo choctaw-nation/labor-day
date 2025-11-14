@@ -7,7 +7,7 @@ declare const cnoSiteData: { rootUrl: string };
 export default class Model {
 	/**
 	 * Retrieves the user's saved schedule from local storage or initializes an empty schedule.
-	 * @returns {SortedEventsObject} The user's saved schedule
+	 * @return {SortedEventsObject} The user's saved schedule
 	 */
 	getSchedule(): SortedEventsObject {
 		const now = new Date();
@@ -25,14 +25,14 @@ export default class Model {
 		const jsonData: SortedEventsObject = data ? JSON.parse( data ) : null;
 		if ( null === jsonData ) {
 			return initialState;
-		} else return jsonData;
+		} return jsonData;
 	}
 
 	/**
 	 * Adds an event to the user's schedule.
 	 *
 	 * @param {MouseEvent} ev - The event
-	 * @returns {Promise<string>} A promise that resolves with either "success" or "info"
+	 * @return {Promise<string>} A promise that resolves with either "success" or "info"
 	 * @throws {Error} Throws an error if no target element is provided, the target element doesn't control scheduling, or the ID or route is undefined.
 	 */
 	addToSchedule( ev: MouseEvent ): Promise< string > {
@@ -42,12 +42,16 @@ export default class Model {
 				this.checkTargetElement( target );
 				const id: number = Number( target.dataset.id! );
 				const schedule = this.getSchedule();
-				if ( ! schedule ) return;
+				if ( ! schedule ) {
+					return;
+				}
 				try {
 					this.getEventData( id ).then( ( response ) => {
 						const dayProp = response.info.day.toLowerCase();
-						/** @var check
-						 * whether or not an event already exists in user's schedule  */
+						/**
+						 * @member check
+						 * whether or not an event already exists in user's schedule
+						 */
 						const check: PrettyEventData[] | null = schedule[
 							dayProp
 						].filter(
@@ -97,7 +101,7 @@ export default class Model {
 	 * Retrieves event data from the API.
 	 *
 	 * @param {number} id - The ID of the event
-	 * @returns {Promise<LaborDayEvent>} A promise that resolves to an object containing event details.
+	 * @return {Promise<PrettyEventData>} A promise that resolves to an object containing event details.
 	 * @throws {Error} Will throw an error if there is an issue with the fetch request or parsing the response.
 	 */
 	private getEventData = async ( id: number ): Promise< PrettyEventData > => {

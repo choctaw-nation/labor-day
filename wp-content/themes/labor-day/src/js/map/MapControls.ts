@@ -5,7 +5,7 @@ export default abstract class MapControls {
 	/**
 	 * Attaches the eventListeners to the appropriate elements
 	 *
-	 * @param  nodeList the labels & inputs to attach eventListeners to
+	 * @param nodeList the labels & inputs to attach eventListeners to
 	 */
 	handleNodeList( nodeList: NodeListOf< HTMLInputElement > ) {
 		nodeList.forEach( ( node ) => {
@@ -23,7 +23,9 @@ export default abstract class MapControls {
 	 */
 	toggleVisibility( target: HTMLInputElement ) {
 		const el = document.getElementById( target.dataset.id! );
-		if ( ! el ) return;
+		if ( ! el ) {
+			return;
+		}
 		el.style.visibility = target.checked ? 'visible' : 'hidden';
 	}
 }
