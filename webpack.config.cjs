@@ -1,8 +1,13 @@
+const path = require( 'path' );
+
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config.js' );
 const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
 
 const THEME_NAME = 'labor-day';
-const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
+const THEME_DIR = path.resolve(
+	__dirname,
+	`wp-content/themes/${ THEME_NAME }`
+);
 
 const appNames = [ 'front-page', 'my-schedule' ];
 const styleSheets = []; // for scss only
@@ -54,15 +59,17 @@ function addEntries( array, type ) {
 		styles: {
 			outputDir: ( assetOutput ) => `pages/${ assetOutput }`,
 			path: ( asset ) =>
-				`.${ THEME_DIR }/src/styles/pages/${ asset }.scss`,
+				path.resolve( THEME_DIR, `src/styles/pages/${ asset }.scss` ),
 		},
 		pages: {
 			outputDir: ( assetOutput ) => `pages/${ assetOutput }`,
-			path: ( asset ) => `.${ THEME_DIR }/src/js/${ asset }/App.tsx`,
+			path: ( asset ) =>
+				path.resolve( THEME_DIR, `src/js/${ asset }/App.tsx` ),
 		},
 		admin: {
 			outputDir: ( assetOutput ) => `admin/${ assetOutput }`,
-			path: ( asset ) => `.${ THEME_DIR }/src/js/gutenberg/${ asset }.ts`,
+			path: ( asset ) =>
+				path.resolve( THEME_DIR, `src/js/gutenberg/${ asset }.ts` ),
 		},
 	};
 	array.forEach( ( asset ) => {
