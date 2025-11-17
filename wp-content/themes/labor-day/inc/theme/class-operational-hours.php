@@ -118,7 +118,7 @@ class Operational_Hours {
 		 * @return array the booleans to extract
 		 */
 	private function get_open_days( array $operation ): array {
-		extract( $operation );
+		extract( $operation ); // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
 		return array(
 			'friday'   => ! empty( $friday['open'] ),
 			'saturday' => true === $saturday['same_as_previous'] || ( ! empty( $saturday['open'] ) ),
