@@ -9,7 +9,5 @@ import { icon } from './icon';
 registerBlockType( metadata.name, {
 	icon,
 	edit: Edit,
-	save: ( { attributes } ) => (
-		<RichText.Content tagName="h2" value={ attributes.sectionTitle } />
-	),
+	save: () => null,
 } );

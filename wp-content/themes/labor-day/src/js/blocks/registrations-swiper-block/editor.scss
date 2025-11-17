@@ -29,3 +29,9 @@
 		margin: 0;
 	}
 }
+
+.wp-block-cno-registration-swiper {
+	.components-tip p {
+		color: var(--swiper-navigation-color, inherit);
+	}
+}
