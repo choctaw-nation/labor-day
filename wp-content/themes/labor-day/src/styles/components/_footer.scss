@@ -25,3 +25,17 @@ footer {
 		}
 	}
 }
+
+.footer-navbar {
+	.menu-item {
+		a {
+			color: white;
+
+			&:hover,
+			&:focus,
+			&:active {
+				color: var(--color-secondary);
+			}
+		}
+	}
+}
