@@ -235,6 +235,7 @@ class Theme_Init {
 		foreach ( $post_types as $post_type ) {
 			$this->disable_post_type_support( $post_type );
 		}
+		add_post_type_support( 'page', 'excerpt' );
 	}
 
 	/** Remove comments, pings and trackbacks. */

@@ -20,7 +20,7 @@
 		"editor.formatOnSave": true
 	},
 	"[typescript]": {
-		"editor.formatOnSave": false
+		"editor.formatOnSave": true
 	},
 	"[typescriptreact]": {
 		"editor.formatOnSave": true
@@ -40,6 +40,7 @@
 	},
 	"cSpell.words": [
 		"alignfull",
+		"featuredmedia",
 		"formid",
 		"gpnf",
 		"mediapress",
@@ -47,6 +48,7 @@
 		"NONBLOCKING",
 		"Populator",
 		"pullquote",
+		"trackbacks",
 		"Tuskahoma",
 		"xxxxl"
 	],
