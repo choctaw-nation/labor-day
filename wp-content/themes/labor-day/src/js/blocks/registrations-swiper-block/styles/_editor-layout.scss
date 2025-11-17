@@ -1,0 +1,41 @@
+.wp-block-cno-registration-swiper {
+	position: relative;
+	width: 100%;
+
+	.swiper-wrapper {
+		align-items: stretch;
+	}
+
+	.row {
+		--gap: 1rem;
+
+		display: flex;
+		gap: var(--gap);
+		flex-flow: row wrap;
+		position: relative;
+		max-width: 100%;
+	}
+
+	.col-1 {
+		--max-width: calc(100% / 12 * 1 - var(--gap));
+
+		position: relative;
+		display: flex;
+		justify-content: center;
+		flex: 1 0 var(--max-width);
+		max-width: var(--max-width);
+	}
+
+	.col-10 {
+		--max-width: calc(100% / 12 * 10 - var(--gap));
+
+		max-width: var(--max-width);
+		position: relative;
+		flex: 1 0 var(--max-width);
+	}
+
+	.col-12 {
+		position: relative;
+		flex: 1 0 100%;
+	}
+}

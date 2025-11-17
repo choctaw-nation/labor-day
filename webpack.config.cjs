@@ -5,11 +5,13 @@ const THEME_NAME = 'labor-day';
 const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
 
 const blockEditor = [ 'editDefaultBlocks', 'mediapressCustomFilters' ];
-const defaultConfig = configs[ 1 ];
+const [ moduleConfig, defaultConfig ] = configs;
+
 const config = {
-	...defaultConfig,
+	...moduleConfig,
 	entry: {
-		...defaultConfig.entry,
+		...moduleConfig.entry(),
+		...defaultConfig.entry(),
 		global: `.${ THEME_DIR }/src/index.ts`,
 		'admin/editor-styles': `.${ THEME_DIR }/src/styles/editor.scss`,
 		'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
@@ -26,12 +28,14 @@ const config = {
 		filename: `[name].js`,
 	},
 	plugins: [
+		...moduleConfig.plugins,
 		...defaultConfig.plugins,
 		new RemoveEmptyScriptsPlugin( {
 			stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
 		} ),
 	],
 };
+
 module.exports = config;
 
 /**

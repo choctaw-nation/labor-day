@@ -16,6 +16,7 @@ import {
 	FontSizePicker,
 } from '@wordpress/components';
 import useFontSize from './hooks/useFontSize';
+import useThemeColors from '../_block-utils/useThemeColors';
 
 export default function BlockSettings( { attributes, setAttributes } ) {
 	const {
@@ -30,10 +31,7 @@ export default function BlockSettings( { attributes, setAttributes } ) {
 		labelColor,
 	} = attributes;
 
-	const colors = useSelect(
-		( select ) => select( blockEditorStore ).getSettings().colors,
-		[]
-	);
+	const { themeColors: colors } = useThemeColors();
 	const { numberFontSize, labelFontSize, fontSizes } =
 		useFontSize( attributes );
 

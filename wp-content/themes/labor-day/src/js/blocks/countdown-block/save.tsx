@@ -1,5 +1,5 @@
 import { useBlockProps } from '@wordpress/block-editor';
-import parseSpacing from './_utils/parseSpacing';
+import parseSpacing from '../_block-utils/parseSpacing';
 
 export default function Save( { attributes } ) {
 	const blockProps = useBlockProps.save( {

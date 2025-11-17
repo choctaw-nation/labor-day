@@ -5,7 +5,7 @@ import { calculateTimeRemaining } from './_utils/calculateTimeRemaining';
 import BlockSettings from './BlockSettings';
 import CountdownPreview from './components/CountdownPreview';
 import BlockToolbar from './BlockToolbar';
-import parseSpacing from './_utils/parseSpacing';
+import parseSpacing from '../_block-utils/parseSpacing';
 
 export default function Edit( props ) {
 	const { attributes } = props;
