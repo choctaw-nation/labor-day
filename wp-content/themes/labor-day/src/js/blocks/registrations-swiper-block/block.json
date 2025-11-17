@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "cno/registration-swiper",
+	"version": "0.1.0",
+	"title": "Registration Swiper",
+	"category": "widgets",
+	"icon": "clock",
+	"keywords": [ "registrations", "swiper", "sign up" ],
+	"description": "Display a registration swiper based on published child pages \"Registrations\".",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"alignWide": true,
+		"multiple": false,
+		"spacing": {
+			"padding": true,
+			"margin": true,
+			"blockGap": true
+		},
+		"color": {
+			"heading": true,
+			"text": true,
+			"enableContrastChecker": true,
+			"background": false,
+			"button": false,
+			"gradients": false,
+			"link": false
+		}
+	},
+	"attributes": {
+		"style": {
+			"type": "object",
+			"default": {
+				"spacing": {
+					"blockGap": "var:preset|spacing|base"
+				}
+			}
+		},
+		"swiperUIColors": {
+			"type": "string",
+			"default": "white"
+		}
+	},
+	"editorScript": "file:./index.tsx",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.ts",
+	"viewStyle": "file:./view.css"
+}
