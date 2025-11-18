@@ -63,14 +63,47 @@
 	}
 }
 
-.hero{  @include m.media-breakpoint-up(lg) {
-	height: 430px;
-	overflow: hidden;
+.hero {
+	@include m.media-breakpoint-up(lg) {
+		height: 430px;
+		overflow: hidden;
 
-	img{
-		object-fit: cover;
-		height: 100%;
-		object-position: center center;
+		img {
+			object-fit: cover;
+			height: 100%;
+			object-position: center center;
+		}
 	}
 }
+
+footer a {
+	color: white !important;
+
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		color: v.$color-secondary !important;
+	}
+}
+
+.footer-navbar {
+	ul {
+		li {
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.nav-link {
+	color: white !important;
+
+	&:hover,
+	&:focus,
+	&:active,
+	&.active {
+		color: v.$color-secondary !important;
+	}
 }
