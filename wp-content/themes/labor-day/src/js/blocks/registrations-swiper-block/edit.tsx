@@ -40,30 +40,30 @@ export default function Edit( { attributes, setAttributes } ) {
 				registrationPages &&
 				registrationPages.length > 0 ? (
 					<Swiper pages={ registrationPages } />
-				) : (
-					<div
-						style={ {
-							maxWidth: 'var(--wp--style--global--content-size)',
-							marginInline: 'auto',
-						} }
-					>
-						<Tip>
-							<span
-								style={ {
-									fontSize:
+					) : (
+						<div
+							style={ {
+								maxWidth: 'var(--wp--style--global--content-size)',
+								marginInline: 'auto',
+							} }
+						>
+							<Tip>
+								<span
+									style={ {
+										fontSize:
 										'var(--wp--preset--font-size--md)',
-									fontWeight: '700',
-								} }
-							>
-								No registration pages are published. Nothing to
-								display.
-							</span>{ ' ' }
-							<br />
-							If this is nested, be sure to remove any elements
-							you don&apos;t want rendered on the front-end.
-						</Tip>
-					</div>
-				) }
+										fontWeight: '700',
+									} }
+								>
+									No registration pages are published. Nothing to
+									display.
+								</span>{ ' ' }
+								<br />
+								If this is nested, be sure to remove any elements
+								you don&apos;t want rendered on the front-end.
+							</Tip>
+						</div>
+					) }
 			</div>
 		</Fragment>
 	);
