@@ -1,11 +1,12 @@
 // 3rd Party
-import React, { useState, useEffect, createRoot } from '@wordpress/element';
-import type { SortedEventsObject, PrettyEventData } from './utilities/types';
+import React, { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
 
 // Components
 import EventsDisplay from './components/EventDisplay';
 
 // Utilities
+import type { SortedEventsObject, PrettyEventData } from './utilities/types';
 import {
 	getLocalStorageData,
 	getTimeSortedEvents,
@@ -101,4 +102,7 @@ function App() {
 const root = document.getElementById( 'app' );
 if ( root ) {
 	createRoot( root ).render( <App /> );
+} else {
+	// eslint-disable-next-line no-console
+	console.error( 'Root not found!' );
 }
