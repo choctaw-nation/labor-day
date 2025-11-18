@@ -1,5 +1,4 @@
 const configs = require( '@wordpress/scripts/config/webpack.config.js' );
-const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
 
 const THEME_NAME = 'labor-day';
 const THEME_DIR = `/wp-content/themes/${ THEME_NAME }`;
