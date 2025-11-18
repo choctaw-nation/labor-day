@@ -10,8 +10,8 @@ const [ moduleConfig, defaultConfig ] = configs;
 const config = {
 	...moduleConfig,
 	entry: {
-		...moduleConfig.entry(),
 		...defaultConfig.entry(),
+		...moduleConfig.entry(),
 		global: `.${ THEME_DIR }/src/index.ts`,
 		'admin/editor-styles': `.${ THEME_DIR }/src/styles/editor.scss`,
 		'vendors/bootstrap': `.${ THEME_DIR }/src/js/vendors/bootstrap.js`,
@@ -27,13 +27,6 @@ const config = {
 		path: __dirname + `${ THEME_DIR }/dist`,
 		filename: `[name].js`,
 	},
-	plugins: [
-		...moduleConfig.plugins,
-		...defaultConfig.plugins,
-		new RemoveEmptyScriptsPlugin( {
-			stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-		} ),
-	],
 };
 
 module.exports = config;
