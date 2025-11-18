@@ -97,12 +97,12 @@ class Gutenberg_Handler {
 	 *
 	 * This function restricts the available block types to Heading, List, Image, and Paragraph only.
 	 *
-	 * @param array|bool              $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
-	 * @param WP_Block_Editor_Context $context               The block editor context
+	 * @param array|bool               $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+	 * @param ?WP_Block_Editor_Context $context               The block editor context
 	 *
 	 * @return array|bool The array of allowed block types or boolean to enable/disable all.
 	 */
-	public function restrict_block_types( array|bool $allowed_block_types, WP_Block_Editor_Context $context ): array|bool { // phpcs:ignore 
+	public function restrict_block_types( array|bool $allowed_block_types, ?WP_Block_Editor_Context $context ): array|bool { // phpcs:ignore 
 		// Get all registered blocks if $allowed_block_types is not already set.
 		if ( ! is_array( $allowed_block_types ) || empty( $allowed_block_types ) ) {
 			$registered_blocks   = \WP_Block_Type_Registry::get_instance()->get_all_registered();
