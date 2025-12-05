@@ -8,12 +8,9 @@
 
 namespace ChoctawNation;
 
-use CNOLaborDay\Events\Custom_Rest_Route;
-
-
 /** Builds the Theme */
 class Theme_Init {
-	// phpcs:ignore 
+	// phpcs:ignore
 	public function __construct() {
 		$this->load_required_files();
 		$this->disable_discussion();
@@ -25,11 +22,20 @@ class Theme_Init {
 		add_action( 'admin_init', array( $this, 'allow_gf_cap' ) );
 		add_action( 'pre_get_posts', array( $this, 'override_events_query' ), 9999 );
 		add_filter( 'template_include', array( $this, 'override_search_template' ) );
+		add_action( 'init', array( $this, 'disable_plugins_per_environment' ) );
+		add_filter( 'allowed_redirect_hosts', array( $this, 'add_allowed_redirect_hosts' ) );
+		add_filter( 'wp_speculation_rules_configuration', array( $this, 'handle_speculative_loading' ) );
+		add_filter( 'auto_update_plugin', array( $this, 'handle_auto_update_plugin' ) );
+		add_filter( 'wp_resource_hints', array( $this, 'add_resource_hints' ), 10, 2 );
+		add_filter( 'style_loader_tag', array( $this, 'preload_stylesheets' ), 10, 3 );
 	}
 
 	/** Calls in Required Files */
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
+
+		// Load theme functions
+		require_once $base_path . '/theme/theme-functions.php';
 		$this->load_acf_classes(
 			array(
 				'generator',
@@ -39,19 +45,28 @@ class Theme_Init {
 			)
 		);
 
-		$files = array(
-			'theme-functions',
-			'class-custom-rest-route',
-			'class-operational-hours',
-			'navwalkers/class-navwalker',
-			'class-acf-handler',
+		$navwalkers = array(
+			'navwalker',
 		);
-		foreach ( $files as $file ) {
-			require_once $base_path . "/theme/{$file}.php";
+		foreach ( $navwalkers as $navwalker ) {
+			require_once $base_path . "/theme/navwalkers/class-{$navwalker}.php";
 		}
-		new ACF_Handler();
-		$rest_handler = new Custom_Rest_Route();
-		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
+		$utility_files = array(
+			'role-editor'       => 'Role_Editor',
+			'gutenberg-handler' => 'Gutenberg_Handler',
+			'acf-handler'       => 'ACF_Handler',
+			'custom-rest-route' => 'Custom_Rest_Route',
+			'operational-hours' => null,
+
+		);
+		foreach ( $utility_files as $utility_file => $class_name ) {
+			require_once $base_path . "/theme/class-{$utility_file}.php";
+			if ( is_null( $class_name ) ) {
+				continue;
+			}
+			$class = __NAMESPACE__ . '\\' . $class_name;
+			new $class();
+		}
 
 		$components = array(
 			'components',
@@ -61,7 +76,10 @@ class Theme_Init {
 			require_once $base_path . "/component-classes/class-{$component}.php";
 		}
 
-		$asset_loader = array( 'enum-enqueue-type', 'class-asset-loader' );
+		$asset_loader = array(
+			'enum-enqueue-type',
+			'class-asset-loader',
+		);
 		foreach ( $asset_loader as $asset ) {
 			require_once $base_path . "/theme/asset-loader/{$asset}.php";
 		}
@@ -134,17 +152,26 @@ class Theme_Init {
 	 * Adds scripts with the appropriate dependencies
 	 */
 	public function enqueue_cno_scripts() {
-		wp_enqueue_style(
-			'typekit',
-			'https://use.typekit.net/jky5sek.css',
-			array(),
-		null // phpcs:ignore
+		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
+		new Asset_Loader(
+			'bootstrap',
+			Enqueue_Type::both,
+			'vendors',
+			array(
+				'styles'  => array(),
+				'scripts' => array(),
+			)
 		);
 
-		new Asset_Loader( 'animate', Enqueue_Type::style, 'vendors' );
-		new Asset_Loader( 'bootstrap', Enqueue_Type::both, 'vendors' );
-
-		new Asset_Loader( 'global', Enqueue_Type::both, null, array( 'bootstrap' ) );
+		new Asset_Loader(
+			'global',
+			Enqueue_Type::both,
+			null,
+			array(
+				'styles'  => array( 'bootstrap' ),
+				'scripts' => array( 'bootstrap' ),
+			)
+		);
 		wp_localize_script(
 			'global',
 			'cnoSiteData',
@@ -165,7 +192,12 @@ class Theme_Init {
 		null, // phpcs:ignore
 		);
 
-		$this->remove_wordpress_styles( array( 'classic-theme-styles', 'wp-block-library', 'dashicons', 'global-styles' ) );
+		$this->remove_wordpress_styles(
+			array(
+				'classic-theme-styles',
+				'dashicons',
+			)
+		);
 
 		$add_to_schedule = require_once get_template_directory() . '/dist/modules/add-to-schedule.asset.php';
 		wp_register_script(
@@ -209,6 +241,7 @@ class Theme_Init {
 		foreach ( $post_types as $post_type ) {
 			$this->disable_post_type_support( $post_type );
 		}
+		add_post_type_support( 'page', 'excerpt' );
 	}
 
 	/** Remove comments, pings and trackbacks. */
@@ -245,7 +278,7 @@ class Theme_Init {
 	 * @param string $post_type the post type to remove supports from
 	 */
 	private function disable_post_type_support( string $post_type ) {
-		$supports = array( 'editor', 'comments', 'trackbacks', 'revisions', 'author' );
+		$supports = array( 'comments', 'trackbacks', 'revisions', 'author' );
 		foreach ( $supports as $support ) {
 			if ( post_type_supports( $post_type, $support ) ) {
 				remove_post_type_support( $post_type, $support );
@@ -309,5 +342,118 @@ class Theme_Init {
 				'end_time_clause'   => 'ASC',
 			)
 		);
+	}
+
+	/**
+	 * Adds allowed redirect hosts for `wp_safe_redirect`
+	 *
+	 * @param array $hosts Current allowed hosts.
+	 * @return array
+	 */
+	public function add_allowed_redirect_hosts( array $hosts ): array {
+		$allowed_hosts = array(
+			'choctawnation.com',
+			'www.choctawnation.com',
+		);
+		return array_merge( $hosts, $allowed_hosts );
+	}
+
+	/**
+	 * Handle speculative loading
+	 *
+	 * @since WP 6.8.0
+	 * @link https://make.wordpress.org/core/2025/03/06/speculative-loading-in-6-8/
+	 *
+	 * @param ?array $config the configuration array. Null if user is logged-in.
+	 * @return ?array The new config file, or null
+	 */
+	public function handle_speculative_loading( ?array $config ): ?array {
+		if ( is_array( $config ) ) {
+			$config['mode']      = 'auto';
+			$config['eagerness'] = 'moderate';
+		}
+		return $config;
+	}
+
+	/**
+	 * Disable certain plugins based on the environment type.
+	 */
+	public function disable_plugins_per_environment() {
+		$env = wp_get_environment_type();
+		if ( 'production' === $env ) {
+			return;
+		}
+
+		$plugins_to_disable = array(
+			'wordfence/wordfence.php'                 => array( 'local', 'development', 'staging' ),
+			'wp-mail-smtp-pro/wp_mail_smtp.php'       => array( 'local', 'development', 'staging' ),
+			'google-site-kit/google-site-kit.php'     => array( 'local', 'development', 'staging' ),
+			'autoupdater/autoupdater.php'             => array( 'local', 'development', 'staging' ),
+			'autoptimize/autoptimize.php'             => array( 'local', 'development' ),
+			'wordpress-seo/wp-seo.php'                => array( 'local', 'development' ),
+			'yoast-test-helper/yoast-test-helper.php' => array( 'local', 'development' ),
+		);
+
+		foreach ( $plugins_to_disable as $plugin => $environments ) {
+			if ( in_array( $env, $environments, true ) ) {
+				if ( is_plugin_active( $plugin ) ) {
+					deactivate_plugins( $plugin );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Handle automatic plugin updates based on environment.
+	 *
+	 * @param bool $update Whether to update the plugin.
+	 * @return bool
+	 */
+	public function handle_auto_update_plugin( $update ): bool {
+		if ( 'production' === wp_get_environment_type() ) {
+			return $update;
+		}
+		return true;
+	}
+
+	/**
+	 * Add resource hints for Typekit
+	 *
+	 * @param array  $hints         The array of resource hints.
+	 * @param string $relation_type The relation type the hints are for.
+	 * @return array The modified array of resource hints.
+	 */
+	public function add_resource_hints( array $hints, string $relation_type ) {
+		if ( 'preconnect' === $relation_type ) {
+			$hints[] = array(
+				'href'        => 'https://use.typekit.net',
+				'crossorigin' => true,
+			);
+		}
+		return $hints;
+	}
+
+	/**
+	 * Preload specific stylesheets
+	 *
+	 * @param string $html   The link tag HTML.
+	 * @param string $handle The style handle.
+	 * @param string $href   The stylesheet URL.
+	 * @return string The modified link tag HTML.
+	 */
+	public function preload_stylesheets( string $html, string $handle, string $href ): string {
+		$preload_handles = array(
+			'typekit'   => 'external',
+			'bootstrap' => null,
+		);
+		if ( in_array( $handle, array_keys( $preload_handles ), true ) ) {
+			$preload = sprintf(
+				"<link rel='preload' as='style' href='%s' %s />\n",
+				$href,
+				'external' === $preload_handles[ $handle ] ? 'crossorigin' : ''
+			);
+			$html    = $preload . $html;
+		}
+		return $html;
 	}
 }

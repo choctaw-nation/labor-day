@@ -1,17 +1,20 @@
 @use "../abstracts/mixins" as m;
 @use "../components/text-callout";
+
 .gallery {
 	&__item {
-		@include m.fitMedia($fit: cover);
+		@include m.fit-media($fit: cover);
 
 		&--image {
 			aspect-ratio: 16 / 9;
 		}
 	}
+
 	.row {
 		align-items: flex-start;
 	}
 }
+
 :where(.history) {
 	.headline:not(h1) {
 		text-transform: capitalize;

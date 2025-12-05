@@ -4,6 +4,10 @@ Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a t
 
 # Changelog
 
+## v5.0.0 - [September 1, 2025]
+
+- Breaking: Blocks Theme!
+
 ## v4.4.2 - [September 1, 2025]
 
 - Fixed: Homepage countdown is now ACF-powered

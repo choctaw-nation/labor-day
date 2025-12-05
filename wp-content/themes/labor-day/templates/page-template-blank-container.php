@@ -13,7 +13,7 @@ get_header();
 $background_image_url = get_field( 'hero' )['background_image'];
 $hero_section_class   = 'w-100' . ( $background_image_url ? ' hero--image' : ' text-bg-tertiary py-4' );
 ?>
-<main class="site-content <?php echo strtolower( $post->post_title ); ?>">
+<main <?php post_class( 'site-content' ); ?>>
 	<section class="<?php echo $hero_section_class; ?>" id="hero" <?php echo $background_image_url ? "style='background-image:url('{$background_image_url}')" : ''; ?>>
 		<div class="container text-center">
 			<?php the_title( "<h1 class='headline'>", '</h1>' ); ?>
@@ -22,8 +22,8 @@ $hero_section_class   = 'w-100' . ( $background_image_url ? ' hero--image' : ' t
 			</span>
 		</div>
 	</section>
-	<article class="container my-5">
-		<?php the_field( 'acf_the_content' ); ?>
+	<article class="alignfull has-global-padding is-layout-constrained" style="margin-block:var(--wp--preset--spacing--xl);">
+		<?php the_content(); ?>
 	</article>
 </main>
 <?php

@@ -1,0 +1,53 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+.wp-block-cno-countdown-block .countdown-block {
+	&__display {
+		display: flex;
+		flex-flow: var(--orientation, "row") wrap;
+		gap: var(--gap, 1rem);
+		justify-content: var(--justify, "center");
+		align-items: center;
+		text-align: inherit;
+
+		& > * {
+			flex: 1 0 auto;
+		}
+	}
+
+	&__unit {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: inherit;
+		gap: 0.5rem;
+		min-width: 3.75rem;
+	}
+
+	&__number {
+		font-size: var(
+			--numberFontSize,
+			var(--wp--preset--font-size--lg, 2rem)
+		);
+		line-height: 1;
+	}
+
+	&__label {
+		font-size: var(--labelFontSize, var(--wp--preset--font-size--lg, 2rem));
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	&__completion {
+		font-weight: bold;
+		text-align: inherit;
+		font-size: var(
+			--numberFontSize,
+			var(--wp--preset--font-size--lg, 2rem)
+		);
+		margin-bottom: 0;
+	}
+}

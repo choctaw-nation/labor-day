@@ -5,14 +5,14 @@ export default class WeatherAlert {
 	constructor() {
 		if (
 			[
-				document.getElementById('weatherAlert'),
-				document.getElementById('confirmBtn'),
-			].some((el) => null == el)
+				document.getElementById( 'weatherAlert' ),
+				document.getElementById( 'confirmBtn' ),
+			].some( ( el ) => null === el )
 		) {
-			return;
+
 		} else {
-			this.weatherAlertDialog = document.querySelector('#weatherAlert');
-			this.confirmBtn = document.querySelector('#confirmBtn');
+			this.weatherAlertDialog = document.querySelector( '#weatherAlert' );
+			this.confirmBtn = document.querySelector( '#confirmBtn' );
 			this.overlay = document.querySelector(
 				'.weather-alert__overlay.overlay'
 			);
@@ -21,10 +21,10 @@ export default class WeatherAlert {
 	}
 	dialogHandler() {
 		this.weatherAlertDialog!.showModal();
-		this.confirmBtn?.addEventListener('click', (ev) => {
+		this.confirmBtn?.addEventListener( 'click', ( ev ) => {
 			ev.preventDefault();
 			this.overlay!.style.display = 'none';
 			this.weatherAlertDialog?.close();
-		});
+		} );
 	}
 }

@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable WordPress.PHP.DontExtract.extract_extract
 /**
  * Single Event Template (Overrides Plugin Template)
  *

@@ -15,14 +15,17 @@
 
 	.swiper-slide {
 		height: unset;
-		@include m.displayFlex(column);
+
+		@include m.d-flex(column);
 	}
 
 	&__image {
 		aspect-ratio: 16 / 9;
 		max-height: 40rem;
 		width: 100%;
-		@include m.fitMedia($fit: cover);
+
+		@include m.fit-media($fit: cover);
+
 		@include m.media-breakpoint-down(xl) {
 			max-height: 30rem;
 		}
@@ -38,7 +41,7 @@
 }
 
 // Mixin for Color Overrides
-@mixin swiperStyles($color: v.$color-secondary) {
+@mixin swiper-styles($color: v.$color-secondary) {
 	.slider {
 		&__info {
 			color: $color;
@@ -70,17 +73,20 @@
 			}
 		}
 	}
-
-	.swiper-button {
+	%swiper-button {
 		color: $color;
 		position: relative;
+	}
+
+	.swiper-button {
+		@extend %swiper-button;
 
 		&-next {
-			@extend .swiper-button;
+			@extend %swiper-button;
 		}
 
 		&-prev {
-			@extend .swiper-button;
+			@extend %swiper-button;
 		}
 	}
 }
@@ -93,5 +99,5 @@
 		}
 	}
 
-	@include swiperStyles(white);
+	@include swiper-styles(white);
 }

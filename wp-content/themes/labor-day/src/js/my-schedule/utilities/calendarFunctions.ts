@@ -12,6 +12,7 @@ export function getTheDay( day: string ): string | null {
 }
 
 export function downloadICSFile( event: PrettyEventData ) {
+	/* eslint-disable camelcase */
 	const datesMap = {
 		Friday: 'August 30, 2024',
 		Saturday: 'August 31, 2024',
@@ -63,8 +64,8 @@ END:VCALENDAR`;
 /**
  * Formats the date to the iCal format.
  *
- * @param date the date to format
- * @returns {string} the correct date format for iCal
+ * @param  date the date to format
+ * @return {string} the correct date format for iCal
  */
 function formatICalDateTime( date: Date ): string {
 	const dateString = format( date, "yyyyMMdd'T'HHmmss" );
