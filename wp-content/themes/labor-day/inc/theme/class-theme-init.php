@@ -352,8 +352,8 @@ class Theme_Init {
 
 		$role = get_role( 'editor' );
 
-		if ( $role && ! $role->has_cap( 'edit_theme_options' ) ) {
-			$role->add_cap( 'edit_theme_options' );
+		if ( $role && ! $role->has_cap( 'edit_nav_menus' ) ) {
+			$role->add_cap( 'edit_nav_menus' );
 		}
 	}
 
