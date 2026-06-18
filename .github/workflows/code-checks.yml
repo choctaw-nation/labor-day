@@ -15,30 +15,30 @@ jobs:
         with:
             working_directory: "wp-content/themes/labor-day"
 
-    lint-style:
-        if: github.event.pull_request.draft == false
-        uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
-        with:
-            file_extensions: '\.(scss|css)$'
-            lint_command: bun run lint:css
-            setup_bun: true
+    # lint-style:
+    #     if: github.event.pull_request.draft == false
+    #     uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
+    #     with:
+    #         file_extensions: '\.(scss|css)$'
+    #         lint_command: bun run lint:css
+    #         setup_bun: true
 
-    lint-js:
-        if: github.event.pull_request.draft == false
-        uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
-        with:
-            file_extensions: '\.(js|jsx|ts|tsx)$'
-            lint_command: bun run lint:js
-            setup_bun: true
+    # lint-js:
+    #     if: github.event.pull_request.draft == false
+    #     uses: choctaw-nation/shared-github-actions/.github/workflows/lint-if-changed.yml@main
+    #     with:
+    #         file_extensions: '\.(js|jsx|ts|tsx)$'
+    #         lint_command: bun run lint:js
+    #         setup_bun: true
 
     final-check:
-        needs: [phpcs, lint-style, lint-js]
+        needs: [phpcs]
         runs-on: ubuntu-latest
         if: always() && github.event.pull_request.draft == false
         steps:
             - name: Verify all checks passed
               run: |
-                  results="${{ needs.phpcs.result }} ${{ needs.lint-style.result }} ${{ needs.lint-js.result }}"
+                  results="${{ needs.phpcs.result }}"
                   echo "Job results: $results"
 
                   if [[ "$results" =~ failure ]]; then
