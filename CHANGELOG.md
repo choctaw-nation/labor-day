@@ -3,6 +3,7 @@
 ## v5.0.0 - [June 18, 2026]
 
 -   Breaking: Switch to Autoloading
+-   Updated: Theme folder uses layered architecture
 -   Updated: Lints & Configs are updated to latest versions
 -   Updated: Packages are updated
 -   Updated: Semver numbers are synced

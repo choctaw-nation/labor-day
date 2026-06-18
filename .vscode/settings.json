@@ -36,12 +36,18 @@
 		"prettier.useTabs": false
 	},
 	"cSpell.words": [
+		"bloginfo",
 		"classmap",
 		"formid",
 		"gpnf",
 		"instantiator",
+		"LABORDAY",
+		"megamenu",
 		"nestedformid",
 		"Populator",
+		"relevanssi",
+		"spai",
+		"trackbacks",
 		"wpengine"
 	],
 	"css.format.spaceAroundSelectorSeparator": true,
