@@ -8,9 +8,9 @@
  */
 
 use ChoctawNation\ACF\Image;
-use ChoctawNation\Asset_Loader;
 use ChoctawNation\Content\Sections;
-use ChoctawNation\Enqueue_Type;
+use ChoctawNation\Utils\Asset_Loader;
+use ChoctawNation\Utils\Enqueue_Type;
 
 $content = new Sections();
 new Asset_Loader( 'frontPage', Enqueue_Type::both, 'pages', array( 'styles' => array( 'global' ) ) );
