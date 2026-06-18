@@ -112,7 +112,7 @@ function addEntries( array, type ) {
 		pages: {
 			outputDir: ( assetOutput ) => `pages/${ assetOutput }`,
 			path: ( asset ) =>
-				path.resolve( THEME_SRC, `js/${ asset }/index.ts` ),
+				path.resolve( THEME_SRC, `js/${ asset }/App.tsx` ),
 		},
 		admin: {
 			outputDir: ( assetOutput ) => `admin/${ assetOutput }`,
