@@ -1,51 +1,9 @@
-import '../../styles/pages/front-page.scss';
+import '@styles/pages/front-page.scss';
 import React, { useState, useEffect, createRoot } from '@wordpress/element';
 import CountdownTimer from './Countdown';
-import { newSlider } from '../swiper';
+import { initRegistrationSwiper } from './registrationSwiper';
 
-( function init() {
-	/** Sliders */
-	const registrationSlider = document.getElementById( 'registration-slider' );
-	if ( registrationSlider ) {
-		newSlider( registrationSlider, {
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '.registration-slider-navigation.swiper-button-next',
-				prevEl: '.registration-slider-navigation.swiper-button-prev',
-			},
-			breakpoints: {
-				576: {
-					slidesPerView: 2,
-					slidesPerGroup: 2,
-				},
-				767: {
-					slidesPerView: 3,
-					slidesPerGroup: 3,
-				},
-			},
-		} );
-	}
-
-	// Email Hot Swap
-	const subscribeButton = document.getElementById(
-		'subscribe-modal-trigger'
-	);
-	if ( subscribeButton ) {
-		subscribeButton.addEventListener( 'click', () => fillEmailValues() );
-	}
-
-	/** Grabs email from initial form and fills in the Gravity Form field */
-	function fillEmailValues() {
-		const modal = document.getElementById( 'subscribe-modal' );
-		const emailInput = document.getElementById( 'email' );
-		if ( null === emailInput ) return;
-		const email = emailInput.value ?? '';
-		const preFilledEmail = modal.querySelector( 'input[type="email"]' );
-		if ( preFilledEmail ) {
-			preFilledEmail.value = email;
-		}
-	}
-} )();
+window.addEventListener( 'DOMContentLoaded', initRegistrationSwiper );
 
 function CountdownApp() {
 	const [ remainingTime, setRemainingTime ] = useState< {
@@ -99,9 +57,8 @@ function CountdownApp() {
 		)
 	) {
 		return null;
-	} else {
-		return <CountdownTimer remainingTime={ remainingTime } />;
 	}
+	return <CountdownTimer remainingTime={ remainingTime } />;
 }
 
 createRoot( document.getElementById( 'countdown' )! ).render(
