@@ -11,7 +11,7 @@
 	<exclude-pattern>/docroot/xmlrpc.php</exclude-pattern>
 	<exclude-pattern>/docroot/wp-content/plugins/*</exclude-pattern>
 	<exclude-pattern>/wp-config-sample.php</exclude-pattern>
-	<exclude-pattern>/wp-content/themes/*/dist/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
 
 	<!-- Exclude Package Manager directories. -->
 	<exclude-pattern>/vendor/*</exclude-pattern>

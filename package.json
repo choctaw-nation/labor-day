@@ -1,36 +1,58 @@
 {
 	"name": "cno-labor-day",
-	"version": "2.1.5",
+	"version": "5.0.0",
 	"description": "Custom WP theme for CNO labor day site",
 	"prettier": "@wordpress/prettier-config",
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
 	],
+	"engines": {
+		"node": ">=24",
+		"npm": ">= 11"
+	},
+	"allowScripts": {
+		"fsevents@2.3.3": true,
+		"fsevents@2.3.2": true,
+		"@parcel/watcher@2.5.6": true,
+		"core-js@3.49.0": true,
+		"core-js-pure@3.49.0": true,
+		"unrs-resolver@1.12.2": true
+	},
 	"scripts": {
-		"start": "wp-scripts start",
-		"build": "wp-scripts build",
+		"build": "wp-scripts build --blocks-manifest --config webpack.config.mjs  --webpack-copy-php --experimental-modules",
+		"format": "wp-scripts format",
 		"lint:css": "npx stylelint '**/*.scss' '**/*.css' --fix",
 		"lint:js": "npx eslint --fix",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start --blocks-manifest --config webpack.config.mjs  --webpack-copy-php --experimental-modules",
+		"audit-script": "sh ./tools/audit-npm-script-package.sh"
 	},
 	"author": "Choctaw Nation of Oklahoma",
 	"license": "GPL-3.0-or-later",
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.7.2",
-		"@fortawesome/free-brands-svg-icons": "^6.7.2",
-		"@fortawesome/free-regular-svg-icons": "^6.7.2",
-		"@fortawesome/free-solid-svg-icons": "^6.7.2",
+		"@fortawesome/fontawesome-svg-core": "^7.2.0",
+		"@fortawesome/free-brands-svg-icons": "^7.2.0",
+		"@fortawesome/free-regular-svg-icons": "^7.2.0",
+		"@fortawesome/free-solid-svg-icons": "^7.2.0",
 		"@fortawesome/react-fontawesome": "^0.2.2",
 		"aos": "^2.3.4",
-		"bootstrap": "^5.3.7",
-		"date-fns": "^4.1.0",
-		"swiper": "^11.2.10"
+		"bootstrap": "^5.3.8",
+		"date-fns": "^4.4.0",
+		"swiper": "^12.2.0"
 	},
 	"devDependencies": {
+		"@eslint/compat": "^2.1.0",
 		"@types/react": "^19.1.12",
-		"@wordpress/scripts": "^30.22.0",
+		"@wordpress/eslint-plugin": "^25.4.1",
+		"@wordpress/scripts": "^32.4.1",
 		"animate.css": "^4.1.1",
-		"webpack-remove-empty-scripts": "^1.1.1",
-		"wp-types": "^4.68.1"
+		"baseline-browser-mapping": "^2.10.38",
+		"eslint": "^9",
+		"globals": "^17.6.0",
+		"prettier": "npm:wp-prettier@^v3",
+		"stylelint": "^17.13.0",
+		"stylelint-config-standard-scss": "^17.0.0",
+		"stylelint-scss": "^7.2.0",
+		"typescript": "^6.0.3"
 	}
 }
