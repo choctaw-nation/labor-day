@@ -8,83 +8,70 @@
 
 namespace ChoctawNation;
 
-use CNOLaborDay\Events\Custom_Rest_Route;
-
+use ChoctawNation\Utils\Asset_Loader;
+use ChoctawNation\Utils\Enqueue_Type;
 
 /** Builds the Theme */
 class Theme_Init {
-	// phpcs:ignore 
-	public function __construct() {
+	/**
+	 * Bootstrap the theme
+	 */
+	public function setup_theme() {
 		$this->load_required_files();
 		$this->disable_discussion();
-		$this->cno_set_environment();
+		$this->edit_roles();
+		$this->allow_svg();
+		$this->handle_plugins();
+		$this->handle_theme_supports();
 		$this->handle_theme_image_sizes();
+		$this->load_features();
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cno_scripts' ) );
-		add_action( 'after_setup_theme', array( $this, 'handle_theme_supports' ) );
 		add_action( 'init', array( $this, 'alter_post_types' ) );
-		add_action( 'admin_init', array( $this, 'allow_gf_cap' ) );
-		add_action( 'pre_get_posts', array( $this, 'override_events_query' ), 9999 );
-		add_filter( 'template_include', array( $this, 'override_search_template' ) );
 	}
 
 	/** Calls in Required Files */
 	private function load_required_files() {
 		$base_path = get_template_directory() . '/inc';
-		$this->load_acf_classes(
-			array(
-				'generator',
-				'image',
-				'hero',
-				'event',
-			)
-		);
-
-		$files = array(
-			'theme-functions',
-			'class-custom-rest-route',
-			'class-operational-hours',
-			'navwalkers/class-navwalker',
-			'class-acf-handler',
-		);
-		foreach ( $files as $file ) {
-			require_once $base_path . "/theme/{$file}.php";
-		}
-		new ACF_Handler();
-		$rest_handler = new Custom_Rest_Route();
-		add_action( 'rest_api_init', array( $rest_handler, 'register_rest_routes' ) );
-
-		$components = array(
-			'components',
-			'sections',
-		);
-		foreach ( $components as $component ) {
-			require_once $base_path . "/component-classes/class-{$component}.php";
-		}
-
-		$asset_loader = array( 'enum-enqueue-type', 'class-asset-loader' );
-		foreach ( $asset_loader as $asset ) {
-			require_once $base_path . "/theme/asset-loader/{$asset}.php";
-		}
-
-		$map_files = array(
-			'map-element',
-			'map-constructor',
-			'map',
-		);
-		foreach ( $map_files as $map_file ) {
-			require_once $base_path . "/theme/map/class-{$map_file}.php";
-		}
+		require_once $base_path . '/theme/theme-functions.php';
 	}
 
-	/** Takes an array of file names to load
-	 *
-	 * @param string[] $classes the classes to load
+	/**
+	 * Edit user roles and capabilities
 	 */
-	private function load_acf_classes( array $classes ) {
-		$path = get_template_directory() . '/inc/acf';
-		foreach ( $classes as $class_file ) {
-			require_once $path . '/acf-classes/class-' . $class_file . '.php';
-		}
+	private function edit_roles() {
+		$role_editor = new Admin\Role_Editor();
+		add_action( 'admin_init', array( $role_editor, 'create_custom_roles' ) );
+	}
+
+	/**
+	 * Allow SVG uploads
+	 */
+	private function allow_svg() {
+		$svg = new Admin\Allow_SVG();
+		add_filter( 'upload_mimes', array( $svg, 'cc_mime_types' ) );
+		add_action( 'admin_head', array( $svg, 'fix_svg' ) );
+	}
+
+	/**
+	 * Handle Plugins
+	 */
+	private function handle_plugins() {
+		$handler = new Plugins\Plugins_Handler();
+		$handler->handle_acf();
+		$handler->handle_yoast();
+		$handler->handle_gravity_forms();
+		add_action( 'init', array( $handler, 'disable_plugins_per_environment' ) );
+		add_filter( 'auto_update_plugin', array( $handler, 'handle_auto_update_plugin' ) );
+	}
+
+	/**
+	 * Bootstrap Theme Features
+	 */
+	private function load_features() {
+		$events_handler = new Features\Events\Events_Handler();
+		$events_handler->load_rest_routes();
+		add_action( 'pre_get_posts', array( $events_handler, 'override_events_query' ), 9999 );
+		add_filter( 'template_include', array( $events_handler, 'override_search_template' ) );
 	}
 
 	/** Handles Theme Sizes */
@@ -117,18 +104,6 @@ class Theme_Init {
 		}
 	}
 
-	/** Sets an Environment Variable */
-	private function cno_set_environment() {
-		$server_name = $_SERVER['SERVER_NAME'];
-
-		if ( false !== strpos( $server_name, '.local' ) ) {
-			$_ENV['CNO_ENV'] = 'dev';
-		} elseif ( false !== strpos( $server_name, 'wpengine' ) ) {
-			$_ENV['CNO_ENV'] = 'stage';
-		} else {
-			$_ENV['CNO_ENV'] = 'prod';
-		}
-	}
 
 	/**
 	 * Adds scripts with the appropriate dependencies
@@ -251,63 +226,5 @@ class Theme_Init {
 				remove_post_type_support( $post_type, $support );
 			}
 		}
-	}
-
-	/**
-	 * Overrides the search template to use archive-events.php
-	 *
-	 * @param string $template the template to override
-	 * @return string the new template
-	 */
-	public function override_search_template( $template ): string {
-		if ( is_search() ) {
-			$new_template = locate_template( array( 'archive-events.php' ) );
-			if ( '' !== $new_template ) {
-				return $new_template;
-			}
-		}
-		return $template;
-	}
-
-	/** Allow Editor to access Gravity Forms */
-	public function allow_gf_cap() {
-		$role = get_role( 'editor' );
-		$role->add_cap( 'gform_full_access' );
-	}
-
-	/**
-	 * Override the events query to use archive-events.php
-	 *
-	 * @param \WP_Query $query the query to override
-	 */
-	public function override_events_query( \WP_Query $query ) {
-		if ( is_admin() || 'events' !== $query->get( 'post_type' ) || ! $query->is_main_query() ) {
-			return;
-		}
-		$query->set(
-			'meta_query',
-			array(
-				'relation'          => 'AND',
-				'day_clause'        => array(
-					'key'     => 'info_day',
-					'compare' => 'EXISTS',
-				),
-				'start_time_clause' => array(
-					'key'     => 'info_start_time',
-					'compare' => 'EXISTS',
-				),
-				'end_time_clause'   => array(
-					'key' => 'info_end_time',
-				),
-			)
-		);
-		$query->set(
-			'orderby',
-			array(
-				'day_clause'        => 'ASC',
-				'start_time_clause' => 'ASC',
-				'end_time_clause'   => 'ASC',
-			)
-		);
 	}
 }

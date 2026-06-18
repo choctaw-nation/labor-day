@@ -7,7 +7,7 @@
  * @since 3.3.2
  */
 
-namespace ChoctawNation\Map;
+namespace ChoctawNation\Features\Map;
 
 /**
  * Map Element

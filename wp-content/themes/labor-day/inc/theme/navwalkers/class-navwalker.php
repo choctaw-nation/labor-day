@@ -5,7 +5,11 @@
  * @package ChoctawNation
  */
 
-namespace ChoctawNation;
+namespace ChoctawNation\Theme\Navwalkers;
+
+use WP_Post;
+use stdClass;
+use Walker_Nav_Menu;
 
 /**
  * Extends the WP Nav Walker to create megamenu option
@@ -16,7 +20,7 @@ namespace ChoctawNation;
  * @since 0.1
  * @author Blake Perkins & KJ Roelke
  */
-class Navwalker extends \Walker_Nav_Menu {
+class Navwalker extends Walker_Nav_Menu {
 	/** The current nav item
 	 *
 	 * @var WP_Post $current_item

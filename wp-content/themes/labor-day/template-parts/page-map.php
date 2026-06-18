@@ -5,9 +5,9 @@
  * @package ChoctawNation
  */
 
-use ChoctawNation\Asset_Loader;
-use ChoctawNation\Map\Map;
-use ChoctawNation\Enqueue_Type;
+use ChoctawNation\Utils\Asset_Loader;
+use ChoctawNation\Features\Map\Map;
+use ChoctawNation\Utils\Enqueue_Type;
 
 $cno_map    = new Map();
 $map_assets = new Asset_Loader( 'map', Enqueue_Type::both, 'pages' );

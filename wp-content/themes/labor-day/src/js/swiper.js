@@ -1,8 +1,6 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
+import 'swiper/css';
 
 const defaultArgs = {
 	modules: [Navigation, Pagination],
