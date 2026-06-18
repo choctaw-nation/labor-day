@@ -69,6 +69,7 @@ class Theme_Init {
 	 */
 	private function load_features() {
 		$events_handler = new Features\Events\Events_Handler();
+		$events_handler->load_rest_routes();
 		add_action( 'pre_get_posts', array( $events_handler, 'override_events_query' ), 9999 );
 		add_filter( 'template_include', array( $events_handler, 'override_search_template' ) );
 	}
