@@ -1,13 +1,17 @@
-# Project Overview
-
-Labor Day is an event held by the Choctaw Nation Tribal Events team. This is a time for family, fellowship, and celebrating the Choctaw Nation Culture. This year it will be Friday, August 31st to Sunday September 4th. This website will be to use to store everything, past, present and future of the Labor Day Event.
-
 # Changelog
+
+## v5.0.0 - [June 18, 2026]
+
+-   Breaking: Switch to Autoloading
+-   Updated: Lints & Configs are updated to latest versions
+-   Updated: Packages are updated
+-   Updated: Semver numbers are synced
+-   Removed: Dead code is removed via deploy
 
 ## v4.4.2 - [September 1, 2025]
 
-- Fixed: Homepage countdown is now ACF-powered
-- Chore: Update packages & add vscode settings to repo
+-   Fixed: Homepage countdown is now ACF-powered
+-   Chore: Update packages & add vscode settings to repo
 
 ## v4.4.1
 
