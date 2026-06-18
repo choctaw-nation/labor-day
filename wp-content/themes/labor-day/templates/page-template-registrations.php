@@ -6,8 +6,8 @@
  * @package ChoctawNation
  */
 
-use ChoctawNation\Asset_Loader;
-use ChoctawNation\Enqueue_Type;
+use ChoctawNation\Utils\Asset_Loader;
+use ChoctawNation\Utils\Enqueue_Type;
 
 new Asset_Loader( 'registrations', Enqueue_Type::both, 'pages' );
 get_header();

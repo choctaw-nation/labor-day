@@ -6,7 +6,7 @@
  * @since 1.0
  */
 
-namespace ChoctawNation\Map;
+namespace ChoctawNation\Features\Map;
 
 /** Generates the Map */
 class Map extends Map_Constructor {
