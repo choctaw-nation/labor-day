@@ -1,5 +1,6 @@
 @use "../abstracts/mixins" as m;
 
+/* stylelint-disable-next-line selector-id-pattern */
 :where(#hoursModal #rv-tent-hours) {
 	div p {
 		font-size: inherit;

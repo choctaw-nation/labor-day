@@ -4,19 +4,16 @@
 	--color-primary: #{v.$color-primary};
 	--color-primary--dark: #{v.$color-primary--dark};
 	--color-primary--light: #{v.$color-primary--light};
-
 	--color-secondary: #{v.$color-secondary};
 	--color-tertiary: #{v.$color-tertiary};
 	--color-black: #{v.$color-black};
 	--color-grey: #{v.$color-grey};
 	--color-purple: #{v.$color-purple};
 	--color-white: #{v.$color-white};
-
 	--font-headings: #{v.$font-headings};
 	--font-body: #{v.$font-body};
 	--font-serif: #{v.$font-serif};
 	--font-pill-gothic: #{v.$font-pill-gothic};
-
 	--transition-standard: #{v.$transition--standard};
 }
 
@@ -41,6 +38,7 @@ a {
 :where(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
 	text-wrap: balance;
 }
+
 ul,
 ol {
 	margin-left: 1.25rem;

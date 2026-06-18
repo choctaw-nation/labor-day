@@ -16,7 +16,7 @@
 		line-height: 1.2;
 		text-align: center;
 
-		@include m.displayFlex(column, center, stretch);
+		@include m.display-flex(column, center, stretch);
 
 		@include m.media-breakpoint-only(lg) {
 			grid-column: 1 / 2;
@@ -29,7 +29,7 @@
 		}
 
 		&--date {
-			@include m.displayFlex(column, $cross: center);
+			@include m.display-flex(column, $cross: center);
 		}
 
 		&--month {
@@ -54,6 +54,7 @@
 			border-top: 1px solid white;
 			margin-top: 0.5rem;
 			padding-top: 0.5rem;
+
 			@include m.media-breakpoint-down(lg) {
 				margin-bottom: 1rem;
 			}
@@ -87,7 +88,8 @@
 
 	&__buttons {
 		& > * {
-			@include m.displayFlex(row, $cross: center);
+			@include m.display-flex(row, $cross: center);
+
 			transition: fn.transition(
 				(background-color, border-color, transform, box-shadow, color)
 			);
@@ -126,6 +128,7 @@
 		}
 	}
 }
+
 .cno-event-schedule-confirmation {
 	display: block;
 	min-width: clamp(28rem, 100%, 40rem);

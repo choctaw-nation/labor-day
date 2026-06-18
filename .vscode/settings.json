@@ -36,6 +36,7 @@
 		"prettier.useTabs": false
 	},
 	"cSpell.words": [
+		"autoptimize",
 		"bloginfo",
 		"classmap",
 		"formid",
@@ -48,7 +49,9 @@
 		"relevanssi",
 		"spai",
 		"trackbacks",
-		"wpengine"
+		"wpengine",
+		"wpeprivate",
+		"xdebuginfo"
 	],
 	"css.format.spaceAroundSelectorSeparator": true,
 	"editor.codeActionsOnSave": {

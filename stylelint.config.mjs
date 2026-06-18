@@ -33,6 +33,7 @@ export default {
 	},
 	ignoreFiles: [
 		'wp-content/themes/labor-day/src/styles/abstracts/_bs-breakpoints.scss',
+		'wp-content/themes/labor-day/src/styles/vendors/animate.min.css',
 	],
 	overrides: [
 		{

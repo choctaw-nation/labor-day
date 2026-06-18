@@ -13,6 +13,7 @@
 	visibility: hidden !important;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .fadeIn {
 	transition: fn.transition((opacity, transform), (1s ease));
 	opacity: 1;
@@ -22,10 +23,8 @@
 		opacity: 0;
 		transform: translateY(2.5rem);
 
-		@media (print), (prefers-reduced-motion: reduce) {
-			& {
-				transform: none;
-			}
+		@media (prefers-reduced-motion: reduce) {
+			transform: none;
 		}
 	}
 }

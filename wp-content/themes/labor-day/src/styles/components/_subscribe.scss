@@ -19,7 +19,8 @@
 	margin: 3rem 0;
 
 	&__email {
-		@include m.displayFlex($main: flex-end, $cross: stretch);
+		@include m.display-flex($main: flex-end, $cross: stretch);
+
 		flex: 1 0 auto;
 		gap: 2rem;
 		padding-top: 2rem;
@@ -47,6 +48,7 @@
 			@include m.media-breakpoint-down(lg) {
 				flex: unset;
 			}
+
 			background-color: v.$color-primary--light;
 
 			&:hover {
@@ -58,7 +60,8 @@
 	}
 
 	&__text {
-		@include m.displayFlex(column, center);
+		@include m.display-flex(column, center);
+
 		border-left: 2px solid white;
 		margin-left: 5px;
 		padding-left: 1.5rem;

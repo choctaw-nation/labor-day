@@ -1,5 +1,6 @@
 .map-legend {
 	--size: 30px;
+
 	width: var(--size);
 	aspect-ratio: 1;
 
@@ -8,6 +9,7 @@
 			fill: #e5a519;
 		}
 	}
+
 	&__atm {
 		.cls-1 {
 			font-family: var(--font-body);
@@ -26,7 +28,7 @@
 
 		.cls-3,
 		.cls-2 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-4 {
@@ -46,7 +48,7 @@
 
 		.cls-2 {
 			fill: #ac4fc6;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
@@ -60,7 +62,7 @@
 
 		.cls-2 {
 			fill: #9a9b30;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
@@ -74,14 +76,14 @@
 
 		.cls-2 {
 			fill: #026e9b;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
 	&__elder-ride {
 		.cls-1 {
 			fill: #d6d6db;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -111,7 +113,7 @@
 
 		.cls-2,
 		.cls-3 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-3 {
@@ -126,7 +128,7 @@
 
 		.cls-1,
 		.cls-2 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-3 {
@@ -150,14 +152,14 @@
 
 		.cls-2 {
 			fill: #41ad49;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
 	&__healthy-living-expo {
 		.cls-1 {
 			fill: #007b5f;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -171,7 +173,7 @@
 	&__information {
 		.cls-1 {
 			fill: #d6742a;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -202,7 +204,7 @@
 
 		.st4,
 		.st2 {
-			letter-spacing: 0em;
+			letter-spacing: 0;
 		}
 	}
 
@@ -216,7 +218,7 @@
 
 		.cls-2 {
 			fill: #5957a6;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
@@ -236,14 +238,14 @@
 
 		.cls-3 {
 			fill: #d6d7db;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 
 	&__parking-stations {
 		.cls-1 {
 			fill: #009bdf;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -257,7 +259,7 @@
 	&__parking {
 		.cls-1 {
 			fill: #ffb71b;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -278,7 +280,7 @@
 
 		.cls-2 {
 			fill: #d6d7db;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-3 {
@@ -302,7 +304,7 @@
 		.cls-2,
 		.cls-3,
 		.cls-4 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-3 {
@@ -310,7 +312,7 @@
 		}
 
 		.cls-5 {
-			clip-path: url(#rv-parking-clippath);
+			clip-path: url("#rv-parking-clippath");
 		}
 
 		.cls-4 {
@@ -331,7 +333,7 @@
 
 		.cls-2,
 		.cls-3 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-3 {
@@ -346,7 +348,7 @@
 
 		.cls-1,
 		.cls-2 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -374,11 +376,11 @@
 		.cls-2,
 		.cls-3,
 		.cls-4 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-5 {
-			clip-path: url(#clippath);
+			clip-path: url("#clippath");
 		}
 
 		.cls-3 {
@@ -397,7 +399,7 @@
 
 		.cls-1,
 		.cls-2 {
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 
 		.cls-2 {
@@ -451,7 +453,7 @@
 
 		.cls-3 {
 			fill: #d6d7db;
-			stroke-width: 0px;
+			stroke-width: 0;
 		}
 	}
 }

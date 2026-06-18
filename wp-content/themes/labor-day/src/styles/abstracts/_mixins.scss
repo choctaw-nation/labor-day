@@ -2,24 +2,25 @@
 @use "./variables" as v;
 @use "./functions" as fn;
 
-@mixin displayFlex(
+@mixin display-flex(
 	$direction: row,
 	$main: flex-start,
 	$cross: flex-start,
 	$wrap: wrap
 ) {
 	display: flex;
-	flex-direction: $direction;
-	flex-wrap: $wrap;
+	flex-flow: $direction $wrap;
 	justify-content: $main;
 	align-items: $cross;
 }
 
+/* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin fadeIn {
 	animation: fadeInAnimation ease 0.5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 
+	/* stylelint-disable-next-line keyframes-name-pattern */
 	@keyframes fadeInAnimation {
 		0% {
 			opacity: 0;
@@ -31,11 +32,11 @@
 	}
 }
 
-@mixin dropShadow($color: black) {
+@mixin drop-shadow($color: black) {
 	box-shadow: 2px 4px 8px rgba($color, 0.35);
 }
 
-@mixin fitMedia($selector: img, $fit: contain, $position: center) {
+@mixin fit-media($selector: img, $fit: contain, $position: center) {
 	#{$selector} {
 		width: 100%;
 		height: 100%;
@@ -45,7 +46,7 @@
 	}
 }
 
-@mixin anchorHoverState($height: 3px, $width: 50%, $color: v.$color-primary) {
+@mixin anchor-hover-state($height: 3px, $width: 50%, $color: v.$color-primary) {
 	&::after {
 		background-color: $color;
 		bottom: -5px;

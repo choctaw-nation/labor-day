@@ -41,7 +41,8 @@
 
 		.nav-link {
 			@include rfs.font-size(1.25rem);
-			@include m.anchorHoverState($color: white);
+			@include m.anchor-hover-state($color: white);
+
 			position: relative;
 			text-transform: uppercase;
 		}
