@@ -11,7 +11,7 @@ jobs:
         with:
             WPE_ENV: labordayprod # WP Engine environment name
             theme_name: labor-day
-            flags: --azvr --delete
+            flags: -azvr --delete
             with_autoload: true
         secrets: inherit
 
@@ -22,7 +22,8 @@ jobs:
         with:
             WPE_ENV: labordaystg # WP Engine environment name
             theme_name: labor-day
-            with_autoload: true			
+            with_autoload: true
+            flags: -azvr --delete
         secrets: inherit
 
     deploy-dev:
@@ -33,5 +34,5 @@ jobs:
             WPE_ENV: labordaydev # WP Engine environment name
             theme_name: labor-day
             with_autoload: true
-            flags: --azvr --delete
+            flags: -azvr --delete
         secrets: inherit
