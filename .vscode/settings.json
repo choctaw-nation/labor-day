@@ -1,4 +1,10 @@
 {
+	"[javascript]": {
+		"editor.formatOnSave": false
+	},
+	"[javascriptreact]": {
+		"editor.formatOnSave": false
+	},
 	"[php]": {
 		"editor.autoIndent": "advanced",
 		"editor.defaultFormatter": "wongjn.php-sniffer",
@@ -9,6 +15,12 @@
 		"editor.useTabStops": true,
 		"prettier.tabWidth": 4,
 		"prettier.useTabs": true
+	},
+	"[typescript]": {
+		"editor.formatOnSave": false
+	},
+	"[typescriptreact]": {
+		"editor.formatOnSave": false
 	},
 	"[yaml]": {
 		"editor.autoIndent": "advanced",
@@ -23,15 +35,27 @@
 		"editor.useTabStops": true,
 		"prettier.useTabs": false
 	},
-	"bootstrapAutocomplete.version": "5.3.2",
-	"cSpell.words": [ "formid", "gpnf", "nestedformid", "Populator" ],
+	"cSpell.words": [
+		"bloginfo",
+		"classmap",
+		"formid",
+		"gpnf",
+		"instantiator",
+		"LABORDAY",
+		"megamenu",
+		"nestedformid",
+		"Populator",
+		"relevanssi",
+		"spai",
+		"trackbacks",
+		"wpengine"
+	],
 	"css.format.spaceAroundSelectorSeparator": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "always",
 		"source.fixAll.stylelint": "always"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": false,
 	"eslint.enable": true,
 	"eslint.useESLintClass": true,
 	"eslint.validate": [
@@ -44,7 +68,8 @@
 		"scss"
 	],
 	"html.format.templating": true,
-	"phpSniffer.standard": "phpcs.xml.dist",
+	"phpSniffer.standard": "wp-content/themes/labor-day/phpcs.xml.dist",
+	"phpSniffer.executablesFolder": "wp-content/themes/labor-day/vendor/bin",
 	"scss.format.spaceAroundSelectorSeparator": true,
 	"stylelint.snippet": [ "css", "scss" ],
 	"stylelint.validate": [ "css", "scss" ]

@@ -1,17 +1,24 @@
 <?php
 /**
- * Class: Custom Rest Route
+ * Class: Events Rest Route
  *
- * @package CNOLaborDay
+ * @package ChoctawNation
  * @subpackage Events
  */
 
-namespace CNOLaborDay\Events;
+namespace ChoctawNation\Features\Events;
+
+use WP_REST_Controller;
+use WP_REST_Server;
+use WP_REST_Request;
+use WP_REST_Response;
+use WP_Error;
+use WP_Query;
 
 /**
- * Custom Rest Route
+ * Events Rest Route
  */
-class Custom_Rest_Route {
+class Events_Rest_Route extends WP_REST_Controller {
 	/**
 	 * The cache expiry time
 	 *
@@ -48,12 +55,12 @@ class Custom_Rest_Route {
 	/**
 	 * Register the custom rest routes
 	 */
-	public function register_rest_routes() {
+	public function register_routes() {
 		register_rest_route(
 			"{$this->base}/v{$this->version}",
 			'/events',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_events' ),
 				'permission_callback' => '__return_true',
 			)
@@ -62,7 +69,7 @@ class Custom_Rest_Route {
 			"{$this->base}/v{$this->version}",
 			'/event/(?P<id>\d+)',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_event' ),
 				'args'                => array(
 					'id' => array(
@@ -79,11 +86,11 @@ class Custom_Rest_Route {
 			"{$this->base}/v{$this->version}",
 			'/events',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
+				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'find_event' ),
 				'args'                => array(
 					's' => array(
-						'validate_callback' => function ( $param, ) {
+						'validate_callback' => function ( $param ) {
 							return sanitize_text_field( $param );
 						},
 					),
@@ -96,9 +103,9 @@ class Custom_Rest_Route {
 	/**
 	 * Get the events
 	 *
-	 * @return \WP_REST_Response
+	 * @return WP_REST_Response
 	 */
-	public function get_events(): \WP_REST_Response {
+	public function get_events(): WP_REST_Response {
 		$event_info_transient = get_transient( 'event_info_transient' );
 		if ( false !== $event_info_transient ) {
 			return rest_ensure_response( $event_info_transient );
@@ -121,14 +128,14 @@ class Custom_Rest_Route {
 	/**
 	 * Get the event
 	 *
-	 * @param \WP_REST_Request $request The request object.
-	 * @return \WP_REST_Response
+	 * @param WP_REST_Request $request The request object.
+	 * @return WP_REST_Response|WP_Error
 	 */
-	public function get_event( \WP_REST_Request $request ): \WP_REST_Response {
+	public function get_event( WP_REST_Request $request ): WP_REST_Response|WP_Error {
 		$event_id = $request->get_param( 'id' );
 		$event    = get_post( $event_id );
 		if ( ! $event ) {
-			return new \WP_Error( 'event_not_found', 'Event not found. Are you sure it exists?', array( 'status' => 404 ) );
+			return new WP_Error( 'event_not_found', 'Event not found. Are you sure it exists?', array( 'status' => 404 ) );
 		}
 
 		$event_info = $this->get_the_event_array( $event_id );
@@ -163,11 +170,11 @@ class Custom_Rest_Route {
 	/**
 	 * Handles Server-Side searching with Relevanssi
 	 *
-	 * @param \WP_REST_Request $request The request object.
-	 * @return \WP_REST_Response
-	 * @throws \WP_Error If no events are found.
+	 * @param WP_REST_Request $request The request object.
+	 * @return WP_REST_Response
+	 * @throws WP_Error If no events are found.
 	 */
-	public function find_event( \WP_REST_Request $request ): \WP_REST_Response {
+	public function find_event( WP_REST_Request $request ): WP_REST_Response {
 		$search = $request->get_param( 's' );
 		$args   = array(
 			...$this->base_args,
@@ -176,14 +183,14 @@ class Custom_Rest_Route {
 		);
 
 		$event_info = array();
-		$events     = new \WP_Query( $args );
+		$events     = new WP_Query( $args );
 		if ( $events->have_posts() ) {
 			while ( $events->have_posts() ) {
 				$events->the_post();
 				$event_info[] = $this->get_the_event_array( get_the_ID() );
 			}
 		} else {
-			throw new \WP_Error( 'no_events_found', 'No events found.', array( 'status' => 404 ) );
+			throw new WP_Error( 'no_events_found', 'No events found.', array( 'status' => 404 ) );
 		}
 
 		return rest_ensure_response( $event_info );
