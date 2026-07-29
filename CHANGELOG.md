@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.1.0 - [July 29, 2026]
+
+- Updated: New Map
+- Chore: Update packages
+
 ## v5.0.0 - [June 18, 2026]
 
 -   Breaking: Switch to Autoloading
