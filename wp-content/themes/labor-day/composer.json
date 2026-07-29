@@ -2,7 +2,7 @@
 	"name": "choctaw-nation/labor-day",
 	"description": "a custom wp theme for Choctaw Nation's labor day site",
 	"type": "project",
-	"version": "5.0.0",
+	"version": "5.1.0",
 	"license": "GPL-3.0-or-later",
 	"autoload": {
 		"classmap": [
