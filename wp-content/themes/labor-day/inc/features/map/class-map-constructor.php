@@ -71,7 +71,7 @@ abstract class Map_Constructor {
 
 	/** Constructor */
 	public function __construct() {
-		$this->map_version = 'v5';
+		$this->map_version = 'v6';
 		$this->map_uri     = get_template_directory_uri() . "/images/map-{$this->map_version}";
 		$this->get_map_files();
 	}
@@ -163,6 +163,11 @@ abstract class Map_Constructor {
 			array(
 				'name'    => 'lost-child',
 				'label'   => 'Lost Child',
+				'checked' => true,
+			),
+			array(
+				'name'    => 'mothers-room',
+				'label'   => 'Mother\'s Room',
 				'checked' => true,
 			),
 			array(
@@ -274,7 +279,7 @@ abstract class Map_Constructor {
 			new Map_Element(
 				array(
 					'id'    => 'Going_Green_Tents',
-					'label' => 'Going Green Tent',
+					'label' => 'Going Green Tents',
 					'icon'  => 'going-green-tent',
 				)
 			),
@@ -301,16 +306,9 @@ abstract class Map_Constructor {
 			),
 			new Map_Element(
 				array(
-					'id'    => 'Membership',
-					'label' => 'Membership',
+					'id'    => 'MEMBER_SERVICES_TENT',
+					'label' => 'Member Services Tent',
 					'icon'  => 'membership',
-				)
-			),
-			new Map_Element(
-				array(
-					'id'    => 'Mothers_Room',
-					'label' => 'Mother\'s Room',
-					'icon'  => 'mothers-room',
 				)
 			),
 			new Map_Element(
@@ -375,6 +373,13 @@ abstract class Map_Constructor {
 					'id'    => 'Tribal_Police',
 					'label' => 'Tribal Police',
 					'icon'  => 'tribal-police',
+				)
+			),
+			new Map_Element(
+				array(
+					'id'    => 'VENDOR_PARKING',
+					'label' => 'Vendor Parking',
+					'icon'  => 'vendor-parking',
 				)
 			),
 			new Map_Element(
